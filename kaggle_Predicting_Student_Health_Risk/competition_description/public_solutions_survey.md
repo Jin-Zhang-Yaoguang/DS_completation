@@ -11,15 +11,18 @@
 | 2026-07-03 | 巡视：52 候选，新精读 3 份（RepLeafGBM / GRN / cross-family calibration） | 发现表格 NN 多样性包（CV 0.9493~0.9496）；NN 上缺失指示 +0.0025（树上无效）；「多样性 > 单模强度」有了定量证据 |
 | 2026-07-03 | 巡视2：52 候选，无新发布；快扫 2 份旧候选（nina2025 CatBoost / kirikiti stacking）确认无新方法论 | 今日无新方案；清单补登 24 条历史候选（消灭模糊通配，保证 diff 幂等） |
 | 2026-07-04 | 巡视3：53 候选，24 个新 ref，精读 6 份（amerhu EDA / masayakawamata LogReg stacker / pavloivanin logit blend / NaNs-Are-Features / n0rollback×2） | amerhu 逐特征信号表 + 「缺失集中在最强特征」；LogReg 全成员堆叠 CV 0.95052 与融合天花板一致；公开榜新高 0.95088（仍为提交融合器） |
+| 2026-07-04 | 巡视4：50 候选，34 个新 ref，精读 5 份（nybbler 天花板分解 ⭐ / georgymamarin 天花板分析 ⭐ / philippsinger TabPFN-3 / yunsuxiaozi RealMLP / amanatar 融合器） | **两份权威分析独立定量确认天花板 ~0.951–0.952**；机制补全：**stress_level 是独立采样纯噪声**（源数据里与任何特征无联合依赖），故 12% stress 缺失行不可救——这是硬墙的根因；公开榜新高 0.95112（三文件多数投票）；TabPFN-3 基础模型登场但需 GPU |
 
 ## 一、公开榜格局
 
 | 分数段 | 构成 |
 | --- | --- |
-| 0.9509+ | 「提交融合器」：收集多份公开提交做加权投票（无原创模型，且有 public 过拟合风险） |
+| 0.9511+ | 「提交融合器」：收集多份公开提交做加权投票/多数票（无原创模型，public 过拟合，私榜大概率回吐） |
 | 0.9505~0.9508 | 两三个异源模型的概率融合（如 0.6×HGBC栈 + 0.4×RealMLP） |
 | 0.9500~0.9505 | **原创单模天花板区**：精调 XGB / HGBC+TE / RealMLP |
 | ≤0.948 | 常规 GBDT 基线（我们的 #1~#4 也在此区） |
+
+> **天花板已被社区定量锁定（2026-07-04）**：nybbler 分解 ~0.05 gap = 标签噪声 0.033（硬顶，全特征已知也只到 0.967）+ 缺失 0.026（主要是不可救的 stress）+ 代理恢复 +0.009（step→activity、sleep_quality→sleep，好模型已自动榨取）。**现实天花板 ~0.951，私榜获胜区预计 0.951–0.952**。georgymamarin 佐证：上季 S6E6 私榜前 20 名在公开榜排 149–495 位，冠军公开榜第 343 名——**公开榜排名几乎不携带私榜信息**。
 
 ## 二、逐个方案分析
 
@@ -105,13 +108,32 @@
 - 其 LB 实验日志：几何 > 算术 +0.00012；掺入自训 GBDT 三重奏（与公开文件一致率 99.5%）**反而 -0.00035**——同质成员纯稀释；kirill0212 (OvO-LGBM) 是公开池中唯一异源声音（一致率仅 93.4%，异议方向 = 把边界行投回 at-risk）。
 - 结论清单（其自述）：多样性是唯一约束；weight 微调已 flat-line；下一步值钱的是 TabM/FT-Transformer 级新家族成员。
 
-### 12. masayakawamata/LogReg Stacker（stack CV 0.95052，2026-07-04 巡视新增）
+### 12. masayakawamata/LogReg Stacker（stack CV 0.95052→0.95064，2026-07-04 巡视新增）
 
 - cdeotte 式 GPU 多项逻辑回归堆叠：全成员 logit 输入、L2（C=0.1）自动压冗余成员、平衡类权重或交叉拟合 β 双变体。
 - **诚实协议范本**：β 在训练折上选、只应用于持出折（cross-fitted β）；采纳门槛 =「比最佳单模 ≥+0.002 且 7 折全部同号」，不达标则 fallback 单模。
-- 全成员（其 XGB/RepLeaf/GRN/RealMLP 等 7 折系列）堆叠后 CV 0.95052——与最佳单模量级几乎持平，**再证融合天花板 ~0.9505**。
+- 全成员（其 XGB/RepLeaf/GRN/RealMLP 等 7 折系列）堆叠后 CV 0.95064（版本更新，前为 0.95052）——仍与最佳单模同量级，**再证融合天花板 ~0.9506**。
 
-## 三、社区共识配方（交叉验证过的结论）
+### 13. nybbler/Estimating the score ceiling ⭐⭐ 全场最重要的分析（2026-07-04 巡视4 新增）
+
+- **定量分解 ~0.05 gap = 三块**：① **标签噪声 ≈ 0.033（硬顶）**——合成在 sleep 阈值附近翻转了约 1% 标签，全特征已知也只能到 0.967，无人可越；② **缺失 ≈ 0.026**——主要来自 stress（缺失率最高 12% 且唯一不可救）；③ **代理恢复 ≈ +0.009**——step_count→activity、sleep_quality→sleep bin，把裸 0.941 抬到 ~0.950，**好模型已自动榨取**。
+- **机制级新发现：stress_level 是独立采样的纯噪声**——用「增强版」源数据（含 academic_pressure、mental_health_status）验证：任何 stress 潜在驱动特征在各 stress 档上分布完全相同（~30/30/40），MI 全在噪声地板。stress 只是固定边际的独立随机抽取。
+- **推论（为什么这是硬墙）**：fit/unhealthy 仅由 stress 区分（fit⟹low、unhealthy⟹high），故 12% stress 缺失行上 fit/unhealthy 无法超过先验，且**无外部数据/聚类能改变**（stress 与万物独立）。这也解释了为何 at-risk recall 永远最低——stress 缺失行上，balanced 最优决策会牺牲多数类 at-risk 去保 fit/unhealthy recall。
+- **结论**：现实天花板 ~0.951，私榜获胜区 **0.951–0.952**；此刻已无多少真实空间。
+
+### 14. georgymamarin/quit chasing ~0.950（37 票教学分析，2026-07-04 巡视4 新增）⭐
+
+- **公开榜=幻象**：上季 S6E6 私榜前 20 名公开榜排 149–495 位，公开榜冠军未进私榜前 20；<0.0002 的差距下公开榜顶端纯噪声。
+- **对抗验证**（我们此前未做）：train-vs-test 分类器 ROC-AUC ~0.65——存在肉眼看不见的轻度多元漂移（集中在 water_intake/calorie/bmi），但远不到 0.8+ 需重要性加权的程度，**安全可忽略**（OOF 0.9498→LB 0.94988 零 gap 佐证）。
+- **类权重 vs prior-correction 是替代非互补**：两者单用都到 ~0.950；叠加会二次过校正，此处 **-0.045**。公开常见「训练类权重 + 事后乘子搜索」之所以不崩，是乘子搜索把第二重校正走回近乎恒等（**正是我们 v6/v10 的温和乘子 1.075~1.15 的来由**）。
+- 阈值 MI 扫描技巧（broccoli beef）：对每个阈值 t 算 `x≤t` 与标签的 MI，生成器切点会「点亮」——sleep 峰值在 6.0h。
+- 表征是唯一例外（引 Mark Susol 九连击 + nybbler）：一切融合/决策调参卡在 ~0.949，唯有**逐值 TE（精确值、交叉拟合）带来真实 +0.0009 且 LB 同步无 gap**——即我们 v6 的核心。
+
+### 15. philippsinger/TabPFN-3 Starter（GM 作者，2026-07-04 巡视4 新增）
+
+- **全新模型家族**：TabPFN-3 表格基础模型，在数百万合成表上预训练，做 in-context learning（训练行作上下文，一次前向出预测），TabPFN-3 可扩到 100 万行。
+- 零特征工程、零调参：原始帧直接喂入，类别/缺失/缩放全内部处理；`balance_probabilities=True` 做事后概率平衡，`eval_metric=balanced_accuracy` + `tune_decision_thresholds`（starter 中注释掉）。
+- 成本：需 T4×2 GPU，296k 测试集单次前向 ~1 小时；starter 未报分。**唯一尚未被公开验证多样性的异源家族**，但天花板论对它同样成立。
 
 1. **决策时先验/β 校正是第一杠杆**（+0.07 量级），所有 0.950+ 方案殊途同归；训练时类权重反而多余甚至有害（与 β 冲突时）。实现可用 β 标量（`p/prior^β`，网格到 2.5）或逐类乘子坐标上升（严格更灵活，danushkumarv 验证）。
 2. **逐值目标编码是第二杠杆**（约 +0.0003~+0.003）：本质是直接估计合成数据生成器的逐值条件概率，绕过树模型的分箱损失。**注意：仅对树/HGBC 系有效，masamlp 系 NN 上证伪**（嵌入已承担编码职能）。
@@ -121,8 +143,10 @@
 6. **缺失指示特征分家族**（2026-07-03 修订）：树系无效（NaN 原生路由已捕捉）；**NN 系 +0.0025**（插补抹掉缺失位置信息，需显式补回：逐列 na_flag + 行 n_missing）。
 7. **冻结共享 CV**（seed 42, 5/7 折 Stratified）让所有模型概率可对齐融合——社区事实标准。
 8. 特征洞察：`stress_level × physical_activity_level` 交互近乎单独决定目标（danushkumarv）；睡眠时长是最强单特征（多家 EDA）；**缺失率最高的列恰是最强特征**（amerhu，缺失非随机）；活动簇（cal/step/exercise 两两 r≈0.4）是全数据唯一的特征间相关结构。
-9. 公开榜格局（2026-07-04）：提交融合器新高 0.95088（amerhu）；全成员诚实堆叠 CV 0.95052（masayakawamata）与原创单模天花板持平——**融合天花板 ~0.9505 获两处独立验证**。
-10. 已证无效的坑：OvR 拆解、逐类超参、AUC/AUCPR 早停、训练时逐类权重、逐类 TE、比值/乘积/多项式特征汤（树系）、缺失指示（树系）、同质成员掺入公开池（-0.00035，amerhu LB 实测）。
+9. **天花板已定量锁定（2026-07-04，nybbler + georgymamarin 双独立验证）**：~0.05 gap = 标签噪声 0.033（硬顶 0.967）+ 缺失 0.026 + 代理恢复 +0.009（已自动榨取）。现实天花板 ~0.951，私榜获胜区 0.951–0.952。**关键机制：stress_level 是独立采样纯噪声，与万物无联合结构**——故 12% stress 缺失行是任何模型/外部数据都无法翻越的硬墙（fit/unhealthy 仅由 stress 区分）。
+10. **公开榜排名不携带私榜信息**（georgymamarin：上季私榜前 20 = 公开榜 149–495 名）；<0.0002 的公开榜差距是纯子样本噪声。融合天花板 ~0.9506 获多处独立验证（stacker/amerhu/szymon 均 +0.0001 量级）。
+11. **类权重与 prior-correction 是替代非互补**（georgymamarin/masayakawamata）：叠加二次过校正会崩（-0.045）；「训练权重 + 事后乘子搜索」安全的前提是乘子被搜回近恒等。
+12. 已证无效的坑：OvR 拆解、逐类超参、AUC/AUCPR 早停、训练时逐类权重（与决策校正叠加时）、逐类 TE、比值/乘积/多项式特征汤（树系）、缺失指示（树系）、同质成员掺入公开池（-0.00035，amerhu LB 实测）、缺失规则字段的代理补全/显式边际化（stress 不可救 = 数学硬墙）。
 
 ## 附录：已调研清单（巡视 diff 基线）
 
@@ -204,3 +228,37 @@
 | gauravduttaiiitb/ex3-s6e7-flaml-weighted-roc-auc-ovr | — | skip（AutoML 跑分） | 2026-07-04（巡视3） |
 | gauravduttaiiitb/ex1-org-s6e7-flaml-balanced-accurac | — | skip（AutoML 跑分） | 2026-07-04（巡视3） |
 
+| nybbler/s6e7-estimating-the-score-ceiling | 分析 | read ⭐⭐（天花板分解 + stress=噪声机制） | 2026-07-04（巡视4） |
+| georgymamarin/s6e7-quit-chasing-0-950-like-everyone | 分析 | read ⭐（公开榜=幻象 + 对抗验证 + 权重/校正替代性） | 2026-07-04（巡视4） |
+| philippsinger/tabpfn-3-starter-playground-series-s6e7 | starter | read（TabPFN-3 基础模型，需 GPU 未报分） | 2026-07-04（巡视4） |
+| yunsuxiaozi/pss6e7-realmlp-cv-0-95063 | CV 0.95063 | read（RealMLP + 逐值 TE，7 折，无新杠杆） | 2026-07-04（巡视4） |
+| amanatar/s6e7-student-hearth-risk-lb-0-95112 | 0.95112 | read（三文件多数投票融合器） | 2026-07-04（巡视4） |
+| anhadmahajan06/s6e7-post-processing-ensemble-lb-0-95112 | 0.95112 | skip（提交融合器/后处理） | 2026-07-04（巡视4） |
+| makthanithin/s6e7-post-processing-ensemble-lb-0-95112 | 0.95112 | skip（anhadmahajan06 的 fork） | 2026-07-04（巡视4） |
+| stephennedumpally/confidence-weighted-ensemble-with-score-0-95108 | 0.95108 | skip（提交融合器） | 2026-07-04（巡视4） |
+| tgmath/ps-s6e7-score-weighted-hard-vote-lb | — | skip（提交硬投票融合器） | 2026-07-04（巡视4） |
+| godofthunder2407/confidence-weighted-ensemble | — | skip（提交融合器） | 2026-07-04（巡视4） |
+| beicicc/student-health-risk-public-ensemble | — | skip（公开提交融合器） | 2026-07-04（巡视4） |
+| yaaangzhou/top-3-kernels-integrated-ensemble | — | skip（提交融合器） | 2026-07-04（巡视4） |
+| nawfeelrahman1124444/ps-s6-ep6-realmlp-0-95090 | 0.95090 | skip（RealMLP 复刻，无新方法） | 2026-07-04（巡视4） |
+| aribaymane61/ps-s6e7-ft-transformer-single-model-lb-0-95033 | 0.95033 | skip（FT-Transformer 单模，NN 家族已充分调研，分数低于 RealMLP） | 2026-07-04（巡视4） |
+| pcxxxxxx/realmlp-tree-blend-oof-ensemble | — | skip（RealMLP+Tree OOF 融合，方法已知） | 2026-07-04（巡视4） |
+| razanihababdellatif/cracking-student-health-risk | — | skip（教学向，无新方法论） | 2026-07-04（巡视4） |
+| thuandao/ps-s6e7-predicting-student-health-risk | — | skip（EDA+CatBoost 教学，43 票但方法常规） | 2026-07-04（巡视4） |
+| flexonafft/health-field-trials-pipeline-0-95 | 0.95 | skip（管线跑分，与赛题弱相关） | 2026-07-04（巡视4） |
+| gauravduttaiiitb/ex1-s6e7-best-quality-xgboost-r89-bag-l1 | — | skip（AutoGluon 跑分） | 2026-07-04（巡视4） |
+| daoviet/s6e7-eda-baseline | — | skip（EDA 基线，daoviet/s6e7-baseline 已登记） | 2026-07-04（巡视4） |
+| koushikkumardinda/advanced-health-risk-optuna-k-fold-ensemble | — | skip（Optuna 调参融合） | 2026-07-04（巡视4） |
+| kostya138/health-risk-blueprint-catboost-0-949-score | 0.949 | skip（CatBoost 基线） | 2026-07-04（巡视4） |
+| kostya138/notebook3ef526ce13 | — | skip（草稿本） | 2026-07-04（巡视4） |
+| vedantpol/catboost-models-ensamble | — | skip（CatBoost 融合基线） | 2026-07-04（巡视4） |
+| vedantpol/xgboost-ensembel | — | skip（XGB 融合基线） | 2026-07-04（巡视4） |
+| taroshg/basic-lgbm-and-feature-eng-score-0-95 | 0.95 | skip（教学 LGBM+FE） | 2026-07-04（巡视4） |
+| taroshg/ps-e6s7-basic-eda-w-feature-correlation-heatmap | — | skip（基础 EDA） | 2026-07-04（巡视4） |
+| nikunjkatta/notebook1-baseline | — | skip（基线） | 2026-07-04（巡视4） |
+| nikunjkatta/notebook2-univariate-analysis | — | skip（单变量 EDA） | 2026-07-04（巡视4） |
+| nishant30488/ps6e7-eda-optuna | — | skip（EDA+Optuna 教学） | 2026-07-04（巡视4） |
+| sarveshchhetri/xgboost-baseline-health-condition-prediction | — | skip（XGB 基线） | 2026-07-04（巡视4） |
+| udaken10/multi-tree-mlp-grid-search | — | skip（网格搜索教学） | 2026-07-04（巡视4） |
+| vladstud716373618/s6e7-scientific-investigation-of-data | — | skip（EDA 探索） | 2026-07-04（巡视4） |
+| engineerfrabbi/predicting-student-health-risk-3 | — | skip（基线） | 2026-07-04（巡视4） |

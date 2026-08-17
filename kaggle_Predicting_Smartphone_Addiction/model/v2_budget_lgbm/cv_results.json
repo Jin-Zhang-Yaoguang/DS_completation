@@ -1,0 +1,58 @@
+{
+  "competition": "playground-series-s6e8",
+  "model": "LightGBM budget-feature ablation",
+  "seed": 42,
+  "n_folds": 5,
+  "encoded_feature_count": 23,
+  "budget_features": [
+    "component_sum_available",
+    "other_screen_available",
+    "n_components_observed"
+  ],
+  "fold_auc": [
+    0.9627324673256958,
+    0.9633868021621644,
+    0.963718235050755,
+    0.9645182162237464,
+    0.9634446206052754
+  ],
+  "fold_auc_mean": 0.9635600682735275,
+  "fold_auc_std": 0.0005781586049227183,
+  "oof_auc": 0.9635586378015066,
+  "v1_oof_auc": 0.9626326255512603,
+  "oof_delta_vs_v1": 0.0009260122502463553,
+  "fold_delta_vs_v1": [
+    0.0008283239349314853,
+    0.0008835972555613081,
+    0.0007415675649674602,
+    0.0010435689808470094,
+    0.0011356477863380121
+  ],
+  "folds_won_vs_v1": 5,
+  "prediction_min": 0.00026610871514389726,
+  "prediction_max": 0.999998749683068,
+  "prediction_mean": 0.7093644231837329,
+  "elapsed_seconds": 211.41680002212524,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 1500,
+    "learning_rate": 0.03,
+    "num_leaves": 31,
+    "max_depth": -1,
+    "min_child_samples": 40,
+    "subsample": 0.9,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.85,
+    "reg_lambda": 1.0,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": -1,
+    "verbosity": -1
+  }
+}

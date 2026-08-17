@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kaggriculture 人机训练场</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LOCAL PRACTICE MATCH</p>
+        <h1>Kaggriculture 人机训练场</h1>
+      </div>
+      <div class="clock-card">
+        <span id="game-status">准备中</span>
+        <strong><span id="day">1</span> 日 · <span id="hour">1</span>/24</strong>
+        <small>回合 <span id="step">0</span></small>
+      </div>
+      <button id="new-game-button" class="secondary">新游戏</button>
+    </header>
+
+    <main>
+      <section class="score-strip">
+        <article>
+          <span>你的银行</span>
+          <strong id="human-money">—</strong>
+        </article>
+        <div class="versus">VS</div>
+        <article class="right">
+          <span id="bot-name">最新 Bot</span>
+          <strong id="bot-money">—</strong>
+        </article>
+      </section>
+
+      <section class="boards">
+        <article class="panel farm-panel">
+          <div class="panel-heading">
+            <div><span class="dot human"></span><strong>你的农场</strong></div>
+            <small id="human-land"></small>
+          </div>
+          <div id="human-board" class="farm-grid"></div>
+        </article>
+
+        <article class="panel farm-panel">
+          <div class="panel-heading">
+            <div><span class="dot bot"></span><strong>Bot 农场</strong></div>
+            <small id="bot-land"></small>
+          </div>
+          <div id="bot-board" class="farm-grid"></div>
+        </article>
+
+        <aside class="panel inspector">
+          <div class="panel-heading"><strong>格子详情</strong><small>点击地图格</small></div>
+          <div id="cell-detail" class="empty-state">选择一块地查看状态</div>
+          <hr />
+          <div class="panel-heading"><strong>已解锁商店</strong></div>
+          <div id="shops" class="chips"></div>
+        </aside>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel controls-panel">
+          <div class="panel-heading">
+            <strong>本回合单位动作</strong>
+            <small>每个单位各选一个，默认 PASS</small>
+          </div>
+          <div id="unit-tabs" class="unit-tabs"></div>
+          <div class="control-group">
+            <span class="control-label">移动</span>
+            <div class="action-grid movement">
+              <button data-unit-action="NORTH">↑ 北</button>
+              <button data-unit-action="WEST">← 西</button>
+              <button data-unit-action="PASS">等待</button>
+              <button data-unit-action="EAST">东 →</button>
+              <button data-unit-action="SOUTH">↓ 南</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <span class="control-label">地块与动物</span>
+            <div class="button-wrap">
+              <button data-unit-action="WATER">浇水</button>
+              <button data-unit-action="HARVEST">收获</button>
+              <button data-unit-action="FERTILIZE">施肥</button>
+              <button data-unit-action="DIG">挖除</button>
+              <button data-unit-action="BUILD_COOP">建鸡舍</button>
+              <button data-unit-action="BUILD_PASTURE">建牧场</button>
+              <button data-unit-action="FEED">喂食</button>
+              <button data-unit-action="CARE">照料</button>
+              <button data-unit-action="COLLECT_FERTILIZER">收肥</button>
+              <button data-unit-action="DROP">全部入库</button>
+            </div>
+          </div>
+          <div class="inline-builder">
+            <select id="plant-item"></select>
+            <button id="plant-button">种植</button>
+            <select id="inventory-op">
+              <option value="PICKUP">从仓库取</option>
+              <option value="PLACE">放置 / 入库</option>
+            </select>
+            <select id="inventory-item"></select>
+            <input id="inventory-quantity" type="number" min="1" value="1" />
+            <button id="inventory-button">设为动作</button>
+          </div>
+          <div id="unit-drafts" class="draft-list"></div>
+        </article>
+
+        <article class="panel market-panel">
+          <div class="panel-heading">
+            <strong>市场订单队列</strong>
+            <small>按顺序执行，最多 10 笔</small>
+          </div>
+          <div class="market-builder">
+            <select id="market-op">
+              <option value="BUY_SEED">购买种子</option>
+              <option value="BUY_ANIMAL">购买动物</option>
+              <option value="BUY_PRODUCT">购买商品</option>
+              <option value="SELL">出售商品</option>
+              <option value="HIRE">雇临时工</option>
+              <option value="BUY_LAND">购买土地</option>
+            </select>
+            <select id="market-item"></select>
+            <input id="market-quantity" type="number" min="1" value="1" />
+            <button id="add-market-order">加入队列</button>
+          </div>
+          <ol id="market-orders" class="order-list"></ol>
+          <div class="turn-actions">
+            <button id="submit-turn" class="primary">执行这一回合</button>
+            <button id="clear-draft">全部重置</button>
+          </div>
+          <div class="fast-forward">
+            <span>让你方全部 PASS：</span>
+            <button data-fast="1">1 回合</button>
+            <button data-fast="6">6 回合</button>
+            <button data-fast="24">到下一天附近</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="info-grid">
+        <article class="panel">
+          <div class="panel-heading"><strong>你的仓库与种子</strong><small>容量 100，种子不占容量</small></div>
+          <div id="storage" class="inventory-sections"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-heading"><strong>共享市场</strong><small>库存越高，售价通常越低</small></div>
+          <div class="table-scroll"><table><thead><tr><th>商品</th><th>价格</th><th>库存</th></tr></thead><tbody id="market-table"></tbody></table></div>
+        </article>
+        <article class="panel">
+          <div class="panel-heading"><strong>回合记录</strong><small>训练模式显示 Bot 动作</small></div>
+          <div id="history" class="history"></div>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="new-game-dialog">
+      <form method="dialog" id="new-game-form">
+        <p class="eyebrow">NEW MATCH</p>
+        <h2>开始一场练习赛</h2>
+        <label>赛季长度
+          <select id="new-days">
+            <option value="1">1 天（快速体验）</option>
+            <option value="3">3 天</option>
+            <option value="5">5 天</option>
+            <option value="10">10 天</option>
+            <option value="30" selected>30 天（正式规则）</option>
+          </select>
+        </label>
+        <label>随机种子<input id="new-seed" type="number" value="0" /></label>
+        <label>你的席位
+          <select id="new-seat"><option value="0">玩家 1</option><option value="1">玩家 2</option></select>
+        </label>
+        <div class="dialog-actions">
+          <button value="cancel">取消</button>
+          <button id="start-new-game" value="default" class="primary">开始</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" role="status"></div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
