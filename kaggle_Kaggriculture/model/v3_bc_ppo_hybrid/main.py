@@ -16,7 +16,8 @@ import base_agent
 
 
 SCHEMA_VERSION = "kaggriculture-v3-macro-1"
-MODEL_FILE = Path(__file__).with_name("policy_weights.npz")
+_SOURCE_PATH = globals().get("__file__")
+MODEL_FILE = (Path(_SOURCE_PATH).resolve().parent if _SOURCE_PATH else Path.cwd()) / "policy_weights.npz"
 
 CROPS = ("WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON")
 ANIMALS = ("GOOSE", "COW", "SHEEP")
