@@ -1,6 +1,6 @@
 """V4H v2：demand-race 市场层嫁接强生产底盘（DESIGN.md §8 + tape 内省）。
 
-底盘：model/v1_adaptive_market（双路线 replay 派生，自带克隆局面 preempt）。
+底盘：model/v76_adjacent_safe_buy_lead（本队线上最强，单路线 + 激进 preempt）。
 嫁接层只动 market 订单，不碰 farmer/hands。三个机制：
 
 1. lookahead race-forward（本版新增，tape 内省）：
@@ -17,7 +17,7 @@ import importlib.util
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-BASE_PATH = HERE.parent / "v1_adaptive_market" / "main.py"
+BASE_PATH = HERE.parent / "v76_adjacent_safe_buy_lead" / "main.py"
 V4_PATH = HERE.parent / "v4_demand_race" / "main.py"
 
 
