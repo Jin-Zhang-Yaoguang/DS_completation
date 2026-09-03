@@ -1,0 +1,50 @@
+{
+  "competition": "playground-series-s6e8",
+  "model": "CatBoost two-seed bagging",
+  "seeds": [
+    42,
+    2026
+  ],
+  "new_seed_fold_auc": [
+    0.9671247093107673,
+    0.9680732618266019,
+    0.9680454724270924,
+    0.9687392130877456,
+    0.9677683875351626
+  ],
+  "new_seed_best_iterations": [
+    2975,
+    2999,
+    2880,
+    2995,
+    2934
+  ],
+  "new_seed_oof_auc": 0.9679481023468354,
+  "seed_rank_correlation": 0.9982422939178675,
+  "v3_seed42_oof_auc": 0.9679652578147264,
+  "probability_average_oof_auc": 0.9681322756127212,
+  "rank_average_oof_auc": 0.9681317211784632,
+  "selected_method": "probability_average",
+  "oof_auc": 0.9681322756127212,
+  "oof_delta_vs_v3": 0.0001670177979947729,
+  "prediction_min": 3.857405991759983e-05,
+  "prediction_max": 0.9999996601906356,
+  "prediction_mean": 0.7088874762152805,
+  "elapsed_seconds": 2041.678717136383,
+  "params": {
+    "iterations": 3000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 6.0,
+    "loss_function": "Logloss",
+    "eval_metric": "AUC",
+    "random_seed": 2026,
+    "one_hot_max_size": 4,
+    "max_ctr_complexity": 2,
+    "od_type": "Iter",
+    "od_wait": 200,
+    "allow_writing_files": false,
+    "thread_count": -1,
+    "verbose": 300
+  }
+}

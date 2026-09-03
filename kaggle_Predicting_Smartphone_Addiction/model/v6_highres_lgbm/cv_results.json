@@ -1,0 +1,61 @@
+{
+  "competition": "playground-series-s6e8",
+  "model": "high-resolution LightGBM with fold-safe hierarchical encodings",
+  "seed": 42,
+  "n_folds": 5,
+  "feature_count": 59,
+  "fold_auc": [
+    0.9666724450035223,
+    0.9675274396882807,
+    0.9676892587459183,
+    0.9678574892976541,
+    0.9671451783738543
+  ],
+  "best_iterations": [
+    2583,
+    2286,
+    1964,
+    1902,
+    2525
+  ],
+  "oof_auc": 0.9673725433626881,
+  "v3_oof_auc": 0.9679652578147264,
+  "oof_delta_vs_v3": -0.0005927144520383454,
+  "fold_delta_vs_v3": [
+    -0.00045288972604007327,
+    -0.0005336504483179905,
+    -0.0004176861326032899,
+    -0.0008517678789830008,
+    -0.0006926366834347775
+  ],
+  "folds_won_vs_v3": 0,
+  "prediction_min": 0.00026466766574790484,
+  "prediction_max": 0.9999994344031142,
+  "prediction_mean": 0.6997909927693157,
+  "elapsed_seconds": 556.7050399780273,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 3000,
+    "learning_rate": 0.025,
+    "num_leaves": 63,
+    "max_depth": -1,
+    "max_bin": 1023,
+    "min_data_in_bin": 10,
+    "min_child_samples": 100,
+    "subsample": 0.9,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.9,
+    "reg_alpha": 0.1,
+    "reg_lambda": 2.0,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": -1,
+    "verbosity": -1
+  }
+}

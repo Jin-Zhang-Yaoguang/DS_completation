@@ -1,0 +1,75 @@
+train=(668665, 15), test=(286571, 14), features=20, categorical=13
+0:	test: 0.9342324	best: 0.9342324 (0)	total: 161ms	remaining: 8m 3s
+500:	test: 0.9443704	best: 0.9443706 (499)	total: 38.9s	remaining: 3m 13s
+1000:	test: 0.9444602	best: 0.9444617 (985)	total: 1m 23s	remaining: 2m 46s
+Stopped by overfitting detector  (200 iterations wait)
+
+bestTest = 0.9444617017
+bestIteration = 985
+
+Shrink model to first 986 iterations.
+fold=1 auc=0.944462 best_iteration=986 elapsed=102.9s
+0:	test: 0.9355738	best: 0.9355738 (0)	total: 109ms	remaining: 5m 25s
+500:	test: 0.9449054	best: 0.9449054 (500)	total: 54.2s	remaining: 4m 30s
+1000:	test: 0.9449832	best: 0.9449859 (977)	total: 1m 40s	remaining: 3m 19s
+Stopped by overfitting detector  (200 iterations wait)
+
+bestTest = 0.9449858992
+bestIteration = 977
+
+Shrink model to first 978 iterations.
+fold=2 auc=0.944986 best_iteration=978 elapsed=117.9s
+0:	test: 0.9366363	best: 0.9366363 (0)	total: 98.6ms	remaining: 4m 55s
+500:	test: 0.9461492	best: 0.9461492 (500)	total: 44.2s	remaining: 3m 40s
+1000:	test: 0.9462605	best: 0.9462608 (998)	total: 1m 30s	remaining: 3m 1s
+Stopped by overfitting detector  (200 iterations wait)
+
+bestTest = 0.9462626216
+bestIteration = 1003
+
+Shrink model to first 1004 iterations.
+fold=3 auc=0.946263 best_iteration=1004 elapsed=114.5s
+0:	test: 0.9360990	best: 0.9360990 (0)	total: 105ms	remaining: 5m 13s
+500:	test: 0.9456321	best: 0.9456321 (500)	total: 42.7s	remaining: 3m 32s
+Stopped by overfitting detector  (200 iterations wait)
+
+bestTest = 0.9456482658
+bestIteration = 778
+
+Shrink model to first 779 iterations.
+fold=4 auc=0.945648 best_iteration=779 elapsed=82.8s
+0:	test: 0.9353644	best: 0.9353644 (0)	total: 101ms	remaining: 5m 3s
+500:	test: 0.9453250	best: 0.9453250 (500)	total: 41.3s	remaining: 3m 26s
+Stopped by overfitting detector  (200 iterations wait)
+
+bestTest = 0.9453753172
+bestIteration = 730
+
+Shrink model to first 731 iterations.
+fold=5 auc=0.945375 best_iteration=731 elapsed=78.1s
+OOF AUC=0.945339, delta_vs_v1=+0.003495, folds_won=5/5
+fold_deltas=+0.003820, +0.003390, +0.003439, +0.003310, +0.003495
+                        feature  importance_mean  importance_std
+              Subsidy_Available        52.464433        1.222184
+key_Environmental_Concern_Level        12.312442        0.388632
+              Annual_Income_USD         7.613578        0.273555
+          key_Annual_Income_USD         6.728214        0.224418
+    Environmental_Concern_Level         4.282033        0.630087
+            Range_Anxiety_Level         3.706779        0.237143
+key_Charging_Stations_Near_Home         2.129739        0.339558
+                        key_Age         1.804367        0.559590
+               Daily_Commute_km         1.744593        0.096746
+           key_Daily_Commute_km         1.596988        0.140077
+key_Charging_Stations_Near_Work         1.356593        0.534983
+                            Age         0.857945        0.142016
+         Home_Charging_Possible         0.777172        0.128832
+    Charging_Stations_Near_Work         0.691351        0.142183
+    Charging_Stations_Near_Home         0.549773        0.091282
+               Current_Car_Type         0.459236        0.069457
+                      City_Type         0.308218        0.095758
+       key_Number_of_Cars_Owned         0.249022        0.059686
+                         Gender         0.184789        0.078333
+           Number_of_Cars_Owned         0.182735        0.071382
+submission=/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/v3_dual_catboost/submission.csv
+elapsed=498.0s
+EXIT=0

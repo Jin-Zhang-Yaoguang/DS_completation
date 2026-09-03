@@ -1,0 +1,74 @@
+{
+  "competition": "playground-series-s6e8",
+  "model": "CatBoost engineered ratios + log transforms + dual-value features",
+  "seed": 42,
+  "n_folds": 5,
+  "raw_columns": [
+    "age",
+    "daily_screen_time_hours",
+    "social_media_hours",
+    "gaming_hours",
+    "work_study_hours",
+    "sleep_hours",
+    "notifications_per_day",
+    "app_opens_per_day",
+    "weekend_screen_time",
+    "gender",
+    "stress_level",
+    "academic_work_impact"
+  ],
+  "feature_count": 35,
+  "categorical_features": [
+    "key_gender",
+    "key_stress_level",
+    "key_academic_work_impact"
+  ],
+  "catboost_version": "1.2.10",
+  "fold_auc": [
+    0.9627848714583156,
+    0.9633344704664882,
+    0.9635340516259314,
+    0.9644071486961641,
+    0.9633381592864824
+  ],
+  "fold_auc_mean": 0.9634797403066763,
+  "fold_auc_std": 0.0005266929406136125,
+  "best_iterations": [
+    2199,
+    2200,
+    2199,
+    2200,
+    2199
+  ],
+  "oof_auc": 0.9634776258077778,
+  "v3_oof_auc": 0.9679652578147264,
+  "oof_delta_vs_v3": -0.004487632006948572,
+  "fold_delta_vs_v3": [
+    -0.004340463271246819,
+    -0.004726619670110455,
+    -0.004572893252590138,
+    -0.004302108480473077,
+    -0.0044996557708066875
+  ],
+  "folds_won_vs_v3": 0,
+  "prediction_min": 0.00022813073788082017,
+  "prediction_max": 0.9999996016915692,
+  "prediction_mean": 0.7094438748801797,
+  "elapsed_seconds": 260.0616409778595,
+  "params": {
+    "iterations": 2200,
+    "learning_rate": 0.045,
+    "depth": 8,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "eval_metric": "AUC",
+    "random_seed": 42,
+    "one_hot_max_size": 4,
+    "max_ctr_complexity": 2,
+    "od_type": "Iter",
+    "od_wait": 220,
+    "allow_writing_files": false,
+    "thread_count": -1,
+    "verbose": 250
+  }
+}

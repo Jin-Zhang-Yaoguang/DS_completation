@@ -1,0 +1,59 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "LightGBM raw-feature baseline (native categorical, early stopping)",
+  "seed": 42,
+  "n_folds": 5,
+  "train_shape": [
+    668665,
+    15
+  ],
+  "test_shape": [
+    286571,
+    14
+  ],
+  "feature_count": 13,
+  "fold_auc": [
+    0.940641215479619,
+    0.9415961443935884,
+    0.9428232299978763,
+    0.9423380997121075,
+    0.9418799110234074
+  ],
+  "fold_auc_mean": 0.9418557201213197,
+  "fold_auc_std": 0.0007364443921609701,
+  "best_iterations": [
+    1504,
+    1239,
+    1233,
+    1119,
+    1297
+  ],
+  "oof_auc": 0.9418437075689791,
+  "prediction_min": 2.000780451640716e-05,
+  "prediction_max": 0.9659023685886786,
+  "prediction_mean": 0.17462883945309512,
+  "elapsed_seconds": 122.53788089752197,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 4000,
+    "learning_rate": 0.03,
+    "num_leaves": 31,
+    "max_depth": -1,
+    "min_child_samples": 50,
+    "subsample": 0.9,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": -1,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 200
+}

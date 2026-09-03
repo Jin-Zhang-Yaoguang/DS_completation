@@ -19,6 +19,22 @@ Kaggle 数据科学比赛解决方案仓库。每个比赛以独立文件夹组�
 
 ## 当前比赛
 
+### [Predicting Electric Vehicle Purchases](kaggle_Predicting_Electric_Vehicle_Purchases/)（Playground S6E9）
+
+- **任务**：根据消费者收入、通勤、充电条件、环保意识、补贴与里程焦虑等特征预测是否购买电动车 `Will_Buy_EV`（二分类，提交 `Yes` 概率）
+- **指标**：ROC AUC
+- **赛题链接**：<https://www.kaggle.com/competitions/playground-series-s6e9>
+- **截止时间**：2026-09-30 23:59 UTC
+- **状态**：v8 三成员融合（LightGBM 目标编码 bagging + CatBoost 双表示 bagging + MLP）Public LB `0.94604`；单模最佳 v5 `0.94599`；提交时榜首 `0.94644`
+
+### [Predicting Smartphone Addiction](kaggle_Predicting_Smartphone_Addiction/)（Playground S6E8）
+
+- **任务**：根据手机使用与生活方式特征预测 `addicted_label` 的概率（二分类）
+- **指标**：ROC AUC
+- **赛题链接**：<https://www.kaggle.com/competitions/playground-series-s6e8>
+- **截止时间**：2026-08-31 23:59 UTC
+- **状态**：v8 三模型交叉拟合融合已提交；OOF `0.968358`，Public LB `0.96954`
+
 ### [Predicting Student Health Risk](kaggle_Predicting_Student_Health_Risk/)（Playground S6E7）
 
 - **任务**：根据学生特征预测健康风险（3 分类：`at-risk` / `unhealthy` / `fit`）
