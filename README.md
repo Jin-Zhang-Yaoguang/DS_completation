@@ -25,7 +25,7 @@ Kaggle 数据科学比赛解决方案仓库。每个比赛以独立文件夹组�
 - **指标**：ROC AUC
 - **赛题链接**：<https://www.kaggle.com/competitions/playground-series-s6e9>
 - **截止时间**：2026-09-30 23:59 UTC
-- **状态**：v1 LightGBM 基线已提交；OOF `0.941844`，Public LB `0.94170`（提交时榜首 `0.94644`）
+- **状态**：v8 三成员融合（LightGBM 目标编码 bagging + CatBoost 双表示 bagging + MLP）Public LB `0.94604`；单模最佳 v5 `0.94599`；提交时榜首 `0.94644`
 
 ### [Predicting Smartphone Addiction](kaggle_Predicting_Smartphone_Addiction/)（Playground S6E8）
 
