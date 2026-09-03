@@ -1,0 +1,68 @@
+{
+  "schema": "kaggriculture-v119-decision-v1",
+  "model_id": "v119_center_livestock_spatial_moe",
+  "parent": "v118_v76_yarn_reveal_liquidity_moe",
+  "decision": "SPATIAL_REQUIREMENTS_PASS_GENERAL_STRENGTH_NOT_PROMOTABLE",
+  "implementation_boundary": {
+    "changed": "spatial production and movement expert",
+    "preserved": [
+      "v17 safety and market execution core",
+      "v76 adjacent safe buy lead",
+      "v118 visible-YARN reveal liquidity"
+    ],
+    "midroute_parent_splice": false
+  },
+  "source": {
+    "episode_id": 103982514,
+    "seed": 1385806507,
+    "leader_team": "tetsuya",
+    "leader_submission_id": 55905066,
+    "replay_sha256": "b531ee9793340450cd9c41e93ed6b87ba5286d70203652bc1725ad6135b38e93",
+    "action_sha256": "8b227c3e81eb298a8fb57aef03a014806cbea8ca56a23daa623059a3b5e60908"
+  },
+  "spatial_contract": {
+    "status": "PASS",
+    "engine": "1.32.7",
+    "step71_top_two_wheat_yield_2_plus": "10/10",
+    "first_harvest_at_yield_2_plus": "10/10",
+    "step272_large_animals": 11,
+    "step272_remote_large_animals": 0,
+    "v118_step272_remote_large_animals": 3,
+    "fixed_opponent_dual_seat": {
+      "v118_mean_own_reward": 65755.0,
+      "v118_mean_margin": -17739.0,
+      "v119_mean_own_reward": 109237.0,
+      "v119_mean_margin": 10882.0,
+      "v119_own_reward_delta": 43482.0
+    }
+  },
+  "champion_online_observation": {
+    "games": 9,
+    "wins_ties_losses": [9, 0, 0],
+    "step71_spatial_and_crop_contract": "9/9",
+    "step272_zero_remote_large_animals": "9/9",
+    "role": "strategy evidence only; not a V119 online result"
+  },
+  "local_strength_boundary": {
+    "opponent": "v76_adjacent_safe_buy_lead",
+    "seeds": 8,
+    "games": 16,
+    "v119_wins_ties_losses": [3, 0, 13],
+    "v119_pure_win_rate": 0.1875,
+    "v119_mean_margin": -9316.1875,
+    "promotable": false
+  },
+  "package": {
+    "qa": "PASS",
+    "main_sha256": "ad5bf8d1cb22cff789c2c348765835197269f73ce521a41290293c1d2d7fabaa",
+    "archive_sha256": "f09a89eed89f9544e9482d87af986bfd8536579192d06c32e912977c3a7de400"
+  },
+  "remote_submission": {
+    "submission_id": 55940109,
+    "submitted_at": "2026-09-01T12:33:56.713000Z",
+    "description": "V119 center livestock spatial MoE; spatial contract PASS; package QA PASS; NOT_LOCAL_GOLD",
+    "status": "COMPLETE",
+    "initial_public_score": 600.0,
+    "online_gold_proof": false
+  }
+}

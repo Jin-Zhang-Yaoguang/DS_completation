@@ -1,0 +1,165 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "MLP + value embeddings + fold-wise TE inputs, 2-seed bagging",
+  "seed": 42,
+  "n_folds": 5,
+  "model_seeds": [
+    0,
+    1
+  ],
+  "te_keys": {
+    "te_inc": [
+      "Annual_Income_USD"
+    ],
+    "te_inc_bin100": [
+      "_inc_bin100"
+    ],
+    "te_inc_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "te_inc_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "te_commute": [
+      "Daily_Commute_km"
+    ],
+    "te_age": [
+      "Age"
+    ]
+  },
+  "cat_spec": [
+    [
+      "Annual_Income_USD",
+      2,
+      12
+    ],
+    [
+      "Daily_Commute_km",
+      2,
+      6
+    ],
+    [
+      "Age",
+      1,
+      4
+    ],
+    [
+      "Charging_Stations_Near_Home",
+      1,
+      4
+    ],
+    [
+      "Charging_Stations_Near_Work",
+      1,
+      4
+    ],
+    [
+      "Number_of_Cars_Owned",
+      1,
+      2
+    ],
+    [
+      "Environmental_Concern_Level",
+      1,
+      3
+    ],
+    [
+      "Subsidy_Available",
+      1,
+      2
+    ],
+    [
+      "Range_Anxiety_Level",
+      1,
+      2
+    ],
+    [
+      "Home_Charging_Possible",
+      1,
+      2
+    ],
+    [
+      "City_Type",
+      1,
+      2
+    ],
+    [
+      "Current_Car_Type",
+      1,
+      2
+    ],
+    [
+      "Gender",
+      1,
+      2
+    ]
+  ],
+  "num_cols": [
+    "Annual_Income_USD",
+    "Daily_Commute_km",
+    "Age",
+    "Environmental_Concern_Level",
+    "Charging_Stations_Near_Home",
+    "Charging_Stations_Near_Work",
+    "Number_of_Cars_Owned"
+  ],
+  "hyper": {
+    "epochs": 30,
+    "batch": 4096,
+    "lr": 0.002,
+    "wd": 1e-05,
+    "width": 512,
+    "drop": 0.2,
+    "emb_drop": 0.2,
+    "patience": 4
+  },
+  "fold_auc": [
+    0.944456342213749,
+    0.9450143722497991,
+    0.9461795543810464,
+    0.9458021208549964,
+    0.9453672852742901
+  ],
+  "fold_auc_mean": 0.9453639349947762,
+  "fold_auc_std": 0.0006005284047533715,
+  "best_epochs": [
+    [
+      10,
+      12
+    ],
+    [
+      13,
+      13
+    ],
+    [
+      12,
+      11
+    ],
+    [
+      12,
+      14
+    ],
+    [
+      13,
+      15
+    ]
+  ],
+  "oof_auc": 0.9453313587436598,
+  "base": "v2_income_artifact_lgbm",
+  "base_oof_auc": 0.9456014124111175,
+  "oof_delta_vs_base": -0.00027005366745769255,
+  "fold_delta_vs_base": [
+    -0.0001308106803914466,
+    -0.00036763859170330093,
+    -0.0002936325503837267,
+    -0.0002486133238013277,
+    -0.0001922908027203185
+  ],
+  "folds_won_vs_base": 0,
+  "prediction_mean": 0.18064386174311942,
+  "elapsed_seconds": 200.5167109966278,
+  "torch_version": "2.12.1",
+  "device": "mps"
+}

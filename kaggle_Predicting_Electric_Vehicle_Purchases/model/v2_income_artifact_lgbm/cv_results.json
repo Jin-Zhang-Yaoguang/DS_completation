@@ -1,0 +1,103 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "LightGBM + income artifact features (fold-wise TE)",
+  "seed": 42,
+  "n_folds": 5,
+  "n_inner_folds": 5,
+  "te_smooth": 10.0,
+  "te_keys": {
+    "te_inc": [
+      "Annual_Income_USD"
+    ],
+    "te_inc_bin100": [
+      "_inc_bin100"
+    ],
+    "te_inc_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "te_inc_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ]
+  },
+  "feature_count": 21,
+  "features": [
+    "Age",
+    "Annual_Income_USD",
+    "Daily_Commute_km",
+    "Number_of_Cars_Owned",
+    "Charging_Stations_Near_Home",
+    "Charging_Stations_Near_Work",
+    "Environmental_Concern_Level",
+    "Gender",
+    "City_Type",
+    "Current_Car_Type",
+    "Home_Charging_Possible",
+    "Subsidy_Available",
+    "Range_Anxiety_Level",
+    "inc_freq",
+    "inc_in_orig",
+    "inc_mod1000_zero",
+    "inc_mod100_zero",
+    "te_inc",
+    "te_inc_bin100",
+    "te_inc_subsidy",
+    "te_inc_env"
+  ],
+  "fold_auc": [
+    0.9445871528941404,
+    0.9453820108415024,
+    0.9464731869314301,
+    0.9460507341787977,
+    0.9455595760770105
+  ],
+  "fold_auc_mean": 0.9456105321845764,
+  "fold_auc_std": 0.0006387604729814676,
+  "best_iterations": [
+    1061,
+    1252,
+    824,
+    774,
+    626
+  ],
+  "oof_auc": 0.9456014124111175,
+  "base": "v1_baseline_lgbm",
+  "base_oof_auc": 0.9418437075689791,
+  "oof_delta_vs_base": 0.003757704842138443,
+  "fold_delta_vs_base": [
+    0.003945937414521428,
+    0.0037858664479140103,
+    0.003649956933553855,
+    0.0037126344666902344,
+    0.003679665053603065
+  ],
+  "folds_won_vs_base": 5,
+  "prediction_min": 2.5522579806049747e-05,
+  "prediction_max": 0.9993375412310939,
+  "prediction_mean": 0.17502399108037783,
+  "elapsed_seconds": 274.11396622657776,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 4000,
+    "learning_rate": 0.03,
+    "num_leaves": 31,
+    "max_depth": -1,
+    "min_child_samples": 50,
+    "subsample": 0.9,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": -1,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 200
+}

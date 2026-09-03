@@ -18,12 +18,11 @@ kaggle.json
 .idea/
 .vscode/
 
-# 赛题原始数据（体积大，需从 Kaggle 自行下载）
-**/data/train.csv
-**/data/test.csv
-**/data/sample_submission.csv
-**/data/external/
-**/data/EDA.html
+# 赛题原始数据：递归忽略所有比赛 data/ 目录下的全部文件
+# （data 下文件多、体积大，避免误入库导致推送 OOM / 超限）
+**/data/
+# 大体积赛题原始附件（内容已整理进 competition_description/*.md）
+**/competition_description/*.pptx
 
 # 模型中间产物（运行方案脚本可重新生成）
 **/*.npy
