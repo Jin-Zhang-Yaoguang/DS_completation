@@ -450,6 +450,11 @@ def _apply_local(invs, i, op):
         invs[i][op[1]] = max(0, invs[i].get(op[1], 0) - 1)
 
 
+def _mv(st, reason):
+    m = st.setdefault("mv", {})
+    m[reason] = m.get(reason, 0) + 1
+
+
 def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
     n = len(positions)
     actions = [["PASS"] for _ in range(n)]
@@ -481,6 +486,7 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 st["planted_today"] = st.get("planted_today", 0) + 1
         else:
             actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
+            _mv(st, "goto_" + op[0])
             used.add(i)
             claimed.add((pos_t, op[0]))
 
@@ -501,6 +507,7 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 invs[i]["WHEAT"] = invs[i].get("WHEAT", 0) + take
             else:
                 actions[i] = _step_toward(positions[i], min(shed_set, key=lambda s: _dist(positions[i], s))) or ["PASS"]
+                _mv(st, "supply_wheat")
             used.add(i)
 
     # 0.6) 动物放置供应链
@@ -519,6 +526,7 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                     invs[i][a] = invs[i].get(a, 0) + take
                 else:
                     actions[i] = _step_toward(positions[i], min(shed_set, key=lambda s: _dist(positions[i], s))) or ["PASS"]
+                    _mv(st, "supply_animal")
                 used.add(i)
 
     # 0.7) 肥料供应链：有 FERTILIZE 任务但无人持肥
@@ -535,10 +543,15 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 invs[i]["FERTILIZER"] = invs[i].get("FERTILIZER", 0) + take
             else:
                 actions[i] = _step_toward(positions[i], min(shed_set, key=lambda s: _dist(positions[i], s))) or ["PASS"]
+                _mv(st, "supply_fert")
             used.add(i)
 
     # 1) 优先级桶：P0-P2 生存/资本任务严格分层；P3+ 并入大桶按(距离,优先级)——
     #    脚下任务(dist=0)总是先做，同块浇水/收获/施肥自然串联，压移动开销。
+    #    分区驻守（软约束）：大桶内非 home 象限任务距离加惩罚，压跨区通勤；
+    #    生存桶不受限，home 由 _decide 每日按任务密度分配。
+    home = st.get("home", {})
+    zone_pen = kn.get("tuning", {}).get("zone_penalty", 0)  # 默认关（4seed 微负，留作 A2 旋钮）
     buckets = {}
     for tk in tasks:
         b = int(tk[0]) if tk[0] < 3 else 3
@@ -549,12 +562,16 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
             pri, need, pos_t, op = tk
             if (pos_t, op[0]) in claimed:
                 continue
+            t_quad = _quadrant(pos_t[0], pos_t[1], bs)
             for i in range(n):
                 if i in used:
                     continue
                 if need and carried(i, need) <= 0:
                     continue
-                cands.append((_dist(positions[i], pos_t), pri, i, tk))
+                d = _dist(positions[i], pos_t)
+                if b >= 3 and home.get(i) and home[i] != t_quad:
+                    d += zone_pen
+                cands.append((d, pri, i, tk))
         cands.sort(key=lambda z: (z[0], z[1]))
         for _, pri, i, tk in cands:
             if i in used:
@@ -572,6 +589,7 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
             else:
                 st["assign"][i] = (pos_t, op, need)
                 actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
+                _mv(st, "goto_" + op[0])
 
     # 2) 空闲单位：预备补给或原地待命
     need_wheat = any(t[1] == "WHEAT" for t in tasks)
@@ -593,8 +611,15 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 shed["FERTILIZER"] -= take
                 invs[i]["FERTILIZER"] = invs[i].get("FERTILIZER", 0) + take
                 used.add(i)
-        elif need_wheat or need_fert:
-            actions[i] = _step_toward(pos, min(shed_set, key=lambda s: _dist(pos, s))) or ["PASS"]
+    # 补给缺口时只派最近的一个空闲单位回仓，其余原地待命
+    #（旧版把全部空闲单位往 shed 赶，占全局移动 14%，纯浪费）
+    if need_wheat or need_fert:
+        cand = [(_shed_dist(positions[i], bs), i) for i in range(n)
+                if i not in used and positions[i] not in shed_set]
+        if cand:
+            _, i = min(cand)
+            actions[i] = _step_toward(positions[i], min(shed_set, key=lambda s: _dist(positions[i], s))) or ["PASS"]
+            _mv(st, "idle_to_shed")
             used.add(i)
     return actions
 
@@ -654,6 +679,29 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     fert_extra = shed.get("FERTILIZER", 0) - fert_keep
     if fert_extra > 0 and prices.get("FERTILIZER", 0) >= sr["fertilizer_sell_price"]:
         sells.append(["SELL", "FERTILIZER", fert_extra])
+
+    # race 层（S4 挂点，对手条件触发，默认关）：市场库存增量反解对手净卖出，
+    # 对手在抛某高价品且本步无买单时，立即卖出该品现货（不等相位/日末）。
+    tu4 = kn.get("tuning", {})
+    if tu4.get("race_enabled", False):
+        rc = st.setdefault("race", {"prev_inv": None, "my_prev": {}, "flow": {}})
+        if rc["prev_inv"] is not None:
+            for it in ("MILK", "WOOL", "STRAWBERRY", "MELON", "EGG"):
+                if prices.get(it, 0) < tu4.get("race_min_price", 30):
+                    continue
+                delta = inv_mkt.get(it, 0) - rc["prev_inv"].get(it, 0)
+                opp = delta - rc["my_prev"].get(it, 0)
+                rc["flow"][it] = rc["flow"].get(it, 0.0) * tu4.get("race_decay", 0.6) + max(0.0, opp)
+        rc["prev_inv"] = dict(inv_mkt)
+        sold_items = {o[1] for o in sells}
+        for it in ("MILK", "WOOL", "STRAWBERRY", "MELON", "EGG"):
+            if rc["flow"].get(it, 0.0) >= tu4.get("race_trigger", 3) and it not in sold_items \
+                    and shed.get(it, 0) > 0 and prices.get(it, 0) >= tu4.get("race_min_price", 30):
+                sells.append(["SELL", it, shed[it]])
+        rc["my_prev"] = {}
+        for o in sells:
+            if o[0] == "SELL":
+                rc["my_prev"][o[1]] = rc["my_prev"].get(o[1], 0) + o[2]
 
     # 仓压保护：仓库将满时强制加卖最高价持仓
     shed_used = sum(shed.values())
@@ -814,6 +862,35 @@ def _decide(obs, config):
         for t in row:
             if isinstance(t, dict) and "animal" in t:
                 st["placed_counts"][t["animal"]] = st["placed_counts"].get(t["animal"], 0) + 1
+
+    # 分区驻守：每天按象限服务密度（植物×1 + 动物×3）分配单位 home 象限
+    if turn % 24 == 2 or "home" not in st:
+        density = {}
+        for y in range(bs):
+            for x in range(bs):
+                t = tiles[y][x]
+                if isinstance(t, dict):
+                    q = _quadrant(x, y, bs)
+                    if t.get("kind") == "PLANT":
+                        density[q] = density.get(q, 0) + 1
+                    elif "animal" in t:
+                        density[q] = density.get(q, 0) + 3
+        tot = sum(density.values())
+        home = {}
+        if tot > 0:
+            quads = sorted(density, key=lambda q: -density[q])
+            # 按密度比例给每象限分配单位数，逐单位就近入驻
+            alloc = {q: max(1, round(n_units * density[q] / tot)) for q in quads}
+            remaining = list(range(n_units))
+            for q in quads:
+                h = bs // 2
+                center = {"NW": (h // 2, h // 2), "NE": (h + h // 2, h // 2),
+                          "SW": (h // 2, h + h // 2), "SE": (h + h // 2, h + h // 2)}[q]
+                remaining.sort(key=lambda i: _dist(positions[i], center))
+                for i in remaining[:alloc[q]]:
+                    home[i] = q
+                remaining = remaining[alloc[q]:]
+        st["home"] = home
 
     tasks = build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops)
     market = market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn, shops)
