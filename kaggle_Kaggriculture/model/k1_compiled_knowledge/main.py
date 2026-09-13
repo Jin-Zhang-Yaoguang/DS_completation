@@ -206,8 +206,12 @@ class Schedule:
 ROLE_ORDER = ["ANIMAL", "STRAWBERRY", "TOMATO", "CARROT", "WHEAT", "MELON"]
 
 
-def plan_roles(tiles, bs, targets, n_pasture, n_coop):
-    """每天重排：已占用格锁定角色；空格按需求序从近到远补。"""
+def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None):
+    """每天重排：已占用格锁定角色；空格按需求序从近到远补。
+
+    RA1 自适应化：prices 给定时，作物需求序按「当前价格/base 边际比值」排序
+    （替代固定 ROLE_ORDER）——价格逐局由双方行为耦合决定，角色布局随之逐局
+    不同（降重合），且高价品优先占好地（强度启发式）。ANIMAL 恒最前。"""
     order = []
     for y in range(bs):
         for x in range(bs):
@@ -231,13 +235,20 @@ def plan_roles(tiles, bs, targets, n_pasture, n_coop):
             roles[(x, y)] = c
             remaining[c] = max(0, remaining.get(c, 0) - 1)
     # 2) 空格（含杂草格）按需求序补
+    if prices:
+        crop_seq = sorted(
+            (c for c in CROPS),
+            key=lambda c: -(prices.get(c, MARKET_PARAMS[c]["base"]) / MARKET_PARAMS[c]["base"]))
+        role_seq = ["ANIMAL"] + crop_seq
+    else:
+        role_seq = ROLE_ORDER
     for (x, y) in order:
         if (x, y) in roles:
             continue
         t = tiles[y][x]
         if isinstance(t, dict) and t.get("kind") not in ("WEED",):
             continue
-        for role in ROLE_ORDER:
+        for role in role_seq:
             if remaining.get(role, 0) > 0:
                 roles[(x, y)] = role
                 remaining[role] -= 1
@@ -409,16 +420,25 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
     if day >= fb["start_day"] and turn <= fb["last_fert_turn"]:
         budget = sched.fert_budget(day) - st.get("fert_done_today", 0)
         if budget > 0:
+            # RA3：按边际产值排序（当前价 × ongoing 加成），替代固定优先表；
+            # 价格逐局不同 → 施肥分配逐局不同
+            adaptive_fert = kn.get("tuning", {}).get("adaptive_fert", True)
+            pr = st.get("cur_prices", {})
             cand = []
             for pos, t in plants:
                 cd = CROPS[t["crop"]]
                 if t.get("fertilized_until_day", -1) >= day + 1:
                     continue
                 age = day - t["planted_day"]
-                if cd["ongoing"] and age >= cd["first_yield_day"] - 3:
-                    cand.append((fb["crop_priority"].index(t["crop"]) if t["crop"] in fb["crop_priority"] else 9, pos))
-                elif not cd["ongoing"] and t["crop"] in fb["crop_priority"] and age <= 1:
-                    cand.append((fb["crop_priority"].index(t["crop"]), pos))
+                ok = (cd["ongoing"] and age >= cd["first_yield_day"] - 3) or \
+                    (not cd["ongoing"] and t["crop"] in fb["crop_priority"] and age <= 1)
+                if not ok:
+                    continue
+                if adaptive_fert:
+                    key = -pr.get(t["crop"], MARKET_PARAMS[t["crop"]]["base"]) * (2 if cd["ongoing"] else 1)
+                else:
+                    key = fb["crop_priority"].index(t["crop"]) if t["crop"] in fb["crop_priority"] else 9
+                cand.append((key, pos))
             cand.sort()
             for _, pos in cand[:budget]:
                 tasks.append((4.5, "FERTILIZER", pos, ["FERTILIZE"]))
@@ -615,9 +635,16 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 d = _dist(positions[i], pos_t)
                 if b >= 3 and home.get(i) and home[i] != t_quad:
                     d += zone_pen
-                cands.append((d, pri, i, tk))
-        cands.sort(key=lambda z: (z[0], z[1]))
-        for _, pri, i, tk in cands:
+                # RA4 连续 tie-break：同距同优先时，目标格 yield 高/濒枯者先
+                #（保熟保水的合理启发式；yield/龄期是 seed 敏感量 → 逐局发散）
+                tt = tiles[pos_t[1]][pos_t[0]]
+                tb = 0.0
+                if isinstance(tt, dict):
+                    tb = -(tt.get("yield_units", 0) + 2 * tt.get("consecutive_unwatered", 0)
+                           + 0.1 * (tt.get("planted_day") or 0))
+                cands.append((d, pri, tb, i, tk))
+        cands.sort(key=lambda z: (z[0], z[1], z[2]))
+        for _, pri, _tb, i, tk in cands:
             if i in used:
                 continue
             _, need, pos_t, op = tk
@@ -776,10 +803,15 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
         st.get("n_animals", 0) * kn["feed"]["buffer_days"]
 
     # ---- 卖出（节拍表驱动）----
+    adaptive_lot = kn.get("tuning", {}).get("adaptive_lot", True)
     for it, rule in sr["phase_sell"].items():
         have = shed.get(it, 0)
         if have > 0 and turn % 4 == rule["phase"]:
-            q = min(have, rule["lot_max"])
+            if adaptive_lot:
+                # RA2：批量由价格曲线决定（slip 控制），随市场库存逐局不同
+                q = min(have, _batch_size(it, inv_mkt.get(it, 10000), rule["lot_max"], 0.06))
+            else:
+                q = min(have, rule["lot_max"])
             sells.append(["SELL", it, q])
     for it, rule in sr["eod_sell"].items():
         have = shed.get(it, 0)
@@ -837,9 +869,13 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     # ---- 买入（现金守卫：floor 之上才花非生存钱）----
     floor = kn.get("tuning", {}).get("cash_floor", kn["cash"]["floor"])
 
-    # 雇工：h0/h1 雇到日程目标
+    # 雇工：h0/h1 雇到日程目标；RA5 自适应——按实际服务需求在表值下方浮动
     if hour in kn["hire_hours"] and turn <= kn["last_hire_turn"]:
         want = sched.hands_target(day)
+        if kn.get("tuning", {}).get("adaptive_hands", False):  # RA5 REJECT:需求公式低估移动开销,砍工-20k
+            n_plants = sum(st.get("planted", {}).values())
+            demand_units = -(-(n_plants + 3 * st.get("n_animals", 0) + 15) // 18)
+            want = max(min(want, demand_units), want - 2, 1)
         hired = int(farm.get("hires_today", 0) or 0)
         cur = len(farm.get("hands") or [])
         for _ in range(max(0, want - max(hired, cur))):
@@ -1008,7 +1044,8 @@ def _decide(obs, config):
                 best_c = max(cands, key=lambda c: ratio[c])
                 tgt[best_c] = tgt.get(best_c, 0) + freed
     st["roles"] = plan_roles(tiles, bs, st["crop_targets"],
-                             sched.pasture_target(turn, shops), sched.coop_target(turn))
+                             sched.pasture_target(turn, shops), sched.coop_target(turn),
+                             prices=prices if tu_mkt.get("adaptive_roles", True) else None)
 
     st["placed_counts"] = {}
     for row in tiles:
@@ -1045,6 +1082,7 @@ def _decide(obs, config):
                 remaining = remaining[alloc[q]:]
         st["home"] = home
 
+    st["cur_prices"] = prices
     tasks = build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops)
     market = market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn, shops)
 
