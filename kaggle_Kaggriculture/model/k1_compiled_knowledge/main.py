@@ -585,9 +585,18 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
     #    生存桶不受限，home 由 _decide 每日按任务密度分配。
     home = st.get("home", {})
     zone_pen = kn.get("tuning", {}).get("zone_penalty", 0)  # 默认关（4seed 微负，留作 A2 旋钮）
+    # 施肥专员：持肥单位只接施肥任务（否则脚下浇水 dist=0 永远抢走持肥人，
+    # 审计实锤：预算 13/天、任务 200+、库存 20+，执行仅 2-10——断点全在这）
+    fert_tasks_exist = any(t[3][0] == "FERTILIZE" for t in tasks)
+    fert_specialists = set()
+    if fert_tasks_exist and kn.get("tuning", {}).get("fert_specialist", True):
+        fert_specialists = {i for i in range(n) if carried(i, "FERTILIZER") >= 2}
+    tour_mode = kn.get("tuning", {}).get("scheduler_mode", "greedy") == "tour"
     buckets = {}
     for tk in tasks:
         b = int(tk[0]) if tk[0] < 3 else 3
+        if tour_mode and b >= 3:
+            continue  # P3+ 交给巡回队列制
         buckets.setdefault(b, []).append(tk)
     for b in sorted(buckets):
         cands = []
@@ -600,6 +609,8 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 if i in used:
                     continue
                 if need and carried(i, need) <= 0:
+                    continue
+                if b >= 3 and i in fert_specialists and op[0] != "FERTILIZE":
                     continue
                 d = _dist(positions[i], pos_t)
                 if b >= 3 and home.get(i) and home[i] != t_quad:
@@ -623,6 +634,84 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 st["assign"][i] = (pos_t, op, need)
                 actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
                 _mv(st, "goto_" + op[0])
+
+    # 1.5) 巡回队列制（S3v2，scheduler_mode="tour"）：P3+ 任务按单位巡回路线执行。
+    #      队列空的单位从任务池链式取最近任务（下一个离上一个最近）组成路线，
+    #      沿途逐格清空——消灭每回合全局重指派的乒乓与交叉移动。
+    if tour_mode:
+        q = st.setdefault("queue", {})
+        queued = {(tk[0], tk[1]) for lst in q.values() for tk in lst}
+        # 执行各单位队头
+        for i in range(n):
+            if i in used:
+                continue
+            lst = q.get(i) or []
+            while lst:
+                pos_t, opname, op, need = lst[0]
+                tile = tiles[pos_t[1]][pos_t[0]]
+                if not _task_still_valid(tile, op) or (need and carried(i, need) <= 0) \
+                        or (pos_t, opname) in claimed:
+                    lst.pop(0)
+                    continue
+                break
+            if lst:
+                pos_t, opname, op, need = lst[0]
+                claimed.add((pos_t, opname))
+                if positions[i] == pos_t:
+                    actions[i] = op
+                    _apply_local(invs, i, op)
+                    if opname == "FERTILIZE":
+                        st["fert_done_today"] = st.get("fert_done_today", 0) + 1
+                    elif opname == "PLANT":
+                        st["planted_today"] = st.get("planted_today", 0) + 1
+                    lst.pop(0)
+                else:
+                    actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
+                    _mv(st, "tour_" + opname)
+                used.add(i)
+        # 补路线：空队列单位从剩余任务池取最近链
+        pool_tasks = [tk for tk in tasks if tk[0] >= 3
+                      and (tk[2], tk[3][0]) not in claimed
+                      and (tk[2], tk[3][0]) not in queued]
+        pool_tasks.sort(key=lambda tk: tk[0])
+        for i in range(n):
+            if i in used or q.get(i):
+                continue
+            route_q = []
+            cur = positions[i]
+            cap = kn.get("tuning", {}).get("tour_len", 10)
+            while pool_tasks and len(route_q) < cap:
+                best_j = None
+                best_d = None
+                for j, tk in enumerate(pool_tasks):
+                    pri, need, pos_t, op = tk
+                    if need and carried(i, need) <= 0:
+                        continue
+                    d = _dist(cur, pos_t) + pri * 0.3
+                    if best_d is None or d < best_d:
+                        best_d, best_j = d, j
+                if best_j is None:
+                    break
+                pri, need, pos_t, op = pool_tasks.pop(best_j)
+                route_q.append((pos_t, op[0], op, need))
+                queued.add((pos_t, op[0]))
+                cur = pos_t
+            if route_q:
+                q[i] = route_q
+                pos_t, opname, op, need = route_q[0]
+                claimed.add((pos_t, opname))
+                if positions[i] == pos_t:
+                    actions[i] = op
+                    _apply_local(invs, i, op)
+                    if opname == "FERTILIZE":
+                        st["fert_done_today"] = st.get("fert_done_today", 0) + 1
+                    elif opname == "PLANT":
+                        st["planted_today"] = st.get("planted_today", 0) + 1
+                    route_q.pop(0)
+                else:
+                    actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
+                    _mv(st, "tour_" + opname)
+                used.add(i)
 
     # 2) 空闲单位：预备补给或原地待命
     need_wheat = any(t[1] == "WHEAT" for t in tasks)
@@ -884,6 +973,7 @@ def _decide(obs, config):
     if st["day"] != day:
         st["day"] = day
         st["assign"] = {}
+        st["queue"] = {}
         st["fert_done_today"] = 0
         st["planted_today"] = 0
     st["crop_targets"] = sched.crop_targets(day, shops)
