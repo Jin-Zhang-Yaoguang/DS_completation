@@ -490,6 +490,39 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
             used.add(i)
             claimed.add((pos_t, op[0]))
 
+    # 0.4) R3 日初装载：h0-2 单位天然在仓库附近（日初清工重雇/农夫回仓），
+    #      站在 shed 格的单位按当日需求领麦/领肥再出发，消除日中供应往返。
+    if kn.get("tuning", {}).get("morning_load", False):  # R3a REJECT(4seed -3.3k,1009 -21k),默认关
+        hour_now = st.get("last_turn", 0) % 24
+        if hour_now <= 2:
+            n_feed_day = sum(1 for t in tasks if t[3][0] == "FEED")
+            n_fert_day = sum(1 for t in tasks if t[3][0] == "FERTILIZE")
+            wheat_carried0 = sum(carried(i, "WHEAT") for i in range(n))
+            fert_carried0 = sum(carried(i, "FERTILIZER") for i in range(n))
+            loaders = 0
+            for i in range(n):
+                if loaders >= 2 or i in used or positions[i] not in shed_set:
+                    continue
+                if n_feed_day > wheat_carried0 and shed.get("WHEAT", 0) > 0:
+                    take = min(n_feed_day - wheat_carried0 + 2, shed["WHEAT"])
+                    if take > 0:
+                        actions[i] = ["PICKUP", "WHEAT", take]
+                        shed["WHEAT"] -= take
+                        invs[i]["WHEAT"] = invs[i].get("WHEAT", 0) + take
+                        wheat_carried0 += take
+                        used.add(i)
+                        loaders += 1
+                        continue
+                if n_fert_day > fert_carried0 and shed.get("FERTILIZER", 0) > 0:
+                    take = min(n_fert_day - fert_carried0, shed["FERTILIZER"])
+                    if take > 0:
+                        actions[i] = ["PICKUP", "FERTILIZER", take]
+                        shed["FERTILIZER"] -= take
+                        invs[i]["FERTILIZER"] = invs[i].get("FERTILIZER", 0) + take
+                        fert_carried0 += take
+                        used.add(i)
+                        loaders += 1
+
     # 0.5) 喂养供应链：有 FEED 任务但无人持麦 → 派最近单位取麦
     n_feed = sum(1 for t in tasks if t[3][0] == "FEED")
     wheat_carried = sum(carried(i, "WHEAT") for i in range(n) if i not in used)
@@ -854,6 +887,36 @@ def _decide(obs, config):
         st["fert_done_today"] = 0
         st["planted_today"] = 0
     st["crop_targets"] = sched.crop_targets(day, shops)
+    # R1b 品类错位层（L1，市场对抗）：被对手供给压价的品停止扩种，
+    # 差额面积转给价格/base 比值最高的可种品。反应式架构天生支持转产——
+    # 角色每天重算，转产成本=一次查表（带底盘 9 次证伪的事在这里是免费的）。
+    tu_mkt = kn.get("tuning", {})
+    if tu_mkt.get("market_shift_enabled", False) and day >= 2:
+        floor_frac = tu_mkt.get("price_floor_frac", 0.5)
+        planted_now = {}
+        for row in tiles:
+            for t in row:
+                if isinstance(t, dict) and t.get("kind") == "PLANT":
+                    planted_now[t["crop"]] = planted_now.get(t["crop"], 0) + 1
+        ratio = {c: prices.get(c, MARKET_PARAMS[c]["base"]) / MARKET_PARAMS[c]["base"]
+                 for c in CROPS}
+        freed = 0
+        tgt = st["crop_targets"]
+        for c in CROPS:
+            cd = CROPS[c]
+            need = cd["first_yield_day"] if cd["ongoing"] else cd["max_yield_day"]
+            if ratio[c] < floor_frac and day + need + 1 <= 29:
+                cur = planted_now.get(c, 0)
+                if tgt.get(c, 0) > cur:
+                    freed += tgt[c] - cur
+                    tgt[c] = cur
+        if freed > 0:
+            cands = [c for c in CROPS
+                     if ratio[c] >= 1.0 and day + (CROPS[c]["first_yield_day"] if CROPS[c]["ongoing"]
+                                                   else CROPS[c]["max_yield_day"]) + 1 <= 29]
+            if cands:
+                best_c = max(cands, key=lambda c: ratio[c])
+                tgt[best_c] = tgt.get(best_c, 0) + freed
     st["roles"] = plan_roles(tiles, bs, st["crop_targets"],
                              sched.pasture_target(turn, shops), sched.coop_target(turn))
 

@@ -71,7 +71,11 @@ python3 profile_opponent.py <TeamName> --export-tape  # 带类对手加导带
 python3 selfcheck.py            # ① 体检：bank/覆盖率/空闲/曲线偏差/现金
 python3 debug_probe.py 1046     # ② 异常深挖
 python3 build_submission.py     # ③ 打包 + _ENTRY 口径 + 48 步 parity
-#  ④ 门控：opponent_pool_v1/gate_y69.py 口径，包表=最近六提交，48 局两轮全胜
+python3 gate_k.py dist/main.py  # ④ 上线双门控（用户 2026-09-13 基准变更）：
+#    门控1 表现：vs 现有最强四模型（y68f/y68c/y67/y66）对局胜率 ≥50%
+#    门控2 自适应：跨局路径重合中位 <0.1（强自适应防破译，参考 Majkel）
+#    注：双门控取代旧的「包表 48 局两轮全胜」口径；带基家族（重合 0.76+）
+#    结构性无法过门控2，反应式架构是唯一上线路线
 ```
 
 红线：`starve_lost` 必须 0；`min_money` 贴地=贫困陷阱前兆；`water_cov`<0.93=面积超出
