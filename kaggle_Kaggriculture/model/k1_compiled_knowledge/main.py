@@ -898,20 +898,24 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
             sells.append(["SELL", it, shed[it]])
         return sells[:MAX_ORDERS]
 
+    fb_days = kn.get("tuning", {}).get("feed_buffer_days", kn["feed"]["buffer_days"])
     feed_need = 0 if day >= kn["feed"]["stop_feed_day"] else \
-        st.get("n_animals", 0) * kn["feed"]["buffer_days"]
+        st.get("n_animals", 0) * fb_days
 
     # ---- 卖出（节拍表驱动）----
     early_pump_pre = day < kn.get("tuning", {}).get("cash_pump_until_day", 8)
     adaptive_lot = kn.get("tuning", {}).get("adaptive_lot", True)
+    ph_shift = kn.get("tuning", {}).get("sell_phase_shift", 0)
+    lot_ov = kn.get("tuning", {}).get("sell_lot_max")
     for it, rule in sr["phase_sell"].items():
         have = shed.get(it, 0)
-        if have > 0 and turn % 4 == rule["phase"]:
+        if have > 0 and turn % 4 == (rule["phase"] + ph_shift) % 4:
+            lm = lot_ov if lot_ov else rule["lot_max"]
             if adaptive_lot:
                 # RA2：批量由价格曲线决定（slip 控制），随市场库存逐局不同
-                q = min(have, _batch_size(it, inv_mkt.get(it, 10000), rule["lot_max"], 0.06))
+                q = min(have, _batch_size(it, inv_mkt.get(it, 10000), lm, 0.06))
             else:
-                q = min(have, rule["lot_max"])
+                q = min(have, lm)
             sells.append(["SELL", it, q])
     for it, rule in sr["eod_sell"].items():
         have = shed.get(it, 0)

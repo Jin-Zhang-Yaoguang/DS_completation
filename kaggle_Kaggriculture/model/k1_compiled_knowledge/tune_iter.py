@@ -54,7 +54,14 @@ def main():
     npop = int(sys.argv[2]) if len(sys.argv) > 2 else 28
     elite_n = max(4, npop // 4)
     rng = random.Random()
-    mu = [MAJ_ANCHOR[n] for n, _, _, _ in SCHED_SPACE]
+    mu = [MAJ_ANCHOR.get(n, d) for n, _, _, d in SCHED_SPACE]
+    bi = HERE / "best_iter.json"
+    if bi.exists():  # warm start:上轮 holdout 最优作起点
+        cands_prev = json.loads(bi.read_text()).get("candidates") or []
+        if cands_prev:
+            top_prev = max(cands_prev, key=lambda c: c["hold_fit"])
+            mu = [top_prev["params"].get(n, MAJ_ANCHOR.get(n, d)) for n, _, _, d in SCHED_SPACE]
+            print(f"warm start from best_iter (hold_fit {top_prev['hold_fit']:.0f})", flush=True)
     sd = [(hi - lo) / 5 for _, lo, hi, _ in SCHED_SPACE]
     # 首代注入现有池（先验保留）
     seed_pool = []

@@ -30,6 +30,12 @@ SCHED_SPACE = [
     ("fert_peak",         4, 14, 10),    # 蒸馏:施肥日峰值(Majkel 10-12/天,全季156)
     ("land1_day",         5, 9, 6),      # 蒸馏:第2块地强制日(Majkel t149=d6.2;资金够即买)
     ("land2_day",         8, 13, 9),     # 蒸馏:第3块地强制日(Majkel t218=d9.1)
+    ("sell_phase_shift",  0, 3, 1),      # 蒸馏:卖出相位整体偏移(Majkel t%4==1)
+    ("sell_lot_max",      2, 8, 4),      # 卖出批量上限(旧固定 4,联合搜索)
+    ("feed_buffer",       1, 4, 2),      # 饲料缓冲天数(旧 tuning,联合)
+    ("water_ddl",         14, 20, 18),   # 浇水清尾时刻(旧 tuning,联合)
+    ("harvest_ymin",      1, 3, 3),      # 收获触发 yield(旧 tuning,联合)
+    ("plant_cap",         5, 12, 7),     # 日种植限速(旧 tuning,联合)
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -122,7 +128,13 @@ def gen_tables(p):
         "structures": structures,
         "tuning_extra": {"plant_cap_early": int(round(g["plant_cap_early"])),
                           "cash_pump_until_day": int(round(g["cash_pump_until"])),
-                          "cash_floor_early": int(round(g["cash_floor_early"]))},
+                          "cash_floor_early": int(round(g["cash_floor_early"])),
+                          "sell_phase_shift": int(round(g["sell_phase_shift"])),
+                          "sell_lot_max": int(round(g["sell_lot_max"])),
+                          "feed_buffer_days": int(round(g["feed_buffer"])),
+                          "water_deadline_hour": int(round(g["water_ddl"])),
+                          "harvest_yield_min": int(round(g["harvest_ymin"])),
+                          "plant_per_day_cap": int(round(g["plant_cap"]))},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
