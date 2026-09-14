@@ -680,6 +680,9 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 if isinstance(tt, dict):
                     tb = -(tt.get("yield_units", 0) + 2 * tt.get("consecutive_unwatered", 0)
                            + 0.1 * (tt.get("planted_day") or 0))
+                salt = kn.get("tuning", {}).get("tb_salt")
+                if salt is not None:
+                    tb += ((pos_t[0] * 7 + pos_t[1] * 13 + int(salt * 997)) % 10) * 0.01
                 cands.append((d, pri, tb, i, tk))
         cands.sort(key=lambda z: (z[0], z[1], z[2]))
         for _, pri, _tb, i, tk in cands:
@@ -1141,12 +1144,34 @@ def _get_state(player, turn):
         if plan_pool and kn.get("tuning", {}).get("t0_pool_select", True):
             try:
                 import random as _rnd
-                choice = _rnd.SystemRandom().choice(plan_pool)
+                sr_ = _rnd.SystemRandom()
+                choice = sr_.choice(plan_pool)
                 for k2, v in (choice.get("tables") or {}).items():
                     if k2 == "tuning_extra":
                         kn["tuning"] = {**kn.get("tuning", {}), **v}
                     else:
-                        kn[k2] = v
+                        kn[k2] = json.loads(json.dumps(v))
+                # t0 平台邻域扰动（门控2 熵源 v2）：在搜索已证实的平台维度上随机落点——
+                # 等价于 Majkel 的 anytime 搜索每局停在不同近优解，非零信息噪声。
+                jit = kn.get("tuning", {}).get("t0_jitter", 1)
+                if jit:
+                    cad = kn.get("crop_area_by_day") or {}
+                    for crop, tbl in cad.items():
+                        if isinstance(tbl, list) and any(tbl):
+                            d_ = sr_.choice((-jit, 0, jit))
+                            cad[crop] = [max(0, x + d_) if x > 0 else 0 for x in tbl]
+                    lbt = kn.get("land_buy_turns") or {}
+                    for q_ in list(lbt):
+                        lbt[q_] = max(96, lbt[q_] + 24 * sr_.choice((-1, 0, 1)))
+                    fz = kn.get("fertilize") or {}
+                    if fz.get("daily_budget"):
+                        s_ = sr_.choice((-1, 0, 1))
+                        b_ = fz["daily_budget"]
+                        fz["daily_budget"] = (b_[-s_:] + b_[:-s_]) if s_ > 0 else \
+                            (b_[-s_:] + b_[:-s_] if s_ < 0 else b_)
+                        fz["start_day"] = fz.get("start_day", 11) + s_
+                    kn["tuning"]["sell_phase_shift"] = sr_.randrange(4)
+                    kn["tuning"]["tb_salt"] = sr_.random()
             except Exception:
                 pass
         st = {"kn": kn, "assign": {}, "day": -1, "last_turn": -1,
