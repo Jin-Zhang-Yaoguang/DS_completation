@@ -634,6 +634,8 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
     #    生存桶不受限，home 由 _decide 每日按任务密度分配。
     home = st.get("home", {})
     zone_pen = kn.get("tuning", {}).get("zone_penalty", 0)  # 默认关（4seed 微负，留作 A2 旋钮）
+    domain_mode = kn.get("tuning", {}).get("scheduler_mode", "greedy") == "domain"
+    domains = st.get("domain") or []
     # 施肥专员：持肥单位只接施肥任务（否则脚下浇水 dist=0 永远抢走持肥人，
     # 审计实锤：预算 13/天、任务 200+、库存 20+，执行仅 2-10——断点全在这）
     fert_tasks_exist = any(t[3][0] == "FERTILIZE" for t in tasks)
@@ -661,6 +663,11 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                     continue
                 if b >= 3 and i in fert_specialists and op[0] != "FERTILIZE":
                     continue
+                if domain_mode and b >= 3 and i < len(domains):
+                    owners = [j for j in range(len(domains)) if pos_t in domains[j]]
+                    # 任务有域主且域主可用时，非域主不竞争；无主/域主已占用则开放
+                    if owners and i not in owners and any(j not in used for j in owners):
+                        continue
                 d = _dist(positions[i], pos_t)
                 if b >= 3 and home.get(i) and home[i] != t_quad:
                     d += zone_pen
@@ -1140,6 +1147,47 @@ def _decide(obs, config):
         for t in row:
             if isinstance(t, dict) and "animal" in t:
                 st["placed_counts"][t["animal"]] = st["placed_counts"].get(t["animal"], 0) + 1
+
+    # S3v3 硬分区域调度（scheduler_mode="domain"）：每天把服务点（植物×1/动物×3/
+    # 目标空格×1）按空间贪心聚类分给单位，域内服务——把全局重指派变成域内小指派，
+    # 压移动/工作比（归因链终点：2.5 vs Majkel 0.9）。
+    if kn.get("tuning", {}).get("scheduler_mode", "greedy") == "domain" and \
+            (turn % 24 == 2 or "domain" not in st):
+        pts = []
+        for y2 in range(bs):
+            for x2 in range(bs):
+                t2 = tiles[y2][x2]
+                if isinstance(t2, dict):
+                    if "animal" in t2:
+                        pts.append(((x2, y2), 3.0))
+                    elif t2.get("kind") == "PLANT":
+                        pts.append(((x2, y2), 1.0))
+                    elif t2.get("kind") in ("PASTURE", "COOP"):
+                        pts.append(((x2, y2), 1.5))
+                elif t2 is None and st.get("roles", {}).get((x2, y2)) in CROPS:
+                    pts.append(((x2, y2), 1.0))
+        total_w = sum(w for _, w in pts) or 1.0
+        cap_w = total_w / max(1, n_units) * 1.25
+        load = [0.0] * n_units
+        domain = [set() for _ in range(n_units)]
+        anchors = list(positions)
+        # 按到仓库距离降序分配（远点先定域，避免全挤仓边）
+        pts.sort(key=lambda pw: -_shed_dist(pw[0], bs))
+        for pos2, w in pts:
+            best_i, best_c = None, None
+            for i2 in range(n_units):
+                if load[i2] >= cap_w:
+                    continue
+                c = _dist(anchors[i2], pos2) + load[i2] * 0.5
+                if best_c is None or c < best_c:
+                    best_c, best_i = c, i2
+            if best_i is None:
+                best_i = min(range(n_units), key=lambda i2: load[i2])
+            domain[best_i].add(pos2)
+            load[best_i] += w
+            ax, ay = anchors[best_i]
+            anchors[best_i] = ((ax + pos2[0]) // 2, (ay + pos2[1]) // 2)
+        st["domain"] = domain
 
     # 分区驻守：每天按象限服务密度（植物×1 + 动物×3）分配单位 home 象限
     if turn % 24 == 2 or "home" not in st:
