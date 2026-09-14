@@ -36,7 +36,8 @@ def _sim_one(job):
     spec.loader.exec_module(mod)
     ov = gen_tables(params) if params else {}
     te = ov.pop("tuning_extra", {}) if isinstance(ov, dict) else {}
-    ov["tuning"] = {**BASE_TU, "fert_specialist": False, **te}
+    ov["tuning"] = {**BASE_TU, "fert_specialist": False, "t0_pool_select": False, **te}
+    # ^ 必须关 t0 池选择：否则 t0 又随机覆盖候选表，评估被旧池污染（2026-09-15 bug）
     mod.KN_OVERRIDE = ov
     if opp_spec:
         opp = fidelity.make_agent(opp_spec)
