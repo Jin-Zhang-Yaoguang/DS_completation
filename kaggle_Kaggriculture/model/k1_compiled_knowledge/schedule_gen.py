@@ -12,7 +12,8 @@ SCHED_SPACE = [
     ("straw_rampdown",    18, 26, 21),   # 草莓停止补种日（此后目标线性降到 9）
     ("wheat_base",        4, 14, 10),    # 小麦前期面积
     ("wheat_peak",        6, 30, 28),    # 小麦后期峰值（d9 起爬升）
-    ("carrot_base",       0, 12, 0),     # 无商店条件的胡萝卜常备面积（早期现金流假设）
+    ("carrot_base",       0, 12, 3),     # 胡萝卜常备面积（分散化：y68g 九品全卖抗撞车）
+    ("tomato_base",       0, 10, 2),     # 番茄常备面积（d8 起，分散化维度）
     ("melon_tiles",       6, 16, 12),    # 瓜一波面积（d0-2 铺设）
     ("cow_total",         3, 12, 8),     # 全季牛数（按 Majkel 批次日 0/6/9 比例 2:4:2 分配）
     ("sheep_total",       0, 6, 3),      # 全季羊数（批次比例 1:1:1）
@@ -98,7 +99,8 @@ def gen_tables(p):
         "animal_buys": animal_buys,
         "crop_area_by_day": {
             "WHEAT": wheat, "MELON": melon, "STRAWBERRY": straw,
-            "CARROT": carrot, "TOMATO": [0] * 30,
+            "CARROT": carrot,
+            "TOMATO": [0 if (d < 8 or d >= 26) else int(round(g["tomato_base"])) for d in range(30)],
         },
     }
 

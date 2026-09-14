@@ -169,6 +169,23 @@ class Schedule:
                     for d0, n in steps:
                         if day >= d0:
                             out[crop] = max(out.get(crop, 0), n)
+        # 商店消耗谱再平衡（双峰归因 2026-09-15：零草莓店的局草莓价塌、收入减半。
+        # 商店组合逐局不同 → 生产结构随之 → 同时是门控2 的熵源）：
+        # 高价品无消耗店时目标衰减，释放的面积转小麦（城镇中心恒吃）。
+        # 仅在商店格局基本定型(>=5 家,约 d14)后启用——过早会把未来才解锁的
+        # 消耗店对应品提前判死刑(3120 局实测 -30k)
+        if self.tu.get("shop_rebalance", True) and len(shops) >= self.tu.get("shop_rebalance_min_shops", 5):
+            mult = self.tu.get("shop_rebalance_mult", [0.3, 0.7])
+            freed = 0
+            for crop in ("STRAWBERRY", "TOMATO"):
+                n_shop = sum(1 for s in shops if crop in SHOPS.get(s, []))
+                f = mult[0] if n_shop == 0 else (mult[1] if n_shop == 1 else 1.0)
+                if f < 1.0 and out.get(crop, 0) > 0:
+                    cut = out[crop] - int(round(out[crop] * f))
+                    out[crop] -= cut
+                    freed += cut
+            if freed > 0:
+                out["WHEAT"] = out.get("WHEAT", 0) + freed
         return out
 
     def pasture_target(self, turn, shops):
