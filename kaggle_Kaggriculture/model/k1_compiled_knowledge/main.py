@@ -980,6 +980,22 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     for crop, n in seed_orders.items():
         buys.append(["BUY_SEED", crop, n])
 
+    # 买肥施肥层（产量杠杆，2026-09-15）：施 1 肥→ongoing 作物下产出日 +2
+    # （草莓 2×120=240 期望收益），肥价低于阈值时买入补足施肥日预算缺口。
+    # y68g 实测买 88 单肥自用；我们此前只用自产肥，杠杆空置。
+    tu_f = kn.get("tuning", {})
+    if tu_f.get("buy_fert", True):
+        fb2 = kn["fertilize"]
+        if fb2["start_day"] - 1 <= day and turn <= fb2["last_fert_turn"]:
+            p_fert = prices.get("FERTILIZER", 100)
+            if p_fert <= tu_f.get("buy_fert_price_cap", 90):
+                have_f = shed.get("FERTILIZER", 0) + sum(inv.get("FERTILIZER", 0) for inv in st["invs"])
+                need_f = sched.fert_budget(day) + sched.fert_budget(day + 1) - have_f
+                n = min(need_f, max(0, int((money - floor) // max(1, p_fert))), 10)
+                if n > 0:
+                    buys.append(["BUY_PRODUCT", "FERTILIZER", n])
+                    money -= p_fert * n
+
     # 饲料：缓冲补货 + 大批日
     fd = kn["feed"]
     if day < fd["stop_feed_day"] and st.get("n_animals", 0) > 0:
