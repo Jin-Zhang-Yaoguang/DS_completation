@@ -24,6 +24,7 @@ SCHED_SPACE = [
     ("cash_pump_until",   0, 10, 8),     # 早期现金泵截止日（麦蛋即产即卖）
     ("sheep_d0",          0, 3, 1),      # d0 羊数（Majkel 实测 3：d6 羊毛变现炸弹 18 毛）
     ("batch2_day",        5, 10, 6),     # 第二动物批次日（现金流对齐）
+    ("cash_floor_early",  100, 420, 406),# 现金泵期地板（406=与后期同即关闭分期）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -91,7 +92,8 @@ def gen_tables(p):
 
     return {
         "tuning_extra": {"plant_cap_early": int(round(g["plant_cap_early"])),
-                          "cash_pump_until_day": int(round(g["cash_pump_until"]))},
+                          "cash_pump_until_day": int(round(g["cash_pump_until"])),
+                          "cash_floor_early": int(round(g["cash_floor_early"]))},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

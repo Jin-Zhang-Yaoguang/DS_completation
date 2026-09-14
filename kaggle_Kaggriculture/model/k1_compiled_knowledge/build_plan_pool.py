@@ -47,11 +47,16 @@ def _sim_one(job):
     return b0
 
 
-def sample_params(rng):
-    p = dict(DEFAULTS)
-    for (name, lo, hi, d) in SCHED_SPACE:
-        # 以默认为中心的截断高斯（先验保守）
-        p[name] = min(hi, max(lo, rng.gauss(d, (hi - lo) / 5)))
+MAJ_ANCHOR = {**DEFAULTS, "melon_d0": 6, "wheat_d0": 8, "sheep_d0": 3, "sheep_total": 3,
+              "cow_total": 8, "batch2_day": 7, "day0_animal_frac": 1.0, "goose_total": 2,
+              "cash_floor_early": 150}
+
+
+def sample_params(rng, anchor=None):
+    center = anchor or DEFAULTS
+    p = dict(center)
+    for (name, lo, hi, _d) in SCHED_SPACE:
+        p[name] = min(hi, max(lo, rng.gauss(center[name], (hi - lo) / (8 if anchor else 5))))
     return p
 
 
@@ -62,20 +67,38 @@ def param_dist(a, b):
     return d
 
 
+def eval_batch(cands, solo_seeds, vs_seeds, pool):
+    jobs = [(c, s, None) for c in cands for s in solo_seeds] + \
+           [(c, s, Y67) for c in cands for s in vs_seeds]
+    res = list(pool.map(_sim_one, jobs))
+    ks = len(solo_seeds)
+    solo = [statistics.mean(res[i * ks:(i + 1) * ks]) for i in range(len(cands))]
+    off = len(cands) * ks
+    kv = len(vs_seeds)
+    vs_own = [statistics.mean(res[off + i * kv: off + (i + 1) * kv]) for i in range(len(cands))]
+    return solo, vs_own
+
+
 def main():
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 32
-    rng = random.Random(20260914)
-    cands = [dict(DEFAULTS)] + [sample_params(rng) for _ in range(n - 1)]
+    rng = random.Random(20260915)
+    half = (n - 2) // 2
+    cands = [dict(DEFAULTS), dict(MAJ_ANCHOR)] + \
+        [sample_params(rng) for _ in range(half)] + \
+        [sample_params(rng, MAJ_ANCHOR) for _ in range(n - 2 - half)]
     with ProcessPoolExecutor(max_workers=8) as pool:
-        jobs = [(c, s, None) for c in cands for s in SOLO_SEEDS] + \
-               [(c, s, Y67) for c in cands for s in VS_SEEDS]
-        res = list(pool.map(_sim_one, jobs))
-    k_solo = len(SOLO_SEEDS)
-    solo = [statistics.mean(res[i * k_solo:(i + 1) * k_solo]) for i in range(len(cands))]
-    off = len(cands) * k_solo
-    k_vs = len(VS_SEEDS)
-    vs_own = [statistics.mean(res[off + i * k_vs: off + (i + 1) * k_vs]) for i in range(len(cands))]
-    base_solo, base_vs = solo[0], vs_own[0]
+        # successive halving：rung0 粗筛（2+2 seed）→ top32 精筛（+2 solo +4 vs）
+        solo0, vs0 = eval_batch(cands, SOLO_SEEDS, VS_SEEDS, pool)
+        order = sorted(range(len(cands)), key=lambda i: -(vs0[i] + 0.3 * solo0[i]))
+        keep = sorted(order[:32] + [0])          # 静态基线保留对照
+        cands2 = [cands[i] for i in keep]
+        solo1, vs1 = eval_batch(cands2, [5194, 6231], [7268, 8305, 9342, 1009], pool)
+        # 总评 = 两轮加权（rung1 seed 多，权重 2）
+        solo = [(solo0[keep[i]] + 2 * solo1[i]) / 3 for i in range(len(cands2))]
+        vs_own = [(vs0[keep[i]] + 2 * vs1[i]) / 3 for i in range(len(cands2))]
+        cands = cands2
+    base_i = keep.index(0)
+    base_solo, base_vs = solo[base_i], vs_own[base_i]
     print(f"静态表: solo {base_solo:.0f} vs_own {base_vs:.0f}")
     # 过滤 + 多样化入池
     scored = sorted(range(len(cands)), key=lambda i: -(vs_own[i] + 0.3 * solo[i]))

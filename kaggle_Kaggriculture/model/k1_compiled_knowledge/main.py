@@ -883,7 +883,12 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
                 break
 
     # ---- 买入（现金守卫：floor 之上才花非生存钱）----
-    floor = kn.get("tuning", {}).get("cash_floor", kn["cash"]["floor"])
+    # 分期地板：现金泵期贴地运营（Majkel money 0-600 滚动），后期恢复防御值
+    # （bug 修复：floor 406 > 贫穷期现金 400-450，曾把 d6-11 种子购买全饿死）
+    tu_c = kn.get("tuning", {})
+    floor = tu_c.get("cash_floor", kn["cash"]["floor"])
+    if day < tu_c.get("cash_pump_until_day", 8) + 4:
+        floor = tu_c.get("cash_floor_early", 120)
 
     # 雇工：h0/h1 雇到日程目标；RA5 自适应——按实际服务需求在表值下方浮动
     if hour in kn["hire_hours"] and turn <= kn["last_hire_turn"]:
