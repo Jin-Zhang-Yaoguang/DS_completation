@@ -18,6 +18,10 @@ SCHED_SPACE = [
     ("sheep_total",       0, 6, 3),      # 全季羊数（批次比例 1:1:1）
     ("goose_total",       0, 6, 2),      # 全季鹅数（d6 一批）
     ("day0_animal_frac",  0.3, 1.0, 1.0),# d0 动物批次保留比例（<1 = 开局省钱后补）
+    ("melon_d0",          4, 12, 8),     # d0 瓜面积（d1-2 爬到 melon_tiles）
+    ("wheat_d0",          6, 14, 10),    # d0 麦面积
+    ("plant_cap_early",   6, 20, 10),    # d0-1 种植限速豁免值
+    ("cash_pump_until",   0, 10, 8),     # 早期现金泵截止日（麦蛋即产即卖）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -46,12 +50,19 @@ def gen_tables(p):
         else:
             s = _ramp(d, g["straw_rampdown"], g["straw_peak"], 24, 9)
         straw.append(0 if d >= 28 else int(round(s)))
-        if d < 9:
+        if d == 0:
+            w = g["wheat_d0"]
+        elif d < 9:
             w = g["wheat_base"]
         else:
             w = _ramp(d, 9, g["wheat_base"], 16, g["wheat_peak"])
         wheat.append(0 if d >= 28 else int(round(w)))
-        melon.append(int(round(g["melon_tiles"])) if d <= 12 else 0)
+        if d == 0:
+            melon.append(int(round(min(g["melon_d0"], g["melon_tiles"]))))
+        elif d <= 12:
+            melon.append(int(round(g["melon_tiles"])))
+        else:
+            melon.append(0)
         carrot.append(int(round(g["carrot_base"])) if d <= 25 else 0)
 
     def split(total, fracs):
@@ -76,6 +87,8 @@ def gen_tables(p):
     animal_buys = [r for r in animal_buys if r["buys"]]
 
     return {
+        "tuning_extra": {"plant_cap_early": int(round(g["plant_cap_early"])),
+                          "cash_pump_until_day": int(round(g["cash_pump_until"]))},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

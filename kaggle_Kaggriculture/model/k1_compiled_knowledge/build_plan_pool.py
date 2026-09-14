@@ -22,7 +22,7 @@ from schedule_gen import SCHED_SPACE, DEFAULTS, gen_tables  # noqa: E402
 BASE_TU = json.loads((HERE / "knowledge.json").read_text()).get("tuning", {})
 SOLO_SEEDS = [1009, 2083]
 VS_SEEDS = [1046, 3120]
-Y67 = f"sub:{POOL}/packs/y67_main.py"
+Y67 = "sub:/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v58_mosaic/dist_backup/y68g_main.py"
 
 
 def _sim_one(job):
@@ -35,7 +35,8 @@ def _sim_one(job):
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     ov = gen_tables(params) if params else {}
-    ov["tuning"] = {**BASE_TU, "fert_specialist": False}
+    te = ov.pop("tuning_extra", {}) if isinstance(ov, dict) else {}
+    ov["tuning"] = {**BASE_TU, "fert_specialist": False, **te}
     mod.KN_OVERRIDE = ov
     if opp_spec:
         opp = fidelity.make_agent(opp_spec)

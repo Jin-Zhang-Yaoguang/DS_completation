@@ -1,7 +1,6 @@
 {
   "version": "k1-v1",
   "source": "v71_majkel_reverse README 2026-09-13 逆向参数;数值取 289 局中位数取整。tuning 来自 tune_cem 8代×16 (2026-09-13, holdout +12998 vs 默认)",
-
   "tuning": {
     "plant_per_day_cap": 7,
     "water_deadline_hour": 18,
@@ -11,80 +10,388 @@
     "cash_floor": 406,
     "animal_scale": 1.22,
     "fert_scale": 1.266,
-    "crop_scale": {"STRAWBERRY": 0.613, "WHEAT": 0.5}
+    "crop_scale": {
+      "STRAWBERRY": 0.613,
+      "WHEAT": 0.5
+    },
+    "fert_specialist": false
   },
-
-  "hands_by_day": [4, 4, 6, 6, 6, 6, 8, 9, 9, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10],
-  "hire_hours": [0, 1],
+  "hands_by_day": [
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    8,
+    9,
+    9,
+    10,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    10,
+    10
+  ],
+  "hire_hours": [
+    0,
+    1
+  ],
   "last_hire_turn": 697,
-
-  "land_buy_turns": {"NE": 149, "SW": 218},
-
-  "structures": {
-    "pasture_early": {"turn_from": 2, "count": 5},
-    "pasture_main": {"turn_from": 158, "count_default": 14, "count_by_shop": {"YARN_STORE": 18, "PET_CAFE": 11}},
-    "coop": {"turn_from": 156, "count_default": 2}
+  "land_buy_turns": {
+    "NE": 149,
+    "SW": 218
   },
-
+  "structures": {
+    "pasture_early": {
+      "turn_from": 2,
+      "count": 5
+    },
+    "pasture_main": {
+      "turn_from": 158,
+      "count_default": 14,
+      "count_by_shop": {
+        "YARN_STORE": 18,
+        "PET_CAFE": 11
+      }
+    },
+    "coop": {
+      "turn_from": 156,
+      "count_default": 2
+    }
+  },
   "animal_buys": [
-    {"day": 0, "buys": {"COW": 2, "SHEEP": 1}},
-    {"day": 6, "buys": {"COW": 4, "SHEEP": 1, "GOOSE": 2}},
-    {"day": 9, "buys": {"COW": 2, "SHEEP": 1}}
+    {
+      "day": 0,
+      "buys": {
+        "COW": 2,
+        "SHEEP": 1
+      }
+    },
+    {
+      "day": 6,
+      "buys": {
+        "COW": 4,
+        "SHEEP": 1,
+        "GOOSE": 2
+      }
+    },
+    {
+      "day": 9,
+      "buys": {
+        "COW": 2,
+        "SHEEP": 1
+      }
+    }
   ],
   "last_animal_turn": 274,
-
   "crop_area_by_day": {
-    "WHEAT":      [10, 10, 10, 10, 10, 10, 10, 10, 10, 15, 18, 20, 25, 25, 26, 26, 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 29, 0, 0],
-    "MELON":      [8, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    "STRAWBERRY": [0, 0, 8, 14, 20, 24, 26, 28, 28, 28, 28, 28, 28, 29, 30, 30, 31, 31, 32, 32, 33, 20, 15, 10, 9, 9, 9, 9, 0, 0],
-    "CARROT":     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    "TOMATO":     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    "WHEAT": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      15,
+      18,
+      20,
+      25,
+      25,
+      26,
+      26,
+      27,
+      27,
+      27,
+      27,
+      28,
+      28,
+      28,
+      28,
+      29,
+      29,
+      29,
+      29,
+      0,
+      0
+    ],
+    "MELON": [
+      8,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "STRAWBERRY": [
+      0,
+      0,
+      8,
+      14,
+      20,
+      24,
+      26,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      29,
+      30,
+      30,
+      31,
+      31,
+      32,
+      32,
+      33,
+      20,
+      15,
+      10,
+      9,
+      9,
+      9,
+      9,
+      0,
+      0
+    ],
+    "CARROT": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "TOMATO": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
   },
-  "plant_until_day": {"MELON": 2},
+  "plant_until_day": {
+    "MELON": 2
+  },
   "crop_area_shop_overrides": {
-    "PET_CAFE": {"CARROT": [[16, 10], [20, 15], [24, 20]]},
-    "PIZZA_SHOP": {"TOMATO": [[12, 5], [20, 13]]}
+    "PET_CAFE": {
+      "CARROT": [
+        [
+          16,
+          10
+        ],
+        [
+          20,
+          15
+        ],
+        [
+          24,
+          20
+        ]
+      ]
+    },
+    "PIZZA_SHOP": {
+      "TOMATO": [
+        [
+          12,
+          5
+        ],
+        [
+          20,
+          13
+        ]
+      ]
+    }
   },
-
   "fertilize": {
     "start_day": 11,
-    "daily_budget": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 6, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 9, 9, 8, 8, 0, 0],
-    "crop_priority": ["STRAWBERRY", "TOMATO", "WHEAT", "CARROT"],
+    "daily_budget": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      9,
+      9,
+      8,
+      8,
+      0,
+      0
+    ],
+    "crop_priority": [
+      "STRAWBERRY",
+      "TOMATO",
+      "WHEAT",
+      "CARROT"
+    ],
     "last_fert_turn": 689
   },
-
   "feed": {
     "buffer_days": 2,
     "low_water_mark": 2,
-    "bulk_days": [8, 10],
+    "bulk_days": [
+      8,
+      10
+    ],
     "bulk_target_per_animal": 4,
     "stop_feed_day": 28,
     "wheat_buy_price_cap": 55
   },
-
   "sell_rules": {
     "phase_sell": {
-      "MILK":       {"phase": 1, "lot_max": 4},
-      "WOOL":       {"phase": 1, "lot_max": 4},
-      "STRAWBERRY": {"phase": 1, "lot_max": 4},
-      "TOMATO":     {"phase": 1, "lot_max": 4}
+      "MILK": {
+        "phase": 1,
+        "lot_max": 4
+      },
+      "WOOL": {
+        "phase": 1,
+        "lot_max": 4
+      },
+      "STRAWBERRY": {
+        "phase": 1,
+        "lot_max": 4
+      },
+      "TOMATO": {
+        "phase": 1,
+        "lot_max": 4
+      }
     },
     "eod_sell": {
-      "EGG":    {"hour": 22},
-      "CARROT": {"hour": 22}
+      "EGG": {
+        "hour": 22
+      },
+      "CARROT": {
+        "hour": 22
+      }
     },
-    "wheat": {"phase": 2, "eod_hour": 22, "lot_max": 10},
-    "melon": {"slip_tol": 0.08, "lot_max": 10},
+    "wheat": {
+      "phase": 2,
+      "eod_hour": 22,
+      "lot_max": 10
+    },
+    "melon": {
+      "slip_tol": 0.08,
+      "lot_max": 10
+    },
     "fertilizer_sell_price": 45,
     "terminal_turn": 718
   },
-
   "cash": {
     "floor": 300,
     "no_sell_squeeze_when_buying": true,
     "poverty_cash": 3000
   },
-
   "endgame": {
     "last_plant_turn": 677,
     "terminal_from_turn": 694

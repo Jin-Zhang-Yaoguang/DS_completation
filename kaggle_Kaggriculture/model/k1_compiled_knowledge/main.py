@@ -396,7 +396,10 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
         targets = st["crop_targets"]
         deficit = {c: targets.get(c, 0) - planted.get(c, 0) for c in CROPS}
         until = kn.get("plant_until_day", {})
-        plant_quota = tu.get("plant_per_day_cap", kn.get("plant_per_day_cap", 6)) - st.get("planted_today", 0)
+        cap = tu.get("plant_per_day_cap", kn.get("plant_per_day_cap", 6))
+        if day <= 1:
+            cap = tu.get("plant_cap_early", 10)  # B1b 开局豁免（旋钮化,Majkel d1 15 块渐进）
+        plant_quota = cap - st.get("planted_today", 0)
         for p in empty:
             if plant_quota <= 0:
                 break
@@ -806,6 +809,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
         st.get("n_animals", 0) * kn["feed"]["buffer_days"]
 
     # ---- 卖出（节拍表驱动）----
+    early_pump_pre = day < kn.get("tuning", {}).get("cash_pump_until_day", 8)
     adaptive_lot = kn.get("tuning", {}).get("adaptive_lot", True)
     for it, rule in sr["phase_sell"].items():
         have = shed.get(it, 0)
@@ -818,12 +822,14 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
             sells.append(["SELL", it, q])
     for it, rule in sr["eod_sell"].items():
         have = shed.get(it, 0)
-        if have > 0 and hour >= rule["hour"]:
+        if have > 0 and (hour >= rule["hour"] or early_pump_pre):
             sells.append(["SELL", it, have])
-    # 小麦：余粮（扣饲料预留）在相位或日末卖
+    # 小麦：余粮（扣饲料预留）在相位或日末卖；
+    # B1a 早期现金泵（Majkel d1-5 每日 288-472 滚动收入）：d<8 有余粮即卖不等相位
     wr = sr["wheat"]
     wheat_extra = shed.get("WHEAT", 0) - feed_need
-    if wheat_extra > 2 and (turn % 4 == wr["phase"] or hour >= wr["eod_hour"]):
+    early_pump = day < kn.get("tuning", {}).get("cash_pump_until_day", 8)
+    if wheat_extra > (0 if early_pump else 2) and             (early_pump or turn % 4 == wr["phase"] or hour >= wr["eod_hour"]):
         sells.append(["SELL", "WHEAT", min(wheat_extra, wr["lot_max"])])
     # 瓜：即收即卖，slip 控批
     mr = sr["melon"]
@@ -1002,7 +1008,10 @@ def _get_state(player, turn):
                 import random as _rnd
                 choice = _rnd.SystemRandom().choice(plan_pool)
                 for k2, v in (choice.get("tables") or {}).items():
-                    kn[k2] = v
+                    if k2 == "tuning_extra":
+                        kn["tuning"] = {**kn.get("tuning", {}), **v}
+                    else:
+                        kn[k2] = v
             except Exception:
                 pass
         st = {"kn": kn, "assign": {}, "day": -1, "last_turn": -1,
