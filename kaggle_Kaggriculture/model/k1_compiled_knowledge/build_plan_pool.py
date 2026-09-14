@@ -49,8 +49,8 @@ def _sim_one(job):
 
 
 MAJ_ANCHOR = {**DEFAULTS, "melon_d0": 6, "wheat_d0": 8, "sheep_d0": 3, "sheep_total": 3,
-              "cow_total": 8, "batch2_day": 7, "day0_animal_frac": 1.0, "goose_total": 2,
-              "cash_floor_early": 150}
+              "cow_total": 8, "batch2_day": 7, "day0_animal_frac": 1.0, "goose_total": 4,
+              "cash_floor_early": 150, "carrot_base": 4, "tomato_base": 3}
 
 
 def sample_params(rng, anchor=None):
@@ -105,9 +105,9 @@ def main():
     scored = sorted(range(len(cands)), key=lambda i: -(vs_own[i] + 0.3 * solo[i]))
     plan_pool = []
     for i in scored:
-        if vs_own[i] < base_vs - 2000 or solo[i] < base_solo - 6000:
+        if vs_own[i] < base_vs - 3500 or solo[i] < base_solo - 8000:
             continue
-        if any(param_dist(cands[i], p["params"]) < 0.8 for p in plan_pool):
+        if any(param_dist(cands[i], p["params"]) < 0.5 for p in plan_pool):
             continue
         plan_pool.append({"params": cands[i], "solo": round(solo[i]), "vs_own": round(vs_own[i]),
                           "tables": gen_tables(cands[i])})
