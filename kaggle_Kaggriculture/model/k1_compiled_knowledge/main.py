@@ -70,8 +70,11 @@ def _load_knowledge():
     if _KNOWLEDGE_EMBED:
         kn = json.loads(_KNOWLEDGE_EMBED)
     else:
-        p = Path(__file__).resolve().parent / "knowledge.json"
-        kn = json.loads(p.read_text())
+        here = Path(__file__).resolve().parent
+        kn = json.loads((here / "knowledge.json").read_text())
+        pp = here / "plan_pool.json"
+        if pp.exists():
+            kn.setdefault("plan_pool", json.loads(pp.read_text()))
     if KN_OVERRIDE:
         for k2, v in KN_OVERRIDE.items():
             kn[k2] = v
@@ -971,7 +974,20 @@ _STATE = {}
 def _get_state(player, turn):
     st = _STATE.get(player)
     if st is None or turn <= st.get("last_turn", -1):
-        st = {"kn": _load_knowledge(), "assign": {}, "day": -1, "last_turn": -1,
+        kn = _load_knowledge()
+        # S1 T0 方案池选择（Majkel 假设 B' 机制）：每局用系统熵源从离线验证的
+        # 方案池随机选一套日程表——质量由离线 holdout 保证，轨迹逐局不同由
+        # 选择随机性保证（概念验证：重合 0.25→0.065，对战 own +12.3k）。
+        plan_pool = kn.get("plan_pool")
+        if plan_pool and kn.get("tuning", {}).get("t0_pool_select", True):
+            try:
+                import random as _rnd
+                choice = _rnd.SystemRandom().choice(plan_pool)
+                for k2, v in (choice.get("tables") or {}).items():
+                    kn[k2] = v
+            except Exception:
+                pass
+        st = {"kn": kn, "assign": {}, "day": -1, "last_turn": -1,
               "roles": {}, "invs": [{}], "crop_targets": {}}
         st["sched"] = Schedule(st["kn"])
         _STATE[player] = st

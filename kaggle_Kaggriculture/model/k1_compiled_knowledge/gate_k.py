@@ -18,11 +18,13 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 POOL = "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/opponent_pool_v1"
+# 滚动四强（E 类刷新，2026-09-14：y68g 2771 上线为新王）
+_MOSAIC = "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v58_mosaic/dist_backup"
 TOP4 = [
-    ("y68f", f"{POOL}/packs/y68f_main.py"),
+    ("y68g", f"{_MOSAIC}/y68g_main.py"),
     ("y68c", f"{POOL}/packs/y68c_main.py"),
+    ("y68f", f"{POOL}/packs/y68f_main.py"),
     ("y67", f"{POOL}/packs/y67_main.py"),
-    ("y66", f"{POOL}/packs/y66_main.py"),
 ]
 OVERLAP_THRESHOLD = 0.1
 
