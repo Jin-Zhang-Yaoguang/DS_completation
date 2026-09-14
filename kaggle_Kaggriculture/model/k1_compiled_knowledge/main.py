@@ -1158,8 +1158,14 @@ def _get_state(player, turn):
                     cad = kn.get("crop_area_by_day") or {}
                     for crop, tbl in cad.items():
                         if isinstance(tbl, list) and any(tbl):
-                            d_ = sr_.choice((-jit, 0, jit))
-                            cad[crop] = [max(0, x + d_) if x > 0 else 0 for x in tbl]
+                            # 前段(d<12)/后段独立扰动：两段各自落点，组合数 ×3
+                            d1 = sr_.choice((-jit, 0, jit))
+                            d2 = sr_.choice((-jit, 0, jit))
+                            cad[crop] = [max(0, x + (d1 if di < 12 else d2)) if x > 0 else 0
+                                         for di, x in enumerate(tbl)]
+                    for row_ in kn.get("animal_buys") or []:
+                        if row_.get("day", 0) > 0:
+                            row_["day"] = max(1, row_["day"] + sr_.choice((-1, 0, 1)))
                     lbt = kn.get("land_buy_turns") or {}
                     for q_ in list(lbt):
                         lbt[q_] = max(96, lbt[q_] + 24 * sr_.choice((-1, 0, 1)))
