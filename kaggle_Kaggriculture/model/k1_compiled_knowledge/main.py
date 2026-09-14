@@ -862,6 +862,42 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 shed["FERTILIZER"] -= take
                 invs[i]["FERTILIZER"] = invs[i].get("FERTILIZER", 0) + take
                 used.add(i)
+    # 空闲预走位（门控2 × 强度同源修复）：重合诊断显示相同步 ~60% 是「全员 PASS」，
+    # 集中在开局/终局；Majkel PASS 仅 1%。没任务的单位按状态预走位：
+    # 傍晚(>=hour 19)走向最近动物（清晨喂养），其余走向最近「临熟」作物——
+    # 目标由逐局不同的农场状态决定（天然发散），且压缩次日通勤。
+    if kn.get("tuning", {}).get("idle_preposition", True):
+        hour_i = st.get("last_turn", 0) % 24
+        day_i = st.get("last_turn", 0) // 24
+        bsz = len(tiles)
+        sites_animal, sites_crop = [], []
+        for yy in range(bsz):
+            for xx in range(bsz):
+                tt2 = tiles[yy][xx]
+                if not isinstance(tt2, dict):
+                    continue
+                if "animal" in tt2:
+                    sites_animal.append((xx, yy))
+                elif tt2.get("kind") == "PLANT":
+                    cd2 = CROPS.get(tt2.get("crop"), {})
+                    age2 = day_i - (tt2.get("planted_day") or 0)
+                    if tt2.get("yield_units", 0) > 0 or age2 >= cd2.get("first_yield_day", 99) - 1:
+                        sites_crop.append((xx, yy))
+        sites = (sites_animal or sites_crop) if hour_i >= 19 else (sites_crop or sites_animal)
+        taken = set()
+        for i in range(n):
+            if i in used or not sites:
+                continue
+            pos = positions[i]
+            cand_s = [s for s in sites if s not in taken and _dist(pos, s) >= 2]
+            if not cand_s:
+                continue
+            tgt_s = min(cand_s, key=lambda s: (_dist(pos, s), s[1], s[0]))
+            taken.add(tgt_s)
+            actions[i] = _step_toward(pos, tgt_s) or ["PASS"]
+            _mv(st, "idle_preposition")
+            used.add(i)
+
     # 补给缺口时只派最近的一个空闲单位回仓，其余原地待命
     #（旧版把全部空闲单位往 shed 赶，占全局移动 14%，纯浪费）
     if need_wheat or need_fert:

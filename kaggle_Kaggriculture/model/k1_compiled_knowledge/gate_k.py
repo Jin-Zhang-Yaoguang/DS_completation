@@ -102,8 +102,11 @@ def main():
     print(f"  合计胜率 {total_w}/{total_n} = {wr:.1%}")
 
     # ---- 门控 2：自适应（重合中位 < 0.1）----
-    jobs2 = [(cand, TOP4[2][1], s, 0, True) for s in seeds[:6]]
-    with ProcessPoolExecutor(max_workers=6) as pool:
+    # 严格口径（2026-09-15 校准）：8 个互不相同的 seed × 轮换四强对手。
+    # 旧口径（6 seed 只打 y67）读数偏乐观 0.086，同质的 y68 家族下真实为 0.138。
+    g2_seeds = [2027 + 131 * k for k in range(8)]
+    jobs2 = [(cand, TOP4[k % len(TOP4)][1], g2_seeds[k], k % 2, True) for k in range(8)]
+    with ProcessPoolExecutor(max_workers=8) as pool:
         res2 = list(pool.map(play_one, jobs2))
     traces = [t for _, _, t in res2]
     ovs = []
