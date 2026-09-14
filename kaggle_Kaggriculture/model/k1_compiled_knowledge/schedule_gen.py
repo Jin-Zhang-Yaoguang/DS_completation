@@ -26,6 +26,10 @@ SCHED_SPACE = [
     ("sheep_d0",          0, 3, 1),      # d0 羊数（Majkel 实测 3：d6 羊毛变现炸弹 18 毛）
     ("batch2_day",        5, 10, 6),     # 第二动物批次日（现金流对齐）
     ("cash_floor_early",  100, 420, 406),# 现金泵期地板（406=与后期同即关闭分期）
+    ("fert_start_day",    9, 16, 11),    # 蒸馏:Majkel d11 起施肥
+    ("fert_peak",         4, 14, 10),    # 蒸馏:施肥日峰值(Majkel 10-12/天,全季156)
+    ("land1_day",         5, 9, 6),      # 蒸馏:第2块地强制日(Majkel t149=d6.2;资金够即买)
+    ("land2_day",         8, 13, 9),     # 蒸馏:第3块地强制日(Majkel t218=d9.1)
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -99,7 +103,22 @@ def gen_tables(p):
                           "count_by_shop": {"YARN_STORE": n_pasture + 3, "PET_CAFE": max(6, n_pasture - 3)}},
         "coop": {"turn_from": 156, "count_default": n_coop},
     }
+    fs = int(round(g["fert_start_day"]))
+    fp = int(round(g["fert_peak"]))
+    fert_budget = []
+    for d in range(30):
+        if d < fs or d >= 28:
+            fert_budget.append(0)
+        else:
+            fert_budget.append(max(2, min(fp, 2 + (d - fs) * 2)))
+    fertilize = {"start_day": fs, "daily_budget": fert_budget,
+                 "crop_priority": ["STRAWBERRY", "TOMATO", "WHEAT", "CARROT"],
+                 "last_fert_turn": 689}
+    land_buy = {"NE": int(round(g["land1_day"])) * 24 + 5,
+                "SW": int(round(g["land2_day"])) * 24 + 5}
     return {
+        "fertilize": fertilize,
+        "land_buy_turns": land_buy,
         "structures": structures,
         "tuning_extra": {"plant_cap_early": int(round(g["plant_cap_early"])),
                           "cash_pump_until_day": int(round(g["cash_pump_until"])),
