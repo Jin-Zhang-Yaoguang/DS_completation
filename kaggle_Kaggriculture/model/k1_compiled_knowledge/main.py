@@ -345,19 +345,21 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
         for pos, t in animals:
             if not t.get("fed_today"):
                 tasks.append((2 if turn % 24 < feed_ddl else 1.6, "WHEAT", pos, ["FEED"]))
+    pump = day < tu.get("cash_pump_until_day", 8)
     for pos, t in plants:
         cd = CROPS[t["crop"]]
         if not cd["ongoing"] and t.get("yield_units", 0) > 0:
             age = day - t["planted_day"]
             if age >= cd["max_yield_day"] or t["yield_units"] >= cd["max_yield"]:
                 tasks.append((2.2, None, pos, ["HARVEST"]))
+
     water_ddl = tu.get("water_deadline_hour", 16)
     for pos, t in plants:
         if not t.get("watered_today"):
             # 白天就近浇；傍晚起未浇的升入生存桶清尾（当天不浇即枯/杂草化）
             tasks.append((3 if hour < water_ddl else 1.5, None, pos, ["WATER"]))
-    # P4 放置动物（仅 14 点前，保证当天喂得上；引擎：连续两天未喂即逃走）
-    if turn % 24 <= 14:
+    # P4 放置动物（18 点前——喂养清尾 ddl 19 之前放好即可；买而不放=纯损失）
+    if turn % 24 <= 18:
         for a in ("SHEEP", "COW", "GOOSE"):
             n_have = shed.get(a, 0) + sum(inv.get(a, 0) for inv in st["invs"])
             if n_have <= 0:
@@ -569,24 +571,28 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 _mv(st, "supply_wheat")
             used.add(i)
 
-    # 0.6) 动物放置供应链
+    # 0.6) 动物放置供应链：shed 有动物+有空栏即派（最多 2 人），
+    #      动物买而不放是纯损失（审计：曾滞留 4-6 只×2-3 天）
     shed_animals = [a for a in ANIMALS if shed.get(a, 0) > 0]
     if shed_animals and st.get("free_struct"):
         holding = sum(1 for i in range(n) if any(invs[i].get(a, 0) > 0 for a in ANIMALS))
-        if holding == 0:
+        movers = 0
+        while sum(shed.get(a, 0) for a in ANIMALS) > 0 and holding + movers < 2:
             best = min(((_shed_dist(positions[i], bs), i) for i in range(n) if i not in used), default=None)
-            if best:
-                i = best[1]
-                if positions[i] in shed_set:
-                    a = shed_animals[0]
-                    take = min(shed[a], 4)
-                    actions[i] = ["PICKUP", a, take]
-                    shed[a] -= take
-                    invs[i][a] = invs[i].get(a, 0) + take
-                else:
-                    actions[i] = _step_toward(positions[i], min(shed_set, key=lambda s: _dist(positions[i], s))) or ["PASS"]
-                    _mv(st, "supply_animal")
-                used.add(i)
+            if not best:
+                break
+            i = best[1]
+            if positions[i] in shed_set:
+                a = max((a for a in ANIMALS if shed.get(a, 0) > 0), key=lambda a: shed[a])
+                take = min(shed[a], 4)
+                actions[i] = ["PICKUP", a, take]
+                shed[a] -= take
+                invs[i][a] = invs[i].get(a, 0) + take
+            else:
+                actions[i] = _step_toward(positions[i], min(shed_set, key=lambda s: _dist(positions[i], s))) or ["PASS"]
+                _mv(st, "supply_animal")
+            used.add(i)
+            movers += 1
 
     # 0.7) 肥料供应链：有 FERTILIZE 任务但无人持肥
     n_fert = sum(1 for t in tasks if t[3][0] == "FERTILIZE")
@@ -838,7 +844,8 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
         q = min(have_melon, _batch_size("MELON", inv_mkt.get("MELON", 10000), mr["lot_max"], mr["slip_tol"]))
         sells.append(["SELL", "MELON", q])
     # 肥料：保留日预算，超出部分高价卖
-    fert_keep = sched.fert_budget(day) + sched.fert_budget(day + 1) if day >= kn["fertilize"]["start_day"] - 2 else 6
+    fert_keep = sched.fert_budget(day) + sched.fert_budget(day + 1) \
+        if day >= kn["fertilize"]["start_day"] - 2 else 0  # 施肥开始前零预留：肥即产即卖=早期现金泵主体
     fert_extra = shed.get("FERTILIZER", 0) - fert_keep
     if fert_extra > 0 and prices.get("FERTILIZER", 0) >= sr["fertilizer_sell_price"]:
         sells.append(["SELL", "FERTILIZER", fert_extra])

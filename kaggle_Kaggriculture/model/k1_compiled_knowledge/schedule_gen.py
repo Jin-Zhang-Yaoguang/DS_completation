@@ -22,6 +22,8 @@ SCHED_SPACE = [
     ("wheat_d0",          6, 14, 10),    # d0 麦面积
     ("plant_cap_early",   6, 20, 10),    # d0-1 种植限速豁免值
     ("cash_pump_until",   0, 10, 8),     # 早期现金泵截止日（麦蛋即产即卖）
+    ("sheep_d0",          0, 3, 1),      # d0 羊数（Majkel 实测 3：d6 羊毛变现炸弹 18 毛）
+    ("batch2_day",        5, 10, 6),     # 第二动物批次日（现金流对齐）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -72,15 +74,16 @@ def gen_tables(p):
         return out
 
     cows = split(g["cow_total"], (0.25, 0.5, 0.25))
-    sheep = split(g["sheep_total"], (0.34, 0.33, 0.33))
     d0_frac = g["day0_animal_frac"]
     d0_cow = int(round(cows[0] * d0_frac))
-    d0_sheep = int(round(sheep[0] * d0_frac))
+    d0_sheep = min(int(round(g["sheep_d0"])), int(round(g["sheep_total"])))
+    rest_sheep = max(0, int(round(g["sheep_total"])) - d0_sheep)
+    b2 = int(round(g["batch2_day"]))
     animal_buys = [
         {"day": 0, "buys": {"COW": d0_cow, "SHEEP": d0_sheep}},
-        {"day": 2, "buys": {"COW": cows[0] - d0_cow, "SHEEP": sheep[0] - d0_sheep}},
-        {"day": 6, "buys": {"COW": cows[1], "SHEEP": sheep[1], "GOOSE": int(round(g["goose_total"]))}},
-        {"day": 9, "buys": {"COW": cows[2], "SHEEP": sheep[2]}},
+        {"day": 2, "buys": {"COW": cows[0] - d0_cow}},
+        {"day": b2, "buys": {"COW": cows[1], "SHEEP": rest_sheep, "GOOSE": int(round(g["goose_total"]))}},
+        {"day": 9, "buys": {"COW": cows[2]}},
     ]
     for row in animal_buys:
         row["buys"] = {a: n for a, n in row["buys"].items() if n > 0}
