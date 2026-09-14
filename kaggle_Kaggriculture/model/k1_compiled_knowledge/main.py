@@ -642,12 +642,14 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
     fert_specialists = set()
     if fert_tasks_exist and kn.get("tuning", {}).get("fert_specialist", True):
         fert_specialists = {i for i in range(n) if carried(i, "FERTILIZER") >= 2}
-    tour_mode = kn.get("tuning", {}).get("scheduler_mode", "greedy") == "tour"
+    sched_mode = kn.get("tuning", {}).get("scheduler_mode", "greedy")
+    tour_mode = sched_mode == "tour"
+    kernel_mode = sched_mode == "kernel"
     buckets = {}
     for tk in tasks:
         b = int(tk[0]) if tk[0] < 3 else 3
-        if tour_mode and b >= 3:
-            continue  # P3+ 交给巡回队列制
+        if (tour_mode or kernel_mode) and b >= 3:
+            continue  # P3+ 交给巡回队列制/内核巡回
         buckets.setdefault(b, []).append(tk)
     for b in sorted(buckets):
         cands = []
@@ -774,6 +776,67 @@ def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
                 else:
                     actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
                     _mv(st, "tour_" + opname)
+                used.add(i)
+
+    # 1.6) S3v4 内核巡回（scheduler_mode="kernel"）：单位由微域巡回位置驱动，
+    #      任务跟着位置走。到一格清空该格当天全部任务；无任务则走向巡回序中
+    #      下一个有任务的格。微域=日初按资产点平衡聚类（质心迭代，非单位位置）。
+    if kernel_mode:
+        # 待办任务索引：pos -> [(pri, need, op)]
+        task_by_pos = {}
+        for pri, need, pos_t, op in tasks:
+            if pri >= 3 and (pos_t, op[0]) not in claimed:
+                task_by_pos.setdefault(pos_t, []).append((pri, need, op))
+        for lst in task_by_pos.values():
+            lst.sort()
+        dom = st.get("kdomain")
+        if dom is None or len(dom) != n:
+            dom = [set() for _ in range(n)]
+        for i in range(n):
+            if i in used:
+                continue
+            my = dom[i] if i < len(dom) else set()
+            pos = positions[i]
+            # 当前格有任务且可做 → 做最高优先的
+            done = False
+            for lst_pos in (pos,):
+                for pri, need, op in task_by_pos.get(lst_pos, []):
+                    if need and carried(i, need) <= 0:
+                        continue
+                    tile = tiles[lst_pos[1]][lst_pos[0]]
+                    if not _task_still_valid(tile, op):
+                        continue
+                    actions[i] = op
+                    _apply_local(invs, i, op)
+                    if op[0] == "FERTILIZE":
+                        st["fert_done_today"] = st.get("fert_done_today", 0) + 1
+                    elif op[0] == "PLANT":
+                        st["planted_today"] = st.get("planted_today", 0) + 1
+                    claimed.add((lst_pos, op[0]))
+                    task_by_pos[lst_pos] = [t3 for t3 in task_by_pos[lst_pos] if t3[2] is not op]
+                    used.add(i)
+                    done = True
+                    break
+            if done:
+                continue
+            # 域内最近有任务格；域内无任务 → 全图最近无主任务格（借调）
+            def nearest(cands_pos):
+                best = None
+                for p2 in cands_pos:
+                    if not task_by_pos.get(p2):
+                        continue
+                    ok = any((not nd or carried(i, nd) > 0) for _, nd, _ in task_by_pos[p2])
+                    if not ok:
+                        continue
+                    d2 = _dist(pos, p2)
+                    if best is None or d2 < best[0]:
+                        best = (d2, p2)
+                return best
+            tgt = nearest(my) or nearest(task_by_pos.keys())
+            if tgt:
+                actions[i] = _step_toward(pos, tgt[1]) or ["PASS"]
+                _mv(st, "kernel_go")
+                claimed.add((tgt[1], "_reserved"))
                 used.add(i)
 
     # 2) 空闲单位：预备补给或原地待命
@@ -1151,7 +1214,7 @@ def _decide(obs, config):
     # S3v3 硬分区域调度（scheduler_mode="domain"）：每天把服务点（植物×1/动物×3/
     # 目标空格×1）按空间贪心聚类分给单位，域内服务——把全局重指派变成域内小指派，
     # 压移动/工作比（归因链终点：2.5 vs Majkel 0.9）。
-    if kn.get("tuning", {}).get("scheduler_mode", "greedy") == "domain" and \
+    if kn.get("tuning", {}).get("scheduler_mode", "greedy") in ("domain", "kernel") and \
             (turn % 24 == 2 or "domain" not in st):
         pts = []
         for y2 in range(bs):
@@ -1188,6 +1251,7 @@ def _decide(obs, config):
             ax, ay = anchors[best_i]
             anchors[best_i] = ((ax + pos2[0]) // 2, (ay + pos2[1]) // 2)
         st["domain"] = domain
+        st["kdomain"] = domain
 
     # 分区驻守：每天按象限服务密度（植物×1 + 动物×3）分配单位 home 象限
     if turn % 24 == 2 or "home" not in st:
