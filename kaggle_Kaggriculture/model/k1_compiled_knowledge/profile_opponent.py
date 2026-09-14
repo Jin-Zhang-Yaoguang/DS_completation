@@ -24,10 +24,12 @@ PRODUCTS = ["WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON", "EGG", "MILK", "
 
 def collect(team, max_games=80):
     games = []
+    # 非 ASCII 队名在 JSON 里被 \uXXXX 转义，预筛用转义形式匹配
+    probe = json.dumps(team)[1:-1]
     for ddir in sorted(IDX.glob("date=*/data"), reverse=True):
         for fp in ddir.glob("*.json"):
             raw = fp.read_text()
-            if team not in raw:
+            if team not in raw and probe not in raw:
                 continue
             try:
                 rep = json.loads(raw)
