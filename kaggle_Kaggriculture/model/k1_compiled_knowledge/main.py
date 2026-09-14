@@ -962,6 +962,24 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
                 money -= p_wheat * n
 
     # 教训：有买单时绝不推迟/削减卖单——本函数卖单先生成、不回收，天然满足。
+    # 市场压制实验（tuning.dump_mode）：卖出段整体替换为全品倾销（买入保留）——
+    # 带基对手生产结构固定，共享市场价格砸穿时其高价品变现同步蒸发。
+    dm = kn.get("tuning", {}).get("dump_mode", False)
+    if dm:
+        feed_keep = 0 if day >= kn["feed"]["stop_feed_day"] else \
+            st.get("n_animals", 0) * kn["feed"]["buffer_days"]
+        # dump_mode=True 全品倾销；dump_mode="targets" 选择性压制：
+        # 只砸 suppress_targets（对手收入支柱），其余品保留正常卖出逻辑
+        targets = kn.get("suppress_targets", ["STRAWBERRY", "MILK", "WOOL"]) \
+            if dm == "targets" else PRODUCTS
+        if dm == "targets":
+            sells = [o for o in sells if o[1] not in targets]
+        else:
+            sells = []
+        for it in targets:
+            have = shed.get(it, 0) - (feed_keep if it == "WHEAT" else 0)
+            if have > 0:
+                sells.append(["SELL", it, have])
     return (sells + buys)[:MAX_ORDERS]
 
 
