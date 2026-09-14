@@ -960,6 +960,22 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
             if o[0] == "SELL":
                 rc["my_prev"][o[1]] = rc["my_prev"].get(o[1], 0) + o[2]
 
+    # 末日抛售层（tuning.doomsday，反 Majkel 配方——收编线证伪边界：需自有弹药，
+    # K1 分散化组合 d25+ 有草莓/奶/毛在产恰好有弹）：d25-26 扣留高价品蓄弹，
+    # d27-29 每天开头集中抛——Majkel 对此型对手实测胜率 0.38（终局价格逆转 4.8 万案例）。
+    tu_d = kn.get("tuning", {})
+    if tu_d.get("doomsday", False):
+        DOOM_ITEMS = ("WOOL", "MILK", "STRAWBERRY", "TOMATO", "MELON", "CARROT")
+        hold_from = tu_d.get("doomsday_hold_day", 25)
+        dump_from = tu_d.get("doomsday_dump_day", 27)
+        if hold_from <= day < dump_from:
+            sells = [o for o in sells if o[1] not in DOOM_ITEMS]
+        elif day >= dump_from and hour <= 3:
+            already3 = {o[1] for o in sells}
+            for it in DOOM_ITEMS:
+                if it not in already3 and shed.get(it, 0) > 0:
+                    sells.append(["SELL", it, shed[it]])
+
     # 仓压保护：仓库将满时强制加卖最高价持仓
     shed_used = sum(shed.values())
     if shed_used > SHED_CAP - 12:

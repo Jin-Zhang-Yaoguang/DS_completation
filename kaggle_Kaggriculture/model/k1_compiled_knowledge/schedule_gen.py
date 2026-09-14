@@ -15,9 +15,9 @@ SCHED_SPACE = [
     ("carrot_base",       0, 12, 3),     # 胡萝卜常备面积（分散化：y68g 九品全卖抗撞车）
     ("tomato_base",       0, 10, 2),     # 番茄常备面积（d8 起，分散化维度）
     ("melon_tiles",       6, 16, 12),    # 瓜一波面积（d0-2 铺设）
-    ("cow_total",         3, 12, 8),     # 全季牛数（按 Majkel 批次日 0/6/9 比例 2:4:2 分配）
-    ("sheep_total",       0, 6, 3),      # 全季羊数（批次比例 1:1:1）
-    ("goose_total",       0, 6, 2),      # 全季鹅数（d6 一批）
+    ("cow_total",         3, 20, 8),     # 全季牛数（按 Majkel 批次日 0/6/9 比例 2:4:2 分配）
+    ("sheep_total",       0, 8, 3),      # 全季羊数（批次比例 1:1:1）
+    ("goose_total",       0, 10, 2),      # 全季鹅数（d6 一批）
     ("day0_animal_frac",  0.3, 1.0, 1.0),# d0 动物批次保留比例（<1 = 开局省钱后补）
     ("melon_d0",          4, 12, 8),     # d0 瓜面积（d1-2 爬到 melon_tiles）
     ("wheat_d0",          6, 14, 10),    # d0 麦面积
@@ -91,7 +91,16 @@ def gen_tables(p):
         row["buys"] = {a: n for a, n in row["buys"].items() if n > 0}
     animal_buys = [r for r in animal_buys if r["buys"]]
 
+    n_pasture = int(round(g["cow_total"] + g["sheep_total"])) + 2
+    n_coop = max(2, int(round(g["goose_total"])) + 1)
+    structures = {
+        "pasture_early": {"turn_from": 2, "count": min(6, n_pasture)},
+        "pasture_main": {"turn_from": 158, "count_default": n_pasture,
+                          "count_by_shop": {"YARN_STORE": n_pasture + 3, "PET_CAFE": max(6, n_pasture - 3)}},
+        "coop": {"turn_from": 156, "count_default": n_coop},
+    }
     return {
+        "structures": structures,
         "tuning_extra": {"plant_cap_early": int(round(g["plant_cap_early"])),
                           "cash_pump_until_day": int(round(g["cash_pump_until"])),
                           "cash_floor_early": int(round(g["cash_floor_early"]))},
