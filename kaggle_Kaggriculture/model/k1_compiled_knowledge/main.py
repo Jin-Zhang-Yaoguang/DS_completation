@@ -428,7 +428,11 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
         cap = tu.get("plant_per_day_cap", kn.get("plant_per_day_cap", 6))
         if day <= 1:
             cap = tu.get("plant_cap_early", 10)  # B1b 开局豁免（旋钮化,Majkel d1 15 块渐进）
+        # 解锁爆种（规模蒸馏②：Majkel 新地到手当天种 12-17 块）：解锁当天与次日放宽限速
+        if st.get("unlock_day") is not None and 0 <= day - st["unlock_day"] <= 1:
+            cap = max(cap, tu.get("burst_cap", cap))
         plant_quota = cap - st.get("planted_today", 0)
+        slack = tu.get("endgame_slack", 0)  # 季末截止放宽（规模蒸馏④：Majkel 种到 d27）
         for p in empty:
             if plant_quota <= 0:
                 break
@@ -440,9 +444,9 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
                 crop = "WHEAT"
             cd = CROPS[crop]
             need = cd["first_yield_day"] if cd["ongoing"] else cd["max_yield_day"]
-            if day + need + 1 > 29:
+            if day + need + 1 > 29 + slack:
                 crop = "WHEAT"
-                if day + CROPS["WHEAT"]["max_yield_day"] + 1 > 29 or deficit.get("WHEAT", 0) <= 0:
+                if day + CROPS["WHEAT"]["max_yield_day"] + 1 > 29 + slack or deficit.get("WHEAT", 0) <= 0:
                     continue
             if deficit.get(crop, 0) > 0 and seeds.get(crop, 0) > 0:
                 tasks.append((4.3, None, p, ["PLANT", crop]))
@@ -1259,7 +1263,8 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     if 0 <= n_extra < len(LAND_ORDER):
         quad = LAND_ORDER[n_extra]
         t_buy = kn["land_buy_turns"].get(quad)
-        if t_buy is not None and turn >= t_buy and money >= LAND_PRICES[n_extra] + floor:
+        land_floor = kn.get("tuning", {}).get("land_floor", floor)  # 规模蒸馏③：Majkel 近零现金买地
+        if t_buy is not None and turn >= t_buy and money >= LAND_PRICES[n_extra] + land_floor:
             buys.append(["BUY_LAND"])
             money -= LAND_PRICES[n_extra]
 
@@ -1290,7 +1295,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     for crop in CROPS:
         cd = CROPS[crop]
         need_day = cd["first_yield_day"] if cd["ongoing"] else cd["max_yield_day"]
-        if day + need_day + 1 > 29:
+        if day + need_day + 1 > 29 + kn.get("tuning", {}).get("endgame_slack", 0):
             continue
         g = targets.get(crop, 0) - planted.get(crop, 0) - seeds.get(crop, 0)
         if g > 0:
@@ -1493,6 +1498,36 @@ def _decide(obs, config):
             if cands:
                 best_c = max(cands, key=lambda c: ratio[c])
                 tgt[best_c] = tgt.get(best_c, 0) + freed
+    tu_s = kn.get("tuning", {})
+    nq = len(farm.get("unlocked_quadrants") or ["NW"])
+    if nq > st.get("n_quads", 1):
+        st["unlock_day"] = day
+    st["n_quads"] = nq
+    # 季末换作物（规模蒸馏④：Majkel d23 起胡萝卜 10-14 块）
+    if day >= tu_s.get("late_carrot_day", 99):
+        st["crop_targets"]["CARROT"] = max(st["crop_targets"].get("CARROT", 0),
+                                           int(round(tu_s.get("late_carrot_area", 0))))
+    # 不留空地（规模蒸馏①：Majkel d11-27 空地 0-5 块）：未被目标覆盖的空地按比例补种小麦
+    fr = tu_s.get("fill_ratio", 0)
+    if fr > 0 and day + CROPS["WHEAT"]["max_yield_day"] + 1 <= 29 + tu_s.get("endgame_slack", 0):
+        sheds_ = set(_shed_tiles(bs))
+        n_empty = n_plant = n_struct = 0
+        for yy in range(bs):
+            for xx in range(bs):
+                t_ = tiles[yy][xx]
+                if (xx, yy) in sheds_:
+                    continue
+                if t_ is None:
+                    n_empty += 1
+                elif isinstance(t_, dict):
+                    if t_.get("kind") == "PLANT":
+                        n_plant += 1
+                    elif t_.get("kind") in ("PASTURE", "COOP"):
+                        n_struct += 1
+        reserve = max(0, sched.pasture_target(turn, shops) + sched.coop_target(turn) - n_struct)
+        uncovered = n_empty - max(0, sum(st["crop_targets"].values()) - n_plant) - reserve
+        if uncovered > 0:
+            st["crop_targets"]["WHEAT"] = st["crop_targets"].get("WHEAT", 0) + int(fr * uncovered)
     st["roles"] = plan_roles(tiles, bs, st["crop_targets"],
                              sched.pasture_target(turn, shops), sched.coop_target(turn),
                              prices=prices if tu_mkt.get("adaptive_roles", True) else None,

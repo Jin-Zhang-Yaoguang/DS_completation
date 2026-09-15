@@ -47,6 +47,13 @@ SCHED_SPACE = [
     ("wheat_scale",       0.5, 1.5, 1.0),
     ("animal_scale",      0.6, 1.5, 1.0),
     ("fert_scale",        0.5, 1.5, 1.0),
+    # ---- 规模维度（规模蒸馏 2026-09-15：Majkel 撑规模的四个机制）----
+    ("fill_ratio",        0, 1, 0),      # ① 未被目标覆盖的空地补种小麦比例
+    ("burst_cap",         6, 20, 7),     # ② 解锁当天与次日的种植限速
+    ("land_floor",        0, 600, 300),  # ③ 买地单独现金地板
+    ("late_carrot_day",   18, 28, 28),   # ④ 季末胡萝卜起始日
+    ("late_carrot_area",  0, 16, 0),     # ④ 季末胡萝卜面积
+    ("endgame_slack",     0, 2, 0),      # ④ 季末成熟截止放宽天数
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -156,7 +163,13 @@ def gen_tables(p):
                           "crop_scale": {"STRAWBERRY": round(g["straw_scale"], 3),
                                          "WHEAT": round(g["wheat_scale"], 3)},
                           "animal_scale": round(g["animal_scale"], 3),
-                          "fert_scale": round(g["fert_scale"], 3)},
+                          "fert_scale": round(g["fert_scale"], 3),
+                          "fill_ratio": round(g["fill_ratio"], 3),
+                          "burst_cap": int(round(g["burst_cap"])),
+                          "land_floor": int(round(g["land_floor"])),
+                          "late_carrot_day": int(round(g["late_carrot_day"])),
+                          "late_carrot_area": int(round(g["late_carrot_area"])),
+                          "endgame_slack": int(round(g["endgame_slack"]))},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
