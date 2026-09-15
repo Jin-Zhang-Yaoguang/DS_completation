@@ -1201,6 +1201,16 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     if fert_extra > 0 and prices.get("FERTILIZER", 0) >= sr["fertilizer_sell_price"]:
         sells.append(["SELL", "FERTILIZER", fert_extra])
 
+    # 抢在对手出货前卖：对手在产挂果单位 ≥ 阈值 → 本步即卖该品现货（不等相位）
+    tu_o = kn.get("tuning", {})
+    if tu_o.get("opp_sell_ahead", 0) and turn < kn["endgame"]["terminal_from_turn"]:
+        hang = (st.get("opp_sense") or {}).get("hang", {})
+        sold_now = {o[1] for o in sells}
+        for it in ("STRAWBERRY", "MILK", "WOOL", "MELON", "TOMATO"):
+            if it not in sold_now and shed.get(it, 0) > 0 and hang.get(it, 0) >= tu_o.get("opp_hang_th", 6):
+                q = min(shed[it], _batch_size(it, inv_mkt.get(it, 10000), 8, tu_o.get("sell_slip", 0.06)))
+                sells.append(["SELL", it, q])
+
     # race 层（S4 挂点，对手条件触发，默认关）：市场库存增量反解对手净卖出，
     # 对手在抛某高价品且本步无买单时，立即卖出该品现货（不等相位/日末）。
     tu4 = kn.get("tuning", {})
@@ -1284,6 +1294,14 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     animal_gap_cost = 0
     if turn <= kn["last_animal_turn"]:
         want = sched.animal_wanted(day)
+        oag = kn.get("tuning", {}).get("opp_anim_gain", 0)
+        if oag and day >= 6:
+            oan = (st.get("opp_sense") or {}).get("anim", {})
+            mine = st.get("placed_counts", {})
+            for a in ("COW", "SHEEP"):
+                if want.get(a, 0) > 0:
+                    ratio_a = oan.get(a, 0) / max(1, mine.get(a, 0))
+                    want[a] = int(round(want[a] * min(1.6, max(0.5, 1 + oag * (ratio_a - 1)))))
         have = dict(st.get("placed_counts", {}))
         for a in ANIMALS:
             have[a] = have.get(a, 0) + shed.get(a, 0) + sum(inv.get(a, 0) for inv in st["invs"])
@@ -1511,6 +1529,46 @@ def _decide(obs, config):
                 best_c = max(cands, key=lambda c: ratio[c])
                 tgt[best_c] = tgt.get(best_c, 0) + freed
     tu_s = kn.get("tuning", {})
+    # 对手/市场感知层（对手反应蒸馏 2026-09-15：Majkel d6-10 价格比→d11-20 草莓面积 r=+0.87；
+    # 局内对手草莓面积↑→次日草莓种植↓ r=-0.49；对手挂果高时卖出步占比 3-4 倍；动物存栏随对手 r=+0.68）
+    opp_farm = farms[1 - player] if len(farms) > 1 else {}
+    sense = {"area": {}, "hang": {}, "anim": {}, "my_area": {}}
+    _prod = {"COW": "MILK", "SHEEP": "WOOL", "GOOSE": "EGG"}
+    for key_a, key_n, fm in (("area", "anim", opp_farm), ("my_area", None, farm)):
+        for row in fm.get("tiles") or []:
+            for t_ in row:
+                if not isinstance(t_, dict):
+                    continue
+                if t_.get("kind") == "PLANT":
+                    sense[key_a][t_["crop"]] = sense[key_a].get(t_["crop"], 0) + 1
+                    if key_n:
+                        sense["hang"][t_["crop"]] = sense["hang"].get(t_["crop"], 0) + (t_.get("yield_units") or 0)
+                elif t_.get("animal") and key_n:
+                    sense["anim"][t_["animal"]] = sense["anim"].get(t_["animal"], 0) + 1
+                    pr_ = _prod[t_["animal"]]
+                    sense["hang"][pr_] = sense["hang"].get(pr_, 0) + (t_.get("yield_units") or 0)
+    st["opp_sense"] = sense
+    tgt_s = st["crop_targets"]
+    pag = tu_s.get("price_area_gain", 0)
+    ocg = tu_s.get("opp_counter_gain", 0)
+    if (pag or ocg) and day >= tu_s.get("price_area_from", 6):
+        moved = 0
+        for c in ("STRAWBERRY", "TOMATO", "CARROT", "MELON"):
+            cd = CROPS[c]
+            need = cd["first_yield_day"] if cd["ongoing"] else cd["max_yield_day"]
+            if tgt_s.get(c, 0) <= 0 or day + need + 1 > 29:
+                continue
+            f = 1.0
+            if pag:
+                r_ = prices.get(c, MARKET_PARAMS[c]["base"]) / MARKET_PARAMS[c]["base"]
+                f *= min(1.6, max(0.5, r_ ** pag))
+            if ocg:
+                oa, ma = sense["area"].get(c, 0), max(tgt_s[c], sense["my_area"].get(c, 0))
+                f *= 1 - ocg * min(1.0, max(0.0, (oa - ma) / max(1, oa + ma)))
+            new = int(round(tgt_s[c] * f))
+            moved += tgt_s[c] - new
+            tgt_s[c] = new
+        tgt_s["WHEAT"] = max(0, tgt_s.get("WHEAT", 0) + moved)
     nq = len(farm.get("unlocked_quadrants") or ["NW"])
     if nq > st.get("n_quads", 1):
         st["unlock_day"] = day

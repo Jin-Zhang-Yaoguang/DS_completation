@@ -226,3 +226,13 @@ WHE WHE WHE WHE EMP LOC LOC LOC LOC LOC
 门槛被显著否决（压货等价=错过节拍卖出，量损失大于价收益）；草莓阈值≥3 与全局相同无效。装池 plan_pool_iter_value（备份 plan_pool_pre_value.json）。
 验收：eval_vs_y68 0/64，分差 -6.8~-7.0 万，异 seed 重合 0.050；gate_k 门控 2 PASS 0.022，门控 1 0/32。
 下一批候选线索（由搜索结果归纳）：卖出侧已无收益，缺口在产出侧（草莓挂果/每次收获单位、牛奶产量、d15-19 断档）。
+
+## 产出侧 CEM 40×40（2026-09-15）与对手/市场自适应候选
+
+- 产出侧 59 维 CEM（40 代×40，每阶段 8 局）：每代最优分差 -6.0~-8.2 万无趋势；holdout 最优 -67.6k（持平）；懒浇水/停照料/停喂养全关，草莓爬坡 6-7 天。不装池。结论：单分布 CEM 在此噪声下不收敛 → 换 tune_island.py 多岛 GA。
+- 对手反应蒸馏（opp_react_distill.py，Majkel 60 局；对手农场 tiles 全可见）：
+  - d6-10 价格比 → Majkel d11-20 面积：草莓 r=+0.87、番茄 +0.61、胡萝卜 +0.60、瓜 -0.45（跨局）
+  - 局内：对手草莓面积 → Majkel 次日草莓种植 r=-0.49（反跟种）；小麦/胡萝卜 +0.5（同步节律，可能是时间混杂）
+  - 对手挂果高时 Majkel 卖出步占比 3-4 倍（草莓 0.14 vs 0.03、奶 0.16 vs 0.06、毛 0.13 vs 0.05；含游戏阶段混杂）
+  - 对手 d8 动物数 → Majkel d20 存栏 r=+0.68（跨局；含商店共同驱动混杂）
+- 接入 12 维（71 维，默认关，默认输出与原逻辑逐字节一致）：price_area_gain/from、opp_counter_gain、opp_sell_ahead/opp_hang_th、opp_anim_gain、race_on/trigger/decay、mshift_on/price_floor_frac、doomsday_on。K1 每步读取对手农场（面积/挂果/动物）存 st["opp_sense"]。

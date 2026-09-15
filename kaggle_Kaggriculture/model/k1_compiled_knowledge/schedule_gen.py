@@ -69,6 +69,19 @@ SCHED_SPACE = [
     ("water_lazy_frac",   0, 1, 0),      # 未连旱作物当天允许不浇的比例
     ("care_stop_day",     18, 30, 30),   # 此后不再照料
     ("feed_stop_day",     18, 28, 28),   # 此后不再喂养
+    # ---- 对手/市场自适应（对手反应蒸馏 2026-09-15）----
+    ("price_area_gain",   0, 2, 0),      # 高价作物面积 ×(价/基准)^gain
+    ("price_area_from",   3, 14, 6),     # 价格调面积起始日
+    ("opp_counter_gain",  0, 1, 0),      # 对手某作物面积超过我 → 我减种比例
+    ("opp_sell_ahead",    0, 1, 0),      # 对手挂果高时抢先卖
+    ("opp_hang_th",       2, 14, 6),     # 抢卖触发的对手挂果单位
+    ("opp_anim_gain",     0, 1, 0),      # 动物目标随对手存栏比缩放
+    ("race_on",           0, 1, 0),      # 旧 race 层：市场库存增量反解对手抛货即跟卖
+    ("race_trigger",      1, 8, 3),
+    ("race_decay",        0.3, 0.9, 0.6),
+    ("mshift_on",         0, 1, 0),      # 旧 R1b：价格跌破基准×floor 停种转高价品
+    ("price_floor_frac",  0.3, 0.8, 0.5),
+    ("doomsday_on",       0, 1, 0),      # 旧末日层：d25-26 囤货 d27+ 集中抛
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -194,7 +207,19 @@ def gen_tables(p):
                           "sell_slip": round(g["sell_slip"], 3),
                           "water_lazy_frac": round(g["water_lazy_frac"], 3),
                           "care_stop_day": int(round(g["care_stop_day"])),
-                          "feed_stop_day": int(round(g["feed_stop_day"]))},
+                          "feed_stop_day": int(round(g["feed_stop_day"])),
+                          "price_area_gain": round(g["price_area_gain"], 3) if g["price_area_gain"] >= 0.1 else 0,
+                          "price_area_from": int(round(g["price_area_from"])),
+                          "opp_counter_gain": round(g["opp_counter_gain"], 3) if g["opp_counter_gain"] >= 0.1 else 0,
+                          "opp_sell_ahead": int(g["opp_sell_ahead"] >= 0.5),
+                          "opp_hang_th": int(round(g["opp_hang_th"])),
+                          "opp_anim_gain": round(g["opp_anim_gain"], 3) if g["opp_anim_gain"] >= 0.1 else 0,
+                          "race_enabled": bool(g["race_on"] >= 0.5),
+                          "race_trigger": round(g["race_trigger"], 2),
+                          "race_decay": round(g["race_decay"], 3),
+                          "market_shift_enabled": bool(g["mshift_on"] >= 0.5),
+                          "price_floor_frac": round(g["price_floor_frac"], 3),
+                          "doomsday": bool(g["doomsday_on"] >= 0.5)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
