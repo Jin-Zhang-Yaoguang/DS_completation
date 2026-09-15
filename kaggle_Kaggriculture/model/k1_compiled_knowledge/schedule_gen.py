@@ -107,6 +107,11 @@ SCHED_SPACE = [
     ("plant_idle_hour",   8, 24, 24),    # 过该小时后额外放宽种植（24=关）
     ("plant_idle_extra",  0, 12, 0),     # 午后额外种植配额
     ("seed_lookahead",    0, 1, 0),      # 买种看次日目标
+    # ---- 方案2：路线规划内核（替代 M3 纯就近贪心）----
+    ("route_on",          0, 1, 0),      # 开启扇区巡回路线派活
+    ("route_replan_h",    1, 12, 4),     # 每几小时重规划
+    ("route_look",        1, 8, 3),      # 沿路线前几个格里挑可做的
+    ("route_rot",         0, 6.28, 0),   # 扇区起始角
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -259,7 +264,11 @@ def gen_tables(p):
                           "plant_cap_late": int(round(g["plant_cap_late"])) if g["plant_cap_late"] >= 2 else 0,
                           "plant_idle_hour": int(round(g["plant_idle_hour"])) if g["plant_idle_hour"] < 23.5 else 99,
                           "plant_idle_extra": int(round(g["plant_idle_extra"])),
-                          "seed_lookahead": int(g["seed_lookahead"] >= 0.5)},
+                          "seed_lookahead": int(g["seed_lookahead"] >= 0.5),
+                          "route_on": int(g["route_on"] >= 0.5),
+                          "route_replan_h": int(round(g["route_replan_h"])),
+                          "route_look": int(round(g["route_look"])),
+                          "route_rot": round(g["route_rot"], 2)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

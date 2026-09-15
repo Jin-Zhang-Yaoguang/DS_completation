@@ -546,6 +546,87 @@ _MJ_ORDER = {"FEED": 0, "PLACE": 0.5, "COLLECT_FERTILIZER": 1, "HARVEST": 2, "WA
              "CARE": 3, "FERTILIZE": 4, "PLANT": 5, "BUILD_PASTURE": 6, "BUILD_COOP": 6, "DIG": 7}
 
 
+def _route_plan(st, tu, free_units, positions, by_pos, claimed, bs):
+    import math as _m
+    tiles_t = [p for p, lst in by_pos.items() if lst and p not in claimed]
+    tours = {}
+    if not tiles_t or not free_units:
+        return tours
+    c0 = (bs - 1) / 2.0
+    rot = tu.get("route_rot", 0.0)
+    ang = lambda p: (_m.atan2(p[1] - c0, p[0] - c0) + rot) % (2 * _m.pi)
+    tiles_t.sort(key=ang)
+    k = min(len(free_units), len(tiles_t))
+    w = [len(by_pos[p]) for p in tiles_t]
+    total = sum(w)
+    sectors, cur, acc = [], [], 0.0
+    for p, wi in zip(tiles_t, w):
+        cur.append(p)
+        acc += wi
+        if acc >= total * (len(sectors) + 1) / k and len(sectors) < k - 1:
+            sectors.append(cur)
+            cur = []
+    sectors.append(cur)
+    sectors = [sc for sc in sectors if sc]
+    # 单位 ↔ 扇区：按单位当前位置角度与扇区中心角度贪心配对（清晨都在仓库时退化为序号配对）
+    cent = [sum(ang(p) for p in sc) / len(sc) for sc in sectors]
+    units = sorted(free_units, key=lambda i: (ang(positions[i]) if _shed_dist(positions[i], bs) > 0 else i))
+    order_sc = sorted(range(len(sectors)), key=lambda j: cent[j])
+    for i, j in zip(units, order_sc):
+        rest = list(sectors[j])
+        pos = positions[i]
+        tour = []
+        while rest:
+            nxt = min(rest, key=lambda q: (_dist(pos, q), q[1], q[0]))
+            tour.append(nxt)
+            rest.remove(nxt)
+            pos = nxt
+        tours[i] = tour
+    return tours
+
+
+def _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs):
+    """执行巡回路线。修正（诊断：旧版「任一单位路线空即全体重规划」每天重规划 ~17 次、单位在扇区间来回抖动，
+    工作 -27%）：只在新的一天或满 route_replan_h 小时时全体重规划；中途路线走空的单位只从
+    「未被任何路线占用」的剩余任务格里就近续接，不打乱其他单位。"""
+    turn = st.get("last_turn", 0)
+    replan_h = max(1, int(tu.get("route_replan_h", 4)))
+    free_units = [i for i in range(n) if i not in used]
+    last = st.get("route_turn")
+    tours = st.setdefault("tours", {})
+    if last is None or turn // 24 != last // 24 or turn - last >= replan_h:
+        tours.clear()
+        tours.update(_route_plan(st, tu, free_units, positions, by_pos, claimed, bs))
+        st["route_turn"] = turn
+    # 清理失效格
+    for i in list(tours):
+        tours[i] = [p for p in tours[i] if by_pos.get(p)]
+    owned = {p for t in tours.values() for p in t}
+    look = max(1, int(tu.get("route_look", 3)))
+    for i in free_units:
+        tour = tours.get(i)
+        if not tour:
+            rest = [p for p, lst in by_pos.items() if lst and p not in owned and p not in claimed]
+            if rest:
+                tour = [min(rest, key=lambda q: (_dist(positions[i], q), q[1], q[0]))]
+                tours[i] = tour
+                owned.add(tour[0])
+        if not tour:
+            continue
+        pick = None
+        for p in tour[:look]:
+            if p not in claimed and doable(i, by_pos[p]):
+                pick = p
+                break
+        if pick is None:
+            continue
+        claimed.add(pick)
+        if positions[i] == pick:
+            do(i, doable(i, by_pos[pick])[0], pick)
+        else:
+            go(i, pick, "route_go")
+
+
 def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
     """Majkel 规格内核（KERNEL_SPEC.md M1-M6，由 kernel_audit 实测翻译）。"""
     n = len(positions)
@@ -642,6 +723,12 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
                 do(i, doable(i, by_pos[pos_t])[0], pos_t)
             else:
                 go(i, pos_t, "majkel_urgent")
+
+    # R 路线规划（方案2：K1 就近贪心每天复位后出门/跨区切换多走路，作废移动 1770 vs v2 442）：
+    # 每 route_replan_h 小时（及新的一天）把剩余任务格按仓库周角切成与空闲单位数相同的扇区（按任务数均衡），
+    # 每个单位领一个扇区，扇区内最近邻排序成巡回路线；执行时沿路线走，前 route_look 个格里挑第一个能做的。
+    if tu.get("route_on", 0):
+        _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs)
 
     # M3 纯就近派活：全局按（距离, 次序）贪心，一格一人（实测最近 84%）
     pairs = []
