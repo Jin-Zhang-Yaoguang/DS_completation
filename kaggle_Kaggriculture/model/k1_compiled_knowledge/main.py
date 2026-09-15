@@ -1172,10 +1172,12 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     # 小麦：余粮（扣饲料预留）在相位或日末卖；
     # B1a 早期现金泵（Majkel d1-5 每日 288-472 滚动收入）：d<8 有余粮即卖不等相位
     wr = sr["wheat"]
-    wheat_extra = shed.get("WHEAT", 0) - feed_need
-    early_pump = day < kn.get("tuning", {}).get("cash_pump_until_day", 8)
+    # 产值蒸馏:Majkel 自产小麦外卖、饲料从市场买;keep_frac<1 = 少留饲料多卖
+    tu_w = kn.get("tuning", {})
+    wheat_extra = shed.get("WHEAT", 0) - int(feed_need * tu_w.get("wheat_keep_frac", 1.0))
+    early_pump = day < tu_w.get("cash_pump_until_day", 8)
     if wheat_extra > (0 if early_pump else 2) and             (early_pump or turn % 4 == wr["phase"] or hour >= wr["eod_hour"]):
-        sells.append(["SELL", "WHEAT", min(wheat_extra, wr["lot_max"])])
+        sells.append(["SELL", "WHEAT", min(wheat_extra, tu_w.get("wheat_lot_max", wr["lot_max"]))])
     # 瓜：即收即卖，slip 控批
     mr = sr["melon"]
     have_melon = shed.get("MELON", 0)
@@ -1342,7 +1344,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
         target = st["n_animals"] * (fd["bulk_target_per_animal"] if day in fd["bulk_days"] else fd["buffer_days"])
         p_wheat = prices.get("WHEAT", 25)
         starving = st.get("n_starving", 0) > 0
-        cap_price = 10 ** 9 if starving else fd["wheat_buy_price_cap"]
+        cap_price = 10 ** 9 if starving else kn.get("tuning", {}).get("feed_buy_cap", fd["wheat_buy_price_cap"])
         if wheat_have < max(target, fd["low_water_mark"]) and p_wheat <= cap_price:
             room = SHED_CAP - 8 - sum(shed.values())
             n = min(target - wheat_have, max(0, room),

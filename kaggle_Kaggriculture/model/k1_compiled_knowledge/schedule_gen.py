@@ -54,6 +54,10 @@ SCHED_SPACE = [
     ("late_carrot_day",   18, 28, 28),   # ④ 季末胡萝卜起始日
     ("late_carrot_area",  0, 16, 0),     # ④ 季末胡萝卜面积
     ("endgame_slack",     0, 2, 0),      # ④ 季末成熟截止放宽天数
+    # ---- 产值维度（产值蒸馏 2026-09-15：Majkel 小麦外卖 430 单位、饲料外购 186）----
+    ("wheat_keep_frac",   0, 1, 1),      # 卖麦时预留饲料比例(1=原逻辑,0=全卖靠买)
+    ("wheat_lot_max",     4, 30, 10),    # 小麦单次卖出上限
+    ("feed_buy_cap",      30, 80, 55),   # 饲料小麦买入价上限
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -169,7 +173,10 @@ def gen_tables(p):
                           "land_floor": int(round(g["land_floor"])),
                           "late_carrot_day": int(round(g["late_carrot_day"])),
                           "late_carrot_area": int(round(g["late_carrot_area"])),
-                          "endgame_slack": int(round(g["endgame_slack"]))},
+                          "endgame_slack": int(round(g["endgame_slack"])),
+                          "wheat_keep_frac": round(g["wheat_keep_frac"], 3),
+                          "wheat_lot_max": int(round(g["wheat_lot_max"])),
+                          "feed_buy_cap": int(round(g["feed_buy_cap"]))},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
