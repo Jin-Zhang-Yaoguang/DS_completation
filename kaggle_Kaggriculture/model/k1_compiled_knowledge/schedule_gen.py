@@ -112,6 +112,8 @@ SCHED_SPACE = [
     ("route_replan_h",    1, 12, 4),     # 每几小时重规划
     ("route_look",        1, 8, 3),      # 沿路线前几个格里挑可做的
     ("route_rot",         0, 6.28, 0),   # 扇区起始角
+    ("route_crops_only",  0, 1, 0),      # 路线只管作物格（动物格留给就近贪心+领麦）
+    ("route_frac",        0.2, 1, 1),    # 跑路线的单位比例（其余单位走 M3 就近贪心）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -268,7 +270,9 @@ def gen_tables(p):
                           "route_on": int(g["route_on"] >= 0.5),
                           "route_replan_h": int(round(g["route_replan_h"])),
                           "route_look": int(round(g["route_look"])),
-                          "route_rot": round(g["route_rot"], 2)},
+                          "route_rot": round(g["route_rot"], 2),
+                          "route_crops_only": int(g["route_crops_only"] >= 0.5),
+                          "route_frac": round(g["route_frac"], 3)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

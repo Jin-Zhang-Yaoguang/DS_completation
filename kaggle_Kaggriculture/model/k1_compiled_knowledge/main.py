@@ -546,9 +546,9 @@ _MJ_ORDER = {"FEED": 0, "PLACE": 0.5, "COLLECT_FERTILIZER": 1, "HARVEST": 2, "WA
              "CARE": 3, "FERTILIZE": 4, "PLANT": 5, "BUILD_PASTURE": 6, "BUILD_COOP": 6, "DIG": 7}
 
 
-def _route_plan(st, tu, free_units, positions, by_pos, claimed, bs):
+def _route_plan(st, tu, free_units, positions, by_pos, claimed, bs, animal_tiles=None):
     import math as _m
-    tiles_t = [p for p, lst in by_pos.items() if lst and p not in claimed]
+    tiles_t = [p for p, lst in by_pos.items() if lst and p not in claimed and p not in (animal_tiles or ())]
     tours = {}
     if not tiles_t or not free_units:
         return tours
@@ -585,7 +585,7 @@ def _route_plan(st, tu, free_units, positions, by_pos, claimed, bs):
     return tours
 
 
-def _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs):
+def _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs, animal_tiles=None):
     """执行巡回路线。修正（诊断：旧版「任一单位路线空即全体重规划」每天重规划 ~17 次、单位在扇区间来回抖动，
     工作 -27%）：只在新的一天或满 route_replan_h 小时时全体重规划；中途路线走空的单位只从
     「未被任何路线占用」的剩余任务格里就近续接，不打乱其他单位。"""
@@ -596,7 +596,7 @@ def _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, b
     tours = st.setdefault("tours", {})
     if last is None or turn // 24 != last // 24 or turn - last >= replan_h:
         tours.clear()
-        tours.update(_route_plan(st, tu, free_units, positions, by_pos, claimed, bs))
+        tours.update(_route_plan(st, tu, free_units, positions, by_pos, claimed, bs, animal_tiles))
         st["route_turn"] = turn
     # 清理失效格
     for i in list(tours):
@@ -606,7 +606,8 @@ def _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, b
     for i in free_units:
         tour = tours.get(i)
         if not tour:
-            rest = [p for p, lst in by_pos.items() if lst and p not in owned and p not in claimed]
+            rest = [p for p, lst in by_pos.items()
+                    if lst and p not in owned and p not in claimed and p not in (animal_tiles or ())]
             if rest:
                 tour = [min(rest, key=lambda q: (_dist(positions[i], q), q[1], q[0]))]
                 tours[i] = tour
@@ -728,7 +729,18 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
     # 每 route_replan_h 小时（及新的一天）把剩余任务格按仓库周角切成与空闲单位数相同的扇区（按任务数均衡），
     # 每个单位领一个扇区，扇区内最近邻排序成巡回路线；执行时沿路线走，前 route_look 个格里挑第一个能做的。
     if tu.get("route_on", 0):
-        _route_assign(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs)
+        # route_crops_only：动物格（喂养要随身带麦、领麦补给按就近设计）留给 M3，路线只管作物格
+        # （route_opdiff：全格路线下 FEED/CARE/COLLECT/HARVEST 各 -34/局、21 点未喂 14%→19%、奶蛋肥卖量下降抬价利好对手 +2.5 万）
+        a_tiles = None
+        if tu.get("route_crops_only", 0):
+            a_tiles = {(xx, yy) for yy in range(len(tiles)) for xx in range(len(tiles))
+                       if isinstance(tiles[yy][xx], dict) and (tiles[yy][xx].get("animal")
+                                                               or tiles[yy][xx].get("kind") in ("PASTURE", "COOP"))}
+        # 只让未携带动物任务物资需求的单位跑路线：保留 route_units 比例的单位给 M3 就近派活
+        k_route = int(round(n * tu.get("route_frac", 1.0)))
+        route_used = set(used) | set(range(k_route, n))
+        _route_assign(st, tu, n, route_used, claimed, positions, by_pos, doable, do, go, bs, a_tiles)
+        used |= {i for i in range(k_route) if i in route_used and i not in used and actions[i] != ["PASS"]}
 
     # M3 纯就近派活：全局按（距离, 次序）贪心，一格一人（实测最近 84%）
     pairs = []
