@@ -133,3 +133,25 @@ WHE WHE WHE WHE EMP LOC LOC LOC LOC LOC
   只看自身收入的 fitness 在盲飞。
 - 行动：清除旧乘数（面积完全交给搜索维度）；tune_iter fitness 改为
   `margin + 0.5×own + 0.15×solo`，对手 y68g + y68c 两家。
+
+## K5 内核重写收尾：结构交给搜索（40 维，分差版 fitness）
+
+两组 fitness 权重各 12 代 × 28，按 holdout 分差择优：
+
+| 轮次 | OWN_W | holdout 最优分差 | own | kernel_majkel | same_tile | fert_carry_only | preposition | kit |
+|---|---|---|---|---|---|---|---|---|
+| A | 0.5 | -71.4k | 52.0k | 0.75 | 1.00 | 1.00 | 0.98 | 2.7 |
+| B（选中） | 1.0 | **-67.5k** | 56.2k | 0.88 | 1.00 | 1.00 | 0.99 | 2.8 |
+
+- holdout 基线（DEFAULTS）分差 -91.8k → 搜索最优 -67.5k（+24k）。
+- **搜索独立确认了全部结构选择**：Majkel 内核、同格清空、肥料只由携带者施、预走位、领麦约 3 个。
+- 装池 2 条（分差 -67.5k / -73.7k）。
+
+验收：
+- 64 场 vs y68 家族：0/64，分差 -6.8 万 ~ -7.2 万，own 4.7-5.2 万。
+- 门控 2：异 seed 重合 0.067，gate_k 0.066，PASS。
+- 审计：WORK 31.8% / MOVE 65.0% / PASS 3.2%；h20 工作率 9%（Majkel 45%）；
+  同格连做 26%（Majkel 50%）；移动/工作 2.04（Majkel 0.91）。
+
+剩余差距仍集中在「下午无活可干」：执行规则已对齐，但每日任务总量不足，
+面积与动物规模没有撑到 Majkel 的量级（own ~5 万 vs ~11 万）。
