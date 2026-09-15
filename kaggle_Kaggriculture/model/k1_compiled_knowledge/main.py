@@ -552,8 +552,8 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
         used.add(i)
         _mv(st, tag)
 
-    # M1 同格清空：脚下有可做任务就继续做（实测同格连做 50%）
-    for i in range(n):
+    # M1 同格清空：脚下有可做任务就继续做（实测同格连做 50%）；搜索维度 mj_same_tile
+    for i in (range(n) if tu.get("mj_same_tile", 1) else ()):
         p = positions[i]
         lst = doable(i, by_pos.get(p, []))
         if lst:
@@ -606,7 +606,11 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
                 best = (d, i)
         if best:
             claimed.add(pos_t)
-            go(best[1], pos_t, "majkel_urgent")
+            i = best[1]
+            if positions[i] == pos_t:
+                do(i, doable(i, by_pos[pos_t])[0], pos_t)
+            else:
+                go(i, pos_t, "majkel_urgent")
 
     # M3 纯就近派活：全局按（距离, 次序）贪心，一格一人（实测最近 84%）
     pairs = []
@@ -626,7 +630,28 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
         if i in used or pos_t in claimed:
             continue
         claimed.add(pos_t)
+        if positions[i] == pos_t:
+            dl = doable(i, by_pos.get(pos_t, []))
+            if dl:
+                do(i, dl[0], pos_t)
+                continue
         go(i, pos_t, "majkel_go")
+
+    # M6 关闭时（mj_fert_carry_only=0）：仍有未认领施肥任务、仓库有肥 → 1 个无肥单位回仓领肥
+    if not tu.get("mj_fert_carry_only", 1):
+        fert_left = any(t[3][0] == "FERTILIZE" and t[2] not in claimed for t in tasks)
+        if fert_left and shed.get("FERTILIZER", 0) > 0:
+            free_f = sorted((i for i in range(n) if i not in used and carried(i, "FERTILIZER") < 1),
+                            key=lambda j: _shed_dist(positions[j], bs))
+            for i in free_f[:1]:
+                if positions[i] in shed_set:
+                    take = min(6, shed["FERTILIZER"])
+                    actions[i] = ["PICKUP", "FERTILIZER", take]
+                    shed["FERTILIZER"] -= take
+                    invs[i]["FERTILIZER"] = invs[i].get("FERTILIZER", 0) + take
+                    used.add(i)
+                else:
+                    go(i, min(shed_set, key=lambda s: _dist(positions[i], s)), "majkel_supply_fert")
 
     # 喂养缺麦：仍有未认领喂养任务、仓库有麦 → 最多 2 个缺麦单位回仓（M6：肥料不回仓）
     feed_left = any(t[3][0] == "FEED" and t[2] not in claimed for t in tasks)
@@ -663,6 +688,8 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
                 if tt2.get("yield_units", 0) > 0 or age2 >= cd2.get("first_yield_day", 99) - 1:
                     sites_crop.append((xx, yy))
     sites = (sites_animal or sites_crop) if hour_i >= 19 else (sites_crop or sites_animal)
+    if not tu.get("mj_preposition", 1):
+        sites = []
     taken = set()
     for i in range(n):
         if i in used or not sites:

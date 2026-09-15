@@ -37,6 +37,16 @@ SCHED_SPACE = [
     ("harvest_ymin",      1, 3, 3),      # 收获触发 yield(旧 tuning,联合)
     ("plant_cap",         5, 12, 7),     # 日种植限速(旧 tuning,联合)
     ("land3_day",         10, 30, 30),   # 第4块地(SE,4000)购买日;>=28 不买(Majkel 从不买;新内核有闲置产能)
+    # ---- 结构维度（2026-09-15 起：内核结构交给搜索，LLM 只蒸馏候选）----
+    ("kernel_majkel",     0, 1, 1),      # 1=Majkel 规格内核,0=旧贪心内核
+    ("mj_same_tile",      0, 1, 1),      # M1 同格清空
+    ("mj_kit",            1, 6, 3),      # M5 每次领麦批量
+    ("mj_fert_carry_only", 0, 1, 1),     # M6 施肥只由携带者执行(0=允许回仓领肥)
+    ("mj_preposition",    0, 1, 1),      # 日活清空后状态驱动预走位
+    ("straw_scale",       0.5, 1.5, 1.0),# 作物/动物/施肥全局乘数(原 knowledge 残留乘数改由搜索决定)
+    ("wheat_scale",       0.5, 1.5, 1.0),
+    ("animal_scale",      0.6, 1.5, 1.0),
+    ("fert_scale",        0.5, 1.5, 1.0),
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -137,7 +147,16 @@ def gen_tables(p):
                           "feed_buffer_days": int(round(g["feed_buffer"])),
                           "water_deadline_hour": int(round(g["water_ddl"])),
                           "harvest_yield_min": int(round(g["harvest_ymin"])),
-                          "plant_per_day_cap": int(round(g["plant_cap"]))},
+                          "plant_per_day_cap": int(round(g["plant_cap"])),
+                          "scheduler_mode": "majkel" if g["kernel_majkel"] >= 0.5 else "greedy",
+                          "mj_same_tile": int(g["mj_same_tile"] >= 0.5),
+                          "majkel_kit": int(round(g["mj_kit"])),
+                          "mj_fert_carry_only": int(g["mj_fert_carry_only"] >= 0.5),
+                          "mj_preposition": int(g["mj_preposition"] >= 0.5),
+                          "crop_scale": {"STRAWBERRY": round(g["straw_scale"], 3),
+                                         "WHEAT": round(g["wheat_scale"], 3)},
+                          "animal_scale": round(g["animal_scale"], 3),
+                          "fert_scale": round(g["fert_scale"], 3)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
