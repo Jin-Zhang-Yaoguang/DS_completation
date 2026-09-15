@@ -79,8 +79,10 @@ def k1_curves(seed=1046):
     spec = importlib.util.spec_from_file_location("k1_fp", HERE / "main.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    import os
     tu = {**json.loads((HERE / "knowledge.json").read_text())["tuning"],
-          "fert_specialist": False, "t0_pool_select": False}
+          "fert_specialist": False,
+          "t0_pool_select": os.environ.get("K1_FP_POOL") == "1"}
     mod.KN_OVERRIDE = {"tuning": tu}
     opp = fidelity.make_agent(f"sub:{MOS}/y68g_main.py")
     k = engine.load_kagsim()
