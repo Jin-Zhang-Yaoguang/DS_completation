@@ -114,6 +114,11 @@ SCHED_SPACE = [
     ("route_rot",         0, 6.28, 0),   # 扇区起始角
     ("route_crops_only",  0, 1, 0),      # 路线只管作物格（动物格留给就近贪心+领麦）
     ("route_frac",        0.2, 1, 1),    # 跑路线的单位比例（其余单位走 M3 就近贪心）
+    # ---- Majkel 路线库层（build_route_lib.py：381 局回放，按商店前两店→首店→无条件回退的众数动作）----
+    ("lib_on",            0, 1, 0),      # 开启路线库替换
+    ("lib_until_day",     1, 30, 30),    # 库用到第几天（后期库覆盖率 27-59%）
+    ("lib_market",        0, 1, 0),      # 市场指令也用库
+    ("lib_minshare",      0.5, 0.95, 0.5),  # 众数动作占比下限
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -272,7 +277,11 @@ def gen_tables(p):
                           "route_look": int(round(g["route_look"])),
                           "route_rot": round(g["route_rot"], 2),
                           "route_crops_only": int(g["route_crops_only"] >= 0.5),
-                          "route_frac": round(g["route_frac"], 3)},
+                          "route_frac": round(g["route_frac"], 3),
+                          "lib_on": int(g["lib_on"] >= 0.5),
+                          "lib_until_day": int(round(g["lib_until_day"])),
+                          "lib_market": int(g["lib_market"] >= 0.5),
+                          "lib_minshare": round(g["lib_minshare"], 3)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

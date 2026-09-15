@@ -36,7 +36,7 @@ MUT_SD = float(os.environ.get("K1_MUT_SD", "0.12"))
 ELITE = 2
 NAMES = [n for n, _, _, _ in SCHED_SPACE]
 # 维度块边界（按 schedule_gen 分节）：块内整体交叉继承
-BLOCK_STARTS = ["hands_peak", "cash_pump_until", "kernel_majkel", "fill_ratio", "wheat_keep_frac", "straw_ramp_days", "price_area_gain", "opp_id_day", "layout_sector", "plant_cap_mid", "route_on"]
+BLOCK_STARTS = ["hands_peak", "cash_pump_until", "kernel_majkel", "fill_ratio", "wheat_keep_frac", "straw_ramp_days", "price_area_gain", "opp_id_day", "layout_sector", "plant_cap_mid", "route_on", "lib_on"]
 
 
 def blocks():

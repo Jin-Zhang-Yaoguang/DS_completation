@@ -1841,8 +1841,104 @@ def _decide(obs, config):
         st["assign"] = {}
     else:
         actions = assign(st, tasks, positions, invs, tiles, bs, shed, kn)
+        actions, market = _apply_route_lib(st, kn, obs, farm, tiles, bs, positions, invs, seeds, shed,
+                                           actions, market, turn, day)
 
     return {"farmer": actions[0], "hands": actions[1:n_units], "market": market}
+
+
+_ROUTE_LIB = None
+
+
+def _route_lib():
+    """Majkel 路线库（build_route_lib.py 产物；knowledge 数据，懒加载）。"""
+    global _ROUTE_LIB
+    if _ROUTE_LIB is None:
+        import os as _os2
+        import json as _js
+        pth = _os2.path.join(_os2.path.dirname(_os2.path.abspath(__file__)), "route_lib.json")
+        try:
+            _ROUTE_LIB = _js.load(open(pth))
+        except Exception:
+            _ROUTE_LIB = {"levels": {"2": {}, "1": {}, "0": {}}}
+    return _ROUTE_LIB
+
+
+def _lib_entry(turn, shops, minshare):
+    lv = _route_lib()["levels"]
+    for level, k in (("2", f"{turn}|{','.join(shops[:2])}" if len(shops) >= 2 else None),
+                     ("1", f"{turn}|{shops[0]}" if shops else None),
+                     ("0", f"{turn}|")):
+        if k and k in lv[level]:
+            return lv[level][k]
+    return None
+
+
+_MOVE_D = {"NORTH": (0, -1), "SOUTH": (0, 1), "WEST": (-1, 0), "EAST": (1, 0)}
+
+
+def _lib_valid(op, pos, tiles, inv, seeds, shed, shed_set, bs):
+    o = op[0]
+    if o in _MOVE_D:
+        dx, dy = _MOVE_D[o]
+        x, y = pos[0] + dx, pos[1] + dy
+        return 0 <= x < bs and 0 <= y < bs and tiles[y][x] != "LOCKED"
+    if o in ("PICKUP", "DROP"):
+        if pos not in shed_set:
+            return False
+        if o == "PICKUP":
+            return len(op) >= 2 and shed.get(op[1], 0) > 0
+        return bool(inv)
+    t = tiles[pos[1]][pos[0]]
+    if o == "PLANT":
+        return t is None and pos not in shed_set and len(op) >= 2 and seeds.get(op[1], 0) > 0
+    if o in ("BUILD_PASTURE", "BUILD_COOP"):
+        return t is None and pos not in shed_set
+    if o == "PLACE":
+        return (isinstance(t, dict) and t.get("kind") in ("PASTURE", "COOP") and "animal" not in t
+                and len(op) >= 2 and inv.get(op[1], 0) > 0)
+    if o == "FEED":
+        return _task_still_valid(t, op) and inv.get("WHEAT", 0) > 0
+    if o == "FERTILIZE":
+        return _task_still_valid(t, op) and inv.get("FERTILIZER", 0) > 0
+    if o in ("WATER", "CARE", "COLLECT_FERTILIZER", "HARVEST", "DIG"):
+        return _task_still_valid(t, op)
+    return False
+
+
+def _apply_route_lib(st, kn, obs, farm, tiles, bs, positions, invs, seeds, shed, actions, market, turn, day):
+    """路线库层（Majkel 回放：动作骨架按商店历史分支、同前两店第 7 天全队动作一致 76%）：
+    K1 照常算出动作后，库中该步该单位有合法众数动作即替换；市场可选用库。"""
+    tu = kn.get("tuning", {})
+    if not tu.get("lib_on", 0) or day >= tu.get("lib_until_day", 30):
+        return actions, market
+    shops = list((obs.get("town") or {}).get("unlocked_shops") or [])
+    ent = _lib_entry(turn, shops, tu.get("lib_minshare", 0.5))
+    if not ent:
+        return actions, market
+    ms = tu.get("lib_minshare", 0.5)
+    shed_set = set(_shed_tiles(bs))
+    seeds_l = dict(seeds)
+    shed_l = dict(shed)
+    hit = 0
+    for i in range(len(positions)):
+        e = ent["u"].get(str(i))
+        if not e or e[1] < ms:
+            continue
+        op = list(e[0])
+        if op[0] == "PASS":
+            continue
+        if _lib_valid(op, positions[i], tiles, invs[i], seeds_l, shed_l, shed_set, bs):
+            actions[i] = op
+            hit += 1
+            if op[0] == "PLANT":
+                seeds_l[op[1]] -= 1
+            elif op[0] == "PICKUP":
+                shed_l[op[1]] = shed_l.get(op[1], 0) - (op[2] if len(op) > 2 else 1)
+    st["lib_hits"] = st.get("lib_hits", 0) + hit
+    if tu.get("lib_market", 0) and ent.get("m") and ent["m"][1] >= ms:
+        market = [list(o) for o in ent["m"][0]]
+    return actions, market
 
 
 def agent(obs, config=None):
