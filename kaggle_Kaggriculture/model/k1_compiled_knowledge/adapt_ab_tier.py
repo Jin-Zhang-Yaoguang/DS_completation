@@ -12,7 +12,8 @@ BEST = sys.argv[1] if len(sys.argv) > 1 else 'best_iter_ga2.json'
 NSEED = int(sys.argv[2]) if len(sys.argv) > 2 else 4
 SEEDS = [730021 + 149 * i for i in range(NSEED)]
 OFF = {'price_area_gain': 0, 'opp_counter_gain': 0, 'opp_sell_ahead': 0, 'opp_anim_gain': 0, 'race_on': 0, 'mshift_on': 0, 'doomsday_on': 0,
-       'layout_sector': 0, 'layout_fixed_order': 0, 'layout_animal_last': 0}
+       'layout_sector': 0, 'layout_fixed_order': 0, 'layout_animal_last': 0,
+       'plant_cap_mid': 0, 'plant_cap_late': 0, 'plant_idle_hour': 24, 'plant_idle_extra': 0, 'seed_lookahead': 0}
 CONFIGS = {
     '基准(自适应全关)': OFF,
     '搜索原样': {},
@@ -30,6 +31,13 @@ CONFIGS = {
     '布局:动物外环': {**OFF, 'layout_animal_last': 1},
     '动物随对手 仅light+std': {**OFF, 'opp_anim_gain': 0.5, 'tm_anim_light': 1, 'tm_anim_std': 1, 'tm_anim_wheat': 0},
     '动物随对手 仅light': {**OFF, 'opp_anim_gain': 0.5, 'tm_anim_light': 1, 'tm_anim_std': 0, 'tm_anim_wheat': 0},
+    # ga4 方案1 候选（种植执行）
+    '种植:中期限速8': {**OFF, 'plant_cap_mid': 8},
+    '种植:后期限速8': {**OFF, 'plant_cap_late': 8},
+    '种植:中后期限速8': {**OFF, 'plant_cap_mid': 8, 'plant_cap_late': 8},
+    '种植:15点后+4': {**OFF, 'plant_idle_hour': 15, 'plant_idle_extra': 4},
+    '种植:12点后+8': {**OFF, 'plant_idle_hour': 12, 'plant_idle_extra': 8},
+    '种植:买种看次日': {**OFF, 'seed_lookahead': 1},
 }
 # 用法补充：第三个参数给出配置名子串过滤（逗号分隔），如 "基准,布局" 只跑布局组
 if len(sys.argv) > 3:
