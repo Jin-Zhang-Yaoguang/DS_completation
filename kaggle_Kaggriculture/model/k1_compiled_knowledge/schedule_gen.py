@@ -8,20 +8,20 @@
 SCHED_SPACE = [
     ("hands_peak",        6, 14, 11),    # d10-27 人手峰值；整条曲线按 峰值/11 缩放
     ("straw_start",       2, 8, 2),      # 草莓开种日
-    ("straw_peak",        8, 34, 28),    # 草莓峰值面积
+    ("straw_peak",        8, 44, 28),    # 草莓峰值面积
     ("straw_rampdown",    18, 26, 21),   # 草莓停止补种日（此后目标线性降到 9）
     ("wheat_base",        4, 14, 10),    # 小麦前期面积
-    ("wheat_peak",        6, 30, 28),    # 小麦后期峰值（d9 起爬升）
+    ("wheat_peak",        6, 40, 28),    # 小麦后期峰值（d9 起爬升）
     ("carrot_base",       0, 12, 3),     # 胡萝卜常备面积（分散化：y68g 九品全卖抗撞车）
     ("tomato_base",       0, 10, 2),     # 番茄常备面积（d8 起，分散化维度）
     ("melon_tiles",       6, 16, 12),    # 瓜一波面积（d0-2 铺设）
-    ("cow_total",         3, 20, 8),     # 全季牛数（按 Majkel 批次日 0/6/9 比例 2:4:2 分配）
+    ("cow_total",         0, 20, 8),     # 全季牛数（按 Majkel 批次日 0/6/9 比例 2:4:2 分配）
     ("sheep_total",       0, 8, 3),      # 全季羊数（批次比例 1:1:1）
     ("goose_total",       0, 10, 2),      # 全季鹅数（d6 一批）
     ("day0_animal_frac",  0.3, 1.0, 1.0),# d0 动物批次保留比例（<1 = 开局省钱后补）
-    ("melon_d0",          4, 12, 8),     # d0 瓜面积（d1-2 爬到 melon_tiles）
+    ("melon_d0",          0, 12, 8),     # d0 瓜面积（d1-2 爬到 melon_tiles）
     ("wheat_d0",          6, 14, 10),    # d0 麦面积
-    ("plant_cap_early",   6, 20, 10),    # d0-1 种植限速豁免值
+    ("plant_cap_early",   3, 20, 10),    # d0-1 种植限速豁免值
     ("cash_pump_until",   0, 10, 8),     # 早期现金泵截止日（麦蛋即产即卖）
     ("sheep_d0",          0, 3, 1),      # d0 羊数（Majkel 实测 3：d6 羊毛变现炸弹 18 毛）
     ("batch2_day",        5, 10, 6),     # 第二动物批次日（现金流对齐）
@@ -36,6 +36,7 @@ SCHED_SPACE = [
     ("water_ddl",         14, 20, 18),   # 浇水清尾时刻(旧 tuning,联合)
     ("harvest_ymin",      1, 3, 3),      # 收获触发 yield(旧 tuning,联合)
     ("plant_cap",         5, 12, 7),     # 日种植限速(旧 tuning,联合)
+    ("land3_day",         10, 30, 30),   # 第4块地(SE,4000)购买日;>=28 不买(Majkel 从不买;新内核有闲置产能)
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -122,6 +123,8 @@ def gen_tables(p):
                  "last_fert_turn": 689}
     land_buy = {"NE": int(round(g["land1_day"])) * 24 + 5,
                 "SW": int(round(g["land2_day"])) * 24 + 5}
+    if g["land3_day"] < 28:
+        land_buy["SE"] = int(round(g["land3_day"])) * 24 + 5
     return {
         "fertilize": fertilize,
         "land_buy_turns": land_buy,
