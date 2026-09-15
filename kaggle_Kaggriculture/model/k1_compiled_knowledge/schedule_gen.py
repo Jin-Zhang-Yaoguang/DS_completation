@@ -83,6 +83,24 @@ SCHED_SPACE = [
     ("mshift_on",         0, 1, 0),      # 旧 R1b：价格跌破基准×floor 停种转高价品
     ("price_floor_frac",  0.5, 1.0, 0.5),  # ga1 实测 0.5 在 y68 对局从未触发，区间上调
     ("doomsday_on",       0, 1, 0),      # 旧末日层：d25-26 囤货 d27+ 集中抛
+    # ---- 对手类型识别（opp_base_diag 2026-09-15：动物随对手收益随层变号 → 先识别再决定）----
+    ("opp_id_day",        4, 12, 8),     # 锁定对手类型的日子
+    ("opp_id_straw_th",   0, 10, 4),     # 对手草莓面积 ≤ 此值 → light 型
+    ("opp_id_wheat_th",   5, 16, 9),     # 对手小麦面积 ≥ 此值 → wheat 型
+    ("tm_anim_light",     0, 2, 1),      # 各类型对机制强度的乘数（1=不区分类型）
+    ("tm_anim_wheat",     0, 2, 1),
+    ("tm_anim_std",       0, 2, 1),
+    ("tm_price_light",    0, 2, 1),
+    ("tm_price_wheat",    0, 2, 1),
+    ("tm_price_std",      0, 2, 1),
+    ("tm_counter_light",  0, 2, 1),
+    ("tm_counter_wheat",  0, 2, 1),
+    ("tm_counter_std",    0, 2, 1),
+    # ---- 基础产出：布局（opp_base_diag：对手移动少 20-35%、小麦 4 倍面积）----
+    ("layout_sector",     0, 8, 0),      # <1.5 关；否则按扇区数分块（同扇区从近到远填，作物连片）
+    ("layout_sector_rot", 0, 6.28, 0),   # 扇区起始角
+    ("layout_fixed_order", 0, 1, 0),     # 作物需求序：0=按价格，1=按服务频率固定
+    ("layout_animal_last", 0, 1, 0),     # 动物不再抢最近环
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -221,7 +239,16 @@ def gen_tables(p):
                           "race_decay": round(g["race_decay"], 3),
                           "market_shift_enabled": bool(g["mshift_on"] >= 0.5),
                           "price_floor_frac": round(g["price_floor_frac"], 3),
-                          "doomsday": bool(g["doomsday_on"] >= 0.5)},
+                          "doomsday": bool(g["doomsday_on"] >= 0.5),
+                          "opp_id_day": int(round(g["opp_id_day"])),
+                          "opp_id_straw_th": int(round(g["opp_id_straw_th"])),
+                          "opp_id_wheat_th": int(round(g["opp_id_wheat_th"])),
+                          **{f"type_mult_{m}_{t}": round(g[f"tm_{m}_{t}"], 3)
+                             for m in ("anim", "price", "counter") for t in ("light", "wheat", "std")},
+                          "layout_sector": int(round(g["layout_sector"])) if g["layout_sector"] >= 1.5 else 0,
+                          "layout_sector_rot": round(g["layout_sector_rot"], 2),
+                          "layout_fixed_order": int(g["layout_fixed_order"] >= 0.5),
+                          "layout_animal_last": int(g["layout_animal_last"] >= 0.5)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

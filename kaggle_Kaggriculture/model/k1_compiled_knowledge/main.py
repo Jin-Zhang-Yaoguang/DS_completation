@@ -229,7 +229,7 @@ class Schedule:
 ROLE_ORDER = ["ANIMAL", "STRAWBERRY", "TOMATO", "CARROT", "WHEAT", "MELON"]
 
 
-def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None, template=None):
+def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None, template=None, layout=None):
     """每天重排：已占用格锁定角色；空格按需求序从近到远补。
 
     RA1 自适应化：prices 给定时，作物需求序按「当前价格/base 边际比值」排序
@@ -240,7 +240,16 @@ def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None, template=None
         for x in range(bs):
             if tiles[y][x] != "LOCKED" and (x, y) not in _shed_tiles(bs):
                 order.append((x, y))
-    order.sort(key=lambda t: (_shed_dist(t, bs), t[1], t[0]))
+    lay = layout or {}
+    # 基础产出诊断（opp_base_diag）：中/强对手 MOVE 2900-3500 步 vs K1 4300，小麦面积·天 4 倍——
+    # 布局维度交搜索：扇区分块（同作物连片、少穿行）、作物需求序模式、动物是否占最近环
+    if lay.get("sector", 0):
+        import math as _m
+        c0 = (bs - 1) / 2.0
+        order.sort(key=lambda t: (int(((_m.atan2(t[1] - c0, t[0] - c0) + lay.get("sector_rot", 0)) % (2 * _m.pi))
+                                      / (2 * _m.pi) * lay["sector"]), _shed_dist(t, bs), t[1], t[0]))
+    else:
+        order.sort(key=lambda t: (_shed_dist(t, bs), t[1], t[0]))
 
     roles = {}
     remaining = dict(targets)
@@ -258,13 +267,17 @@ def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None, template=None
             roles[(x, y)] = c
             remaining[c] = max(0, remaining.get(c, 0) - 1)
     # 2) 空格（含杂草格）按需求序补
-    if prices:
+    if lay.get("fixed_order"):
+        role_seq = ["ANIMAL", "STRAWBERRY", "WHEAT", "MELON", "TOMATO", "CARROT"]  # 按服务频率
+    elif prices:
         crop_seq = sorted(
             (c for c in CROPS),
             key=lambda c: -(prices.get(c, MARKET_PARAMS[c]["base"]) / MARKET_PARAMS[c]["base"]))
         role_seq = ["ANIMAL"] + crop_seq
     else:
         role_seq = ROLE_ORDER
+    if lay.get("animal_last"):
+        role_seq = [r for r in role_seq if r != "ANIMAL"] + ["ANIMAL"]
     for (x, y) in order:
         if (x, y) in roles:
             continue
@@ -1294,7 +1307,8 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     animal_gap_cost = 0
     if turn <= kn["last_animal_turn"]:
         want = sched.animal_wanted(day)
-        oag = kn.get("tuning", {}).get("opp_anim_gain", 0)
+        oag = kn.get("tuning", {}).get("opp_anim_gain", 0) * \
+            kn.get("tuning", {}).get(f"type_mult_anim_{st.get('opp_type', 'unk')}", 1.0)
         if oag and day >= kn.get("tuning", {}).get("opp_anim_from", 6):
             oan = (st.get("opp_sense") or {}).get("anim", {})
             mine = st.get("placed_counts", {})
@@ -1548,9 +1562,17 @@ def _decide(obs, config):
                     pr_ = _prod[t_["animal"]]
                     sense["hang"][pr_] = sense["hang"].get(pr_, 0) + (t_.get("yield_units") or 0)
     st["opp_sense"] = sense
+    if "opp_type" not in st and day >= tu_s.get("opp_id_day", 8):
+        if sense["area"].get("STRAWBERRY", 0) <= tu_s.get("opp_id_straw_th", 4):
+            st["opp_type"] = "light"      # 不种草莓的弱规则型（easy 层特征）
+        elif sense["area"].get("WHEAT", 0) >= tu_s.get("opp_id_wheat_th", 9):
+            st["opp_type"] = "wheat"      # 早期大面积小麦型（tape 层特征）
+        else:
+            st["opp_type"] = "std"
+    otype = st.get("opp_type", "unk")
     tgt_s = st["crop_targets"]
-    pag = tu_s.get("price_area_gain", 0)
-    ocg = tu_s.get("opp_counter_gain", 0)
+    pag = tu_s.get("price_area_gain", 0) * tu_s.get(f"type_mult_price_{otype}", 1.0)
+    ocg = tu_s.get("opp_counter_gain", 0) * tu_s.get(f"type_mult_counter_{otype}", 1.0)
     if (pag or ocg) and day >= tu_s.get("price_area_from", 6):
         moved = 0
         for c in ("STRAWBERRY", "TOMATO", "CARROT", "MELON"):
@@ -1601,7 +1623,10 @@ def _decide(obs, config):
     st["roles"] = plan_roles(tiles, bs, st["crop_targets"],
                              sched.pasture_target(turn, shops), sched.coop_target(turn),
                              prices=prices if tu_mkt.get("adaptive_roles", True) else None,
-                             template=kn.get("layout_template") if tu_mkt.get("layout_template_on") else None)
+                             template=kn.get("layout_template") if tu_mkt.get("layout_template_on") else None,
+                             layout={"sector": tu_mkt.get("layout_sector", 0), "sector_rot": tu_mkt.get("layout_sector_rot", 0),
+                                     "fixed_order": tu_mkt.get("layout_fixed_order", 0),
+                                     "animal_last": tu_mkt.get("layout_animal_last", 0)})
 
     st["placed_counts"] = {}
     for row in tiles:
