@@ -258,3 +258,22 @@ WHE WHE WHE WHE EMP LOC LOC LOC LOC LOC
 - 结论：朴素的「条件触发式卖出」（抢卖/跟卖/末日）对 y68 显著有害；价格调面积、反跟种无收益。唯一正信号是「动物随对手」：自身 -6.6k 但分差 +3.7k——对手动物少时我也少养，分差提升来自对手收入下降多于我（机制待查：可能是奶/毛共享市场的供给碰撞减少改变了价格分配）。t=1.91 未达显著，交下一轮 GA 细化。
 - 低价转产阈值 0.5 从未触发：y68 对局中作物价格未跌破基准一半 → 阈值区间需上调（下一轮扩到 0.5-1.0）。
 - 装池验收：eval_vs_y68 0/64，分差 -6.6~-6.9 万（上轮 -6.8~-7.0 万），own 5.0-5.5 万，异 seed 重合 0.043；gate_k 门控 1 0/32、门控 2 PASS 0.030。
+
+## 分层对手池（opp_tiers.json，2026-09-15）
+
+动机：ga1 只打 y68g/y68c 两个固定对手——对手不变时最优解是一套固定打法，「看对手调整」拿不到回报，自适应维度被关是训练口径决定的，不是机制无效的证据。
+
+探针（opp_probe*.py，K1 当前池 vs 各候选 4 seed×双席位）分层：
+
+| 层 | 每代抽 | 对手 | K1 分差区间 |
+|---|---|---|---|
+| easy | 1 | v1_baseline、SpaTaro tape、Majkel tape 107678936（地形错位） | +1.4~+2.7 万 |
+| medium | 1 | v119、v2_survival_guard、v29_adaptive、v1_adaptive_market、v25_market_maker、Otter tape | -3.4~-5.1 万 |
+| hard | 2 | y68g/c/f/a/b、y67、y66、v38、v35、v58_rebuild、m2448、p955 | -5.8~-7.8 万 |
+| tape | 1 | ymg0/1、fta0/1、ult、Majkel 回放 tape ×6 | -2.5~-5.6 万 |
+| mixed | 1 | v120 蒸馏、v24_hybrid、v33_opp_router、v31_sell_timing、v39_pure_tape | -5.2~-5.7 万 |
+
+- 排除：v22/v23/v14/v36/v21/v30/v5_tape_tree/v4h_tape_ledger 对手金币恒 3000（加载后空转）；v5_rule_hybrid/v17/v6/v4h_demand_race 加载失败。
+- Majkel tape：build_majkel_tapes.py 由原始回放生成（actions[k]=steps[k+1] 动作）。tape 不反应、换 seed 地形错位，1/8 条严重失真（107622326，对手仅 2.6 万）已不入池。
+- 搜索口径：每代 6 对手×2 seed×双席位轮换 + 1 solo；各层同代所有个体同组对手；GA fitness 减当代种群均值后累计；holdout 固定 8 个跨层对手。
+- 同步：opp_anim_from 新维度（动物跟随起始日），price_floor_frac 区间 0.3-0.8 → 0.5-1.0（72 维）。
