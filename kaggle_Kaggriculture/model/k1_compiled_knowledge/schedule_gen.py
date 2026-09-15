@@ -119,6 +119,15 @@ SCHED_SPACE = [
     ("lib_until_day",     1, 30, 30),    # 库用到第几天（后期库覆盖率 27-59%）
     ("lib_market",        0, 1, 0),      # 市场指令也用库
     ("lib_minshare",      0.5, 0.95, 0.5),  # 众数动作占比下限
+    # ---- Majkel 整局回放跟随 + K1 修复（build_route_eps.py：按首店/前两店路由到最优整局）----
+    ("eps_on",            0, 1, 0),      # 开启整局回放跟随
+    ("eps_until_day",     1, 30, 30),    # 跟到第几天，之后全交 K1
+    ("eps_market",        0, 1, 1),      # 市场指令跟回放（1）/ 用 K1 市场层（0）
+    ("eps_switch2",       0, 1, 1),      # 看到前两店时再切换一次
+    ("eps_pass",          0, 1, 1),      # 回放 PASS 也照做（0 = PASS 时由 K1 派活）
+    ("eps_repair",        0, 2, 0),      # 失配时：0 = K1 动作，1 = 原地 PASS，2 = 走回回放位置
+    ("eps_gate",          0, 2, 1),      # 失配判断：0 = 状态合法性，1 = 坐标一致，2 = 不检查
+    ("eps_switch1",       0, 1, 1),      # 看到第 1 家店时切换
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -281,7 +290,15 @@ def gen_tables(p):
                           "lib_on": int(g["lib_on"] >= 0.5),
                           "lib_until_day": int(round(g["lib_until_day"])),
                           "lib_market": int(g["lib_market"] >= 0.5),
-                          "lib_minshare": round(g["lib_minshare"], 3)},
+                          "lib_minshare": round(g["lib_minshare"], 3),
+                          "eps_on": int(g["eps_on"] >= 0.5),
+                          "eps_until_day": int(round(g["eps_until_day"])),
+                          "eps_market": int(g["eps_market"] >= 0.5),
+                          "eps_switch2": int(g["eps_switch2"] >= 0.5),
+                          "eps_pass": int(g["eps_pass"] >= 0.5),
+                          "eps_repair": int(round(g["eps_repair"])),
+                          "eps_gate": int(round(g["eps_gate"])),
+                          "eps_switch1": int(g["eps_switch1"] >= 0.5)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

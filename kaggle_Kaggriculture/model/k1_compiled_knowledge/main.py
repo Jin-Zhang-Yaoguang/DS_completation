@@ -1843,6 +1843,8 @@ def _decide(obs, config):
         actions = assign(st, tasks, positions, invs, tiles, bs, shed, kn)
         actions, market = _apply_route_lib(st, kn, obs, farm, tiles, bs, positions, invs, seeds, shed,
                                            actions, market, turn, day)
+        actions, market = _apply_route_eps(st, kn, obs, tiles, bs, positions, invs, seeds, shed,
+                                           actions, market, turn, day)
 
     return {"farmer": actions[0], "hands": actions[1:n_units], "market": market}
 
@@ -1904,6 +1906,86 @@ def _lib_valid(op, pos, tiles, inv, seeds, shed, shed_set, bs):
     if o in ("WATER", "CARE", "COLLECT_FERTILIZER", "HARVEST", "DIG"):
         return _task_still_valid(t, op)
     return False
+
+
+_ROUTE_EPS = None
+
+
+def _route_eps():
+    """Majkel 整局回放库（build_route_eps.py 产物 route_eps.json.gz；懒加载）。"""
+    global _ROUTE_EPS
+    if _ROUTE_EPS is None:
+        import os as _os3
+        import json as _js3
+        import gzip as _gz
+        pth = _os3.path.join(_os3.path.dirname(_os3.path.abspath(__file__)), "route_eps.json.gz")
+        try:
+            with _gz.open(pth, "rb") as f:
+                _ROUTE_EPS = _js3.loads(f.read().decode())
+        except Exception:
+            _ROUTE_EPS = {"default": None, "by1": {}, "by2": {}, "eps": {}}
+    return _ROUTE_EPS
+
+
+def _apply_route_eps(st, kn, obs, tiles, bs, positions, invs, seeds, shed, actions, market, turn, day):
+    """跟随整局回放 + 修复（榜首轨迹骨架：动作按商店历史分支、同前两店第 7 天全队动作一致 76%）：
+    开局跟默认局；看到第 1 家店切到首店相同的最优局；eps_switch2 时看到前两店再切。
+    回放单位动作在当前状态不合法 → 该单位保留 K1 动作；市场可跟回放（eps_market）。"""
+    tu = kn.get("tuning", {})
+    if not tu.get("eps_on", 0) or day >= tu.get("eps_until_day", 30):
+        return actions, market
+    lib = _route_eps()
+    if not lib.get("eps"):
+        return actions, market
+    shops = list((obs.get("town") or {}).get("unlocked_shops") or [])
+    ep = st.get("eps_ep") or lib.get("default")
+    if len(shops) >= 1 and st.get("eps_stage", 0) < 1 and tu.get("eps_switch1", 1):
+        ep = lib["by1"].get(shops[0], ep)
+        st["eps_stage"] = 1
+    if len(shops) >= 2 and tu.get("eps_switch2", 1) and st.get("eps_stage", 0) < 2:
+        ep = lib["by2"].get(",".join(shops[:2]), ep)
+        st["eps_stage"] = 2
+    st["eps_ep"] = ep
+    seq = lib["eps"].get(str(ep)) or []
+    if turn >= len(seq):
+        return actions, market
+    a = seq[turn] or {}
+    units = [a.get("farmer") or ["PASS"]] + list(a.get("hands") or [])
+    shed_set = set(_shed_tiles(bs))
+    seeds_l, shed_l = dict(seeds), dict(shed)
+    hit = miss = 0
+    # 失配判断 eps_gate：0 = 状态合法性（有一步观测滞后，会误判市场同步结算的领取/种植/放置）；
+    # 1 = 单位坐标与回放同一步坐标一致；2 = 不检查
+    gate = tu.get("eps_gate", 1)
+    exp_pos = (lib.get("pos", {}).get(str(ep)) or [])
+    exp = exp_pos[turn] if turn < len(exp_pos) else None
+    for i in range(min(len(units), len(positions))):
+        op = list(units[i] or ["PASS"])
+        if gate == 0:
+            ok = op[0] == "PASS" or _lib_valid(op, positions[i], tiles, invs[i], seeds_l, shed_l, shed_set, bs)
+        elif gate == 1:
+            ok = bool(exp) and i < len(exp) and exp[i] is not None and tuple(exp[i]) == tuple(positions[i])
+        else:
+            ok = True
+        if ok:
+            if op[0] == "PASS" and not tu.get("eps_pass", 1):
+                continue
+            actions[i] = op
+            hit += 1
+            if op[0] == "PLANT" and len(op) > 1:
+                seeds_l[op[1]] = seeds_l.get(op[1], 0) - 1
+        else:
+            miss += 1
+            rp = tu.get("eps_repair", 0)
+            if rp == 1:
+                actions[i] = ["PASS"]  # 原地不动
+            elif rp == 2 and exp and i < len(exp) and exp[i] is not None:
+                actions[i] = _step_toward(positions[i], tuple(exp[i])) or ["PASS"]  # 走回回放位置
+    st["eps_hit"] = st.get("eps_hit", 0) + hit
+    st["eps_miss"] = st.get("eps_miss", 0) + miss
+    if tu.get("eps_market", 1):
+        market = [list(o) for o in (a.get("market") or [])]
+    return actions, market
 
 
 def _apply_route_lib(st, kn, obs, farm, tiles, bs, positions, invs, seeds, shed, actions, market, turn, day):
