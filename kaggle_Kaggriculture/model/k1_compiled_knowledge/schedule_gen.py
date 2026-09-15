@@ -101,6 +101,12 @@ SCHED_SPACE = [
     ("layout_sector_rot", 0, 6.28, 0),   # 扇区起始角
     ("layout_fixed_order", 0, 1, 0),     # 作物需求序：0=按价格，1=按服务频率固定
     ("layout_animal_last", 0, 1, 0),     # 动物不再抢最近环
+    # ---- 方案1：拆解 v2 的执行差距（种植阻塞诊断 2026-09-15）----
+    ("plant_cap_mid",     0, 16, 0),     # d12-19 日种植限速（<2 = 沿用 plant_cap）
+    ("plant_cap_late",    0, 16, 0),     # d20+ 日种植限速
+    ("plant_idle_hour",   8, 24, 24),    # 过该小时后额外放宽种植（24=关）
+    ("plant_idle_extra",  0, 12, 0),     # 午后额外种植配额
+    ("seed_lookahead",    0, 1, 0),      # 买种看次日目标
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -248,7 +254,12 @@ def gen_tables(p):
                           "layout_sector": int(round(g["layout_sector"])) if g["layout_sector"] >= 1.5 else 0,
                           "layout_sector_rot": round(g["layout_sector_rot"], 2),
                           "layout_fixed_order": int(g["layout_fixed_order"] >= 0.5),
-                          "layout_animal_last": int(g["layout_animal_last"] >= 0.5)},
+                          "layout_animal_last": int(g["layout_animal_last"] >= 0.5),
+                          "plant_cap_mid": int(round(g["plant_cap_mid"])) if g["plant_cap_mid"] >= 2 else 0,
+                          "plant_cap_late": int(round(g["plant_cap_late"])) if g["plant_cap_late"] >= 2 else 0,
+                          "plant_idle_hour": int(round(g["plant_idle_hour"])) if g["plant_idle_hour"] < 23.5 else 99,
+                          "plant_idle_extra": int(round(g["plant_idle_extra"])),
+                          "seed_lookahead": int(g["seed_lookahead"] >= 0.5)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

@@ -450,6 +450,14 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
         # 解锁爆种（规模蒸馏②：Majkel 新地到手当天种 12-17 块）：解锁当天与次日放宽限速
         if st.get("unlock_day") is not None and 0 <= day - st["unlock_day"] <= 1:
             cap = max(cap, tu.get("burst_cap", cap))
+        # 分阶段限速（方案1 诊断：ga1 最优 cap=5，d16-24 天天打满而缺口 10-24、现金闲置）：0=沿用 cap
+        if 12 <= day < 20 and tu.get("plant_cap_mid", 0):
+            cap = tu["plant_cap_mid"]
+        elif day >= 20 and tu.get("plant_cap_late", 0):
+            cap = tu["plant_cap_late"]
+        # 午后闲置转种植（K1 当天最后工作后作废移动 1770 步 vs v2 442）：过了该小时额外放宽
+        if turn % 24 >= tu.get("plant_idle_hour", 99):
+            cap += tu.get("plant_idle_extra", 0)
         plant_quota = cap - st.get("planted_today", 0)
         slack = tu.get("endgame_slack", 0)  # 季末截止放宽（规模蒸馏④：Majkel 种到 d27）
         for p in empty:
@@ -1341,7 +1349,11 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
         need_day = cd["first_yield_day"] if cd["ongoing"] else cd["max_yield_day"]
         if day + need_day + 1 > 29 + kn.get("tuning", {}).get("endgame_slack", 0):
             continue
-        g = targets.get(crop, 0) - planted.get(crop, 0) - seeds.get(crop, 0)
+        tgt_c = targets.get(crop, 0)
+        if kn.get("tuning", {}).get("seed_lookahead", 0):
+            # 买种看次日目标（方案1 诊断：d12 为瓜买 11 粒，d13 瓜目标归零，种子囤到季末）
+            tgt_c = min(tgt_c, sched.crop_targets(day + 1, shops).get(crop, 0))
+        g = tgt_c - planted.get(crop, 0) - seeds.get(crop, 0)
         if g > 0:
             seed_gap[crop] = g
     seed_orders = {}
