@@ -349,7 +349,7 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
     for _, t in plants:
         planted[t["crop"]] = planted.get(t["crop"], 0) + 1
     st["planted"] = planted
-    stop_feed = day >= kn["feed"]["stop_feed_day"]
+    stop_feed = day >= tu.get("feed_stop_day", kn["feed"]["stop_feed_day"])
 
     # P0 生存线：濒死喂养 / 濒枯浇水
     if not stop_feed:
@@ -381,7 +381,10 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
                 tasks.append((2.2, None, pos, ["HARVEST"]))
 
     water_ddl = tu.get("water_deadline_hour", 16)
+    lazy = tu.get("water_lazy_frac", 0)  # 产出诊断:Majkel h21 留 35-40% 作物不浇(只在连旱≥1 时 P0 补浇)
     for pos, t in plants:
+        if lazy and t.get("consecutive_unwatered", 0) == 0 and ((pos[0] * 37 + pos[1] * 61 + day * 17) % 100) < lazy * 100:
+            continue
         if not t.get("watered_today"):
             # 白天就近浇；傍晚起未浇的升入生存桶清尾（当天不浇即枯/杂草化）
             tasks.append((3 if hour < water_ddl else 1.5, None, pos, ["WATER"]))
@@ -406,8 +409,9 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
         if cd["ongoing"] and t.get("yield_units", 0) >= (ymin_st if t["crop"] == "STRAWBERRY" else ymin) and day - t["planted_day"] >= cd["first_yield_day"]:
             tasks.append((5, None, pos, ["HARVEST"]))
     # P6 照料
+    care_on = day < tu.get("care_stop_day", 30)  # 产出诊断:Majkel d25+ 近半动物不照料
     for pos, t in animals:
-        if not t.get("cared_today"):
+        if care_on and not t.get("cared_today"):
             tasks.append((6, None, pos, ["CARE"]))
     # P4 建栏（日程目标数 - 现有数；在存量服务(浇水)之后）
     want_pasture = sched.pasture_target(turn, shops)
@@ -1149,7 +1153,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
         return sells[:MAX_ORDERS]
 
     fb_days = kn.get("tuning", {}).get("feed_buffer_days", kn["feed"]["buffer_days"])
-    feed_need = 0 if day >= kn["feed"]["stop_feed_day"] else \
+    feed_need = 0 if day >= kn.get("tuning", {}).get("feed_stop_day", kn["feed"]["stop_feed_day"]) else \
         st.get("n_animals", 0) * fb_days
 
     # ---- 卖出（节拍表驱动）----
@@ -1345,7 +1349,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
 
     # 饲料：缓冲补货 + 大批日
     fd = kn["feed"]
-    if day < fd["stop_feed_day"] and st.get("n_animals", 0) > 0:
+    if day < kn.get("tuning", {}).get("feed_stop_day", fd["stop_feed_day"]) and st.get("n_animals", 0) > 0:
         wheat_have = shed.get("WHEAT", 0) + sum(inv.get("WHEAT", 0) for inv in st["invs"])
         target = st["n_animals"] * (fd["bulk_target_per_animal"] if day in fd["bulk_days"] else fd["buffer_days"])
         p_wheat = prices.get("WHEAT", 25)

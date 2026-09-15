@@ -38,8 +38,13 @@ import os as _os
 OWN_W = float(_os.environ.get("K1_OWN_W", "0.5"))
 SOLO_W = float(_os.environ.get("K1_SOLO_W", "0.15"))
 TAG = _os.environ.get("K1_TAG", "")
-SEED_BANK = [1009, 1046, 2083, 3120, 5194, 6231, 7268, 8305, 9342, 10379, 11416, 12453]
-HOLD_SEEDS = [900007, 900060, 900113, 900166, 900219, 900272, 900325, 900378]
+# 预算参数(2026-09-15 修订:单局 ~0.4s,旧 12 代×4 局/候选被噪声支配,每代最优分差 ±10k 无趋势)
+VS_N = int(_os.environ.get("K1_VS_N", "2"))      # 每阶段对战 seed 数(×2 对手)
+SOLO_N = int(_os.environ.get("K1_SOLO_N", "1"))
+HOLD_N = int(_os.environ.get("K1_HOLD_N", "4"))
+ROT = int(_os.environ.get("K1_ROT", "3"))         # 每几代轮换训练 seed
+SEED_BANK = [1009 + 1037 * i for i in range(400)]
+HOLD_SEEDS = [900007 + 53 * i for i in range(2 * HOLD_N + 8)]
 
 
 def clamp(vec):
@@ -110,9 +115,10 @@ def main():
     elites = []
     with ProcessPoolExecutor(max_workers=8) as pool:
         for g in range(gens):
-            bank_off = (g // 3) * 2 % 6
-            train_vs = SEED_BANK[bank_off:bank_off + 2]
-            train_solo = SEED_BANK[bank_off + 6:bank_off + 7]
+            blk = 2 * (VS_N + SOLO_N)
+            bank_off = ((g // ROT) * blk) % (len(SEED_BANK) - blk)
+            train_vs = SEED_BANK[bank_off:bank_off + VS_N]
+            train_solo = SEED_BANK[bank_off + VS_N:bank_off + VS_N + SOLO_N]
             cands = [list(mu)] + seed_pool[:max(0, npop // 4 - 1)]
             while len(cands) < npop:
                 cands.append([rng.gauss(m, s) for m, s in zip(mu, sd)])
@@ -120,8 +126,9 @@ def main():
             f0 = eval_cands(cands, train_vs, train_solo, pool)
             order = sorted(range(len(cands)), key=lambda i: -f0[i][0])
             top = [cands[i] for i in order[:npop // 2]]
-            extra_vs = SEED_BANK[(bank_off + 2) % 6:(bank_off + 2) % 6 + 2]
-            extra_solo = SEED_BANK[(bank_off + 7) % 12:(bank_off + 7) % 12 + 1]
+            e0 = bank_off + VS_N + SOLO_N
+            extra_vs = SEED_BANK[e0:e0 + VS_N]
+            extra_solo = SEED_BANK[e0 + VS_N:e0 + VS_N + SOLO_N]
             f1 = eval_cands(top, extra_vs, extra_solo, pool)
             total = [((f0[order[i]][0] + 2 * f1[i][0]) / 3, f1[i][1], f1[i][2], f1[i][3], top[i])
                      for i in range(len(top))]
@@ -141,8 +148,9 @@ def main():
                                   "margin": total[0][1], "vs_own": total[0][2], "params": bp}) + "\n")
             log.flush()
         finals = [best[0]] + [e[4] for e in elites[:4]]
-        fh = eval_cands(finals, HOLD_SEEDS[:4], HOLD_SEEDS[4:6], pool)
-        base_h = eval_cands([[DEFAULTS[n] for n, _, _, _ in SCHED_SPACE]], HOLD_SEEDS[:4], HOLD_SEEDS[4:6], pool)[0]
+        hv, hs = HOLD_SEEDS[:HOLD_N], HOLD_SEEDS[HOLD_N:HOLD_N + max(2, HOLD_N // 2)]
+        fh = eval_cands(finals, hv, hs, pool)
+        base_h = eval_cands([[DEFAULTS[n] for n, _, _, _ in SCHED_SPACE]], hv, hs, pool)[0]
         print(f"HOLDOUT baseline: fit {base_h[0]:.0f} margin {base_h[1]:.0f} own {base_h[2]:.0f}", flush=True)
         results = []
         for i, f in enumerate(fh):

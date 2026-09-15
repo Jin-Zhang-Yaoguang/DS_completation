@@ -16,7 +16,7 @@ SCHED_SPACE = [
     ("tomato_base",       0, 10, 2),     # 番茄常备面积（d8 起，分散化维度）
     ("melon_tiles",       6, 16, 12),    # 瓜一波面积（d0-2 铺设）
     ("cow_total",         0, 20, 8),     # 全季牛数（按 Majkel 批次日 0/6/9 比例 2:4:2 分配）
-    ("sheep_total",       0, 8, 3),      # 全季羊数（批次比例 1:1:1）
+    ("sheep_total",       0, 14, 3),     # 全季羊数（批次比例 1:1:1）
     ("goose_total",       0, 10, 2),      # 全季鹅数（d6 一批）
     ("day0_animal_frac",  0.3, 1.0, 1.0),# d0 动物批次保留比例（<1 = 开局省钱后补）
     ("melon_d0",          0, 12, 8),     # d0 瓜面积（d1-2 爬到 melon_tiles）
@@ -64,6 +64,11 @@ SCHED_SPACE = [
     ("gate_milk",         0, 1.2, 0),    # 牛奶卖价门槛(×基准160;Majkel 111 vs 97)
     ("gate_wool",         0, 1.2, 0),    # 羊毛卖价门槛(×基准200)
     ("sell_slip",         0.02, 0.2, 0.06),  # 节拍卖出滑点容忍(批量大小)
+    # ---- 产出侧候选（产出诊断 2026-09-15：成熟草莓格·天 d15-19 M96/K46、h21 未浇 M36%/K6%、牛 40/30 羊 24/15、d25+ 照料放弃）----
+    ("straw_ramp_days",   1, 9, 5),      # 草莓从 6 爬到峰值的天数(早铺草莓=d15 成熟面积)
+    ("water_lazy_frac",   0, 1, 0),      # 未连旱作物当天允许不浇的比例
+    ("care_stop_day",     18, 30, 30),   # 此后不再照料
+    ("feed_stop_day",     18, 28, 28),   # 此后不再喂养
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -88,7 +93,7 @@ def gen_tables(p):
         if d < g["straw_start"]:
             s = 0
         elif d <= g["straw_rampdown"]:
-            s = _ramp(d, g["straw_start"], 6, g["straw_start"] + 5, g["straw_peak"])
+            s = _ramp(d, g["straw_start"], 6, g["straw_start"] + max(1, g["straw_ramp_days"]), g["straw_peak"])
         else:
             s = _ramp(d, g["straw_rampdown"], g["straw_peak"], 24, 9)
         straw.append(0 if d >= 28 else int(round(s)))
@@ -186,7 +191,10 @@ def gen_tables(p):
                           "straw_ymin": int(round(g["straw_ymin"])),
                           "animal_ymin": int(round(g["animal_ymin"])),
                           "price_gate": {k: round(g[d], 3) for k, d in (("STRAWBERRY", "gate_straw"), ("MILK", "gate_milk"), ("WOOL", "gate_wool")) if g[d] >= 0.3},
-                          "sell_slip": round(g["sell_slip"], 3)},
+                          "sell_slip": round(g["sell_slip"], 3),
+                          "water_lazy_frac": round(g["water_lazy_frac"], 3),
+                          "care_stop_day": int(round(g["care_stop_day"])),
+                          "feed_stop_day": int(round(g["feed_stop_day"]))},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
