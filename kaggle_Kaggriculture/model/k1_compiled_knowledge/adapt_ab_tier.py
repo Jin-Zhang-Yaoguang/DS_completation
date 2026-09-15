@@ -11,7 +11,8 @@ OPPS = [(tier, FMT(o)) for tier, t in TJ['tiers'].items() for o in t['opps'][:(3
 BEST = sys.argv[1] if len(sys.argv) > 1 else 'best_iter_ga2.json'
 NSEED = int(sys.argv[2]) if len(sys.argv) > 2 else 4
 SEEDS = [730021 + 149 * i for i in range(NSEED)]
-OFF = {'price_area_gain': 0, 'opp_counter_gain': 0, 'opp_sell_ahead': 0, 'opp_anim_gain': 0, 'race_on': 0, 'mshift_on': 0, 'doomsday_on': 0}
+OFF = {'price_area_gain': 0, 'opp_counter_gain': 0, 'opp_sell_ahead': 0, 'opp_anim_gain': 0, 'race_on': 0, 'mshift_on': 0, 'doomsday_on': 0,
+       'layout_sector': 0, 'layout_fixed_order': 0, 'layout_animal_last': 0}
 CONFIGS = {
     '基准(自适应全关)': OFF,
     '搜索原样': {},
@@ -22,7 +23,18 @@ CONFIGS = {
     '动物随对手 g=0.5': {**OFF, 'opp_anim_gain': 0.5, 'opp_anim_from': 6},
     'race 跟卖': {**OFF, 'race_on': 1, 'race_trigger': 3, 'race_decay': 0.6},
     '低价转产 0.8': {**OFF, 'mshift_on': 1, 'price_floor_frac': 0.8},
+    # ga3 新候选（布局 + 对手类型乘数）；仅在基准文件含对应维度时有意义
+    '布局:扇区4': {**OFF, 'layout_sector': 4},
+    '布局:扇区4+服务频率序': {**OFF, 'layout_sector': 4, 'layout_fixed_order': 1},
+    '布局:服务频率序': {**OFF, 'layout_fixed_order': 1},
+    '布局:动物外环': {**OFF, 'layout_animal_last': 1},
+    '动物随对手 仅light+std': {**OFF, 'opp_anim_gain': 0.5, 'tm_anim_light': 1, 'tm_anim_std': 1, 'tm_anim_wheat': 0},
+    '动物随对手 仅light': {**OFF, 'opp_anim_gain': 0.5, 'tm_anim_light': 1, 'tm_anim_std': 0, 'tm_anim_wheat': 0},
 }
+# 用法补充：第三个参数给出配置名子串过滤（逗号分隔），如 "基准,布局" 只跑布局组
+if len(sys.argv) > 3:
+    _keep = sys.argv[3].split(',')
+    CONFIGS = {k: v for k, v in CONFIGS.items() if k == '基准(自适应全关)' or any(x in k for x in _keep)}
 BASE = '基准(自适应全关)'
 
 
