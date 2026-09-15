@@ -229,7 +229,7 @@ class Schedule:
 ROLE_ORDER = ["ANIMAL", "STRAWBERRY", "TOMATO", "CARROT", "WHEAT", "MELON"]
 
 
-def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None):
+def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None, template=None):
     """每天重排：已占用格锁定角色；空格按需求序从近到远补。
 
     RA1 自适应化：prices 给定时，作物需求序按「当前价格/base 边际比值」排序
@@ -271,6 +271,13 @@ def plan_roles(tiles, bs, targets, n_pasture, n_coop, prices=None):
         t = tiles[y][x]
         if isinstance(t, dict) and t.get("kind") not in ("WEED",):
             continue
+        # 布局模板（knowledge.layout_template，Majkel d12 众数布局）：该格模板角色仍有缺口时优先
+        if template:
+            want = template.get(f"{x},{y}")
+            if want and remaining.get(want, 0) > 0:
+                roles[(x, y)] = want
+                remaining[want] -= 1
+                continue
         for role in role_seq:
             if remaining.get(role, 0) > 0:
                 roles[(x, y)] = role
@@ -1461,7 +1468,8 @@ def _decide(obs, config):
                 tgt[best_c] = tgt.get(best_c, 0) + freed
     st["roles"] = plan_roles(tiles, bs, st["crop_targets"],
                              sched.pasture_target(turn, shops), sched.coop_target(turn),
-                             prices=prices if tu_mkt.get("adaptive_roles", True) else None)
+                             prices=prices if tu_mkt.get("adaptive_roles", True) else None,
+                             template=kn.get("layout_template") if tu_mkt.get("layout_template_on") else None)
 
     st["placed_counts"] = {}
     for row in tiles:
