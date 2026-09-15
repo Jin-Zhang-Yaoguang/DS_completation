@@ -128,6 +128,10 @@ SCHED_SPACE = [
     ("eps_repair",        0, 2, 0),      # 失配时：0 = K1 动作，1 = 原地 PASS，2 = 走回回放位置
     ("eps_gate",          0, 2, 1),      # 失配判断：0 = 状态合法性，1 = 坐标一致，2 = 不检查
     ("eps_switch1",       0, 1, 1),      # 看到第 1 家店时切换
+    ("eps_fix",           0, 2, 0),      # 修复层：0 关，1 无效工作→K1 同格工作否则 PASS，2 无效工作→K1 同格工作否则照放
+    ("eps_route_on",      0, 1, 0),      # 按对手早期签名路由（回放继续 / 交回 K1）
+    ("eps_route_turn",    48, 96, 72),   # 路由判定步
+    ("eps_route_thr",     0.02, 0.5, 0.15),  # 最近邻距离阈值（超出 = 未知对手 → K1）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -298,7 +302,11 @@ def gen_tables(p):
                           "eps_pass": int(g["eps_pass"] >= 0.5),
                           "eps_repair": int(round(g["eps_repair"])),
                           "eps_gate": int(round(g["eps_gate"])),
-                          "eps_switch1": int(g["eps_switch1"] >= 0.5)},
+                          "eps_switch1": int(g["eps_switch1"] >= 0.5),
+                          "eps_fix": int(round(g["eps_fix"])),
+                          "eps_route_on": int(g["eps_route_on"] >= 0.5),
+                          "eps_route_turn": int(round(g["eps_route_turn"])),
+                          "eps_route_thr": round(g["eps_route_thr"], 3)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

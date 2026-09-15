@@ -551,3 +551,20 @@ K1 接入（lib_on / lib_until_day / lib_market / lib_minshare，共 103 维，�
 - 回放+商店切换对 v119 / v2 / v120 / SpaTaro 由大负转为全胜（8/8、8/8、6/8、8/8），这是 K1 迄今第一次赢下 medium/mixed 层对手。
 - 同一配置对 v1_baseline、y68 家族、ymg tape、v24 全负且大幅恶化——**同一骨架的胜负完全由对手决定**（且与商店序列内生相关：切到哪条局取决于这局出现的商店）。
 - 门控 1 四强（y68g/c/f + y67）上两种回放均 0 胜；门控 1 不可能由回放达成。
+
+## 同时推进：修复层 + 对手路由（2026-09-15）
+
+### 回放动作真实生效（tape_noop_truth.py，默认整局 tape vs y68g/v2 × 2 seed，前后状态比对）
+- 移动 100% 生效；工作类无效率 d10+：WATER 21-31%、HARVEST 27-31%、FEED 23-30%、CARE 24-30%、COLLECT_FERT 30-35%、FERTILIZE 33-39%、**PLANT 52-56%（d10-19）**、PLACE 36-43%。
+- 判断器标定：旧 V0（上一步观测）把移动进锁定区判非法（SOUTH 漏判 40-48%）、PLACE 漏判 45-59%；
+  新 V1（本步 BUY 先计入）对上述工作类动作漏判 0、误放 ≈0 → 可作修复触发器；PLACE/DIG 不可靠，不纳入修复。
+
+### 早切代价（adapt_ab_tier.py PER_OPP，66 局/组）：回放 d1/d2/d3 交回 K1 → 全体 -17.0k（t=-5.25）/ -29.0k（t=-12.24）/ -6.9k（t=-1.97）；d3 交回时 medium +15.2k 保留。
+→ 路由只能在第一家店出现后（step 72）做「回放继续 / 交回 K1」二选一。
+
+### 对手早期签名（opp_early_sig.py，11 对手 × 3 seed × 双席位）
+- 每个对手在固定己方 tape 下 d0-d3 位置序列完全确定（跨 seed/席位哈希唯一）。
+- d1h23/d2h23 特征向量（工人/金币/牛羊/麦瓜莓）区分 8 类：v1_baseline、SpaTaro、v119、v2（d1 工人 0）、y68g/c/f（完全相同）、ymg0/1（相同）、v120（工人 4 金币 231）、v24（工人 4 金币 163）。
+- 路由表 opp_route_table.json：replay = SpaTaro / v119 / v2 / v120；k1 = 其余。v120 与 v24 仅金币差 68，泛化风险高；未知对手（距离 > 阈值）默认交回 K1。
+
+接入 4 维（eps_fix / eps_route_on / eps_route_turn / eps_route_thr）。

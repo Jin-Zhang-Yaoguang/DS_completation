@@ -1927,13 +1927,83 @@ def _route_eps():
     return _ROUTE_EPS
 
 
+_EPS_WORK = ("WATER", "HARVEST", "FEED", "CARE", "COLLECT_FERTILIZER", "PLANT", "FERTILIZE")
+_OPP_ROUTE = None
+
+
+def _eps_work_valid(op, pos, tiles, inv, seeds, shed, market):
+    """市场感知有效性（tape_noop_truth.py 标定：WATER/HARVEST/FEED/CARE/COLLECT/PLANT/FERTILIZE 漏判率 0、误放率 ≈0）。
+    本步 BUY_SEED/BUY_PRODUCT 先计入；只判工作类动作，其余一律视为有效。"""
+    o = op[0]
+    if o not in _EPS_WORK:
+        return True
+    seeds2 = dict(seeds)
+    for od in market or []:
+        if od and od[0] == "BUY_SEED" and len(od) >= 3:
+            seeds2[od[1]] = seeds2.get(od[1], 0) + int(od[2])
+    t = tiles[pos[1]][pos[0]]
+    if o == "PLANT":
+        return t is None and len(op) >= 2 and seeds2.get(op[1], 0) > 0
+    if o == "FEED":
+        return isinstance(t, dict) and "animal" in t and not t.get("fed_today")
+    if o == "FERTILIZE":
+        return _task_still_valid(t, op) and inv.get("FERTILIZER", 0) > 0
+    return _task_still_valid(t, op)
+
+
+def _opp_sig(obs, seat):
+    f = (obs.get("farms") or [{}, {}])[1 - seat]
+    c = {}
+    for row in f.get("tiles") or []:
+        for t in row:
+            if isinstance(t, dict):
+                k = ("crop_" + t["crop"]) if t.get("kind") == "PLANT" else ("an_" + t["animal"] if t.get("animal") else None)
+                if k:
+                    c[k] = c.get(k, 0) + 1
+    return {"hands": len(f.get("hands") or []), "money": int(f.get("money", 0)), **c}
+
+
+def _opp_route_label(sig1, sig2, thr):
+    """最近邻匹配对手路由表（opp_route_table.json）；距离超过阈值 → 未知对手 → 'k1'。"""
+    global _OPP_ROUTE
+    if _OPP_ROUTE is None:
+        import os as _o4
+        import json as _j4
+        try:
+            _OPP_ROUTE = _j4.load(open(_o4.path.join(_o4.path.dirname(_o4.path.abspath(__file__)), "opp_route_table.json")))["rows"]
+        except Exception:
+            _OPP_ROUTE = []
+    vec = [sig1.get("hands", 0), sig1.get("money", 0), sig1.get("an_COW", 0), sig1.get("an_SHEEP", 0),
+           sig1.get("crop_WHEAT", 0), sig1.get("crop_MELON", 0), sig1.get("crop_STRAWBERRY", 0),
+           sig2.get("money", 0), sig2.get("crop_STRAWBERRY", 0), sig2.get("an_COW", 0)]
+    scale = [4, 400, 3, 3, 10, 10, 5, 600, 5, 3]
+    best = None
+    for row, lab, _nm in _OPP_ROUTE:
+        d = sum(abs(a - b) / s_ for a, b, s_ in zip(vec, row, scale)) / len(scale)
+        if best is None or d < best[0]:
+            best = (d, lab)
+    if not best or best[0] > thr:
+        return "k1", (best[0] if best else None)
+    return best[1], best[0]
+
+
 def _apply_route_eps(st, kn, obs, tiles, bs, positions, invs, seeds, shed, actions, market, turn, day):
     """跟随整局回放 + 修复（榜首轨迹骨架：动作按商店历史分支、同前两店第 7 天全队动作一致 76%）：
     开局跟默认局；看到第 1 家店切到首店相同的最优局；eps_switch2 时看到前两店再切。
     回放单位动作在当前状态不合法 → 该单位保留 K1 动作；市场可跟回放（eps_market）。"""
     tu = kn.get("tuning", {})
-    if not tu.get("eps_on", 0) or day >= tu.get("eps_until_day", 30):
+    if not tu.get("eps_on", 0) or day >= tu.get("eps_until_day", 30) or st.get("eps_stop"):
         return actions, market
+    # 对手路由（opp_early_sig.py：对手 d1/d2 23 点可观测特征确定性可区分 8 类；回放→K1 早切代价 d3 最小）
+    seat = obs.get("player", 0)
+    if turn % 24 == 23 and day in (1, 2):
+        st[f"opp_sig_d{day}"] = _opp_sig(obs, seat)
+    if tu.get("eps_route_on", 0) and turn >= tu.get("eps_route_turn", 72) and "eps_route" not in st:
+        lab, dist = _opp_route_label(st.get("opp_sig_d1", {}), st.get("opp_sig_d2", {}), tu.get("eps_route_thr", 0.15))
+        st["eps_route"] = (lab, dist)
+        if lab != "replay":
+            st["eps_stop"] = True
+            return actions, market
     lib = _route_eps()
     if not lib.get("eps"):
         return actions, market
@@ -1967,6 +2037,17 @@ def _apply_route_eps(st, kn, obs, tiles, bs, positions, invs, seeds, shed, actio
             ok = bool(exp) and i < len(exp) and exp[i] is not None and tuple(exp[i]) == tuple(positions[i])
         else:
             ok = True
+        if ok and tu.get("eps_fix", 0) and not _eps_work_valid(op, positions[i], tiles, invs[i], seeds_l, shed_l,
+                                                               a.get("market")):
+            # 修复层（tape_noop_truth.py：d10+ 工作类动作 25-56% 无效）：K1 同格有工作 → 用 K1 的；否则原地留在路线上
+            k1op = actions[i]
+            if k1op and k1op[0] in _EPS_WORK and _eps_work_valid(k1op, positions[i], tiles, invs[i], seeds_l, shed_l,
+                                                                 a.get("market")):
+                st["eps_fixed"] = st.get("eps_fixed", 0) + 1
+            else:
+                actions[i] = ["PASS"] if tu.get("eps_fix", 0) == 1 else op
+            miss += 1
+            continue
         if ok:
             if op[0] == "PASS" and not tu.get("eps_pass", 1):
                 continue
