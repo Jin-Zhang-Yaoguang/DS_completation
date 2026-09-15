@@ -12,11 +12,11 @@ MOVES = {"NORTH", "SOUTH", "EAST", "WEST"}
 IDLE = MOVES | {"PASS", "PICKUP", "DROP"}
 CONFIGS = {
     '基准(ga4最优)': {},
-    '路线 重规划4 前看3': {'route_on': 1, 'route_replan_h': 4, 'route_look': 3},
-    '路线 重规划8 前看1': {'route_on': 1, 'route_replan_h': 8, 'route_look': 1},
-    '路线 重规划2 前看5': {'route_on': 1, 'route_replan_h': 2, 'route_look': 5},
-    '路线 重规划1 前看2': {'route_on': 1, 'route_replan_h': 1, 'route_look': 2},
-    '路线 重规划12 前看2': {'route_on': 1, 'route_replan_h': 12, 'route_look': 2},
+    '路线全格 重规划8 前看1': {'route_on': 1, 'route_replan_h': 8, 'route_look': 1},
+    '路线仅作物 重规划8 前看1': {'route_on': 1, 'route_replan_h': 8, 'route_look': 1, 'route_crops_only': 1},
+    '路线仅作物 重规划4 前看3': {'route_on': 1, 'route_replan_h': 4, 'route_look': 3, 'route_crops_only': 1},
+    '路线仅作物 半数单位': {'route_on': 1, 'route_replan_h': 8, 'route_look': 1, 'route_crops_only': 1, 'route_frac': 0.5},
+    '路线全格 半数单位': {'route_on': 1, 'route_replan_h': 8, 'route_look': 1, 'route_frac': 0.5},
 }
 
 
