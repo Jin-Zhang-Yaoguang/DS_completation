@@ -58,6 +58,12 @@ SCHED_SPACE = [
     ("wheat_keep_frac",   0, 1, 1),      # 卖麦时预留饲料比例(1=原逻辑,0=全卖靠买)
     ("wheat_lot_max",     4, 30, 10),    # 小麦单次卖出上限
     ("feed_buy_cap",      30, 80, 55),   # 饲料小麦买入价上限
+    ("straw_ymin",        0, 5, 0),      # 草莓收获触发 yield(0=沿用 harvest_ymin;Majkel 每次 1.90 vs K1 1.55)
+    ("animal_ymin",       0, 5, 0),      # 动物收获触发 yield(0=沿用)
+    ("gate_straw",        0, 1.6, 0),    # 草莓卖价门槛(×基准120;0=关;Majkel 均价 165 vs 134)
+    ("gate_milk",         0, 1.2, 0),    # 牛奶卖价门槛(×基准160;Majkel 111 vs 97)
+    ("gate_wool",         0, 1.2, 0),    # 羊毛卖价门槛(×基准200)
+    ("sell_slip",         0.02, 0.2, 0.06),  # 节拍卖出滑点容忍(批量大小)
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -176,7 +182,11 @@ def gen_tables(p):
                           "endgame_slack": int(round(g["endgame_slack"])),
                           "wheat_keep_frac": round(g["wheat_keep_frac"], 3),
                           "wheat_lot_max": int(round(g["wheat_lot_max"])),
-                          "feed_buy_cap": int(round(g["feed_buy_cap"]))},
+                          "feed_buy_cap": int(round(g["feed_buy_cap"])),
+                          "straw_ymin": int(round(g["straw_ymin"])),
+                          "animal_ymin": int(round(g["animal_ymin"])),
+                          "price_gate": {k: round(g[d], 3) for k, d in (("STRAWBERRY", "gate_straw"), ("MILK", "gate_milk"), ("WOOL", "gate_wool")) if g[d] >= 0.3},
+                          "sell_slip": round(g["sell_slip"], 3)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

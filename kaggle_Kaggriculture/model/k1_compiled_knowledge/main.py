@@ -396,12 +396,14 @@ def build_tasks(st, kn, sched, tiles, bs, seeds, shed, day, turn, shops):
                 tasks.append((4, a, p, ["PLACE", a]))
     # P5 产出收获（收获=变现+恢复产出，先于照料）：动物与 ongoing 作物
     ymin = tu.get("harvest_yield_min", 2)
+    ymin_an = tu.get("animal_ymin", 0) or ymin   # 产值候选:按类别覆盖(0=沿用全局)
+    ymin_st = tu.get("straw_ymin", 0) or ymin
     for pos, t in animals:
-        if t.get("yield_units", 0) >= ymin:
+        if t.get("yield_units", 0) >= ymin_an:
             tasks.append((5, None, pos, ["HARVEST"]))
     for pos, t in plants:
         cd = CROPS[t["crop"]]
-        if cd["ongoing"] and t.get("yield_units", 0) >= ymin and day - t["planted_day"] >= cd["first_yield_day"]:
+        if cd["ongoing"] and t.get("yield_units", 0) >= (ymin_st if t["crop"] == "STRAWBERRY" else ymin) and day - t["planted_day"] >= cd["first_yield_day"]:
             tasks.append((5, None, pos, ["HARVEST"]))
     # P6 照料
     for pos, t in animals:
@@ -1155,13 +1157,17 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     adaptive_lot = kn.get("tuning", {}).get("adaptive_lot", True)
     ph_shift = kn.get("tuning", {}).get("sell_phase_shift", 0)
     lot_ov = kn.get("tuning", {}).get("sell_lot_max")
+    gates = kn.get("tuning", {}).get("price_gate", {})  # 产值候选:价/基准 < 门槛则暂不卖(d26 起失效)
     for it, rule in sr["phase_sell"].items():
         have = shed.get(it, 0)
+        g = gates.get(it, 0)
+        if g and day < 26 and prices.get(it, 0) < g * MARKET_PARAMS[it]["base"] and have < SHED_CAP // 4:
+            continue
         if have > 0 and turn % 4 == (rule["phase"] + ph_shift) % 4:
             lm = lot_ov if lot_ov else rule["lot_max"]
             if adaptive_lot:
                 # RA2：批量由价格曲线决定（slip 控制），随市场库存逐局不同
-                q = min(have, _batch_size(it, inv_mkt.get(it, 10000), lm, 0.06))
+                q = min(have, _batch_size(it, inv_mkt.get(it, 10000), lm, kn.get("tuning", {}).get("sell_slip", 0.06)))
             else:
                 q = min(have, lm)
             sells.append(["SELL", it, q])
