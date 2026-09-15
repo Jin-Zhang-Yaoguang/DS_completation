@@ -1295,7 +1295,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     if turn <= kn["last_animal_turn"]:
         want = sched.animal_wanted(day)
         oag = kn.get("tuning", {}).get("opp_anim_gain", 0)
-        if oag and day >= 6:
+        if oag and day >= kn.get("tuning", {}).get("opp_anim_from", 6):
             oan = (st.get("opp_sense") or {}).get("anim", {})
             mine = st.get("placed_counts", {})
             for a in ("COW", "SHEEP"):

@@ -96,11 +96,17 @@ def init_islands(npop, rng):
     return islands
 
 
-def evaluate(inds, vs, solo, pool):
-    """评估并把结果累加进个体（累计均值 fitness）。"""
+def evaluate(inds, vs, solo, pool, opps=None):
+    """评估并把结果累加进个体（累计均值 fitness）。
+    分层对手模式下每代对手不同、难度不同：fitness 先减当代种群均值（相对分）再累计，
+    否则老个体的累计分会被「抽到易/难对手的那几代」系统性抬高或压低。"""
     if not inds:
         return
-    res = TI.eval_cands([ind["vec"] for ind in inds], vs, solo, pool)
+    res = TI.eval_cands([ind["vec"] for ind in inds], vs, solo, pool, opps=opps)
+    if TI.TIERS:
+        fm = statistics.mean(r[0] for r in res)
+        mm = statistics.mean(r[1] for r in res)
+        res = [(f - fm, m - mm, own, s) for f, m, own, s in res]
     for ind, (f, m, own, s) in zip(inds, res):
         k = ind["n"]
         ind["sum"] += f
@@ -125,14 +131,15 @@ def main():
             vs = TI.SEED_BANK[off:off + TI.VS_N]
             solo = TI.SEED_BANK[off + TI.VS_N:off + blk_sz]
             # 所有个体（含老精英）在本代新 seed 上评估一次：老个体 fitness 变成多 seed 均值
-            evaluate([ind for isl in islands for ind in isl], vs, solo, pool)
+            opps_g = TI.gen_opps(g)
+            evaluate([ind for isl in islands for ind in isl], vs, solo, pool, opps=opps_g)
             summary = []
             for i, isl in enumerate(islands):
                 isl.sort(key=lambda ind: -ind["fit"])
                 summary.append((round(isl[0]["fit"]), round(isl[0]["m"]), isl[0]["n"]))
             best = max((ind for isl in islands for ind in isl), key=lambda ind: (ind["n"] >= 3, ind["fit"]))
             bp = TI.to_params(best["vec"])
-            print(f"gen {g}: 各岛最优(fit,margin,评估次数) {summary} | 全局 margin {best['m']:.0f} own {best['own']:.0f} "
+            print(f"gen {g}: 对手 {[(o.split('/')[-2] if o.endswith('main.py') else o.split('/')[-1])[:16] for o in opps_g]} | 各岛最优(相对fit,相对margin,评估次数) {summary} | 全局 margin {best['m']:.0f} own {best['own']:.0f} "
                   f"n={best['n']} | straw={bp['straw_peak']:.0f} cow={bp['cow_total']:.1f} "
                   f"岛间距 {param_dist(TI.to_params(islands[0][0]['vec']), TI.to_params(islands[-1][0]['vec'])):.2f}",
                   flush=True)
@@ -170,7 +177,8 @@ def main():
                 finals.append(dict(ind, island=islands.index(isl)))
                 k += 1
         hv, hs = TI.HOLD_SEEDS[:TI.HOLD_N], TI.HOLD_SEEDS[TI.HOLD_N:TI.HOLD_N + max(2, TI.HOLD_N // 2)]
-        fh = TI.eval_cands([f["vec"] for f in finals], hv, hs, pool)
+        fh = TI.eval_cands([f["vec"] for f in finals], hv, hs, pool,
+                           opps=(TI.HOLD_OPPS if TI.TIERS else None))
         results = []
         for i, (ind, f) in enumerate(zip(finals, fh)):
             print(f"HOLDOUT 岛{ind['island']} cand{i}: fit {f[0]:.0f} margin {f[1]:.0f} own {f[2]:.0f} solo {f[3]:.0f} "

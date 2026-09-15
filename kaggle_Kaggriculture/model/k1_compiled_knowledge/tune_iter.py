@@ -35,6 +35,27 @@ MOS = "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kag
 POOL = "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/opponent_pool_v1"
 OPPS = [f"sub:{MOS}/y68g_main.py", f"sub:{POOL}/packs/y68c_main.py"]
 import os as _os
+# 分层对手池（2026-09-15）：K1_OPP_TIERS=opp_tiers.json 时每代按层抽对手，holdout 用固定跨层集合；
+# 未设置时保持旧口径（y68g+y68c 固定）。
+TIERS_PATH = _os.environ.get("K1_OPP_TIERS", "")
+TIERS = None
+if TIERS_PATH:
+    _tj = json.loads((HERE / TIERS_PATH).read_text() if not _os.path.isabs(TIERS_PATH) else open(TIERS_PATH).read())
+    _fmt = lambda x: x.replace("{M}", _tj["M"]).replace("{K1}", _tj["K1"])
+    TIERS = {k: {"per_gen": v["per_gen"], "opps": [_fmt(o) for o in v["opps"]]} for k, v in _tj["tiers"].items()}
+    HOLD_OPPS = [_fmt(o) for o in _tj["holdout"]]
+
+
+def gen_opps(g):
+    """第 g 代的训练对手：每层按 per_gen 确定性抽取（同代所有候选同一组，保持可比）。"""
+    if not TIERS:
+        return list(OPPS)
+    r = random.Random(7919 * (g + 1))
+    out = []
+    for name in sorted(TIERS):
+        t = TIERS[name]
+        out.extend(r.sample(t["opps"], min(t["per_gen"], len(t["opps"]))))
+    return out
 OWN_W = float(_os.environ.get("K1_OWN_W", "0.5"))
 SOLO_W = float(_os.environ.get("K1_SOLO_W", "0.15"))
 TAG = _os.environ.get("K1_TAG", "")
@@ -57,7 +78,8 @@ def to_params(vec):
 
 def _sim_pair(job):
     """对战一局，返回 (own, margin)。配置注入与 build_plan_pool._sim_one 一致。"""
-    params, seed, opp_spec = job
+    params, seed, opp_spec = job[:3]
+    seat = job[3] if len(job) > 3 else 0
     sys.path.insert(0, "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v4_demand_race/harness")
     sys.path.insert(0, "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v16_online_fidelity")
     import engine
@@ -71,16 +93,22 @@ def _sim_pair(job):
     ov["tuning"] = {**base_tu, "fert_specialist": False, "t0_pool_select": False, **te}
     mod.KN_OVERRIDE = ov
     opp = fidelity.make_agent(opp_spec)
-    b0, b1 = engine.play(mod.agent, opp, seed=seed)
-    return b0, b0 - b1
+    if seat == 0:
+        b0, b1 = engine.play(mod.agent, opp, seed=seed)
+        return b0, b0 - b1
+    b0, b1 = engine.play(opp, mod.agent, seed=seed)
+    return b1, b1 - b0
 
 
-def eval_cands(cands, vs_seeds, solo_seeds, pool):
-    vjobs = [(to_params(c), s, o) for c in cands for s in vs_seeds for o in OPPS]
+def eval_cands(cands, vs_seeds, solo_seeds, pool, opps=None):
+    opps = opps or OPPS
+    # 分层模式下双席位轮换（seed 与对手序号奇偶决定席位），旧口径恒 0 号位
+    vjobs = [(to_params(c), s, o, ((s + j) % 2 if TIERS else 0))
+             for c in cands for s in vs_seeds for j, o in enumerate(opps)]
     sjobs = [(to_params(c), s, None) for c in cands for s in solo_seeds]
     vres = list(pool.map(_sim_pair, vjobs))
     sres = list(pool.map(_sim_one, sjobs))
-    kv, ks = len(vs_seeds) * len(OPPS), len(solo_seeds)
+    kv, ks = len(vs_seeds) * len(opps), len(solo_seeds)
     out = []
     for i in range(len(cands)):
         chunk = vres[i * kv:(i + 1) * kv]

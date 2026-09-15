@@ -76,11 +76,12 @@ SCHED_SPACE = [
     ("opp_sell_ahead",    0, 1, 0),      # 对手挂果高时抢先卖
     ("opp_hang_th",       2, 14, 6),     # 抢卖触发的对手挂果单位
     ("opp_anim_gain",     0, 1, 0),      # 动物目标随对手存栏比缩放
+    ("opp_anim_from",     3, 12, 6),     # 动物随对手起始日（ga1 A/B 唯一正信号 +3.7k，拆细交搜索）
     ("race_on",           0, 1, 0),      # 旧 race 层：市场库存增量反解对手抛货即跟卖
     ("race_trigger",      1, 8, 3),
     ("race_decay",        0.3, 0.9, 0.6),
     ("mshift_on",         0, 1, 0),      # 旧 R1b：价格跌破基准×floor 停种转高价品
-    ("price_floor_frac",  0.3, 0.8, 0.5),
+    ("price_floor_frac",  0.5, 1.0, 0.5),  # ga1 实测 0.5 在 y68 对局从未触发，区间上调
     ("doomsday_on",       0, 1, 0),      # 旧末日层：d25-26 囤货 d27+ 集中抛
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
@@ -214,6 +215,7 @@ def gen_tables(p):
                           "opp_sell_ahead": int(g["opp_sell_ahead"] >= 0.5),
                           "opp_hang_th": int(round(g["opp_hang_th"])),
                           "opp_anim_gain": round(g["opp_anim_gain"], 3) if g["opp_anim_gain"] >= 0.1 else 0,
+                          "opp_anim_from": int(round(g["opp_anim_from"])),
                           "race_enabled": bool(g["race_on"] >= 0.5),
                           "race_trigger": round(g["race_trigger"], 2),
                           "race_decay": round(g["race_decay"], 3),
