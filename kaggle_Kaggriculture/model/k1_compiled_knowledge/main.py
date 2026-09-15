@@ -637,6 +637,35 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
         tgt = min(task_tiles, key=lambda p2: (_dist(positions[i], p2), p2[1], p2[0]))
         if _dist(positions[i], tgt) >= 2:
             go(i, tgt, "majkel_idle")
+
+    # 日活已清空时的状态驱动预走位（门控2 熵源；同 greedy 路径的空闲预走位）：
+    # 傍晚走向动物（清晨喂养），其余时段走向临熟作物；一格一人
+    hour_i = st.get("last_turn", 0) % 24
+    day_i = st.get("last_turn", 0) // 24
+    sites_animal, sites_crop = [], []
+    for yy in range(len(tiles)):
+        for xx in range(len(tiles)):
+            tt2 = tiles[yy][xx]
+            if not isinstance(tt2, dict):
+                continue
+            if "animal" in tt2:
+                sites_animal.append((xx, yy))
+            elif tt2.get("kind") == "PLANT":
+                cd2 = CROPS.get(tt2.get("crop"), {})
+                age2 = day_i - (tt2.get("planted_day") or 0)
+                if tt2.get("yield_units", 0) > 0 or age2 >= cd2.get("first_yield_day", 99) - 1:
+                    sites_crop.append((xx, yy))
+    sites = (sites_animal or sites_crop) if hour_i >= 19 else (sites_crop or sites_animal)
+    taken = set()
+    for i in range(n):
+        if i in used or not sites:
+            continue
+        cand_s = [s for s in sites if s not in taken and _dist(positions[i], s) >= 2]
+        if not cand_s:
+            continue
+        tgt_s = min(cand_s, key=lambda s: (_dist(positions[i], s), (s[0] * 7 + s[1] * 13 + salt) % 10))
+        taken.add(tgt_s)
+        go(i, tgt_s, "majkel_preposition")
     return actions
 
 
