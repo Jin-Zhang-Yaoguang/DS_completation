@@ -15,6 +15,7 @@ OFF = {'price_area_gain': 0, 'opp_counter_gain': 0, 'opp_sell_ahead': 0, 'opp_an
 CONFIGS = {
     '基准(自适应全关)': OFF,
     '搜索原样': {},
+    'ga1最优(旧口径搜出)': 'GA1',
     '价格调面积 g=1': {**OFF, 'price_area_gain': 1.0, 'price_area_from': 6},
     '反跟种 g=0.5': {**OFF, 'opp_counter_gain': 0.5, 'price_area_from': 6},
     '对手挂果抢卖': {**OFF, 'opp_sell_ahead': 1, 'opp_hang_th': 6},
@@ -32,8 +33,12 @@ def one(job):
     sys.path.insert(0, HERE)
     import engine, fidelity
     from schedule_gen import gen_tables, DEFAULTS
-    best = max(json.load(open(f'{HERE}/{BEST}'))['candidates'], key=lambda c: c['hold_margin'])
-    params = {**DEFAULTS, **best['params'], **CONFIGS[name]}
+    if CONFIGS[name] == 'GA1':
+        best = max(json.load(open(f'{HERE}/best_iter_ga1.json'))['candidates'], key=lambda c: c['hold_margin'])
+        params = {**DEFAULTS, **best['params']}
+    else:
+        best = max(json.load(open(f'{HERE}/{BEST}'))['candidates'], key=lambda c: c['hold_margin'])
+        params = {**DEFAULTS, **best['params'], **CONFIGS[name]}
     spec = importlib.util.spec_from_file_location(f'abt_{seed}_{seat}_{abs(hash(name + opp_spec))}', f'{HERE}/main.py')
     mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     base_tu = json.load(open(f'{HERE}/knowledge.json'))['tuning']
