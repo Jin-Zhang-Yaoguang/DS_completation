@@ -8,6 +8,20 @@ LS = '/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/m
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
+def _farm_sig(f):
+    c = {"money": int((f or {}).get("money", 0)), "hands": len((f or {}).get("hands") or []), "crops": 0, "animals": 0, "structs": 0}
+    for row in (f or {}).get("tiles") or []:
+        for t in row:
+            if isinstance(t, dict):
+                if t.get("kind") == "PLANT":
+                    c["crops"] += 1
+                elif t.get("animal"):
+                    c["animals"] += 1
+                elif t.get("kind") in ("PASTURE", "COOP"):
+                    c["structs"] += 1
+    return c
+
+
 def load(ep):
     p = ep['path'] if os.path.exists(ep['path']) else f"{LS}/replays/episode-{ep['episode_id']}-replay.json"
     rep = json.load(open(p))
@@ -23,7 +37,13 @@ def load(ep):
     for k in range(len(steps) - 1):
         farm = (((steps[k][seat].get('observation') or {}).get('farms') or [{}, {}])[seat]) or {}
         pos.append([farm.get('farmer')] + list(farm.get('hands') or []))
-    return ep['episode_id'], ep['cash'], ep.get('margin', 0), shops, acts, pos
+    snap = {}
+    for k in (23, 47, 71, 72, 95, 143):
+        if k < len(steps):
+            ob = steps[k][seat].get('observation') or {}
+            fs = ob.get('farms') or [{}, {}]
+            snap[str(k)] = {"me": _farm_sig(fs[seat]), "op": _farm_sig(fs[1 - seat])}
+    return ep['episode_id'], ep['cash'], ep.get('margin', 0), shops, acts, pos, snap
 
 
 def main():
@@ -41,7 +61,8 @@ def main():
     out = {"meta": {"source": "Majkel1337 56156662", "games": len(data), "kept": len(keep)},
            "default": str(default), "by1": {k: str(v) for k, v in by1.items()}, "by2": {k: str(v) for k, v in by2.items()},
            "eps": {str(r[0]): r[4] for r in data if r[0] in keep},
-           "pos": {str(r[0]): r[5] for r in data if r[0] in keep}}
+           "pos": {str(r[0]): r[5] for r in data if r[0] in keep},
+           "snap": {str(r[0]): r[6] for r in data if r[0] in keep}}
     raw = json.dumps(out, separators=(',', ':')).encode()
     with gzip.open(f'{HERE}/route_eps.json.gz', 'wb') as f:
         f.write(raw)

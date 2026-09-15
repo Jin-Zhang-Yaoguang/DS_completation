@@ -132,6 +132,8 @@ SCHED_SPACE = [
     ("eps_route_on",      0, 1, 0),      # 按对手早期签名路由（回放继续 / 交回 K1）
     ("eps_route_turn",    48, 96, 72),   # 路由判定步
     ("eps_route_thr",     0.02, 0.5, 0.15),  # 最近邻距离阈值（超出 = 未知对手 → K1）
+    ("eps_prog_on",       0, 1, 0),      # 进度路由：自身作物格落后录制局超过阈值 → 交回 K1（不用对手身份）
+    ("eps_prog_thr",      -8, 2, -1),    # 作物格差阈值（自身 − 录制）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -306,7 +308,10 @@ def gen_tables(p):
                           "eps_fix": int(round(g["eps_fix"])),
                           "eps_route_on": int(g["eps_route_on"] >= 0.5),
                           "eps_route_turn": int(round(g["eps_route_turn"])),
-                          "eps_route_thr": round(g["eps_route_thr"], 3)},
+                          "eps_route_thr": round(g["eps_route_thr"], 3),
+                          "eps_prog_on": int(g["eps_prog_on"] >= 0.5),
+                          "eps_prog_thr": int(round(g["eps_prog_thr"])),
+                          "eps_prog_turn": 71},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

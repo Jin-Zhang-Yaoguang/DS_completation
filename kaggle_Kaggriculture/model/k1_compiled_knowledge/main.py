@@ -2007,6 +2007,17 @@ def _apply_route_eps(st, kn, obs, tiles, bs, positions, invs, seeds, shed, actio
     lib = _route_eps()
     if not lib.get("eps"):
         return actions, market
+    # 进度路由（只看自身局面，不用对手身份）：在 eps_prog_turn 比较自身作物格与所跟录制局同一时刻；
+    # 落后超过阈值 = 回放已失配 → 交回 K1（route_feat_analyze.py：r=+0.77，按对手二折交叉验证测试半 +11.9k/局，8/10 为正）
+    pt = tu.get("eps_prog_turn", 71)
+    if tu.get("eps_prog_on", 0) and turn >= pt and "eps_prog" not in st and st.get("eps_ep"):
+        rec = ((lib.get("snap") or {}).get(str(st["eps_ep"])) or {}).get(str(pt), {}).get("me", {})
+        my_crops = sum(1 for row in tiles for t_ in row if isinstance(t_, dict) and t_.get("kind") == "PLANT")
+        gap = my_crops - rec.get("crops", my_crops)
+        st["eps_prog"] = gap
+        if gap < tu.get("eps_prog_thr", -1):
+            st["eps_stop"] = True
+            return actions, market
     shops = list((obs.get("town") or {}).get("unlocked_shops") or [])
     ep = st.get("eps_ep") or lib.get("default")
     if len(shops) >= 1 and st.get("eps_stage", 0) < 1 and tu.get("eps_switch1", 1):

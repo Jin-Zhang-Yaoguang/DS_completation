@@ -8,12 +8,15 @@ TJ = json.load(open(f'{HERE}/opp_tiers.json'))
 FMT = lambda x: x.replace('{M}', TJ['M']).replace('{K1}', TJ['K1'])
 # 每层取前 2 个对手（hard 取 3 个）作为固定复核集
 OPPS = [(tier, FMT(o)) for tier, t in TJ['tiers'].items() for o in t['opps'][:(3 if tier == 'hard' else 2)]]
-if os.environ.get('HOLDOUT_OPPS'):
+if os.environ.get('ALL_OPPS'):
+    OPPS = [(tier, FMT(o)) for tier, t in TJ['tiers'].items() for o in t['opps']]
+elif os.environ.get('HOLDOUT_OPPS'):
     # 样本外：路由表未见过的对手（每层跳过前 2 个 / hard 跳过前 3 个）
     OPPS = [(tier, FMT(o)) for tier, t in TJ['tiers'].items() for o in t['opps'][(3 if tier == 'hard' else 2):]]
 BEST = sys.argv[1] if len(sys.argv) > 1 else 'best_iter_ga2.json'
 NSEED = int(sys.argv[2]) if len(sys.argv) > 2 else 4
-SEEDS = [730021 + 149 * i for i in range(NSEED)]
+SEEDS = [730021 + 149 * i for i in range(NSEED)] if not os.environ.get('SEED_BASE') else \
+    [int(os.environ['SEED_BASE']) + 149 * i for i in range(NSEED)]
 OFF = {'price_area_gain': 0, 'opp_counter_gain': 0, 'opp_sell_ahead': 0, 'opp_anim_gain': 0, 'race_on': 0, 'mshift_on': 0, 'doomsday_on': 0,
        'layout_sector': 0, 'layout_fixed_order': 0, 'layout_animal_last': 0,
        'plant_cap_mid': 0, 'plant_cap_late': 0, 'plant_idle_hour': 24, 'plant_idle_extra': 0, 'seed_lookahead': 0}
@@ -55,6 +58,9 @@ CONFIGS = {
     'R2:不切换+修复PASS': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_fix': 1, 'eps_switch1': 0, 'eps_switch2': 0},
     'R2:切换+路由': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_route_on': 1},
     'R2:切换+修复PASS+路由': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_fix': 1, 'eps_route_on': 1},
+    'P:切换+进度路由-1': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_prog_on': 1, 'eps_prog_thr': -1},
+    'P:切换+进度路由-3': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_prog_on': 1, 'eps_prog_thr': -3},
+    'P:切换+进度路由0': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_prog_on': 1, 'eps_prog_thr': 0},
 }
 # 用法补充：第三个参数给出配置名子串过滤（逗号分隔），如 "基准,布局" 只跑布局组
 if len(sys.argv) > 3:
