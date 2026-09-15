@@ -40,6 +40,10 @@ CONFIGS = {
     '种植:买种看次日': {**OFF, 'seed_lookahead': 1},
     '种植:中后期限速3(搜索方向)': {**OFF, 'plant_cap_mid': 3, 'plant_cap_late': 3},
     '种植:后期限速2': {**OFF, 'plant_cap_late': 2},
+    '回放:全季+商店切换': {**OFF, 'eps_on': 1, 'eps_gate': 2},
+    '回放:至d16+商店切换': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_until_day': 16},
+    '回放:至d10+商店切换': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_until_day': 10},
+    '回放:全季 不切换': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_switch1': 0, 'eps_switch2': 0},
 }
 # 用法补充：第三个参数给出配置名子串过滤（逗号分隔），如 "基准,布局" 只跑布局组
 if len(sys.argv) > 3:
@@ -94,6 +98,13 @@ def main():
         per = [statistics.mean(m[(n, s, o, seat)][1] - m[(BASE, s, o, seat)][1]
                                for s in SEEDS for tt, o in OPPS if tt == tier for seat in (0, 1)) for tier in tiers]
         print(f"{n:16s} | {statistics.mean(dm):+7.0f} (t={t:+.2f}) | {statistics.mean(do):+6.0f} | " + " | ".join(f"{x:+7.0f}" for x in per))
+        if os.environ.get('PER_OPP'):
+            for tier_, o_ in OPPS:
+                d_ = [m[(n, s_, o_, st_)][1] - m[(BASE, s_, o_, st_)][1] for s_ in SEEDS for st_ in (0, 1)]
+                b_ = statistics.mean(m[(BASE, s_, o_, st_)][1] for s_ in SEEDS for st_ in (0, 1))
+                w_ = sum(1 for s_ in SEEDS for st_ in (0, 1) if m[(n, s_, o_, st_)][1] > 0)
+                nm_ = o_.split('/')[-2] if o_.endswith('main.py') else o_.split('/')[-1]
+                print(f"      {tier_:6s} {nm_[:34]:34s} 基准分差 {b_:+8.0f} 变化 {statistics.mean(d_):+8.0f} 该配置胜 {w_}/{2 * len(SEEDS)}")
 
 
 if __name__ == '__main__':
