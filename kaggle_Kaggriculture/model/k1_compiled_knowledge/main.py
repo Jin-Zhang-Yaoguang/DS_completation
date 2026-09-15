@@ -79,6 +79,9 @@ def _load_knowledge():
         for k2, v in KN_OVERRIDE.items():
             kn[k2] = v
     kn.setdefault("tuning", {})
+    import os as _os
+    if _os.environ.get("K1_SCHEDULER_MODE"):
+        kn["tuning"]["scheduler_mode"] = _os.environ["K1_SCHEDULER_MODE"]
     return kn
 
 
@@ -500,7 +503,146 @@ def _mv(st, reason):
     m[reason] = m.get(reason, 0) + 1
 
 
+# 格内执行次序（KERNEL_SPEC M2，实测：动物格 FEED 58% 先 / CARE 7% 最后）
+_MJ_ORDER = {"FEED": 0, "PLACE": 0.5, "COLLECT_FERTILIZER": 1, "HARVEST": 2, "WATER": 2.5,
+             "CARE": 3, "FERTILIZE": 4, "PLANT": 5, "BUILD_PASTURE": 6, "BUILD_COOP": 6, "DIG": 7}
+
+
+def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
+    """Majkel 规格内核（KERNEL_SPEC.md M1-M6，由 kernel_audit 实测翻译）。"""
+    n = len(positions)
+    actions = [["PASS"] for _ in range(n)]
+    used, claimed = set(), set()
+    shed_set = set(_shed_tiles(bs))
+    tu = kn.get("tuning", {})
+    salt = int((tu.get("tb_salt") or 0) * 997)
+
+    def carried(i, item):
+        return invs[i].get(item, 0)
+
+    by_pos = {}
+    for pri, need, pos_t, op in tasks:
+        by_pos.setdefault(pos_t, []).append((_MJ_ORDER.get(op[0], 9), pri, need, op))
+    for lst in by_pos.values():
+        lst.sort(key=lambda z: (z[0], z[1]))
+
+    def doable(i, lst):
+        return [z for z in lst if not z[2] or carried(i, z[2]) > 0]
+
+    def do(i, z, pos_t):
+        op = z[3]
+        actions[i] = op
+        used.add(i)
+        _apply_local(invs, i, op)
+        if op[0] == "FERTILIZE":
+            st["fert_done_today"] = st.get("fert_done_today", 0) + 1
+        elif op[0] == "PLANT":
+            st["planted_today"] = st.get("planted_today", 0) + 1
+        by_pos[pos_t] = [w for w in by_pos[pos_t] if w is not z]
+
+    def go(i, pos_t, tag):
+        actions[i] = _step_toward(positions[i], pos_t) or ["PASS"]
+        used.add(i)
+        _mv(st, tag)
+
+    # M1 同格清空：脚下有可做任务就继续做（实测同格连做 50%）
+    for i in range(n):
+        p = positions[i]
+        lst = doable(i, by_pos.get(p, []))
+        if lst:
+            do(i, lst[0], p)
+            claimed.add(p)
+
+    # M5 小批高频领麦：站在仓库、持麦 < 2、当天还有喂养任务 → 领 kit 个（实测 2.8/次）
+    n_feed = sum(1 for t in tasks if t[3][0] == "FEED")
+    kit = tu.get("majkel_kit", 3)
+    for i in range(n):
+        if i in used or positions[i] not in shed_set:
+            continue
+        if n_feed > 0 and carried(i, "WHEAT") < 2 and shed.get("WHEAT", 0) > 0:
+            take = min(kit, shed["WHEAT"])
+            actions[i] = ["PICKUP", "WHEAT", take]
+            shed["WHEAT"] -= take
+            invs[i]["WHEAT"] = invs[i].get("WHEAT", 0) + take
+            used.add(i)
+
+    # 动物放置供应：有 PLACE 任务、无人持动物、仓库有动物 → 最近单位去领
+    has_place = any(t[3][0] == "PLACE" for t in tasks)
+    holders = sum(1 for i in range(n) if any(invs[i].get(a, 0) > 0 for a in ANIMALS))
+    if has_place and holders == 0:
+        shed_animals = [a for a in ANIMALS if shed.get(a, 0) > 0]
+        free = [i for i in range(n) if i not in used]
+        if shed_animals and free:
+            i = min(free, key=lambda j: _shed_dist(positions[j], bs))
+            if positions[i] in shed_set:
+                a = max(shed_animals, key=lambda a2: shed[a2])
+                take = min(shed[a], 4)
+                actions[i] = ["PICKUP", a, take]
+                shed[a] -= take
+                invs[i][a] = invs[i].get(a, 0) + take
+                used.add(i)
+            else:
+                go(i, min(shed_set, key=lambda s: _dist(positions[i], s)), "majkel_supply_animal")
+
+    # M4 生存任务先行：濒死喂养 / 濒枯浇水 / 烂窗抢收（pri <= 1）派最近的能做单位
+    urgent = {}
+    for pri, need, pos_t, op in tasks:
+        if pri <= 1 and pos_t not in claimed:
+            urgent[pos_t] = min(urgent.get(pos_t, 9), pri)
+    for pos_t in sorted(urgent, key=lambda p2: urgent[p2]):
+        best = None
+        for i in range(n):
+            if i in used or not doable(i, by_pos.get(pos_t, [])):
+                continue
+            d = _dist(positions[i], pos_t)
+            if best is None or d < best[0]:
+                best = (d, i)
+        if best:
+            claimed.add(pos_t)
+            go(best[1], pos_t, "majkel_urgent")
+
+    # M3 纯就近派活：全局按（距离, 次序）贪心，一格一人（实测最近 84%）
+    pairs = []
+    for i in range(n):
+        if i in used:
+            continue
+        for pos_t, lst in by_pos.items():
+            if pos_t in claimed or not lst:
+                continue
+            dl = doable(i, lst)
+            if not dl:
+                continue
+            tb = ((pos_t[0] * 7 + pos_t[1] * 13 + salt) % 10) * 0.001
+            pairs.append((_dist(positions[i], pos_t) + 0.01 * dl[0][0] + tb, i, pos_t))
+    pairs.sort()
+    for _c, i, pos_t in pairs:
+        if i in used or pos_t in claimed:
+            continue
+        claimed.add(pos_t)
+        go(i, pos_t, "majkel_go")
+
+    # 喂养缺麦：仍有未认领喂养任务、仓库有麦 → 最多 2 个缺麦单位回仓（M6：肥料不回仓）
+    feed_left = any(t[3][0] == "FEED" and t[2] not in claimed for t in tasks)
+    if feed_left and shed.get("WHEAT", 0) > 0:
+        free = sorted((i for i in range(n) if i not in used and carried(i, "WHEAT") < 1),
+                      key=lambda j: _shed_dist(positions[j], bs))
+        for i in free[:2]:
+            go(i, min(shed_set, key=lambda s: _dist(positions[i], s)), "majkel_supply_wheat")
+
+    # 余下单位：向最近的任务格靠拢（即便已被认领），不原地发呆（实测 PASS 0.9%）
+    task_tiles = [p2 for p2, lst in by_pos.items() if lst]
+    for i in range(n):
+        if i in used or not task_tiles:
+            continue
+        tgt = min(task_tiles, key=lambda p2: (_dist(positions[i], p2), p2[1], p2[0]))
+        if _dist(positions[i], tgt) >= 2:
+            go(i, tgt, "majkel_idle")
+    return actions
+
+
 def assign(st, tasks, positions, invs, tiles, bs, shed, kn):
+    if kn.get("tuning", {}).get("scheduler_mode", "greedy") == "majkel":
+        return assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn)
     n = len(positions)
     actions = [["PASS"] for _ in range(n)]
     used, claimed = set(), set()
