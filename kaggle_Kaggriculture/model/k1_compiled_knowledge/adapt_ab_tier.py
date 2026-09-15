@@ -8,6 +8,9 @@ TJ = json.load(open(f'{HERE}/opp_tiers.json'))
 FMT = lambda x: x.replace('{M}', TJ['M']).replace('{K1}', TJ['K1'])
 # 每层取前 2 个对手（hard 取 3 个）作为固定复核集
 OPPS = [(tier, FMT(o)) for tier, t in TJ['tiers'].items() for o in t['opps'][:(3 if tier == 'hard' else 2)]]
+if os.environ.get('HOLDOUT_OPPS'):
+    # 样本外：路由表未见过的对手（每层跳过前 2 个 / hard 跳过前 3 个）
+    OPPS = [(tier, FMT(o)) for tier, t in TJ['tiers'].items() for o in t['opps'][(3 if tier == 'hard' else 2):]]
 BEST = sys.argv[1] if len(sys.argv) > 1 else 'best_iter_ga2.json'
 NSEED = int(sys.argv[2]) if len(sys.argv) > 2 else 4
 SEEDS = [730021 + 149 * i for i in range(NSEED)]
@@ -44,6 +47,14 @@ CONFIGS = {
     '回放:至d16+商店切换': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_until_day': 16},
     '回放:至d10+商店切换': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_until_day': 10},
     '回放:全季 不切换': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_switch1': 0, 'eps_switch2': 0},
+    '回放切K1:d1': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_switch1': 0, 'eps_switch2': 0, 'eps_until_day': 1},
+    '回放切K1:d2': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_switch1': 0, 'eps_switch2': 0, 'eps_until_day': 2},
+    '回放切K1:d3': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_switch1': 0, 'eps_switch2': 0, 'eps_until_day': 3},
+    'R2:切换+修复PASS': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_fix': 1},
+    'R2:切换+修复照放': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_fix': 2},
+    'R2:不切换+修复PASS': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_fix': 1, 'eps_switch1': 0, 'eps_switch2': 0},
+    'R2:切换+路由': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_route_on': 1},
+    'R2:切换+修复PASS+路由': {**OFF, 'eps_on': 1, 'eps_gate': 2, 'eps_fix': 1, 'eps_route_on': 1},
 }
 # 用法补充：第三个参数给出配置名子串过滤（逗号分隔），如 "基准,布局" 只跑布局组
 if len(sys.argv) > 3:
