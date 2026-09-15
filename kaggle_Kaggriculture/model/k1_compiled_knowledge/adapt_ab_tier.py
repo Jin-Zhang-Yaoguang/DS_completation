@@ -38,6 +38,8 @@ CONFIGS = {
     '种植:15点后+4': {**OFF, 'plant_idle_hour': 15, 'plant_idle_extra': 4},
     '种植:12点后+8': {**OFF, 'plant_idle_hour': 12, 'plant_idle_extra': 8},
     '种植:买种看次日': {**OFF, 'seed_lookahead': 1},
+    '种植:中后期限速3(搜索方向)': {**OFF, 'plant_cap_mid': 3, 'plant_cap_late': 3},
+    '种植:后期限速2': {**OFF, 'plant_cap_late': 2},
 }
 # 用法补充：第三个参数给出配置名子串过滤（逗号分隔），如 "基准,布局" 只跑布局组
 if len(sys.argv) > 3:
