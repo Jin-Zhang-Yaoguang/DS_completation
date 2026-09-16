@@ -1368,13 +1368,55 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     feed_need = 0 if day >= kn.get("tuning", {}).get("feed_stop_day", kn["feed"]["stop_feed_day"]) else \
         st.get("n_animals", 0) * fb_days
 
-    # ---- 卖出（节拍表驱动）----
+    # ---- 按需求卖出（sell_demand_on；市场规则实测 2026-09-16：库存无均值回归，
+    # 消耗 = 城镇 1 + 每需求店 ~6 件/天，只在 0/4/8/12/16/20 点；高价品超需求 50 件价格崩）----
+    tu_d = kn.get("tuning", {})
+    if tu_d.get("sell_demand_on", 0):
+        slack = tu_d.get("sell_demand_slack", 20)
+        lot = tu_d.get("sell_demand_lot", 6)
+        hold_low = tu_d.get("sell_hold_low", 1)
+        early = day < tu_d.get("cash_pump_until_day", 8)
+        fert_keep2 = sched.fert_budget(day) + sched.fert_budget(day + 1)             if day >= kn["fertilize"]["start_day"] - 2 else 0
+        for it in PRODUCTS:
+            have = shed.get(it, 0)
+            if it == "WHEAT":
+                have -= int(feed_need * tu_d.get("wheat_keep_frac", 1.0))
+            elif it == "FERTILIZER":
+                have -= fert_keep2
+            if have <= 0:
+                continue
+            n_dem = sum(1 for s2 in shops if it in SHOPS.get(s2, []))
+            # 低价品攒到需求店出现再卖（Majkel 胡萝卜 86%/番茄 92% 在 d20+ 以 1.7-2.3 倍价卖）
+            if hold_low and not early and n_dem == 0 and it in ("CARROT", "TOMATO", "EGG")                     and day < 26 and sum(shed.values()) < SHED_CAP - 20:
+                continue
+            gap = 10000 + slack - inv_mkt.get(it, 10000)
+            ds = st.setdefault("demand_sold", {})
+            # 速率版（gap 版实测把份额让给对手）：日限额 = 估计日消耗 (1 + 6×需求店) × share；
+            # 库存缺口只作加项（缺货时多卖），不作停卖条件——无均值回归下等待=让流量
+            if tu_d.get("sell_demand_rate", 0):
+                cap_d = int((1 + 6 * n_dem) * tu_d.get("sell_share", 1.0))
+                if it in ("MELON", "FERTILIZER"):
+                    cap_d = tu_d.get("sell_melon_cap", 8) if it == "MELON" else tu_d.get("sell_fert_cap", 8)
+                gap = max(gap, 0) + cap_d - ds.get((day, it), 0)
+            elif it in ("MELON", "FERTILIZER"):
+                # 无需求店：只有城镇 1 件/天消耗，永久压价 → 日限额
+                cap_d = tu_d.get("sell_melon_cap", 8) if it == "MELON" else tu_d.get("sell_fert_cap", 8)
+                gap = min(gap if gap > 0 else cap_d, cap_d - ds.get((day, it), 0))
+            if gap <= 0:
+                continue
+            q = min(have, gap, lot)
+            if q > 0:
+                sells.append(["SELL", it, q])
+                ds[(day, it)] = ds.get((day, it), 0) + q
+        sells = sells[:MAX_ORDERS]
+
+    # ---- 卖出（节拍表驱动；demand 模式接管时跳过下列各段）----
     early_pump_pre = day < kn.get("tuning", {}).get("cash_pump_until_day", 8)
     adaptive_lot = kn.get("tuning", {}).get("adaptive_lot", True)
     ph_shift = kn.get("tuning", {}).get("sell_phase_shift", 0)
     lot_ov = kn.get("tuning", {}).get("sell_lot_max")
     gates = kn.get("tuning", {}).get("price_gate", {})  # 产值候选:价/基准 < 门槛则暂不卖(d26 起失效)
-    for it, rule in sr["phase_sell"].items():
+    for it, rule in ({} if tu_d.get("sell_demand_on", 0) else sr["phase_sell"]).items():
         have = shed.get(it, 0)
         g = gates.get(it, 0)
         if g and day < 26 and prices.get(it, 0) < g * MARKET_PARAMS[it]["base"] and have < SHED_CAP // 4:
@@ -1387,7 +1429,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
             else:
                 q = min(have, lm)
             sells.append(["SELL", it, q])
-    for it, rule in sr["eod_sell"].items():
+    for it, rule in ({} if tu_d.get("sell_demand_on", 0) else sr["eod_sell"]).items():
         have = shed.get(it, 0)
         if have > 0 and (hour >= rule["hour"] or early_pump_pre):
             sells.append(["SELL", it, have])
@@ -1398,11 +1440,11 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     tu_w = kn.get("tuning", {})
     wheat_extra = shed.get("WHEAT", 0) - int(feed_need * tu_w.get("wheat_keep_frac", 1.0))
     early_pump = day < tu_w.get("cash_pump_until_day", 8)
-    if wheat_extra > (0 if early_pump else 2) and             (early_pump or turn % 4 == wr["phase"] or hour >= wr["eod_hour"]):
+    if not tu_d.get("sell_demand_on", 0) and wheat_extra > (0 if early_pump else 2) and             (early_pump or turn % 4 == wr["phase"] or hour >= wr["eod_hour"]):
         sells.append(["SELL", "WHEAT", min(wheat_extra, tu_w.get("wheat_lot_max", wr["lot_max"]))])
     # 瓜：即收即卖，slip 控批
     mr = sr["melon"]
-    have_melon = shed.get("MELON", 0)
+    have_melon = 0 if tu_d.get("sell_demand_on", 0) else shed.get("MELON", 0)
     if have_melon > 0:
         q = min(have_melon, _batch_size("MELON", inv_mkt.get("MELON", 10000), mr["lot_max"], mr["slip_tol"]))
         sells.append(["SELL", "MELON", q])
@@ -1410,7 +1452,7 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     fert_keep = sched.fert_budget(day) + sched.fert_budget(day + 1) \
         if day >= kn["fertilize"]["start_day"] - 2 else 0  # 施肥开始前零预留：肥即产即卖=早期现金泵主体
     fert_extra = shed.get("FERTILIZER", 0) - fert_keep
-    if fert_extra > 0 and prices.get("FERTILIZER", 0) >= sr["fertilizer_sell_price"]:
+    if not tu_d.get("sell_demand_on", 0) and fert_extra > 0 and prices.get("FERTILIZER", 0) >= sr["fertilizer_sell_price"]:
         sells.append(["SELL", "FERTILIZER", fert_extra])
 
     # 抢在对手出货前卖：对手在产挂果单位 ≥ 阈值 → 本步即卖该品现货（不等相位）

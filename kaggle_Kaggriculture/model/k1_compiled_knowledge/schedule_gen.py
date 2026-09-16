@@ -139,6 +139,15 @@ SCHED_SPACE = [
     ("plan_look",         1, 5, 2),      # 沿路线前几个格里挑可做的
     ("plan_replan_h",     0, 12, 0),     # 白天重规划间隔（0 = 只在早上规划）
     ("plan_salt",         0, 1, 1),      # 同分随机打破（门控2 多样性）
+    # ---- 按需求卖出（市场规则实测：固定容量需求池，超卖永久压价）----
+    ("sell_demand_on",    0, 1, 0),      # 开启需求卖出（接管常规卖出各段）
+    ("sell_demand_slack", 0, 60, 20),    # 允许卖到 I0 + slack
+    ("sell_demand_lot",   2, 10, 6),     # 单步单品上限
+    ("sell_hold_low",     0, 1, 1),      # 胡萝卜/番茄/蛋无需求店时留仓（d8 起）
+    ("sell_melon_cap",    2, 30, 8),     # 瓜日限额（无需求店）
+    ("sell_fert_cap",     2, 30, 8),     # 肥料日限额（扣施肥预算后）
+    ("sell_demand_rate",  0, 1, 0),      # 速率版：日限额=消耗速率×share，不看库存缺口
+    ("sell_share",        0.5, 2.5, 1.0),# 消耗流量份额系数
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -320,7 +329,15 @@ def gen_tables(p):
                           "plan_on": int(g["plan_on"] >= 0.5),
                           "plan_look": int(round(g["plan_look"])),
                           "plan_replan_h": int(round(g["plan_replan_h"])),
-                          "plan_salt": int(g["plan_salt"] >= 0.5)},
+                          "plan_salt": int(g["plan_salt"] >= 0.5),
+                          "sell_demand_on": int(g["sell_demand_on"] >= 0.5),
+                          "sell_demand_slack": int(round(g["sell_demand_slack"])),
+                          "sell_demand_lot": int(round(g["sell_demand_lot"])),
+                          "sell_hold_low": int(g["sell_hold_low"] >= 0.5),
+                          "sell_melon_cap": int(round(g["sell_melon_cap"])),
+                          "sell_fert_cap": int(round(g["sell_fert_cap"])),
+                          "sell_demand_rate": int(g["sell_demand_rate"] >= 0.5),
+                          "sell_share": round(g["sell_share"], 3)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {
