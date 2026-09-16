@@ -1548,6 +1548,18 @@ def market_orders(st, kn, sched, obs, farm, shed, seeds, prices, day, hour, turn
     animal_gap_cost = 0
     if turn <= kn["last_animal_turn"]:
         want = sched.animal_wanted(day)
+        tu_dp = kn.get("tuning", {})
+        if tu_dp.get("dp_on", 0) and tu_dp.get("dp_animal", 0) and day >= tu_dp.get("dp_from_day", 6):
+            _APR = {"COW": ("MILK", 0.6), "SHEEP": ("WOOL", 1.2), "GOOSE": ("EGG", 0.8)}  # 件/头·天
+            _sh2 = tu_dp.get("dp_share", 0.7)
+            _ow2 = tu_dp.get("dp_opp_w", 0.5)
+            _oan = (st.get("opp_sense") or {}).get("anim", {})
+            for _a, (_pr, _r) in _APR.items():
+                if want.get(_a, 0) <= 0:
+                    continue
+                _nd2 = sum(1 for _s3 in shops if _pr in SHOPS.get(_s3, []))
+                _cap2 = int(((1 + 6 * _nd2) * _sh2) / _r - _ow2 * _oan.get(_a, 0))
+                want[_a] = max(min(want[_a], _cap2), 1)
         oag = kn.get("tuning", {}).get("opp_anim_gain", 0) * \
             kn.get("tuning", {}).get(f"type_mult_anim_{st.get('opp_type', 'unk')}", 1.0)
         if oag and day >= kn.get("tuning", {}).get("opp_anim_from", 6):
@@ -1816,6 +1828,20 @@ def _decide(obs, config):
             st["opp_type"] = "std"
     otype = st.get("opp_type", "unk")
     tgt_s = st["crop_targets"]
+    # 按需求定产量（dp_on；市场规则实测：日消耗 = 1 + 6×需求店，无均值回归 → 超出容量的产出永久压价）：
+    # 各作物面积上限 = 日容量×share/单位面积产出率 − opp_w×对手同作物面积；砍掉的面积不转移（人手过剩、填地无益已证）
+    if tu_s.get("dp_on", 0) and day >= tu_s.get("dp_from_day", 6):
+        _YR = {"STRAWBERRY": 0.35, "TOMATO": 0.25, "CARROT": 0.8, "WHEAT": 0.9}  # 件/格·天（value_distill 实测）
+        _sh = tu_s.get("dp_share", 0.7)
+        _ow = tu_s.get("dp_opp_w", 0.5)
+        _mn = tu_s.get("dp_min_area", 4)
+        _oa = sense["area"]
+        for _c, _yr in _YR.items():
+            if tgt_s.get(_c, 0) <= 0:
+                continue
+            _nd = sum(1 for _s2 in shops if _c in SHOPS.get(_s2, []))
+            _cap = int(((1 + 6 * _nd) * _sh) / _yr - _ow * _oa.get(_c, 0))
+            tgt_s[_c] = max(min(tgt_s[_c], _cap), min(tgt_s[_c], _mn))
     pag = tu_s.get("price_area_gain", 0) * tu_s.get(f"type_mult_price_{otype}", 1.0)
     ocg = tu_s.get("opp_counter_gain", 0) * tu_s.get(f"type_mult_counter_{otype}", 1.0)
     if (pag or ocg) and day >= tu_s.get("price_area_from", 6):

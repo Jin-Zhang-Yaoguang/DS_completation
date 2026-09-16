@@ -148,6 +148,13 @@ SCHED_SPACE = [
     ("sell_fert_cap",     2, 30, 8),     # 肥料日限额（扣施肥预算后）
     ("sell_demand_rate",  0, 1, 0),      # 速率版：日限额=消耗速率×share，不看库存缺口
     ("sell_share",        0.5, 2.5, 1.0),# 消耗流量份额系数
+    # ---- 按需求定产量（生产侧：面积/动物上限 = 需求容量×share − 对手产能）----
+    ("dp_on",             0, 1, 0),
+    ("dp_share",          0.3, 1.5, 0.7),
+    ("dp_opp_w",          0, 1, 0.5),
+    ("dp_min_area",       0, 10, 4),
+    ("dp_from_day",       2, 12, 6),
+    ("dp_animal",         0, 1, 0),
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -337,7 +344,13 @@ def gen_tables(p):
                           "sell_melon_cap": int(round(g["sell_melon_cap"])),
                           "sell_fert_cap": int(round(g["sell_fert_cap"])),
                           "sell_demand_rate": int(g["sell_demand_rate"] >= 0.5),
-                          "sell_share": round(g["sell_share"], 3)},
+                          "sell_share": round(g["sell_share"], 3),
+                          "dp_on": int(g["dp_on"] >= 0.5),
+                          "dp_share": round(g["dp_share"], 3),
+                          "dp_opp_w": round(g["dp_opp_w"], 3),
+                          "dp_min_area": int(round(g["dp_min_area"])),
+                          "dp_from_day": int(round(g["dp_from_day"])),
+                          "dp_animal": int(g["dp_animal"] >= 0.5)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

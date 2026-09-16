@@ -11,11 +11,11 @@ OPPS = [f'sub:{M}/v58_mosaic/dist_backup/y68g_main.py', f'sub:{M}/v2_survival_gu
 SEEDS = [970081 + 281 * i for i in range(4)]
 CONFIGS = {
     '基准': {},
-    '速率 share1.0': {'sell_demand_on': 1, 'sell_demand_rate': 1},
-    '速率 share1.5': {'sell_demand_on': 1, 'sell_demand_rate': 1, 'sell_share': 1.5},
-    '速率 share2.0 lot8': {'sell_demand_on': 1, 'sell_demand_rate': 1, 'sell_share': 2.0, 'sell_demand_lot': 8},
-    '速率 share1.5 不留低价': {'sell_demand_on': 1, 'sell_demand_rate': 1, 'sell_share': 1.5, 'sell_hold_low': 0},
-    '速率 share1.5 瓜肥20': {'sell_demand_on': 1, 'sell_demand_rate': 1, 'sell_share': 1.5, 'sell_melon_cap': 20, 'sell_fert_cap': 20},
+    '定产 默认(share0.7)': {'dp_on': 1},
+    '定产 share0.5': {'dp_on': 1, 'dp_share': 0.5},
+    '定产 share1.0': {'dp_on': 1, 'dp_share': 1.0},
+    '定产 +动物': {'dp_on': 1, 'dp_animal': 1},
+    '定产 share1.0 +动物 不扣对手': {'dp_on': 1, 'dp_share': 1.0, 'dp_animal': 1, 'dp_opp_w': 0},
 }
 PRODS = ("WHEAT", "MELON", "STRAWBERRY", "CARROT", "TOMATO", "MILK", "EGG", "WOOL", "FERTILIZER")
 
