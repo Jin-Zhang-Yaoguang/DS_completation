@@ -134,6 +134,11 @@ SCHED_SPACE = [
     ("eps_route_thr",     0.02, 0.5, 0.15),  # 最近邻距离阈值（超出 = 未知对手 → K1）
     ("eps_prog_on",       0, 1, 0),      # 进度路由：自身作物格落后录制局超过阈值 → 交回 K1（不用对手身份）
     ("eps_prog_thr",      -8, 2, -1),    # 作物格差阈值（自身 − 录制）
+    # ---- 晨间日计划器（M & M & P & Q：每天第 1 小时规划当天，固定执行层）----
+    ("plan_on",           0, 1, 0),      # 开启晨间日计划器
+    ("plan_look",         1, 5, 2),      # 沿路线前几个格里挑可做的
+    ("plan_replan_h",     0, 12, 0),     # 白天重规划间隔（0 = 只在早上规划）
+    ("plan_salt",         0, 1, 1),      # 同分随机打破（门控2 多样性）
 ]
 DEFAULTS = {n: d for n, _, _, d in SCHED_SPACE}
 
@@ -311,7 +316,11 @@ def gen_tables(p):
                           "eps_route_thr": round(g["eps_route_thr"], 3),
                           "eps_prog_on": int(g["eps_prog_on"] >= 0.5),
                           "eps_prog_thr": int(round(g["eps_prog_thr"])),
-                          "eps_prog_turn": 71},
+                          "eps_prog_turn": 71,
+                          "plan_on": int(g["plan_on"] >= 0.5),
+                          "plan_look": int(round(g["plan_look"])),
+                          "plan_replan_h": int(round(g["plan_replan_h"])),
+                          "plan_salt": int(g["plan_salt"] >= 0.5)},
         "hands_by_day": hands,
         "animal_buys": animal_buys,
         "crop_area_by_day": {

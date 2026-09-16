@@ -546,6 +546,94 @@ _MJ_ORDER = {"FEED": 0, "PLACE": 0.5, "COLLECT_FERTILIZER": 1, "HARVEST": 2, "WA
              "CARE": 3, "FERTILIZE": 4, "PLANT": 5, "BUILD_PASTURE": 6, "BUILD_COOP": 6, "DIG": 7}
 
 
+def _day_plan(st, tu, positions, by_pos, bs):
+    """晨间日计划器（参考 M & M & P & Q：每天第 1 小时固定约 1.8 秒规划当天，执行层固定）。
+    当天待服务格 → 并行贪心：当前累计耗时最少的单位接离它路线末端最近的格（耗时 = 走路 + 该格任务数），
+    得到负载均衡、紧凑的巡回路线；每条路线再做有限次 2-opt。同分按 plan_salt 随机打破（门控2 多样性）。"""
+    import random as _rnd
+    if "plan_seed" not in st:
+        st["plan_seed"] = _rnd.SystemRandom().randrange(1 << 30)  # 每局一次：同分随机打破逐局不同
+    rng = _rnd.Random(st["plan_seed"] * 1000003 + st.get("last_turn", 0)) if tu.get("plan_salt", 1) else None
+    tiles_t = [p for p, lst in by_pos.items() if lst]
+    n = len(positions)
+    tours = {i: [] for i in range(n)}
+    if not tiles_t or n == 0:
+        return tours
+    ends = {i: positions[i] for i in range(n)}
+    cost = {i: 0.0 for i in range(n)}
+    rest = set(tiles_t)
+    while rest:
+        i = min(range(n), key=lambda k: (cost[k], k))
+        e = ends[i]
+        if rng:
+            q = min(rest, key=lambda r: (_dist(e, r), rng.random()))
+        else:
+            q = min(rest, key=lambda r: (_dist(e, r), r[1], r[0]))
+        tours[i].append(q)
+        cost[i] += _dist(e, q) + len(by_pos[q])
+        ends[i] = q
+        rest.discard(q)
+    # 2-opt（起点为单位当前位置）
+    budget = int(tu.get("plan_2opt_iter", 200))
+    for i in range(n):
+        tr = tours[i]
+        if len(tr) < 4:
+            continue
+        start = positions[i]
+        improved, it = True, 0
+        while improved and it < budget:
+            improved = False
+            for a in range(len(tr) - 2):
+                pa = start if a == 0 else tr[a - 1]
+                for b in range(a + 1, len(tr) - 1):
+                    d0 = _dist(pa, tr[a]) + _dist(tr[b], tr[b + 1])
+                    d1 = _dist(pa, tr[b]) + _dist(tr[a], tr[b + 1])
+                    it += 1
+                    if d1 < d0:
+                        tr[a:b + 1] = tr[a:b + 1][::-1]
+                        improved = True
+                        break
+                if improved or it >= budget:
+                    break
+    return tours
+
+
+def _day_plan_follow(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs):
+    """执行晨间计划：新的一天的 plan_hour 起（单位数变化或 plan_replan_h 到期时重规划），
+    沿各自路线在前 plan_look 个仍有任务的格里挑第一个能做的；路线走空的单位留给 M3 就近派活。"""
+    turn = st.get("last_turn", 0)
+    hour = turn % 24
+    if hour < tu.get("plan_hour", 1):
+        return
+    rep_h = int(tu.get("plan_replan_h", 0))
+    last = st.get("plan_turn")
+    need = (last is None or last // 24 != turn // 24 or st.get("plan_n") != n
+            or (rep_h > 0 and turn - last >= rep_h))
+    if need:
+        st["plan_tours"] = _day_plan(st, tu, positions, {p: l for p, l in by_pos.items() if p not in claimed}, bs)
+        st["plan_turn"] = turn
+        st["plan_n"] = n
+    tours = st.get("plan_tours") or {}
+    look = max(1, int(tu.get("plan_look", 2)))
+    for i in range(n):
+        if i in used:
+            continue
+        tr = tours.get(i) or []
+        tr[:] = [p for p in tr if by_pos.get(p)]
+        pick = None
+        for p in tr[:look]:
+            if p not in claimed and doable(i, by_pos[p]):
+                pick = p
+                break
+        if pick is None:
+            continue
+        claimed.add(pick)
+        if positions[i] == pick:
+            do(i, doable(i, by_pos[pick])[0], pick)
+        else:
+            go(i, pick, "plan_go")
+
+
 def _route_plan(st, tu, free_units, positions, by_pos, claimed, bs, animal_tiles=None):
     import math as _m
     tiles_t = [p for p, lst in by_pos.items() if lst and p not in claimed and p not in (animal_tiles or ())]
@@ -741,6 +829,10 @@ def assign_majkel(st, tasks, positions, invs, tiles, bs, shed, kn):
         route_used = set(used) | set(range(k_route, n))
         _route_assign(st, tu, n, route_used, claimed, positions, by_pos, doable, do, go, bs, a_tiles)
         used |= {i for i in range(k_route) if i in route_used and i not in used and actions[i] != ["PASS"]}
+
+    # P 晨间日计划器（plan_on）：路线跟随，走空/临时任务交 M3
+    if tu.get("plan_on", 0):
+        _day_plan_follow(st, tu, n, used, claimed, positions, by_pos, doable, do, go, bs)
 
     # M3 纯就近派活：全局按（距离, 次序）贪心，一格一人（实测最近 84%）
     pairs = []
