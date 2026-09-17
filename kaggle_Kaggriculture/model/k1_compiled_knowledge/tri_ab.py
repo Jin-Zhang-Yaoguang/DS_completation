@@ -13,8 +13,13 @@ def one(job):
     spec = importlib.util.spec_from_file_location(f'x{sd}{tri}{seat}{on}', f'{HERE}/main.py')
     mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
     kn = json.load(open(f'{HERE}/knowledge.json'))
-    if tri:
-        kn['tuning']['tri_day_on'] = 1
+    kn['tuning']['tri_day_on'] = 1 if tri else 0
+    if os.environ.get('TRI_T0FIX'):
+        kn['tuning']['t0_pool_select'] = False  # 两组同起点（默认表），只比 tri 开关——干净配对
+    if os.environ.get('TRI_GAIN') is not None:
+        kn['tuning']['tri_min_gain'] = float(os.environ['TRI_GAIN'])
+    if os.environ.get('TRI_SWC') is not None:
+        kn['tuning']['tri_sw_cost'] = float(os.environ['TRI_SWC'])
     mod.KN_OVERRIDE = kn
     O = {'g': f'sub:{M}/v58_mosaic/dist_backup/y68g_main.py', 'c': f'sub:{M}/opponent_pool_v1/packs/y68c_main.py',
          'v2': f'sub:{M}/v2_survival_guard/main.py', 'v119': f'sub:{M}/v119_center_livestock_spatial_moe/main.py',

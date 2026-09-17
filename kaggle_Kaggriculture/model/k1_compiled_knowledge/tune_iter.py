@@ -103,7 +103,9 @@ def _sim_pair(job):
     spec.loader.exec_module(mod)
     ov = gen_tables(params)
     te = ov.pop("tuning_extra", {})
-    ov["tuning"] = {**base_tu, "fert_specialist": False, "t0_pool_select": False, **te}
+    # tri_day_on 强制关（2026-09-17：knowledge 默认 tri=1 后，单方案评估会被 d3 重选切到池方案，
+    # 污染搜索目标——ga7 整轮因此作废；评估语义 = 被评估参数从头跑到尾）
+    ov["tuning"] = {**base_tu, "fert_specialist": False, "t0_pool_select": False, "tri_day_on": 0, **te}
     mod.KN_OVERRIDE = ov
     opp = fidelity.make_agent(opp_spec)
     if seat == 0:

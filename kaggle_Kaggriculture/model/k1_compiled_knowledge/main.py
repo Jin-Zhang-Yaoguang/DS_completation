@@ -1781,9 +1781,37 @@ def _tri_reselect(st, kn, shops, day):
             pr, r = _TRI_APR[a]
             opp_prod[pr] = opp_prod.get(pr, 0) + n * r
     ow = tu.get("tri_opp_w", 0.5)
-    scores = [(_tri_score(p2.get("tables") or {}, shops, day, opp_prod, ow), i) for i, p2 in enumerate(pool)]
-    best_s, best_i = max(scores)
     cur = st.get("tri_cur")
+    # 切换成本感知（ga7 教训：跨风格切换报废已建资产，成本 ∝ 方案距离 × 已投入天数）
+    swc = tu.get("tri_sw_cost", 30)
+
+    def _pdist(pa, pb):
+        d = 0.0
+        for c2 in ("STRAWBERRY", "WHEAT", "CARROT", "TOMATO", "MELON"):
+            ta = (pa.get("crop_area_by_day") or {}).get(c2) or [0]
+            tb = (pb.get("crop_area_by_day") or {}).get(c2) or [0]
+            d += abs(max(ta) - max(tb)) / 30.0
+        aa = {}; ab = {}
+        for row_, dst in ((r3, aa) for r3 in pa.get("animal_buys") or []):
+            pass
+        for r3 in pa.get("animal_buys") or []:
+            for a2, n2 in (r3.get("buys") or {}).items():
+                aa[a2] = aa.get(a2, 0) + n2
+        for r3 in pb.get("animal_buys") or []:
+            for a2, n2 in (r3.get("buys") or {}).items():
+                ab[a2] = ab.get(a2, 0) + n2
+        for a2 in set(aa) | set(ab):
+            d += abs(aa.get(a2, 0) - ab.get(a2, 0)) / 10.0
+        return d
+
+    scores = []
+    cur_tables = (pool[cur].get("tables") or {}) if cur is not None else None
+    for i, p2 in enumerate(pool):
+        sc = _tri_score(p2.get("tables") or {}, shops, day, opp_prod, ow)
+        if cur is not None and i != cur and cur_tables:
+            sc -= swc * _pdist(cur_tables, p2.get("tables") or {}) * max(1, day) / 3.0
+        scores.append((sc, i))
+    best_s, best_i = max(scores)
     if cur is not None and best_i != cur:
         cur_s = next(sc for sc, i in scores if i == cur)
         if best_s < cur_s * (1 + tu.get("tri_min_gain", 0.05)):
