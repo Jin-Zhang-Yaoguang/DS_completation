@@ -35,6 +35,22 @@ PM = float(os.environ.get("K1_PM", "0.15"))
 MUT_SD = float(os.environ.get("K1_MUT_SD", "0.12"))
 ELITE = 2
 NAMES = [n for n, _, _, _ in SCHED_SPACE]
+# 分风格方案池（2026-09-17）：K1_STYLES=JSON [{name, bounds:{dim:[lo,hi]}}...]，岛 i 用第 i 个风格；
+# 变异/交叉/迁移/初始化后都裁剪进风格区间——每岛在自己的产出侧重下自行搜配套（机制—配套定律的正确应用），
+# 终选每岛保底入池，给三天级重选（tri_day_on）提供真正的分支空间。
+STYLES = json.loads(os.environ["K1_STYLES"]) if os.environ.get("K1_STYLES") else None
+
+
+def style_clip(vec, isl_i):
+    if not STYLES:
+        return vec
+    b = STYLES[isl_i % len(STYLES)].get("bounds", {})
+    out = list(vec)
+    for n, (lo, hi) in b.items():
+        if n in NAMES:
+            i = NAMES.index(n)
+            out[i] = min(hi, max(lo, out[i]))
+    return out
 # 维度块边界（按 schedule_gen 分节）：块内整体交叉继承
 BLOCK_STARTS = ["hands_peak", "cash_pump_until", "kernel_majkel", "fill_ratio", "wheat_keep_frac", "straw_ramp_days", "price_area_gain", "opp_id_day", "layout_sector", "plant_cap_mid", "route_on", "lib_on", "eps_on", "plan_on", "sell_demand_on", "dp_on"]
 
@@ -91,7 +107,7 @@ def init_islands(npop, rng):
             else:
                 vec = TI.clamp([rng.gauss(v, (hi - lo) * MUT_SD * sd_mult)
                                 for v, (_, lo, hi, _) in zip(base, SCHED_SPACE)])
-            pop.append({"vec": vec, "fit": None, "n": 0, "sum": 0.0, "m": 0.0, "own": 0.0, "solo": 0.0})
+            pop.append({"vec": style_clip(vec, i), "fit": None, "n": 0, "sum": 0.0, "m": 0.0, "own": 0.0, "solo": 0.0})
         islands.append(pop)
     return islands
 
@@ -152,14 +168,15 @@ def main():
             if MIGRATE and (g + 1) % MIGRATE == 0 and ISLANDS > 1:
                 bests = [dict(isl[0], vec=list(isl[0]["vec"])) for isl in islands]
                 for i in range(ISLANDS):
-                    islands[(i + 1) % ISLANDS][-1] = bests[i]
+                    mig = dict(bests[i], vec=style_clip(bests[i]["vec"], (i + 1) % ISLANDS))
+                    islands[(i + 1) % ISLANDS][-1] = mig
             # 繁殖：精英保留（带累计评估），其余由锦标赛+块交叉+变异生成
             for i, isl in enumerate(islands):
                 isl.sort(key=lambda ind: -(ind["fit"] if ind["fit"] is not None else -1e18))
                 nxt = isl[:ELITE]
                 while len(nxt) < npop:
                     pa, pb = tournament(isl, rng), tournament(isl, rng)
-                    child = mutate(crossover(pa["vec"], pb["vec"], rng, blks), rng)
+                    child = style_clip(mutate(crossover(pa["vec"], pb["vec"], rng, blks), rng), i)
                     nxt.append({"vec": child, "fit": None, "n": 0, "sum": 0.0, "m": 0.0, "own": 0.0, "solo": 0.0})
                 islands[i] = nxt
         # 终选：每岛前 2（评估次数≥2 优先）进 holdout
@@ -189,13 +206,20 @@ def main():
                                                                "candidates": results}, indent=1))
         top_m = max(r["hold_margin"] for r in results)
         it_pool = []
+        best_by_isl = {}
+        for r in results:
+            if r["island"] not in best_by_isl or r["hold_margin"] > best_by_isl[r["island"]]["hold_margin"]:
+                best_by_isl[r["island"]] = r
         for r in sorted(results, key=lambda r: -r["hold_margin"]):
-            if r["hold_margin"] < top_m - 8000:
+            keep = r["hold_margin"] >= top_m - 8000 or (STYLES and best_by_isl.get(r["island"]) is r)
+            if not keep:
                 continue
             if any(param_dist(r["params"], p["params"]) < 0.4 for p in it_pool):
                 continue
             it_pool.append({"params": r["params"], "vs_own": round(r["hold_vs_own"]), "margin": round(r["hold_margin"]),
-                            "solo": round(r["hold_solo"]), "island": r["island"], "tables": gen_tables(r["params"])})
+                            "solo": round(r["hold_solo"]), "island": r["island"],
+                            "style": (STYLES[r["island"] % len(STYLES)]["name"] if STYLES else None),
+                            "tables": gen_tables(r["params"])})
         (HERE / f"plan_pool_iter{TAG}.json").write_text(json.dumps(it_pool, indent=1))
         print(f"迭代池 {len(it_pool)} 条（来自岛 {sorted({p['island'] for p in it_pool})}）", flush=True)
         log.write(json.dumps({"gen": "final", "holdout": [r["hold_margin"] for r in results]}) + "\n")
