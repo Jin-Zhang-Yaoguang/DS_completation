@@ -65,7 +65,9 @@ SOLO_N = int(_os.environ.get("K1_SOLO_N", "1"))
 HOLD_N = int(_os.environ.get("K1_HOLD_N", "4"))
 ROT = int(_os.environ.get("K1_ROT", "3"))         # 每几代轮换训练 seed
 SEED_BANK = [1009 + 1037 * i for i in range(400)]
-HOLD_SEEDS = [900007 + 53 * i for i in range(2 * HOLD_N + 8)]
+# holdout 轮换（2026-09-17 审计：ga5-7 共用固定 HOLD_SEEDS 终选，赢者诅咒 ~9k——每个 TAG 用不同 seed 段）
+_HOLD_BASE = 900007 + (sum(ord(c) for c in TAG) % 89) * 1013
+HOLD_SEEDS = [_HOLD_BASE + 53 * i for i in range(2 * HOLD_N + 8)]
 
 
 # 冻结维度（K1_FREEZE="a,b,c"）：搜索/变异后强制回默认——用于把违反门控的机制（如 eps_on 回放，
