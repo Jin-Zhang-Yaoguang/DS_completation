@@ -2275,8 +2275,41 @@ def _apply_route_lib(st, kn, obs, farm, tiles, bs, positions, invs, seeds, shed,
     return actions, market
 
 
+_V128 = None
+
+
+def _v128_kernel():
+    """V128 Majkel 复刻内核（v128_kernel.py 整包快照，2026-09-17；作为方案池成员，不拆维度——
+    K1 vs V128 配对拆解 +34.1k(t=9.61)，逐维吸收被「机制—配套」耦合反复证伪后改整包引用）。"""
+    global _V128
+    if _V128 is None:
+        import importlib.util as _ilu
+        import os as _os5
+        _sp = _ilu.spec_from_file_location("k1_v128_kernel",
+                                          _os5.path.join(_os5.path.dirname(_os5.path.abspath(__file__)), "v128_kernel.py"))
+        _V128 = _ilu.module_from_spec(_sp)
+        _sp.loader.exec_module(_V128)
+    return _V128
+
+
 def agent(obs, config=None):
     try:
+        # t0 按 v128_frac 决定本局是否整局转发 V128 内核（方案池成员：混合稀释轨迹重合，V128 供强度）
+        kn0 = _load_knowledge()
+        frac = kn0.get("tuning", {}).get("v128_frac", 0)
+        if frac > 0:
+            player = obs.get("player", 0)
+            turn0 = int(obs.get("day", 0)) * 24 + int(obs.get("hour", 0))
+            key = ("v128use", player)
+            st_g = _STATE.setdefault(key, {"last": -1, "use": False})
+            if turn0 <= st_g["last"] or st_g["last"] < 0:
+                import random as _r5
+                st_g["use"] = _r5.SystemRandom().random() < frac
+                if st_g["use"]:
+                    _v128_kernel()._S.clear()  # V128 无跨局复位，t0 手动清
+            st_g["last"] = turn0
+            if st_g["use"]:
+                return _v128_kernel().agent(obs, config)
         return _decide(obs, config)
     except Exception:
         farms = obs.get("farms") or []
