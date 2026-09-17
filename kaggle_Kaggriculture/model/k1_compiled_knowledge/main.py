@@ -1734,6 +1734,75 @@ def _get_state(player, turn):
     return st
 
 
+_TRI_YR = {"STRAWBERRY": 0.35, "TOMATO": 0.25, "CARROT": 0.8, "WHEAT": 0.9, "MELON": 0.5}
+_TRI_APR = {"COW": ("MILK", 0.6), "SHEEP": ("WOOL", 1.2), "GOOSE": ("EGG", 0.8)}
+
+
+def _tri_score(tables, shops, day, opp_prod, opp_w):
+    """方案 × 商店组合匹配分：Σ_产品 min(方案日产能, 可抢容量) × 基准价。
+    容量 = 城镇 1 + 每需求店 6（羊毛店 12）/天（market_dynamics 实测）；可抢 = max(0.5×容量, 容量 − opp_w×对手产能)。"""
+    prod = {}
+    cad = tables.get("crop_area_by_day") or {}
+    for c, tbl in cad.items():
+        if isinstance(tbl, list) and c in _TRI_YR:
+            fut = [tbl[min(d, len(tbl) - 1)] for d in range(day, min(day + 6, 28))]
+            if fut:
+                prod[c] = prod.get(c, 0) + (sum(fut) / len(fut)) * _TRI_YR[c]
+    have_an = {}
+    for row in tables.get("animal_buys") or []:
+        if row.get("day", 0) <= day + 3:
+            for a, n in (row.get("buys") or {}).items():
+                have_an[a] = have_an.get(a, 0) + n
+    for a, (pr, r) in _TRI_APR.items():
+        prod[pr] = prod.get(pr, 0) + have_an.get(a, 0) * r
+    score = 0.0
+    for p2, q in prod.items():
+        n_dem = sum(1 for s2 in shops if p2 in SHOPS.get(s2, []))
+        per = 12 if p2 == "WOOL" else 6
+        cap = 1 + per * n_dem
+        eff = min(q, max(0.5 * cap, cap - opp_w * opp_prod.get(p2, 0)))
+        score += eff * MARKET_PARAMS[p2]["base"]
+    return score
+
+
+def _tri_reselect(st, kn, shops, day):
+    """三天级方案重选：新商店解锁时按匹配分切换方案表（跟着商店走，替代局级一次性定死）。"""
+    pool = kn.get("plan_pool") or []
+    if len(pool) < 2:
+        return
+    tu = kn.get("tuning", {})
+    opp_prod = {}
+    sense = st.get("opp_sense") or {}
+    for c, n in (sense.get("area") or {}).items():
+        if c in _TRI_YR:
+            opp_prod[c] = n * _TRI_YR[c]
+    for a, n in (sense.get("anim") or {}).items():
+        if a in _TRI_APR:
+            pr, r = _TRI_APR[a]
+            opp_prod[pr] = opp_prod.get(pr, 0) + n * r
+    ow = tu.get("tri_opp_w", 0.5)
+    scores = [(_tri_score(p2.get("tables") or {}, shops, day, opp_prod, ow), i) for i, p2 in enumerate(pool)]
+    best_s, best_i = max(scores)
+    cur = st.get("tri_cur")
+    if cur is not None and best_i != cur:
+        cur_s = next(sc for sc, i in scores if i == cur)
+        if best_s < cur_s * (1 + tu.get("tri_min_gain", 0.05)):
+            return  # 优势不足不切，防抖
+    if best_i == cur:
+        return
+    st["tri_cur"] = best_i
+    choice = pool[best_i]
+    for k2, v in (choice.get("tables") or {}).items():
+        if k2 == "tuning_extra":
+            kn["tuning"] = {**kn["tuning"], **v,
+                            "tri_day_on": kn["tuning"].get("tri_day_on"),
+                            "tri_opp_w": ow, "tri_min_gain": tu.get("tri_min_gain", 0.05)}
+        else:
+            kn[k2] = json.loads(json.dumps(v))
+    st["sched"] = Schedule(kn)
+    st["tri_switches"] = st.get("tri_switches", 0) + 1
+
+
 def _decide(obs, config):
     farms = obs.get("farms") or []
     player = obs.get("player", 0)
@@ -1768,6 +1837,14 @@ def _decide(obs, config):
         st["queue"] = {}
         st["fert_done_today"] = 0
         st["planted_today"] = 0
+    tu_tri = kn.get("tuning", {})
+    if tu_tri.get("tri_day_on", 0) and len(shops) > st.get("tri_nshops", 0):
+        st["tri_nshops"] = len(shops)
+        try:
+            _tri_reselect(st, kn, shops, day)
+            sched = st["sched"]
+        except Exception:
+            pass
     st["crop_targets"] = sched.crop_targets(day, shops)
     # R1b 品类错位层（L1，市场对抗）：被对手供给压价的品停止扩种，
     # 差额面积转给价格/base 比值最高的可种品。反应式架构天生支持转产——
