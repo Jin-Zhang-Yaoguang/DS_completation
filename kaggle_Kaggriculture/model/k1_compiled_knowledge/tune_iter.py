@@ -68,8 +68,19 @@ SEED_BANK = [1009 + 1037 * i for i in range(400)]
 HOLD_SEEDS = [900007 + 53 * i for i in range(2 * HOLD_N + 8)]
 
 
+# 冻结维度（K1_FREEZE="a,b,c"）：搜索/变异后强制回默认——用于把违反门控的机制（如 eps_on 回放，
+# fitness 看不见门控2 重合度、会反复劫持搜索）从空间剔除而不删代码
+_FREEZE_IDX = {}
+if _os.environ.get("K1_FREEZE"):
+    _fr = set(_os.environ["K1_FREEZE"].split(","))
+    _FREEZE_IDX = {i: d for i, (n, _, _, d) in enumerate(SCHED_SPACE) if n in _fr}
+
+
 def clamp(vec):
-    return [min(hi, max(lo, v)) for v, (_, lo, hi, _) in zip(vec, SCHED_SPACE)]
+    out = [min(hi, max(lo, v)) for v, (_, lo, hi, _) in zip(vec, SCHED_SPACE)]
+    for i, d in _FREEZE_IDX.items():
+        out[i] = d
+    return out
 
 
 def to_params(vec):
