@@ -1,0 +1,54 @@
+{
+  "candidate": "V21 top-meta hierarchical MoE lucaskna step-216 RC1",
+  "decision": "PROMOTE_AS_OFFLINE_GOLD_CANDIDATE",
+  "online_status": "PENDING",
+  "submission_id": 55821671,
+  "submitted_at": "2026-08-27 15:38:38.370000",
+  "parent": "V20 demand-timing hierarchical MoE RC1",
+  "engine": "1.32.7",
+  "mechanism": "Keep the YARN expert; on every non-YARN route switch from the V20 opening to the replay-derived lucaskna production expert at step 216, then retain the V20 demand-delay sell controller.",
+  "anti_overfit": {
+    "initial_route_models": 5,
+    "expanded_development_models": 12,
+    "confirmation_models": 8,
+    "minimum_required_models": 3,
+    "fixed_seeds": true,
+    "double_seat": true
+  },
+  "frozen_confirmation": {
+    "seed_range": [98200, 98327],
+    "candidate_games": 2048,
+    "parent_games": 2048,
+    "score_uplift_pp": 14.208984375,
+    "score_uplift_ci95_pp": [12.1337890625, 16.3330078125],
+    "positive_zero_negative": [293, 1755, 0],
+    "mean_margin_delta": 872.33203125,
+    "mean_own_delta": 382.47607421875,
+    "primary_pass": true,
+    "guardrail_pass": true
+  },
+  "qa": {
+    "research_package_exact_games": [8, 8],
+    "official_cpp_exact_games": [4, 4],
+    "official_statuses_all_done": true,
+    "action_safety_games": 224,
+    "unit_orders": 1501217,
+    "unit_precondition_invalid": 0,
+    "market_overflow": 0,
+    "hand_mismatch": 0
+  },
+  "artifact": {
+    "main_sha256": "007201884aca5342674ebf7d219a2c2b45882a1e90d52ff53bb0198fe7821c57",
+    "archive_sha256": "18b420feff5fa63cafffdce5904ed9c54a068428c424d2f7dd14de537a0e470b",
+    "archive_bytes": 75335
+  },
+  "online_parent_snapshot": {
+    "v20_submission_id": 55821249,
+    "v20_status": "COMPLETE",
+    "v20_public_score": 1200.1,
+    "v19_submission_id": 55819961,
+    "v19_status": "COMPLETE",
+    "v19_public_score": 2305.5,
+    "observed_at": "2026-08-27 immediately after V21 submission"
+  }
+}

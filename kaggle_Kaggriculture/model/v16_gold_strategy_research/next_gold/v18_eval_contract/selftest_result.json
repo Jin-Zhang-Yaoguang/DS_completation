@@ -1,0 +1,1131 @@
+{
+  "status": "SMOKE_ONLY",
+  "decision": "FAIL",
+  "contract_version": "v18-p0-confirm-2",
+  "preregistration_lock": {
+    "contract_sha256": "fc05e6e35c9c72da5a8f4dfbfca362b90a8c1fd87347e135cd41a3c81643a1b3",
+    "evaluator_sha256": "602a5105584b1587d080c6f56cfe784fa8b537d6492ffae7fcfe23e71c08da44"
+  },
+  "candidate": {
+    "candidate": "market_mpc",
+    "archive": "../../top_complete_portfolio/submission.tar.gz",
+    "archive_sha256": "0c1b9b3203924f21389f0b39cfaf9fd535708cdc01c1a7d3ec15359fea1e2ba6",
+    "main_sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1",
+    "frozen_at": "self-test-only",
+    "development_direct_replay_dates": [],
+    "development_seeds": [],
+    "confirm_data_accessed_before_freeze": false,
+    "notes": "Evaluator self-test: V17 compared with the exact same V17 archive; never a candidate result."
+  },
+  "parent": {
+    "name": "V17 top complete portfolio RC1",
+    "archive": "../../top_complete_portfolio/submission.tar.gz",
+    "archive_sha256": "0c1b9b3203924f21389f0b39cfaf9fd535708cdc01c1a7d3ec15359fea1e2ba6",
+    "main_sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1"
+  },
+  "engine": "1.32.7",
+  "panel": {
+    "families": 1,
+    "seeds": [
+      61000
+    ],
+    "both_seats": true,
+    "paired_games": 2
+  },
+  "paired": {
+    "score_uplift_pp": 0.0,
+    "score_uplift_seed_cluster95_pp": [
+      0.0,
+      0.0
+    ],
+    "margin_delta_mean": 0.0,
+    "score_positive_zero_negative": [
+      0,
+      2,
+      0
+    ],
+    "by_family_score_uplift_pp": {
+      "2026-08-20::Ryo Hasegawa::86e7fa63bb12": 0.0
+    }
+  },
+  "tails": {
+    "parent": {
+      "p10": 47887.0,
+      "cvar10": 47887.0
+    },
+    "candidate": {
+      "p10": 47887.0,
+      "cvar10": 47887.0
+    },
+    "candidate_minus_parent": {
+      "p10": 0.0,
+      "cvar10": 0.0
+    }
+  },
+  "action_resource_audit": {
+    "coverage": "all unit preconditions and exact official-rule dry-run fills for SELL, BUY_PRODUCT, BUY_SEED, BUY_ANIMAL, BUY_LAND, HIRE, malformed and overflow orders",
+    "scope_policy": "candidate audited market/resource failures must equal zero",
+    "parent": {
+      "counts": {
+        "turns": 1438,
+        "market_orders": 1226,
+        "market_overflow_turns": 0,
+        "hand_mismatch_turns": 0,
+        "market_requested::BUY_PRODUCT::WHEAT": 238,
+        "market_filled::BUY_PRODUCT::WHEAT": 238,
+        "market_requested::HIRE": 506,
+        "market_filled::HIRE": 506,
+        "market_requested::BUY_SEED::MELON": 22,
+        "market_filled::BUY_SEED::MELON": 22,
+        "market_requested::BUY_SEED::WHEAT": 264,
+        "market_filled::BUY_SEED::WHEAT": 264,
+        "market_requested::BUY_ANIMAL::SHEEP": 20,
+        "market_filled::BUY_ANIMAL::SHEEP": 20,
+        "unit_orders": 12328,
+        "unit_valid": 12328,
+        "unit_invalid": 0,
+        "market_requested::SELL::FERTILIZER": 624,
+        "market_filled::SELL::FERTILIZER": 606,
+        "market_requested::BUY_SEED::STRAWBERRY": 58,
+        "market_filled::BUY_SEED::STRAWBERRY": 58,
+        "market_requested::BUY_ANIMAL::COW": 12,
+        "market_filled::BUY_ANIMAL::COW": 12,
+        "market_requested::SELL::WHEAT": 520,
+        "market_filled::SELL::WHEAT": 438,
+        "market_requested::SELL::WOOL": 608,
+        "market_filled::SELL::WOOL": 540,
+        "market_requested::BUY_LAND": 4,
+        "market_filled::BUY_LAND": 4,
+        "market_requested::SELL::MELON": 132,
+        "market_filled::SELL::MELON": 132,
+        "market_requested::SELL::STRAWBERRY": 606,
+        "market_filled::SELL::STRAWBERRY": 446,
+        "market_requested::SELL::MILK": 328,
+        "market_filled::SELL::MILK": 322,
+        "market_requested::BUY_SEED::CARROT": 24,
+        "market_filled::BUY_SEED::CARROT": 24,
+        "market_requested::SELL::CARROT": 108,
+        "market_filled::SELL::CARROT": 54
+      },
+      "failure_count": 56,
+      "failure_examples": [
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 427,
+          "seat": 0,
+          "requested": 4,
+          "filled": 2
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 428,
+          "seat": 0,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 433,
+          "seat": 0,
+          "requested": 8,
+          "filled": 6
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 481,
+          "seat": 0,
+          "requested": 20,
+          "filled": 14
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 521,
+          "seat": 0,
+          "requested": 12,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 522,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 546,
+          "seat": 0,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 548,
+          "seat": 0,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 569,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 570,
+          "seat": 0,
+          "requested": 3,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 572,
+          "seat": 0,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 573,
+          "seat": 0,
+          "requested": 6,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 593,
+          "seat": 0,
+          "requested": 12,
+          "filled": 5
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 593,
+          "seat": 0,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 594,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 594,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 617,
+          "seat": 0,
+          "requested": 10,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 617,
+          "seat": 0,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 665,
+          "seat": 0,
+          "requested": 8,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 666,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 667,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 690,
+          "seat": 0,
+          "requested": 8,
+          "filled": 6
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 690,
+          "seat": 0,
+          "requested": 12,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::MILK",
+          "seed": 61000,
+          "step": 717,
+          "seat": 0,
+          "requested": 3,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::CARROT",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 54,
+          "filled": 27
+        },
+        {
+          "kind": "SELL::WHEAT",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 76,
+          "filled": 35
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 8,
+          "filled": 4
+        },
+        {
+          "kind": "SELL::FERTILIZER",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 16,
+          "filled": 7
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 427,
+          "seat": 1,
+          "requested": 4,
+          "filled": 2
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 428,
+          "seat": 1,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 433,
+          "seat": 1,
+          "requested": 8,
+          "filled": 6
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 481,
+          "seat": 1,
+          "requested": 20,
+          "filled": 14
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 521,
+          "seat": 1,
+          "requested": 12,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 522,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 546,
+          "seat": 1,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 548,
+          "seat": 1,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 569,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 570,
+          "seat": 1,
+          "requested": 3,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 572,
+          "seat": 1,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 573,
+          "seat": 1,
+          "requested": 6,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 593,
+          "seat": 1,
+          "requested": 12,
+          "filled": 5
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 593,
+          "seat": 1,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 594,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 594,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 617,
+          "seat": 1,
+          "requested": 10,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 617,
+          "seat": 1,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 665,
+          "seat": 1,
+          "requested": 8,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 666,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 667,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 690,
+          "seat": 1,
+          "requested": 8,
+          "filled": 6
+        }
+      ]
+    },
+    "candidate": {
+      "counts": {
+        "turns": 1438,
+        "market_orders": 1226,
+        "market_overflow_turns": 0,
+        "hand_mismatch_turns": 0,
+        "market_requested::BUY_PRODUCT::WHEAT": 238,
+        "market_filled::BUY_PRODUCT::WHEAT": 238,
+        "market_requested::HIRE": 506,
+        "market_filled::HIRE": 506,
+        "market_requested::BUY_SEED::MELON": 22,
+        "market_filled::BUY_SEED::MELON": 22,
+        "market_requested::BUY_SEED::WHEAT": 264,
+        "market_filled::BUY_SEED::WHEAT": 264,
+        "market_requested::BUY_ANIMAL::SHEEP": 20,
+        "market_filled::BUY_ANIMAL::SHEEP": 20,
+        "unit_orders": 12328,
+        "unit_valid": 12328,
+        "unit_invalid": 0,
+        "market_requested::SELL::FERTILIZER": 624,
+        "market_filled::SELL::FERTILIZER": 606,
+        "market_requested::BUY_SEED::STRAWBERRY": 58,
+        "market_filled::BUY_SEED::STRAWBERRY": 58,
+        "market_requested::BUY_ANIMAL::COW": 12,
+        "market_filled::BUY_ANIMAL::COW": 12,
+        "market_requested::SELL::WHEAT": 520,
+        "market_filled::SELL::WHEAT": 438,
+        "market_requested::SELL::WOOL": 608,
+        "market_filled::SELL::WOOL": 540,
+        "market_requested::BUY_LAND": 4,
+        "market_filled::BUY_LAND": 4,
+        "market_requested::SELL::MELON": 132,
+        "market_filled::SELL::MELON": 132,
+        "market_requested::SELL::STRAWBERRY": 606,
+        "market_filled::SELL::STRAWBERRY": 446,
+        "market_requested::SELL::MILK": 328,
+        "market_filled::SELL::MILK": 322,
+        "market_requested::BUY_SEED::CARROT": 24,
+        "market_filled::BUY_SEED::CARROT": 24,
+        "market_requested::SELL::CARROT": 108,
+        "market_filled::SELL::CARROT": 54
+      },
+      "failure_count": 56,
+      "failure_examples": [
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 427,
+          "seat": 0,
+          "requested": 4,
+          "filled": 2
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 428,
+          "seat": 0,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 433,
+          "seat": 0,
+          "requested": 8,
+          "filled": 6
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 481,
+          "seat": 0,
+          "requested": 20,
+          "filled": 14
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 521,
+          "seat": 0,
+          "requested": 12,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 522,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 546,
+          "seat": 0,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 548,
+          "seat": 0,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 569,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 570,
+          "seat": 0,
+          "requested": 3,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 572,
+          "seat": 0,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 573,
+          "seat": 0,
+          "requested": 6,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 593,
+          "seat": 0,
+          "requested": 12,
+          "filled": 5
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 593,
+          "seat": 0,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 594,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 594,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 617,
+          "seat": 0,
+          "requested": 10,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 617,
+          "seat": 0,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 665,
+          "seat": 0,
+          "requested": 8,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 666,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 667,
+          "seat": 0,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 690,
+          "seat": 0,
+          "requested": 8,
+          "filled": 6
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 690,
+          "seat": 0,
+          "requested": 12,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::MILK",
+          "seed": 61000,
+          "step": 717,
+          "seat": 0,
+          "requested": 3,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::CARROT",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 54,
+          "filled": 27
+        },
+        {
+          "kind": "SELL::WHEAT",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 76,
+          "filled": 35
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 8,
+          "filled": 4
+        },
+        {
+          "kind": "SELL::FERTILIZER",
+          "seed": 61000,
+          "step": 718,
+          "seat": 0,
+          "requested": 16,
+          "filled": 7
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 427,
+          "seat": 1,
+          "requested": 4,
+          "filled": 2
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 428,
+          "seat": 1,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 433,
+          "seat": 1,
+          "requested": 8,
+          "filled": 6
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 481,
+          "seat": 1,
+          "requested": 20,
+          "filled": 14
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 521,
+          "seat": 1,
+          "requested": 12,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 522,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 546,
+          "seat": 1,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 548,
+          "seat": 1,
+          "requested": 1,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 569,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 570,
+          "seat": 1,
+          "requested": 3,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 572,
+          "seat": 1,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 573,
+          "seat": 1,
+          "requested": 6,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 593,
+          "seat": 1,
+          "requested": 12,
+          "filled": 5
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 593,
+          "seat": 1,
+          "requested": 5,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 594,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 594,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 617,
+          "seat": 1,
+          "requested": 10,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::WOOL",
+          "seed": 61000,
+          "step": 617,
+          "seat": 1,
+          "requested": 2,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 665,
+          "seat": 1,
+          "requested": 8,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 666,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 667,
+          "seat": 1,
+          "requested": 4,
+          "filled": 0
+        },
+        {
+          "kind": "SELL::STRAWBERRY",
+          "seed": 61000,
+          "step": 690,
+          "seat": 1,
+          "requested": 8,
+          "filled": 6
+        }
+      ]
+    },
+    "candidate_minus_parent_failure_count": 0,
+    "paired_games_candidate_noninferior": 2,
+    "paired_games_total": 2,
+    "resource_subchecks": {
+      "candidate_absolute_zero": false,
+      "candidate_total_noninferior": true,
+      "candidate_each_game_noninferior": true
+    }
+  },
+  "raw_output_bytes": {
+    "stdout": 0,
+    "stderr": 0
+  },
+  "raw_loader": {
+    "candidate": "agent",
+    "parent": "agent"
+  },
+  "official_parity": {
+    "games": 4,
+    "exact_games": 4,
+    "rows": [
+      {
+        "seed": 63001,
+        "candidate_seat": 0,
+        "cpp_rewards": [
+          80669.0,
+          82953.0
+        ],
+        "official_rewards": [
+          80669.0,
+          82953.0
+        ],
+        "exact": true,
+        "calls": [
+          719,
+          719
+        ],
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "seed": 63001,
+        "candidate_seat": 1,
+        "cpp_rewards": [
+          82953.0,
+          80669.0
+        ],
+        "official_rewards": [
+          82953.0,
+          80669.0
+        ],
+        "exact": true,
+        "calls": [
+          719,
+          719
+        ],
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "seed": 63007,
+        "candidate_seat": 0,
+        "cpp_rewards": [
+          56133.0,
+          45240.0
+        ],
+        "official_rewards": [
+          56133.0,
+          45240.0
+        ],
+        "exact": true,
+        "calls": [
+          719,
+          719
+        ],
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "seed": 63007,
+        "candidate_seat": 1,
+        "cpp_rewards": [
+          60013.0,
+          79456.0
+        ],
+        "official_rewards": [
+          60013.0,
+          79456.0
+        ],
+        "exact": true,
+        "calls": [
+          719,
+          719
+        ],
+        "statuses": [
+          "DONE",
+          "DONE"
+        ],
+        "stdout_bytes": 0,
+        "stderr_bytes": 0
+      }
+    ]
+  },
+  "checks": {
+    "full_preregistered_panel": false,
+    "paired_score_uplift": false,
+    "cluster95_lower": false,
+    "each_family_noninferior": true,
+    "p10_noninferior": true,
+    "cvar10_noninferior": true,
+    "unit_actions_valid": true,
+    "audited_resources_scope_gate": false,
+    "raw_loader": true,
+    "silent": true,
+    "official_cpp_parity": true
+  },
+  "bootstrap": {
+    "cluster": "environment_seed",
+    "repetitions": 100,
+    "rng_seed": 20260826
+  },
+  "rows": [
+    {
+      "family": "2026-08-20::Ryo Hasegawa::86e7fa63bb12",
+      "seed": 61000,
+      "seat": 0,
+      "parent_own": 112697.0,
+      "parent_opp": 64810.0,
+      "parent_margin": 47887.0,
+      "candidate_own": 112697.0,
+      "candidate_opp": 64810.0,
+      "candidate_margin": 47887.0,
+      "parent_score": 1.0,
+      "candidate_score": 1.0,
+      "score_delta": 0.0,
+      "margin_delta": 0.0,
+      "parent_resource_action_failures": 28,
+      "candidate_resource_action_failures": 28,
+      "resource_action_failure_delta": 0
+    },
+    {
+      "family": "2026-08-20::Ryo Hasegawa::86e7fa63bb12",
+      "seed": 61000,
+      "seat": 1,
+      "parent_own": 112697.0,
+      "parent_opp": 64810.0,
+      "parent_margin": 47887.0,
+      "candidate_own": 112697.0,
+      "candidate_opp": 64810.0,
+      "candidate_margin": 47887.0,
+      "parent_score": 1.0,
+      "candidate_score": 1.0,
+      "score_delta": 0.0,
+      "margin_delta": 0.0,
+      "parent_resource_action_failures": 28,
+      "candidate_resource_action_failures": 28,
+      "resource_action_failure_delta": 0
+    }
+  ]
+}

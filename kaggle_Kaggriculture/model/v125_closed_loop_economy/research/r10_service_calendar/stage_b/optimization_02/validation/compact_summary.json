@@ -1,0 +1,768 @@
+{
+  "schema": "r10-p2-validation-compact-v1",
+  "created_at_utc": "2026-09-05T14:02:43.934122+00:00",
+  "status": "EQUIVALENCE_OR_SOURCE_FAILURE",
+  "counts": {
+    "module_definition_loads": 2,
+    "pure_calendar_calls": 88,
+    "pure_aggregate_calls": 2,
+    "pure_cache_constructions": 5,
+    "pure_route_calls": 11,
+    "pure_compile_day_problem_calls": 9,
+    "pure_native_scheduler_calls": 5,
+    "pure_native_checker_calls": 5,
+    "pure_custom_schedule_calls": 1,
+    "pure_custom_check_calls": 1,
+    "new_state_calls": 1,
+    "internal_economic_calls": 1
+  },
+  "count_overruns": {},
+  "full_interface_comparison": {
+    "default_cold": true,
+    "default_cache_hit": true,
+    "custom_schedule_only": true,
+    "custom_check_only": true
+  },
+  "compact_interface_comparison": {
+    "compact_cold": true,
+    "compact_mutated_return_then_hit": true,
+    "compact_cache_mode_mismatch": true,
+    "compact_cache_identity_mismatch": true,
+    "compact_schedule_hook_rejected": true,
+    "compact_check_hook_rejected": true,
+    "compact_multiday_rollback": true
+  },
+  "compact_details": {
+    "P2_compact_cold": {
+      "checks": {
+        "baseline_trial_private_unchanged": true,
+        "compact_complete_success": true,
+        "problem_hash_matches_frozen_full": true,
+        "only_registered_compact_fields_change": true,
+        "all_mutated_public_stats_and_witness_leave_cache_unchanged": true,
+        "public_mutation_leaves_input_unchanged": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1,
+        "pure_compile_day_problem_calls": 1,
+        "pure_native_scheduler_calls": 1,
+        "pure_native_checker_calls": 1
+      },
+      "observed_returns": [
+        {
+          "kind": "compile_day_problem",
+          "day": 29,
+          "status": "SUPPORTED",
+          "valid": null,
+          "unsupported_reasons": []
+        },
+        {
+          "kind": "native_scheduler",
+          "day": 29,
+          "status": "FEASIBLE",
+          "valid": null,
+          "unsupported_reasons": null
+        },
+        {
+          "kind": "native_checker",
+          "day": 29,
+          "status": null,
+          "valid": true,
+          "unsupported_reasons": null
+        }
+      ],
+      "error": null,
+      "result": {
+        "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+        "reason": null,
+        "failed_day": null,
+        "labor_feasible_after_routes": true,
+        "route_feasibility_by_day": {
+          "29": true
+        },
+        "scheduler_calls": 1,
+        "checker_calls": 1,
+        "cache_hits": 0
+      },
+      "cache_entry_count": 1
+    },
+    "P2_compact_mutated_return_then_hit": {
+      "checks": {
+        "baseline_trial_private_unchanged": true,
+        "compact_complete_success": true,
+        "problem_hash_matches_frozen_full": true,
+        "only_registered_compact_fields_change": true,
+        "cache_hit_no_solver": true,
+        "cache_hit_unchanged": true,
+        "hit_restores_all_witness_and_stats": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1,
+        "pure_compile_day_problem_calls": 1
+      },
+      "observed_returns": [
+        {
+          "kind": "compile_day_problem",
+          "day": 29,
+          "status": "SUPPORTED",
+          "valid": null,
+          "unsupported_reasons": []
+        }
+      ],
+      "error": null,
+      "result": {
+        "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+        "reason": null,
+        "failed_day": null,
+        "labor_feasible_after_routes": true,
+        "route_feasibility_by_day": {
+          "29": true
+        },
+        "scheduler_calls": 0,
+        "checker_calls": 0,
+        "cache_hits": 1
+      },
+      "cache_entry_count": 1
+    },
+    "P2_compact_cache_mode_mismatch": {
+      "checks": {
+        "baseline_trial_private_unchanged": true,
+        "explicit_rejection_reason": true,
+        "rejection_no_solver_or_checker": true,
+        "rejection_cache_unchanged": true,
+        "rejection_hooks_not_called": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1
+      },
+      "observed_returns": [],
+      "error": null,
+      "result": {
+        "status": "REJECTED",
+        "reason": "CACHE_EVIDENCE_MODE_MISMATCH",
+        "failed_day": null,
+        "labor_feasible_after_routes": false,
+        "route_feasibility_by_day": {},
+        "scheduler_calls": 0,
+        "checker_calls": 0,
+        "cache_hits": 0
+      },
+      "cache_entry_count": 1
+    },
+    "P2_compact_cache_identity_mismatch": {
+      "checks": {
+        "one_known_compact_entry": true,
+        "baseline_trial_private_unchanged": true,
+        "explicit_rejection_reason": true,
+        "rejection_no_solver_or_checker": true,
+        "rejection_cache_unchanged": true,
+        "rejection_hooks_not_called": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1,
+        "pure_compile_day_problem_calls": 1
+      },
+      "observed_returns": [
+        {
+          "kind": "compile_day_problem",
+          "day": 29,
+          "status": "SUPPORTED",
+          "valid": null,
+          "unsupported_reasons": []
+        }
+      ],
+      "error": null,
+      "result": {
+        "status": "REJECTED",
+        "reason": "COMPACT_CACHE_IDENTITY_MISMATCH",
+        "failed_day": 29,
+        "labor_feasible_after_routes": false,
+        "route_feasibility_by_day": {},
+        "scheduler_calls": 0,
+        "checker_calls": 0,
+        "cache_hits": 1
+      },
+      "cache_entry_count": 1
+    },
+    "P2_compact_schedule_hook_rejected": {
+      "checks": {
+        "baseline_trial_private_unchanged": true,
+        "explicit_rejection_reason": true,
+        "rejection_no_solver_or_checker": true,
+        "rejection_cache_unchanged": true,
+        "rejection_hooks_not_called": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1
+      },
+      "observed_returns": [],
+      "error": null,
+      "result": {
+        "status": "REJECTED",
+        "reason": "COMPACT_MODE_REQUIRES_DEFAULT_IMPLEMENTATIONS",
+        "failed_day": null,
+        "labor_feasible_after_routes": false,
+        "route_feasibility_by_day": {},
+        "scheduler_calls": 0,
+        "checker_calls": 0,
+        "cache_hits": 0
+      },
+      "cache_entry_count": 1
+    },
+    "P2_compact_check_hook_rejected": {
+      "checks": {
+        "baseline_trial_private_unchanged": true,
+        "explicit_rejection_reason": true,
+        "rejection_no_solver_or_checker": true,
+        "rejection_cache_unchanged": true,
+        "rejection_hooks_not_called": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1
+      },
+      "observed_returns": [],
+      "error": null,
+      "result": {
+        "status": "REJECTED",
+        "reason": "COMPACT_MODE_REQUIRES_DEFAULT_IMPLEMENTATIONS",
+        "failed_day": null,
+        "labor_feasible_after_routes": false,
+        "route_feasibility_by_day": {},
+        "scheduler_calls": 0,
+        "checker_calls": 0,
+        "cache_hits": 0
+      },
+      "cache_entry_count": 1
+    },
+    "P2_compact_multiday_rollback": {
+      "checks": {
+        "regenerated_64_calendar_aggregate_matches_saved": true,
+        "saved_work_matches_regenerated": true,
+        "rollback_original_failed_day_numbers": true,
+        "baseline_trial_private_unchanged": true,
+        "day9_scheduler_and_checker_actually_succeeded": true,
+        "day10_compiler_actually_rejected": true,
+        "day9_success_reached_staged_before_failure": true,
+        "day10_failure_reason_exact": true,
+        "staged_not_committed_on_later_failure": true,
+        "rollback_only_one_solver_pair": true
+      },
+      "count_delta": {
+        "pure_route_calls": 1,
+        "pure_compile_day_problem_calls": 2,
+        "pure_native_scheduler_calls": 1,
+        "pure_native_checker_calls": 1
+      },
+      "observed_returns": [
+        {
+          "kind": "compile_day_problem",
+          "day": 9,
+          "status": "SUPPORTED",
+          "valid": null,
+          "unsupported_reasons": []
+        },
+        {
+          "kind": "native_scheduler",
+          "day": 9,
+          "status": "FEASIBLE",
+          "valid": null,
+          "unsupported_reasons": null
+        },
+        {
+          "kind": "native_checker",
+          "day": 9,
+          "status": null,
+          "valid": true,
+          "unsupported_reasons": null
+        },
+        {
+          "kind": "compile_day_problem",
+          "day": 10,
+          "status": "UNSUPPORTED",
+          "valid": null,
+          "unsupported_reasons": [
+            "UNSUPPORTED_STARTUP_FRONTIER"
+          ]
+        }
+      ],
+      "error": null,
+      "result": {
+        "status": "REJECTED",
+        "reason": "UNSUPPORTED:UNSUPPORTED_STARTUP_FRONTIER",
+        "failed_day": 10,
+        "labor_feasible_after_routes": false,
+        "route_feasibility_by_day": {},
+        "scheduler_calls": 1,
+        "checker_calls": 1,
+        "cache_hits": 0
+      },
+      "cache_entry_count": 0
+    }
+  },
+  "full_economic_comparison": {
+    "P2_returned": true,
+    "exact_entire_typed_plan_state_equal": true,
+    "differences": [],
+    "side_labels": {
+      "P0": "已保存 P1",
+      "P1": "本次 P2"
+    },
+    "expected_counts": {
+      "route_attempts": 342,
+      "scheduler_calls": 1038,
+      "checker_calls": 926,
+      "cache_hits": 4
+    },
+    "actual_counts": {
+      "route_attempts": null,
+      "scheduler_calls": null,
+      "checker_calls": null,
+      "cache_hits": null
+    },
+    "complete_economic_counts_equal": false,
+    "saved_P1_reference_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_01/validation/controls_v1/P1_full_economic_once.json.gz",
+    "saved_P1_plan_sha256": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+    "saved_P1_state_sha256": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000"
+  },
+  "P2_unprofiled_internal_call": {
+    "module": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_02/integration_prototype.py",
+      "sha256": "370063a750dfb8775a155fc9f36bcaff3f8e676795f70c91d8927dec5852e895",
+      "candidate_id": "V125-R10-OPT02-PROTOTYPE",
+      "parameters": {
+        "cash_funding": "cash_prefix",
+        "router": "adaptive",
+        "investment_selection": "terminal_net",
+        "task_cost": "full",
+        "care_weight": 1.0,
+        "max_hands": 12,
+        "forecast_days": 6,
+        "early_animals": 4,
+        "r10_route_mode": "future_failure_certificate"
+      }
+    },
+    "returned": true,
+    "seconds": 13.305441375006922,
+    "over_1s": true,
+    "observation_unchanged": true,
+    "plan_sha256": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+    "state_sha256": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000",
+    "error": null,
+    "plan_companions": {
+      "expert": "horticulture",
+      "crop_choice": "MELON",
+      "admitted_investment_count": 26,
+      "remaining_investment_cash_model": 97097.0,
+      "buy_land": false,
+      "rejected_types": {
+        "labor": 217
+      },
+      "route_audit": {
+        "mode": "future_failure_certificate",
+        "counts": {
+          "route_attempts": 342,
+          "actual_calendar_compilations": 48,
+          "quote_calendar_compilations": 312,
+          "scheduler_calls": 1038,
+          "checker_calls": 926,
+          "cache_hits": 4,
+          "route_successful_quotes": 216,
+          "route_failed_quotes": 126,
+          "quote_calendar_cache_hits": 862
+        },
+        "reason_counts": {
+          "CONDITIONAL_ROUTE_LABOR_FEASIBLE": 216,
+          "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL": 8,
+          "NO_CERTIFICATE": 112,
+          "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY": 6
+        },
+        "first_events": [
+          {
+            "item": "WHEAT",
+            "position": [
+              4,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "CARROT",
+            "position": [
+              4,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "COW",
+            "position": [
+              4,
+              4
+            ],
+            "status": "REJECTED",
+            "failed_day": 16,
+            "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+            "route_days": []
+          },
+          {
+            "item": "SHEEP",
+            "position": [
+              4,
+              4
+            ],
+            "status": "REJECTED",
+            "failed_day": 14,
+            "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+            "route_days": []
+          },
+          {
+            "item": "TOMATO",
+            "position": [
+              4,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "MELON",
+            "position": [
+              4,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "WHEAT",
+            "position": [
+              5,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "CARROT",
+            "position": [
+              5,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "COW",
+            "position": [
+              5,
+              4
+            ],
+            "status": "REJECTED",
+            "failed_day": 16,
+            "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+            "route_days": []
+          },
+          {
+            "item": "SHEEP",
+            "position": [
+              5,
+              4
+            ],
+            "status": "REJECTED",
+            "failed_day": 14,
+            "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+            "route_days": []
+          },
+          {
+            "item": "TOMATO",
+            "position": [
+              5,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "MELON",
+            "position": [
+              5,
+              4
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "WHEAT",
+            "position": [
+              4,
+              5
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "CARROT",
+            "position": [
+              4,
+              5
+            ],
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "failed_day": null,
+            "reason": null,
+            "route_days": [
+              10,
+              12,
+              14,
+              16
+            ]
+          },
+          {
+            "item": "COW",
+            "position": [
+              4,
+              5
+            ],
+            "status": "REJECTED",
+            "failed_day": 16,
+            "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+            "route_days": []
+          },
+          {
+            "item": "SHEEP",
+            "position": [
+              4,
+              5
+            ],
+            "status": "REJECTED",
+            "failed_day": 14,
+            "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+            "route_days": []
+          }
+        ],
+        "event_detail_limit": 16,
+        "events_are_quote_attempts_not_actual_permits": true,
+        "final_legacy_failed_days": [
+          10,
+          12,
+          14,
+          15,
+          16
+        ],
+        "final_effective_labor_feasible": true,
+        "last_accepted_proof": {
+          "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+          "labor_feasible_after_routes": true,
+          "route_feasibility_by_day": {
+            "10": true,
+            "12": true,
+            "14": true,
+            "15": true,
+            "16": true
+          },
+          "reason": null,
+          "failed_day": null,
+          "trial_legacy_sha256": "ed4dde82add6eb6199cf2fb491e9c5d896feea33635838da94bab5e4ddac41ec",
+          "witnesses": [
+            {
+              "day": 10,
+              "problem_sha256": "9446d9c35327f22bab4336eb262c4a4261a321a89c381e203fb1879da1436e89",
+              "old_need": 493,
+              "old_capacity": 298,
+              "old_hire_cash": 376,
+              "buffer_debit": 0,
+              "start_shed": {},
+              "reserved_shed": {},
+              "buy": {
+                "qty": 0,
+                "estimated_cash": 0.0,
+                "order_hour": 0,
+                "available_from_hour": 1
+              },
+              "service_count": 122,
+              "delivered_goods": {
+                "STRAWBERRY": 48
+              },
+              "purchased_goods": {},
+              "terminal_shed": {}
+            },
+            {
+              "day": 12,
+              "problem_sha256": "a522b976a0f7944d27e026532443ab54378bb1b9f80da22eb0c7c197b59debf9",
+              "old_need": 493,
+              "old_capacity": 298,
+              "old_hire_cash": 376,
+              "buffer_debit": 0,
+              "start_shed": {},
+              "reserved_shed": {},
+              "buy": {
+                "qty": 0,
+                "estimated_cash": 0.0,
+                "order_hour": 0,
+                "available_from_hour": 1
+              },
+              "service_count": 122,
+              "delivered_goods": {
+                "STRAWBERRY": 48
+              },
+              "purchased_goods": {},
+              "terminal_shed": {}
+            },
+            {
+              "day": 14,
+              "problem_sha256": "3c15e9a4df4df817edf70283e47ebd54c914d89573b4f6b8636d4e5721dc4f9a",
+              "old_need": 493,
+              "old_capacity": 298,
+              "old_hire_cash": 376,
+              "buffer_debit": 0,
+              "start_shed": {},
+              "reserved_shed": {},
+              "buy": {
+                "qty": 0,
+                "estimated_cash": 0.0,
+                "order_hour": 0,
+                "available_from_hour": 1
+              },
+              "service_count": 122,
+              "delivered_goods": {
+                "STRAWBERRY": 48
+              },
+              "purchased_goods": {},
+              "terminal_shed": {}
+            },
+            {
+              "day": 15,
+              "problem_sha256": "8796b0d5b7f5dfc83ee9f439d40e40c70ae310edce3eec4435bef80d4e717e5a",
+              "old_need": 310,
+              "old_capacity": 298,
+              "old_hire_cash": 376,
+              "buffer_debit": 0,
+              "start_shed": {},
+              "reserved_shed": {},
+              "buy": {
+                "qty": 0,
+                "estimated_cash": 0.0,
+                "order_hour": 0,
+                "available_from_hour": 1
+              },
+              "service_count": 74,
+              "delivered_goods": {},
+              "purchased_goods": {},
+              "terminal_shed": {}
+            },
+            {
+              "day": 16,
+              "problem_sha256": "e586803cb0ff88369f25f7bdc8088d9b1872c57ddd94bfad5cf18108d83b7d27",
+              "old_need": 493,
+              "old_capacity": 298,
+              "old_hire_cash": 376,
+              "buffer_debit": 0,
+              "start_shed": {},
+              "reserved_shed": {},
+              "buy": {
+                "qty": 0,
+                "estimated_cash": 0.0,
+                "order_hour": 0,
+                "available_from_hour": 1
+              },
+              "service_count": 122,
+              "delivered_goods": {
+                "STRAWBERRY": 48
+              },
+              "purchased_goods": {},
+              "terminal_shed": {}
+            }
+          ],
+          "conditional_not_actual_execution": true
+        },
+        "source_quote_count": 26,
+        "compiled_quote_cache_entries": 312,
+        "route_cache_entries": 862,
+        "unrepresented_commitments": [],
+        "cash_and_three_scores_unchanged": true,
+        "prior_product_sales_are_conditional": true
+      }
+    }
+  },
+  "saved_P1_reference_time": {
+    "seconds": 18.025442334008403,
+    "over_1s": true,
+    "returned": true
+  },
+  "single_observed_relative_time_reduction": 0.2618521571643381,
+  "P2_internal_within_1s": false,
+  "equivalence_and_source_integrity_pass": false,
+  "source_drift": [],
+  "errors": [],
+  "top_error": null,
+  "P0_calls": 0,
+  "P1_calls": 0,
+  "whole_agent_calls": 0,
+  "engine_calls": 0,
+  "new_complete_matches": 0,
+  "scope": "只读单次完整内部规划和纯接口控制；模型许可并非实际成交/服务；单次跨时段计时差不能外推性能分布。"
+}

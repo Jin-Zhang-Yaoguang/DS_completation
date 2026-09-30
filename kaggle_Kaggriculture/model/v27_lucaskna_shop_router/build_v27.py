@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Build the V27 same-lineage Smoothie expert process package."""
+
+from __future__ import annotations
+
+import base64
+import hashlib
+import json
+import sys
+import tarfile
+import zlib
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+BASE = HERE.parent / "v21_top_meta_moe" / "main.py"
+sys.path.insert(0, str(HERE.parent / "v21_top_meta_moe"))
+from top_route_panel import source_actions
+
+
+def payload(value) -> str:
+    return repr(base64.b85encode(zlib.compress(json.dumps(value, separators=(",", ":")).encode(), 9)).decode())
+
+
+def main() -> int:
+    route = source_actions("lucaskna", 100501596)
+    appendix = f'''
+
+# --- V27 same-lineage Smoothie expert at step 216 ---
+_V27_LUCAS_SMOOTHIE = json.loads(zlib.decompress(base64.b85decode({payload(route)})).decode())
+_V27_STATE = {{0: {{"last": -1, "first_shop": None}}, 1: {{"last": -1, "first_shop": None}}}}
+__version__ = "v27-lucaskna-smoothie-step216-rc1"
+
+
+del agent
+def agent(obs, configuration=None):
+    del configuration
+    global _ACTIONS
+    seat = _seat(obs)
+    step = int(_get(obs, "step", int(_get(obs, "day", 0) or 0) * 24 + int(_get(obs, "hour", 0) or 0)) or 0)
+    state = _V27_STATE[seat]
+    if step == 0 or step < int(state.get("last", -1)):
+        state.clear(); state.update(last=step, first_shop=None)
+    state["last"] = step
+    shops = list(_get(_get(obs, "town", {{}}) or {{}}, "unlocked_shops", []) or [])
+    if state.get("first_shop") is None and step >= 72 and shops:
+        state["first_shop"] = str(shops[0])
+    first = str(state.get("first_shop") or "")
+    if step >= 216 and first == "SMOOTHIE_SHOP":
+        _ACTIONS = _V27_LUCAS_SMOOTHIE
+    elif step >= 216 and first != "YARN_STORE":
+        _ACTIONS = _V21_LUCASKNA_ROUTE
+    else:
+        _ACTIONS = _V19_ROUTES["yarn" if first == "YARN_STORE" else "default"]
+    action = _V19_CORE(obs)
+    action = _v20_delay_sales(obs, action, step)
+    action = _cap_fixed_purchases(obs, action, _V19_PROXY)
+    return _fail_closed_units(obs, action)
+'''
+    target = HERE / "main.py"
+    target.write_text(BASE.read_text(encoding="utf-8") + appendix, encoding="utf-8")
+    archive = HERE / "submission.tar.gz"
+    with tarfile.open(archive, "w:gz") as tar:
+        tar.add(target, arcname="main.py")
+    manifest = {
+        "candidate": "V27 lucaskna Smoothie same-lineage expert RC1",
+        "status": "LOCAL_PROCESS_VERSION_QUALIFIED_FOR_BROAD_PANEL",
+        "parent": "V21 top-meta hierarchical MoE", "source": "lucaskna::100501596",
+        "target_shop": "SMOOTHIE_SHOP", "switch_step": 216,
+        "main_sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+        "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest(), "archive_bytes": archive.stat().st_size,
+        "development": {
+            "models": 5, "seeds": [99600, 99663], "cells": 640, "impacted_cells": 48,
+            "score_uplift_pp": 0.3125, "target_shop_uplift_pp": 4.166666666666666,
+            "positive_zero_negative": [2, 638, 0], "guardrail_pass": True,
+        },
+    }
+    (HERE / "submission_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(manifest, ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

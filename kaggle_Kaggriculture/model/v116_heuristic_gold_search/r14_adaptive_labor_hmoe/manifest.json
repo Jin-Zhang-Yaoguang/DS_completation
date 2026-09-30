@@ -1,0 +1,39 @@
+{
+  "schema": "v116-r14-adaptive-labor-hmoe-manifest-v1",
+  "model": "r14_adaptive_labor_hmoe",
+  "strategy_parent": null,
+  "self_contained": true,
+  "runtime_wraps_historical_model": false,
+  "experts": 5,
+  "labor_hand_cap": 10,
+  "labor_hire_cutoff_hour": 8,
+  "terminal_asset_floor": 58,
+  "status": "NOT_GOLD_KILLFAST_REJECT",
+  "mechanism_checks": {
+    "passed": false,
+    "static_passed": 8,
+    "static_total": 8,
+    "mechanism_passed": 13,
+    "mechanism_total": 14,
+    "failed": [
+      "labor_target_tracks_workload_and_caps_at_ten"
+    ]
+  },
+  "evaluation": {
+    "seed7100_killfast_run": false,
+    "reason": "mechanism gate failed before the only authorized killfast",
+    "p2_run": false,
+    "p3_run": false,
+    "replay_used": false
+  },
+  "registration": {
+    "golden_model": false,
+    "kaggle_ready": false
+  },
+  "sha256": {
+    "main.py": "b6feffb74243544df1ce424dba0e770236a0f0a6dc583bb332c4db355b1a16a3",
+    "test_r14.py": "cf62d2562b0c8f35cfcde17219a0ce089d9d6e35f7b0270d7e6db79a54765131",
+    "evaluate_killfast.py": "fe71a5af949dabc99168497508c717e0d063d220b3bfb24cc43f6605cda8d27f",
+    "mechanism_results.json": "2cfd15e7fd4640c441b21c3bb70bfc9c016e5a039c7dfea004ea6ca53bfe6497"
+  }
+}

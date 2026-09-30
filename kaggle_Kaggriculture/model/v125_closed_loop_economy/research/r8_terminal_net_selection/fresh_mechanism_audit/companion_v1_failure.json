@@ -1,0 +1,32 @@
+{
+  "recorded_at_utc": "2026-09-05T11:48:35.961700+00:00",
+  "original_script_sha256": "247a187f20581eedc8ff0c42f35af7dd2b42fd613b4fc910850e5226f7d3b0ae",
+  "original_output_sha256": "5040ed180458717d8946d7c3e9612803a9f063379d2c63a480b82d7a1bd2f36f",
+  "defect": "companions()将analyzer.denominators.animal_placed与latency.total.placed加到同一Counter键animal_placed，重复计数。原始per_game/latency未变。",
+  "examples": [
+    {
+      "version": "R7",
+      "opponent": "PASS",
+      "original_raw_counts_animal_placed": 24,
+      "actual_analyzer_and_latency_placed": 12
+    },
+    {
+      "version": "R8",
+      "opponent": "PASS",
+      "original_raw_counts_animal_placed": 60,
+      "actual_analyzer_and_latency_placed": 30
+    }
+  ],
+  "not_affected": [
+    "首卖时间",
+    "20%阈值",
+    "逐席阈值",
+    "来源资格",
+    "逐局原始动物分母",
+    "逐局等待账本"
+  ],
+  "remediation": "派生v2，latency来源计数统一使用latency_前缀；analyzer原分母保持原键，不再碰撞。不改任何主机制计算/阈值。",
+  "new_independent_matches": 0,
+  "candidate_calls": 0,
+  "engine_steps": 0
+}

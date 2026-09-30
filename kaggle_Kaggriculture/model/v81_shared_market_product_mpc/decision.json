@@ -1,0 +1,36 @@
+{
+  "schema": "kaggriculture-portfolio-decision-v1",
+  "portfolio_id": "hier-moe-originality-5-20260829",
+  "lineage_slot": "E",
+  "model_id": "v81_shared_market_product_mpc",
+  "parent": "v76_adjacent_safe_buy_lead",
+  "decision": "REJECT_DEVELOPMENT_AND_LATENCY_GATE",
+  "originality_status": "PRE_REGISTERED_NEW_LINEAGE_REJECTED_BEFORE_CONFIRMATION",
+  "candidate_archive_sha256": "ac32dc82423daf8ac4cca41113a82b4b6ecf79bf02dbd49a133cc4412b816098",
+  "development": {
+    "sources": 64,
+    "games": 1536,
+    "done_games": 1536,
+    "error_count": 0,
+    "panel_score": 0.517578125,
+    "pou_pp": -33.3984375,
+    "pou_95ci_pp": [-37.63020833333333, -28.90625],
+    "positive_zero_negative": [6, 455, 307],
+    "by_opponent_pou_pp": {"v20": 0.0, "v21": 0.0, "v32": -9.765625, "v54": -75.0, "v66": -75.78125, "v76": -39.84375},
+    "changed_games": 766,
+    "catastrophic_rate_delta_pp": 0.0,
+    "gate": "FAIL"
+  },
+  "confirmation": "NOT_CONSUMED",
+  "latency": {
+    "p99_ms": 1.155406,
+    "parent_p99_ms": 0.7965005000000001,
+    "p99_vs_parent": 1.450602981416835,
+    "absolute_below_250ms": true,
+    "relative_at_most_1_25x_parent": false,
+    "gate": "FAIL"
+  },
+  "golden_model_registration": "NO",
+  "remote_submission": "NOT_AUTHORIZED_NOT_SUBMITTED",
+  "conclusion": "The exact one-step market solver optimizes the wrong structural forecast: parent-queue-as-opponent is not stable across the frozen originality panel; the implementation also fails the frozen relative P99 latency guard."
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "kaggriculture-v12-r002-embedded-router-1",
+  "source_model_id": "r002_learned_router_topday_animal_throttle",
+  "source_serving_sha256": "38afb12bd5fbc987adf752acb437abe9330bd385233c22782b35353f77be2d74",
+  "source_registry_file_sha256": "e98156a0ac3741f5c9cfa698ea00f37d54e9277b53bfa864eb848928eb8dbaf0",
+  "router_spec": {
+    "id": "learned_router",
+    "kind": "router",
+    "experts": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8"
+    ],
+    "anchor": "baseline_v1",
+    "switch_step": 72,
+    "code_paths": [
+      "router.py"
+    ],
+    "lineage": [
+      "v10_step72_router"
+    ],
+    "family": "v10_step72_full_expert_router",
+    "router_kind": "learned",
+    "weights": "learned_router_weights.npz",
+    "tags": [
+      "router",
+      "learned",
+      "numpy",
+      "frozen_train_validation"
+    ]
+  },
+  "expert_specs": {
+    "baseline_v1": {
+      "id": "baseline_v1",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v1"
+      ],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v1_adaptive_market/main.py"
+      ],
+      "family": "v1_adaptive_market",
+      "lineage": [
+        "baseline_v1"
+      ],
+      "tags": [
+        "保留基线",
+        "adaptive"
+      ]
+    },
+    "baseline_v2": {
+      "id": "baseline_v2",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v2"
+      ],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v2_survival_guard/main.py"
+      ],
+      "family": "v2_survival_guard",
+      "lineage": [
+        "baseline_v2"
+      ],
+      "tags": [
+        "保留基线",
+        "survival"
+      ]
+    },
+    "baseline_v5": {
+      "id": "baseline_v5",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v5"
+      ],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v5_rule_hybrid/main.py",
+        "../v5_rule_hybrid/base_agent.py",
+        "../v5_rule_hybrid/routes.py",
+        "../v5_rule_hybrid/v1_fallback.py"
+      ],
+      "family": "v5_rule_hybrid",
+      "lineage": [
+        "baseline_v5"
+      ],
+      "tags": [
+        "保留基线",
+        "champion-route"
+      ]
+    },
+    "baseline_v8": {
+      "id": "baseline_v8",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v8"
+      ],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa_lead2_slot",
+      "lineage": [
+        "baseline_v8"
+      ],
+      "tags": [
+        "保留基线",
+        "kawa"
+      ]
+    }
+  },
+  "residual": {
+    "name": "topday_animal_throttle",
+    "days": [
+      10,
+      17,
+      24
+    ],
+    "fraction": 0.5,
+    "products": [
+      "EGG",
+      "MILK",
+      "WOOL"
+    ]
+  }
+}

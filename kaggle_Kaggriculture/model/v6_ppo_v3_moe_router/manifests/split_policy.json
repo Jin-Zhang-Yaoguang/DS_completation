@@ -1,0 +1,29 @@
+{
+  "schema": "kaggriculture-ppo-v3-group-split-1",
+  "purpose": "D2/D3 group split; never mix paired seats or a source episode lineage across train, validation and test.",
+  "group_fields": [
+    "source",
+    "strategy_family",
+    "lineage",
+    "episode_group_id",
+    "seed"
+  ],
+  "excluded_from_group": [
+    "seat",
+    "day",
+    "step",
+    "candidate_expert",
+    "market_expert"
+  ],
+  "algorithm": "sha256('kaggriculture-ppo-v3-group-split-1|' + '|'.join(group_fields)) first_64_bits mod 100",
+  "buckets": {
+    "train": [0, 79],
+    "validation": [80, 89],
+    "test": [90, 99]
+  },
+  "invariants": [
+    "same seed and paired seats share the same split",
+    "all daily states from one episode_group_id share the same split",
+    "D4 holdout rows are not read by data collection, expert qualification, Router fitting or checkpoint selection"
+  ]
+}

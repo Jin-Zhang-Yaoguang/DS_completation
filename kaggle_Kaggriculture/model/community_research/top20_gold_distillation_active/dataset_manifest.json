@@ -1,0 +1,90 @@
+{
+  "schema": "kaggriculture-v122-top20-contract-dataset-v1",
+  "admission": {
+    "minimum_actual_date": "2026-08-20",
+    "engine": "1.32.7",
+    "dedupe": "episode_id+replay_sha256+teacher+seat"
+  },
+  "alignment": "steps[t].observation -> unordered aggregate contract over steps[t+1:t+h].actions",
+  "runtime_uses_future_actions": false,
+  "split_unit": "episode_id",
+  "dev_wins_on_split_conflict": true,
+  "episodes": 339,
+  "teacher_trajectories": 407,
+  "rows": {
+    "macro_3day": 4070,
+    "daily_contract": 12210,
+    "global_market": 12210
+  },
+  "split": {
+    "train": 2840,
+    "dev": 1230
+  },
+  "teacher_coverage": {
+    "train": 20,
+    "dev": 20,
+    "counts": {
+      "3정훈|dev": 6,
+      "3정훈|train": 10,
+      "AM|dev": 4,
+      "AM|train": 12,
+      "Alperen Aydın|dev": 4,
+      "Alperen Aydın|train": 12,
+      "Crop Dusta|dev": 8,
+      "Crop Dusta|train": 24,
+      "Driz Lo|dev": 5,
+      "Driz Lo|train": 23,
+      "Gekkotron|dev": 4,
+      "Gekkotron|train": 13,
+      "HD h Joratos|dev": 7,
+      "HD h Joratos|train": 9,
+      "Kenjo1209|dev": 8,
+      "Kenjo1209|train": 24,
+      "MtN|dev": 8,
+      "MtN|train": 12,
+      "QQ Farming|dev": 10,
+      "QQ Farming|train": 23,
+      "RngRng|dev": 6,
+      "RngRng|train": 10,
+      "Saravanan Jaichandaran|dev": 9,
+      "Saravanan Jaichandaran|train": 7,
+      "Whyme Labs|dev": 4,
+      "Whyme Labs|train": 12,
+      "Zenith Ye|dev": 7,
+      "Zenith Ye|train": 9,
+      "cg|dev": 5,
+      "cg|train": 11,
+      "faye|dev": 4,
+      "faye|train": 12,
+      "senkin13|dev": 4,
+      "senkin13|train": 12,
+      "tetsuya|dev": 8,
+      "tetsuya|train": 25,
+      "yukino|dev": 8,
+      "yukino|train": 12,
+      "zhyphirus|dev": 4,
+      "zhyphirus|train": 12
+    }
+  },
+  "source_panels": {
+    "official_daily_confirmation": 860,
+    "own_online_primary": 10,
+    "top20_cli_training_auxiliary": 3200
+  },
+  "receipt_teacher_rows_before_dedupe": {
+    "receipt.json": 87,
+    "top20_cli_receipt.json": 320
+  },
+  "feature_count": 92,
+  "forbidden_runtime_fields": [
+    "episode_id",
+    "future_action",
+    "future_shop",
+    "replay_sha256",
+    "seat",
+    "seed",
+    "submission_id",
+    "teacher"
+  ],
+  "status": "TRAINING_DATA_READY_NOT_PROMOTION_EVIDENCE"
+}

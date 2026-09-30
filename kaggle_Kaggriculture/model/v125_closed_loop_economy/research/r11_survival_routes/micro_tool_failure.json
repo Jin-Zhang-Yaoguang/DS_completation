@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-09-05T15:06:27.355232+00:00",
+  "status": "INSTRUMENT_REJECTED_NOT_CANDIDATE_RESULT",
+  "error": "Kaggle Struct对时间字段以字典赋值只改dict表示，解释器读的属性仍为setup时间435；首次382动作后实际跳至436，破坏指定两步。",
+  "attempted_candidate_calls": 12,
+  "official_interpreter_calls": 12,
+  "pure_internal_plan_calls": 48,
+  "new_matches": 0,
+  "evidence": "micro_once/runs.json.gz与micro_run.log完整保留，不用于候选裁决。",
+  "correction": "新脚本v2用setattr设置step/day/hour，并在每一步验证期望时间增长恰为1；重建固定原案例一次，候选字节不改。"
+}

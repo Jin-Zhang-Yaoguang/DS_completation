@@ -1,0 +1,22 @@
+{
+  "id": "v12a2_no_shop_gate",
+  "kind": "python",
+  "path": "main.py",
+  "factory": "make_agent",
+  "family": "r002+branch-storage-guards-no-shop-gate",
+  "lineage": [
+    "learned_router",
+    "r002_learned_router_topday_animal_throttle",
+    "v12a_terminal_branch_guard",
+    "v12a2_no_shop_gate"
+  ],
+  "parent_models": ["r002_learned_router_topday_animal_throttle"],
+  "change_scope": "仅删除 V12A 的已解锁商店逐商品过滤；分支、小额、同回合入库、仓位、terminal 与 worker 路径不变",
+  "tags": [
+    "market-residual",
+    "causal-ablation-repair",
+    "no-shop-demand-gate",
+    "no-premium-floor"
+  ],
+  "code_paths": ["main.py", "../v12a_terminal_branch_guard/main.py"]
+}

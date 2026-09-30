@@ -1,0 +1,806 @@
+{
+  "schema": "claude-v26-static-source-review-v1",
+  "reviewed_at_utc": "2026-09-05T12:34:09.182257+00:00",
+  "scope": "V26 six requested files plus direct build/loader/rules/evaluation evidence",
+  "candidate_calls": 1,
+  "engine_steps": 0,
+  "new_matches": 0,
+  "claude_files_modified": false,
+  "operations": "先只读文本/AST、压缩常量解码、归档字节比较、纯文本构建重现与已存结果算术复核；后经根明确授权，以官方最后callable入口在人工day0完整观测调用1次，profile只观察原核入场，无完整比赛、无引擎step、无函数替换。",
+  "files": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/main.py": {
+      "sha256": "dcd5f38cf1abcf8dee235f0d4ebdd546fb147f795206694030f5d2b3781fd2b6",
+      "bytes": 196621
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py": {
+      "sha256": "f22026c876254285cfb2bd2f301f2b44856584ad40093c3580330e4647948c8e",
+      "bytes": 196621
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a0.py": {
+      "sha256": "64deb1804c3e0fad7b88aa49a23d355cf853071a6b04f041a5d974fc21bb6e7b",
+      "bytes": 196544
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/build.py": {
+      "sha256": "6b22defaa7c17510d6d28cfb9ece37ce00d6764b4e8bf655f021f95b670dd729",
+      "bytes": 1562
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/dist/main.py": {
+      "sha256": "f22026c876254285cfb2bd2f301f2b44856584ad40093c3580330e4647948c8e",
+      "bytes": 196621
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/README.md": {
+      "sha256": "c4d165fa67404f9ba0203fb49f7bb657fc38d2b7fc3bf495b2875aa89854eeb5",
+      "bytes": 1784
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/submission.tar.gz": {
+      "sha256": "aa3086437d1f1c44cd5255bcbd05d5ec7087187f3df5d2584de6af5e2d3fa36c",
+      "bytes": 105413
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v120_hierarchical_top5_distillation/main.py": {
+      "sha256": "52c8ee80adc95b78f4688a7f54ca29c38824d1d427e665ec3e3d7510901be9eb",
+      "bytes": 174464
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py": {
+      "sha256": "576211de2cf41921def9c6fc1e968058896b473fdcc8bc3f0baadfbdc06b9f71",
+      "bytes": 185697
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/build.py": {
+      "sha256": "8de107d6c5798c38c422e18d20130057177630e423437c9ee541e5fcf23b6e82",
+      "bytes": 3101
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v19_v10_guard/build_submission.py": {
+      "sha256": "a47016ba39ddcc16bf21d03d28e495dd5e8e20325b57095870fc5ca10c0ccaa3",
+      "bytes": 4513
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v24_hybrid/build.py": {
+      "sha256": "1f8a73bfbbad8b8d64f8d09af3a5e5fdb32e9ddb9d90854510b368f80d1d4e79",
+      "bytes": 3375
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v16_online_fidelity/tapes/fam_F_new.json": {
+      "sha256": "18f26c87ea632210b332d4e530e32ff9225110d5509d748b52ad7be529789c5b",
+      "bytes": 128069
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v16_online_fidelity/fidelity.py": {
+      "sha256": "4c572bdbeb51da20f8e7742b7ac209634202357158da4511fda234a3ab744b64",
+      "bytes": 4929
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v4_demand_race/harness/arena.py": {
+      "sha256": "37862953f9977fa6c0212812a1f9267c3d3224afdb3b67a873f08dc3422abbdb",
+      "bytes": 3862
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v4_demand_race/harness/engine.py": {
+      "sha256": "922ea7961ce5876cad71d20848a01f2985025f7de4e643e8561a87ba5ed648ae",
+      "bytes": 3638
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.venv/lib/python3.12/site-packages/kaggle_environments/agent.py": {
+      "sha256": "9b7682ce9921c8f34080a8be0f7b41598cc12ac7eb14d24e4b707883f25213b6",
+      "bytes": 8090
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.venv/lib/python3.12/site-packages/kaggle_environments/envs/kaggriculture/kaggriculture.py": {
+      "sha256": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+      "bytes": 40356
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/GATE_PROTOCOL.md": {
+      "sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+      "bytes": 9974
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/m6.json": {
+      "sha256": "d2f996ddd78b4e55af9fdabd39cc41a7c96caeb27c0c8c1e015d5a835f4ea175",
+      "bytes": 44942
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/m6_a30.json": {
+      "sha256": "92c7933b6af76e9dbfc3a1c719b33e608fa57b07db3ff786dc95c6d65f62a173",
+      "bytes": 44808
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/m6.log": {
+      "sha256": "b5c3bb35f28878d19f515ed98e41862447c41f017f023be3c041a7778472e880",
+      "bytes": 249
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/m6_a30.log": {
+      "sha256": "cca3849d7b53d63040efcdc4636f23a1edb3710fd5967a040a6a79af0d4a4df5",
+      "bytes": 248
+    },
+    "/tmp/v25_cand.py": {
+      "sha256": "e25fa89741255557d48226ebce8bfceeff1c6a3f35a5425307f853461aaab159",
+      "bytes": 273
+    },
+    "/tmp/v26_cand.py": {
+      "sha256": "51ac090fe6668adc0842ae591091f6ad3db6669845201d80ae5d1aaacf0d125c",
+      "bytes": 267
+    },
+    "/tmp/v26a30.py": {
+      "sha256": "dda83146887cf85cf2991e65c140324607a707eb8cf09e1f436f9992ee28a642",
+      "bytes": 274
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/result.json": {
+      "sha256": "107fcf8413f627afd1be209700edb1d0d085467959624487ed9e1c89c9626a60",
+      "bytes": 1724
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/delivery_manifest.json": {
+      "sha256": "20bba984a25ff8bba3099c8996f37d44aa6f78600ed07d75b5636959e56c4b33",
+      "bytes": 1302
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/probe.py": {
+      "sha256": "ff945090c3092e71e32c4762aecdf529360445c23c1c35734eae767ae4464e8e",
+      "bytes": 6756
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/initial_observation.json": {
+      "sha256": "f2fb438db5dbcc234aa5299efc9c502d0dc665970610242c436a6be93aae496e",
+      "bytes": 5622
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/captured_output.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/freeze.json": {
+      "sha256": "636236af70b8d90ea2fdbbd3bdbaad9051d73627840c1a818f4c6e0382b87cdf",
+      "bytes": 1965
+    }
+  },
+  "package_identity": {
+    "directory_main": "a53",
+    "variant_a30_dist_archive_main_equal": true,
+    "a30_entry_sha256": "f22026c876254285cfb2bd2f301f2b44856584ad40093c3580330e4647948c8e",
+    "archive_sha256": "aa3086437d1f1c44cd5255bcbd05d5ec7087187f3df5d2584de6af5e2d3fa36c",
+    "archive_members": [
+      {
+        "name": "._main.py",
+        "size": 163,
+        "sha256": "3aab33c10255ec086ecdb8b5b8a41f8c52a6dcf3566aeca907ae8dd3b2fdfdb0"
+      },
+      {
+        "name": "main.py",
+        "size": 196621,
+        "sha256": "f22026c876254285cfb2bd2f301f2b44856584ad40093c3580330e4647948c8e"
+      }
+    ],
+    "readme_submission_id": 56030342,
+    "online_submission_to_package_binding": "README_CLAIM_NOT_INDEPENDENTLY_VERIFIED_IN_THIS_REVIEW"
+  },
+  "a30_diff_from_main": [
+    {
+      "line": 2343,
+      "op": "BUY_PRODUCT",
+      "item": "WHEAT",
+      "before": 53,
+      "after": 30
+    },
+    {
+      "line": 2345,
+      "op": "SELL",
+      "item": "WHEAT",
+      "before": 48,
+      "after": 25
+    }
+  ],
+  "a0_diff": "仅将上述两条insert替换为pass；_V17_ATTACK仍True、day0排序及其他层保留",
+  "build_reproduction": {
+    "current_dependency_text_concatenation_equals_main": true,
+    "reconstructed_sha256": "dcd5f38cf1abcf8dee235f0d4ebdd546fb147f795206694030f5d2b3781fd2b6",
+    "equals_a30": false,
+    "builder_outputs_only": "main.py",
+    "variant_or_dist_or_archive_generation_not_present": true
+  },
+  "decoded_embedded_sources": {
+    "_V120_DISTILLED_ROUTE": {
+      "source_line": 2233,
+      "n_actions": 719,
+      "decoded_bytes_sha256": "d93aa81501b0418627dbfaaae206d22e071bb0ab038183b2769085df622f5e88",
+      "canonical_actions_sha256": "d93aa81501b0418627dbfaaae206d22e071bb0ab038183b2769085df622f5e88",
+      "first_two_action_intents": [
+        {
+          "farmer": [
+            "PASS"
+          ],
+          "hands": [],
+          "market": []
+        },
+        {
+          "farmer": [
+            "NORTH"
+          ],
+          "hands": [],
+          "market": [
+            [
+              "BUY_PRODUCT",
+              "WHEAT",
+              5
+            ],
+            [
+              "BUY_SEED",
+              "WHEAT",
+              7
+            ],
+            [
+              "BUY_SEED",
+              "MELON",
+              12
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "BUY_ANIMAL",
+              "COW",
+              2
+            ],
+            [
+              "BUY_ANIMAL",
+              "SHEEP",
+              2
+            ]
+          ]
+        }
+      ]
+    },
+    "_F_ACTIONS": {
+      "source_line": 2266,
+      "n_actions": 720,
+      "decoded_bytes_sha256": "352ad618bea589d395d5e6500e99433b9dab3318dcdb684d5c6f9349ee738acb",
+      "canonical_actions_sha256": "842977c10f66673981f4f4b8c8022e1f1178f0e8d1ae7059871c2b54bbfed3ee",
+      "first_two_action_intents": [
+        {
+          "farmer": [
+            "PASS"
+          ],
+          "hands": [],
+          "market": [
+            [
+              "BUY_PRODUCT",
+              "WHEAT",
+              13
+            ]
+          ]
+        },
+        {
+          "farmer": [
+            "NORTH"
+          ],
+          "hands": [],
+          "market": [
+            [
+              "SELL",
+              "WHEAT",
+              8
+            ],
+            [
+              "BUY_SEED",
+              "WHEAT",
+              7
+            ],
+            [
+              "BUY_SEED",
+              "MELON",
+              12
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "HIRE"
+            ],
+            [
+              "BUY_ANIMAL",
+              "COW",
+              2
+            ],
+            [
+              "BUY_ANIMAL",
+              "SHEEP",
+              2
+            ]
+          ]
+        }
+      ],
+      "source_metadata": {
+        "team": "Lynxx",
+        "hash": "ff71bda897",
+        "ep": 105163747,
+        "seed": 1744469180
+      },
+      "equals_build_input_actions": true
+    }
+  },
+  "effective_call_chain": [
+    "kaggriculture_agent_v25@2485",
+    "kaggriculture_agent_v24@2406",
+    "kaggriculture_agent@2352",
+    "_v17_wrapped@2301",
+    "_V17_BASE_AGENT -> agent@2259",
+    "_v120_distilled_expert@2238",
+    "_ACTIONS = _V120_DISTILLED_ROUTE@2240",
+    "_V19_CORE = _CORE_AGENT -> original agent@1372",
+    "_copy_action(_ACTIONS[step])@1375"
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "severity": "critical",
+      "claim": "F tape仅在载入时赋值；当前标准最后callable和module.agent路径均由V120每帧覆盖，不是实际换F母带。",
+      "certainty": "STATIC_CALLGRAPH_PROVEN_AND_ONE_DAY0_ENTRY_CALL_CONFIRMED"
+    },
+    {
+      "id": "F02",
+      "severity": "critical",
+      "claim": "四种MM BUY_PRODUCT不受当前官方规则支持；pos按发单增加，导致无真实购入的内部持仓。后续SELL可能卖出自产库存，因此不等于整个层没有行为影响。",
+      "certainty": "STATIC_CODE_AND_RULES_PROVEN"
+    },
+    {
+      "id": "F03",
+      "severity": "high",
+      "claim": "V26实际删除V25 V10动物采购过滤；A30另改变开局扰动请求。成绩不得只归因换母带。",
+      "certainty": "EXACT_TEXT_DIFF_PROVEN"
+    },
+    {
+      "id": "F04",
+      "severity": "high",
+      "claim": "module.agent和最后callable入口不同；现存/tmp三包装器已回绑最后callable，可解释正确评测入口，但M6 JSON仍缺包装器/source/命令/引擎SHA绑定，不能认证当前包，也不能断言历史入口必错。",
+      "certainty": "SOURCE_PROVEN_PROVENANCE_PENDING"
+    },
+    {
+      "id": "F05",
+      "severity": "medium",
+      "claim": "_v17_count_animals不识别官方animal字符串且kind为PASTURE/COOP的已放动物，可能错误补购。",
+      "certainty": "STATIC_SCHEMA_MISMATCH_NO_RUNTIME_FREQUENCY_CLAIM"
+    },
+    {
+      "id": "F06",
+      "severity": "medium",
+      "claim": "README称全绿/全局最优但同时记录pert_1 4/8负均差；不构成独立金牌门或全局优化证明。",
+      "certainty": "DOCUMENT_BOUNDARY"
+    }
+  ],
+  "stored_m6_recomputation": {
+    "m6.json": {
+      "v120": {
+        "rows": 128,
+        "unique_seed_seat": 128,
+        "unique_seeds": 64,
+        "W": 125,
+        "L": 3,
+        "T": 0,
+        "winrate": 0.9765625,
+        "mean_own_cash": 93034.2578125,
+        "mean_opponent_cash": 74296.859375,
+        "mean_margin": 18737.3984375,
+        "cash_margin_closed": true,
+        "row_fields": [
+          "margin",
+          "mine",
+          "seat",
+          "seed",
+          "theirs"
+        ],
+        "summary_WLT_equal": true,
+        "candidate_identity": "NOT_RECORDED",
+        "entrypoint": "NOT_RECORDED",
+        "engine_sha256": "NOT_RECORDED",
+        "719_steps_and_errors_and_parity": "NOT_RECORDED"
+      },
+      "v76": {
+        "rows": 128,
+        "unique_seed_seat": 128,
+        "unique_seeds": 64,
+        "W": 114,
+        "L": 14,
+        "T": 0,
+        "winrate": 0.890625,
+        "mean_own_cash": 84545.5703125,
+        "mean_opponent_cash": 75533.015625,
+        "mean_margin": 9012.5546875,
+        "cash_margin_closed": true,
+        "row_fields": [
+          "margin",
+          "mine",
+          "seat",
+          "seed",
+          "theirs"
+        ],
+        "summary_WLT_equal": true,
+        "candidate_identity": "NOT_RECORDED",
+        "entrypoint": "NOT_RECORDED",
+        "engine_sha256": "NOT_RECORDED",
+        "719_steps_and_errors_and_parity": "NOT_RECORDED"
+      },
+      "v20": {
+        "rows": 128,
+        "unique_seed_seat": 128,
+        "unique_seeds": 64,
+        "W": 116,
+        "L": 12,
+        "T": 0,
+        "winrate": 0.90625,
+        "mean_own_cash": 84563.203125,
+        "mean_opponent_cash": 75301.8671875,
+        "mean_margin": 9261.3359375,
+        "cash_margin_closed": true,
+        "row_fields": [
+          "margin",
+          "mine",
+          "seat",
+          "seed",
+          "theirs"
+        ],
+        "summary_WLT_equal": true,
+        "candidate_identity": "NOT_RECORDED",
+        "entrypoint": "NOT_RECORDED",
+        "engine_sha256": "NOT_RECORDED",
+        "719_steps_and_errors_and_parity": "NOT_RECORDED"
+      }
+    },
+    "m6_a30.json": {
+      "v120": {
+        "rows": 128,
+        "unique_seed_seat": 128,
+        "unique_seeds": 64,
+        "W": 125,
+        "L": 3,
+        "T": 0,
+        "winrate": 0.9765625,
+        "mean_own_cash": 82100.8046875,
+        "mean_opponent_cash": 77252.3046875,
+        "mean_margin": 4848.5,
+        "cash_margin_closed": true,
+        "row_fields": [
+          "margin",
+          "mine",
+          "seat",
+          "seed",
+          "theirs"
+        ],
+        "summary_WLT_equal": true,
+        "candidate_identity": "NOT_RECORDED",
+        "entrypoint": "NOT_RECORDED",
+        "engine_sha256": "NOT_RECORDED",
+        "719_steps_and_errors_and_parity": "NOT_RECORDED"
+      },
+      "v76": {
+        "rows": 128,
+        "unique_seed_seat": 128,
+        "unique_seeds": 64,
+        "W": 114,
+        "L": 14,
+        "T": 0,
+        "winrate": 0.890625,
+        "mean_own_cash": 84542.0546875,
+        "mean_opponent_cash": 75533.234375,
+        "mean_margin": 9008.8203125,
+        "cash_margin_closed": true,
+        "row_fields": [
+          "margin",
+          "mine",
+          "seat",
+          "seed",
+          "theirs"
+        ],
+        "summary_WLT_equal": true,
+        "candidate_identity": "NOT_RECORDED",
+        "entrypoint": "NOT_RECORDED",
+        "engine_sha256": "NOT_RECORDED",
+        "719_steps_and_errors_and_parity": "NOT_RECORDED"
+      },
+      "v20": {
+        "rows": 128,
+        "unique_seed_seat": 128,
+        "unique_seeds": 64,
+        "W": 116,
+        "L": 12,
+        "T": 0,
+        "winrate": 0.90625,
+        "mean_own_cash": 84559.53125,
+        "mean_opponent_cash": 75302.2578125,
+        "mean_margin": 9257.2734375,
+        "cash_margin_closed": true,
+        "row_fields": [
+          "margin",
+          "mine",
+          "seat",
+          "seed",
+          "theirs"
+        ],
+        "summary_WLT_equal": true,
+        "candidate_identity": "NOT_RECORDED",
+        "entrypoint": "NOT_RECORDED",
+        "engine_sha256": "NOT_RECORDED",
+        "719_steps_and_errors_and_parity": "NOT_RECORDED"
+      }
+    }
+  },
+  "transfer_hypotheses": [
+    {
+      "id": "T1",
+      "proposal": "只在资源/可售容量及动作生效可核时利用已到位空闲动作补水或采收",
+      "source": "V24 inplace fill",
+      "not_proven": "当前V125是否尚有对应未利用机会，需日志归因后单机制验证"
+    },
+    {
+      "id": "T2",
+      "proposal": "从MM想法保留库存目标和销售时机实验，先建立真实成交receipt和合法品类域；不用当前幽灵pos",
+      "source": "V25 MM",
+      "not_proven": "不存在四高价产品BUY套利证据；外购非麦还与现firstsale唯一自产来源工具口径冲突"
+    },
+    {
+      "id": "T3",
+      "proposal": "把扰动量视为对手/资金约束下可证伪压力轴，独立考察自身现金及margin，不能固定30为全局最优",
+      "source": "A0/A30/A53变体",
+      "not_proven": "既有结果缺入口与SHA闭包，需重新事前冻结验证才能迁移结论"
+    },
+    {
+      "id": "T4",
+      "proposal": "从V10删减对比提取需求对动物边际收益的影响，纳入V125真实价格/剩余期投资模型，不照抄日9/day10禁买阈值",
+      "source": "V25 vs V26实际过滤差异",
+      "not_proven": "不能从README证明取消过滤普遍更优"
+    }
+  ],
+  "references": [
+    {
+      "id": "v26-entry",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2485,
+      "end_line": 2491
+    },
+    {
+      "id": "v26-guard-capture",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2273,
+      "end_line": 2278
+    },
+    {
+      "id": "v26-guard",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2301,
+      "end_line": 2349
+    },
+    {
+      "id": "v26-core-capture",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 1418,
+      "end_line": 1418
+    },
+    {
+      "id": "v26-core-alias",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 1601,
+      "end_line": 1601
+    },
+    {
+      "id": "v26-core-read",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 1372,
+      "end_line": 1394
+    },
+    {
+      "id": "v26-route-reset",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2238,
+      "end_line": 2243
+    },
+    {
+      "id": "v26-stored-F",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2265,
+      "end_line": 2269
+    },
+    {
+      "id": "v26-actual-agent",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2259,
+      "end_line": 2262
+    },
+    {
+      "id": "v26-fill",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2363,
+      "end_line": 2400
+    },
+    {
+      "id": "v26-mm",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py",
+      "start_line": 2425,
+      "end_line": 2491
+    },
+    {
+      "id": "v26-builder",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/build.py",
+      "start_line": 6,
+      "end_line": 37
+    },
+    {
+      "id": "v25-animal-filters",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py",
+      "start_line": 2274,
+      "end_line": 2313
+    },
+    {
+      "id": "local-last-callable",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.venv/lib/python3.12/site-packages/kaggle_environments/agent.py",
+      "start_line": 40,
+      "end_line": 64
+    },
+    {
+      "id": "fidelity-loader",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v16_online_fidelity/fidelity.py",
+      "start_line": 26,
+      "end_line": 42
+    },
+    {
+      "id": "arena-agent-entry",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v4_demand_race/harness/arena.py",
+      "start_line": 22,
+      "end_line": 35
+    },
+    {
+      "id": "buy-product-domain",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.venv/lib/python3.12/site-packages/kaggle_environments/envs/kaggriculture/kaggriculture.py",
+      "start_line": 596,
+      "end_line": 607
+    },
+    {
+      "id": "animal-schema",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.venv/lib/python3.12/site-packages/kaggle_environments/envs/kaggriculture/kaggriculture.py",
+      "start_line": 229,
+      "end_line": 240
+    },
+    {
+      "id": "temporary-last-callable-wrapper-v25_cand",
+      "path": "/tmp/v25_cand.py",
+      "start_line": 1,
+      "end_line": 4
+    },
+    {
+      "id": "temporary-last-callable-wrapper-v26_cand",
+      "path": "/tmp/v26_cand.py",
+      "start_line": 1,
+      "end_line": 4
+    },
+    {
+      "id": "temporary-last-callable-wrapper-v26a30",
+      "path": "/tmp/v26a30.py",
+      "start_line": 1,
+      "end_line": 4
+    },
+    {
+      "id": "dynamic-entry-probe",
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/result.json",
+      "json_pointer": "/profile_events/0"
+    }
+  ],
+  "source_data_qualification": "fam_F derivative仅含team/hash/ep/seed及720动作；无完整Replay日期/规则/seat/源SHA注册链，不纳V125金牌证据。原包内旧teacher注释同样不是晋级注册。",
+  "limits": [
+    "静态审查后另授权1次人工day0入口调用，仍无新完整对局",
+    "现有产物成绩不重新认证为当前source/package成绩",
+    "未访问新官方Replay/Blind",
+    "未独立核对56030342当前线上状态或上传包绑定"
+  ],
+  "all_initial_requested_file_shas_stable": true,
+  "wrapper_evidence": [
+    {
+      "path": "/tmp/v25_cand.py",
+      "sha256": "e25fa89741255557d48226ebce8bfceeff1c6a3f35a5425307f853461aaab159",
+      "lines": [
+        "ns = {}",
+        "exec(open(\"/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py\").read(), ns)",
+        "fns = [v for k, v in ns.items() if callable(v) and not k.startswith(\"__\")]",
+        "agent = fns[-1]"
+      ],
+      "line_count": 4,
+      "entrypoint": "原目标文件最后callable回绑为wrapper.agent",
+      "source_mutation": "没有改写原源码或route变量，运行时动态读取目标文件",
+      "historical_binding": "未见M6结果内wrapper/source SHA或运行命令绑定"
+    },
+    {
+      "path": "/tmp/v26_cand.py",
+      "sha256": "51ac090fe6668adc0842ae591091f6ad3db6669845201d80ae5d1aaacf0d125c",
+      "lines": [
+        "ns = {}",
+        "exec(open(\"/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/main.py\").read(), ns)",
+        "fns = [v for k, v in ns.items() if callable(v) and not k.startswith(\"__\")]",
+        "agent = fns[-1]"
+      ],
+      "line_count": 4,
+      "entrypoint": "原目标文件最后callable回绑为wrapper.agent",
+      "source_mutation": "没有改写原源码或route变量，运行时动态读取目标文件",
+      "historical_binding": "未见M6结果内wrapper/source SHA或运行命令绑定"
+    },
+    {
+      "path": "/tmp/v26a30.py",
+      "sha256": "dda83146887cf85cf2991e65c140324607a707eb8cf09e1f436f9992ee28a642",
+      "lines": [
+        "ns = {}",
+        "exec(open(\"/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v26_f_base/variant_a30.py\").read(), ns)",
+        "fns = [v for k, v in ns.items() if callable(v) and not k.startswith(\"__\")]",
+        "agent = fns[-1]"
+      ],
+      "line_count": 4,
+      "entrypoint": "原目标文件最后callable回绑为wrapper.agent",
+      "source_mutation": "没有改写原源码或route变量，运行时动态读取目标文件",
+      "historical_binding": "未见M6结果内wrapper/source SHA或运行命令绑定"
+    }
+  ],
+  "dynamic_entry_probe": {
+    "status": "DIAGNOSTIC_COMPLETE",
+    "source_sha256": "f22026c876254285cfb2bd2f301f2b44856584ad40093c3580330e4647948c8e",
+    "entrypoint": {
+      "name": "kaggriculture_agent_v25",
+      "line": 2485
+    },
+    "before_candidate_call": {
+      "actions_is_F": true,
+      "actions_is_V120": false,
+      "actions_sha256": "842977c10f66673981f4f4b8c8022e1f1178f0e8d1ae7059871c2b54bbfed3ee",
+      "F_sha256": "842977c10f66673981f4f4b8c8022e1f1178f0e8d1ae7059871c2b54bbfed3ee",
+      "V120_sha256": "d93aa81501b0418627dbfaaae206d22e071bb0ab038183b2769085df622f5e88"
+    },
+    "profile_events": [
+      {
+        "function": "agent",
+        "first_line": 1372,
+        "actions_is_F": false,
+        "actions_is_V120": true,
+        "actions_sha256": "d93aa81501b0418627dbfaaae206d22e071bb0ab038183b2769085df622f5e88",
+        "observation_step": 0
+      }
+    ],
+    "after_candidate_call": {
+      "actions_is_F": false,
+      "actions_is_V120": true,
+      "actions_sha256": "d93aa81501b0418627dbfaaae206d22e071bb0ab038183b2769085df622f5e88"
+    },
+    "action": {
+      "farmer": [
+        "PASS"
+      ],
+      "hands": [],
+      "market": [
+        [
+          "BUY_PRODUCT",
+          "WHEAT",
+          30
+        ]
+      ]
+    },
+    "calls": {
+      "whole_candidate": 1,
+      "official_environment_objects": 1,
+      "explicit_reset_calls": 1,
+      "official_interpreter_steps": 0,
+      "new_complete_matches": 0
+    },
+    "initial_observation_sha256": "8300db4d10d5a50231484104cb711c11e10a639e2a434b4f5cc7e8d2de2c8855",
+    "configuration_sha256": "3b6f3834738b125c458e12dbe3b5db692f37dd4e6ed19192ee45d79cf0890620",
+    "original_files_unchanged": true,
+    "performance_evidence": false,
+    "limitations": "仅人工day0路径可达性；不是完整对局、强度、线上提交身份或性能验证"
+  },
+  "completed_at_utc": "2026-09-05T12:38:58.702151+00:00",
+  "final_validation": {
+    "all_guarded_inputs_unchanged": true,
+    "guarded_files": 32,
+    "m6_all_row_arithmetic_closed": true,
+    "a30_variant_dist_archive_main_sha_equal": true,
+    "dynamic_probe_single_call_no_steps": true,
+    "markdown_sha256": "d204199833e2875cd82d4619bace1d9a84c635689bb26f8d62dc118c781c0182",
+    "no_claude_source_mutations": true
+  }
+}

@@ -1,0 +1,767 @@
+{
+  "daily_router": {
+    "classes": [
+      "CAPACITY",
+      "CROP",
+      "LIQUIDATE",
+      "LIVESTOCK"
+    ],
+    "depth": 6,
+    "kind": "classification_tree",
+    "nodes": 37,
+    "root": {
+      "feature": "season_fraction",
+      "left": {
+        "feature": "own_crop_MELON",
+        "left": {
+          "feature": "day",
+          "left": {
+            "feature": "own_animal_COW",
+            "left": {
+              "distribution": {
+                "CAPACITY": 0.0,
+                "CROP": 0.0,
+                "LIQUIDATE": 0.0,
+                "LIVESTOCK": 1.0
+              },
+              "leaf": "LIVESTOCK"
+            },
+            "right": {
+              "feature": "money_gap",
+              "left": {
+                "feature": "shed_FERTILIZER",
+                "left": {
+                  "distribution": {
+                    "CAPACITY": 0.977905220638846,
+                    "CROP": 0.022094779361153942,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.0
+                  },
+                  "leaf": "CAPACITY"
+                },
+                "right": {
+                  "distribution": {
+                    "CAPACITY": 0.623264578359908,
+                    "CROP": 0.2229006841214053,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.15383473751868737
+                  },
+                  "leaf": "CAPACITY"
+                },
+                "threshold": 4.5
+              },
+              "right": {
+                "feature": "own_animal_GOOSE",
+                "left": {
+                  "distribution": {
+                    "CAPACITY": 0.19739025534275412,
+                    "CROP": 0.5319943852442577,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.27061535941298775
+                  },
+                  "leaf": "CROP"
+                },
+                "right": {
+                  "distribution": {
+                    "CAPACITY": 0.7565478416286701,
+                    "CROP": 0.14956754114442503,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.09388461722690497
+                  },
+                  "leaf": "CAPACITY"
+                },
+                "threshold": 0.5
+              },
+              "threshold": 731.5
+            },
+            "threshold": 1.0
+          },
+          "right": {
+            "feature": "own_crop_STRAWBERRY",
+            "left": {
+              "feature": "price_WOOL",
+              "left": {
+                "distribution": {
+                  "CAPACITY": 0.0,
+                  "CROP": 1.0,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.0
+                },
+                "leaf": "CROP"
+              },
+              "right": {
+                "distribution": {
+                  "CAPACITY": 0.4245132072646973,
+                  "CROP": 0.5754867927353028,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.0
+                },
+                "leaf": "CROP"
+              },
+              "threshold": 195.0
+            },
+            "right": {
+              "distribution": {
+                "CAPACITY": 0.8984968610339114,
+                "CROP": 0.10150313896608862,
+                "LIQUIDATE": 0.0,
+                "LIVESTOCK": 0.0
+              },
+              "leaf": "CAPACITY"
+            },
+            "threshold": 33.0
+          },
+          "threshold": 22.5
+        },
+        "right": {
+          "feature": "price_delta_MILK",
+          "left": {
+            "feature": "shed_WHEAT",
+            "left": {
+              "feature": "market_WHEAT",
+              "left": {
+                "feature": "rival_money",
+                "left": {
+                  "distribution": {
+                    "CAPACITY": 0.31735970711982947,
+                    "CROP": 0.0,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.6826402928801706
+                  },
+                  "leaf": "LIVESTOCK"
+                },
+                "right": {
+                  "distribution": {
+                    "CAPACITY": 0.858029250997193,
+                    "CROP": 0.0,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.14197074900280696
+                  },
+                  "leaf": "CAPACITY"
+                },
+                "threshold": 14619.0
+              },
+              "right": {
+                "distribution": {
+                  "CAPACITY": 1.0,
+                  "CROP": 0.0,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.0
+                },
+                "leaf": "CAPACITY"
+              },
+              "threshold": 9893.0
+            },
+            "right": {
+              "distribution": {
+                "CAPACITY": 0.0,
+                "CROP": 0.14580234594167152,
+                "LIQUIDATE": 0.0,
+                "LIVESTOCK": 0.8541976540583284
+              },
+              "leaf": "LIVESTOCK"
+            },
+            "threshold": 25.5
+          },
+          "right": {
+            "feature": "market_WOOL",
+            "left": {
+              "feature": "market_WOOL",
+              "left": {
+                "distribution": {
+                  "CAPACITY": 0.0,
+                  "CROP": 0.0,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 1.0
+                },
+                "leaf": "LIVESTOCK"
+              },
+              "right": {
+                "feature": "seed_WHEAT",
+                "left": {
+                  "distribution": {
+                    "CAPACITY": 0.0,
+                    "CROP": 0.40573711441482735,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.5942628855851726
+                  },
+                  "leaf": "LIVESTOCK"
+                },
+                "right": {
+                  "distribution": {
+                    "CAPACITY": 0.0,
+                    "CROP": 1.0,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.0
+                  },
+                  "leaf": "CROP"
+                },
+                "threshold": 0.5
+              },
+              "threshold": 9994.5
+            },
+            "right": {
+              "feature": "shed_WHEAT",
+              "left": {
+                "feature": "money_gap",
+                "left": {
+                  "distribution": {
+                    "CAPACITY": 0.858029250997193,
+                    "CROP": 0.0,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 0.14197074900280696
+                  },
+                  "leaf": "CAPACITY"
+                },
+                "right": {
+                  "distribution": {
+                    "CAPACITY": 0.0,
+                    "CROP": 0.0,
+                    "LIQUIDATE": 0.0,
+                    "LIVESTOCK": 1.0
+                  },
+                  "leaf": "LIVESTOCK"
+                },
+                "threshold": 595.0
+              },
+              "right": {
+                "distribution": {
+                  "CAPACITY": 0.0,
+                  "CROP": 0.0,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 1.0
+                },
+                "leaf": "LIVESTOCK"
+              },
+              "threshold": 1.5
+            },
+            "threshold": 9996.5
+          },
+          "threshold": -22.0
+        },
+        "threshold": 11.5
+      },
+      "right": {
+        "distribution": {
+          "CAPACITY": 0.0,
+          "CROP": 0.0,
+          "LIQUIDATE": 1.0,
+          "LIVESTOCK": 0.0
+        },
+        "leaf": "LIQUIDATE"
+      },
+      "threshold": 0.8833333253860474
+    }
+  },
+  "expert_contract_prototypes": {
+    "CAPACITY": {
+      "center_livestock_share": 0.9285714285714286,
+      "center_task_share": 0.44706786734021525,
+      "market_BUY_ANIMAL": 0.0,
+      "market_BUY_LAND": 0.0,
+      "market_BUY_SEED": 5.0,
+      "market_HIRE": 12.0,
+      "market_SELL": 62.5,
+      "mean_task_distance": 3.0271923449612403,
+      "productive_per_move": 0.8982704247560855,
+      "top_two_row_plant_share": 0.3333333333333333,
+      "unit_BUILD_COOP": 0.0,
+      "unit_BUILD_PASTURE": 0.0,
+      "unit_CARE": 14.0,
+      "unit_FEED": 12.0,
+      "unit_FERTILIZE": 1.0,
+      "unit_HARVEST": 15.0,
+      "unit_PICKUP": 5.0,
+      "unit_PLACE": 1.0,
+      "unit_PLANT": 6.0,
+      "unit_WATER": 38.0
+    },
+    "CROP": {
+      "center_livestock_share": 1.0,
+      "center_task_share": 0.3888888888888889,
+      "market_BUY_ANIMAL": 0.0,
+      "market_BUY_LAND": 0.0,
+      "market_BUY_SEED": 9.0,
+      "market_HIRE": 11.0,
+      "market_SELL": 67.0,
+      "mean_task_distance": 3.3801652892561984,
+      "productive_per_move": 1.115702479338843,
+      "top_two_row_plant_share": 0.5,
+      "unit_BUILD_COOP": 0.0,
+      "unit_BUILD_PASTURE": 0.0,
+      "unit_CARE": 14.0,
+      "unit_FEED": 14.0,
+      "unit_FERTILIZE": 4.0,
+      "unit_HARVEST": 21.0,
+      "unit_PICKUP": 5.0,
+      "unit_PLACE": 2.0,
+      "unit_PLANT": 10.0,
+      "unit_WATER": 46.0
+    },
+    "LIQUIDATE": {
+      "center_livestock_share": 0.6666666666666666,
+      "center_task_share": 0.42168674698795183,
+      "market_BUY_ANIMAL": 0.0,
+      "market_BUY_LAND": 0.0,
+      "market_BUY_SEED": 0.0,
+      "market_HIRE": 11.0,
+      "market_SELL": 118.0,
+      "mean_task_distance": 2.948051948051948,
+      "productive_per_move": 0.7761194029850746,
+      "top_two_row_plant_share": 0.0,
+      "unit_BUILD_COOP": 0.0,
+      "unit_BUILD_PASTURE": 0.0,
+      "unit_CARE": 4.0,
+      "unit_FEED": 8.0,
+      "unit_FERTILIZE": 0.0,
+      "unit_HARVEST": 28.0,
+      "unit_PICKUP": 4.0,
+      "unit_PLACE": 3.0,
+      "unit_PLANT": 0.0,
+      "unit_WATER": 34.0
+    },
+    "LIVESTOCK": {
+      "center_livestock_share": 1.0,
+      "center_task_share": 0.49256138160632545,
+      "market_BUY_ANIMAL": 2.0,
+      "market_BUY_LAND": 0.0,
+      "market_BUY_SEED": 7.0,
+      "market_HIRE": 8.0,
+      "market_SELL": 20.0,
+      "mean_task_distance": 2.9625,
+      "productive_per_move": 0.9090909090909091,
+      "top_two_row_plant_share": 0.5263157894736842,
+      "unit_BUILD_COOP": 0.0,
+      "unit_BUILD_PASTURE": 1.0,
+      "unit_CARE": 10.0,
+      "unit_FEED": 8.0,
+      "unit_FERTILIZE": 0.0,
+      "unit_HARVEST": 4.5,
+      "unit_PICKUP": 5.0,
+      "unit_PLACE": 3.0,
+      "unit_PLANT": 6.0,
+      "unit_WATER": 28.0
+    }
+  },
+  "global_market": {
+    "depth": 5,
+    "kind": "regression_tree",
+    "nodes": 17,
+    "root": {
+      "feature": "price_FERTILIZER",
+      "left": {
+        "value": {
+          "own_early_sell_CARROT": 32.55555555555556,
+          "own_early_sell_EGG": 0.0,
+          "own_early_sell_FERTILIZER": 22.333333333333332,
+          "own_early_sell_MELON": 0.0,
+          "own_early_sell_MILK": 13.88888888888889,
+          "own_early_sell_STRAWBERRY": 9.88888888888889,
+          "own_early_sell_TOMATO": 0.0,
+          "own_early_sell_WHEAT": 49.22222222222222,
+          "own_early_sell_WOOL": 8.777777777777779,
+          "rival_next_sell_CARROT": 230.77777777777777,
+          "rival_next_sell_EGG": 0.0,
+          "rival_next_sell_FERTILIZER": 242.22222222222223,
+          "rival_next_sell_MELON": 222.22222222222223,
+          "rival_next_sell_MILK": 239.77777777777777,
+          "rival_next_sell_STRAWBERRY": 232.66666666666666,
+          "rival_next_sell_TOMATO": 0.0,
+          "rival_next_sell_WHEAT": 324.6666666666667,
+          "rival_next_sell_WOOL": 230.77777777777777
+        }
+      },
+      "right": {
+        "feature": "day",
+        "left": {
+          "feature": "price_FERTILIZER",
+          "left": {
+            "feature": "own_animal_COW",
+            "left": {
+              "feature": "rival_money",
+              "left": {
+                "value": {
+                  "own_early_sell_CARROT": 0.0,
+                  "own_early_sell_EGG": 8.071428571428571,
+                  "own_early_sell_FERTILIZER": 8.035714285714286,
+                  "own_early_sell_MELON": 3.2142857142857144,
+                  "own_early_sell_MILK": 3.642857142857143,
+                  "own_early_sell_STRAWBERRY": 8.464285714285714,
+                  "own_early_sell_TOMATO": 0.0,
+                  "own_early_sell_WHEAT": 113.07142857142857,
+                  "own_early_sell_WOOL": 6.357142857142857,
+                  "rival_next_sell_CARROT": 0.0,
+                  "rival_next_sell_EGG": 0.0,
+                  "rival_next_sell_FERTILIZER": 11.75,
+                  "rival_next_sell_MELON": 5.142857142857143,
+                  "rival_next_sell_MILK": 8.428571428571429,
+                  "rival_next_sell_STRAWBERRY": 12.642857142857142,
+                  "rival_next_sell_TOMATO": 0.0,
+                  "rival_next_sell_WHEAT": 10.535714285714286,
+                  "rival_next_sell_WOOL": 7.285714285714286
+                }
+              },
+              "right": {
+                "value": {
+                  "own_early_sell_CARROT": 18.5,
+                  "own_early_sell_EGG": 11.9,
+                  "own_early_sell_FERTILIZER": 5.6,
+                  "own_early_sell_MELON": 2.4,
+                  "own_early_sell_MILK": 3.0,
+                  "own_early_sell_STRAWBERRY": 2.2,
+                  "own_early_sell_TOMATO": 0.0,
+                  "own_early_sell_WHEAT": 32.5,
+                  "own_early_sell_WOOL": 4.8,
+                  "rival_next_sell_CARROT": 4.5,
+                  "rival_next_sell_EGG": 0.0,
+                  "rival_next_sell_FERTILIZER": 13.9,
+                  "rival_next_sell_MELON": 0.0,
+                  "rival_next_sell_MILK": 12.2,
+                  "rival_next_sell_STRAWBERRY": 12.2,
+                  "rival_next_sell_TOMATO": 0.0,
+                  "rival_next_sell_WHEAT": 25.9,
+                  "rival_next_sell_WOOL": 9.5
+                }
+              },
+              "threshold": 46010.0
+            },
+            "right": {
+              "feature": "rival_animal_COW",
+              "left": {
+                "value": {
+                  "own_early_sell_CARROT": 2.0526315789473686,
+                  "own_early_sell_EGG": 0.0,
+                  "own_early_sell_FERTILIZER": 5.842105263157895,
+                  "own_early_sell_MELON": 2.8421052631578947,
+                  "own_early_sell_MILK": 9.157894736842104,
+                  "own_early_sell_STRAWBERRY": 11.105263157894736,
+                  "own_early_sell_TOMATO": 0.0,
+                  "own_early_sell_WHEAT": 5.526315789473684,
+                  "own_early_sell_WOOL": 3.6842105263157894,
+                  "rival_next_sell_CARROT": 9.052631578947368,
+                  "rival_next_sell_EGG": 11.421052631578947,
+                  "rival_next_sell_FERTILIZER": 7.2105263157894735,
+                  "rival_next_sell_MELON": 3.736842105263158,
+                  "rival_next_sell_MILK": 4.631578947368421,
+                  "rival_next_sell_STRAWBERRY": 8.736842105263158,
+                  "rival_next_sell_TOMATO": 0.0,
+                  "rival_next_sell_WHEAT": 113.3157894736842,
+                  "rival_next_sell_WOOL": 2.3684210526315788
+                }
+              },
+              "right": {
+                "value": {
+                  "own_early_sell_CARROT": 0.7610921501706485,
+                  "own_early_sell_EGG": 0.7133105802047781,
+                  "own_early_sell_FERTILIZER": 12.34470989761092,
+                  "own_early_sell_MELON": 1.993174061433447,
+                  "own_early_sell_MILK": 9.563139931740615,
+                  "own_early_sell_STRAWBERRY": 11.194539249146757,
+                  "own_early_sell_TOMATO": 0.0,
+                  "own_early_sell_WHEAT": 13.627986348122867,
+                  "own_early_sell_WOOL": 6.713310580204778,
+                  "rival_next_sell_CARROT": 0.7098976109215017,
+                  "rival_next_sell_EGG": 1.0341296928327646,
+                  "rival_next_sell_FERTILIZER": 15.853242320819113,
+                  "rival_next_sell_MELON": 3.037542662116041,
+                  "rival_next_sell_MILK": 11.194539249146757,
+                  "rival_next_sell_STRAWBERRY": 14.276450511945393,
+                  "rival_next_sell_TOMATO": 0.0,
+                  "rival_next_sell_WHEAT": 21.18430034129693,
+                  "rival_next_sell_WOOL": 8.406143344709898
+                }
+              },
+              "threshold": 3.5
+            },
+            "threshold": 3.5
+          },
+          "right": {
+            "feature": "market_FERTILIZER",
+            "left": {
+              "feature": "price_FERTILIZER",
+              "left": {
+                "value": {
+                  "own_early_sell_CARROT": 0.0,
+                  "own_early_sell_EGG": 0.0,
+                  "own_early_sell_FERTILIZER": 5.381578947368421,
+                  "own_early_sell_MELON": 0.0,
+                  "own_early_sell_MILK": 2.960526315789474,
+                  "own_early_sell_STRAWBERRY": 0.0,
+                  "own_early_sell_TOMATO": 0.0,
+                  "own_early_sell_WHEAT": 1.8026315789473684,
+                  "own_early_sell_WOOL": 4.065789473684211,
+                  "rival_next_sell_CARROT": 0.0,
+                  "rival_next_sell_EGG": 0.0,
+                  "rival_next_sell_FERTILIZER": 8.763157894736842,
+                  "rival_next_sell_MELON": 0.0,
+                  "rival_next_sell_MILK": 3.1447368421052633,
+                  "rival_next_sell_STRAWBERRY": 0.0,
+                  "rival_next_sell_TOMATO": 0.0,
+                  "rival_next_sell_WHEAT": 2.6973684210526314,
+                  "rival_next_sell_WOOL": 5.315789473684211
+                }
+              },
+              "right": {
+                "value": {
+                  "own_early_sell_CARROT": 0.0,
+                  "own_early_sell_EGG": 0.0,
+                  "own_early_sell_FERTILIZER": 2.2982456140350878,
+                  "own_early_sell_MELON": 0.0,
+                  "own_early_sell_MILK": 0.0,
+                  "own_early_sell_STRAWBERRY": 0.0,
+                  "own_early_sell_TOMATO": 0.0,
+                  "own_early_sell_WHEAT": 3.1403508771929824,
+                  "own_early_sell_WOOL": 0.0,
+                  "rival_next_sell_CARROT": 0.0,
+                  "rival_next_sell_EGG": 0.0,
+                  "rival_next_sell_FERTILIZER": 3.9210526315789473,
+                  "rival_next_sell_MELON": 0.0,
+                  "rival_next_sell_MILK": 0.0,
+                  "rival_next_sell_STRAWBERRY": 0.0,
+                  "rival_next_sell_TOMATO": 0.0,
+                  "rival_next_sell_WHEAT": 4.842105263157895,
+                  "rival_next_sell_WOOL": 0.0
+                }
+              },
+              "threshold": 92.0
+            },
+            "right": {
+              "value": {
+                "own_early_sell_CARROT": 0.0,
+                "own_early_sell_EGG": 0.0,
+                "own_early_sell_FERTILIZER": 4.888888888888889,
+                "own_early_sell_MELON": 20.0,
+                "own_early_sell_MILK": 1.6666666666666667,
+                "own_early_sell_STRAWBERRY": 0.0,
+                "own_early_sell_TOMATO": 0.0,
+                "own_early_sell_WHEAT": 8.88888888888889,
+                "own_early_sell_WOOL": 0.0,
+                "rival_next_sell_CARROT": 0.0,
+                "rival_next_sell_EGG": 0.0,
+                "rival_next_sell_FERTILIZER": 9.11111111111111,
+                "rival_next_sell_MELON": 33.333333333333336,
+                "rival_next_sell_MILK": 6.666666666666667,
+                "rival_next_sell_STRAWBERRY": 0.0,
+                "rival_next_sell_TOMATO": 0.0,
+                "rival_next_sell_WHEAT": 17.11111111111111,
+                "rival_next_sell_WOOL": 0.0
+              }
+            },
+            "threshold": 10094.0
+          },
+          "threshold": 79.5
+        },
+        "right": {
+          "value": {
+            "own_early_sell_CARROT": 25.583333333333332,
+            "own_early_sell_EGG": 4.583333333333333,
+            "own_early_sell_FERTILIZER": 15.916666666666666,
+            "own_early_sell_MELON": 0.75,
+            "own_early_sell_MILK": 7.5,
+            "own_early_sell_STRAWBERRY": 8.0,
+            "own_early_sell_TOMATO": 0.0,
+            "own_early_sell_WHEAT": 112.75,
+            "own_early_sell_WOOL": 4.916666666666667,
+            "rival_next_sell_CARROT": 25.25,
+            "rival_next_sell_EGG": 4.583333333333333,
+            "rival_next_sell_FERTILIZER": 18.166666666666668,
+            "rival_next_sell_MELON": 0.5,
+            "rival_next_sell_MILK": 9.25,
+            "rival_next_sell_STRAWBERRY": 9.166666666666666,
+            "rival_next_sell_TOMATO": 0.0,
+            "rival_next_sell_WHEAT": 162.0,
+            "rival_next_sell_WOOL": 7.666666666666667
+          }
+        },
+        "threshold": 28.5
+      },
+      "threshold": 4.0
+    },
+    "targets": [
+      "own_early_sell_CARROT",
+      "own_early_sell_EGG",
+      "own_early_sell_FERTILIZER",
+      "own_early_sell_MELON",
+      "own_early_sell_MILK",
+      "own_early_sell_STRAWBERRY",
+      "own_early_sell_TOMATO",
+      "own_early_sell_WHEAT",
+      "own_early_sell_WOOL",
+      "rival_next_sell_CARROT",
+      "rival_next_sell_EGG",
+      "rival_next_sell_FERTILIZER",
+      "rival_next_sell_MELON",
+      "rival_next_sell_MILK",
+      "rival_next_sell_STRAWBERRY",
+      "rival_next_sell_TOMATO",
+      "rival_next_sell_WHEAT",
+      "rival_next_sell_WOOL"
+    ]
+  },
+  "macro_router": {
+    "classes": [
+      "CAPACITY",
+      "CROP",
+      "LIQUIDATE",
+      "LIVESTOCK"
+    ],
+    "depth": 5,
+    "kind": "classification_tree",
+    "nodes": 21,
+    "root": {
+      "feature": "season_fraction",
+      "left": {
+        "feature": "price_FERTILIZER",
+        "left": {
+          "feature": "rival_crop_STRAWBERRY",
+          "left": {
+            "distribution": {
+              "CAPACITY": 0.0,
+              "CROP": 1.0,
+              "LIQUIDATE": 0.0,
+              "LIVESTOCK": 0.0
+            },
+            "leaf": "CROP"
+          },
+          "right": {
+            "feature": "shed_FERTILIZER",
+            "left": {
+              "feature": "price_delta_MELON",
+              "left": {
+                "distribution": {
+                  "CAPACITY": 0.0,
+                  "CROP": 1.0,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.0
+                },
+                "leaf": "CROP"
+              },
+              "right": {
+                "distribution": {
+                  "CAPACITY": 0.8523096036754115,
+                  "CROP": 0.13072748709894697,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.016962909225641906
+                },
+                "leaf": "CAPACITY"
+              },
+              "threshold": -68.0
+            },
+            "right": {
+              "distribution": {
+                "CAPACITY": 0.0,
+                "CROP": 1.0,
+                "LIQUIDATE": 0.0,
+                "LIVESTOCK": 0.0
+              },
+              "leaf": "CROP"
+            },
+            "threshold": 17.5
+          },
+          "threshold": 27.5
+        },
+        "right": {
+          "feature": "own_crop_MELON",
+          "left": {
+            "feature": "market_MILK",
+            "left": {
+              "distribution": {
+                "CAPACITY": 0.0,
+                "CROP": 0.0,
+                "LIQUIDATE": 0.0,
+                "LIVESTOCK": 1.0
+              },
+              "leaf": "LIVESTOCK"
+            },
+            "right": {
+              "distribution": {
+                "CAPACITY": 0.0,
+                "CROP": 0.5240253853127834,
+                "LIQUIDATE": 0.0,
+                "LIVESTOCK": 0.47597461468721664
+              },
+              "leaf": "CROP"
+            },
+            "threshold": 10038.0
+          },
+          "right": {
+            "feature": "shed_WHEAT",
+            "left": {
+              "feature": "own_crop_STRAWBERRY",
+              "left": {
+                "distribution": {
+                  "CAPACITY": 0.909886686627625,
+                  "CROP": 0.028888239117710893,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.06122507425466407
+                },
+                "leaf": "CAPACITY"
+              },
+              "right": {
+                "distribution": {
+                  "CAPACITY": 0.0,
+                  "CROP": 0.0,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 1.0
+                },
+                "leaf": "LIVESTOCK"
+              },
+              "threshold": 26.5
+            },
+            "right": {
+              "feature": "own_money",
+              "left": {
+                "distribution": {
+                  "CAPACITY": 0.0,
+                  "CROP": 0.3351096637307873,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.6648903362692126
+                },
+                "leaf": "LIVESTOCK"
+              },
+              "right": {
+                "distribution": {
+                  "CAPACITY": 0.9310279308379249,
+                  "CROP": 0.06897206916207485,
+                  "LIQUIDATE": 0.0,
+                  "LIVESTOCK": 0.0
+                },
+                "leaf": "CAPACITY"
+              },
+              "threshold": 4081.0
+            },
+            "threshold": 4.5
+          },
+          "threshold": 0.5
+        },
+        "threshold": 68.5
+      },
+      "right": {
+        "distribution": {
+          "CAPACITY": 0.0,
+          "CROP": 0.0,
+          "LIQUIDATE": 1.0,
+          "LIVESTOCK": 0.0
+        },
+        "leaf": "LIQUIDATE"
+      },
+      "threshold": 0.8499999940395355
+    }
+  },
+  "runtime_contract": {
+    "forbidden_fields": [
+      "episode_id",
+      "future_shop",
+      "replay_sha256",
+      "seat",
+      "seed",
+      "submission_id",
+      "teacher"
+    ],
+    "primary_action_source": "learned_state_contract",
+    "step_action_lookup": false,
+    "tape": false
+  },
+  "schema": "kaggriculture-v121-rule-hmoe-v1",
+  "status": "RESEARCH_ONLY_NOT_DEPLOYABLE"
+}

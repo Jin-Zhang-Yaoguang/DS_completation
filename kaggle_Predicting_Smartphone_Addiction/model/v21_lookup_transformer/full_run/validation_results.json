@@ -1,0 +1,134 @@
+{
+  "experiment": "v21_lookup_transformer",
+  "validated_utc": "2026-08-23T17:55:04Z",
+  "status": "passed_and_submitted",
+  "blocking_issues": [],
+  "fold_contract": {
+    "splitter": "StratifiedKFold(n_splits=5, shuffle=True, random_state=42)",
+    "fold_id_exact_match": true,
+    "fold_rows": [138274, 138274, 138274, 138274, 138273],
+    "checkpoint_hashes_verified": true,
+    "checkpoint_scores_equal_final_oof": true,
+    "test_reaggregation_bitwise_equal": true
+  },
+  "oof": {
+    "raw_auc": 0.9685596133944011,
+    "per_fold_rank_auc": 0.9685680355471754,
+    "per_fold_rank_delta": 0.0000084221527743,
+    "fold_auc": [
+      0.9679361416101194,
+      0.9685130698973208,
+      0.9687942718884599,
+      0.969156703095104,
+      0.9684399897619449
+    ],
+    "comparison": {
+      "v3": {
+        "auc": 0.9679652578147264,
+        "delta": 0.0005943555796747,
+        "fold_deltas": [
+          0.000810806880557,
+          0.0004519797607221,
+          0.0006873270099383,
+          0.0004474459184669,
+          0.0006021747046558
+        ],
+        "folds_won": 5
+      },
+      "v7": {
+        "auc": 0.9681322756127212,
+        "delta": 0.0004273377816799,
+        "fold_deltas": [
+          0.0006323255498517,
+          0.0002665640198386,
+          0.0005427147076138,
+          0.0002606217801262,
+          0.0004671676109667
+        ],
+        "folds_won": 5
+      },
+      "xgb_lattice_1200": {
+        "auc": 0.9681419939657173,
+        "delta": 0.0004176194286838,
+        "folds_won": 5
+      },
+      "v20": {
+        "auc": 0.9687928474674852,
+        "delta": -0.0002332340730841,
+        "fold_deltas": [
+          -0.0001162033195705,
+          -0.0003965590290095,
+          -0.0001196618981935,
+          -0.000343874028801,
+          -0.0001605451190158
+        ],
+        "folds_won": 0,
+        "spearman": 0.9813817624587082
+      }
+    }
+  },
+  "transfer_validation": {
+    "method": "importance-weighted AUC by 12-bit train/test missing pattern",
+    "laplace_alpha": {
+      "1": {
+        "lookup_auc": 0.9693670009944064,
+        "delta_vs_v3": 0.0006140200612934,
+        "delta_vs_v7": 0.000446088495381,
+        "delta_vs_v20": -0.0002083464743833,
+        "effective_sample_size": 641294.5231818146
+      },
+      "10": {
+        "lookup_auc": 0.9689468835806918,
+        "delta_vs_v3": 0.0006047073343215,
+        "delta_vs_v7": 0.0004345077814029,
+        "delta_vs_v20": -0.0002232874901867,
+        "effective_sample_size": 643526.4846659328
+      },
+      "100": {
+        "lookup_auc": 0.9678766062291316,
+        "delta_vs_v3": 0.000580307467506,
+        "delta_vs_v7": 0.0004077423262868,
+        "delta_vs_v20": -0.0002552294046736,
+        "effective_sample_size": 634678.4607967591
+      }
+    }
+  },
+  "submission_validation": {
+    "rows": 296302,
+    "columns": ["id", "addicted_label"],
+    "id_order_matches_test_and_sample": true,
+    "id_unique": true,
+    "all_finite": true,
+    "within_zero_one": true,
+    "prediction_min": 0.0000033749350325006245,
+    "prediction_max": 1.0,
+    "prediction_mean": 0.5000016874675163,
+    "unique_predictions": 295584,
+    "tie_groups": 715,
+    "largest_tie_group": 3,
+    "aggregation": "mean raw logits across five folds, then global percentile rank",
+    "matches_public_notebook_aggregation": true,
+    "max_abs_difference_from_recomputed_rank": 1.11e-16
+  },
+  "kaggle": {
+    "competition": "playground-series-s6e8",
+    "submission_ref": 55721780,
+    "status": "COMPLETE",
+    "public_score": 0.96997,
+    "description": "v21: 5-fold Lookup-Transformer single model OOF 0.968560"
+  },
+  "sha256": {
+    "training_script": "cc84f2e6ec6a7b8fc511b224847a47e4d3418be113efa1aa956cad17b25db61b",
+    "oof_score": "adf9e3ca6a3f085c0b1d0707ed2696904d665cf1ad1ab5bfa845588497f8b992",
+    "oof_fold_rank": "3fd34d541757c5c326e03175f702c5fbbc44371d3e6dec08cfade863c7c1133f",
+    "test_score": "18c3e436b27fdddcb29d750e6bac19ea9722855e82164514cf701d2195dd0b01",
+    "submission": "d25b8fc04309abcd0642eb5daa33dae3f91aca2f85f0e8f051e7b4632d425feb",
+    "run_signature_file": "67ed7dcad6f622923a7ce2830b42b295651f3f237b4d826ae35372346b7cba57"
+  },
+  "run_signature": "2b9543455c6231d525893a16584417ebf16045b0370f7c0ec1dfa6c5766a3cca",
+  "caveats": [
+    "The same outer validation fold selects the best EMA epoch, so OOF has mild checkpoint-selection optimism.",
+    "The local model uses five folds while the reviewed public notebook code uses eleven folds.",
+    "V21 is a strong single model and a diverse fusion candidate, but its OOF remains below the v20 blend."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "v116-shop-router-rc7-originality-v1",
+  "source_sha256": "41fd8a0874080e4082d99c83280351c046989eb9bf893853d43ebaba01eef966",
+  "baseline": "rc4_ablation/projection_only",
+  "baseline_source_sha256": "fc3419ea3ebba8268b2a2e212699d29cfc8d7efa0a7314b8252316c68f5c82e6",
+  "only_added_mechanism": "inventory-first same-turn eligible harvest seed replacement",
+  "self_contained": true,
+  "forbidden_imports": [],
+  "contains_actions_table": false,
+  "contains_replay_route": false,
+  "coordinate_claim_state_absent": true,
+  "empty_tile_reservation_absent": true,
+  "priority1_plant_absent": true,
+  "staging_permanently_disabled": true,
+  "projection_enabled": true,
+  "genome_count": 4,
+  "all_final_crop_targets": 59,
+  "mechanism": {
+    "eligible_expert": "balanced_root",
+    "crop_must_be_non_ongoing": true,
+    "crop_must_match_first_public_shop_demand": true,
+    "true_on_tile_harvest_only": true,
+    "market_uses_post_have": "crop_have - true_harvests",
+    "ordinary_plant_priority": 3
+  },
+  "mechanism_probe": {
+    "pet_counts_only_carrot": true,
+    "non_balanced_expert_rejected": true,
+    "same_turn_post_have_buys_carrot_seed": true,
+    "no_harvest_means_no_false_carrot_prebuy": true,
+    "ordinary_plant_priority_remains_3": true,
+    "day29_after18_low_asset_harvest_blocked": true,
+    "no_coordinate_claim_state": true
+  },
+  "runtime_scope_violations": [],
+  "pass": true
+}

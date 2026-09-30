@@ -1,0 +1,578 @@
+"""V114 latent-role, per-slot autoregressive Hierarchical MoE.
+
+The action decoders are conditioned only on roles predicted by this model.
+Teacher role labels are accepted for training-interface compatibility, but are
+never read by a role embedding or an action decoder.  Unit and market roles
+are routed inside their respective autoregressive loops from the current GRU
+carry and the already executed action prefix.
+
+This module is a from-scratch policy/value network.  It neither imports nor
+falls back to any historical Kaggriculture agent.
+"""
+
+from __future__ import annotations
+
+from typing import Optional
+
+from flax import linen as nn
+import jax.numpy as jnp
+
+import action_space as space
+import features
+
+
+NUM_OPTIONS = 3
+NUM_UNIT_ROLES = 4
+NUM_MARKET_ROLES = 3
+HIDDEN = 96
+CORE_HIDDEN = 192
+
+
+def _validate_teacher_pair(
+    tokens: Optional[jnp.ndarray],
+    quantities: Optional[jnp.ndarray],
+    name: str,
+) -> None:
+    if (tokens is None) != (quantities is None):
+        raise ValueError(
+            f"{name}_teacher_tokens and {name}_teacher_quantities must be "
+            "provided together"
+        )
+
+
+def _validate_sequence_shape(
+    values: jnp.ndarray,
+    batch_size: int,
+    slots: int,
+    name: str,
+) -> None:
+    allowed = ((batch_size, slots), (batch_size, NUM_OPTIONS, slots))
+    if values.shape not in allowed:
+        raise ValueError(
+            f"{name} must have shape [B, {slots}] or "
+            f"[B, {NUM_OPTIONS}, {slots}], got {values.shape}"
+        )
+
+
+def _teacher_step(
+    values: jnp.ndarray,
+    slot: int,
+    batch_size: int,
+    slots: int,
+    name: str,
+) -> jnp.ndarray:
+    _validate_sequence_shape(values, batch_size, slots, name)
+    if values.ndim == 2:
+        return jnp.broadcast_to(
+            values[:, slot, None], (batch_size, NUM_OPTIONS)
+        ).astype(jnp.int32)
+    return values[:, :, slot].astype(jnp.int32)
+
+
+def _validate_auxiliary_roles(
+    values: Optional[jnp.ndarray],
+    batch_size: int,
+    slots: int,
+    roles: int,
+    name: str,
+) -> None:
+    """Validate optional labels without letting them enter the forward path."""
+
+    if values is None:
+        return
+    allowed = ((batch_size, slots), (batch_size, NUM_OPTIONS, slots))
+    if values.shape not in allowed:
+        raise ValueError(
+            f"{name} must have shape [B, {slots}] or "
+            f"[B, {NUM_OPTIONS}, {slots}], got {values.shape}"
+        )
+    # Concrete arrays get a useful early error.  Traced arrays keep normal JAX
+    # compatibility and are still safe because their values are never used.
+    try:
+        minimum = int(jnp.min(values))
+        maximum = int(jnp.max(values))
+    except TypeError:
+        return
+    if minimum < 0 or maximum >= roles:
+        raise ValueError(f"{name} values must be in [0, {roles})")
+
+
+def _absorbing_logits(
+    logits: jnp.ndarray,
+    absorbed: jnp.ndarray,
+    absorbing_index: int,
+) -> jnp.ndarray:
+    """Replace rows after an absorbing action with deterministic logits."""
+
+    forced = jnp.full_like(logits, -1.0e9)
+    forced = forced.at[..., absorbing_index].set(0.0)
+    return jnp.where(absorbed[..., None], forced, logits)
+
+
+class LatentRoleHMoE(nn.Module):
+    """Three-option HMoE with causal latent roles at every action slot."""
+
+    timed: bool = True
+    market_memory_features: int = 0
+
+    @nn.compact
+    def __call__(
+        self,
+        global_state,
+        board,
+        units,
+        unit_mask,
+        unit_teacher_tokens=None,
+        unit_teacher_quantities=None,
+        market_teacher_tokens=None,
+        market_teacher_quantities=None,
+        unit_teacher_roles=None,
+        market_teacher_roles=None,
+    ):
+        _validate_teacher_pair(
+            unit_teacher_tokens, unit_teacher_quantities, "unit"
+        )
+        _validate_teacher_pair(
+            market_teacher_tokens, market_teacher_quantities, "market"
+        )
+
+        batch_size = global_state.shape[0]
+        _validate_auxiliary_roles(
+            unit_teacher_roles,
+            batch_size,
+            features.MAX_UNITS,
+            NUM_UNIT_ROLES,
+            "unit_teacher_roles",
+        )
+        _validate_auxiliary_roles(
+            market_teacher_roles,
+            batch_size,
+            space.MAX_MARKET_SLOTS,
+            NUM_MARKET_ROLES,
+            "market_teacher_roles",
+        )
+
+        own_board, opponent_board = board[:, 0], board[:, 1]
+        if self.market_memory_features:
+            base_global = global_state[:, :-self.market_memory_features]
+            market_memory = global_state[:, -self.market_memory_features :]
+        else:
+            base_global = global_state
+            market_memory = None
+
+        own_board_h = nn.relu(
+            nn.Conv(24, (3, 3), padding="SAME", name="own_board_conv1")(
+                own_board
+            )
+        )
+        own_board_h = nn.relu(
+            nn.Conv(32, (3, 3), padding="SAME", name="own_board_conv2")(
+                own_board_h
+            )
+        )
+        own_board_h = jnp.mean(own_board_h, axis=(1, 2))
+
+        own_global = base_global.at[:, 10:16].set(0.0)
+        own_global_h = nn.relu(
+            nn.Dense(HIDDEN, name="own_global_dense")(own_global)
+        )
+        if self.timed:
+            step_index = jnp.clip(
+                jnp.rint(base_global[:, 0] * 30.0).astype(jnp.int32) * 24
+                + jnp.rint(base_global[:, 1] * 24.0).astype(jnp.int32),
+                0,
+                719,
+            )
+            step_embedding = self.param(
+                "season_step_embedding",
+                nn.initializers.normal(0.02),
+                (720, HIDDEN),
+            )
+            own_global_h = own_global_h + step_embedding[step_index]
+
+        unit_h = nn.relu(nn.Dense(HIDDEN, name="unit_dense")(units))
+        unit_identity = self.param(
+            "unit_identity_embedding",
+            nn.initializers.normal(0.02),
+            (features.MAX_UNITS, HIDDEN),
+        )
+        unit_h = unit_h + unit_identity[None]
+        attention_mask = nn.make_attention_mask(unit_mask, unit_mask)
+        attended = nn.SelfAttention(
+            num_heads=4,
+            qkv_features=HIDDEN,
+            out_features=HIDDEN,
+            dropout_rate=0.0,
+            deterministic=True,
+            name="unit_self_attention",
+        )(unit_h, mask=attention_mask)
+        unit_h = nn.relu(unit_h + attended) * unit_mask[..., None]
+        pooled_units = jnp.sum(
+            unit_h * unit_mask[..., None], axis=1
+        ) / jnp.maximum(1.0, jnp.sum(unit_mask, axis=1, keepdims=True))
+
+        own_core = nn.relu(
+            nn.Dense(CORE_HIDDEN, name="own_core_dense")(
+                jnp.concatenate(
+                    (own_global_h, own_board_h, pooled_units), axis=-1
+                )
+            )
+        )
+        opponent_board_h = nn.relu(
+            nn.Conv(12, (3, 3), padding="SAME", name="opponent_board_conv")(
+                opponent_board
+            )
+        )
+        opponent_board_h = jnp.mean(opponent_board_h, axis=(1, 2))
+        opponent_h = nn.tanh(
+            nn.Dense(CORE_HIDDEN, name="opponent_projection")(
+                jnp.concatenate(
+                    (base_global[:, 10:16], opponent_board_h), axis=-1
+                )
+            )
+        )
+        opponent_gate = 0.1 * nn.sigmoid(
+            nn.Dense(
+                1,
+                kernel_init=nn.initializers.zeros,
+                bias_init=nn.initializers.constant(-4.0),
+                name="opponent_residual_gate",
+            )(own_core)
+        )
+        fused_core = own_core + opponent_gate * opponent_h
+
+        option_router_logits = nn.Dense(
+            NUM_OPTIONS, name="option_router_head"
+        )(fused_core)
+        manager_h = nn.tanh(
+            nn.Dense(HIDDEN, name="manager_projection")(fused_core)
+        )
+        option_embedding = self.param(
+            "option_embedding",
+            nn.initializers.normal(0.02),
+            (NUM_OPTIONS, HIDDEN),
+        )
+        option_h = nn.tanh(manager_h[:, None, :] + option_embedding[None])
+        option_value = nn.Dense(1, name="option_value_head")(option_h)[..., 0]
+        catastrophe_logits = nn.Dense(
+            1, name="catastrophe_head"
+        )(option_h)[..., 0]
+
+        unit_role_embedding = self.param(
+            "unit_role_embedding",
+            nn.initializers.normal(0.02),
+            (NUM_UNIT_ROLES, HIDDEN),
+        )
+        unit_token_embedding = self.param(
+            "unit_token_embedding",
+            nn.initializers.normal(0.02),
+            (len(space.UNIT_TOKENS), HIDDEN),
+        )
+        unit_quantity_embedding = self.param(
+            "unit_quantity_embedding",
+            nn.initializers.normal(0.02),
+            (space.QUANTITY_DIM, HIDDEN),
+        )
+        unit_slot_embedding = self.param(
+            "unit_slot_embedding",
+            nn.initializers.normal(0.02),
+            (features.MAX_UNITS, HIDDEN),
+        )
+        unit_gru = nn.GRUCell(features=HIDDEN, name="unit_gru")
+        unit_role_head = nn.Dense(NUM_UNIT_ROLES, name="unit_role_head")
+        unit_action_head = nn.Dense(
+            len(space.UNIT_TOKENS), name="unit_action_head"
+        )
+        unit_quantity_head = nn.Dense(
+            space.QUANTITY_DIM, name="unit_quantity_head"
+        )
+        unit_carry_projection = nn.Dense(
+            HIDDEN, name="unit_role_carry_projection"
+        )
+        unit_context_projection = nn.Dense(
+            HIDDEN, name="unit_role_context_projection"
+        )
+
+        carry = nn.tanh(
+            nn.Dense(HIDDEN, name="unit_decoder_seed")(option_h)
+        ).reshape((batch_size * NUM_OPTIONS, HIDDEN))
+        previous_token = jnp.zeros(
+            (batch_size, NUM_OPTIONS), dtype=jnp.int32
+        )
+        previous_quantity = jnp.zeros_like(previous_token)
+        unit_role_rows = []
+        unit_logits_rows = []
+        unit_quantity_rows = []
+        decoded_unit_tokens = []
+        decoded_unit_quantities = []
+        for slot in range(features.MAX_UNITS):
+            current_unit = jnp.broadcast_to(
+                unit_h[:, None, slot, :],
+                (batch_size, NUM_OPTIONS, HIDDEN),
+            )
+            carry_view = carry.reshape(
+                (batch_size, NUM_OPTIONS, HIDDEN)
+            )
+            prefix_h = (
+                unit_token_embedding[previous_token]
+                + unit_quantity_embedding[previous_quantity]
+            )
+            role_query = nn.tanh(
+                unit_carry_projection(carry_view)
+                + unit_context_projection(
+                    current_unit
+                    + option_h
+                    + prefix_h
+                    + unit_slot_embedding[slot][None, None, :]
+                )
+            )
+            slot_role_logits = unit_role_head(role_query)
+            role_probabilities = nn.softmax(slot_role_logits, axis=-1)
+            latent_role_h = jnp.einsum(
+                "bor,rh->boh", role_probabilities, unit_role_embedding
+            )
+            decoder_input = (
+                current_unit
+                + option_h
+                + latent_role_h
+                + prefix_h
+                + unit_slot_embedding[slot][None, None, :]
+            ).reshape((batch_size * NUM_OPTIONS, HIDDEN))
+            carry, decoded = unit_gru(carry, decoder_input)
+            slot_logits = unit_action_head(decoded).reshape(
+                (batch_size, NUM_OPTIONS, len(space.UNIT_TOKENS))
+            )
+            slot_quantities = unit_quantity_head(decoded).reshape(
+                (batch_size, NUM_OPTIONS, space.QUANTITY_DIM)
+            )
+
+            unit_role_rows.append(slot_role_logits)
+            unit_logits_rows.append(slot_logits)
+            unit_quantity_rows.append(slot_quantities)
+            if unit_teacher_tokens is None:
+                selected_token = jnp.argmax(slot_logits, axis=-1)
+                selected_quantity = jnp.argmax(slot_quantities, axis=-1)
+            else:
+                selected_token = _teacher_step(
+                    unit_teacher_tokens,
+                    slot,
+                    batch_size,
+                    features.MAX_UNITS,
+                    "unit_teacher_tokens",
+                )
+                selected_quantity = _teacher_step(
+                    unit_teacher_quantities,
+                    slot,
+                    batch_size,
+                    features.MAX_UNITS,
+                    "unit_teacher_quantities",
+                )
+            decoded_unit_tokens.append(selected_token)
+            decoded_unit_quantities.append(selected_quantity)
+            previous_token = selected_token
+            previous_quantity = selected_quantity
+
+        unit_role_logits = jnp.stack(unit_role_rows, axis=2)
+        unit_logits = jnp.stack(unit_logits_rows, axis=2)
+        unit_quantity_logits = jnp.stack(unit_quantity_rows, axis=2)
+        unit_sequence_tokens = jnp.stack(decoded_unit_tokens, axis=2)
+        unit_sequence_quantities = jnp.stack(decoded_unit_quantities, axis=2)
+        unit_sequence_h = jnp.mean(
+            unit_token_embedding[unit_sequence_tokens]
+            + unit_quantity_embedding[unit_sequence_quantities],
+            axis=2,
+        )
+
+        if market_memory is not None:
+            market_memory_h = nn.tanh(
+                nn.Dense(
+                    HIDDEN,
+                    kernel_init=nn.initializers.zeros,
+                    bias_init=nn.initializers.zeros,
+                    name="market_memory_dense",
+                )(market_memory)
+            )
+        else:
+            market_memory_h = jnp.zeros(
+                (batch_size, HIDDEN), dtype=option_h.dtype
+            )
+
+        market_role_embedding = self.param(
+            "market_role_embedding",
+            nn.initializers.normal(0.02),
+            (NUM_MARKET_ROLES, HIDDEN),
+        )
+        market_token_embedding = self.param(
+            "market_token_embedding",
+            nn.initializers.normal(0.02),
+            (len(space.MARKET_TOKENS), HIDDEN),
+        )
+        market_quantity_embedding = self.param(
+            "market_quantity_embedding",
+            nn.initializers.normal(0.02),
+            (space.QUANTITY_DIM, HIDDEN),
+        )
+        market_slot_embedding = self.param(
+            "market_slot_embedding",
+            nn.initializers.normal(0.02),
+            (space.MAX_MARKET_SLOTS, HIDDEN),
+        )
+        market_gru = nn.GRUCell(features=HIDDEN, name="market_gru")
+        market_role_head = nn.Dense(NUM_MARKET_ROLES, name="market_role_head")
+        market_action_head = nn.Dense(
+            len(space.MARKET_TOKENS), name="market_action_head"
+        )
+        market_quantity_head = nn.Dense(
+            space.QUANTITY_DIM, name="market_quantity_head"
+        )
+        market_carry_projection = nn.Dense(
+            HIDDEN, name="market_role_carry_projection"
+        )
+        market_context_projection = nn.Dense(
+            HIDDEN, name="market_role_context_projection"
+        )
+
+        market_seed = nn.tanh(
+            nn.Dense(HIDDEN, name="market_decoder_seed")(
+                option_h + unit_sequence_h + market_memory_h[:, None, :]
+            )
+        )
+        carry = market_seed.reshape(
+            (batch_size * NUM_OPTIONS, HIDDEN)
+        )
+        previous_token = jnp.zeros(
+            (batch_size, NUM_OPTIONS), dtype=jnp.int32
+        )
+        previous_quantity = jnp.zeros_like(previous_token)
+        absorbed = jnp.zeros(
+            (batch_size, NUM_OPTIONS), dtype=jnp.bool_
+        )
+        market_role_rows = []
+        market_logits_rows = []
+        market_quantity_rows = []
+        decoded_market_tokens = []
+        decoded_market_quantities = []
+        absorbed_rows = []
+        stop_index = space.MARKET_INDEX["STOP"]
+        for slot in range(space.MAX_MARKET_SLOTS):
+            carry_before = carry
+            carry_view = carry.reshape(
+                (batch_size, NUM_OPTIONS, HIDDEN)
+            )
+            prefix_h = (
+                market_token_embedding[previous_token]
+                + market_quantity_embedding[previous_quantity]
+            )
+            role_query = nn.tanh(
+                market_carry_projection(carry_view)
+                + market_context_projection(
+                    option_h
+                    + unit_sequence_h
+                    + market_memory_h[:, None, :]
+                    + prefix_h
+                    + market_slot_embedding[slot][None, None, :]
+                )
+            )
+            slot_role_logits = market_role_head(role_query)
+            role_probabilities = nn.softmax(slot_role_logits, axis=-1)
+            latent_role_h = jnp.einsum(
+                "bor,rh->boh", role_probabilities, market_role_embedding
+            )
+            decoder_input = (
+                option_h
+                + unit_sequence_h
+                + market_memory_h[:, None, :]
+                + latent_role_h
+                + prefix_h
+                + market_slot_embedding[slot][None, None, :]
+            ).reshape((batch_size * NUM_OPTIONS, HIDDEN))
+            carry, decoded = market_gru(carry, decoder_input)
+            carry = jnp.where(
+                absorbed.reshape((-1, 1)), carry_before, carry
+            )
+            slot_logits = market_action_head(decoded).reshape(
+                (batch_size, NUM_OPTIONS, len(space.MARKET_TOKENS))
+            )
+            slot_quantities = market_quantity_head(decoded).reshape(
+                (batch_size, NUM_OPTIONS, space.QUANTITY_DIM)
+            )
+            slot_logits = _absorbing_logits(
+                slot_logits, absorbed, stop_index
+            )
+            slot_quantities = _absorbing_logits(
+                slot_quantities, absorbed, 0
+            )
+
+            market_role_rows.append(slot_role_logits)
+            market_logits_rows.append(slot_logits)
+            market_quantity_rows.append(slot_quantities)
+            absorbed_rows.append(absorbed)
+            if market_teacher_tokens is None:
+                selected_token = jnp.argmax(slot_logits, axis=-1)
+                selected_quantity = jnp.argmax(slot_quantities, axis=-1)
+            else:
+                selected_token = _teacher_step(
+                    market_teacher_tokens,
+                    slot,
+                    batch_size,
+                    space.MAX_MARKET_SLOTS,
+                    "market_teacher_tokens",
+                )
+                selected_quantity = _teacher_step(
+                    market_teacher_quantities,
+                    slot,
+                    batch_size,
+                    space.MAX_MARKET_SLOTS,
+                    "market_teacher_quantities",
+                )
+                selected_token = jnp.where(
+                    absorbed, stop_index, selected_token
+                )
+                selected_quantity = jnp.where(
+                    absorbed, 0, selected_quantity
+                )
+            selected_quantity = jnp.where(
+                selected_token == stop_index, 0, selected_quantity
+            )
+            absorbed = jnp.logical_or(
+                absorbed, selected_token == stop_index
+            )
+            decoded_market_tokens.append(selected_token)
+            decoded_market_quantities.append(selected_quantity)
+            previous_token = selected_token
+            previous_quantity = selected_quantity
+
+        return {
+            "option_router_logits": option_router_logits,
+            "unit_role_logits": unit_role_logits,
+            "market_role_logits": jnp.stack(market_role_rows, axis=2),
+            "unit_role_probabilities": nn.softmax(
+                unit_role_logits, axis=-1
+            ),
+            "market_role_probabilities": nn.softmax(
+                jnp.stack(market_role_rows, axis=2), axis=-1
+            ),
+            "unit_roles": jnp.argmax(unit_role_logits, axis=-1),
+            "market_roles": jnp.argmax(
+                jnp.stack(market_role_rows, axis=2), axis=-1
+            ),
+            "unit_logits": unit_logits,
+            "unit_quantity_logits": unit_quantity_logits,
+            "market_logits": jnp.stack(market_logits_rows, axis=2),
+            "market_quantity_logits": jnp.stack(
+                market_quantity_rows, axis=2
+            ),
+            "unit_sequence_tokens": unit_sequence_tokens,
+            "unit_sequence_quantities": unit_sequence_quantities,
+            "market_sequence_tokens": jnp.stack(
+                decoded_market_tokens, axis=2
+            ),
+            "market_sequence_quantities": jnp.stack(
+                decoded_market_quantities, axis=2
+            ),
+            "market_absorbed_before_slot": jnp.stack(
+                absorbed_rows, axis=2
+            ),
+            "option_value": option_value,
+            "catastrophe_logits": catastrophe_logits,
+        }

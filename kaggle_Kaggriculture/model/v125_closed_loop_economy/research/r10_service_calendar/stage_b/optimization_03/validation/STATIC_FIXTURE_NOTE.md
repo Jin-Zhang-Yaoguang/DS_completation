@@ -1,0 +1,1 @@
+首次只读fixture组装因旧在途记录没有manual_conditions键而停止，尚未生成fixture，没有加载候选或调用策略/引擎。旧记录将人工条件保存在natural_reachability/reuse_scope/other_private_condition等字段；冻结前修正为原样保存该条全部非observation元数据。输入观察、预算和选择条件未变。

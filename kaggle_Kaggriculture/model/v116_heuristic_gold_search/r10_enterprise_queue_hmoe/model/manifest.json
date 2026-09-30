@@ -1,0 +1,64 @@
+{
+  "candidate_id": "v116-r10-enterprise-queue-hmoe-p0p1",
+  "schema": "v116-r10-enterprise-queue-hmoe-v1",
+  "strategy_parent": null,
+  "self_contained": true,
+  "status": "REJECT_P2_ECONOMIC_HEALTH_NOT_GOLD",
+  "gold_model": false,
+  "experiment_registered": true,
+  "kaggle_submitted": false,
+  "formal_episode_count": 48,
+  "entrypoint": "main.py",
+  "interface": {
+    "factory": "build_executor(params=None, mode='router')",
+    "methods": [
+      "executor.act(obs)",
+      "executor.diagnostics()"
+    ],
+    "modes": [
+      "router",
+      "fixed_root_exchange",
+      "fixed_dairy_berry",
+      "fixed_fiber_grain"
+    ]
+  },
+  "hashes": {
+    "main.py_sha256": "50851e01965be6fd9e192edc2fa6b98c8eea93c83a541f4e57ea6c4b28c65556",
+    "test_r10.py_sha256": "0296202e11d33ff0369e60c52df7249373fd64da7f22b912098041b0787b36b3",
+    "default_params_canonical_sha256": "273fbbdb3fea2500a3b388be60d889b136e1f02a6c84b0264509cb9f6f61fb13"
+  },
+  "evidence": {
+    "engine": "kagsim 1.32.7",
+    "py_compile": "PASS",
+    "static_originality_precheck": "PASS",
+    "synthetic_mechanism_tests": "PASS",
+    "p1_full_719_thresholds": "PARTIAL_PASS_48_OF_48_719_CALLS_ZERO_SCHEMA_ERRORS",
+    "real_engine_one_step_modes": 4,
+    "short_horizon_runs": 4,
+    "short_horizon_steps_configured": 96,
+    "short_horizon_agent_calls_each": 95,
+    "runtime_errors": 0,
+    "schema_errors": 0,
+    "p2_exposed_panel": {
+      "planned_games": 48,
+      "completed_games": 48,
+      "errors": 0,
+      "router_mean_bank": 682.6666666666666,
+      "router_cvar25_bank": 237.66666666666666,
+      "fixed_mean_banks": {
+        "root_exchange": 201.16666666666666,
+        "dairy_berry": 1958.5833333333333,
+        "fiber_grain": 469.4166666666667
+      },
+      "minimum_terminal_production_assets": 0,
+      "decision": "REJECT_P2_ECONOMIC_HEALTH",
+      "evidence_path": "../evaluation/runs/r10_p2_exposed_001"
+    }
+  },
+  "strength_boundaries": [
+    "P2 economic health failed on six exposed seeds and both seats",
+    "no gold-pool opponent",
+    "no Replay development or frozen evaluation",
+    "not eligible for golden_model registration"
+  ]
+}

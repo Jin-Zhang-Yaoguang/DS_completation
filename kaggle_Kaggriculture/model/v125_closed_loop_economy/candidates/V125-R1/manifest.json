@@ -1,0 +1,23 @@
+{
+  "candidate_id": "V125-R1",
+  "strategy_parent": null,
+  "implementation_parent": "V125-R0",
+  "parent_candidate_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+  "created_at_utc": "2026-09-05T09:54:46.078863+00:00",
+  "candidate_sha256": "64361f000c3d827e3b71bfb18af9c2199b5bc42ca681b9befd013a4284a8360f",
+  "protocol_sha256": "ae3bee95da7659da9ed08b081bbdff2980d61a91fdbc6bbf52c9dea2a5c15a72",
+  "status": "FROZEN_FOR_DIAGNOSTIC",
+  "primary_hypothesis": "R0采购上限与卖出保留线不同，导致补给后又卖出小麦；统一目标库存并用补给触发下限建立滞回，可减少无效库存周转至少20%，且不恶化喂养/现金兑现。",
+  "single_primary_change": "小麦供料库存上下限统一，其他调度、计划和市场顺序不变",
+  "mechanism_metric": "BUY_PRODUCT_WHEAT_qty减去实际FEED消耗后的超额购量；逐日粮食短缺/动物损失与最终现金并报",
+  "diagnostic_seeds": [
+    1950905001
+  ],
+  "fresh_development_seeds": [
+    1950905101,
+    1950905102,
+    1950905103
+  ],
+  "falsification": "超额购量未减少20%或造成动物漏喂/损失/现金下降，R1不晋级",
+  "training_data": "NONE_RULES_ONLY"
+}

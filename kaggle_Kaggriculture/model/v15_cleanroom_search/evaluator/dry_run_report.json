@@ -1,0 +1,43 @@
+{
+  "attempt_id": "attempt_002",
+  "development": {
+    "candidate_games": 1400,
+    "direct_anchor_games_each": 200,
+    "lineages_equal_weighted": 7,
+    "models": 7,
+    "panel_records_sha256": "cedf9f62f9db42e75678d734b51bd33b58edacc9358a03b5b0fbc395ff980f8d",
+    "parent_games": 1400,
+    "source_clusters": 100,
+    "total_tasks": 2800
+  },
+  "fresh_source_capacity": 856,
+  "games_started": false,
+  "hidden": {
+    "candidate_games": 2200,
+    "direct_anchor_games_each": 200,
+    "lineages_equal_weighted": 7,
+    "models": 11,
+    "panel_records_sha256": "ba00618c3b02349b8ab66f67dd025114dc6db972d9b8cec8363db7ded9e1361c",
+    "parent_games": 2200,
+    "single_use": true,
+    "source_clusters": 100,
+    "total_tasks": 4400
+  },
+  "maximum_full_attempts": 4,
+  "panels_reserved": false,
+  "parent_mapping_private_catalog_key": "a2_fixed",
+  "parent_public_alias": "P0",
+  "schema": "kaggriculture-v15-evaluator-dry-run-1",
+  "statistics": {
+    "bootstrap": "100 source clusters, stratified by source date, 10000 resamples, q=0.025",
+    "paired_uplift_formula": "same-source mean_lineage(mean_model(candidate score - P0 score))",
+    "pool_formula": "mean_source(mean_lineage(mean_model(mean_two_candidate_seats(score))))"
+  },
+  "test_sources_selected": 0,
+  "thresholds": {
+    "lineage_equal_pool_score_ci95_low_min": 0.6,
+    "lineage_equal_pool_score_rate_min": 0.65,
+    "paired_uplift_ci95_low_strict_min": 0.1,
+    "primary_anchor_pure_win_rate_min": 0.65
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "schema": "v125-paired-development-assessment-v1",
+  "evidence_role": "LOCAL_DEVELOPMENT_STRENGTH_GUARD_ONLY_NOT_G1_G2_OR_GOLD",
+  "data_integrity_pass": false,
+  "development_strength_guard_pass": false,
+  "expected_games": 8,
+  "observed_unique_cells": 8,
+  "issues": [
+    {
+      "code": "POSTHOC_FIXTURE_NOT_DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 0,
+      "candidate_id": "fixed_horticulture",
+      "opponent_label": "V120",
+      "row_index": 0
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 0,
+      "candidate_id": "fixed_horticulture",
+      "opponent_label": "V120",
+      "row_index": 1
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 1,
+      "candidate_id": "fixed_balanced",
+      "opponent_label": "V120",
+      "row_index": 0
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 1,
+      "candidate_id": "fixed_balanced",
+      "opponent_label": "V120",
+      "row_index": 1
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 2,
+      "candidate_id": "fixed_dairy",
+      "opponent_label": "V120",
+      "row_index": 0
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 2,
+      "candidate_id": "fixed_dairy",
+      "opponent_label": "V120",
+      "row_index": 1
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 3,
+      "candidate_id": "fixed_fiber",
+      "opponent_label": "V120",
+      "row_index": 0
+    },
+    {
+      "code": "GAME_PRECEDES_PLAN_FREEZE",
+      "job_index": 3,
+      "candidate_id": "fixed_fiber",
+      "opponent_label": "V120",
+      "row_index": 1
+    }
+  ],
+  "jobs": [
+    {
+      "job_index": 0,
+      "candidate_id": "fixed_horticulture",
+      "opponent_label": "V120",
+      "output": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r5_horticulture_v120_opened_probe_v3",
+      "issues": [
+        "GAME_PRECEDES_PLAN_FREEZE",
+        "GAME_PRECEDES_PLAN_FREEZE"
+      ],
+      "recorded_rows": 2
+    },
+    {
+      "job_index": 1,
+      "candidate_id": "fixed_balanced",
+      "opponent_label": "V120",
+      "output": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r5_balanced_v120_opened_probe_v3",
+      "issues": [
+        "GAME_PRECEDES_PLAN_FREEZE",
+        "GAME_PRECEDES_PLAN_FREEZE"
+      ],
+      "recorded_rows": 2
+    },
+    {
+      "job_index": 2,
+      "candidate_id": "fixed_dairy",
+      "opponent_label": "V120",
+      "output": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r5_dairy_v120_opened_probe_v3",
+      "issues": [
+        "GAME_PRECEDES_PLAN_FREEZE",
+        "GAME_PRECEDES_PLAN_FREEZE"
+      ],
+      "recorded_rows": 2
+    },
+    {
+      "job_index": 3,
+      "candidate_id": "fixed_fiber",
+      "opponent_label": "V120",
+      "output": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r5_fiber_v120_opened_probe_v3",
+      "issues": [
+        "GAME_PRECEDES_PLAN_FREEZE",
+        "GAME_PRECEDES_PLAN_FREEZE"
+      ],
+      "recorded_rows": 2
+    }
+  ],
+  "pairwise_groups": [
+    {
+      "reference": "fixed_balanced",
+      "opponent_label": "V120",
+      "expected_pairs": 2,
+      "available_pairs": 2,
+      "missing_pairs": [],
+      "positive_deltas": 2,
+      "required_positive_deltas": 2,
+      "ties": 0,
+      "negative_deltas": 0,
+      "median_margin_delta": 273.0,
+      "mean_margin_delta": 273.0,
+      "per_seat": {
+        "0": {
+          "n": 1,
+          "mean_margin_delta": 273.0,
+          "mean_own_cash_delta": 7999.0,
+          "mean_opponent_cash_delta": 7726.0
+        },
+        "1": {
+          "n": 1,
+          "mean_margin_delta": 273.0,
+          "mean_own_cash_delta": 7999.0,
+          "mean_opponent_cash_delta": 7726.0
+        }
+      },
+      "pairwise_guard_pass": true,
+      "pairs": [
+        {
+          "seed": 1950905001,
+          "seat": 0,
+          "candidate_margin": -53357.0,
+          "reference_margin": -53630.0,
+          "margin_delta": 273.0,
+          "candidate_own_cash": 73573.0,
+          "reference_own_cash": 65574.0,
+          "own_cash_delta": 7999.0,
+          "candidate_opponent_cash": 126930.0,
+          "reference_opponent_cash": 119204.0,
+          "opponent_cash_delta": 7726.0,
+          "decomposition_residual": 0.0,
+          "candidate_key": "84347076200b0ec470689d972d365110e46b47ebc1efa5ae168461ce7e531c26:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:0:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+          "reference_key": "cd63c5d5f93ebb97cb854716c01a52f7cd9606e6a26427dc415515d7e10182cb:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:0:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f"
+        },
+        {
+          "seed": 1950905001,
+          "seat": 1,
+          "candidate_margin": -53357.0,
+          "reference_margin": -53630.0,
+          "margin_delta": 273.0,
+          "candidate_own_cash": 73573.0,
+          "reference_own_cash": 65574.0,
+          "own_cash_delta": 7999.0,
+          "candidate_opponent_cash": 126930.0,
+          "reference_opponent_cash": 119204.0,
+          "opponent_cash_delta": 7726.0,
+          "decomposition_residual": 0.0,
+          "candidate_key": "84347076200b0ec470689d972d365110e46b47ebc1efa5ae168461ce7e531c26:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:1:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+          "reference_key": "cd63c5d5f93ebb97cb854716c01a52f7cd9606e6a26427dc415515d7e10182cb:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:1:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f"
+        }
+      ]
+    },
+    {
+      "reference": "fixed_dairy",
+      "opponent_label": "V120",
+      "expected_pairs": 2,
+      "available_pairs": 2,
+      "missing_pairs": [],
+      "positive_deltas": 2,
+      "required_positive_deltas": 2,
+      "ties": 0,
+      "negative_deltas": 0,
+      "median_margin_delta": 2032.0,
+      "mean_margin_delta": 2032.0,
+      "per_seat": {
+        "0": {
+          "n": 1,
+          "mean_margin_delta": 2032.0,
+          "mean_own_cash_delta": 14637.0,
+          "mean_opponent_cash_delta": 12605.0
+        },
+        "1": {
+          "n": 1,
+          "mean_margin_delta": 2032.0,
+          "mean_own_cash_delta": 14637.0,
+          "mean_opponent_cash_delta": 12605.0
+        }
+      },
+      "pairwise_guard_pass": true,
+      "pairs": [
+        {
+          "seed": 1950905001,
+          "seat": 0,
+          "candidate_margin": -53357.0,
+          "reference_margin": -55389.0,
+          "margin_delta": 2032.0,
+          "candidate_own_cash": 73573.0,
+          "reference_own_cash": 58936.0,
+          "own_cash_delta": 14637.0,
+          "candidate_opponent_cash": 126930.0,
+          "reference_opponent_cash": 114325.0,
+          "opponent_cash_delta": 12605.0,
+          "decomposition_residual": 0.0,
+          "candidate_key": "84347076200b0ec470689d972d365110e46b47ebc1efa5ae168461ce7e531c26:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:0:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+          "reference_key": "596178ec0e7825c2a4ec6331d2efbfe85c27c44e26e3b8e47984366dadf36013:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:0:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f"
+        },
+        {
+          "seed": 1950905001,
+          "seat": 1,
+          "candidate_margin": -53357.0,
+          "reference_margin": -55389.0,
+          "margin_delta": 2032.0,
+          "candidate_own_cash": 73573.0,
+          "reference_own_cash": 58936.0,
+          "own_cash_delta": 14637.0,
+          "candidate_opponent_cash": 126930.0,
+          "reference_opponent_cash": 114325.0,
+          "opponent_cash_delta": 12605.0,
+          "decomposition_residual": 0.0,
+          "candidate_key": "84347076200b0ec470689d972d365110e46b47ebc1efa5ae168461ce7e531c26:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:1:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+          "reference_key": "596178ec0e7825c2a4ec6331d2efbfe85c27c44e26e3b8e47984366dadf36013:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:1:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f"
+        }
+      ]
+    },
+    {
+      "reference": "fixed_fiber",
+      "opponent_label": "V120",
+      "expected_pairs": 2,
+      "available_pairs": 2,
+      "missing_pairs": [],
+      "positive_deltas": 2,
+      "required_positive_deltas": 2,
+      "ties": 0,
+      "negative_deltas": 0,
+      "median_margin_delta": 14453.0,
+      "mean_margin_delta": 14453.0,
+      "per_seat": {
+        "0": {
+          "n": 1,
+          "mean_margin_delta": 14453.0,
+          "mean_own_cash_delta": 14860.0,
+          "mean_opponent_cash_delta": 407.0
+        },
+        "1": {
+          "n": 1,
+          "mean_margin_delta": 14453.0,
+          "mean_own_cash_delta": 14860.0,
+          "mean_opponent_cash_delta": 407.0
+        }
+      },
+      "pairwise_guard_pass": true,
+      "pairs": [
+        {
+          "seed": 1950905001,
+          "seat": 0,
+          "candidate_margin": -53357.0,
+          "reference_margin": -67810.0,
+          "margin_delta": 14453.0,
+          "candidate_own_cash": 73573.0,
+          "reference_own_cash": 58713.0,
+          "own_cash_delta": 14860.0,
+          "candidate_opponent_cash": 126930.0,
+          "reference_opponent_cash": 126523.0,
+          "opponent_cash_delta": 407.0,
+          "decomposition_residual": 0.0,
+          "candidate_key": "84347076200b0ec470689d972d365110e46b47ebc1efa5ae168461ce7e531c26:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:0:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+          "reference_key": "523d93462cce81d860275d73f5fa0883830b42b8e2dd44304f15c979cb36c860:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:0:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f"
+        },
+        {
+          "seed": 1950905001,
+          "seat": 1,
+          "candidate_margin": -53357.0,
+          "reference_margin": -67810.0,
+          "margin_delta": 14453.0,
+          "candidate_own_cash": 73573.0,
+          "reference_own_cash": 58713.0,
+          "own_cash_delta": 14860.0,
+          "candidate_opponent_cash": 126930.0,
+          "reference_opponent_cash": 126523.0,
+          "opponent_cash_delta": 407.0,
+          "decomposition_residual": 0.0,
+          "candidate_key": "84347076200b0ec470689d972d365110e46b47ebc1efa5ae168461ce7e531c26:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:1:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+          "reference_key": "523d93462cce81d860275d73f5fa0883830b42b8e2dd44304f15c979cb36c860:b95ecb914886bb44279352d360020f9cd4f81d1c7e543fb85fc8e420aa518ea9:1950905001:1:77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f"
+        }
+      ]
+    }
+  ],
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_independent_matches": 0,
+  "rule": "每reference×opponent独立：完整N对，margin_delta>0至少ceil(0.6N)，median>0，两个席位mean>=0。主机制另行核验。"
+}

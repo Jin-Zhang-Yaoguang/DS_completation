@@ -1,0 +1,44 @@
+{
+  "schema": "kaggriculture-online-80-v1",
+  "snapshot_time": "2026-08-18T11:59:00+08:00",
+  "source": "Kaggle official API competition_list_episodes",
+  "filter": "EPISODE_TYPE_PUBLIC; sort by endTime ascending; use first 80 episodes",
+  "phases": {
+    "climb": "episodes 1-40",
+    "stable": "episodes 41-80"
+  },
+  "definitions": {
+    "win_rate": "wins / games",
+    "score_rate": "(wins + 0.5 * ties) / games",
+    "mean_margin": "mean(own_reward - opponent_reward)"
+  },
+  "submissions": {
+    "v1_adaptive_market": {
+      "submission_id": 55575950,
+      "current_rating": 2727.5,
+      "public_games": 78,
+      "window_games": 78,
+      "climb": {"games": 40, "wins": 37, "ties": 0, "losses": 3, "win_rate": 0.925, "score_rate": 0.925, "mean_margin": 12426.475},
+      "stable": {"games": 38, "wins": 28, "ties": 0, "losses": 10, "win_rate": 0.7368421053, "score_rate": 0.7368421053, "mean_margin": 2839.7368421},
+      "window": {"wins": 65, "ties": 0, "losses": 13, "win_rate": 0.8333333333, "score_rate": 0.8333333333}
+    },
+    "v2_survival_guard": {
+      "submission_id": 55578745,
+      "current_rating": 2572.8,
+      "public_games": 89,
+      "window_games": 80,
+      "climb": {"games": 40, "wins": 32, "ties": 0, "losses": 8, "win_rate": 0.8, "score_rate": 0.8, "mean_margin": 12140.55},
+      "stable": {"games": 40, "wins": 31, "ties": 0, "losses": 9, "win_rate": 0.775, "score_rate": 0.775, "mean_margin": 3936.025},
+      "window": {"wins": 63, "ties": 0, "losses": 17, "win_rate": 0.7875, "score_rate": 0.7875}
+    },
+    "v3_bc_ppo_hybrid": {
+      "submission_id": 55585467,
+      "current_rating": 2256.7,
+      "public_games": 78,
+      "window_games": 78,
+      "climb": {"games": 40, "wins": 34, "ties": 0, "losses": 6, "win_rate": 0.85, "score_rate": 0.85, "mean_margin": 15856.425},
+      "stable": {"games": 38, "wins": 27, "ties": 0, "losses": 11, "win_rate": 0.7105263158, "score_rate": 0.7105263158, "mean_margin": 3428.2105263},
+      "window": {"wins": 61, "ties": 0, "losses": 17, "win_rate": 0.7820512821, "score_rate": 0.7820512821}
+    }
+  }
+}

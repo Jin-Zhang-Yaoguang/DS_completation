@@ -1,0 +1,49 @@
+{
+  "schema": "kaggriculture-v121-rule-hmoe-training-report-v1",
+  "data": {
+    "episodes": 13,
+    "teacher_trajectories": 19,
+    "group_split": "5-fold episode_id"
+  },
+  "macro_router": {
+    "selected": {
+      "depth": 5,
+      "leaf": 4,
+      "balanced_accuracy": 0.743898013750955
+    },
+    "majority_accuracy": 0.3684210526315789,
+    "tree_depth": 5,
+    "tree_nodes": 21
+  },
+  "daily_router": {
+    "selected": {
+      "depth": 6,
+      "leaf": 4,
+      "balanced_accuracy": 0.7525782443930444
+    },
+    "majority_accuracy": 0.3736842105263158,
+    "tree_depth": 6,
+    "tree_nodes": 37,
+    "parent_signal": "OOF macro prediction"
+  },
+  "global_market": {
+    "selected": {
+      "depth": 5,
+      "leaf": 8,
+      "rmse": 26.695635273496542,
+      "mean_baseline_rmse": 31.843903987449238
+    },
+    "beats_group_mean": true,
+    "tree_depth": 5,
+    "tree_nodes": 17
+  },
+  "tape_audit_required": true,
+  "promotion_gate": {
+    "macro_balanced_accuracy_min": 0.55,
+    "daily_balanced_accuracy_min": 0.55,
+    "global_beats_group_mean": true,
+    "offline_signal_pass": true,
+    "closed_loop_required": true
+  },
+  "verdict": "RESEARCH_SIGNAL_ONLY_NOT_PROMOTABLE"
+}

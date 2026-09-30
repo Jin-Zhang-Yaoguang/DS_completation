@@ -1,0 +1,55 @@
+{
+  "schema": "v12-independent-package-qa-1",
+  "candidate": "v12b_market_feedback_router",
+  "generated_at_utc": "2026-08-23T08:59:54Z",
+  "verdict": "PASS",
+  "archive": {
+    "path": "submission.tar.gz",
+    "size_bytes": 100365,
+    "sha256": "385961583deaa8f3c225f2a6a22dd0a6be55336345f2b69ddaf000a7bb76eef9",
+    "manifest_size_match": true,
+    "manifest_sha256_match": true,
+    "manifest_members_match": true,
+    "source_main_matches_packaged_main": true,
+    "packaged_parent_matches_declared_sha256": true,
+    "safe_relative_regular_members_only": true,
+    "duplicate_members": [],
+    "extra_or_missing_members": [],
+    "pycache_or_pyc_members": [],
+    "embedded_absolute_path_literals": []
+  },
+  "files": [
+    {"path": "main.py", "size_bytes": 16161, "sha256": "b28738195050e1adcba97a3f165210b6dc9150195403e88c6b5acb8a1e5729b2"},
+    {"path": "parent_agent.py", "size_bytes": 150041, "sha256": "ed2e443f6ae3683da9f34c55920bc8aa06a81e22e3b905df92389597e8adc327"}
+  ],
+  "isolated_runtime": {
+    "project_source_importable_before_package_load": false,
+    "source_tree_modules_loaded": [],
+    "bundled_modules_loaded": [
+      "main.py",
+      "parent_agent.py"
+    ],
+    "standard_agent_accepts_obs_and_optional_configuration": true
+  },
+  "games": [
+    {"seed": 93451031, "seat": 0, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [153848.0, 3504.0], "action_sha256": "01262239d54e67a5c3dc1e193d00ebaaf8910b0ae4b21e04ebbd9de4e05858eb", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "runtime_errors": []},
+    {"seed": 93451031, "seat": 1, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [3421.0, 163168.0], "action_sha256": "aa013d2cd2203dd07e073bd66c5a4fd73bd33d893221c72a5633f9269cafda91", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "runtime_errors": []},
+    {"seed": 93451032, "seat": 0, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [81788.0, 3612.0], "action_sha256": "5561adbc7f43f463cffdba787558661fe44c8deb6705a0bb9fd57f793c55ea55", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "runtime_errors": []},
+    {"seed": 93451032, "seat": 1, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [3612.0, 81788.0], "action_sha256": "5561adbc7f43f463cffdba787558661fe44c8deb6705a0bb9fd57f793c55ea55", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "runtime_errors": []},
+    {"seed": 93451033, "seat": 0, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [183679.0, 3538.0], "action_sha256": "7761ee7eae9d4e405f24b025f2f5134a0916e0920164ae78af2be3b4ed76cf49", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "runtime_errors": []},
+    {"seed": 93451033, "seat": 1, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [3526.0, 176851.0], "action_sha256": "1fac9b50057ee75f61a1408477ffcf13ae313574b2acba4a96c4e6334f78338f", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "runtime_errors": []}
+  ],
+  "checks": {
+    "archive_integrity": true,
+    "clean_structure": true,
+    "isolated_bundled_parent_runtime": true,
+    "three_fresh_seeds_both_seats": true,
+    "all_720_steps_719_calls_done_done": true,
+    "zero_stderr_and_runtime_errors": true,
+    "package_registry_stepwise_action_and_reward_equivalence": true
+  },
+  "non_serving_notes": [
+    "The local submission manifest keeps an absolute parent_source audit path, but the manifest is not shipped in the archive and the isolated runtime did not load it.",
+    "The local submission manifest lists the two members without per-member hashes; this independent QA report records both member hashes."
+  ]
+}

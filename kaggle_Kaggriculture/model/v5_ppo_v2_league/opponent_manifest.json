@@ -1,0 +1,243 @@
+{
+  "schema": "kaggriculture-ppo-v2-opponents-1",
+  "primary_baseline": "v1",
+  "safety_comparator": "v2",
+  "target_active_count": 28,
+  "allowed_active_count": [
+    24,
+    32
+  ],
+  "minimum_effective_families": 12,
+  "default_quota": {
+    "ordinary_games": 64,
+    "hard_games": 128,
+    "ordinary_count": 24,
+    "hard_count": 4,
+    "total_games": 2048
+  },
+  "implemented_active_pool": {
+    "count": 28,
+    "ids": [
+      "v1", "v2", "v0", "starter", "random", "forced_low", "forced_high",
+      "market_half", "market_double", "market_quarter", "market_75", "market_125", "market_150",
+      "market_delay", "market_delay_240", "market_delay_480", "market_priority", "market_priority_premium", "market_priority_tomato", "market_buy",
+      "exploit_wheat", "exploit_tomato", "exploit_premium", "exploit_cleanup", "cleanup_600", "cleanup_624", "v3", "v4"
+    ],
+    "effective_family_floor": 12,
+    "selection_rule": "round_robin_with_seed_and_seat_randomization"
+  },
+  "dedup_rule": {
+    "fields": [
+      "post_day7_action_signature",
+      "production_route",
+      "sale_day_histogram",
+      "market_order_histogram"
+    ],
+    "near_duplicate": "same family after normalized action signature; never count aliases as separate effective families"
+  },
+  "opponents": [
+    {
+      "id": "v1",
+      "kind": "anchor",
+      "family": "v1_rule",
+      "status": "available",
+      "hard": true
+    },
+    {
+      "id": "v2",
+      "kind": "anchor",
+      "family": "v2_rule",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "v3",
+      "kind": "anchor",
+      "family": "v3_macro",
+      "status": "available",
+      "hard": true
+    },
+    {
+      "id": "v4",
+      "kind": "anchor",
+      "family": "v4_rule",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "starter",
+      "kind": "anchor",
+      "family": "starter",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "production_low",
+      "kind": "production_expert",
+      "family": "production_low",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "production_high",
+      "kind": "production_expert",
+      "family": "production_high",
+      "status": "available",
+      "hard": true
+    },
+    {
+      "id": "production_mixed",
+      "kind": "production_expert",
+      "family": "production_mixed",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "livestock",
+      "kind": "production_expert",
+      "family": "livestock",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "premium_crop",
+      "kind": "production_expert",
+      "family": "premium_crop",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "expansion_fast",
+      "kind": "production_expert",
+      "family": "expansion_fast",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "market_buy",
+      "kind": "market_expert",
+      "family": "market_buy",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "market_pressure",
+      "kind": "market_expert",
+      "family": "market_pressure",
+      "status": "planned",
+      "hard": true
+    },
+    {
+      "id": "market_delay",
+      "kind": "market_expert",
+      "family": "market_delay",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "market_clear",
+      "kind": "market_expert",
+      "family": "market_clear",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "market_priority",
+      "kind": "market_expert",
+      "family": "market_priority",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "exploit_wheat",
+      "kind": "exploiter",
+      "family": "exploit_wheat",
+      "status": "available",
+      "hard": true
+    },
+    {
+      "id": "exploit_feed",
+      "kind": "exploiter",
+      "family": "exploit_feed",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "exploit_storage",
+      "kind": "exploiter",
+      "family": "exploit_storage",
+      "status": "planned",
+      "hard": false
+    },
+    {
+      "id": "exploit_cleanup",
+      "kind": "exploiter",
+      "family": "exploit_cleanup",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "ppo_early",
+      "kind": "historical_ppo",
+      "family": "ppo_early",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "ppo_mid",
+      "kind": "historical_ppo",
+      "family": "ppo_mid",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "ppo_late",
+      "kind": "historical_ppo",
+      "family": "ppo_late",
+      "status": "available",
+      "hard": true
+    },
+    {
+      "id": "ppo_best",
+      "kind": "historical_ppo",
+      "family": "ppo_best",
+      "status": "available",
+      "hard": false
+    },
+    {
+      "id": "replay_rank1",
+      "kind": "strong_replay",
+      "family": "replay_rank1",
+      "status": "available",
+      "hard": true,
+      "source": "data/replays/champion",
+      "episodes": [
+        94135298,
+        94135297,
+        94121252,
+        94106275
+      ]
+    },
+    {
+      "id": "replay_rank2_5",
+      "kind": "strong_replay",
+      "family": "replay_rank2_5",
+      "status": "missing_external",
+      "hard": true
+    },
+    {
+      "id": "replay_rank6_10",
+      "kind": "strong_replay",
+      "family": "replay_rank6_10",
+      "status": "missing_external",
+      "hard": false
+    },
+    {
+      "id": "replay_public_holdout",
+      "kind": "strong_replay",
+      "family": "replay_public_holdout",
+      "status": "available",
+      "hard": false
+    }
+  ]
+}

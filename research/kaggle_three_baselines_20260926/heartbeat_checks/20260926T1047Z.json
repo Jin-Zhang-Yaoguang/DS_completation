@@ -1,0 +1,77 @@
+{
+  "checked_at_utc": "2026-09-26T10:49:45.310130+00:00",
+  "baseline_status": {
+    "gemma-4-developer-agent": {
+      "phase": "submitted_waiting_for_online_score",
+      "submission_id": 56575684,
+      "submission_status": "PENDING",
+      "public_score": null,
+      "updated_at": "2026-09-26T10:49:38.120092Z"
+    },
+    "arc-prize-2026-arc-agi-3": {
+      "phase": "complete",
+      "submission_id": 56576143,
+      "submission_status": "SubmissionStatus.COMPLETE",
+      "public_score": 0.09,
+      "updated_at": "2026-09-26T10:07:44.911924+00:00"
+    },
+    "arc-prize-2026-arc-agi-2": {
+      "phase": "submission_complete",
+      "submission_id": 56575976,
+      "submission_status": "COMPLETE",
+      "public_score": 0.0,
+      "updated_at": "2026-09-26T09:54:06.465965+00:00"
+    }
+  },
+  "ev_status": {
+    "updated_at_utc": "2026-09-26T10:48:39.881454+00:00",
+    "phase": "P1_FORMAL_RUNNING",
+    "current_experiment": "p1_source_group_constraints_40f",
+    "process": {
+      "pid": 77720,
+      "active": true
+    },
+    "checkpoint": {
+      "fold": 9,
+      "of": 40
+    },
+    "baseline": {
+      "online_ref": "56023943",
+      "online_public_score": 0.94635,
+      "v85_oof_auc": 0.946270227355629,
+      "v90_oof_auc": 0.946372074576589,
+      "v100_development_oof_auc": 0.9463981465241269,
+      "online_rank_snapshot": 648,
+      "team_id": "16810341",
+      "daily_remaining_at_probe": 10
+    },
+    "oof": {
+      "A": 0.9460627523329033,
+      "B": 0.9461390577256688,
+      "fixed_blend": 0.9461812284165078
+    },
+    "submission": null,
+    "blocker": null,
+    "next_action": "Train and checkpoint 40-fold constrained V85",
+    "authorization_restored": true,
+    "permission_probe": "model/takeover_20260926/permission_probe.json",
+    "p1_diagnostic_gate": {
+      "B": true,
+      "fixed_blend": true,
+      "any_pass": true
+    }
+  },
+  "formal_progress": {
+    "completed_folds": 9,
+    "elapsed_seconds": 1055.5288902499597,
+    "peak_rss_bytes": 9695100928
+  },
+  "review_issue": {
+    "status": "STEERED_FIX_REQUIRED_BEFORE_E2E",
+    "issue": "错误把A_NEW_CPU_CT_FULLFIT历史缓存当成线上V100同配方E2E基准；等权公式文字也不一致",
+    "evidence": "model/validation/e2e_v100_20260905/completion_review.json",
+    "instruction_file": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/research/kaggle_three_baselines_20260926/ev_takeover/e2e_review_20260926T1047.md",
+    "current_formal_training_unaffected": true
+  },
+  "needs_user_input": false
+}

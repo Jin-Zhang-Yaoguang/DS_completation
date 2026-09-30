@@ -1,0 +1,345 @@
+[
+  {
+    "id": 3518992,
+    "authorName": "",
+    "postDate": "2026-08-31T23:59:39.757000",
+    "votes": 102,
+    "content": "<p>Thank you Kaggle for a fun Playground competition. This month, I used distributed intelligence to win 1st place. Phase 1 used a single autonomous agent, phase 2 added 2 more agents and a shared knowledge database. Then phase 3 and phase 4 added a swarm of new agents. Using <a href=\"https://build.nvidia.com/\" target=\"_blank\">NVIDIA Inference Hub</a>, we can pick from roughly 150 different LLM models in our agent harness!</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/agents.png\" alt=\"\"></p>\n<h1>Phase 1 - Autonomous Agent</h1>\n<p>I joined this competition 1.5 weeks ago and began using a single Codex GPT 5.6 Sol autorun agent (similar to what I did in Wellbore competition <a href=\"https://www.kaggle.com/competitions/rogii-wellbore-geology-prediction/writeups/36th-place-gpt5-6-sol-yolo\" target=\"_blank\">here</a>). I instructed the agent to do everything. It read the competition description, downloaded the data and began building a big diverse ensemble (i.e. a solid strategy in playground comp). Every time it added another 10-50 group of models, it would compute new ensemble CV score and submit to Kaggle LB by itself. After 4 days, it had built a 380 model ensemble and reached 10th place (or better, i forget) on public LB by itself!</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/phases.png\" alt=\"\"></p>\n<h1>Phase 2 - GPT 5.6 Sol battles Fable 5</h1>\n<p>I worked with Fable 5 in Kaggle's NeuroGolf competition <a href=\"https://www.kaggle.com/competitions/neurogolf-2026/writeups/1st-place-kaggle-agent\" target=\"_blank\">here</a> and was mind blown with its abilities. In phase 2, we onboarded Fable 5 and another GPT 5.6 Sol. We told them to perform EDA and read our previous work. We then challenged Codex GPT 5.6 Sol to compete against Claude Code Fable 5 to see who can make the best single NN model and who could make the best single XGB model. For the next week they battled it out. Mostly they would work alone. When one was lagging, we would share tips from the leading agent to the trailing agent and soon the trailing agent would take the lead! We achieved <strong>single model</strong> <code>RealMLP CV 0.97070 LB 0.97174</code> and <strong>single model</strong> <code>XGB CV 0.97020 LB 0.97030</code>, wow amazing!</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/top1s.png\" alt=\"\"></p>\n<h1>Single Model wins 1st Place!</h1>\n<p>To my amazement, GPT 5.6 Sol collaborating (i.e. competing and occasionally sharing) with Fable 5 created a single model that by itself (without ensemble) wins 1st place in Kaggle's August Playground competition. A single model has not won Kaggle's Playground competition in 18 months! (The last was February 2025 <a href=\"https://www.kaggle.com/competitions/playground-series-s5e2/writeups/chris-deotte-1st-place-single-model-feature-engine\" target=\"_blank\">here</a>). This is a huge achievement and confirms that frontier models are Grandmasters at data science modeling! Furthermore, we can add every single model they built to our large ensemble to supercharge its performance!</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/single_model.png\" alt=\"\"></p>\n<h1>Phase 3 - ChatGPT Pro - Swarm Intelligence!</h1>\n<p>To help GPT 5.6 Sol and Fable 5 build even better single models, we asked Fable to build a <code>tar.gz</code> packet and write a <code>prompt</code> that we (humans) can (manually) upload to ChatGPT Pro to solicit its help. (This worked well in NeuroGolf competition <a href=\"https://www.kaggle.com/competitions/neurogolf-2026/discussion/704942\" target=\"_blank\">here</a>). Since ChatGPT Pro can answer multiple questions in parallel, we can submit multiple packets and multiple prompts in parallel. ChatGPT Pro works for 2 hours (on each packet/prompt) and then creates a <code>ZIP</code> file for us to download with its discoveries. When GPT 5.6 Sol and Fable 5 incorporated ChatGPT Pro insights into their work, they improved their best single model CV and LB scores!</p>\n<p>I was amazed to witness that ChatGPT Pro discovered new tabular data feature engineering ideas that I have never seen before in my 8 years of competing in tabular data competitions on Kaggle. These are techniques that apply to this competition and every future tabular data science competition. Absolutely amazing!</p>\n<h1>Phase 4 - NVIDIA Inference Hub - Swarm Intelligence!</h1>\n<p>To help us improve our ensemble's CV and LB score even more, we asked Fable 5 to interview new LLMs from <a href=\"https://build.nvidia.com/\" target=\"_blank\">NVIDIA Inference Hub's</a> roughly 150 potential LLM and then enlist them to help us. (Using a variety of LLM worked well in MAP competition <a href=\"https://www.kaggle.com/competitions/map-charting-student-math-misunderstandings/writeups/18th-place-pyramid-ensemble\" target=\"_blank\">here</a>). Fable 5 assessed the skills of</p>\n<ul>\n<li>Nemotron 3 Ultra</li>\n<li>DeepSeek V4 Pro</li>\n<li>Kimi K3</li>\n<li>Gemini 3.7 Flash</li>\n<li>Opus 5</li>\n<li>Qwen 3.8 27B</li>\n</ul>\n<p>After assessing each LLM's data science abilities, Fable 5 assigned each LLM multiple jobs to improve our ensemble's CV score and LB score.</p>\n<h1>Conclusion - Mind Blown!</h1>\n<p>In conclusion, I am completely mind blown at the ability of today's frontier LLMs. I have been a top Kaggle competitions Grandmaster for 6+ years now and I can say that the work I witnessed these agents perform in this competition exceeds what I believe is humanly possible. We are certainly in the new era of agentic data science.</p>"
+  },
+  {
+    "id": 3518999,
+    "authorName": "",
+    "postDate": "2026-09-01T00:13:13.493000",
+    "votes": 1,
+    "content": "<p>Hi Chris, congratulations on your win! I\u2019ve been learning machine learning and trying to improve at building models, especially understanding how to go from a baseline to a strong-performing solution.</p>\n<p>I wanted to ask: if you were starting to learn ML again today, what skills or habits would you focus on to become really good at building and improving models?</p>\n<p>Also, how did you develop the intuition for knowing which features, models, and experiments are worth trying?</p>\n<p>Any advice or resources you\u2019d recommend would be greatly appreciated. Thank you!</p>"
+  },
+  {
+    "id": 3519000,
+    "authorName": "",
+    "postDate": "2026-09-01T00:17:41.467000",
+    "votes": 1,
+    "content": "<p>Congratulations for the win\ud83e\udd47.. thanks for sharing this. </p>"
+  },
+  {
+    "id": 3519001,
+    "authorName": "",
+    "postDate": "2026-09-01T00:21:08.133000",
+    "votes": 2,
+    "content": "<p>\"Massive congratulations on the 1st place! Your implementation of distributed intelligence and NVIDIA inference optimization is truly fascinating.</p>\n<p>I am currently optimizing my local single-GPU workstation (RTX 50-series) and heavily utilizing Optuna to tune complex GBDT and NN (MLP/Transformer/GNN) ensembles. I have a question regarding your approach:</p>\n<p>If you had to adapt your winning distributed inference architecture to run at maximum efficiency on a single high-end consumer GPU without hitting severe VRAM bottlenecks, which specific pipeline restructurings or memory-management trade-offs would you prioritize?</p>"
+  },
+  {
+    "id": 3519071,
+    "authorName": "",
+    "postDate": "2026-09-01T02:47:00.203000",
+    "votes": 3,
+    "content": "<p>Thanks. Not much would change. I would just do everything in sequence instead of parallel. This works because no single process used more than 1 GPU. Currently I was able to do multiple experiments at once using multiple GPU, but with a single GPU we would just do experiments sequentially. This is the approach for single models. And then when we need multiple models for ensemble, we just work on one model at a time sequentially.</p>"
+  },
+  {
+    "id": 3519003,
+    "authorName": "",
+    "postDate": "2026-09-01T00:24:56.980000",
+    "votes": 4,
+    "content": "<p>Great job, as always. I especially appreciate that you always take time to explain and illustrate everything.</p>\n<p>A bit surprised that you only gained 0.00033 from your best model to the final ensemble. Maybe that's what comes with having such a strong model. For comparison, I had a 113-member ensemble with a single best model at 0.97030 and the ensemble at 0.97097. But you creamed us anyway!</p>"
+  },
+  {
+    "id": 3519064,
+    "authorName": "",
+    "postDate": "2026-09-01T02:40:46.273000",
+    "votes": 2,
+    "content": "<p>Thanks. </p>\n<p>Yes, it is surprising. I think using a large diverse ensemble and improving a single model are similar. The ensemble is effective because each new diverse model helps clarify the errors from other models. When i watched the agents' approach to improving a single model, they continually studied where the single model was having difficulty and engineered features or tweaked the model to address the errors. So in both situations, we are addressing the errors. (i.e. with enough time, agents may have gotten the single models to match or beat my full ensemble. Early on, the first single models did beat my 380 model ensemble).</p>"
+  },
+  {
+    "id": 3519010,
+    "authorName": "",
+    "postDate": "2026-09-01T00:37:15.630000",
+    "votes": 3,
+    "content": "<p>Hi Chris,</p>\n<p>Congratulations on winning the competition!!! I had a specific question, if you don't mind. Which FE ideas moved the XGB from ~0.968 to 0.970?</p>"
+  },
+  {
+    "id": 3519060,
+    "authorName": "",
+    "postDate": "2026-09-01T02:29:31.837000",
+    "votes": 2,
+    "content": "<p>It is more advanced versions of what we used in previous playground competitions. After GPT 5.6 and Fable 5 read old playground writeups and code, they said they can make all these ideas better and they did!</p>\n<p>Eventually, I will give specific details but I may quickly use them on the new playground competition to see if they work again before I share them in detail.</p>"
+  },
+  {
+    "id": 3519024,
+    "authorName": "",
+    "postDate": "2026-09-01T01:05:16.160000",
+    "votes": 2,
+    "content": "<p>Absolutely. Agentic data science is already here.</p>"
+  },
+  {
+    "id": 3519058,
+    "authorName": "",
+    "postDate": "2026-09-01T02:27:54.520000",
+    "votes": 1,
+    "content": "<p>Yes, it is and it is impressive!</p>"
+  },
+  {
+    "id": 3519032,
+    "authorName": "",
+    "postDate": "2026-09-01T01:23:51.190000",
+    "votes": 2,
+    "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F17228534%2F22a9ed80be4c8f8d6eb6cc7fed396c48%2FChris.PNG?generation=1788225821167667&amp;alt=media\" alt=\"\"></p>"
+  },
+  {
+    "id": 3519057,
+    "authorName": "",
+    "postDate": "2026-09-01T02:27:37.947000",
+    "votes": 0,
+    "content": "<p>Congratulations Naji and team, great job jumping upward 98 ranks on private LB and finishing in 35th. It looks like you did good data science and used honest CV scores.</p>"
+  },
+  {
+    "id": 3519133,
+    "authorName": "",
+    "postDate": "2026-09-01T05:56:49.507000",
+    "votes": 2,
+    "content": "<p>Hi Chris! Thank you so much for the incredibly kind words.</p>\n<p>Surviving the shakeup and jumping 98 spots was definitely the highlight of the competition for me. Sticking to 'Trust your CV' paid off!</p>\n<p>Massive congratulations on your 1st place finish! I was actually tracking the top teams' trajectories during the competition, and watching your 'staircase' climb on the leaderboard after starting so late was amazing to see!</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F17228534%2F4e71cba466e1788675323cd93801c9a4%2FChris2.PNG?generation=1788242162197688&amp;alt=media\" alt=\"\"></p>"
+  },
+  {
+    "id": 3519223,
+    "authorName": "",
+    "postDate": "2026-09-01T10:13:19.397000",
+    "votes": 0,
+    "content": "<p>That's a great plot. Thanks for sharing. It is amazing how fast the swarm of agents climbed the LB. Also the other teams hit a ceiling and the agents broke through. This is crazy!</p>"
+  },
+  {
+    "id": 3519033,
+    "authorName": "",
+    "postDate": "2026-09-01T01:24:53.227000",
+    "votes": 1,
+    "content": "<p>We at AWS also did an experiment of GPT vs fable in their own harnesses in migrating a service and GPT absolutely bonked. Should have thought of combining and helping strategy. </p>"
+  },
+  {
+    "id": 3519043,
+    "authorName": "",
+    "postDate": "2026-09-01T01:47:53.180000",
+    "votes": 5,
+    "content": "<p>Congratulations <a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> ! Amazing work as always!!</p>\n<p>I was especially surprised by the single-model performance of both RealMLP (CV 0.97070) and XGB (CV 0.97020).</p>\n<p>Sorry if you\u2019re planning to share more details later, but I got really curious and had to ask! Did the most effective features differ between RealMLP and XGB, or did they mostly benefit from the same feature set? If you don\u2019t mind sharing, I\u2019d love to know what kinds of feature engineering ended up being particularly effective for each model.</p>\n<p>I\u2019m also especially curious about the new tabular feature engineering ideas discovered by ChatGPT Pro that you mentioned!</p>\n<p>Congratulations again on the win!</p>"
+  },
+  {
+    "id": 3519067,
+    "authorName": "",
+    "postDate": "2026-09-01T02:44:11.690000",
+    "votes": 4,
+    "content": "<p>Thanks. I was also surprised. I didn't expect the agents to make such good single models. But repeatedly, they would make a single model which beat my current ensemble, lol.</p>\n<p>It was amazing to watch them work and read their thinking. They continually studied the single model and analyzed where it made mistakes and what types of patterns different features or model architectures could replicate and constantly added just what was needed to address every short coming. To be honest, it improved the single models better than I could have done if I spent weeks.</p>\n<p>Eventually I will share specific ideas, but for now i will try them on the new playground before publishing them.</p>"
+  },
+  {
+    "id": 3519222,
+    "authorName": "",
+    "postDate": "2026-09-01T10:12:19.260000",
+    "votes": 1,
+    "content": "<p>In the case of RealMLP, was it a PyTabKit classifier or a custom model? And, maybe you've noted, what was the approximate improvement ratio obtained due to advanced features vs. model enhancement/tuning itself?</p>"
+  },
+  {
+    "id": 3519045,
+    "authorName": "",
+    "postDate": "2026-09-01T01:59:05.527000",
+    "votes": 2,
+    "content": "<p>Congratulations Chris. The number in this write-up that deserves the most attention isn't the ensemble, it's the RealMLP at CV 0.97070. I spent the final week measuring the public side of this competition: a cross-fitted logistic stack over ~155 public single-model OOFs (all on the shared seed-42 folds) tops out around 0.9701, essentially naji's 19_blend, and nothing published adds more than +0.00005 on top. Your single model sits ~0.0006 above what the entire public pool reaches when stacked, which is exactly why the board looked like a wall of 0.9711x with one outlier above it.</p>\n<p>I reproduced the public exact-value RealMLP recipe (exact-value categorical embeddings + fold-safe TE + frequency encoding) at CV 0.9690 on the same folds, so the part I can't account for is 0.9690 \u2192 0.9707. If you're willing to share even directionally: was that gap mostly new features (the ChatGPT Pro discoveries) or mostly training recipe (folds/seeds/schedule/augmentation)? And did missingness-style augmentation contribute? Talha Tursun measured it at +0.0014 on a solo NN here, and it shrank to ~0 inside blends.. exactly the kind of lever a field full of stackers (me included) would discard and a single-model campaign would keep.</p>\n<p>Small irony I have to own: I ran my campaign with Claude Fable 5 as the agent too, and finished 322nd. Same model as half of your winning duo .. the difference wasn't the tool, it was that you pointed it at single-model iteration for a week while I spent the month blending a pool that had already converged. Lesson banked. Congrats again.</p>"
+  },
+  {
+    "id": 3519088,
+    "authorName": "",
+    "postDate": "2026-09-01T03:15:14.870000",
+    "votes": 0,
+    "content": "<p>Thank you. The features were mainly better versions of what we have been doing in previous playground competition. One new large source of signal and feature engineering was all the missing values. In the coming weeks and/or the next playground competition, I will share more specific details about the featuers and techniques.</p>\n<blockquote>\n  <p>And did missingness-style augmentation contribute?</p>\n</blockquote>\n<p>Yes, the agents found many features related to missingness which gave improvements to CV and LB.</p>"
+  },
+  {
+    "id": 3519054,
+    "authorName": "",
+    "postDate": "2026-09-01T02:14:49.417000",
+    "votes": 2,
+    "content": "<p>Hi Chris, congratulations! \nMay I ask that how many tokens did you cost in total throughout the entire competition?</p>"
+  },
+  {
+    "id": 3519059,
+    "authorName": "",
+    "postDate": "2026-09-01T02:28:29.480000",
+    "votes": 2,
+    "content": "<p>Congratulations on the win, Chris, and thank you for sharing this writeup. The Phase 2 setup was especially interesting and insightful for me. It almost felt like running a small local Kaggle among agents: they compete, share useful discoveries, and push each other forward.</p>\n<p>In my own agent-harness experiments, Codex has felt very reliable for implementation and verification, but sometimes spends a lot of effort re-checking things and becomes conservative in searching for score improvements. Fable often finds score-moving ideas more easily, though I sometimes need to verify the details more carefully afterward.</p>\n<p>Did you notice a similar trade-off? If so, did you intentionally structure Phase 2 around these complementary strengths, or did that workflow emerge naturally during the competition?</p>\n<p>I\u2019d also really appreciate any advice on reasoning budget and context management for long-running agents\u2014especially how you decide when to use more reasoning effort and when to summarize or discard old experiment history.</p>\n<p>Also, <code>RealMLP CV 0.97070 / LB 0.97174</code> is an incredible result for a single model produced through this agent workflow. Was 0.97174 the public LB score? If you don\u2019t mind sharing, I\u2019d be very curious to know its final private LB score.</p>\n<p>Thank you again for sharing the workflow\u2014I learned a lot from it.</p>"
+  },
+  {
+    "id": 3519084,
+    "authorName": "",
+    "postDate": "2026-09-01T03:10:59.623000",
+    "votes": 3,
+    "content": "<p>Thank you. Congratulations achieving 21th place solo. You did great. My final two submissions were my stack which is 456 models combined with NVIDIA cuML logisitic regression. It achieved <code>CV 0.97098, Public LB 0.97207, Private LB 0.97176</code>. The second final submission was my best <strong>single model</strong>. It is GPT 5.6's RealMLP with <code>CV 0.97070, Public LB 0.97174, Private LB 0.97145</code>.</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/final_subs.png\" alt=\"\"></p>\n<blockquote>\n  <p>Did you notice a similar trade-off? If so, did you intentionally structure Phase 2 around these complementary strengths, or did that workflow emerge naturally during the competition?</p>\n</blockquote>\n<p>Insightful observation, I also observed this as their natural behavior. Fable seemed to make more creative break throughs while Codex did more careful coding (and good feature engineering detective work). If you look at my GPT vs Fable plots, Fable was winning best single model for a while because it made a bunch of break throughs. Then around Aug 28th, I shared lots of Fable's secrets with GPT which allowed GPT to use them and push them into the best RealMLP. </p>\n<p>I usually let my agents run autonomously for 4-12 hours and then review what they were exploring (by asking for a quick summary). I have great data science instincts myself so I would often tell them where to look for more signal and what they should stop wasting time on. For example once when they hit a plateau, I said \"have you studied the missing values and found features to deal with them?\". Afterward they studied the NANs for hours and found a new source of signal and improved their models. </p>\n<p>Or for example, I would also share tips about how XGB is different from CAT is different from RealMLP is different from ML etc etc. And how they must adjust their features and search techniques for the different models. Or i would point out important \"knobs\" they should turn. Stuff like that.</p>\n<blockquote>\n  <p>I\u2019d also really appreciate any advice on reasoning budget and context management for long-running agents\u2014especially how you decide when to use more reasoning effort and when to summarize or discard old experiment history.</p>\n</blockquote>\n<p>Memory is important. After every 4-12 hour campaign, I had them write down all their new discoveries. This is gold. I can show a new model over 50 discovery.md files containing pure brilliance. My team did this in NeuroGolf comp 1st place too. </p>\n<p>I like to use 1M or more token context and never force a context compact. Because I want it to have as much memory as possible. I can also tell agents to reread all the discovery files. Agents do tens of thousands of experiments over days, they need memory so they don't repeat themselves and so they can continue searching from all avenues that have more potential. In general, I use max thinking when i want break throughs or doing important EDA work or feature engineering detective work. For more routine coding, we can reduce the thinking.</p>"
+  },
+  {
+    "id": 3519121,
+    "authorName": "",
+    "postDate": "2026-09-01T05:09:47.187000",
+    "votes": 0,
+    "content": "<p>Thank you so much for the thoughtful and detailed reply. I learned a lot from your explanation, and it gave me plenty of ideas to think about for my own workflow. I\u2019m really looking forward to seeing how your framework continues to evolve in the next competition!</p>"
+  },
+  {
+    "id": 3519065,
+    "authorName": "",
+    "postDate": "2026-09-01T02:42:19.633000",
+    "votes": 1,
+    "content": "<p>thanks for sharing, learn a lot from you!</p>"
+  },
+  {
+    "id": 3519081,
+    "authorName": "",
+    "postDate": "2026-09-01T03:03:34.407000",
+    "votes": 3,
+    "content": "<p>Congratulations! You alone were hard enough to compete against - you and an agent, that much harder. Now you and an <b>army</b> of agents - might be a bit too much, esp. for those with just Kaggle GPU and a $20 subscription to one AI company. But if you run your agents early this month, at least the rest of us have a nice ceiling to happily chase for the rest of the month \ud83d\ude1b</p>"
+  },
+  {
+    "id": 3519093,
+    "authorName": "",
+    "postDate": "2026-09-01T03:34:37.900000",
+    "votes": 3,
+    "content": "<p>haha, thanks. An army of agents is certainly overkill for Kaggle playground but after using an army of agents to win Kaggle NeuroGolf competition <a href=\"https://www.kaggle.com/competitions/neurogolf-2026/writeups/1st-place-kaggle-agent\" target=\"_blank\">here</a> (and team of 5), I wondered how well an army of agents could do in a Kaggle playground competition! It looks like they did well \ud83d\ude1b</p>"
+  },
+  {
+    "id": 3519116,
+    "authorName": "",
+    "postDate": "2026-09-01T04:34:46.637000",
+    "votes": 1,
+    "content": "<p>Chris, congratulations. Your missingness answer to Exposed lands on a measurement I published this month that reads like a contradiction of it and is not.</p>\n<p>Section 7 of <a href=\"https://www.kaggle.com/code/georgymamarin/s6e8-will-your-0-971-survive-the-private-split\" target=\"_blank\">my notebook</a> is titled \"missingness tells you nothing about the target\", and the numbers under it are deliberately narrow: the count of missing columns scores 0.5017 on its own, and the largest gap any single column opens between its missing rows and its present ones is 0.0042 against a base rate of 0.709. That is about the <em>pattern</em> of which cells are absent, as a direct predictor of the label. It is why I told readers the adversarial alarm, which separates train from test at about 0.566 and sits entirely in the missingness, was safe to ignore.</p>\n<p>Section 5 is much closer to your result. The constraint ryota517 published first \u2014 daily screen time never below social + gaming + work/study \u2014 is a generator fingerprint, and it means a missing driver is partly recoverable by exact arithmetic from the columns that remain. Section 4b sizes it: 46% of what gaming_hours and work_study_hours add on top of the three screen columns disappears once you keep only the rows where both drivers are observed. Nearly half of what looked like two features' signal was recovery of missing values, by arithmetic the trees already do implicitly, which is also why section 7 still says MICE buys nothing.</p>\n<p>So possibly one lesson from two ends: the pattern of what is missing says nothing about the label, and what is missing is often recoverable from what is not. I would be glad to be wrong about the mechanism if what your agents found is orthogonal to it.</p>\n<p>One number toward Exposed's ceiling, from a different pool: 111 members on the verified seed-42 partition reach CV 0.969816, and 47 more whose fold protocol I could not verify take it to 0.970064. Two independently assembled pools landing on the same ceiling is what makes CV 0.97070 from a single model the number I keep looking at.</p>"
+  },
+  {
+    "id": 3519122,
+    "authorName": "",
+    "postDate": "2026-09-01T05:09:47.743000",
+    "votes": 4,
+    "content": "<p><a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> Congratulations, and thanks for sharing this. It's truly amazing. I can't help wondering whether we're witnessing the end of the traditional data scientist and the rise of the agent scientist \ud83e\udd7a. It feels like we're entering a completely new era. And honestly, I'm not unhappy about retiring soon! \ud83e\udd23</p>"
+  },
+  {
+    "id": 3519219,
+    "authorName": "",
+    "postDate": "2026-09-01T10:07:55.693000",
+    "votes": 3,
+    "content": "<p>Thanks Laurent. I watched the thinking text stream for hours while this agents worked. And I can tell you that their skills far exceed mine. They didn't get lucky, their approach their thinking their insights are truly amazing! I helped guide them here and there but ultimately they did impeccable data science and made discoveries in hours and days that would take me weeks or months.</p>"
+  },
+  {
+    "id": 3519123,
+    "authorName": "",
+    "postDate": "2026-09-01T05:19:01.097000",
+    "votes": 1,
+    "content": "<p>Outstanding, first time in a long time i have seen someone retain their position unchanged in public vs private lb. congratulations <a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> you really are special!!</p>"
+  },
+  {
+    "id": 3519158,
+    "authorName": "",
+    "postDate": "2026-09-01T07:06:25.730000",
+    "votes": 1,
+    "content": "<p>He is definitely token-maxing over all of us \ud83d\ude02</p>\n<p>Well done! Crazy how big of a lead you had. Absolutely wild.</p>"
+  },
+  {
+    "id": 3519180,
+    "authorName": "",
+    "postDate": "2026-09-01T08:51:01.387000",
+    "votes": 1,
+    "content": "<p>This is something very crazy and brilliant idea to use the frontier llms to outperform the humans in a highly technical case like the kaggle competition.</p>"
+  },
+  {
+    "id": 3519196,
+    "authorName": "",
+    "postDate": "2026-09-01T09:29:39.497000",
+    "votes": 1,
+    "content": "<p><a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> Congratulations, and thanks for sharing this!</p>"
+  },
+  {
+    "id": 3519224,
+    "authorName": "",
+    "postDate": "2026-09-01T10:15:16.007000",
+    "votes": 2,
+    "content": "<blockquote>\n  <p>We are certainly in the new era of agentic data science.</p>\n</blockquote>\n<p><a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> Thanks, yes it is.</p>\n<p>Another example of this ability emerged in the ARC challenge, where the ability to \"Memorize\" in LLMs surprisingly enabled them to do \"Reasoning\".</p>"
+  },
+  {
+    "id": 3519231,
+    "authorName": "",
+    "postDate": "2026-09-01T10:31:02.503000",
+    "votes": 1,
+    "content": "<p>Well done and interesting findings. I'm especially impressed by the singel model performance!</p>"
+  },
+  {
+    "id": 3519287,
+    "authorName": "",
+    "postDate": "2026-09-01T13:25:11.347000",
+    "votes": 0,
+    "content": ""
+  },
+  {
+    "id": 3519302,
+    "authorName": "",
+    "postDate": "2026-09-01T14:03:27.170000",
+    "votes": 1,
+    "content": "<p>Wow, this is scary impressive. First place with pure agentic solutions is incredible! And it's important to highlight that much of that credit goes to you, as many other Kaggler's have certainly tried something similar but have fallen short. Great work!</p>"
+  },
+  {
+    "id": 3519336,
+    "authorName": "",
+    "postDate": "2026-09-01T15:02:36.067000",
+    "votes": 1,
+    "content": "<p>This is amazing. What will be amazing to release the trascript of prompt and model thinking.</p>"
+  },
+  {
+    "id": 3519347,
+    "authorName": "",
+    "postDate": "2026-09-01T15:21:48.037000",
+    "votes": 3,
+    "content": "<p><a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> </p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F19191052%2F6a0e9a3e7840d04db11e980a8ecc6dc8%2FFunny.png?generation=1788276052386453&amp;alt=media\" alt=\"\"></p>"
+  },
+  {
+    "id": 3519432,
+    "authorName": "",
+    "postDate": "2026-09-01T17:27:06.390000",
+    "votes": 1,
+    "content": "<p>Congrats on the win! I was attempting something similar and was curious how many other people had auto-research agents running on this problem.</p>"
+  },
+  {
+    "id": 3519453,
+    "authorName": "",
+    "postDate": "2026-09-01T18:31:41.233000",
+    "votes": 1,
+    "content": "<p>It's almost unbelievable how capable these agents have become. If you have them <a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a>, could you share some of the most interesting moments of reasoning you saw these agents do?</p>"
+  },
+  {
+    "id": 3519478,
+    "authorName": "",
+    "postDate": "2026-09-01T19:31:10.797000",
+    "votes": 3,
+    "content": "<p>What's the point in studying ML if agents do it better?</p>"
+  },
+  {
+    "id": 3519500,
+    "authorName": "",
+    "postDate": "2026-09-01T20:16:00.970000",
+    "votes": 1,
+    "content": "<p>I agree. It makes no sense.</p>"
+  },
+  {
+    "id": 3519495,
+    "authorName": "",
+    "postDate": "2026-09-01T19:52:21.380000",
+    "votes": 1,
+    "content": "<p>Congratulations, Chris! Another outstanding result and a great example of the depth of knowledge and creativity you bring to Kaggle. Your ability to turn complex problems into elegant, high performing solutions is truly inspiring. Well deserved, Chris! \ud83d\ude00</p>"
+  },
+  {
+    "id": 3519567,
+    "authorName": "",
+    "postDate": "2026-09-01T23:24:40.407000",
+    "votes": 0,
+    "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F7532805%2F84f9641feb8daf047d84aee4bdbbf61b%2Fscreen-shot-2021-09-06-at-12.27.48-pm.png?generation=1788305061973923&amp;alt=media\" alt=\"![\"></p>\n<p>*DS</p>"
+  },
+  {
+    "id": 3519798,
+    "authorName": "",
+    "postDate": "2026-09-02T08:46:30.893000",
+    "votes": 0,
+    "content": "<p>Congratulations and thanks for sharing! Reading that \"frontier models are Grandmasters at data science modeling\" from a Grandmaster himself is \ud83e\udd2f. Do you have any advice or lessons learned regarding how to build a harness like the one in your solution?</p>"
+  },
+  {
+    "id": 3519050,
+    "authorName": "",
+    "postDate": "2026-09-01T02:07:47.307000",
+    "votes": 0,
+    "content": ""
+  }
+]

@@ -98,15 +98,19 @@ def _episode(task):
         day = int(teacher_obs.get("day", step // 24) or 0)
         hour = int(teacher_obs.get("hour", step % 24) or 0)
         if hour == 0:
+            # Encode the macro that was active on the previous day.  Computing
+            # today's teacher label first would leak the day-7 route decision
+            # into the observation used to predict that same decision.
+            features.append(main.encode_observation(teacher_obs, history, macro))
             if day == 7:
                 sticky_route = main.teacher_route(teacher_obs)
-            macro = main.DEFAULT_MACRO.copy()
-            macro[0] = sticky_route
-            features.append(main.encode_observation(teacher_obs, history, macro))
-            labels.append(macro.copy())
+            next_macro = main.DEFAULT_MACRO.copy()
+            next_macro[0] = sticky_route
+            labels.append(next_macro.copy())
             route_mask.append(day == 7)
             potentials.append(main.potential(teacher_obs))
-            history = main.update_history(teacher_obs, macro)
+            history = main.update_history(teacher_obs, next_macro)
+            macro = next_macro
 
         teacher_action = base_agent.agent(teacher_obs)
         opponent_obs = env.state[1 - seat].observation
@@ -191,6 +195,10 @@ def collect(episodes, workers, output, start_seed, shard_size=1000):
         "opponents": list(opponents),
         "split": "sha256(seed) mod 100: train 0-79, validation 80-89, test 90-99",
         "base_agent_sha256": _sha256(HERE / "base_agent.py"),
+        "source_sha256": {
+            name: _sha256(HERE / name)
+            for name in ("collect_bc.py", "main.py", "base_agent.py")
+        },
         "elapsed_seconds": time.time() - started,
         "shards": shards,
     }

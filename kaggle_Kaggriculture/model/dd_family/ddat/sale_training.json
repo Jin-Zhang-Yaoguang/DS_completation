@@ -1,0 +1,304 @@
+{
+  "source_manifest_sha256": "fb978b60152a5437e8b66e84ace0e6c4829255096cfaa31b414ef9d562b3f67e",
+  "training_script_sha256": "5fd983fca2a33329ac343823235eeb13f899ba3d1f7c9d68b2a6c93f938bf11c",
+  "feature_sha256": "254fedf6e7dd945f34d593dc8cdf666e6f730be6491500a3e5c33a39d02cdeed",
+  "split": "Source seed grouped across all three teacher pools; internal validation selects depth/leaf size. No independent test claim.",
+  "labels": "Actual sale event and sold/available fraction; no sell requests used as filled labels; only decision-time stock unchanged by current unit actions.",
+  "scope": "Offline supervised behavior cloning. No y68 labels, future observations or opponent private state.",
+  "items": {
+    "EGG": {
+      "samples": 37821,
+      "train": 30662,
+      "validation": 7159,
+      "sale_samples": 4958,
+      "decision_selection": {
+        "depth": 7,
+        "min_leaf": 25,
+        "weighted_log_loss": 0.17604835758136692
+      },
+      "decision_trials": [
+        {
+          "depth": 5,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.1842441129721629
+        },
+        {
+          "depth": 5,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.18782426640773497
+        },
+        {
+          "depth": 5,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.19034513421615268
+        },
+        {
+          "depth": 7,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.17604835758136692
+        },
+        {
+          "depth": 7,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.19192585294430253
+        },
+        {
+          "depth": 7,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.1867035950472021
+        },
+        {
+          "depth": 9,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.1885174294986697
+        },
+        {
+          "depth": 9,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.19040460518494046
+        },
+        {
+          "depth": 9,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.18753231069524492
+        }
+      ],
+      "fraction_selection": {
+        "depth": 5,
+        "min_leaf": 40,
+        "weighted_mse": 0.049253379840258245
+      },
+      "fraction_trials": [
+        {
+          "depth": 3,
+          "min_leaf": 10,
+          "weighted_mse": 0.05469348329222944
+        },
+        {
+          "depth": 3,
+          "min_leaf": 40,
+          "weighted_mse": 0.05160008058628619
+        },
+        {
+          "depth": 5,
+          "min_leaf": 10,
+          "weighted_mse": 0.05588110477957825
+        },
+        {
+          "depth": 5,
+          "min_leaf": 40,
+          "weighted_mse": 0.049253379840258245
+        },
+        {
+          "depth": 7,
+          "min_leaf": 10,
+          "weighted_mse": 0.04978192692679208
+        },
+        {
+          "depth": 7,
+          "min_leaf": 40,
+          "weighted_mse": 0.0495518276658211
+        }
+      ],
+      "validation_precision": 0.7192691029900332,
+      "validation_recall": 0.5070257611241218,
+      "export_parity": true
+    },
+    "MILK": {
+      "samples": 89690,
+      "train": 74902,
+      "validation": 14788,
+      "sale_samples": 15676,
+      "decision_selection": {
+        "depth": 9,
+        "min_leaf": 100,
+        "weighted_log_loss": 0.3549747910640906
+      },
+      "decision_trials": [
+        {
+          "depth": 5,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.4003391945109029
+        },
+        {
+          "depth": 5,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.40003766233448956
+        },
+        {
+          "depth": 5,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.3946629272452523
+        },
+        {
+          "depth": 7,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.3702804814397061
+        },
+        {
+          "depth": 7,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.37796243147674213
+        },
+        {
+          "depth": 7,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.3754789835255228
+        },
+        {
+          "depth": 9,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.36105122045510446
+        },
+        {
+          "depth": 9,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.3549747910640906
+        },
+        {
+          "depth": 9,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.36087503853227615
+        }
+      ],
+      "fraction_selection": {
+        "depth": 7,
+        "min_leaf": 10,
+        "weighted_mse": 0.05332547047156439
+      },
+      "fraction_trials": [
+        {
+          "depth": 3,
+          "min_leaf": 10,
+          "weighted_mse": 0.07459735699760456
+        },
+        {
+          "depth": 3,
+          "min_leaf": 40,
+          "weighted_mse": 0.07459735699760456
+        },
+        {
+          "depth": 5,
+          "min_leaf": 10,
+          "weighted_mse": 0.061982430643394364
+        },
+        {
+          "depth": 5,
+          "min_leaf": 40,
+          "weighted_mse": 0.0615509109532978
+        },
+        {
+          "depth": 7,
+          "min_leaf": 10,
+          "weighted_mse": 0.05332547047156439
+        },
+        {
+          "depth": 7,
+          "min_leaf": 40,
+          "weighted_mse": 0.05379585484633693
+        }
+      ],
+      "validation_precision": 0.6873580620741863,
+      "validation_recall": 0.34603658536585363,
+      "export_parity": true
+    },
+    "WOOL": {
+      "samples": 74043,
+      "train": 61505,
+      "validation": 12538,
+      "sale_samples": 9873,
+      "decision_selection": {
+        "depth": 9,
+        "min_leaf": 100,
+        "weighted_log_loss": 0.25038321738586383
+      },
+      "decision_trials": [
+        {
+          "depth": 5,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.2832164201509928
+        },
+        {
+          "depth": 5,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.2828506411065804
+        },
+        {
+          "depth": 5,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.28253784988637654
+        },
+        {
+          "depth": 7,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.26557595134082024
+        },
+        {
+          "depth": 7,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.2670304603623618
+        },
+        {
+          "depth": 7,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.2678439950387942
+        },
+        {
+          "depth": 9,
+          "min_leaf": 25,
+          "weighted_log_loss": 0.2568072659243607
+        },
+        {
+          "depth": 9,
+          "min_leaf": 100,
+          "weighted_log_loss": 0.25038321738586383
+        },
+        {
+          "depth": 9,
+          "min_leaf": 250,
+          "weighted_log_loss": 0.2505753741915376
+        }
+      ],
+      "fraction_selection": {
+        "depth": 3,
+        "min_leaf": 10,
+        "weighted_mse": 0.09221177168110666
+      },
+      "fraction_trials": [
+        {
+          "depth": 3,
+          "min_leaf": 10,
+          "weighted_mse": 0.09221177168110666
+        },
+        {
+          "depth": 3,
+          "min_leaf": 40,
+          "weighted_mse": 0.09221177168110666
+        },
+        {
+          "depth": 5,
+          "min_leaf": 10,
+          "weighted_mse": 0.10315310156175332
+        },
+        {
+          "depth": 5,
+          "min_leaf": 40,
+          "weighted_mse": 0.09968561391330968
+        },
+        {
+          "depth": 7,
+          "min_leaf": 10,
+          "weighted_mse": 0.09754624810547899
+        },
+        {
+          "depth": 7,
+          "min_leaf": 40,
+          "weighted_mse": 0.0971453457510448
+        }
+      ],
+      "validation_precision": 0.6565656565656566,
+      "validation_recall": 0.3032069970845481,
+      "export_parity": true
+    }
+  }
+}

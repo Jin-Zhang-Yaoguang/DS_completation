@@ -1,0 +1,902 @@
+{
+  "scope": "Source validation under teacher forcing only; not dynamic competitive performance.",
+  "market_by_token": [
+    {
+      "token": "WAIT_SLOT",
+      "rows": 6203,
+      "accuracy": 0.6608092858294373,
+      "quantity_mae": null,
+      "confusions": [
+        [
+          "BUY_PRODUCT:WHEAT",
+          660
+        ],
+        [
+          "SELL:WHEAT",
+          535
+        ],
+        [
+          "STOP",
+          496
+        ],
+        [
+          "SELL:FERTILIZER",
+          155
+        ]
+      ]
+    },
+    {
+      "token": "STOP",
+      "rows": 4668,
+      "accuracy": 0.6683804627249358,
+      "quantity_mae": null,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          774
+        ],
+        [
+          "SELL:WHEAT",
+          346
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          330
+        ],
+        [
+          "BUY_PRODUCT:FERTILIZER",
+          48
+        ]
+      ]
+    },
+    {
+      "token": "SELL:WHEAT",
+      "rows": 4367,
+      "accuracy": 0.5282802839477903,
+      "quantity_mae": 2.1163377241403527,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          763
+        ],
+        [
+          "STOP",
+          473
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          439
+        ],
+        [
+          "BUY_PRODUCT:FERTILIZER",
+          145
+        ]
+      ]
+    },
+    {
+      "token": "BUY_PRODUCT:WHEAT",
+      "rows": 4126,
+      "accuracy": 0.5382937469704314,
+      "quantity_mae": 2.4888482221874684,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          674
+        ],
+        [
+          "SELL:WHEAT",
+          434
+        ],
+        [
+          "STOP",
+          404
+        ],
+        [
+          "SELL:FERTILIZER",
+          161
+        ]
+      ]
+    },
+    {
+      "token": "SELL:FERTILIZER",
+      "rows": 2440,
+      "accuracy": 0.6467213114754098,
+      "quantity_mae": 0.5694573075917185,
+      "confusions": [
+        [
+          "BUY_PRODUCT:WHEAT",
+          277
+        ],
+        [
+          "SELL:WHEAT",
+          269
+        ],
+        [
+          "STOP",
+          151
+        ],
+        [
+          "WAIT_SLOT",
+          90
+        ]
+      ]
+    },
+    {
+      "token": "HIRE",
+      "rows": 1930,
+      "accuracy": 0.961139896373057,
+      "quantity_mae": 0.0062252851007149074,
+      "confusions": [
+        [
+          "BUY_PRODUCT:WHEAT",
+          24
+        ],
+        [
+          "BUY_PRODUCT:FERTILIZER",
+          21
+        ],
+        [
+          "STOP",
+          14
+        ],
+        [
+          "SELL:WHEAT",
+          9
+        ]
+      ]
+    },
+    {
+      "token": "BUY_PRODUCT:FERTILIZER",
+      "rows": 1841,
+      "accuracy": 0.13905486148832155,
+      "quantity_mae": 1.5385093906306362,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          533
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          464
+        ],
+        [
+          "SELL:WHEAT",
+          326
+        ],
+        [
+          "STOP",
+          160
+        ]
+      ]
+    },
+    {
+      "token": "BUY_SEED:WHEAT",
+      "rows": 621,
+      "accuracy": 0.04508856682769726,
+      "quantity_mae": 0.6413528925777097,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          172
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          127
+        ],
+        [
+          "SELL:WHEAT",
+          115
+        ],
+        [
+          "STOP",
+          104
+        ]
+      ]
+    },
+    {
+      "token": "SELL:MILK",
+      "rows": 420,
+      "accuracy": 0.7452380952380953,
+      "quantity_mae": 0.6977564435731992,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          44
+        ],
+        [
+          "SELL:FERTILIZER",
+          32
+        ],
+        [
+          "SELL:WHEAT",
+          10
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          9
+        ]
+      ]
+    },
+    {
+      "token": "SELL:EGG",
+      "rows": 341,
+      "accuracy": 0.5542521994134897,
+      "quantity_mae": 0.9080847778326928,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          66
+        ],
+        [
+          "SELL:WHEAT",
+          17
+        ],
+        [
+          "SELL:MILK",
+          14
+        ],
+        [
+          "SELL:FERTILIZER",
+          13
+        ]
+      ]
+    },
+    {
+      "token": "SELL:WOOL",
+      "rows": 296,
+      "accuracy": 0.22297297297297297,
+      "quantity_mae": 1.3430824335914495,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          103
+        ],
+        [
+          "SELL:FERTILIZER",
+          52
+        ],
+        [
+          "STOP",
+          25
+        ],
+        [
+          "SELL:MILK",
+          22
+        ]
+      ]
+    },
+    {
+      "token": "SELL:STRAWBERRY",
+      "rows": 286,
+      "accuracy": 0.1258741258741259,
+      "quantity_mae": 1.669809462255503,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          129
+        ],
+        [
+          "STOP",
+          35
+        ],
+        [
+          "SELL:FERTILIZER",
+          32
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          16
+        ]
+      ]
+    },
+    {
+      "token": "BUY_SEED:STRAWBERRY",
+      "rows": 179,
+      "accuracy": 0.055865921787709494,
+      "quantity_mae": 0.45276435533388687,
+      "confusions": [
+        [
+          "BUY_PRODUCT:WHEAT",
+          63
+        ],
+        [
+          "WAIT_SLOT",
+          56
+        ],
+        [
+          "SELL:WHEAT",
+          19
+        ],
+        [
+          "STOP",
+          18
+        ]
+      ]
+    },
+    {
+      "token": "SELL:CARROT",
+      "rows": 110,
+      "accuracy": 0.5181818181818182,
+      "quantity_mae": 1.0456603433481184,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          13
+        ],
+        [
+          "SELL:EGG",
+          9
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          8
+        ],
+        [
+          "SELL:WHEAT",
+          6
+        ]
+      ]
+    },
+    {
+      "token": "BUY_SEED:CARROT",
+      "rows": 87,
+      "accuracy": 0.0,
+      "quantity_mae": 1.1054920983627934,
+      "confusions": [
+        [
+          "SELL:WHEAT",
+          25
+        ],
+        [
+          "WAIT_SLOT",
+          22
+        ],
+        [
+          "STOP",
+          18
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          12
+        ]
+      ]
+    },
+    {
+      "token": "BUY_SEED:MELON",
+      "rows": 74,
+      "accuracy": 0.17567567567567569,
+      "quantity_mae": 0.04822288519385033,
+      "confusions": [
+        [
+          "BUY_PRODUCT:WHEAT",
+          27
+        ],
+        [
+          "SELL:WHEAT",
+          10
+        ],
+        [
+          "BUY_PRODUCT:FERTILIZER",
+          8
+        ],
+        [
+          "STOP",
+          6
+        ]
+      ]
+    },
+    {
+      "token": "SELL:MELON",
+      "rows": 67,
+      "accuracy": 0.6119402985074627,
+      "quantity_mae": 0.9957194916213199,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          7
+        ],
+        [
+          "SELL:FERTILIZER",
+          5
+        ],
+        [
+          "SELL:WHEAT",
+          5
+        ],
+        [
+          "BUY_PRODUCT:FERTILIZER",
+          3
+        ]
+      ]
+    },
+    {
+      "token": "BUY_ANIMAL:COW",
+      "rows": 66,
+      "accuracy": 0.15151515151515152,
+      "quantity_mae": 0.42984111392816843,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          20
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          12
+        ],
+        [
+          "BUY_PRODUCT:FERTILIZER",
+          9
+        ],
+        [
+          "SELL:WHEAT",
+          4
+        ]
+      ]
+    },
+    {
+      "token": "BUY_ANIMAL:SHEEP",
+      "rows": 52,
+      "accuracy": 0.21153846153846154,
+      "quantity_mae": 0.3739329809552559,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          15
+        ],
+        [
+          "SELL:WHEAT",
+          12
+        ],
+        [
+          "STOP",
+          5
+        ],
+        [
+          "BUY_SEED:WHEAT",
+          2
+        ]
+      ]
+    },
+    {
+      "token": "BUY_ANIMAL:GOOSE",
+      "rows": 31,
+      "accuracy": 0.4838709677419355,
+      "quantity_mae": 0.13693100637954353,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          8
+        ],
+        [
+          "SELL:WHEAT",
+          5
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          3
+        ]
+      ]
+    },
+    {
+      "token": "BUY_LAND",
+      "rows": 14,
+      "accuracy": 0.5714285714285714,
+      "quantity_mae": 0.37475427646083376,
+      "confusions": [
+        [
+          "WAIT_SLOT",
+          3
+        ],
+        [
+          "SELL:WHEAT",
+          2
+        ],
+        [
+          "BUY_PRODUCT:WHEAT",
+          1
+        ]
+      ]
+    }
+  ],
+  "goal_by_token": [
+    {
+      "token": "WATER",
+      "queries": 195,
+      "exact_goal_accuracy": 0.7076923076923077,
+      "wrong_token": [
+        [
+          "HARVEST",
+          11
+        ],
+        [
+          "FERTILIZE",
+          6
+        ],
+        [
+          "DROP",
+          5
+        ],
+        [
+          "PASS",
+          5
+        ]
+      ]
+    },
+    {
+      "token": "PASS",
+      "queries": 145,
+      "exact_goal_accuracy": 0.8896551724137931,
+      "wrong_token": [
+        [
+          "COLLECT_FERTILIZER",
+          5
+        ],
+        [
+          "WATER",
+          4
+        ],
+        [
+          "HARVEST",
+          3
+        ],
+        [
+          "DIG",
+          2
+        ]
+      ]
+    },
+    {
+      "token": "COLLECT_FERTILIZER",
+      "queries": 111,
+      "exact_goal_accuracy": 0.5585585585585585,
+      "wrong_token": [
+        [
+          "FEED",
+          12
+        ],
+        [
+          "DROP",
+          9
+        ],
+        [
+          "PICKUP:WHEAT",
+          8
+        ],
+        [
+          "WATER",
+          6
+        ]
+      ]
+    },
+    {
+      "token": "FEED",
+      "queries": 103,
+      "exact_goal_accuracy": 0.6116504854368932,
+      "wrong_token": [
+        [
+          "PASS",
+          11
+        ],
+        [
+          "HARVEST",
+          9
+        ],
+        [
+          "WATER",
+          8
+        ],
+        [
+          "DROP",
+          2
+        ]
+      ]
+    },
+    {
+      "token": "HARVEST",
+      "queries": 97,
+      "exact_goal_accuracy": 0.4845360824742268,
+      "wrong_token": [
+        [
+          "COLLECT_FERTILIZER",
+          14
+        ],
+        [
+          "PASS",
+          10
+        ],
+        [
+          "WATER",
+          8
+        ],
+        [
+          "FEED",
+          3
+        ]
+      ]
+    },
+    {
+      "token": "CARE",
+      "queries": 76,
+      "exact_goal_accuracy": 0.5263157894736842,
+      "wrong_token": [
+        [
+          "FEED",
+          19
+        ],
+        [
+          "WATER",
+          6
+        ],
+        [
+          "PASS",
+          5
+        ],
+        [
+          "HARVEST",
+          3
+        ]
+      ]
+    },
+    {
+      "token": "FERTILIZE",
+      "queries": 48,
+      "exact_goal_accuracy": 0.3541666666666667,
+      "wrong_token": [
+        [
+          "WATER",
+          13
+        ],
+        [
+          "HARVEST",
+          8
+        ],
+        [
+          "DROP",
+          4
+        ],
+        [
+          "DIG",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PLANT:WHEAT",
+      "queries": 45,
+      "exact_goal_accuracy": 0.6444444444444445,
+      "wrong_token": [
+        [
+          "PASS",
+          7
+        ],
+        [
+          "WATER",
+          4
+        ],
+        [
+          "FEED",
+          1
+        ],
+        [
+          "HARVEST",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "DROP",
+      "queries": 32,
+      "exact_goal_accuracy": 0.3125,
+      "wrong_token": [
+        [
+          "COLLECT_FERTILIZER",
+          6
+        ],
+        [
+          "PASS",
+          5
+        ],
+        [
+          "WATER",
+          3
+        ],
+        [
+          "HARVEST",
+          3
+        ]
+      ]
+    },
+    {
+      "token": "PICKUP:WHEAT",
+      "queries": 23,
+      "exact_goal_accuracy": 0.6086956521739131,
+      "wrong_token": [
+        [
+          "COLLECT_FERTILIZER",
+          3
+        ],
+        [
+          "FEED",
+          2
+        ],
+        [
+          "CARE",
+          1
+        ],
+        [
+          "WATER",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PLANT:CARROT",
+      "queries": 8,
+      "exact_goal_accuracy": 0.625,
+      "wrong_token": [
+        [
+          "HARVEST",
+          2
+        ],
+        [
+          "WATER",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "BUILD_PASTURE",
+      "queries": 7,
+      "exact_goal_accuracy": 0.2857142857142857,
+      "wrong_token": [
+        [
+          "PLANT:WHEAT",
+          3
+        ],
+        [
+          "PASS",
+          1
+        ],
+        [
+          "PICKUP:WHEAT",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PLACE:FERTILIZER",
+      "queries": 5,
+      "exact_goal_accuracy": 0.0,
+      "wrong_token": [
+        [
+          "COLLECT_FERTILIZER",
+          1
+        ],
+        [
+          "PASS",
+          1
+        ],
+        [
+          "WATER",
+          1
+        ],
+        [
+          "DROP",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PICKUP:FERTILIZER",
+      "queries": 4,
+      "exact_goal_accuracy": 0.5,
+      "wrong_token": [
+        [
+          "COLLECT_FERTILIZER",
+          1
+        ],
+        [
+          "PICKUP:WHEAT",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PLACE:MILK",
+      "queries": 4,
+      "exact_goal_accuracy": 0.5,
+      "wrong_token": [
+        [
+          "FEED",
+          1
+        ],
+        [
+          "HARVEST",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "DIG",
+      "queries": 4,
+      "exact_goal_accuracy": 1.0,
+      "wrong_token": []
+    },
+    {
+      "token": "PLANT:STRAWBERRY",
+      "queries": 3,
+      "exact_goal_accuracy": 0.3333333333333333,
+      "wrong_token": [
+        [
+          "PASS",
+          2
+        ]
+      ]
+    },
+    {
+      "token": "PLACE:SHEEP",
+      "queries": 2,
+      "exact_goal_accuracy": 0.0,
+      "wrong_token": [
+        [
+          "BUILD_PASTURE",
+          2
+        ]
+      ]
+    },
+    {
+      "token": "BUILD_COOP",
+      "queries": 2,
+      "exact_goal_accuracy": 1.0,
+      "wrong_token": []
+    },
+    {
+      "token": "PLACE:WOOL",
+      "queries": 2,
+      "exact_goal_accuracy": 0.0,
+      "wrong_token": [
+        [
+          "FEED",
+          2
+        ]
+      ]
+    },
+    {
+      "token": "PLACE:EGG",
+      "queries": 2,
+      "exact_goal_accuracy": 0.0,
+      "wrong_token": [
+        [
+          "DROP",
+          1
+        ],
+        [
+          "COLLECT_FERTILIZER",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PLANT:MELON",
+      "queries": 1,
+      "exact_goal_accuracy": 0.0,
+      "wrong_token": [
+        [
+          "PASS",
+          1
+        ]
+      ]
+    },
+    {
+      "token": "PLACE:STRAWBERRY",
+      "queries": 1,
+      "exact_goal_accuracy": 0.0,
+      "wrong_token": [
+        [
+          "WATER",
+          1
+        ]
+      ]
+    }
+  ]
+}

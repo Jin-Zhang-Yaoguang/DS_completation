@@ -1,0 +1,60 @@
+{
+  "schema": "kaggriculture-originality-panel-v1",
+  "panel_id": "historical-originality-core-20260829",
+  "status": "FROZEN",
+  "frozen_date": "2026-08-29",
+  "data_cutoff": "2026-08-27",
+  "selection_rule": "one behavior-deduplicated representative per historical causal mechanism plus one incumbent guard",
+  "root_parent": {
+    "model_id": "v76_adjacent_safe_buy_lead",
+    "main_sha256": "efa9442da3c7d2bca333cccdcf46757fb1286c3bc09e81a91e971764353f776e",
+    "archive_sha256": "ba79b84a140287eb41608f33cf6bd57dad93d1b9c535cc6b6945e1c431c9fdf1"
+  },
+  "opponents": [
+    {
+      "identity": "OG_DEMAND_TIMING",
+      "model_id": "v20_demand_timing_moe",
+      "mechanism": "shop-demand-driven product sell timing",
+      "main_sha256": "d5d8e8c4369f20c5acc7d736afa371b2154c7d496a2ca7b63264a3de54d8e8fa",
+      "archive_sha256": "af3d21444a83cda7a99485af69e1158abeeef1addf125c1f1e5319a7ed3b154a"
+    },
+    {
+      "identity": "OG_PRODUCTION_ROUTER",
+      "model_id": "v21_top_meta_moe",
+      "behavior_aliases": ["v29_champion_selection"],
+      "mechanism": "complete-production-expert routing with safe execution",
+      "main_sha256": "007201884aca5342674ebf7d219a2c2b45882a1e90d52ff53bb0198fe7821c57",
+      "archive_sha256": "18b420feff5fa63cafffdce5904ed9c54a068428c424d2f7dd14de537a0e470b"
+    },
+    {
+      "identity": "OG_OPPONENT_PREEMPT",
+      "model_id": "v32_clone_horizon_preempt",
+      "mechanism": "public-opponent-conditioned multi-step premium preemption",
+      "main_sha256": "1d469948c591a28d88affbf1b0967798f79be6039328f9f069c8375f51eee5ba",
+      "archive_sha256": "a84feb80cbb52fe96d938ffefaf3ae0e9cd9a069287ec8ec0578a3a464af3dbc"
+    },
+    {
+      "identity": "OG_TERMINAL_LOGISTICS",
+      "model_id": "v54_terminal_water_bypass",
+      "mechanism": "terminal logistics, recovery, and no-value action bypass",
+      "main_sha256": "726e8868149bbde178f83c8092e7391999c7a362609865a2e8a7a4942673dd99",
+      "archive_sha256": "ed64e73cc46f0560de1512a4ab4d4dad5b3b82f3bf70dfeab2bae64de18d77a4"
+    },
+    {
+      "identity": "OG_MARKET_MICROSTRUCTURE",
+      "model_id": "v66_margin_gated_sell_bubble",
+      "mechanism": "product-margin-gated market queue planning",
+      "main_sha256": "f2adb110d0ff469ac663aa5759c1ba7d9932cd8964971cc0ae0b70f06f3ca6fe",
+      "archive_sha256": "3e1f945f488552bd21b3cee8a8cdc76b9c072b171859bc718228a2f5f2267153"
+    },
+    {
+      "identity": "INCUMBENT_GUARD",
+      "model_id": "v76_adjacent_safe_buy_lead",
+      "mechanism": "strongest frozen complete strategy stack",
+      "main_sha256": "efa9442da3c7d2bca333cccdcf46757fb1286c3bc09e81a91e971764353f776e",
+      "archive_sha256": "ba79b84a140287eb41608f33cf6bd57dad93d1b9c535cc6b6945e1c431c9fdf1"
+    }
+  ],
+  "opponent_count": 6,
+  "mid_batch_mutation_allowed": false
+}

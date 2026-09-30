@@ -1,0 +1,53 @@
+{
+  "schema": "kaggriculture-v12c-embedded-complete-experts-1",
+  "source_registry_sha256": "babf1803c0e56aefa1805fce82cf1961bf8b4c508ef9d4c0754c127681911409",
+  "expert_specs": {
+    "baseline_v5": {
+      "id": "baseline_v5",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v5"
+      ],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v5_rule_hybrid/main.py",
+        "../v5_rule_hybrid/base_agent.py",
+        "../v5_rule_hybrid/routes.py",
+        "../v5_rule_hybrid/v1_fallback.py"
+      ],
+      "family": "v5_rule_hybrid",
+      "lineage": [
+        "baseline_v5"
+      ],
+      "tags": [
+        "保留基线",
+        "champion-route"
+      ]
+    },
+    "baseline_v8": {
+      "id": "baseline_v8",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v8"
+      ],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa_lead2_slot",
+      "lineage": [
+        "baseline_v8"
+      ],
+      "tags": [
+        "保留基线",
+        "kawa"
+      ]
+    }
+  }
+}

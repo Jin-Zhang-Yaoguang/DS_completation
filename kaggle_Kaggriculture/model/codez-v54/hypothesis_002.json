@@ -1,0 +1,38 @@
+{
+  "hypothesis": "H002",
+  "parent": "v000",
+  "reason": "H001 overfit 3-seed development; expand development to prior dev + failed holdout, rank worst seed and opponent-seat robustness.",
+  "candidate_routes": [
+    101,
+    103,
+    118,
+    126
+  ],
+  "selection": "All opponent-seat wins >= baseline, aggregate wins up, aggregate margin delta up; then maximize minimum per-seed aggregate win improvement, minimum per-seed mean margin delta, total wins, total margin.",
+  "development_seeds": [
+    13055,
+    13063,
+    13133,
+    14029,
+    14048,
+    14165,
+    14427,
+    14451
+  ],
+  "holdout_seeds": [
+    230121,
+    230146,
+    230299,
+    230304,
+    230405
+  ],
+  "confirmation_range": [
+    250000,
+    251024
+  ],
+  "confirmation_selection": "First 10 environment-matching seeds, ascending; no outcomes used.",
+  "confirmation_gate": "60 paired games; no opponent-seat win regression, strict aggregate win improvement, positive margin delta, one-sided seed-cluster sign test on win differences p<=0.05; tie clusters ignored.",
+  "gate9": "No win regression for any opponent; all jobs successful.",
+  "modern_panel": "Fresh 240000..240015 x4 opponents x2 seats, no opponent-seat win regression.",
+  "data_boundary": "H001 validation and diagnostic outcomes may guide this development; fresh 250000-range confirm is never used for selection."
+}

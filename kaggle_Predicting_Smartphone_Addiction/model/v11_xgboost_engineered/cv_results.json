@@ -1,0 +1,58 @@
+{
+  "competition": "playground-series-s6e8",
+  "model": "XGBoost engineered numeric+OHE v11",
+  "seed": 42,
+  "n_folds": 5,
+  "feature_count": 53,
+  "xgb_params": {
+    "n_estimators": 1600,
+    "learning_rate": 0.05,
+    "max_depth": 6,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "colsample_bylevel": 0.9,
+    "min_child_weight": 20.0,
+    "reg_alpha": 0.0,
+    "reg_lambda": 1.0,
+    "gamma": 0.0,
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "tree_method": "hist",
+    "max_bin": 256,
+    "predictor": "cpu_predictor",
+    "verbosity": 0,
+    "n_jobs": -1,
+    "seed": 42
+  },
+  "fold_auc": [
+    0.9642575674224834,
+    0.9647096935794104,
+    0.9648461689675488,
+    0.9658525484917099,
+    0.9646603273804777
+  ],
+  "fold_auc_mean": 0.964865261168326,
+  "fold_auc_std": 0.0005311481134117178,
+  "best_iterations": [
+    1599,
+    1599,
+    1600,
+    1598,
+    1600
+  ],
+  "oof_auc": 0.9648632598156794,
+  "v7_oof_auc": 0.9681322756127212,
+  "oof_delta_vs_v7": -0.003269015797041752,
+  "fold_delta_vs_v7": [
+    -0.002867141888283964,
+    -0.0033635682471915285,
+    -0.0031993034595435565,
+    -0.002886664596035704,
+    -0.0031080601546848996
+  ],
+  "folds_won_vs_v7": 0,
+  "prediction_min": 0.0001357349810859887,
+  "prediction_max": 0.9999998658895493,
+  "prediction_mean": 0.7093004299493741,
+  "elapsed_seconds": 411.8197681903839
+}

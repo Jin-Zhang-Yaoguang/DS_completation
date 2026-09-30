@@ -100,3 +100,20 @@ v2 与 v3 的 OOF Spearman correlation 为 `0.984420`。防过拟合的留一折
 2. 对 v6 单独消融 `max_bin` 与层级编码，确认两者各自贡献。
 3. 考虑第三个 CatBoost 种子前先做收益/计算成本评估；当前双种子增益仅 `+0.000167`。
 4. 只有内层 K 折 target encoding 能进入候选池；全局编码和可反推标签的 leave-one-out 组合一律禁止。
+
+## 赛后更新：第一名方案（2026-09-02）
+
+Chris Deotte 在赛后发布了 [1st Place - Distributed Intelligence - NVIDIA Inference Hub](https://www.kaggle.com/c/playground-series-s6e8/writeups/1st-place-distributed-intelligence-nvidia-inference-hub)。Kaggle 官方最终排行榜确认其排名第 1，Private AUC `0.97176`。
+
+- 最终冠军方案：456 个模型，经 NVIDIA cuML Logistic Regression 堆叠；`CV 0.97098 / Public 0.97207 / Private 0.97176`。
+- 最佳单模型：RealMLP；`CV 0.97070 / Public 0.97174 / Private 0.97145`。
+- XGBoost 单模型：`CV 0.97020 / LB 0.97030`。
+- 作者明确指出缺失值相关特征是新的重要信号，并同时改善 CV 与 LB；但没有公开具体特征公式、最终代码、OOF、权重或训练 Notebook。
+- 工作流重点是多个智能体长时间自主实验、共享发现、围绕错误样本迭代，以及持续写入 discovery 文档；它提供研究组织方法，而不是可直接复制的冠军实现。
+
+本地归档：
+
+- [归档说明](../discussion/s6e8_rank01_chris_deotte_solution/README.md)
+- [英文原文](../discussion/s6e8_rank01_chris_deotte_solution/solution_original.md)
+- [中文翻译与评论区关键补充](../discussion/s6e8_rank01_chris_deotte_solution/solution_zh-CN.md)
+- [来源清单与 SHA-256](../discussion/s6e8_rank01_chris_deotte_solution/source_manifest.json)

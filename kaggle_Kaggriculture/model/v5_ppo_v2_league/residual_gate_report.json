@@ -1,0 +1,41 @@
+{
+  "schema": "kaggriculture-ppo-v2-residual-gate-1",
+  "candidate": {
+    "days": [
+      10,
+      17,
+      24
+    ],
+    "head": 3,
+    "value": 0,
+    "key": "head3_value0"
+  },
+  "evidence": {
+    "counterfactual_n": 32,
+    "counterfactual_mean_uplift": 1541.34375,
+    "counterfactual_ci95": [
+      287.06953125,
+      3129.470312499999
+    ],
+    "action_change_rate": 0.05605006954102921,
+    "paired_score_rate": 0.655,
+    "paired_ci95": [
+      0.55,
+      0.755
+    ]
+  },
+  "gates": {
+    "counterfactual_schema": true,
+    "counterfactual_zero_errors": true,
+    "selected_intervention_present": true,
+    "selected_intervention_ci_lower_positive": true,
+    "action_audit_zero_errors": true,
+    "action_change_rate_ge_5pct": true,
+    "evaluation_paired_score_ge_53pct": true,
+    "evaluation_bootstrap_lower_gt_50pct": true,
+    "evaluation_pool_better_than_v1": true,
+    "evaluation_no_opponent_decline": true,
+    "inference_lt_5ms": true
+  },
+  "passed": true
+}

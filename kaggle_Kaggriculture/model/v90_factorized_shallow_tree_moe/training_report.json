@@ -1,0 +1,113 @@
+{
+  "schema": "kaggriculture-v90-training-v1",
+  "episode_count": 50,
+  "unit_samples": 354276,
+  "unit_classes": 55,
+  "market_slot_samples": 359500,
+  "market_slot_classes": 205,
+  "oof": {
+    "unit": {
+      "label": "unit",
+      "accuracy": 0.9132766543598776,
+      "folds": [
+        {
+          "fold": 1,
+          "groups": 10,
+          "accuracy": 0.9040979905170468
+        },
+        {
+          "fold": 2,
+          "groups": 10,
+          "accuracy": 0.923289681643712
+        },
+        {
+          "fold": 3,
+          "groups": 10,
+          "accuracy": 0.9014732445247234
+        },
+        {
+          "fold": 4,
+          "groups": 10,
+          "accuracy": 0.9214307896445612
+        },
+        {
+          "fold": 5,
+          "groups": 10,
+          "accuracy": 0.9160949719093193
+        }
+      ]
+    },
+    "market": {
+      "label": "market_slot",
+      "accuracy": 0.9463226703755215,
+      "folds": [
+        {
+          "fold": 1,
+          "groups": 10,
+          "accuracy": 0.9437969401947148
+        },
+        {
+          "fold": 2,
+          "groups": 10,
+          "accuracy": 0.9473713490959667
+        },
+        {
+          "fold": 3,
+          "groups": 10,
+          "accuracy": 0.9435326842837274
+        },
+        {
+          "fold": 4,
+          "groups": 10,
+          "accuracy": 0.9474269819193324
+        },
+        {
+          "fold": 5,
+          "groups": 10,
+          "accuracy": 0.9494853963838665
+        }
+      ],
+      "nonempty_accuracy": 0.6498197079860495,
+      "nonempty_samples": 50751
+    }
+  },
+  "tree_nodes": {
+    "GLOBAL": {
+      "unit": 8191,
+      "market": 8191
+    },
+    "BAKERY": {
+      "unit": 5875,
+      "market": 2931
+    },
+    "BRUNCH_SPOT": {
+      "unit": 5773,
+      "market": 2853
+    },
+    "FARMERS_MARKET": {
+      "unit": 6765,
+      "market": 3597
+    },
+    "ICE_CREAM_SHOP": {
+      "unit": 6483,
+      "market": 4019
+    },
+    "PET_CAFE": {
+      "unit": 3423,
+      "market": 1453
+    },
+    "PIZZA_SHOP": {
+      "unit": 6273,
+      "market": 2611
+    },
+    "SMOOTHIE_SHOP": {
+      "unit": 5943,
+      "market": 3245
+    },
+    "YARN_STORE": {
+      "unit": 3923,
+      "market": 1721
+    }
+  },
+  "training_provenance_sha256": "c21f6a7d5347a7d272b37aa7a77e06b69d2bde11fe24bfc1a61fd7c09f81ba16"
+}

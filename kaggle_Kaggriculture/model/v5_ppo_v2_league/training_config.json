@@ -1,0 +1,15 @@
+{
+  "schema": "kaggriculture-ppo-v2-config-1",
+  "primary_baseline": "v1",
+  "safety_comparator": "v2",
+  "macro_horizon": 30,
+  "terminal_reward": {"win": 1.0, "tie": 0.0, "loss": -1.0, "gold_diff_weight": 0.02, "gold_diff_scale": 25000.0},
+  "potential_shaping": {"formula": "gamma * Phi(s_next) - Phi(s)", "terminal_phi": 0.0, "gamma": 0.995, "gae_lambda": 0.95},
+  "ppo": {"clip": 0.2, "value_coefficient": 0.5, "gradient_clip": 0.5, "target_kl": 0.015, "entropy_start": 0.015, "entropy_end": 0.002, "learning_rate_start": 0.0003, "learning_rate_end": 0.00005, "epochs": 4, "transition_batch": 4096},
+  "bc": {"target_episodes": 20000, "epochs": 5, "label_smoothing": 0.03, "group_split": {"train": 0.8, "validation": 0.1, "test": 0.1}},
+  "pilot": {"iterations": 5, "episodes_per_iteration": 1024, "total_episodes": 5120, "minimum_families": 12, "minimum_games_per_family": 64, "minimum_action_change_rate": 0.05},
+  "residual_screening": {"baseline": "v1", "method": "same_seed_same_seat_one_day_counterfactual", "candidate": {"head": "animal", "value": "0.5x", "days": [10, 17, 24]}, "audit_report": "counterfactual_audit_report.json", "required_bootstrap_ci_lower": 0.0, "online_submission": false},
+  "full_training": {"iterations": 60, "episodes_per_iteration": 2048, "independent_seeds": [17, 29, 41], "max_iterations": 80, "active_pool_count": 28, "minimum_effective_families": 12, "quota_policy": {"ordinary_min_games_per_round": 64, "hard_opponents": ["v1", "v2", "v3", "market_priority_tomato"], "hard_games_per_round": 128, "schedule": "28 unique names; add hard quota after ordinary quota; truncate only pilot batches"}, "status": "paused_after_g4_action_closure_failure", "resume_preconditions": ["balanced deployable-action labels", "expanded opening/route action space", "A/B/C ablation pass", "stochastic-to-argmax closure audit"]},
+  "online": {"monitoring_window": 80, "ramp_games": 40, "stable_games": 40, "formal_superiority_games": [200, 400]},
+  "source_policy": "Generated trajectories and public observations/actions only; private agent logs and code excluded"
+}

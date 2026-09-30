@@ -1,0 +1,421 @@
+{
+  "program_status": "R12_STRENGTH_FAILED_MECHANISM_AUDIT_PENDING",
+  "gold_status": "NOT_GOLD",
+  "current_candidate": "V125-R12",
+  "candidates": [
+    {
+      "candidate_id": "V125-R0",
+      "strategy_parent": null,
+      "implementation_parent": null,
+      "created_at_utc": "2026-09-05T09:50:13.274318+00:00",
+      "candidate_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+      "protocol_sha256": "83e462644136d0dad98cb02a89c82177a9c0ae02c36f2790c7b40a9fc0f63e30",
+      "status": "DIAGNOSTIC_BASELINE_NOT_GOLD",
+      "primary_hypothesis": "独立的当前状态目标、下一帧采购确认与任务成本匹配可闭合最基本经营链；R0仅建立可执行参考，不据此证明所有机制增益。",
+      "single_primary_change": "独立工程基线首次实现，无旧agent/tape依赖",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "confirmation_status": "UNALLOCATED",
+      "falsification": "719步异常、关键状态漏确认、幼苗缺水、产物滞留或主机制低于G1时R0不晋级",
+      "training_data": "NONE_RULES_ONLY",
+      "protocol_prefirst_run_amendment": "1.1 adds actual-online G3 path before first V125 game, no outcomes seen"
+    },
+    {
+      "candidate_id": "V125-R1",
+      "strategy_parent": null,
+      "implementation_parent": "V125-R0",
+      "parent_candidate_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+      "created_at_utc": "2026-09-05T09:54:46.078863+00:00",
+      "candidate_sha256": "64361f000c3d827e3b71bfb18af9c2199b5bc42ca681b9befd013a4284a8360f",
+      "protocol_sha256": "ae3bee95da7659da9ed08b081bbdff2980d61a91fdbc6bbf52c9dea2a5c15a72",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "R0采购上限与卖出保留线不同，导致补给后又卖出小麦；统一目标库存并用补给触发下限建立滞回，可减少无效库存周转至少20%，且不恶化喂养/现金兑现。",
+      "single_primary_change": "小麦供料库存上下限统一，其他调度、计划和市场顺序不变",
+      "mechanism_metric": "BUY_PRODUCT_WHEAT_qty减去实际FEED消耗后的超额购量；逐日粮食短缺/动物损失与最终现金并报",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "fresh_development_seeds": [
+        1950905101,
+        1950905102,
+        1950905103
+      ],
+      "falsification": "超额购量未减少20%或造成动物漏喂/损失/现金下降，R1不晋级",
+      "training_data": "NONE_RULES_ONLY",
+      "assessment": "research/r1_development_assessment.json"
+    },
+    {
+      "candidate_id": "V125-R2",
+      "strategy_parent": null,
+      "implementation_parent": "V125-R0",
+      "parent_candidate_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+      "created_at_utc": "2026-09-05T09:58:24.679730+00:00",
+      "candidate_sha256": "f9f9af10ad11c0ba63e9e4541a642b3c41a9591c7434e8317ac4d5d07f6044c4",
+      "protocol_sha256": "ae3bee95da7659da9ed08b081bbdff2980d61a91fdbc6bbf52c9dea2a5c15a72",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "任务的可选施肥依赖会让缺料近端工人连保活/收获也被拒。按工人持料生成可完成子链，去掉不可执行肥料的价值，不拒绝整条链，可消除实证反例且改善真实闭环。",
+      "single_primary_change": "按单位拆分可选施肥依赖与对应价值，采购/路由/日期计划保持R0",
+      "mechanism_metric": "相同初始状态远端肥料反例中两席作物存活且待采入仓；有料控制动作不变；全局作物缺水损失率与产出并报",
+      "falsification": "反例未修复、有料控制退化、非法/无效增加或新配对生产低于R0，则不晋级",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "fresh_development_seeds": [
+        1950905201,
+        1950905202,
+        1950905203
+      ],
+      "training_data": "NONE_RULES_ONLY",
+      "rejected_predecessor_not_parent": "V125-R1",
+      "assessment": "research/r2_development_assessment.json"
+    },
+    {
+      "candidate_id": "V125-R3",
+      "strategy_parent": null,
+      "implementation_parent": "V125-R0",
+      "parent_candidate_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+      "created_at_utc": "2026-09-05T10:01:56.415467+00:00",
+      "candidate_sha256": "d8b964487d2d635a680d0a33d83db054a593619eb29bed76bf3fcb80000df71d",
+      "protocol_sha256": "ae3bee95da7659da9ed08b081bbdff2980d61a91fdbc6bbf52c9dea2a5c15a72",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "R0实际step320把3格活草莓计作牧场预留，17个外部空格存在却无build，已买牛在途最多387步。按可建设状态登记容量，能恢复建造和投放，缩短在途积分至少20%并提升可兑现生产。",
+      "single_primary_change": "牧场容量只计现成建筑及空地/杂草，排除活作物；其余全部保持R0",
+      "mechanism_metric": "同观测step320生成可建设任务；全局animal_step_in_transit至少减少20%；迟于剩余生产窗口投放数不增加；资金/产出/保活并报",
+      "falsification": "未减少在途时间20%或新配对现金退化/存活机制变差，则不晋级",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "fresh_development_seeds": [
+        1950905301,
+        1950905302,
+        1950905303
+      ],
+      "training_data": "NONE_RULES_ONLY",
+      "assessment": "research/r3_development_assessment.json"
+    },
+    {
+      "candidate_id": "V125-R4",
+      "strategy_parent": null,
+      "implementation_parent": "V125-R3",
+      "parent_candidate_sha256": "d8b964487d2d635a680d0a33d83db054a593619eb29bed76bf3fcb80000df71d",
+      "additional_reference": "V125-R0",
+      "created_at_utc": "2026-09-05T10:17:46.470966+00:00",
+      "candidate_sha256": "8d3b634468d58c47df7c2c87644af04aa9d493e7c6381969866d4acfa3558431",
+      "protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "带真实前置、可行前缀、截止与下一帧收据的短期任务合约减少执行层漏水/断粮和路径漂移，同时保留有条件施肥与整体产出。",
+      "single_primary_change": "执行器重设计；包括目标绑定补料及普通返仓优先级变化；经营、市场、容量任务提议、matching函数不变",
+      "mechanism_metric": "漏水/逃逸相对R3减少20%，首水不退；现金对R0和R3分别至少60%新配对正且两席均不退；溢出及末成熟余值不恶化超过10%",
+      "falsification": "任何前述门未过则不晋级，保留全部结果并追踪首次执行偏离",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "fresh_development_seeds": [
+        1950905401,
+        1950905402,
+        1950905403
+      ],
+      "training_data": "NONE_RULES_AND_OWN_OPENED_DIAGNOSTIC_STATES_ONLY",
+      "micro_source_sha256": "251f9f72c6ebf91f6aa1efcc633bd881ec2c11346340f35c2792494b42338fc4",
+      "micro_results_sha256": "a19234f71bcce645b58a90d097b2d40fe94f50f7e00a754768bbaa97add2d25b",
+      "micro_checks": 50,
+      "evaluation_design_sha256": "099db020613e1d0946cdc5e9d348aa97221d3557c2fc60854de21cffd08dec1c",
+      "source_label_note": "原型内部CANDIDATE_ID为V125-R4-PROTOTYPE，仅诊断标签；冻结字节与微测相同。",
+      "assessment": "research/r4_development_assessment.json"
+    },
+    {
+      "candidate_id": "V125-R5",
+      "strategy_parent": null,
+      "implementation_parent": "V125-R4",
+      "parent_candidate_sha256": "8d3b634468d58c47df7c2c87644af04aa9d493e7c6381969866d4acfa3558431",
+      "additional_reference": "V125-R0",
+      "created_at_utc": "2026-09-05T10:27:41.725116+00:00",
+      "candidate_sha256": "7091a3ad25bdc64854987592d38148404e84cc1b6e9a5fef101662f7e53999a2",
+      "protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "Controlled misassignment cases must be fixed. On fresh complete games, movement per successful production action must fall at least 20 percent versus R4. Production actions are PLANT,WATER,FEED,CARE,FERTILIZE,HARVEST,COLLECT_FERTILIZER,BUILD,DIG; all counts are also reported separately.",
+      "single_primary_change": "Shared task urgency, bonus restricted to edges capable of the necessary operation, full owner coverage and a lexicographic bound consistent with the existing 1.15 multiplier. Economy, market, single-unit feed pickup and ordinary cargo return remain R4.",
+      "falsification": "Any screen criterion failure retires candidate; no same-SHA tuning.",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "fresh_development_seeds": [
+        1950905501,
+        1950905502,
+        1950905503
+      ],
+      "training_data": "NONE_RULES_AND_OWN_OPENED_DIAGNOSTIC_STATES_ONLY",
+      "micro_source_sha256": "932391626f19603d7e2815be819711996916d5056df42d88ccf8b2c348fa975f",
+      "micro_results_sha256": "b42f35ae19e798563446abd72025872da0fbc1253ed99b9d89f0bb8eb8105ad9",
+      "micro_checks": 13,
+      "evaluation_design_sha256": "8c9d376e74cd1e5306d10ace08f8d81e1d6447eac57dce4b78c343a09c9e3ba9",
+      "assessment": "research/r5_development_assessment.json"
+    },
+    {
+      "candidate_id": "V125-R6",
+      "strategy_parent": null,
+      "implementation_parent": "V125-R5",
+      "parent_candidate_sha256": "7091a3ad25bdc64854987592d38148404e84cc1b6e9a5fef101662f7e53999a2",
+      "additional_reference": "V125-R0",
+      "created_at_utc": "2026-09-05T10:37:07.662195+00:00",
+      "candidate_sha256": "b599d1653380aa2d9033a5aaf190e6f01f601d69cfa092d4ab40e37f8393a58c",
+      "protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "Successful wheat PICKUP actions per actual FEED fall at least 20 percent versus R5. Report absolute pickup count, wheat quantity, feeding, movement/production action ratio, water/survival, overflow and final cash. Requests cannot substitute for actual actions if any pickup was rejected.",
+      "single_primary_change": "After all active and new contracts reserve mandatory materials, expand real depot WHEAT pickups using only remaining currently observed supply, with a fixed total cap of four and synchronized actual-action receipts. No other policy change.",
+      "falsification": "Any preregistered development screen failure retires candidate.",
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "fresh_development_seeds": [
+        1950905601,
+        1950905602,
+        1950905603
+      ],
+      "training_data": "NONE_RULES_AND_OWN_OPENED_DIAGNOSTIC_STATES_ONLY",
+      "micro_source_sha256": "c648409780efd0825b7b7f5b133b8ae722356b4f8cd76d987102bc2a83dd6987",
+      "micro_results_sha256": "7a68e6bb39445f637ebc08a5e936670014090683ef0e9aa44e6069efea182ff9",
+      "micro_checks": 44,
+      "evaluation_design_sha256": "8e353c1b0cea3f284b9a2c219cd99d03178a864b30f44d06b69b327f75314c6d",
+      "G0": "PENDING_FAST_PARITY_REPAIR",
+      "assessment": "research/r6_development_assessment.json"
+    },
+    {
+      "candidate_id": "V125-R7",
+      "implementation_parent": "V125-R6",
+      "candidate_sha256": "ea57c77215d6728e64a3c46c5cf1c2b21f2efa72d12dbb53240b544e27500e7f",
+      "created_at_utc": "2026-09-05T11:15:59.233618+00:00",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "Finite-horizon investment permits with shared care, cash, labor and sites reduce actual purchase-to-placement restricted waiting while improving paired competitive margin.",
+      "primary_mechanism": "research/r7_horizon_investment/development_protocol.json",
+      "fresh_development_seeds": [
+        1950905701,
+        1950905702,
+        1950905703
+      ],
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "training_data": "NONE_RULES_ONLY",
+      "source_manifest": "candidates/V125-R7/manifest.json",
+      "assessment": "research/r7_development_assessment.json",
+      "mechanism_supplement": "research/r7_horizon_investment/fresh_mechanism_audit/assessment/assessment.json",
+      "primary_metric_numeric_pass": true,
+      "causal_mechanism_qualified": false
+    },
+    {
+      "candidate_id": "V125-R8",
+      "implementation_parent": "V125-R7",
+      "candidate_sha256": "b7080c1181fb672ecc4f0bf96ad580cef5a0f80ed5d39d32908610c02423e693",
+      "created_at_utc": "2026-09-05T11:37:17.706706+00:00",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "Within unchanged cash, daily labor, land and investment feasibility constraints, choose feasible offers by maximum single-project predicted net terminal cash instead of net cash per work. This may shorten initial cash stagnation while improving full-game competitive margin.",
+      "primary_mechanism": "research/r8_terminal_net_selection/development_protocol.json",
+      "fresh_development_seeds": [
+        1950905801,
+        1950905802,
+        1950905803
+      ],
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "training_data": "NONE_RULES_AND_ALREADY_OPENED_OWN_DIAGNOSTIC_ONLY",
+      "source_manifest": "candidates/V125-R8/manifest.json",
+      "assessment": "research/r8_development_assessment.json",
+      "mechanism_supplement": "research/r8_terminal_net_selection/fresh_mechanism_audit/assessment_v2/assessment.json",
+      "primary_metric_numeric_pass": true,
+      "causal_mechanism_qualified": false
+    },
+    {
+      "candidate_id": "V125-R9",
+      "implementation_parent": "V125-R8",
+      "candidate_sha256": "e7f1fd549fc67ccec74015299af5366812abe43ec78c4142bb019429b6bb22e0",
+      "created_at_utc": "2026-09-05T11:59:57.573545+00:00",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "A dated predicted-cash-prefix constraint permits affordable investment before all lifetime care costs are paid, increasing real early production sales under unchanged net-terminal-value selection and execution. Existing observed assets alone may provide delayed conditional forecast credit.",
+      "primary_mechanism": "research/r9_cash_prefix/development_protocol.json",
+      "fresh_development_seeds": [
+        1950905901,
+        1950905902,
+        1950905903
+      ],
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "training_data": "NONE_RULES_AND_ALREADY_OPENED_OWN_DIAGNOSTICS_ONLY",
+      "source_manifest": "candidates/V125-R9/manifest.json",
+      "assessment": "research/r9_development_assessment.json",
+      "mechanism_supplement": "research/r9_cash_prefix/fresh_mechanism_audit/assessment_v2/assessment.json",
+      "primary_metric_numeric_pass": true,
+      "causal_mechanism_qualified": false
+    },
+    {
+      "candidate_id": "V125-R10",
+      "candidate_sha256": "a0e4c15c1eb968ff93bdb6bc8687888aa337857d6596786c3ffdac23d0837fd3",
+      "implementation_parent": "V125-R9",
+      "strategy_parent": null,
+      "created_at_utc": "2026-09-05T14:44:39.275904+00:00",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "完整未来服务准入解除旧劳动误拒，增加晚期实际自产销售至少20%，并超过R0/R9配对分差。",
+      "fresh_development_seeds": [
+        1950906001,
+        1950906002,
+        1950906003
+      ],
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "training_data": "NONE_RULES_ONLY",
+      "source_manifest": "candidates/V125-R10/manifest.json",
+      "assessment": "research/r10_service_calendar/root_retirement_review.json",
+      "primary_metric_numeric_pass": false,
+      "causal_mechanism_qualified": false
+    },
+    {
+      "candidate_id": "V125-R11",
+      "candidate_sha256": "1d9ce5dc05bcce400787563c69c74a40cc78bc67f2e9ca3511146f8adaaece57",
+      "implementation_parent": "V125-R0",
+      "strategy_parent": null,
+      "created_at_utc": "2026-09-05T15:09:54.779660+00:00",
+      "status": "RETIRED_DEV_FAILED",
+      "primary_hypothesis": "每对手独立6局实际全部缺水死亡降低至少20%，两个席位死亡数不增加；parent死亡0或分母0为PENDING不通过。",
+      "single_primary_change": "R0普通日危险纯WATER任务deadline21→23",
+      "fresh_development_seeds": [
+        1950906101,
+        1950906102,
+        1950906103
+      ],
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "source_manifest": "candidates/V125-R11/manifest.json",
+      "assessment": "research/r11_survival_routes/root_retirement_review.json",
+      "primary_metric_numeric_pass": false,
+      "causal_mechanism_qualified": false
+    },
+    {
+      "candidate_id": "V125-R12",
+      "candidate_sha256": "03ef0bcac134024dd0d7e697e0b1ee9f083195900618d5db1cdab61be69ca8ce",
+      "implementation_parent": "V125-R0",
+      "strategy_parent": null,
+      "created_at_utc": "2026-09-05T15:23:30.598703+00:00",
+      "status": "DEV_STRENGTH_FAILED_MECHANISM_PENDING",
+      "primary_hypothesis": "实际当前日全部危险植物的WATER路线余量减少漏水至少20%，同时改善相对R0现金分差；动物、首水、溢出、期末资产和合法动作守护。",
+      "single_primary_change": "原完整经济动作后留足当前危险植物的完整WATER路线；否则执行证书首步",
+      "fresh_development_seeds": [
+        1950906201,
+        1950906202,
+        1950906203
+      ],
+      "diagnostic_seeds": [
+        1950905001
+      ],
+      "source_manifest": "candidates/V125-R12/manifest.json",
+      "summary_evidence": "research/summary_20260905T152819Z/data.json"
+    }
+  ],
+  "panels": [
+    {
+      "id": "R0-pass-1950905001-seat0",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "gold_evidence": false
+    },
+    {
+      "id": "R1-fresh-dev-1950905101-5103-both",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R1_REJECTED"
+    },
+    {
+      "id": "R2-fresh-dev-1950905201-5203-both",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R2_REJECTED"
+    },
+    {
+      "id": "R3-fresh-dev-1950905301-5303-both",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R3_REJECTED"
+    },
+    {
+      "id": "R4-fresh-dev-1950905401-5403-both",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R4_REJECTED"
+    },
+    {
+      "id": "R5-fresh-dev-1950905501-5503-both",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R5_REJECTED"
+    },
+    {
+      "id": "R6-fresh-dev-1950905601-5603-both",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R6_REJECTED",
+      "engine": "official-only"
+    },
+    {
+      "id": "R7-fresh-dev-1950905701-5703-both-PASS-V120",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R7_REJECTED",
+      "games": 36,
+      "assessment": "research/r7_horizon_investment/fresh_strength_assessment/assessment.json"
+    },
+    {
+      "id": "R8-fresh-dev-1950905801-5803-both-PASS-V120",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R8_REJECTED",
+      "games": 36,
+      "assessment": "research/r8_terminal_net_selection/fresh_strength_assessment/assessment.json"
+    },
+    {
+      "id": "R9-fresh-dev-1950905901-5903-both-PASS-V120",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R9_REJECTED",
+      "games": 36,
+      "assessment": "research/r9_cash_prefix/fresh_strength_assessment/assessment.json"
+    },
+    {
+      "id": "R10-fresh-dev-1950906001-6003-both-PASS-V120",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R10_REJECTED",
+      "games": 36,
+      "assessment": "research/r10_service_calendar/root_retirement_review.json"
+    },
+    {
+      "id": "R11-fresh-dev-1950906101-6103-both-PASS-V120",
+      "role": "DIAGNOSTIC_ONLY",
+      "opened": true,
+      "decision": "R11_REJECTED",
+      "games": 24,
+      "assessment": "research/r11_survival_routes/root_retirement_review.json"
+    }
+  ],
+  "kaggle": {
+    "authorized": false,
+    "attempted": false
+  },
+  "consecutive_dev_failures": 11,
+  "engine_parity_issue": {
+    "status": "MARKET_SLOT_FIX_VALIDATED_SCOPE_BOUNDED",
+    "runner": "evaluation/run_match_v3.py",
+    "runner_sha256": "b92392363060f100c53c708dcf716515c39dc243b67526421ae47083a7bc0777",
+    "source_error_preserved": true,
+    "r6_saved_trace_supplement": "research/engine_parity_failure/r6_saved_trace_supplement/delivery_manifest.json",
+    "saved_traces_compared": 19,
+    "candidate_calls_in_supplement": 0,
+    "quantity_parser_boundary": "Other float/string/overflow inputs remain unmatched; actual studied quantities were positive Python integers <=42."
+  },
+  "updated_at_utc": "2026-09-05T15:28:19.465290+00:00",
+  "next_candidate": "V125-R12",
+  "next_hypothesis": "实际当前日全部危险植物的WATER路线余量减少漏水至少20%，同时改善相对R0现金分差；动物、首水、溢出、期末资产和合法动作守护。"
+}

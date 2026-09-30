@@ -1,0 +1,256 @@
+{
+  "scope": "READ_ONLY_EXISTING_RESULTS_RECOMPUTATION_NO_ENGINE_OR_CANDIDATE_CALL",
+  "freeze_sha256": "6576ce185cb97c433670414931a039887f988e6f301b2978fd294893a522b49f",
+  "summary_sha256": "88fb68fd1bcd547950a91547c687e3b96d19e5e11ed52efc71451eafd9f67778",
+  "frozen_file_count": 32,
+  "saved_record_count": 14,
+  "checks": {
+    "summary_is_error": true,
+    "freeze_sha_matches": true,
+    "source_drift_empty": true,
+    "all_frozen_source_hashes_match": true,
+    "all_record_hashes_match": true,
+    "legacy_six_pairs_60rows": true,
+    "legacy_all_equal": true,
+    "all_declared_complete_agent_counts_match": true,
+    "actual_engine_rows168": true,
+    "agent_attempts170": true,
+    "default_two_unreturned_timeout_calls": true,
+    "profile_four_partial_only": true,
+    "profile_partial_invariants_match": true
+  },
+  "recomputed_agent_attempts": {
+    "R9": 108,
+    "R10_legacy": 60,
+    "R10_default": 2
+  },
+  "recomputed_official_steps": 168,
+  "legacy": [
+    {
+      "id": "legacy_initial_s0",
+      "paired_rows": 12,
+      "dispatch_equal": true,
+      "post_observation_equal": true,
+      "clock_contiguous": true,
+      "first_difference": null
+    },
+    {
+      "id": "legacy_care_crossday_s0",
+      "paired_rows": 8,
+      "dispatch_equal": true,
+      "post_observation_equal": true,
+      "clock_contiguous": true,
+      "first_difference": null
+    },
+    {
+      "id": "legacy_in_transit_s0",
+      "paired_rows": 10,
+      "dispatch_equal": true,
+      "post_observation_equal": true,
+      "clock_contiguous": true,
+      "first_difference": null
+    },
+    {
+      "id": "legacy_initial_s1",
+      "paired_rows": 12,
+      "dispatch_equal": true,
+      "post_observation_equal": true,
+      "clock_contiguous": true,
+      "first_difference": null
+    },
+    {
+      "id": "legacy_care_crossday_s1",
+      "paired_rows": 8,
+      "dispatch_equal": true,
+      "post_observation_equal": true,
+      "clock_contiguous": true,
+      "first_difference": null
+    },
+    {
+      "id": "legacy_in_transit_s1",
+      "paired_rows": 10,
+      "dispatch_equal": true,
+      "post_observation_equal": true,
+      "clock_contiguous": true,
+      "first_difference": null
+    }
+  ],
+  "executor": [
+    {
+      "id": "r9_executor_48_strawberries_day10_s0",
+      "rows": 24,
+      "harvest_assets": 48,
+      "harvest_units": 48,
+      "each_initial_asset_harvested_exact_qty": true,
+      "explicit_place_units": 0,
+      "sold_units": 0,
+      "sold_cash": 0,
+      "automatic_deposits": [
+        {
+          "STRAWBERRY": 48
+        }
+      ],
+      "discarded": [
+        {}
+      ],
+      "final_cash": 99624,
+      "final_shed": {
+        "STRAWBERRY": 48
+      },
+      "action_counts": {
+        "NORTH": 21,
+        "HARVEST": 48,
+        "WEST": 23,
+        "EAST": 12,
+        "SOUTH": 12,
+        "PASS": 182
+      }
+    },
+    {
+      "id": "r9_executor_48_strawberries_day10_s1",
+      "rows": 24,
+      "harvest_assets": 48,
+      "harvest_units": 48,
+      "each_initial_asset_harvested_exact_qty": true,
+      "explicit_place_units": 0,
+      "sold_units": 0,
+      "sold_cash": 0,
+      "automatic_deposits": [
+        {
+          "STRAWBERRY": 48
+        }
+      ],
+      "discarded": [
+        {}
+      ],
+      "final_cash": 99624,
+      "final_shed": {
+        "STRAWBERRY": 48
+      },
+      "action_counts": {
+        "NORTH": 21,
+        "HARVEST": 48,
+        "WEST": 23,
+        "EAST": 12,
+        "SOUTH": 12,
+        "PASS": 182
+      }
+    }
+  ],
+  "default": [
+    {
+      "id": "default_agent_48_strawberries_day8_funded_s0",
+      "rows": 0,
+      "call_times": [
+        {
+          "kind": "R10_default",
+          "step": 192,
+          "profile": false,
+          "seconds": 10.003243207931519,
+          "over_1s": true,
+          "exception": {
+            "type": "CallDeadline",
+            "message": "人工工程单次保护超时10秒"
+          }
+        }
+      ],
+      "error": "CallDeadline",
+      "returned_action_present": false
+    },
+    {
+      "id": "default_agent_48_strawberries_day8_funded_s1",
+      "rows": 0,
+      "call_times": [
+        {
+          "kind": "R10_default",
+          "step": 192,
+          "profile": false,
+          "seconds": 10.002901415922679,
+          "over_1s": true,
+          "exception": {
+            "type": "CallDeadline",
+            "message": "人工工程单次保护超时10秒"
+          }
+        }
+      ],
+      "error": "CallDeadline",
+      "returned_action_present": false
+    }
+  ],
+  "profile": [
+    {
+      "id": "pressure_48_strawberries_day8_funded_s0",
+      "legacy_plan_returned": true,
+      "default_plan_returned": false,
+      "legacy_budget_completed": 364,
+      "default_budget_completed": 6,
+      "default_route_completed": 5,
+      "route_true": 3,
+      "route_false": 2,
+      "completed_invariants_all_true": true,
+      "matching_reached_quotes": 6,
+      "all_reached_quote_score_labor_work_equal": true,
+      "route_success_quotes": 3,
+      "route_success_cash_calls": 3,
+      "route_success_cash_rejections": 0,
+      "default_profile_seconds": 30.019078959012404,
+      "whole_plan_closure": "PENDING_INTERRUPTED_PLAN"
+    },
+    {
+      "id": "pressure_48_strawberries_day8_zero_cash_s0",
+      "legacy_plan_returned": true,
+      "default_plan_returned": false,
+      "legacy_budget_completed": 364,
+      "default_budget_completed": 6,
+      "default_route_completed": 5,
+      "route_true": 3,
+      "route_false": 2,
+      "completed_invariants_all_true": true,
+      "matching_reached_quotes": 6,
+      "all_reached_quote_score_labor_work_equal": true,
+      "route_success_quotes": 3,
+      "route_success_cash_calls": 3,
+      "route_success_cash_rejections": 3,
+      "default_profile_seconds": 30.015367249958217,
+      "whole_plan_closure": "PENDING_INTERRUPTED_PLAN"
+    },
+    {
+      "id": "pressure_48_strawberries_day8_funded_s1",
+      "legacy_plan_returned": true,
+      "default_plan_returned": false,
+      "legacy_budget_completed": 364,
+      "default_budget_completed": 6,
+      "default_route_completed": 5,
+      "route_true": 3,
+      "route_false": 2,
+      "completed_invariants_all_true": true,
+      "matching_reached_quotes": 6,
+      "all_reached_quote_score_labor_work_equal": true,
+      "route_success_quotes": 3,
+      "route_success_cash_calls": 3,
+      "route_success_cash_rejections": 0,
+      "default_profile_seconds": 30.019045624998398,
+      "whole_plan_closure": "PENDING_INTERRUPTED_PLAN"
+    },
+    {
+      "id": "pressure_48_strawberries_day8_zero_cash_s1",
+      "legacy_plan_returned": true,
+      "default_plan_returned": false,
+      "legacy_budget_completed": 364,
+      "default_budget_completed": 6,
+      "default_route_completed": 5,
+      "route_true": 3,
+      "route_false": 2,
+      "completed_invariants_all_true": true,
+      "matching_reached_quotes": 6,
+      "all_reached_quote_score_labor_work_equal": true,
+      "route_success_quotes": 3,
+      "route_success_cash_calls": 3,
+      "route_success_cash_rejections": 3,
+      "default_profile_seconds": 30.01734145800583,
+      "whole_plan_closure": "PENDING_INTERRUPTED_PLAN"
+    }
+  ],
+  "audit_candidate_calls": 0,
+  "audit_official_calls": 0
+}

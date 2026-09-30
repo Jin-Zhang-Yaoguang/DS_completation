@@ -1,0 +1,103 @@
+{
+  "schema": "kaggriculture-v3-evaluation-1",
+  "weights": "checkpoints/ppo/policy_iter_040.npz",
+  "paired": {
+    "seeds": 1000,
+    "games": 2000,
+    "score_rate": 0.8455,
+    "bootstrap_95_ci": [
+      0.82925,
+      0.86175
+    ],
+    "mean_margin": 855.6935
+  },
+  "pool": {
+    "v0": {
+      "v2": {
+        "games": 100,
+        "score_rate": 1.0,
+        "mean_margin": 154971.14
+      },
+      "v3": {
+        "games": 100,
+        "score_rate": 1.0,
+        "mean_margin": 154971.14
+      },
+      "score_delta": 0.0
+    },
+    "v1": {
+      "v2": {
+        "games": 100,
+        "score_rate": 0.465,
+        "mean_margin": -115.34
+      },
+      "v3": {
+        "games": 100,
+        "score_rate": 0.84,
+        "mean_margin": 1114.36
+      },
+      "score_delta": 0.37499999999999994
+    },
+    "starter": {
+      "v2": {
+        "games": 100,
+        "score_rate": 1.0,
+        "mean_margin": 158715.84
+      },
+      "v3": {
+        "games": 100,
+        "score_rate": 1.0,
+        "mean_margin": 158715.84
+      },
+      "score_delta": 0.0
+    },
+    "random": {
+      "v2": {
+        "games": 100,
+        "score_rate": 1.0,
+        "mean_margin": 162805.75
+      },
+      "v3": {
+        "games": 100,
+        "score_rate": 1.0,
+        "mean_margin": 160685.96
+      },
+      "score_delta": 0.0
+    },
+    "forced_low": {
+      "v2": {
+        "games": 100,
+        "score_rate": 0.585,
+        "mean_margin": 3968.14
+      },
+      "v3": {
+        "games": 100,
+        "score_rate": 0.915,
+        "mean_margin": 4921.96
+      },
+      "score_delta": 0.33000000000000007
+    },
+    "forced_high": {
+      "v2": {
+        "games": 100,
+        "score_rate": 0.75,
+        "mean_margin": 10612.34
+      },
+      "v3": {
+        "games": 100,
+        "score_rate": 0.88,
+        "mean_margin": 11524.31
+      },
+      "score_delta": 0.13
+    }
+  },
+  "pool_score_delta": 0.1391666666666667,
+  "inference_ms": 0.0346913960238453,
+  "gates": {
+    "direct_score_rate_ge_53pct": true,
+    "bootstrap_lower_gt_50pct": true,
+    "pool_composite_better_than_v2": true,
+    "no_opponent_decline_gt_2pp": true,
+    "inference_lt_5ms": true
+  }
+}

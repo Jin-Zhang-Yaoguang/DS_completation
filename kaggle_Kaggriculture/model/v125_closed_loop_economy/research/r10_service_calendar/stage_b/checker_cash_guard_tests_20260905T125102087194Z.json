@@ -1,0 +1,54 @@
+{
+  "schema": "r10-b-checker-targeted-guard-v1",
+  "checker_sha256": "2bf5c12c400effed3246f35abab18ac2c0132a17b7aba2139548e0d0ad64dee3",
+  "harness_sha256": "5408364735265c56ed82d9d965ba7458b4da2a0c84d8654e8746bff4e22b703e",
+  "case_count": 3,
+  "cases": [
+    {
+      "name": "positive_buy_zero_cash_rejected",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "BUY_CASH",
+          "detail": "正采购量必须带正现金条件"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "nonfinite_buy_cash_rejected",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "BUY_PROTOCOL",
+          "detail": "仅h0一笔≤16麦，h1可用"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "zero_buy_nonzero_cash_rejected",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "BUY_CASH",
+          "detail": "零采购不能计采购现金"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    }
+  ],
+  "success": true,
+  "baseline_suite": "checker_tests_20260905T125023506749Z.json",
+  "reason": "仅增加正BUY必须正现金条件；独立验证3种现金域反例",
+  "candidate_calls": 0,
+  "engine_calls": 0,
+  "generator_calls": 0,
+  "complete_matches": 0
+}

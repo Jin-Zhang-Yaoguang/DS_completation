@@ -1,0 +1,141 @@
+{
+  "schema": "kaggriculture-production-gap-v1",
+  "generated_at": "2026-08-26",
+  "engine": {
+    "version": "1.32.7",
+    "official_sha256": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+    "installed_sha256": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e"
+  },
+  "scope": {
+    "date": "2026-08-25",
+    "episodes": [99288516, 99288626, 99288624],
+    "target_cases": ["mforg", "crop_a", "ryo", "crop_b", "sub"],
+    "objective": "Gold competitiveness against a lineage-balanced top/meta pool; A2 is regression-only.",
+    "design": "Fixed-seed, fixed-seat, fixed recorded action streams; mutate one target production block and replay both sides through the official engine.",
+    "epistemic_limit": "Open-loop block sensitivity, not a closed-loop policy-value or win-rate estimate."
+  },
+  "baseline_exact": {
+    "99288516": [121233.0, 122667.0],
+    "99288626": [112200.0, 91629.0],
+    "99288624": [101650.0, 101758.0]
+  },
+  "cases": {
+    "mforg": {
+      "episode": 99288516,
+      "player": "Mforg",
+      "player_id": 0,
+      "baseline_reward": 121233.0,
+      "baseline_margin": -1434.0,
+      "variants": {
+        "cap_hires10": {"own_reward_delta": -32983.0, "paired_margin_delta": -67695.0},
+        "cap_hires8": {"own_reward_delta": -61041.0, "paired_margin_delta": -105134.0},
+        "no_land3": {"own_reward_delta": -18706.0, "paired_margin_delta": -27049.0},
+        "land3_delay24": {"own_reward_delta": 3540.0, "paired_margin_delta": -26509.0},
+        "land3_delay48": {"own_reward_delta": -7125.0, "paired_margin_delta": -23164.0}
+      }
+    },
+    "crop_a": {
+      "episode": 99288626,
+      "player": "Crop Dusta",
+      "player_id": 0,
+      "baseline_reward": 112200.0,
+      "baseline_margin": 20571.0,
+      "observed_route": {
+        "shops_d3_d6_d9": [["YARN_STORE"], ["YARN_STORE", "YARN_STORE"], ["YARN_STORE", "YARN_STORE", "YARN_STORE"]],
+        "d3_10_seed": {"MELON": 13, "STRAWBERRY": 12, "WHEAT": 16},
+        "d3_10_animal": {"SHEEP": 13},
+        "whole_game_harvest": {"WOOL": 366, "STRAWBERRY": 96, "MILK": 84},
+        "whole_game_sell_cash": {"WOOL": 91499, "STRAWBERRY": 6711, "MILK": 5725}
+      },
+      "variants": {
+        "cap_hires10": {"own_reward_delta": -22027.0, "paired_margin_delta": -45706.0},
+        "cap_hires8": {"own_reward_delta": -56808.0, "paired_margin_delta": -85420.0},
+        "no_land3": {"own_reward_delta": -23489.0, "paired_margin_delta": -36477.0},
+        "land3_delay24": {"own_reward_delta": -3937.0, "paired_margin_delta": -17194.0},
+        "land3_delay48": {"own_reward_delta": -24502.0, "paired_margin_delta": -33635.0},
+        "crop_cross_seedanimal_d3_10": {"own_reward_delta": -54719.0, "paired_margin_delta": -71538.0, "nonw_cash_delta": -57179.0},
+        "crop_cross_fullproc_d3_10": {"own_reward_delta": -97295.0, "paired_margin_delta": -139037.0}
+      }
+    },
+    "ryo": {
+      "episode": 99288626,
+      "player": "Ryo Hasegawa",
+      "player_id": 1,
+      "baseline_reward": 91629.0,
+      "baseline_margin": -20571.0,
+      "variants": {
+        "cap_hires10": {"own_reward_delta": -21202.0, "paired_margin_delta": -28930.0},
+        "cap_hires8": {"own_reward_delta": -25530.0, "paired_margin_delta": -46606.0},
+        "no_land3": {"own_reward_delta": -36900.0, "paired_margin_delta": -48896.0},
+        "land3_delay24": {"own_reward_delta": 5889.0, "paired_margin_delta": 3221.0},
+        "land3_delay48": {"own_reward_delta": 3984.0, "paired_margin_delta": -1248.0}
+      }
+    },
+    "crop_b": {
+      "episode": 99288624,
+      "player": "Crop Dusta",
+      "player_id": 0,
+      "baseline_reward": 101650.0,
+      "baseline_margin": -108.0,
+      "observed_route": {
+        "shops_d3_d6_d9": [["SMOOTHIE_SHOP"], ["SMOOTHIE_SHOP", "BRUNCH_SPOT"], ["SMOOTHIE_SHOP", "BRUNCH_SPOT", "BRUNCH_SPOT"]],
+        "d3_10_seed": {"MELON": 12, "STRAWBERRY": 36, "WHEAT": 21},
+        "d3_10_animal": {"COW": 4, "SHEEP": 3},
+        "whole_game_harvest": {"WOOL": 100, "STRAWBERRY": 286, "MILK": 163},
+        "whole_game_sell_cash": {"WOOL": 5774, "STRAWBERRY": 62039, "MILK": 14479}
+      },
+      "variants": {
+        "cap_hires10": {"own_reward_delta": -34854.0, "paired_margin_delta": -48853.0},
+        "cap_hires8": {"own_reward_delta": -66913.0, "paired_margin_delta": -104933.0},
+        "no_land3": {"own_reward_delta": -6522.0, "paired_margin_delta": -28547.0},
+        "land3_delay24": {"own_reward_delta": 13551.0, "paired_margin_delta": -20018.0},
+        "land3_delay48": {"own_reward_delta": 7534.0, "paired_margin_delta": -19264.0},
+        "crop_cross_seedanimal_d3_10": {"own_reward_delta": -27942.0, "paired_margin_delta": -52900.0, "nonw_cash_delta": -26970.0},
+        "crop_cross_fullproc_d3_10": {"own_reward_delta": -55571.0, "paired_margin_delta": -38373.0}
+      }
+    },
+    "sub": {
+      "episode": 99288624,
+      "player": "Subramanya N",
+      "player_id": 1,
+      "baseline_reward": 101758.0,
+      "baseline_margin": 108.0,
+      "variants": {
+        "cap_hires10": {"own_reward_delta": -29928.0, "paired_margin_delta": -48637.0},
+        "cap_hires8": {"own_reward_delta": -54043.0, "paired_margin_delta": -102015.0},
+        "no_land3": {"own_reward_delta": -6826.0, "paired_margin_delta": -30563.0},
+        "land3_delay24": {"own_reward_delta": -9629.0, "paired_margin_delta": -18195.0},
+        "land3_delay48": {"own_reward_delta": -4998.0, "paired_margin_delta": -20862.0}
+      }
+    }
+  },
+  "aggregate": {
+    "cap_hires10": {"n": 5, "own_reward_delta_median": -29928.0, "paired_margin_delta_median": -48637.0, "nonnegative_margin_cases": 0},
+    "cap_hires8": {"n": 5, "own_reward_delta_median": -56808.0, "paired_margin_delta_median": -102015.0, "nonnegative_margin_cases": 0},
+    "no_land3": {"n": 5, "own_reward_delta_median": -18706.0, "paired_margin_delta_median": -30563.0, "nonnegative_margin_cases": 0},
+    "land3_delay24": {"n": 5, "own_reward_delta_median": 3540.0, "paired_margin_delta_median": -18195.0, "nonnegative_margin_cases": 1},
+    "land3_delay48": {"n": 5, "own_reward_delta_median": -4998.0, "paired_margin_delta_median": -20862.0, "nonnegative_margin_cases": 0}
+  },
+  "land_retry_stress": {
+    "crop_a": {
+      "plain_pair": [57481.0, 108448.0],
+      "retry_pair": [58510.0, 99813.0],
+      "own_reward_delta": 1029.0,
+      "paired_margin_delta": 9664.0,
+      "retry_land3_day": 9
+    },
+    "crop_b": {
+      "plain_pair": [73708.0, 126716.0],
+      "retry_pair": [73708.0, 126716.0],
+      "own_reward_delta": 0.0,
+      "paired_margin_delta": 0.0,
+      "retry_land3_day": 8
+    }
+  },
+  "priorities": [
+    "P0 town-demand complete-route router",
+    "P0 workload-conditioned 11-12 hands floor",
+    "P1 land3 deadline with competitive externality gate",
+    "P2 capital retry firewall"
+  ]
+}

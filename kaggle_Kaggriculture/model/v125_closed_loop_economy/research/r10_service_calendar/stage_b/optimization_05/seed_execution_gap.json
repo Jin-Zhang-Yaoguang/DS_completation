@@ -1,0 +1,62 @@
+{
+  "at": "2026-09-05T14:50:32.892854+00:00",
+  "scope": "已打开P5诊断的种子闲置归因；无候选修改或新增调用",
+  "MELON_buys_by_day": {
+    "0": 18,
+    "3": 2,
+    "4": 1,
+    "9": 1,
+    "11": 18
+  },
+  "MELON_plants_by_day": {
+    "0": 18,
+    "3": 2,
+    "4": 1,
+    "9": 1,
+    "11": 7,
+    "17": 1,
+    "18": 1
+  },
+  "first_late_batch_step": 264,
+  "first_rescue_approval_step": 270,
+  "late_batch_before_rescue": true,
+  "late_batch_seed_order": [
+    [
+      "BUY_SEED",
+      "MELON",
+      18
+    ]
+  ],
+  "late_batch_rescue_receipt": {
+    "approved": false,
+    "cheap_accepted_count": 18,
+    "cheap_chosen_expert": "horticulture",
+    "conditional_certificate_not_actual_execution": true,
+    "cycle": {
+      "failed_key_count": 0,
+      "index": 0,
+      "last_attempt_step": null,
+      "reset_after_step": null
+    },
+    "eligible_count": 0,
+    "net_cash_model": null,
+    "rejected_types": {
+      "current_day_labor": 55
+    },
+    "rescue_expert": null,
+    "route_attempted": false,
+    "selected_key": null,
+    "selection_score": null,
+    "status": "NO_ELIGIBLE_RESCUE",
+    "task_score": null
+  },
+  "remaining_seeds_R9": 15,
+  "remaining_seeds_P5": 9,
+  "observation": "第11日一次买18粒瓜种，当日实际只种7粒；第17、18日各用1粒，终局9粒闲置。这批采购发生在首次救援之前，不能归因为新救援导致的超买。R9同批剩15粒，P5使用更多。",
+  "code_reason": "经济层按整批plant_permits采购；执行层只为当前有种子且能匹配工人的任务建立短期contract。未被执行contract接管的许可可在以后重新规划时换作物；批量许可不是有时点的启动承诺。",
+  "unproven": "仅凭终局残种不能证明同一批种子FIFO身份或较小批量一定提高分数；需要固定启动任务与采购窗口的反事实验证。",
+  "possible_next_hypothesis": "按次日可执行的播种启动合约采购，保护已有种子与已开工照护；主指标实际未用种成本/购种到播种等待，收益与分差必须同时改善。仅在当前完整对照裁决后决定是否立项。",
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_complete_matches": 0
+}

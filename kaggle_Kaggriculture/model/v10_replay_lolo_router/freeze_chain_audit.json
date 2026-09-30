@@ -1,0 +1,185 @@
+{
+  "schema": "kaggriculture-v10-freeze-chain-audit-1",
+  "audited_at": "2026-08-21T18:36:53.614114+00:00",
+  "read_only": true,
+  "environment_games_started": false,
+  "final_test_results_opened": false,
+  "checks": {
+    "fixed_registry_exact_12": true,
+    "router_training_registry_exact_4": true,
+    "test_panel_frozen_metadata_only_reproducible": true,
+    "formal_grid_strict_complete": true,
+    "router_fit_200_sources_frozen": true,
+    "learned_router_training_frozen": true,
+    "final_registry_exact_14_and_sealed": true,
+    "fast_registry_preserves_full_seal": false
+  },
+  "evidence": {
+    "fixed_registry_exact_12": {
+      "models": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8",
+        "v1_topdays",
+        "v2_topdays",
+        "v5_topdays",
+        "v8_topdays",
+        "v5_price_slot",
+        "v8_lead1",
+        "v8_no_preempt",
+        "v8_conservative"
+      ],
+      "registry_and_code_sha256": "55d924e5b80d258de04568bc9ab6c28b29e930fc5b848bf64d3cdb26c7784d1f"
+    },
+    "router_training_registry_exact_4": {
+      "models": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8"
+      ],
+      "registry_and_code_sha256": "439707be83cc8b066404a6ffb23d8528ed5cf51a1e0122234b8552dfb1417c73"
+    },
+    "test_panel_frozen_metadata_only_reproducible": {
+      "panel_file_sha256": "6cbf8435007f1149c95b723a8618e2b453ec53525e173db1095d385fe9cd66d3",
+      "panel_records_sha256": "8b4583792f1e64c514170dc088094efa45b859d5fce363416134c04ed647c1d8",
+      "clean_pool_records_sha256": "ec502a465039b8e1af4a5a44e8e765ebb6cc35fd69c40d3d588aad6c91625e63",
+      "quarantine_file_sha256": "282fef5baa3299224c1aa7c9bf4bff5e1601d3df3e0044706b7c00147457a69b",
+      "date_quota": {
+        "2026-08-18": 34,
+        "2026-08-19": 33,
+        "2026-08-20": 33
+      }
+    },
+    "formal_grid_strict_complete": {
+      "expected": {
+        "tasks": 6400,
+        "contexts": 1600,
+        "candidates_per_context": 4,
+        "collection_fingerprint": "c6e0ca056510ce00ca82a7e79c97aaa8467d509b944f08bd7770f1deb2d26f29",
+        "registry_and_code_sha256": "439707be83cc8b066404a6ffb23d8528ed5cf51a1e0122234b8552dfb1417c73",
+        "collector_implementation_sha256": "b6dfa09e63e995e1a5f78bb38ddb1c93251b1aa48d32d746632fed4ae66610ec",
+        "splits": [
+          "train",
+          "validation"
+        ],
+        "seeds_per_split": 100,
+        "candidates": [
+          "baseline_v1",
+          "baseline_v2",
+          "baseline_v5",
+          "baseline_v8"
+        ],
+        "opponents": [
+          "baseline_v1",
+          "baseline_v2",
+          "baseline_v5",
+          "baseline_v8"
+        ],
+        "anchor": "baseline_v1",
+        "switch_step": 72
+      },
+      "observed": {
+        "relevant_tasks": 6400,
+        "missing_tasks": 0,
+        "foreign_tasks": 0,
+        "complete_contexts": 1600,
+        "partial_contexts": 0,
+        "feature_mismatched_contexts": 0,
+        "duplicate_candidate_contexts": 0
+      },
+      "jsonl_audit": {
+        "physical_records": 6400,
+        "unique_task_ids": 6400,
+        "bad_json": [],
+        "conflicting_task_ids": []
+      },
+      "row_failures": {},
+      "panel_audit": {
+        "train": {
+          "expected_sources": 100,
+          "observed_sources": 100,
+          "missing_sources": 0,
+          "foreign_sources": 0,
+          "expected_by_date": {
+            "2026-08-20": 33,
+            "2026-08-19": 33,
+            "2026-08-18": 34
+          },
+          "observed_by_date": {
+            "2026-08-20": 33,
+            "2026-08-18": 34,
+            "2026-08-19": 33
+          }
+        },
+        "validation": {
+          "expected_sources": 100,
+          "observed_sources": 100,
+          "missing_sources": 0,
+          "foreign_sources": 0,
+          "expected_by_date": {
+            "2026-08-20": 33,
+            "2026-08-19": 33,
+            "2026-08-18": 34
+          },
+          "observed_by_date": {
+            "2026-08-19": 33,
+            "2026-08-20": 33,
+            "2026-08-18": 34
+          }
+        }
+      },
+      "summary_audit": {
+        "present": true,
+        "schema": "kaggriculture-v10-router-grid-summary-1",
+        "collection_fingerprint": "c6e0ca056510ce00ca82a7e79c97aaa8467d509b944f08bd7770f1deb2d26f29",
+        "scheduled_games": 6400,
+        "observed_games": 6400,
+        "valid_done_games": 6400,
+        "missing_games": 0,
+        "errors": 0,
+        "complete": true,
+        "matches_expected_fingerprint": true
+      }
+    },
+    "router_fit_200_sources_frozen": {
+      "file_sha256": "1de48ec3f1406a0ff15932c2b3e42f2bd4472421e44d9fb2c96c813745fb00c7",
+      "records_sha256": "7bbed6cb6a2ef81a1c3a759a5c8b1a54e2b58e108c11934ed5a46c15398adcf4",
+      "records": 200
+    },
+    "learned_router_training_frozen": {
+      "best_fixed": "baseline_v8",
+      "training_report_sha256": "58ea0768cdd29e01062e37cadce7a64fd1dbdae9dc868c6cd42458a27ea96a4f",
+      "weights_sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77"
+    },
+    "final_registry_exact_14_and_sealed": {
+      "schema": "kaggriculture-v10-final-registry-1",
+      "models": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8",
+        "v1_topdays",
+        "v2_topdays",
+        "v5_topdays",
+        "v8_topdays",
+        "v5_price_slot",
+        "v8_lead1",
+        "v8_no_preempt",
+        "v8_conservative",
+        "rule_router",
+        "learned_router"
+      ],
+      "registry_and_code_sha256": "29bad780a154e595eabeafa1109b87dcecafbcac365f6e55bf051d8d472ba2fb"
+    },
+    "fast_registry_preserves_full_seal": {
+      "final_registry_exists": true,
+      "fast_registry_exists": false
+    }
+  },
+  "blockers": [
+    "fast_registry_preserves_full_seal"
+  ],
+  "ready_for_one_time_final_test": false
+}

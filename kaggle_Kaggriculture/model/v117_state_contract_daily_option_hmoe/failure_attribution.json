@@ -1,0 +1,63 @@
+{
+  "schema": "v117-r2.1-b113-failure-attribution-v1",
+  "primary_failure": "基础专家绝对强度不足",
+  "evidence": {
+    "upstream_semantic_gate_pass": true,
+    "replay_integrity_gate_pass": true,
+    "r1_health_gate_pass": true,
+    "balanced_wins": 0,
+    "balanced_games": 128,
+    "balanced_pure_win_rate": 0.0,
+    "balanced_mean_margin": -41982.9140625,
+    "b86_mean_margin": -42433.6875,
+    "margin_improvement_from_b86": 450.7734375,
+    "b75_mean_margin": -43631.78125,
+    "margin_improvement_from_b75": 1648.8671875,
+    "b56_mean_margin": -45120.1015625,
+    "margin_improvement_from_b56": 3137.1875,
+    "b42_mean_margin": -46997.1328125,
+    "margin_improvement_from_b42": 5014.21875,
+    "r2_1_a_mean_margin": -109317.3,
+    "margin_improvement_from_r2_1_a": 67334.3859375,
+    "account_online_mean_margin": -41116.453125,
+    "official_daily_mean_margin": -42849.375,
+    "mean_productive_actions": 2331.59375,
+    "mean_moves": 4161.0625,
+    "mean_idle_actions": 838.1484375,
+    "mean_overdue_proxy": 3283.0078125,
+    "hmoe_true_trigger": false
+  },
+  "current_top_loss_proxies": [
+    {"category": "FINANCING_SHORTFALL", "mean_proxy_per_game": 6810.0859375},
+    {"category": "OVERDUE_TASK", "mean_proxy_per_game": 3283.0078125},
+    {"category": "INVENTORY_OVERHANG", "mean_proxy_per_game": 2432.875},
+    {"category": "MISSED_HIGH_PRICE_SALE", "mean_proxy_per_game": 2420.3359375}
+  ],
+  "latest_adopted_evidence": {
+    "b86_parallel_delivery": "相对 B75 自身收益 +495.77、分差 +1198.09；账号和官方完整面板自身收益与分差均同向",
+    "b109_b110_diagnostics": "两类来源确认主损失在上游生产周期；MILK 的 CARE 完成率低约 28pp，STRAWBERRY 单位资产日产出低约 0.16",
+    "b111_cow_care": "相对 B86 自身收益 +160.66、分差 +302.91；账号和官方完整面板均同向",
+    "b113_strawberry_fertilizer": "相对 B111 自身收益 +152.63、分差 +147.86；账号和官方完整面板均同向",
+    "b113_health_and_parity": "健康 16 局均值 117693.38、最低 96641；显式 B113 与固化默认 128 局、8 类关键输出零差异"
+  },
+  "latest_rejected_evidence": {
+    "b88_b103": "额外交付窗、资产时钟、任务锁、作物退役、市场排序、二次派工、肥料削减和静态劳动优先级均未通过双来源门",
+    "b104_stable_owner": "最低责任惩罚也使收益下降约 4378，移动和空转同时增加",
+    "b105_b106_capacity_feedback": "反馈增员总体略改善但官方来源自身收益和分差退化，控制开关保持关闭",
+    "b107_expansion_feed_capacity": "10/12 MELON 配合 5 人和分散喂养仍退化，任务图过载不能靠增加取粮工修复",
+    "b108_deadline_slack": "最轻权重只改善账号来源、损害官方来源；更高权重减少部分逾期但明显降低利润",
+    "b112_fertilizer_collection_deadline": "第 14 至 22 小时提高肥料回收优先级均弱于 B111，不能把施肥缺口解释为简单回收不足"
+  },
+  "next_allowed_module": "B114 只读资本配置漏斗",
+  "next_hypothesis": "逐日拆分土地、种子、动物、雇工和产品采购的请求、实际现金支出与确认资产增量，先定位候选少投入约 1.2 至 1.6 万的具体去向和时间窗，再只修改对应资本模块。",
+  "forbidden_next_actions": [
+    "开放 specialist",
+    "训练 Router",
+    "增加第四专家",
+    "继续扩牛或扩作物",
+    "启用对手条件",
+    "继续微调 Hungarian 成本",
+    "PPO",
+    "提交为金牌"
+  ]
+}

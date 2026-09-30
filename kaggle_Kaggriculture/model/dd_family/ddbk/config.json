@@ -1,0 +1,20 @@
+{
+  "version": "ddbk",
+  "method": "distilled production options with explicit material and construction prerequisites",
+  "teacher": "Boey",
+  "source_version": "ddbd",
+  "rank_iterations": 400,
+  "rank_leaves": 63,
+  "negative_candidates": 8,
+  "quantity_trees": 24,
+  "market_trees": 64,
+  "seed": 61071,
+  "rank_sample_weight": "inverse sqrt positive action frequency capped 8; first 3 days times 4",
+  "market_class_weight": "balanced",
+  "negative_sampling": "always WAIT plus hard spatial/action negatives",
+  "execution_guard": "block duplicate held-item pickup and immediate shed transfer reversal; allow productive animal placement and end-of-day return",
+  "feature_revision": "production_options_v1",
+  "market_label": "raw requested intent; teacher-forced own-request shadow; no future opponent fills",
+  "macro_scope": "merge verified adjacent pickup/build/install and pickup/feed/fertilize chains; explicit per-worker positioned installation goals; raw market residual policy",
+  "resource_policy": "buy only material deficits of committed jobs; reserve pledged feed/fertilizer from sales; repair affordable missing procurement before stopping"
+}

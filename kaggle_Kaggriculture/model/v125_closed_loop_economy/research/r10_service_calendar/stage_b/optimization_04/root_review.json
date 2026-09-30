@@ -1,0 +1,51 @@
+{
+  "at": "2026-09-05T14:41:07.775543+00:00",
+  "status": "ENGINEERING_PASS_NATURAL_ENDING_RESERVE_FAILURE",
+  "source_sha256": "7fdc6a2b2432a94cdf410e2340484ae7d1269334d1d2f49bd6f3bcaa116007c4",
+  "candidate_reward": 133227.0,
+  "calls": 719,
+  "parity_state_checks": 1440,
+  "candidate_latency_ms": {
+    "max": 144.8284590151161,
+    "mean": 27.192957342281076,
+    "p50": 14.572542044334114,
+    "p95": 94.37912493012846,
+    "p99": 116.13829096313566,
+    "total": 19551.736329100095
+  },
+  "calls_over_1s": 0,
+  "errors": [],
+  "rescue_approvals": 0,
+  "route_counts": {
+    "actual_calendar_compilations": 10191,
+    "cache_hits": 0,
+    "checker_calls": 95,
+    "quote_calendar_cache_hits": 314,
+    "quote_calendar_compilations": 521,
+    "route_attempts": 207,
+    "route_failed_quotes": 207,
+    "scheduler_calls": 169
+  },
+  "rejection_reasons": {
+    "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL": 95,
+    "NO_CERTIFICATE:UNSCHEDULED_SERVICES": 74,
+    "UNSUPPORTED:UNSUPPORTED_STARTUP_FRONTIER": 34,
+    "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY:animal:SHEEP:20:4,8:d20:SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED,SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED": 1,
+    "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY:animal:SHEEP:21:1,5:d21:SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED,SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED": 1,
+    "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY:animal:SHEEP:22:7,0:d22:SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED,SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED": 1,
+    "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY:animal:SHEEP:22:8,1:d22:SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED,SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED": 1
+  },
+  "actions_equal_P3_and_R9": true,
+  "terminal_equal_P3_and_R9": true,
+  "mechanism": "新优先级让95个日程通过原checker，但全部被原期末小麦储备门拒绝。完整投资仍未放行。",
+  "identified_next_hypothesis": "scheduler卖麦公式分别保护储备和待喂需求，只取两者最大，未保护两者之和；应同时保留未被工人携带的待喂量与期末储备。保留原ENDING_WHEAT门。",
+  "new_complete_matches": 1,
+  "program_complete_matches": 222,
+  "gold_status": "NOT_GOLD",
+  "output_files": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r10_opt04_opened_natural_01/trace_1950905001_seat0.json.gz": "06411961e6edf3a9d97a400bf5ce33924824afbc5f4ab640d809d930b027914d",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r10_opt04_opened_natural_01/summary.json": "c9ec9c2c8404a253dad5060754409f0da51f5b02211ce5a4133ab663ad7dac56",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r10_opt04_opened_natural_01/games.jsonl": "6d2e68812740c12e14ae5f47463211d8a6081ea746ec9736eba190680920997d",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r10_opt04_opened_natural_01/run_manifest.json": "d193ed2860ba7859d9967f330b05bd167a500dfabe1cb3fbc97c1a19590414f7"
+  }
+}

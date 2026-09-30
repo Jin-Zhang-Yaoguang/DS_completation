@@ -1,0 +1,31 @@
+{
+  "version": "ddbp",
+  "method": "M&M majority-opening-conditioned production-option distillation",
+  "teacher": "M & M & P & Q",
+  "source_version": "ddm",
+  "rank_iterations": 400,
+  "rank_leaves": 63,
+  "negative_candidates": 8,
+  "quantity_trees": 24,
+  "market_trees": 64,
+  "seed": 61071,
+  "rank_sample_weight": "inverse sqrt positive action frequency capped 8; first 3 days times 4",
+  "market_class_weight": "balanced",
+  "negative_sampling": "always WAIT plus hard spatial/action negatives",
+  "execution_guard": "block duplicate held-item pickup and immediate shed transfer reversal; allow productive animal placement and end-of-day return",
+  "feature_revision": "production_options_v1",
+  "market_label": "raw requested intent; teacher-forced own-request shadow; no future opponent fills",
+  "macro_scope": "merge verified adjacent pickup/build/install and pickup/feed/fertilize chains; explicit per-worker positioned installation goals; raw market residual policy",
+  "resource_policy": "buy only material deficits of committed jobs; reserve pledged feed/fertilizer from sales; repair affordable missing procurement before stopping",
+  "maintenance_policy": "Reserve workers for currently observable feed/water obligations with consecutive missed days >=1, using travel and supply-fetch costs; block new production while such obligations remain.",
+  "terminal_rule": "No forced daily maintenance or new capital on day 29; harvest/collect only if warehouse return and deposit fit remaining turns; return carried products at last feasible departure.",
+  "data_selection": {
+    "opening": [
+      "PICKUP:COW",
+      4,
+      4
+    ],
+    "defined_using": "most frequent exact initial goal in 146 source training episodes; no arena scores",
+    "limitation": "Common opening does not prove same teacher executable or identical later strategy"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "kaggriculture-v20-relative-price-boost-screen-v1",
+  "phase": "relative_boost_screen",
+  "comparison": "relative_high_price_boost_vs_v19_step360",
+  "development_only": true,
+  "frozen_before_outcomes": true,
+  "seed_range": [86000, 86063],
+  "opponent_families": ["adaptive_market", "anti_mirror", "incumbent_r002", "kawa_lead2"],
+  "double_seat": true,
+  "candidate_games_per_mode": 512,
+  "baseline_games_per_mode": 512,
+  "modes": [
+    "relative_q70_boost10",
+    "relative_q70_boost25",
+    "relative_q85_boost25",
+    "relative_wool_q70_boost25",
+    "relative_strawberry_q70_boost25",
+    "relative_milk_q70_boost25",
+    "relative_fertilizer_q70_boost25"
+  ],
+  "controller_contract": {
+    "active_steps": [360, 671],
+    "disabled_for_expert": "yarn",
+    "rolling_price_window": 72,
+    "minimum_history": 24,
+    "only_existing_sell_orders": true,
+    "bounded_by_projected_shed": true,
+    "shed_pressure_guard": 80,
+    "production_unchanged": true,
+    "purchases_unchanged": true
+  }
+}

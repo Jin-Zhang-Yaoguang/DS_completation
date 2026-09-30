@@ -1,0 +1,59 @@
+{
+  "schema": "v116-r13-safe-throughput-manifest-v1",
+  "candidate": "v116_r13_rc8_safe_throughput_hmoe",
+  "candidate_schema": "v116-r13-rc8-safe-throughput-hmoe-v1",
+  "strategy_parent": null,
+  "self_contained": true,
+  "runtime_parent_or_gold_import": false,
+  "params_hash": "1637663ed72efbc1ceeb9cdbc74209704d0c4875781a9c8b9ab6e3d41342bb75",
+  "files": {
+    "main.py": "f5e5c4c3dfd36161b248cea5ed4d1867316f29fccb4cf66b8590a8f4db1f69f2",
+    "test_r13.py": "85c1d742698525cf6f0a669a2269c7bd4af19e5880a794df34e93c153831f245",
+    "evaluate_killfast.py": "1416fe2f82c0e2050ed63e482fa979b965ba925b64a282b482c40cf0c1ae1975",
+    "mechanism_results.json": "65c3b485d7e9fb0faa0e488d0d98ca6eaaf4a95601f679ead2e2ae0a41961aa0",
+    "killfast_result.json": "cf07abbb7033fce5a00d69c8e238178c2fa3f7ffad8729d449cea14fb398a91e",
+    "daily_diagnostics.json": "f64990169d36a87c68761fc274f6f8db97bc3538ee765aebc4f4fd70fe2d8bb4"
+  },
+  "mechanism_tests": {
+    "passed": true,
+    "static_checks": 6,
+    "behavior_checks": 10
+  },
+  "killfast": {
+    "runs": 1,
+    "seed": 7100,
+    "seat": 0,
+    "mode": "router",
+    "opponent": "idle",
+    "engine": "1.32.7",
+    "calls": 719,
+    "bank": 95060.0,
+    "step144_assets": 22,
+    "terminal_assets": 67,
+    "runtime_errors": 0,
+    "schema_violations": 0,
+    "invalid_actions": 0,
+    "missed_water_weeds": 0,
+    "passed": true
+  },
+  "formal_p2_run": true,
+  "formal_p2": {
+    "run": "evaluation/runs/r13_p2_exposed_001",
+    "planned_games": 72,
+    "completed_games": 72,
+    "all_719_calls": true,
+    "candidate_errors": 0,
+    "candidate_schema_violations": 0,
+    "minimum_terminal_assets": 62,
+    "router_mean_bank": 76393.33333333333,
+    "router_cvar25_bank": 55153.0,
+    "evidence_set_sha256": "85e18950ba4f1db8e2062e31013016e3ef1f1131694e4e042310aa892dc2ebd1",
+    "decision": "REJECT_P2_ECONOMIC_HEALTH"
+  },
+  "formal_p3_run": false,
+  "replay_panel_run": false,
+  "gold_arena_run": false,
+  "registered": false,
+  "submitted": false,
+  "status": "REJECT_P2_ECONOMIC_HEALTH_NOT_GOLD"
+}

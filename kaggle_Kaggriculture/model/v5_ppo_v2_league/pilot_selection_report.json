@@ -1,0 +1,20 @@
+{
+  "schema": "kaggriculture-ppo-v2-pilot-selection-1",
+  "selection_rule": "pre_registered_smallest_seed_after_identical_multi_family_qualification",
+  "candidate_seeds": [17, 29, 41],
+  "qualification": {
+    "games_per_seed": 448,
+    "score_rate": {"17": 0.8125, "29": 0.8125, "41": 0.8125},
+    "passed": {"17": true, "29": true, "41": true}
+  },
+  "independent_evaluation": {
+    "paired_games_per_seed": 100,
+    "paired_score_rate": {"17": 0.655, "29": 0.655, "41": 0.655},
+    "paired_bootstrap_ci95": {"17": [0.55, 0.755], "29": [0.55, 0.755], "41": [0.55, 0.755]},
+    "pool_games_per_seed": 240,
+    "pool_score_delta": {"17": 0.0625, "29": 0.0625, "41": 0.0625}
+  },
+  "selected_seed": 17,
+  "selected_weights": "checkpoints/pilot_s17/policy_weights.npz",
+  "caveat": "This is G3 pilot evidence only; no untouched 2,000-game G5 test or online submission has been authorized."
+}

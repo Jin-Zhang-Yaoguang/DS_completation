@@ -1,0 +1,427 @@
+{
+  "schema": "kaggriculture-v11-candidate-proposal-1",
+  "model_id": "r001_learned_router_premium_floor_guard",
+  "status": "pending",
+  "admitted": true,
+  "source_round": 1,
+  "first_evaluation_round": 2,
+  "same_panel_performance_claim": false,
+  "parent_models": [
+    "learned_router"
+  ],
+  "hypothesis": "避开异常低价出售，等待后续价格恢复。",
+  "change_scope": "仅撤回父策略已有的低价 premium SELL；不改生产动作",
+  "risk": "价格不恢复时会形成终局库存。",
+  "mutation": {
+    "name": "premium_floor_guard",
+    "change_scope": "仅撤回父策略已有的低价 premium SELL；不改生产动作",
+    "hypothesis": "避开异常低价出售，等待后续价格恢复。",
+    "risk": "价格不恢复时会形成终局库存。",
+    "default_params": {
+      "minimum_price_ratio": 0.55,
+      "release_step": 696
+    },
+    "trigger": "败局含大量低价 premium 出售且终局库存安全",
+    "aliases": [
+      "floor",
+      "delay"
+    ],
+    "parameter_templates": [
+      {
+        "minimum_price_ratio": 0.45,
+        "release_step": 696
+      },
+      {
+        "minimum_price_ratio": 0.65,
+        "release_step": 696
+      }
+    ],
+    "params": {
+      "minimum_price_ratio": 0.55,
+      "release_step": 696
+    }
+  },
+  "selection_reasons": [
+    "代表性败局检测到低于基准价阈值的 premium 出售。",
+    "代表性败局检测到动物品大批量抛售。",
+    "代表性败局检测到跨商品的大批量抛售。",
+    "代表性败局同时出现公开金币领先反转与动物品集中出售。",
+    "模型池尚无 parent=learned_router、mutation=premium_floor_guard、params={\"minimum_price_ratio\":0.55,\"release_step\":696} 的候选。"
+  ],
+  "mutation_attempts": [
+    {
+      "mutation": "premium_floor_guard",
+      "candidate_id": "r001_learned_router_premium_floor_guard",
+      "smoke_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/smoke_registry_premium_floor_guard_48eb5b8b.json",
+      "passed": true,
+      "action_difference_steps": 622
+    }
+  ],
+  "registry_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/registry_next.json",
+  "registry_entry": {
+    "id": "r001_learned_router_premium_floor_guard",
+    "kind": "python",
+    "path": "../../../candidate_agent.py",
+    "factory": "create_agent",
+    "factory_kwargs": {
+      "parent_registry": "runs/round_001/strategy/registry_next.json",
+      "parent_id": "learned_router",
+      "mutation_name": "premium_floor_guard",
+      "mutation_params": {
+        "minimum_price_ratio": 0.55,
+        "release_step": 696
+      },
+      "candidate_id": "r001_learned_router_premium_floor_guard"
+    },
+    "code_paths": [
+      "../../../candidate_agent.py",
+      "../../../mutation_catalog.py"
+    ],
+    "family": "learned_router+premium_floor_guard",
+    "lineage": [
+      "learned_router",
+      "r001_learned_router_premium_floor_guard"
+    ],
+    "parent_models": [
+      "learned_router"
+    ],
+    "mutation": "premium_floor_guard",
+    "change_scope": "仅撤回父策略已有的低价 premium SELL；不改生产动作",
+    "tags": [
+      "pending",
+      "v11",
+      "market-residual",
+      "mutation:premium_floor_guard",
+      "source_round:1",
+      "first_evaluation_round:2"
+    ],
+    "source_round": 1,
+    "first_evaluation_round": 2
+  },
+  "code_paths": [
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/candidate_agent.py",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/mutation_catalog.py"
+  ],
+  "code_and_config_sha256": "b401082de89586791524eea9fd058720470c9736be69cb626e8e7d3ff40e57da",
+  "diagnosis_paths": {
+    "json": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/diagnosis.json",
+    "markdown": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/diagnosis.md",
+    "representative_replays": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/representative_replays.json.gz"
+  },
+  "smoke_evidence": {
+    "schema": "kaggriculture-v11-candidate-admission-smoke-1",
+    "candidate_id": "r001_learned_router_premium_floor_guard",
+    "parent_id": "learned_router",
+    "mutation_name": "premium_floor_guard",
+    "mutation_params": {
+      "minimum_price_ratio": 0.55,
+      "release_step": 696
+    },
+    "input_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_registry.json",
+    "input_registry_and_code_sha256": "c578cf0442158b023c10d1ef55384631d02a699347ec431f417d47b97ecf82db",
+    "smoke_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/smoke_registry_premium_floor_guard_48eb5b8b.json",
+    "smoke_registry_and_code_sha256": "7ccbcdb4a8ef035eb1ce306544aa156259398751954da5f0ad16a171a415fd39",
+    "development_sources": [
+      {
+        "date": "2026-08-18",
+        "episode_id": "94242838",
+        "seed": 701648668,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94549988",
+        "seed": 600831247,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95029939",
+        "seed": 2074931157,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95153005",
+        "seed": 1648415156,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-18",
+        "episode_id": "94286878",
+        "seed": 1954004049,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94455611",
+        "seed": 1788444888,
+        "split": "train"
+      }
+    ],
+    "development_sources_sha256": "e2e6596e1cffb5e28ca1347e4d46852aaf52713d77f286aa667ad0c924c22417",
+    "functionality_only": true,
+    "performance_evidence": false,
+    "source_panel_reused_only_for_smoke": true,
+    "source_round": 1,
+    "first_evaluation_round": 2,
+    "minimum_seed_gate": 6,
+    "seeds": 6,
+    "seat_assignments": 2,
+    "candidate_games": 12,
+    "parent_control_games": 12,
+    "all_done": true,
+    "all_720_steps": true,
+    "zero_stderr": true,
+    "action_difference_steps": 622,
+    "changed_games": 12,
+    "market_changed_steps": 567,
+    "farmer_changed_steps": 50,
+    "hands_changed_steps": 30,
+    "real_action_difference": true,
+    "passed": true,
+    "done": true,
+    "statuses": [
+      "DONE",
+      "DONE"
+    ],
+    "steps": 720,
+    "trajectories": [
+      {
+        "date": "2026-08-18",
+        "episode_id": "94242838",
+        "seed": 701648668,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "d9094380b933754ba26bc187c26fae03cb040aea40ff2eb5c13a39625b0b860a",
+        "control_action_sha256": "2422f534133646ab8ac6eca6c27ebd9a22af439c7329fb45914469fd5a3e2d16",
+        "action_difference_steps": 36,
+        "market_changed_steps": 36,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-18",
+        "episode_id": "94242838",
+        "seed": 701648668,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "53b34da56015dd43b467851638a5884dfc06489842f286b6b1cceea3b2e6e7ae",
+        "control_action_sha256": "3ee70e5c991553d46094d914764ad1f15a72d52cec76748d0b96b12b905a4d36",
+        "action_difference_steps": 30,
+        "market_changed_steps": 26,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 5,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94549988",
+        "seed": 600831247,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "4b41470f4b8d85901667304e8b005cdd3ef4a9cacdc59eaf0a119d69da2b4117",
+        "control_action_sha256": "c23e17cc48d76d2c31be070f2671d9d3ce6ce05d474021315dd0324d8d7bb21f",
+        "action_difference_steps": 50,
+        "market_changed_steps": 50,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94549988",
+        "seed": 600831247,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "8c3ec2c1f7073dafdb830945e68a5853a10388a693633fd30c0e40d6b7d6004e",
+        "control_action_sha256": "fab8c045464304c69d6a3b1cb005834304edb7d7b7e7af913d41696c3ba28579",
+        "action_difference_steps": 50,
+        "market_changed_steps": 50,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95029939",
+        "seed": 2074931157,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "26c36f4e931937016a65d9a2752d9920f114fcf22918524a7b9d539248a55530",
+        "control_action_sha256": "308c1760ba9ec58e39452b2779582ed32f4276b1ab96faaee74ef9d3976d6884",
+        "action_difference_steps": 81,
+        "market_changed_steps": 61,
+        "farmer_changed_steps": 20,
+        "hands_changed_steps": 10,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95029939",
+        "seed": 2074931157,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "26c36f4e931937016a65d9a2752d9920f114fcf22918524a7b9d539248a55530",
+        "control_action_sha256": "308c1760ba9ec58e39452b2779582ed32f4276b1ab96faaee74ef9d3976d6884",
+        "action_difference_steps": 81,
+        "market_changed_steps": 61,
+        "farmer_changed_steps": 20,
+        "hands_changed_steps": 10,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95153005",
+        "seed": 1648415156,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "c7ac4c9ef9881146e6ae8210f034c72e5e67c59b0857057da0d08e2ccd5be8e1",
+        "control_action_sha256": "83c10f71ffb7d6f2a6c44ec8c2f4b7c1bf8110082cefaad8a2a234b4bce71f4d",
+        "action_difference_steps": 42,
+        "market_changed_steps": 42,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95153005",
+        "seed": 1648415156,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "5019684dee437ed1cba7b2018bddd46749b3a2ecb0b6e67f7730f8731786341f",
+        "control_action_sha256": "18a5993fe7617259b4b295f067b0bdfa9e8b0a72d0b3a81a5eec3104983e8c50",
+        "action_difference_steps": 42,
+        "market_changed_steps": 42,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-18",
+        "episode_id": "94286878",
+        "seed": 1954004049,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "59ba7e577989e597852d0b017fc65a21ab637fa86b2cb3042e8e1808461a3cd9",
+        "control_action_sha256": "1a267a63193e2d94c032fbc173babd94ca83074b1f2025d2fdcc8d3efc1e760c",
+        "action_difference_steps": 34,
+        "market_changed_steps": 34,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-18",
+        "episode_id": "94286878",
+        "seed": 1954004049,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "31f081794ae6015b5bd7659d753a195a69488d6c373353696286f879e3f05039",
+        "control_action_sha256": "039d50afa8313b946f8b82e2ad632e772d7dbf4ef1f66168dfd31585c1a14d46",
+        "action_difference_steps": 58,
+        "market_changed_steps": 47,
+        "farmer_changed_steps": 10,
+        "hands_changed_steps": 5,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94455611",
+        "seed": 1788444888,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "39157b3821199013a8982fb78de6fbec75d04c702e2738f79ca743e723185f4f",
+        "control_action_sha256": "496c6c21849a8a7d1393048071ed1d4a69c0b303f3e9baea37485c4b8efd086f",
+        "action_difference_steps": 59,
+        "market_changed_steps": 59,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94455611",
+        "seed": 1788444888,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "fa56426db1b5bfd8c4200e81faccc707245da1273dd18410b9d9a30f8ebee0c4",
+        "control_action_sha256": "2bd42391d6e96ab8bb5955cfcaf572a23717a95a804ebebcb9ebec98376bc3e7",
+        "action_difference_steps": 59,
+        "market_changed_steps": 59,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "admitted_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/registry_next.json",
+    "admitted_registry_file_sha256": "a9a644d336a94e98191be2487147ff40fa269d8398342a01378945220b86feef",
+    "admitted_registry_and_code_sha256": "d5cf76a550d67b6d0d0f7fc64b3fa7a0b790e04c7a9cce42a1e772092cfc047f",
+    "candidate_serving_sha256": "b6b89c9152e86880b2cb76f77ceba3bccdfcc0cddfbc3ed41544de16f3b873a0",
+    "parent_serving_sha256": "9813b175856c8e702613bb27b4e0a4b95403cae65093615d9611f12cdb184ed6",
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/candidate_smoke.json",
+    "sha256": "1d0ddfba2eb780a845edbc27cc524d483d61d5f09e7b1cf4d67b1895b9aef3b6"
+  }
+}

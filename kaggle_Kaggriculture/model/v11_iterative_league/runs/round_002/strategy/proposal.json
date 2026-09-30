@@ -1,0 +1,622 @@
+{
+  "schema": "kaggriculture-v11-candidate-proposal-1",
+  "model_id": "r002_learned_router_topday_animal_throttle",
+  "status": "pending",
+  "admitted": true,
+  "source_round": 2,
+  "first_evaluation_round": 3,
+  "same_panel_performance_claim": false,
+  "parent_models": [
+    "learned_router"
+  ],
+  "hypothesis": "在反复出现价格冲击的季中节点延迟一部分供给。",
+  "change_scope": "仅在显式日期缩减父策略已有动物品 SELL",
+  "risk": "固定日期规律可能不迁移到下一轮 seed。",
+  "mutation": {
+    "name": "topday_animal_throttle",
+    "change_scope": "仅在显式日期缩减父策略已有动物品 SELL",
+    "hypothesis": "在反复出现价格冲击的季中节点延迟一部分供给。",
+    "risk": "固定日期规律可能不迁移到下一轮 seed。",
+    "default_params": {
+      "days": [
+        10,
+        17,
+        24
+      ],
+      "fraction": 0.5
+    },
+    "trigger": "日期分层显示稳定、可重复的季中失败簇",
+    "aliases": [
+      "topdays"
+    ],
+    "parameter_templates": [
+      {
+        "days": [
+          9,
+          16,
+          23
+        ],
+        "fraction": 0.5
+      },
+      {
+        "days": [
+          10,
+          17,
+          24
+        ],
+        "fraction": 0.75
+      }
+    ],
+    "params": {
+      "days": [
+        10,
+        17,
+        24
+      ],
+      "fraction": 0.5
+    }
+  },
+  "selection_reasons": [
+    "完整开发轮亲子对战将灾难性 mutation 整族排除：premium_floor_guard, value_slot_priority。",
+    "跨谱系直接亲子证据优先 topday_animal_throttle：baseline_v1=0.730, baseline_v2=0.730, baseline_v5=0.810, baseline_v8=0.580；4 条独立父谱系全部高于 0.5。",
+    "代表性败局检测到终局仍有可售库存。",
+    "代表性败局检测到低于基准价阈值的 premium 出售。",
+    "代表性败局检测到动物品大批量抛售。",
+    "代表性败局检测到跨商品的大批量抛售。",
+    "代表性败局检测到同回合同商品重复 SELL。",
+    "代表性败局同时出现公开金币领先反转与动物品集中出售。",
+    "领先模型先后手得分率相差 0.020。",
+    "最终候选签名 parent=learned_router、mutation=topday_animal_throttle、params={\"days\":[10,17,24],\"fraction\":0.5} 此前未注册。"
+  ],
+  "selection_policy": {
+    "mode": "completed-development-direct-parent-transfer",
+    "excluded_mutations": [
+      "premium_floor_guard",
+      "value_slot_priority"
+    ],
+    "strong_transfer_priority": [
+      "topday_animal_throttle"
+    ],
+    "evidence": {
+      "schema": "kaggriculture-v11-registered-mutation-evidence-1",
+      "source": "completed development round direct child-vs-parent games only",
+      "thresholds": {
+        "catastrophic_min_direct_games": 200,
+        "catastrophic_max_score_rate": 0.2,
+        "catastrophic_max_mean_margin": -5000.0,
+        "transfer_min_lineages": 2,
+        "transfer_min_score_rate": 0.55
+      },
+      "direct_evidence": [
+        {
+          "child": "v1_topdays",
+          "parent": "baseline_v1",
+          "mutation": "topday_animal_throttle",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 146,
+          "draws": 0,
+          "losses": 54,
+          "score_rate": 0.73,
+          "mean_margin": 65.885
+        },
+        {
+          "child": "v2_topdays",
+          "parent": "baseline_v2",
+          "mutation": "topday_animal_throttle",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 146,
+          "draws": 0,
+          "losses": 54,
+          "score_rate": 0.73,
+          "mean_margin": 66.12
+        },
+        {
+          "child": "v5_topdays",
+          "parent": "baseline_v5",
+          "mutation": "topday_animal_throttle",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 162,
+          "draws": 0,
+          "losses": 38,
+          "score_rate": 0.81,
+          "mean_margin": 156.125
+        },
+        {
+          "child": "v8_topdays",
+          "parent": "baseline_v8",
+          "mutation": "topday_animal_throttle",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 116,
+          "draws": 0,
+          "losses": 84,
+          "score_rate": 0.58,
+          "mean_margin": 71.145
+        },
+        {
+          "child": "v5_price_slot",
+          "parent": "baseline_v5",
+          "mutation": "value_slot_priority",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 9,
+          "draws": 0,
+          "losses": 191,
+          "score_rate": 0.045,
+          "mean_margin": -5082.02
+        },
+        {
+          "child": "v8_conservative",
+          "parent": "baseline_v8",
+          "mutation": "animal_batch_cap",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 17,
+          "draws": 0,
+          "losses": 183,
+          "score_rate": 0.085,
+          "mean_margin": -761.33
+        },
+        {
+          "child": "r001_learned_router_premium_floor_guard",
+          "parent": "learned_router",
+          "mutation": "premium_floor_guard",
+          "mapping_source": "explicit",
+          "games": 200,
+          "wins": 8,
+          "draws": 0,
+          "losses": 192,
+          "score_rate": 0.04,
+          "mean_margin": -30498.325
+        }
+      ],
+      "catastrophic_evidence": [
+        {
+          "child": "v5_price_slot",
+          "parent": "baseline_v5",
+          "mutation": "value_slot_priority",
+          "mapping_source": "inferred_alias",
+          "games": 200,
+          "wins": 9,
+          "draws": 0,
+          "losses": 191,
+          "score_rate": 0.045,
+          "mean_margin": -5082.02
+        },
+        {
+          "child": "r001_learned_router_premium_floor_guard",
+          "parent": "learned_router",
+          "mutation": "premium_floor_guard",
+          "mapping_source": "explicit",
+          "games": 200,
+          "wins": 8,
+          "draws": 0,
+          "losses": 192,
+          "score_rate": 0.04,
+          "mean_margin": -30498.325
+        }
+      ],
+      "excluded_mutations": [
+        "premium_floor_guard",
+        "value_slot_priority"
+      ],
+      "mechanism_groups": [
+        {
+          "mutation": "animal_batch_cap",
+          "lineage_count": 1,
+          "lineage_score_rates": {
+            "baseline_v8": 0.085
+          },
+          "minimum_lineage_score_rate": 0.085,
+          "weighted_direct_score_rate": 0.085,
+          "direct_games": 200,
+          "strong_transfer_evidence": false
+        },
+        {
+          "mutation": "topday_animal_throttle",
+          "lineage_count": 4,
+          "lineage_score_rates": {
+            "baseline_v1": 0.73,
+            "baseline_v2": 0.73,
+            "baseline_v5": 0.81,
+            "baseline_v8": 0.58
+          },
+          "minimum_lineage_score_rate": 0.58,
+          "weighted_direct_score_rate": 0.7125,
+          "direct_games": 800,
+          "strong_transfer_evidence": true
+        }
+      ],
+      "strong_transfer_priority": [
+        "topday_animal_throttle"
+      ]
+    }
+  },
+  "mutation_attempts": [
+    {
+      "mutation": "topday_animal_throttle",
+      "candidate_id": "r002_learned_router_topday_animal_throttle",
+      "smoke_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/smoke_registry_topday_animal_throttle_e5241a73.json",
+      "passed": true,
+      "action_difference_steps": 169
+    }
+  ],
+  "registry_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/registry_next.json",
+  "registry_entry": {
+    "id": "r002_learned_router_topday_animal_throttle",
+    "kind": "python",
+    "path": "../../../candidate_agent.py",
+    "factory": "create_agent",
+    "factory_kwargs": {
+      "parent_registry": "runs/round_002/strategy/registry_next.json",
+      "parent_id": "learned_router",
+      "mutation_name": "topday_animal_throttle",
+      "mutation_params": {
+        "days": [
+          10,
+          17,
+          24
+        ],
+        "fraction": 0.5
+      },
+      "candidate_id": "r002_learned_router_topday_animal_throttle"
+    },
+    "code_paths": [
+      "../../../candidate_agent.py",
+      "../../../mutation_catalog.py"
+    ],
+    "family": "learned_router+topday_animal_throttle",
+    "lineage": [
+      "learned_router",
+      "r002_learned_router_topday_animal_throttle"
+    ],
+    "parent_models": [
+      "learned_router"
+    ],
+    "mutation": "topday_animal_throttle",
+    "change_scope": "仅在显式日期缩减父策略已有动物品 SELL",
+    "tags": [
+      "pending",
+      "v11",
+      "market-residual",
+      "mutation:topday_animal_throttle",
+      "source_round:2",
+      "first_evaluation_round:3"
+    ],
+    "source_round": 2,
+    "first_evaluation_round": 3
+  },
+  "code_paths": [
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/candidate_agent.py",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/mutation_catalog.py"
+  ],
+  "code_and_config_sha256": "a8d93b78581fce231931c9f55231f11667867fb987ff78fe561974b9def97999",
+  "diagnosis_paths": {
+    "json": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/diagnosis.json",
+    "markdown": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/diagnosis.md",
+    "representative_replays": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/representative_replays.json.gz"
+  },
+  "smoke_evidence": {
+    "schema": "kaggriculture-v11-candidate-admission-smoke-1",
+    "candidate_id": "r002_learned_router_topday_animal_throttle",
+    "parent_id": "learned_router",
+    "mutation_name": "topday_animal_throttle",
+    "mutation_params": {
+      "days": [
+        10,
+        17,
+        24
+      ],
+      "fraction": 0.5
+    },
+    "input_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/strategy/registry_next.json",
+    "input_registry_and_code_sha256": "d5cf76a550d67b6d0d0f7fc64b3fa7a0b790e04c7a9cce42a1e772092cfc047f",
+    "smoke_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/smoke_registry_topday_animal_throttle_e5241a73.json",
+    "smoke_registry_and_code_sha256": "e4a16d239875262ddab4c7b0d7151b8fc718b53468fc13416c3bfa5688235f39",
+    "development_sources": [
+      {
+        "date": "2026-08-18",
+        "episode_id": "94144194",
+        "seed": 2062596860,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94679842",
+        "seed": 854318152,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95522847",
+        "seed": 185487607,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "94993423",
+        "seed": 889958767,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "94970483",
+        "seed": 470961940,
+        "split": "train"
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94439796",
+        "seed": 371613607,
+        "split": "train"
+      }
+    ],
+    "development_sources_sha256": "4a5e8e7b23853be985c73eb102c5849e8b19ab08b6c07c75a40210f83c7b9b8b",
+    "functionality_only": true,
+    "performance_evidence": false,
+    "source_panel_reused_only_for_smoke": true,
+    "source_round": 2,
+    "first_evaluation_round": 3,
+    "minimum_seed_gate": 6,
+    "seeds": 6,
+    "seat_assignments": 2,
+    "candidate_games": 12,
+    "parent_control_games": 12,
+    "all_done": true,
+    "all_720_steps": true,
+    "zero_stderr": true,
+    "action_difference_steps": 169,
+    "changed_games": 12,
+    "market_changed_steps": 169,
+    "farmer_changed_steps": 0,
+    "hands_changed_steps": 0,
+    "real_action_difference": true,
+    "passed": true,
+    "done": true,
+    "statuses": [
+      "DONE",
+      "DONE"
+    ],
+    "steps": 720,
+    "trajectories": [
+      {
+        "date": "2026-08-18",
+        "episode_id": "94144194",
+        "seed": 2062596860,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "8ce27983185d23cff899e6946fe5765b1c48fd99f5b629d0e7fad46b1b33735d",
+        "control_action_sha256": "58cebb49c48301b749896c1159bffa52a97d0fd9115ff192abd9ed231fb88fe3",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-18",
+        "episode_id": "94144194",
+        "seed": 2062596860,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "8ce27983185d23cff899e6946fe5765b1c48fd99f5b629d0e7fad46b1b33735d",
+        "control_action_sha256": "58cebb49c48301b749896c1159bffa52a97d0fd9115ff192abd9ed231fb88fe3",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94679842",
+        "seed": 854318152,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "481b1c3bead82c6a039f3ec09a8dd32dbeb6c49cfc5140988c584f57507e180a",
+        "control_action_sha256": "5eefb6bb8a058666df753075eb30e9cc4114d579922d4f6ff9e646a200f772d0",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94679842",
+        "seed": 854318152,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "32e8e9cc17f22055a8b5f6634e0dea984ea4d826e5a31bb93ebc38772cf398d2",
+        "control_action_sha256": "2e7244c68a38a6d16ac89e142c05a4e2349e55e48250cf51bf482b86f94924f0",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95522847",
+        "seed": 185487607,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "fc760000021c8769304c5fc9b34bf0efcaba3e77bf8adde718d911e6fe4efb8c",
+        "control_action_sha256": "6f630a84f98248a5d3e249d5a76f75b9227350ef02524fcd359c4e8b47fb2724",
+        "action_difference_steps": 12,
+        "market_changed_steps": 12,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "95522847",
+        "seed": 185487607,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "ba75f44c48e0fe005d2988e158b303ca98904a1afa0f0cb8238bc5560b939b0d",
+        "control_action_sha256": "e0f26b7f4e8d9c85ffb76a14c26746645ef2c1e2fb5a56cb5e631e7534d961d8",
+        "action_difference_steps": 8,
+        "market_changed_steps": 8,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "94993423",
+        "seed": 889958767,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "06e1668dbd2a07c8b89c9829653f349175ef3fff0d367ace7c010ba985f06830",
+        "control_action_sha256": "6bfe185f40d124a9f923c7148d737bf8eefac6d304274ceae5d883450777d793",
+        "action_difference_steps": 18,
+        "market_changed_steps": 18,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "94993423",
+        "seed": 889958767,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "c9b63c511cbc2101969b507860b2a6d724822b9955d8d0ad9139900e3f740d8d",
+        "control_action_sha256": "d3e7381b576a877b5efbd075642de12cd534d8444ad519131a29a5d3c1769acd",
+        "action_difference_steps": 18,
+        "market_changed_steps": 18,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "94970483",
+        "seed": 470961940,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "60086815593deab1ad555bbf537b73824146d18d9087f9bc7c04cec4744e10e3",
+        "control_action_sha256": "0e6f30a7d21f98df41f8c62a66b89c2fea1e7c5d0d14609bee34f0c3b50edc6d",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-20",
+        "episode_id": "94970483",
+        "seed": 470961940,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "524b355191c8fdfc4a9e46977c7bc9347fc27b34e7d615186060f8a039b5b763",
+        "control_action_sha256": "af5e4c77951e35bf88cf11f419cd89de38cfce549e387a75e780a344bcc1c3bc",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94439796",
+        "seed": 371613607,
+        "target_seat": 0,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "43deaae69170a52bdaef12f9e8e138bee970159c8301d4bd2474897dccc79439",
+        "control_action_sha256": "06c9e96e7a281d5d5e8666e6e4affcc6ba68485c802d24d85434d9671500b987",
+        "action_difference_steps": 14,
+        "market_changed_steps": 14,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      },
+      {
+        "date": "2026-08-19",
+        "episode_id": "94439796",
+        "seed": 371613607,
+        "target_seat": 1,
+        "candidate_done": true,
+        "control_done": true,
+        "candidate_steps": 720,
+        "control_steps": 720,
+        "candidate_calls": 719,
+        "control_calls": 719,
+        "candidate_action_sha256": "b4622b0633e5a1336f6c6108beee876f3ffaf852a2e771c44bc473edf28f6855",
+        "control_action_sha256": "dd252d0e659f65b46b0b73ad7be98dadf812c11e2624fa8959b7ca6740128712",
+        "action_difference_steps": 15,
+        "market_changed_steps": 15,
+        "farmer_changed_steps": 0,
+        "hands_changed_steps": 0,
+        "stderr_bytes": 0
+      }
+    ],
+    "admitted_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/registry_next.json",
+    "admitted_registry_file_sha256": "e98156a0ac3741f5c9cfa698ea00f37d54e9277b53bfa864eb848928eb8dbaf0",
+    "admitted_registry_and_code_sha256": "a4d63598c95a165add426aaac7b1dbe2cd9ff2e6f91dde71e6e3ec0e54da26a5",
+    "candidate_serving_sha256": "38afb12bd5fbc987adf752acb437abe9330bd385233c22782b35353f77be2d74",
+    "parent_serving_sha256": "9813b175856c8e702613bb27b4e0a4b95403cae65093615d9611f12cdb184ed6",
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/candidate_smoke.json",
+    "sha256": "382dd7eb243fdf1e4be563ea87c009a8d6d46cd44265d4c04a1f30bf9da5742c"
+  }
+}

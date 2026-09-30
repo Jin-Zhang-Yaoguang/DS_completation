@@ -1,0 +1,86 @@
+{
+  "schema": "kaggriculture-v124-iteration-registry-v1",
+  "protocol_version": "1.1",
+  "effective_date": "2026-09-03",
+  "program_status": "ITERATION_READY",
+  "gold_status": "NOT_GOLD",
+  "kaggle_submission": {
+    "authorized": false,
+    "attempted": false
+  },
+  "invariants": {
+    "strategy_parent_must_be_null": true,
+    "maximum_primary_mechanism_changes_per_candidate": 1,
+    "fresh_dev_confirmation_block_per_candidate": true,
+    "opened_panel_never_becomes_blind_again": true,
+    "online_panels_never_pooled": true,
+    "gate3_thresholds_unchanged": true,
+    "submission_requires_explicit_user_authorization": true
+  },
+  "cycles": [
+    {
+      "candidate_id": "V124-R0",
+      "status": "RETIRED_GATE2_FAILED",
+      "strategy_parent": null,
+      "primary_change": "daily aggregate-contract multi-teacher HMoE with independent executor",
+      "failure_class": "CONTRACT_TO_EXECUTION_REALIZATION_GAP",
+      "gate_status": {
+        "gate0": "PASS_TIME_BLIND_DEFERRED",
+        "gate1": "PASS_TIME_BLIND_DEFERRED",
+        "gate2": "FAIL",
+        "gate3": "NOT_OPENED",
+        "gate4": "NOT_STARTED_NOT_AUTHORIZED",
+        "gate5": "NOT_STARTED"
+      },
+      "immutable_evidence": {
+        "decision.json": "0059126bbdf963e65dde4ee051869d2ca83bf95e5ee9b7158d809e8c280777e9",
+        "development_report.json": "6d2b1fdf0fd8f8ffc41237fd2a97de56e55b5413d926320ba2b434e37418a4b7",
+        "candidate_freeze_manifest.json": "6abda4a8b4d1050dec1a7c7fc25de43637920b4659ea8a50d0c5ccf17acc95ff"
+      },
+      "panel_transitions": {
+        "gate2_v120_block": "DIAGNOSTIC_ONLY",
+        "gate2_v21_v29_v76_block": "DIAGNOSTIC_ONLY",
+        "gate3_local_blind": "UNOPENED",
+        "own_online_primary": "NOT_AUTHORIZED",
+        "official_daily_confirmation": "UNOPENED"
+      }
+    },
+    {
+      "candidate_id": "V124-R1",
+      "status": "DESIGN_READY_NOT_STARTED",
+      "parent_candidate_id": "V124-R0",
+      "parent_candidate_sha": "3ef5c06dbf8dcaa63429ca2c05cde0dbb4772e17e60f978460f93d0884a5065c",
+      "primary_failure": "daily unordered contracts do not encode task dependencies and state-confirmed execution",
+      "causal_hypothesis": "short-horizon semantic options with realization prediction improve contract execution under candidate-induced state drift",
+      "single_primary_change": "replace daily-only execution targets with 1-to-8-turn OptionContract targets while retaining the strategic HMoE budget layer",
+      "expected_state_delta": "higher confirmed production, return-before-expiry, cash-cycle closure and terminal liquidation",
+      "mechanism_metric": "CashCycleClosureRate",
+      "falsification_condition": "Gate 2A fails or a fresh paired confirmation block does not improve every known family",
+      "diagnostic_panels": [
+        "V124-R0_GATE2_V120",
+        "V124-R0_GATE2_V21_V29_V76"
+      ],
+      "fresh_confirmation_block": "UNALLOCATED_REQUIRED_BEFORE_EVALUATION",
+      "gate3_panel": "SEALED_UNALLOCATED",
+      "candidate_sha": null,
+      "training_status": "NOT_STARTED"
+    }
+  ],
+  "iteration_policy": {
+    "gate2a": "mechanism completion and state confirmation",
+    "gate2b": "paired child-versus-parent uplift on a fresh confirmation block",
+    "gate2c": "absolute pure win rate at least 50 percent independently against V120 and the combined V21 V29 V76 family",
+    "research_incumbent_rule": "Gate 2B may advance the research baseline but never grants Gate 3 eligibility",
+    "gate3_eligibility": "requires Gate 2A Gate 2B and Gate 2C",
+    "no_uplift_limit": 3,
+    "no_uplift_action": "REDESIGN_REQUIRED_NOT_THRESHOLD_RELAXATION"
+  },
+  "panel_lifecycle": [
+    "UNALLOCATED",
+    "COMMITTED",
+    "OPENED",
+    "DIAGNOSTIC_ONLY",
+    "RETIRED"
+  ],
+  "next_action": "construct V124-R1 only after its candidate manifest and fresh Development confirmation block are committed"
+}

@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""Synthetic architecture and expert-coverage screen for V89."""
+
+from __future__ import annotations
+
+import concurrent.futures
+import importlib.util
+import json
+import os
+from pathlib import Path
+import statistics
+
+
+HERE = Path(__file__).resolve().parent
+MODEL = HERE.parent
+BASE_PATH = MODEL / "v88_reference_trajectory_state_tube_moe/audit_and_screen.py"
+spec = importlib.util.spec_from_file_location("v89_audit_base", BASE_PATH)
+base = importlib.util.module_from_spec(spec)
+assert spec and spec.loader
+spec.loader.exec_module(base)
+
+base.HERE = HERE
+base.POLICIES = {
+    "full": HERE / "main.py",
+    "ablation": HERE / "ablation_main.py",
+    "comparator": MODEL / "v76_adjacent_safe_buy_lead/main.py",
+}
+base.SEEDS = tuple(range(89101, 89117))
+
+
+def play(task):
+    return base.play(task)
+
+
+def main():
+    tasks = [
+        (mode, family, seed, seat)
+        for mode in base.POLICIES
+        for family in base.OPPONENTS
+        for seed in base.SEEDS
+        for seat in (0, 1)
+    ]
+    with concurrent.futures.ProcessPoolExecutor(max_workers=min(16, os.cpu_count() or 1)) as pool:
+        rows = list(pool.map(play, tasks, chunksize=1))
+
+    mode_scores = {
+        mode: statistics.mean(row["score"] for row in rows if row["mode"] == mode)
+        for mode in base.POLICIES
+    }
+    by_family = {
+        mode: {
+            family: statistics.mean(row["score"] for row in rows if row["mode"] == mode and row["family"] == family)
+            for family in base.OPPONENTS
+        }
+        for mode in base.POLICIES
+    }
+    full_rows = [row for row in rows if row["mode"] == "full"]
+    comparator_rows = [row for row in rows if row["mode"] == "comparator"]
+    selected = set()
+    switches = exact_regime = fallback = 0
+    for row in full_rows:
+        stats = row.get("stats", {}) or {}
+        selected.update(str(key) for key, value in (stats.get("selections", {}) or {}).items() if int(value) > 0)
+        switches += int(stats.get("switches", 0))
+        exact_regime += int(stats.get("exact_regime", 0))
+        fallback += int(stats.get("fallback", 0))
+    provenance = json.loads((HERE / "training_provenance.json").read_text(encoding="utf-8"))
+    first_shop = {str(row["episode_id"]): row["first_shop"] for row in provenance}
+    selected_regimes = sorted({first_shop[key] for key in selected})
+
+    full_vs_ablation = base.paired(rows, "full", "ablation")
+    full_vs_comparator = base.paired(rows, "full", "comparator")
+    architecture = base.static_audit()
+    candidate_cat = statistics.mean(row["margin"] < -10000 for row in full_rows)
+    comparator_cat = statistics.mean(row["margin"] < -10000 for row in comparator_rows)
+    safety_violations = sum(row["violations"] for row in rows)
+    all_719 = all(row["calls"] == 719 for row in rows)
+    gate = bool(
+        not architecture["complete_agent_call_detected"]
+        and all_719
+        and safety_violations == 0
+        and len(selected) >= 8
+        and len(selected_regimes) >= 4
+        and full_vs_ablation["uplift_pp"] > 0
+        and full_vs_ablation["positive_zero_negative"][0] > full_vs_ablation["positive_zero_negative"][2]
+        and mode_scores["full"] >= 0.60
+        and by_family["full"]["v76"] >= 0.50
+        and 100 * (candidate_cat - comparator_cat) <= 1.0
+    )
+    payload = {
+        "schema": "kaggriculture-v89-preconstruction-audit-v1",
+        "engine": str(base.kagsim.ENGINE_VERSION),
+        "official_replay_sources_consumed": 0,
+        "synthetic_seed_range": [min(base.SEEDS), max(base.SEEDS)],
+        "games": len(rows),
+        "static_architecture_audit": architecture,
+        "score_rate": mode_scores,
+        "score_rate_by_opponent": by_family,
+        "full_vs_ablation": full_vs_ablation,
+        "full_vs_comparator": full_vs_comparator,
+        "direct_v76_score_rate": by_family["full"]["v76"],
+        "candidate_catastrophic_rate": candidate_cat,
+        "comparator_catastrophic_rate": comparator_cat,
+        "catastrophic_rate_delta_pp": 100 * (candidate_cat - comparator_cat),
+        "selected_case_count": len(selected),
+        "selected_case_ids": sorted(map(int, selected)),
+        "selected_training_first_shop_regimes": selected_regimes,
+        "option_switches": switches,
+        "exact_regime_day_selections": exact_regime,
+        "all_719_calls": all_719,
+        "safety_violations": safety_violations,
+        "fallback_calls_full": fallback,
+        "decision": "PASS_PRECONSTRUCTION" if gate else "REJECT_PRECONSTRUCTION",
+        "rows": rows,
+    }
+    (HERE / "preconstruction_audit_results.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps({key: value for key, value in payload.items() if key != "rows"}, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

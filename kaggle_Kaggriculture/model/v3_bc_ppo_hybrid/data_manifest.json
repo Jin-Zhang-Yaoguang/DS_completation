@@ -1,0 +1,86 @@
+{
+  "schema": "kaggriculture-v3-bc-1",
+  "feature_schema": "kaggriculture-v3-macro-1",
+  "feature_dim": 180,
+  "episodes": 10000,
+  "workers": 12,
+  "start_seed": 31000000,
+  "opponents": [
+    "v2",
+    "v2",
+    "v0",
+    "v1",
+    "starter",
+    "random",
+    "forced_low",
+    "forced_high",
+    "market_half",
+    "market_double"
+  ],
+  "split": "sha256(seed) mod 100: train 0-79, validation 80-89, test 90-99",
+  "base_agent_sha256": "dadc0b09eb16a0528553fbf00dd826fff8efbc826d3ef5864b1cbf6dea5d2a70",
+  "elapsed_seconds": 1571.1651451587677,
+  "shards": [
+    {
+      "file": "bc-0000.npz",
+      "episodes": 1000,
+      "sha256": "3708431ec7eb846bcc540d4932300e156fc6e5f9a46668be27081de235949318"
+    },
+    {
+      "file": "bc-0001.npz",
+      "episodes": 1000,
+      "sha256": "37ef8bf18b5d21adaf2460bd5fe264803b9ced115a063309ea28a4a9f364f5e9"
+    },
+    {
+      "file": "bc-0002.npz",
+      "episodes": 1000,
+      "sha256": "d10224bbeac5ddf236adaae9f8f2652ba89edd929a2b76da857dc636543086d5"
+    },
+    {
+      "file": "bc-0003.npz",
+      "episodes": 1000,
+      "sha256": "3e7bd7f662545dc0d2cb13606199d395893f74ac5a75edf542d48dd15035b269"
+    },
+    {
+      "file": "bc-0004.npz",
+      "episodes": 1000,
+      "sha256": "d92709e0c84d2525ff957af967041a561cc9894ae4f8c5546d7de4b0ccfae073"
+    },
+    {
+      "file": "bc-0005.npz",
+      "episodes": 1000,
+      "sha256": "8f28d0aa86996704fe7f5f1ebb6b2729664134a111e160b56cab115b6ce5e048"
+    },
+    {
+      "file": "bc-0006.npz",
+      "episodes": 1000,
+      "sha256": "067cfbf7156fe35248c20a64912c426f83d51e23bb3a6341c99fc951a631db72"
+    },
+    {
+      "file": "bc-0007.npz",
+      "episodes": 1000,
+      "sha256": "ea44bbdf8f8aff2bc78fc42752641a81c024d7cdb0443738d0c800845a2280ca"
+    },
+    {
+      "file": "bc-0008.npz",
+      "episodes": 1000,
+      "sha256": "9976e648a12063debb4f52eb9ee708cb4cb6b9419b199a1ae6870ceca30e740f"
+    },
+    {
+      "file": "bc-0009.npz",
+      "episodes": 1000,
+      "sha256": "546f00326329bb93a960dfd3d1f87dd2c0e616d33d4197ef8583487ee64ac995"
+    }
+  ],
+  "generation_semantics_sha256": "a7908acda5560c96bef201a037a0724068e37c85b5153a52b5e0f1ac4f7d33cb",
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.2",
+    "kaggle_environments": "1.32.7"
+  },
+  "source_sha256": {
+    "collect_bc.py": "0c7f7abacbe378c42b0470ecd88467fc8b743172691b52c6976250e492b5486a",
+    "main.py": "8d23386b7ddf8bd3b98a18e81c3b8988ae14d42a4626288b28d700b657128993",
+    "base_agent.py": "dadc0b09eb16a0528553fbf00dd826fff8efbc826d3ef5864b1cbf6dea5d2a70"
+  }
+}

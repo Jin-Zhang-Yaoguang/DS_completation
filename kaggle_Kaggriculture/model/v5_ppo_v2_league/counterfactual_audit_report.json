@@ -1,0 +1,115 @@
+{
+  "schema": "kaggriculture-ppo-v2-counterfactual-audit-1",
+  "baseline": "v1",
+  "seed_start": 96000000,
+  "seeds": 2,
+  "days": [
+    10,
+    17,
+    24
+  ],
+  "opponents": [
+    "starter",
+    "random",
+    "forced_low",
+    "forced_high"
+  ],
+  "rows": 448,
+  "errors": 0,
+  "summary": {
+    "head1_value0": {
+      "n": 48,
+      "mean_uplift": -1202.3541666666667,
+      "positive_rate": 0.4583333333333333,
+      "bootstrap_ci95": [
+        -5350.965104166667,
+        2238.6416666666637
+      ]
+    },
+    "head1_value2": {
+      "n": 48,
+      "mean_uplift": -4103.979166666667,
+      "positive_rate": 0.4791666666666667,
+      "bootstrap_ci95": [
+        -8479.260416666666,
+        -313.67083333333375
+      ]
+    },
+    "head2_value0": {
+      "n": 48,
+      "mean_uplift": -4089.375,
+      "positive_rate": 0.4791666666666667,
+      "bootstrap_ci95": [
+        -7749.746354166667,
+        -1192.7401041666667
+      ]
+    },
+    "head2_value2": {
+      "n": 48,
+      "mean_uplift": -1152.3333333333333,
+      "positive_rate": 0.125,
+      "bootstrap_ci95": [
+        -4387.579166666667,
+        1792.463541666665
+      ]
+    },
+    "head4_value1": {
+      "n": 48,
+      "mean_uplift": 941.1875,
+      "positive_rate": 0.14583333333333334,
+      "bootstrap_ci95": [
+        -1324.1401041666666,
+        3264.2380208333334
+      ]
+    },
+    "head4_value2": {
+      "n": 48,
+      "mean_uplift": -1092.8541666666667,
+      "positive_rate": 0.14583333333333334,
+      "bootstrap_ci95": [
+        -4955.878645833333,
+        2280.3947916666643
+      ]
+    },
+    "head5_value1": {
+      "n": 48,
+      "mean_uplift": 782.2708333333334,
+      "positive_rate": 0.4791666666666667,
+      "bootstrap_ci95": [
+        -2073.4567708333334,
+        3070.6885416666646
+      ]
+    },
+    "head5_value2": {
+      "n": 48,
+      "mean_uplift": 328.8958333333333,
+      "positive_rate": 0.4583333333333333,
+      "bootstrap_ci95": [
+        -3365.9473958333333,
+        4095.1994791666643
+      ]
+    },
+    "head3_value0": {
+      "n": 32,
+      "mean_uplift": 1541.34375,
+      "positive_rate": 0.90625,
+      "bootstrap_ci95": [
+        287.06953125,
+        3129.470312499999
+      ]
+    },
+    "head3_value2": {
+      "n": 32,
+      "mean_uplift": -3303.09375,
+      "positive_rate": 0.09375,
+      "bootstrap_ci95": [
+        -8667.45234375,
+        554.5999999999992
+      ]
+    }
+  },
+  "gates": {
+    "zero_errors": true,
+    "positive_intervention_ci": true
+  }
+}

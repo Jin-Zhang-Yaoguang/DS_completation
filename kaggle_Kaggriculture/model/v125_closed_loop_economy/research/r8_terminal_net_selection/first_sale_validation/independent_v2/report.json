@@ -1,0 +1,51 @@
+{
+  "tool": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/summarize_first_produced_sale_v2.py",
+  "tool_sha256": "3d5cb32b3507c010d260d7296ab4c40787f7c20347925051cbe87e69bb750902",
+  "test_script_sha256": "c7c039714cac9693d6182fda51c8f0ec6c00705d20b7315e75f972aa11089e8d",
+  "tests_run": 20,
+  "passed": false,
+  "failures": [
+    {
+      "test": "test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='analysis.json')",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 96, in test_missing_required_fingerprint_rejected\n    with self.assertRaises((ValueError,OSError)):MOD.audit(BASE)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised\n"
+    },
+    {
+      "test": "test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='events.jsonl.gz')",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 96, in test_missing_required_fingerprint_rejected\n    with self.assertRaises((ValueError,OSError)):MOD.audit(BASE)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised\n"
+    },
+    {
+      "test": "test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='audit_manifest.json')",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 96, in test_missing_required_fingerprint_rejected\n    with self.assertRaises((ValueError,OSError)):MOD.audit(BASE)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised\n"
+    },
+    {
+      "test": "test_negative_quantity_flows_must_not_be_valid (__main__.Counterexamples.test_negative_quantity_flows_must_not_be_valid)",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 69, in test_negative_quantity_flows_must_not_be_valid\n    self.pending(own(harvested=-1,sell=-1),[sell(0,n=-1),harvest(1,n=-1)])\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 22, in pending\n    r=MOD.calculate(stock,events);self.assertEqual(r['status'],'PENDING_PROVENANCE',r);self.assertIsNone(r['restricted_elapsed_decisions'])\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NUMERIC_COMPLETE' != 'PENDING_PROVENANCE'\n- NUMERIC_COMPLETE\n+ PENDING_PROVENANCE\n : {'status': 'NUMERIC_COMPLETE', 'issues': [], 'first_sale_step': 0, 'restricted_elapsed_decisions': 1, 'no_qualifying_sale': False, 'first_sale_units': -1, 'first_sale_cash': -20, 'first_sale_items': {'CARROT': -1}, 'early_days_0_9_cash': -20, 'early_days_0_9_units': -1, 'daily': {0: {'cash': -20, 'units': -1, 'by_item': {'CARROT': {'cash': -20, 'units': -1}}}}, 'all_sale_cash': -20, 'all_sale_units': -1, 'origin_policy': 'All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used.'}\n"
+    },
+    {
+      "test": "test_zero_quantity_sell_must_not_create_first_sale (__main__.Counterexamples.test_zero_quantity_sell_must_not_create_first_sale)",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 66, in test_zero_quantity_sell_must_not_create_first_sale\n    def test_zero_quantity_sell_must_not_create_first_sale(self):self.pending(own(),[sell(0,n=0)])\n                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py\", line 22, in pending\n    r=MOD.calculate(stock,events);self.assertEqual(r['status'],'PENDING_PROVENANCE',r);self.assertIsNone(r['restricted_elapsed_decisions'])\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'NUMERIC_COMPLETE' != 'PENDING_PROVENANCE'\n- NUMERIC_COMPLETE\n+ PENDING_PROVENANCE\n : {'status': 'NUMERIC_COMPLETE', 'issues': [], 'first_sale_step': 0, 'restricted_elapsed_decisions': 1, 'no_qualifying_sale': False, 'first_sale_units': 0, 'first_sale_cash': 0, 'first_sale_items': {'CARROT': 0}, 'early_days_0_9_cash': 0, 'early_days_0_9_units': 0, 'daily': {0: {'cash': 0, 'units': 0, 'by_item': {'CARROT': {'cash': 0, 'units': 0}}}}, 'all_sale_cash': 0, 'all_sale_units': 0, 'origin_policy': 'All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used.'}\n"
+    }
+  ],
+  "errors": [],
+  "source_audit_files": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/plant_lifetimes.json": "60f3af90e460931b9871199628425ced69a2feec83447e0e34d7c9ba9c03816f",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/daily_states.json.gz": "3e1c3ec1a9eb3156768192c2d6af61d65530a336cf2c0dbc6115edba4874e1d0",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/audit_manifest.json": "d04e87556098d271158d8202c6b4757249136efd978e0f4c81c16e51a3f37e5c",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/terminal_states.json": "84ac69340fe1dde60b11c2cfab343bd3493937e796c66e03abc567e79ee914d4",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/validation.json": "ce2eef28fe434825d9c7cf0811f2b94ec7daa00a648079edd75844ab3f80e117",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/analysis.json": "0f133ea3c72824e838e726ea189550e38bfde0ee52a1a525481458f2a432bea3",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/opened_trace_audit/r7_pass_s0_mechanism/events.jsonl.gz": "a67f4b2ff5d572a024c31917c4a1652565b41adfa9f5390ceaacba6015c926c6",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/plant_lifetimes.json": "5fac0120434f2bd38fce218f4f37bd18463fc3e09a492a2a1af731b0b63d2c89",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/daily_states.json.gz": "39768bf8de777ea5e413a2327103e880c0649a57af984057936502fceee95fe0",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/audit_manifest.json": "dce81ba1c93f0966ca783d893f944599634c0515d70d2891b6602b75b83e6c48",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/terminal_states.json": "ada0d99fe099a3584397ac2e37e34c78167000d2e9c7088fb465d2623c3db0b8",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/validation.json": "5509b7bf7c757c407f71838fa1d6c052c63a503e25aabf2a516793c49b95e4f9",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/analysis.json": "87e93b51bd6ef693898d69515dfc676f8f2a5092c51c254b64734ae819a1baac",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_mechanism_audit/all_24_saved_traces/v125-r7_r7dev_pass_3x2/seed1950905701_seat0/events.jsonl.gz": "03abbeb396f8293162de6b5404f0b22d2310837fef2ec2181b66698085ac647c"
+  },
+  "source_files_unchanged": true,
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_independent_matches": 0,
+  "fault_injection": "纯物料反例及read/sha函数内存故障注入；真实源文件未改。CLI失败/错误通过证据在本目录，绝非新比赛。"
+}
