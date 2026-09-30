@@ -1,0 +1,78 @@
+{
+  "contract_version": "v18-p0-confirm-2",
+  "frozen_at": "2026-08-26T00:00:00+08:00",
+  "purpose": "independent preregistered confirmation of both V18 P0 candidates; no tuning on confirm outcomes",
+  "parent": {
+    "name": "V17 top complete portfolio RC1",
+    "archive": "../../top_complete_portfolio/submission.tar.gz",
+    "archive_sha256": "0c1b9b3203924f21389f0b39cfaf9fd535708cdc01c1a7d3ec15359fea1e2ba6",
+    "main_sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1"
+  },
+  "runtime": {
+    "python": ".venv/bin/python",
+    "kaggle_environments_version": "1.32.7",
+    "official_rules_sha256": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+    "cppsim_engine_version": "1.32.7",
+    "cppsim_extension_sha256": "525217c7288c443d5a2e3fc860b6d1c1113fa28f93575e22dca0cadf31edd4c1"
+  },
+  "data_partition": {
+    "development_allowed_direct_replay_dates": ["2026-08-25"],
+    "development_allowed_seed_range": [50000, 50999],
+    "confirmation_replay_dates": ["2026-08-20", "2026-08-21", "2026-08-22", "2026-08-23", "2026-08-24"],
+    "confirmation_seed_range": [61000, 61039],
+    "confirmation_action_audit_seed_range": [62000, 62015],
+    "official_parity_seeds": [63001, 63007],
+    "overlap_policy": "exact date-list and integer-seed-set intersection must both be empty; no silent intersection"
+  },
+  "opponent_selection": {
+    "unit": "complete historical replay route executed by the frozen v1 live repair executor",
+    "executor_sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb",
+    "selection_frozen_before_candidate_confirmation": true,
+    "behavior_dedup": "semantic production descriptor plus exact first-72-action hash; all ten signatures unique",
+    "family_weighting": "equal; every family has the same 40 seeds and both seats",
+    "families": [
+      {"date":"2026-08-20","team":"Ryo Hasegawa","episode":94854181,"replay_sha256":"6ac3bd5dd5deab00c96d90874e5ce43391be6806d8e86e8cc50fedcf832c00ce","behavior_signature":"86e7fa63bb12073309e68a05cb265a74477396e840420de9fe62b2b6e1459c1f"},
+      {"date":"2026-08-20","team":"SaiKushal185","episode":95531759,"replay_sha256":"8a2dddc9211cf7f14f9c49a6dbee4daa1b5782a43babf06b4776ad1d70a8fb0a","behavior_signature":"d7c1d8f12a2bd53d7fae148bd1521becf593831f3f6a7691e0fad7b1e41f86a7"},
+      {"date":"2026-08-21","team":"Subramanya N","episode":96275739,"replay_sha256":"93123afb91c8667b6d8bf6ca554df114de216e880d336b0cd74c5eeb628bfad4","behavior_signature":"67e7cb03315022eac0da75a24c396345290656c56818214211925ad1741d1b73"},
+      {"date":"2026-08-21","team":"James Holland","episode":95908394,"replay_sha256":"1c3e3ad4eea53f45871534167df5254d292e8d67b00d80fafe37710d123e6d98","behavior_signature":"5a7c6190a0c4f54cc7bde1a9ed703357f8c8f5c6699200fb1fa14fd6d4a3309e"},
+      {"date":"2026-08-22","team":"Arman Tuganbaev","episode":96925631,"replay_sha256":"a486969d9d0e0f83ca39fa6c72e36f7868df792290f6862a88cf347fb67c9910","behavior_signature":"284bca5d15d2c2e431ba5d1dc6cafe96626a435618283243619eb8e31c830476"},
+      {"date":"2026-08-22","team":"Excluding","episode":96651843,"replay_sha256":"e67dbe86b8c40b29418fcf2cd6a0cd93100cf3b9fe58ec9ce35fc7b53a567f8c","behavior_signature":"996ebf7651c15d1562ea9a95d492849e2ea37f05af303cfc01e31000e71b150a"},
+      {"date":"2026-08-23","team":"Crop Dusta","episode":97710447,"replay_sha256":"238c45472b8ea26718e7f5bc0f6ce94766fc54b4bceb4fade0710e6fbba1d79d","behavior_signature":"168bf0f24d48fc28e862cc2b18465c49c81803cfeb6807aa7057898b33fbb11a"},
+      {"date":"2026-08-23","team":"MiMi","episode":97687527,"replay_sha256":"325fc232fb32ef4b06a0fcdb47e024c2de6d7bcd9b3a4f339edb73ab7062c5ca","behavior_signature":"3dd0ed92fb105a46320814c1ea57bbf18230c3f265dc9f87be214e808fc27a2c"},
+      {"date":"2026-08-24","team":"Kronki","episode":98486063,"replay_sha256":"2e20093d15b6e29c75241dc20b6c15255288c66ec51cfd53cd84136e7046f036","behavior_signature":"b3cce3529671133b7da89412c51c3da4197627f256cc6d0ee83d5adf6eb3564f"},
+      {"date":"2026-08-24","team":"taiseiu","episode":98463302,"replay_sha256":"9eb967b80b2c7957dcfbeea766ad513dc57dbbaf32229c88847c5b0f5b242637","behavior_signature":"1afd1a6f265f636b8d788f424a533f6b91321afca1822fe94b21c11df7e96d23"}
+    ]
+  },
+  "statistics": {
+    "paired_unit": "same opponent family x seed x seat",
+    "score": "win=1, tie=0.5, loss=0",
+    "bootstrap_cluster": "environment seed; all families and both seats stay together",
+    "bootstrap_repetitions": 10000,
+    "bootstrap_rng_seed": 20260826,
+    "tail_metric": "absolute candidate and parent margins pooled family-equally; linear P10 and worst ceil(10%) CVaR"
+  },
+  "promotion_gates": {
+    "paired_score_uplift_pp_min": 2.0,
+    "paired_score_uplift_cluster95_lower_strictly_greater_than_pp": 0.0,
+    "each_family_score_uplift_pp_min": -1.0,
+    "candidate_margin_p10_minus_parent_min": 0.0,
+    "candidate_margin_cvar10_minus_parent_min": 0.0,
+    "unit_action_precondition_failures_max": 0,
+    "resource_scope_policy": {
+      "market_mpc": "candidate audited market/resource failures must equal zero",
+      "task_dag_repair": "candidate audited market/resource failures must not exceed same-game V17 parent failures in every paired game and in total",
+      "combined": "candidate audited market/resource failures must equal zero"
+    },
+    "raw_loader_selected_callable": "agent",
+    "stdout_bytes_max": 0,
+    "stderr_bytes_max": 0,
+    "official_cpp_exact_reward_parity": true,
+    "official_statuses": ["DONE", "DONE"],
+    "calls_per_agent": 719,
+    "all_gates_required": true
+  },
+  "multiplicity": {
+    "candidates": ["market_mpc", "task_dag_repair", "combined"],
+    "rule": "each candidate is judged independently against V17; no best-of-two pooled claim and no confirm-driven retuning"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "kaggriculture-submission-preflight-v1",
+  "competition": "kaggriculture",
+  "collected_at_utc": "2026-08-23T09:04:05Z",
+  "collected_at_asia_taipei": "2026-08-23T17:04:05+08:00",
+  "source_policy": "Kaggle official CLI/API only; no browser; no credentials retained",
+  "kaggle_cli_version": "2.2.3",
+  "leaderboard": {
+    "generated_at_utc": "2026-08-23T09:02:21Z",
+    "team_count": 5953,
+    "leader": {
+      "rank": 1,
+      "team": "Ryo Hasegawa",
+      "rating": 3124.8
+    },
+    "datatuu": {
+      "team_id": 16731605,
+      "rank": 584,
+      "rating": 2004.7,
+      "gap_to_leader": 1120.1,
+      "gap_to_prize_top10": 835.2
+    },
+    "rank_10_snapshot": {
+      "team": "peikopon",
+      "rating": 2839.9,
+      "meaning": "current cash-prize boundary only; not asserted to be the gold-medal boundary"
+    }
+  },
+  "active_submissions": [
+    {
+      "submission_id": 55680696,
+      "description": "v2 survival guard + safe seed pruning (re-submit top-2)",
+      "submitted_at_utc": "2026-08-22T01:35:47.813000Z",
+      "current_rating": 1977.8,
+      "completed_public_episodes": 114,
+      "completed_validation_episodes": 1,
+      "episode_states": {
+        "COMPLETED": 115
+      }
+    },
+    {
+      "submission_id": 55680692,
+      "description": "v1 adaptive market routes + KE 1.32.7 hinge pricing (re-submit top-2)",
+      "submitted_at_utc": "2026-08-22T01:35:42.187000Z",
+      "current_rating": 2004.7,
+      "completed_public_episodes": 119,
+      "completed_validation_episodes": 1,
+      "episode_states": {
+        "COMPLETED": 120
+      }
+    }
+  ],
+  "today_submission_quota": {
+    "official_daily_limit": 5,
+    "utc_date": {
+      "date": "2026-08-23",
+      "submitted_count": 0,
+      "nominal_remaining": 5
+    },
+    "asia_taipei_date": {
+      "date": "2026-08-23",
+      "submitted_count": 0,
+      "nominal_remaining": 5
+    },
+    "latest_submission_at_utc": "2026-08-22T01:35:47.813000Z",
+    "caveat": "Competition pages state five submissions per day but do not state the quota-reset timezone. Counts above are independently bucketed by UTC and Asia/Taipei date."
+  },
+  "active_slot_rule": {
+    "official_facts": [
+      "Only the latest two submissions are tracked.",
+      "The latest two submissions are used for final leaderboard evaluation.",
+      "The leaderboard shows only the best-scoring bot.",
+      "The official team-submissions endpoint currently returns exactly 55680696 and 55680692."
+    ],
+    "replacement_inference": "A next valid submission becomes one of the latest two and displaces 55680692, the older current slot, from the tracked pair. A second subsequent valid submission displaces 55680696, leaving the two new submissions as the tracked pair.",
+    "important_nuance": "The Evaluation page also says every submitted bot may continue to play episodes, with newer bots playing much more frequently. Therefore displacement from the tracked/final pair is not asserted to mean an immediate hard stop of every older bot episode."
+  },
+  "prizes_and_medals": {
+    "cash_prizes": {
+      "total_usd": 50000,
+      "rank_range": "1-10",
+      "usd_per_rank": 5000,
+      "officially_stated": true
+    },
+    "competition_medals": {
+      "competition_specific_medal_rule_found": false,
+      "gold_medal_cutoff_rank": null,
+      "status": "not stated in the official Kaggriculture competition pages, rules, or CLI metadata inspected",
+      "interpretation_guard": "Do not equate the official Top-10 cash-prize boundary with a gold-medal cutoff without separate official medal-policy evidence."
+    }
+  },
+  "official_rule_evidence": {
+    "evaluation_page": {
+      "daily_limit": 5,
+      "tracked_submissions": 2,
+      "final_submissions": 2,
+      "leaderboard_display": "best-scoring bot",
+      "final_method": "additional games followed by a final Bradley-Terry tournament"
+    },
+    "rules_page": {
+      "max_submissions_per_day": 5,
+      "max_final_submissions": 2,
+      "simulation_private_leaderboard": false,
+      "cash_prizes": "ranks 1 through 10 receive USD 5,000 each"
+    },
+    "timeline_page": {
+      "submission_deadline_utc": "2026-09-30T23:59:00Z",
+      "post_deadline_games": "approximately 2026-10-01 through 2026-10-15, or until convergence"
+    }
+  },
+  "source_commands": [
+    "kaggle competitions list --search kaggriculture --format json",
+    "kaggle competitions leaderboard kaggriculture --download --path <temporary-directory> --quiet",
+    "kaggle competitions submissions kaggriculture --format json --page-size 200 --quiet",
+    "kaggle competitions team-submissions 16731605 --format json --quiet",
+    "kaggle competitions episodes 55680692 --format json --quiet",
+    "kaggle competitions episodes 55680696 --format json --quiet",
+    "kaggle competitions pages kaggriculture --content --format json --quiet"
+  ],
+  "source_sha256": {
+    "leaderboard_csv": "9b75fbc54e51c49a22fdcc07a0b85eb4b9011c1b89990e123fb91b596ce66a7a",
+    "submissions_json": "22c2a4f043f59d26ff11b7b503a8581bffd7170d2aa34d8c13705c0164f9829d",
+    "team_submissions_json": "5e693eb8fd9594a77135c1d793da11d7fa87746cc0d5527aad53e031cbcd7122",
+    "episodes_55680692_json": "57c1bec1451608233e5e2254ec0b3711d057937ff43539e5282d7e6e53893f68",
+    "episodes_55680696_json": "dd26ba3e5dc593f50932ba8a714d0f33c3296e7325972490b113363ac4dee818",
+    "competition_pages_json": "4e3f8af7f64e491f06bc90fb44274d7b1d2af6d8e4beffd575d3fe243e127d80"
+  }
+}

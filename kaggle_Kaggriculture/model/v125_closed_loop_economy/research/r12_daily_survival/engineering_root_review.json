@@ -1,0 +1,139 @@
+{
+  "created_at_utc": "2026-09-05T15:21:07.236375+00:00",
+  "status": "ENGINEERING_PASS_READY_FOR_OPENED_NATURAL_DIAGNOSTIC",
+  "candidate_sha256": "03ef0bcac134024dd0d7e697e0b1ee9f083195900618d5db1cdab61be69ca8ce",
+  "metrics": [
+    {
+      "label": "R0",
+      "seat": 0,
+      "actual_overflow_events": 0,
+      "discarded_quote": 0,
+      "drought_deaths": 1,
+      "animal_escapes": 0,
+      "feed": {
+        "WHEAT": 18
+      },
+      "harvested": {
+        "FERTILIZER": 18,
+        "WOOL": 8,
+        "STRAWBERRY": 4
+      }
+    },
+    {
+      "label": "R12",
+      "seat": 0,
+      "actual_overflow_events": 0,
+      "discarded_quote": 0,
+      "drought_deaths": 0,
+      "animal_escapes": 0,
+      "feed": {
+        "WHEAT": 18
+      },
+      "harvested": {
+        "FERTILIZER": 17,
+        "WOOL": 8,
+        "STRAWBERRY": 4
+      }
+    },
+    {
+      "label": "R0",
+      "seat": 1,
+      "actual_overflow_events": 0,
+      "discarded_quote": 0,
+      "drought_deaths": 1,
+      "animal_escapes": 0,
+      "feed": {
+        "WHEAT": 18
+      },
+      "harvested": {
+        "FERTILIZER": 18,
+        "WOOL": 8,
+        "STRAWBERRY": 4
+      }
+    },
+    {
+      "label": "R12",
+      "seat": 1,
+      "actual_overflow_events": 0,
+      "discarded_quote": 0,
+      "drought_deaths": 0,
+      "animal_escapes": 0,
+      "feed": {
+        "WHEAT": 18
+      },
+      "harvested": {
+        "FERTILIZER": 17,
+        "WOOL": 8,
+        "STRAWBERRY": 4
+      }
+    }
+  ],
+  "inventory_balance": [
+    {
+      "label": "R0",
+      "seat": 0,
+      "residual": {
+        "FERTILIZER": 0,
+        "WOOL": 0,
+        "MILK": 0,
+        "STRAWBERRY": 0,
+        "WHEAT": 0
+      }
+    },
+    {
+      "label": "R12",
+      "seat": 0,
+      "residual": {
+        "FERTILIZER": 0,
+        "WOOL": 0,
+        "MILK": 0,
+        "STRAWBERRY": 0,
+        "WHEAT": 0
+      }
+    },
+    {
+      "label": "R0",
+      "seat": 1,
+      "residual": {
+        "FERTILIZER": 0,
+        "WOOL": 0,
+        "MILK": 0,
+        "STRAWBERRY": 0,
+        "WHEAT": 0
+      }
+    },
+    {
+      "label": "R12",
+      "seat": 1,
+      "residual": {
+        "FERTILIZER": 0,
+        "WOOL": 0,
+        "MILK": 0,
+        "STRAWBERRY": 0,
+        "WHEAT": 0
+      }
+    }
+  ],
+  "primary_observation": "双席固定24步内，R0有1株缺水死亡，R12为0；均18次喂养、0逃逸、0实际溢出。R12少收1份肥料，是已观察到的机会成本。",
+  "limitations": [
+    "不是新独立自然局，不报告现金改善",
+    "当日最初仅1工人无法构造全部30水服务，明确保留R0动作；雇工实际到场后21帧经济动作保持证书、2帧改走证书首步",
+    "只保证条件水服务范围，不保证全部动物任务、产销和仓容",
+    "原short summary eod_overflow_events字段统计所有日末入仓周期（包括零丢弃），本review用discarded非空重新计数；不重放或删改原输出"
+  ],
+  "counts": {
+    "candidate_calls": 96,
+    "official_continuous_steps": 96,
+    "saved_short_audit_steps": 96,
+    "projection_official_unit_calls": 291,
+    "new_complete_matches": 0
+  },
+  "sources": {
+    "research/r12_daily_survival/SOURCE_FREEZE.json": "7244dcbd3abbc67dc1342af5de6fdf4d5b74dcbc3b590e7886ff3a35446f7c17",
+    "research/r12_daily_survival/engineering_protocol.json": "07f832ffbf0e422b36c637063ddd892c17f327e4a6e833ed41de0db8bbfcac48",
+    "research/r12_daily_survival/engineering_once/summary.json": "e142fa4ed3c1769650b270c9c02f4317912f41b5b45b94e3601f942b89f2e9ff",
+    "research/r12_daily_survival/engineering_once/pure_checks.json": "a0fe30eb4f34c809533b44fece96505614cc996d47342e2c175fc5c74ffa547a",
+    "research/r12_daily_survival/short_saved_audit/summary.json": "18bd886d73ad4183140dbcc9b96b60991c89536e14b922d95d52be02e46ff853",
+    "research/r12_daily_survival/short_saved_audit/events_and_flows.json.gz": "783b86b55fad868c01ab2e2cb31262bb4f48b656965e961d7f755afd33f38b75"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "kaggriculture-v118-golden-registration-v1",
+  "registered_in_golden_model": true,
+  "gold_increment": 1,
+  "decision": "PROMOTE_REPLAY_ADMITTED_LOCAL_GOLD",
+  "model_id": "v118_v76_yarn_reveal_liquidity_moe",
+  "parent": "v76_adjacent_safe_buy_lead",
+  "gold_standard": "account_online pure_win_rate >= 0.75 AND official_daily pure_win_rate >= 0.75; ties are not wins",
+  "account_online": {
+    "sources": 128,
+    "opponents": 18,
+    "games": 4608,
+    "wins_ties_losses": [4104, 84, 420],
+    "pure_win_rate": 0.890625,
+    "pass": true
+  },
+  "official_daily": {
+    "sources": 128,
+    "opponents": 18,
+    "games": 4608,
+    "wins_ties_losses": [4095, 118, 395],
+    "pure_win_rate": 0.888671875,
+    "pass": true
+  },
+  "hardest_pairwise_gate": {
+    "opponent": "V76",
+    "account_online_pure_win_rate": 0.7734375,
+    "official_daily_pure_win_rate": 0.76953125,
+    "both_pass_0_75": true
+  },
+  "candidate_main_sha256": "4cbfa37aa19463979b7e3a23ccb8d6db0664285b1afb32df27b971f1ccfea71d",
+  "candidate_archive_sha256": "d44ba7be33d17c572a0618417664a39f20855bca5b63e5023a96613835e84b88",
+  "gold_gate_summary": "gold_registration/summary.json",
+  "gold_gate_summary_sha256": "f6790fb6090f8f827e3c73c0ae79601274d77c3be8ba219c3630614ae13f5305",
+  "gold_gate_validation": "gold_registration/validation_results.json",
+  "gold_gate_validation_sha256": "f2e9706801068bc8c57e46192f7811322f747d122c8632d362ea8c096f58b3b0",
+  "account_panel_sha256": "ba57a6604754c73b5d180786cc321d11579f5f3b009e78cd51351dd2dc1ac52d",
+  "official_panel_sha256": "2b8582a439ecb3b16fa71c20edd6a161c2448eea50a8008739443e0e08826604",
+  "package_qa": "PASS",
+  "online_submission": {
+    "submission_id": 55917074,
+    "status": "SubmissionStatus.COMPLETE",
+    "public_score": 1287.7,
+    "same_day_v76_resubmit_public_score": 1285.9
+  },
+  "online_score_role": "NOT_USED_FOR_LOCAL_GOLD_REGISTRATION_AND_NOT_ONLINE_GOLD_PROOF"
+}

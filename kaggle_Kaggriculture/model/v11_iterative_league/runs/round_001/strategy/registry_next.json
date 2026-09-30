@@ -1,0 +1,938 @@
+{
+  "sealed_before_test": true,
+  "test_used_for_fit": false,
+  "pre_selection_test_access": false,
+  "fixed_registry_sha256": "55d924e5b80d258de04568bc9ab6c28b29e930fc5b848bf64d3cdb26c7784d1f",
+  "training_report_sha256": "a3af70340132dfd81e4d660358bac91def3047f0a54c162cbe45fd0a066b85cf",
+  "training_report_schema": "kaggriculture-v10-learned-router-training-1",
+  "training_implementation_sha256": "28d51cf4d8d23c042752a2d09d2a7dd6e745f345d215743c7851bc07d05d29a0",
+  "learned_weights_sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77",
+  "best_fixed_model": "baseline_v8",
+  "router_experts": [
+    "baseline_v1",
+    "baseline_v2",
+    "baseline_v5",
+    "baseline_v8"
+  ],
+  "source_manifest_seal": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/evaluation_seed_manifest.jsonl",
+    "file_sha256": "8642c6d61888784f4dc97d7348bc1b7f7fa6be1896d337175763798cffdfa216",
+    "records": 2090,
+    "unique_seeds": 2090,
+    "dates": [
+      "2026-08-18",
+      "2026-08-19",
+      "2026-08-20"
+    ],
+    "split_counts": {
+      "test": 210,
+      "train": 1670,
+      "validation": 210
+    },
+    "date_counts_by_split": {
+      "test": {
+        "2026-08-18": 70,
+        "2026-08-19": 70,
+        "2026-08-20": 70
+      },
+      "train": {
+        "2026-08-18": 557,
+        "2026-08-19": 555,
+        "2026-08-20": 558
+      },
+      "validation": {
+        "2026-08-18": 70,
+        "2026-08-19": 70,
+        "2026-08-20": 70
+      }
+    }
+  },
+  "fit_protocol": {
+    "fit_splits": [
+      "train",
+      "validation"
+    ],
+    "test_used_for_fit": false,
+    "pre_selection_test_access": false,
+    "formal_grid_rows": 6400,
+    "formal_grid_contexts": 1600,
+    "collection_fingerprint": "c6e0ca056510ce00ca82a7e79c97aaa8467d509b944f08bd7770f1deb2d26f29",
+    "registry_and_code_sha256": "439707be83cc8b066404a6ffb23d8528ed5cf51a1e0122234b8552dfb1417c73",
+    "source_grid_file_sha256": "b4db2272c1b63b9008d578827b5a5645d930ada1d4a6a7dc5b729aa0bae1e7a8",
+    "training_schema": "kaggriculture-v10-learned-router-training-1",
+    "weight_schema": "kaggriculture-v10-linear-router-1",
+    "feature_schema": "kaggriculture-v10-public-step72-1"
+  },
+  "router_fit_source_exclusions": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/router_fit_source_exclusions.json",
+    "file_sha256": "1de48ec3f1406a0ff15932c2b3e42f2bd4472421e44d9fb2c96c813745fb00c7",
+    "schema": "kaggriculture-v10-router-fit-source-exclusions-1",
+    "records": 200,
+    "records_sha256": "7bbed6cb6a2ef81a1c3a759a5c8b1a54e2b58e108c11934ed5a46c15398adcf4",
+    "collection_fingerprint": "c6e0ca056510ce00ca82a7e79c97aaa8467d509b944f08bd7770f1deb2d26f29",
+    "registry_and_code_sha256": "439707be83cc8b066404a6ffb23d8528ed5cf51a1e0122234b8552dfb1417c73",
+    "source_grid_file_sha256": "b4db2272c1b63b9008d578827b5a5645d930ada1d4a6a7dc5b729aa0bae1e7a8",
+    "league_must_exclude": true
+  },
+  "test_protocol": {
+    "sealed_before_test": true,
+    "historical_outcomes_used_for_selection": false,
+    "panel_schema": "kaggriculture-v10-frozen-test-panel-1",
+    "quarantine_schema": "kaggriculture-v10-test-exposure-quarantine-1",
+    "source_manifest": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/evaluation_seed_manifest.jsonl",
+    "source_manifest_sha256": "8642c6d61888784f4dc97d7348bc1b7f7fa6be1896d337175763798cffdfa216",
+    "quarantine": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/test_exposure_quarantine.json",
+    "quarantine_file_sha256": "282fef5baa3299224c1aa7c9bf4bff5e1601d3df3e0044706b7c00147457a69b",
+    "quarantined_sources": 42,
+    "clean_test_sources": 168,
+    "clean_pool_records_sha256": "ec502a465039b8e1af4a5a44e8e765ebb6cc35fd69c40d3d588aad6c91625e63",
+    "frozen_panel": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/final_test_panel.json",
+    "frozen_panel_file_sha256": "6cbf8435007f1149c95b723a8618e2b453ec53525e173db1095d385fe9cd66d3",
+    "frozen_panel_records_sha256": "8b4583792f1e64c514170dc088094efa45b859d5fce363416134c04ed647c1d8",
+    "panel_sources": 100,
+    "date_quota": {
+      "2026-08-18": 34,
+      "2026-08-19": 33,
+      "2026-08-20": 33
+    },
+    "salt": 20260822,
+    "games_per_pair": 200,
+    "unordered_pairs": 91,
+    "expected_games": 18200,
+    "model_ids": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8",
+      "v1_topdays",
+      "v2_topdays",
+      "v5_topdays",
+      "v8_topdays",
+      "v5_price_slot",
+      "v8_lead1",
+      "v8_no_preempt",
+      "v8_conservative",
+      "rule_router",
+      "learned_router"
+    ]
+  },
+  "source_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/final_registry.json",
+  "source_final_registry_sha256": "babf1803c0e56aefa1805fce82cf1961bf8b4c508ef9d4c0754c127681911409",
+  "source_registry_schema": "kaggriculture-v10-final-registry-1",
+  "source_registry_raw_sha256": "80e75cb694921009404abe77881600d3bf5a3def1903c00d36c818e888ee1dfe",
+  "source_registry_and_code_sha256": "74c47874dd6f439d5cb8943b94d264e8cba70fab8bfbf9e3139bdfb872ca9930",
+  "converted_routers": [
+    "rule_router",
+    "learned_router"
+  ],
+  "equivalence_contract": {
+    "steps_0_through_switch": "all experts called; exact V10 prefix validation",
+    "after_switch": "selected expert only",
+    "normal_path": "action-equivalent to V10 ShadowRouter",
+    "selected_exception": "explicit PASS; no stale-anchor fallback"
+  },
+  "formal_fast_router_equivalence": {
+    "schema": "kaggriculture-v11-fast-router-equivalence-report-3",
+    "report": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_router_equivalence_formal_report.json",
+    "report_file_sha256": "42cd4bdc275ae6ab110030144e499c875ce72ca692186aac8d270cadd716774e",
+    "games_jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_router_equivalence_formal.jsonl",
+    "games_jsonl_file_sha256": "6ae5127b368575888b99012acb68aeddbb4825421a0a69602b49448cb71d3260",
+    "run_fingerprint": "0bab9f4a46fd46081805e085fc8395bbce156252302c31e24af3b57d0c4f344b",
+    "equivalence_implementation_sha256": "e7e1c5e1a0994bc339e79ef1aaddf1a7a11689475ca53752a8bf0763b3e18eba",
+    "formal_complete": true,
+    "all_equivalent": true,
+    "test_sources_accessed": false,
+    "environment_split": "validation",
+    "routers": [
+      "rule_router",
+      "learned_router"
+    ],
+    "opponents": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "source_count": 100,
+    "comparisons": 1600,
+    "source_records_sha256": "c35aefc4298a269eea2d69c7a5b14a0b4d6bf87d58f69f56485a1c095545085c",
+    "source_final_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/final_registry.json",
+    "source_final_registry_file_sha256": "babf1803c0e56aefa1805fce82cf1961bf8b4c508ef9d4c0754c127681911409",
+    "source_final_registry_and_code_sha256": "74c47874dd6f439d5cb8943b94d264e8cba70fab8bfbf9e3139bdfb872ca9930",
+    "serving_fingerprints": {
+      "rule_router": "fd036466aabf9fd34587c100c476a3603d8d8ed2f1bdc2491db1165d1060ff16",
+      "learned_router": "9cf62805fe675e32753e79e03b2509fa21b3e03bbe0b30b92f5ef1c6030c54d8",
+      "baseline_v1": "6fc2c6efad4b43b8a9e719a8055b82894d8d3bae6bb7f526ff70888bedd4b7a6",
+      "baseline_v2": "73e20dbc43b20927fb933715fbdea8fedda14dd4e22e86a56da5c28a3d820f97",
+      "baseline_v5": "e86953210f9d18ad009d746892c1a83b1009e3b444078d5e9e74fb5de8ffff40",
+      "baseline_v8": "63c8074aec824e4c29532f1b19fedb6cbd2a5b260c1a52df6fdd505f2c76f421"
+    },
+    "final14_freeze_audit": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/freeze_chain_final14_audit.json",
+      "file_sha256": "95f9a543a2f33c0793fb08c1f782c464bb226e2380a52685e45a28f7c87987c3",
+      "schema": "kaggriculture-v10-freeze-chain-audit-1",
+      "registry_and_code_sha256": "74c47874dd6f439d5cb8943b94d264e8cba70fab8bfbf9e3139bdfb872ca9930",
+      "models": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8",
+        "v1_topdays",
+        "v2_topdays",
+        "v5_topdays",
+        "v8_topdays",
+        "v5_price_slot",
+        "v8_lead1",
+        "v8_no_preempt",
+        "v8_conservative",
+        "rule_router",
+        "learned_router"
+      ]
+    },
+    "training_report": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/learned_router_training_report.json",
+    "training_report_sha256": "a3af70340132dfd81e4d660358bac91def3047f0a54c162cbe45fd0a066b85cf",
+    "learned_weights": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/learned_router_weights.npz",
+    "learned_weights_sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77",
+    "source_manifest_sha256": "8642c6d61888784f4dc97d7348bc1b7f7fa6be1896d337175763798cffdfa216",
+    "fit_exclusions": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/router_fit_source_exclusions.json",
+    "fit_exclusions_file_sha256": "1de48ec3f1406a0ff15932c2b3e42f2bd4472421e44d9fb2c96c813745fb00c7",
+    "fit_exclusions_records_sha256": "7bbed6cb6a2ef81a1c3a759a5c8b1a54e2b58e108c11934ed5a46c15398adcf4",
+    "exact_action_status_reward_selection_error_equivalence": true,
+    "runtime_errors": 0,
+    "selected_fallbacks": 0
+  },
+  "formal_fast_router_fresh_challenge": {
+    "schema": "kaggriculture-v11-fast-router-fresh-challenge-1",
+    "report": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_router_fresh_challenge.json",
+    "report_file_sha256": "9dbced8e839cc2c12f5e2e5c5692a6f91690d202d45d7b3691570528c2585e16",
+    "challenge_implementation_sha256": "da9bc1f6b1e277aef02566113ad6dda374dc11e978099fe60b65eb1d95eb1df0",
+    "formal_report": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_router_equivalence_formal_report.json",
+    "formal_report_file_sha256": "42cd4bdc275ae6ab110030144e499c875ce72ca692186aac8d270cadd716774e",
+    "formal_games_jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_router_equivalence_formal.jsonl",
+    "formal_games_jsonl_file_sha256": "6ae5127b368575888b99012acb68aeddbb4825421a0a69602b49448cb71d3260",
+    "formal_run_fingerprint": "0bab9f4a46fd46081805e085fc8395bbce156252302c31e24af3b57d0c4f344b",
+    "selection_derivation": "sha256(report bytes + fixed domain + nonce)",
+    "source_indices": [
+      0,
+      7,
+      40,
+      61
+    ],
+    "sources_sha256": "318b1c9144d95274b7971892d00f5189e41747ec7d35a9f5991c358d0f02fb52",
+    "source_count": 4,
+    "routers": [
+      "rule_router",
+      "learned_router"
+    ],
+    "opponents": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "comparisons": 64,
+    "environment_games": 128,
+    "exact_matches": 64,
+    "runtime_errors": 0,
+    "test_sources_accessed": false,
+    "all_validation_sources_in_router_fit_exclusions": true,
+    "passed": true
+  },
+  "materialized_serving_fingerprints": {
+    "baseline_v1": "6fc2c6efad4b43b8a9e719a8055b82894d8d3bae6bb7f526ff70888bedd4b7a6",
+    "baseline_v2": "73e20dbc43b20927fb933715fbdea8fedda14dd4e22e86a56da5c28a3d820f97",
+    "baseline_v5": "e86953210f9d18ad009d746892c1a83b1009e3b444078d5e9e74fb5de8ffff40",
+    "baseline_v8": "63c8074aec824e4c29532f1b19fedb6cbd2a5b260c1a52df6fdd505f2c76f421",
+    "v1_topdays": "52a8427582d3bcf78cfbebf4653bf0e7fa173ef20088ba15aa5d54f7405f1f05",
+    "v2_topdays": "602c0e580873cc3cf8a933c0304c18bb4ebff5bd3f4120b6d7a3018a63fbb44b",
+    "v5_topdays": "fa5d8a24e2e64121db3a5c630f908d6c37729e1900fe04a6fc2b307ae94a0772",
+    "v8_topdays": "83b5b020848151029c78dc7aa7d6b905c33fad80a6da3363da3c7fff3a9064de",
+    "v5_price_slot": "302dae280bcb251b3fbcf659ff385e65b012f70a1f3dae2b2e527eaa4944f91a",
+    "v8_lead1": "456daf0b3324f126b22566705338003e97dc45f0a99e95958f635c774361befc",
+    "v8_no_preempt": "f5f9306dc00de40a6be78b822b0a8a93632833eda8283fd0cc6ed31740672dcb",
+    "v8_conservative": "aee2673257ed6d2f27ea1dd2aec81e004c0e95c2f35e54cb00c230d351ec8102",
+    "rule_router": "c0e9643dcc59c1bee8f4200a4a5e84b877f63830bf16e5b13fd08f2bc41133cd",
+    "learned_router": "9813b175856c8e702613bb27b4e0a4b95403cae65093615d9611f12cdb184ed6"
+  },
+  "schema": "kaggriculture-v11-pending-candidate-registry-1",
+  "created_at": "2026-08-21T21:29:07.155990+00:00",
+  "candidate_parent_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_registry.json",
+  "candidate_parent_registry_file_sha256": "052b48a1a51279febcc2412575fa911cb6ff49d85f837898ce9b9c25c6b7ca7a",
+  "candidate_parent_registry_and_code_sha256": "c578cf0442158b023c10d1ef55384631d02a699347ec431f417d47b97ecf82db",
+  "pending_candidate": "r001_learned_router_premium_floor_guard",
+  "models": [
+    {
+      "id": "baseline_v1",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v1"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v1_adaptive_market/main.py"
+      ],
+      "family": "v1_adaptive_market",
+      "lineage": [
+        "baseline_v1"
+      ],
+      "tags": [
+        "保留基线",
+        "adaptive"
+      ]
+    },
+    {
+      "id": "baseline_v2",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v2"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v2_survival_guard/main.py"
+      ],
+      "family": "v2_survival_guard",
+      "lineage": [
+        "baseline_v2"
+      ],
+      "tags": [
+        "保留基线",
+        "survival"
+      ]
+    },
+    {
+      "id": "baseline_v5",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v5"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v5_rule_hybrid/main.py",
+        "../../../../v5_rule_hybrid/base_agent.py",
+        "../../../../v5_rule_hybrid/routes.py",
+        "../../../../v5_rule_hybrid/v1_fallback.py"
+      ],
+      "family": "v5_rule_hybrid",
+      "lineage": [
+        "baseline_v5"
+      ],
+      "tags": [
+        "保留基线",
+        "champion-route"
+      ]
+    },
+    {
+      "id": "baseline_v8",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "baseline_v8"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa_lead2_slot",
+      "lineage": [
+        "baseline_v8"
+      ],
+      "tags": [
+        "保留基线",
+        "kawa"
+      ]
+    },
+    {
+      "id": "v1_topdays",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v1_topdays"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v1_adaptive_market/main.py"
+      ],
+      "family": "v1_adaptive_market+topdays",
+      "lineage": [
+        "baseline_v1",
+        "v1_topdays"
+      ],
+      "tags": [
+        "待评测",
+        "adaptive",
+        "topdays"
+      ]
+    },
+    {
+      "id": "v2_topdays",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v2_topdays"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v2_survival_guard/main.py"
+      ],
+      "family": "v2_survival_guard+topdays",
+      "lineage": [
+        "baseline_v2",
+        "v2_topdays"
+      ],
+      "tags": [
+        "待评测",
+        "survival",
+        "topdays"
+      ]
+    },
+    {
+      "id": "v5_topdays",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v5_topdays"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v5_rule_hybrid/main.py",
+        "../../../../v5_rule_hybrid/base_agent.py",
+        "../../../../v5_rule_hybrid/routes.py",
+        "../../../../v5_rule_hybrid/v1_fallback.py"
+      ],
+      "family": "v5_rule_hybrid+topdays",
+      "lineage": [
+        "baseline_v5",
+        "v5_topdays"
+      ],
+      "tags": [
+        "待评测",
+        "champion-route",
+        "topdays"
+      ]
+    },
+    {
+      "id": "v8_topdays",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v8_topdays"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa+topdays",
+      "lineage": [
+        "baseline_v8",
+        "v8_topdays"
+      ],
+      "tags": [
+        "待评测",
+        "kawa",
+        "topdays"
+      ]
+    },
+    {
+      "id": "v5_price_slot",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v5_price_slot"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v5_rule_hybrid/main.py",
+        "../../../../v5_rule_hybrid/base_agent.py",
+        "../../../../v5_rule_hybrid/routes.py",
+        "../../../../v5_rule_hybrid/v1_fallback.py"
+      ],
+      "family": "v5_rule_hybrid+price_slot",
+      "lineage": [
+        "baseline_v5",
+        "v5_price_slot"
+      ],
+      "tags": [
+        "待评测",
+        "champion-route",
+        "slot"
+      ]
+    },
+    {
+      "id": "v8_lead1",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v8_lead1"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa+lead1_ablation",
+      "lineage": [
+        "baseline_v8",
+        "v8_lead1"
+      ],
+      "tags": [
+        "待评测",
+        "kawa",
+        "ablation"
+      ]
+    },
+    {
+      "id": "v8_no_preempt",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v8_no_preempt"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa+no_preempt_ablation",
+      "lineage": [
+        "baseline_v8",
+        "v8_no_preempt"
+      ],
+      "tags": [
+        "待评测",
+        "kawa",
+        "ablation"
+      ]
+    },
+    {
+      "id": "v8_conservative",
+      "kind": "python",
+      "path": "../../../../v10_replay_lolo_router/expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": [
+        "v8_conservative"
+      ],
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa+conservative_preempt",
+      "lineage": [
+        "baseline_v8",
+        "v8_conservative"
+      ],
+      "tags": [
+        "待评测",
+        "kawa",
+        "conservative"
+      ]
+    },
+    {
+      "id": "rule_router",
+      "lineage": [
+        "v10_step72_router"
+      ],
+      "family": "v10_step72_full_expert_router",
+      "tags": [
+        "router",
+        "rule",
+        "frozen_train_validation"
+      ],
+      "kind": "python",
+      "path": "../../../fast_router.py",
+      "factory": "create_agent",
+      "factory_kwargs": {
+        "router_spec": {
+          "id": "rule_router",
+          "kind": "router",
+          "experts": [
+            "baseline_v1",
+            "baseline_v2",
+            "baseline_v5",
+            "baseline_v8"
+          ],
+          "anchor": "baseline_v1",
+          "switch_step": 72,
+          "code_paths": [
+            "router.py"
+          ],
+          "lineage": [
+            "v10_step72_router"
+          ],
+          "family": "v10_step72_full_expert_router",
+          "router_kind": "rule",
+          "rule": {
+            "low_cash": 0,
+            "novelty_distance": 4.0,
+            "default_priority": [
+              "baseline_v5",
+              "baseline_v1",
+              "baseline_v2",
+              "baseline_v8"
+            ],
+            "yarn_priority": [
+              "baseline_v8",
+              "baseline_v1",
+              "baseline_v2",
+              "baseline_v5"
+            ],
+            "novel_priority": [
+              "baseline_v1",
+              "baseline_v2",
+              "baseline_v5",
+              "baseline_v8"
+            ],
+            "survival_priority": [
+              "baseline_v2",
+              "baseline_v1",
+              "baseline_v5",
+              "baseline_v8"
+            ]
+          },
+          "tags": [
+            "router",
+            "rule",
+            "frozen_train_validation"
+          ]
+        },
+        "expert_specs": {
+          "baseline_v1": {
+            "id": "baseline_v1",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v1"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v1_adaptive_market/main.py"
+            ],
+            "family": "v1_adaptive_market",
+            "lineage": [
+              "baseline_v1"
+            ],
+            "tags": [
+              "保留基线",
+              "adaptive"
+            ]
+          },
+          "baseline_v2": {
+            "id": "baseline_v2",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v2"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v2_survival_guard/main.py"
+            ],
+            "family": "v2_survival_guard",
+            "lineage": [
+              "baseline_v2"
+            ],
+            "tags": [
+              "保留基线",
+              "survival"
+            ]
+          },
+          "baseline_v5": {
+            "id": "baseline_v5",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v5"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v5_rule_hybrid/main.py",
+              "../v5_rule_hybrid/base_agent.py",
+              "../v5_rule_hybrid/routes.py",
+              "../v5_rule_hybrid/v1_fallback.py"
+            ],
+            "family": "v5_rule_hybrid",
+            "lineage": [
+              "baseline_v5"
+            ],
+            "tags": [
+              "保留基线",
+              "champion-route"
+            ]
+          },
+          "baseline_v8": {
+            "id": "baseline_v8",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v8"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v8_kawa_lead2_slot/main.py"
+            ],
+            "family": "v8_kawa_lead2_slot",
+            "lineage": [
+              "baseline_v8"
+            ],
+            "tags": [
+              "保留基线",
+              "kawa"
+            ]
+          }
+        },
+        "registry_parent": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router"
+      },
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/agent_factory.py",
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/router.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../fast_router.py",
+        "../../../../v1_adaptive_market/main.py",
+        "../../../../v2_survival_guard/main.py",
+        "../../../../v5_rule_hybrid/base_agent.py",
+        "../../../../v5_rule_hybrid/main.py",
+        "../../../../v5_rule_hybrid/routes.py",
+        "../../../../v5_rule_hybrid/v1_fallback.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "fast_shadow": true,
+      "source_router_spec_sha256": "02d5e5801c78cb443c2cd89219b8a838ec2653ea6da93ed07c90698f18940867"
+    },
+    {
+      "id": "learned_router",
+      "lineage": [
+        "v10_step72_router"
+      ],
+      "family": "v10_step72_full_expert_router",
+      "tags": [
+        "router",
+        "learned",
+        "numpy",
+        "frozen_train_validation"
+      ],
+      "kind": "python",
+      "path": "../../../fast_router.py",
+      "factory": "create_agent",
+      "factory_kwargs": {
+        "router_spec": {
+          "id": "learned_router",
+          "kind": "router",
+          "experts": [
+            "baseline_v1",
+            "baseline_v2",
+            "baseline_v5",
+            "baseline_v8"
+          ],
+          "anchor": "baseline_v1",
+          "switch_step": 72,
+          "code_paths": [
+            "router.py"
+          ],
+          "lineage": [
+            "v10_step72_router"
+          ],
+          "family": "v10_step72_full_expert_router",
+          "router_kind": "learned",
+          "weights": "learned_router_weights.npz",
+          "tags": [
+            "router",
+            "learned",
+            "numpy",
+            "frozen_train_validation"
+          ]
+        },
+        "expert_specs": {
+          "baseline_v1": {
+            "id": "baseline_v1",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v1"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v1_adaptive_market/main.py"
+            ],
+            "family": "v1_adaptive_market",
+            "lineage": [
+              "baseline_v1"
+            ],
+            "tags": [
+              "保留基线",
+              "adaptive"
+            ]
+          },
+          "baseline_v2": {
+            "id": "baseline_v2",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v2"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v2_survival_guard/main.py"
+            ],
+            "family": "v2_survival_guard",
+            "lineage": [
+              "baseline_v2"
+            ],
+            "tags": [
+              "保留基线",
+              "survival"
+            ]
+          },
+          "baseline_v5": {
+            "id": "baseline_v5",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v5"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v5_rule_hybrid/main.py",
+              "../v5_rule_hybrid/base_agent.py",
+              "../v5_rule_hybrid/routes.py",
+              "../v5_rule_hybrid/v1_fallback.py"
+            ],
+            "family": "v5_rule_hybrid",
+            "lineage": [
+              "baseline_v5"
+            ],
+            "tags": [
+              "保留基线",
+              "champion-route"
+            ]
+          },
+          "baseline_v8": {
+            "id": "baseline_v8",
+            "kind": "python",
+            "path": "expert_registry.py",
+            "factory": "create_agent",
+            "factory_args": [
+              "baseline_v8"
+            ],
+            "code_paths": [
+              "expert_registry.py",
+              "variants.py",
+              "../v8_kawa_lead2_slot/main.py"
+            ],
+            "family": "v8_kawa_lead2_slot",
+            "lineage": [
+              "baseline_v8"
+            ],
+            "tags": [
+              "保留基线",
+              "kawa"
+            ]
+          }
+        },
+        "registry_parent": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router"
+      },
+      "code_paths": [
+        "../../../../v10_replay_lolo_router/agent_factory.py",
+        "../../../../v10_replay_lolo_router/expert_registry.py",
+        "../../../../v10_replay_lolo_router/learned_router_weights.npz",
+        "../../../../v10_replay_lolo_router/router.py",
+        "../../../../v10_replay_lolo_router/variants.py",
+        "../../../fast_router.py",
+        "../../../../v1_adaptive_market/main.py",
+        "../../../../v2_survival_guard/main.py",
+        "../../../../v5_rule_hybrid/base_agent.py",
+        "../../../../v5_rule_hybrid/main.py",
+        "../../../../v5_rule_hybrid/routes.py",
+        "../../../../v5_rule_hybrid/v1_fallback.py",
+        "../../../../v8_kawa_lead2_slot/main.py"
+      ],
+      "fast_shadow": true,
+      "source_router_spec_sha256": "dbaa8e1064209ffb592b978a6ead579ffee0adb78c31237e1218cd8ec8b47448"
+    },
+    {
+      "id": "r001_learned_router_premium_floor_guard",
+      "kind": "python",
+      "path": "../../../candidate_agent.py",
+      "factory": "create_agent",
+      "factory_kwargs": {
+        "parent_registry": "runs/round_001/strategy/registry_next.json",
+        "parent_id": "learned_router",
+        "mutation_name": "premium_floor_guard",
+        "mutation_params": {
+          "minimum_price_ratio": 0.55,
+          "release_step": 696
+        },
+        "candidate_id": "r001_learned_router_premium_floor_guard"
+      },
+      "code_paths": [
+        "../../../candidate_agent.py",
+        "../../../mutation_catalog.py"
+      ],
+      "family": "learned_router+premium_floor_guard",
+      "lineage": [
+        "learned_router",
+        "r001_learned_router_premium_floor_guard"
+      ],
+      "parent_models": [
+        "learned_router"
+      ],
+      "mutation": "premium_floor_guard",
+      "change_scope": "仅撤回父策略已有的低价 premium SELL；不改生产动作",
+      "tags": [
+        "pending",
+        "v11",
+        "market-residual",
+        "mutation:premium_floor_guard",
+        "source_round:1",
+        "first_evaluation_round:2"
+      ],
+      "source_round": 1,
+      "first_evaluation_round": 2
+    }
+  ]
+}

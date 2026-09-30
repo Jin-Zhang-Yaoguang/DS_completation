@@ -1,0 +1,36 @@
+{
+  "schema": "kaggriculture-v85-evaluation-manifest-v1",
+  "model_id": "v85_fertilizer_substitution_moe",
+  "portfolio_id": "hier-moe-gold-5-20260829",
+  "parent": "v76_adjacent_safe_buy_lead",
+  "lineage": "circular_input_substitution",
+  "candidate_archive_sha256": "c2e822ec1d56f76f2edb857b2877041a38257f876cbe14de7d2c4cbd153fe51f",
+  "main_sha256": "d3f5dfb14a42d531971b72db93d762b145c46b6bdde30f32e54b3f620bec36be",
+  "parent_main_sha256": "efa9442da3c7d2bca333cccdcf46757fb1286c3bc09e81a91e971764353f776e",
+  "originality_panel_sha256": "c7643380a62852319c634fbfae8ba4e29f6bd61717ce3aa9a8135d09badd246d",
+  "engine": "1.32.7",
+  "data_cutoff": "2026-08-27",
+  "development": {
+    "source_count": 64,
+    "dates": ["2026-08-26", "2026-08-27"],
+    "date_quota": 32,
+    "salt": "kaggriculture-v85-fertilizer-substitution-dev-v1",
+    "panel_opponents": ["v20", "v21", "v32", "v54", "v66", "v76"],
+    "both_seats": true,
+    "policies": ["candidate", "parent"],
+    "expected_games": 1536
+  },
+  "confirmation": {
+    "source_count": 256,
+    "dates": ["2026-08-12", "2026-08-13", "2026-08-14", "2026-08-15"],
+    "date_quota": 64,
+    "salt": "kaggriculture-v85-fertilizer-substitution-confirm-v1",
+    "panel_opponents": ["v20", "v21", "v32", "v54", "v66", "v76"],
+    "both_seats": true,
+    "policies": ["candidate", "parent"],
+    "expected_games": 6144,
+    "one_shot": true
+  },
+  "ablation": "same wrapper and frozen V76 parent with COLLECT_FERTILIZER expert disabled",
+  "remote_submission": "NOT_AUTHORIZED_NOT_SUBMITTED"
+}

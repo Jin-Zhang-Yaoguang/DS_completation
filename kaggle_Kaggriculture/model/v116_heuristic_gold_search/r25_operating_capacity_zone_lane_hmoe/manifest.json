@@ -1,0 +1,65 @@
+{
+  "candidate_sha256": "573b24a8169e9dcb0446c27c80e365c07f1018e4ba5bc71574b12f28ff84b71f",
+  "decision": "NOT_GOLD_KILLFAST_REJECT",
+  "gold_status": "NOT_GOLD",
+  "independent_lineage": true,
+  "mechanism": "Operating-Capacity Slot Contract",
+  "mechanism_tests": {
+    "mechanism": 23,
+    "parity": 4,
+    "passed": 32,
+    "static": 5,
+    "status": "PASSED",
+    "total": 32
+  },
+  "post_result_audit": {
+    "status": "FAILED_UNCOVERED_COUNTEREXAMPLES",
+    "uncovered": [
+      "replacement_plant_lost_during_multi_tick_travel",
+      "structure_deficit_not_bound_to_animal_species",
+      "feeder_inventory_not_deadline_reachable"
+    ]
+  },
+  "killfast_result": {
+    "bank": 49166.0,
+    "care_plus_collect_fertilizer": 339,
+    "day12_assets": 17,
+    "directional_moves": 2518,
+    "passes": 3506,
+    "plants": 79,
+    "terminal_assets": 26,
+    "terminal_weeds": 2
+  },
+  "packaging_excludes": [
+    "evaluator",
+    "accounting_engine",
+    "match_scripts",
+    "replay_data"
+  ],
+  "p2": "NOT_RUN",
+  "p3": "NOT_RUN",
+  "protocol_deviation": {
+    "candidate_or_test_replay_dependency": false,
+    "command": "rg -n \"inventory.*capacity|capacity.*inventory|HAND_CAP|PICKUP\" kaggle_Kaggriculture | head -80",
+    "date": "2026-08-31 Asia/Taipei",
+    "displayed_fields": [
+      "configuration",
+      "description",
+      "id/info",
+      "module_version",
+      "schema/specification",
+      "steps/observation",
+      "action"
+    ],
+    "file": "kaggle_Kaggriculture/model/v12_incumbent_r002/online_failure_55713101/episode-97566763-replay.json",
+    "match_date_in_displayed_content": "NOT_CONFIRMED",
+    "replay_action_field_exposed": true,
+    "scope": "ONE_UNINTENTIONAL_MINIFIED_JSON_LINE_TERMINAL_EXPOSURE",
+    "usage": "NOT_REOPENED_NOT_PARSED_NOT_USED_FOR_MODELING_TUNING_TESTING_EVALUATION_OR_DECISION"
+  },
+  "replay": "NOT_RUN",
+  "schema": "v116-r25-operating-capacity-zone-lane-hmoe-v1",
+  "smoke_killfast": "REJECTED",
+  "strategy_parent": null,
+  "version": "R25"
+}

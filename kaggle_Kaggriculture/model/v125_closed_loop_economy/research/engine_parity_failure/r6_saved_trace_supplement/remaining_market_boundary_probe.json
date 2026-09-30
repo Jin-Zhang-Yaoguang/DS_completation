@@ -1,0 +1,471 @@
+{
+  "schema": "v125-remaining-market-boundary-research",
+  "runner": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/run_match_v3.py",
+    "sha256": "b92392363060f100c53c708dcf716515c39dc243b67526421ae47083a7bc0777"
+  },
+  "engine_composite_sha256": "77535fe62a057a70722db5c529d2c10cb0f0b08dd76c22a5d574758b6635be9f",
+  "script_sha256": "4bf5f31081209ec8cca2dd2dfeb4982b7a5aaf1faeb722753be1856247983f7c",
+  "cases": [
+    {
+      "case": "integer_control",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        2
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2
+      },
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 2980.0,
+      "fixed_cash": 2980.0,
+      "official_seeds": 2,
+      "fixed_seeds": 2
+    },
+    {
+      "case": "zero_noop",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        0
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": null,
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 3000.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 0,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "negative_noop",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        -1
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": null,
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 3000.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 0,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "missing_quantity",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT"
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": null,
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 3000.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 0,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "fractional_numeric",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        2.7
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[0].money: 2980.0 != 3000.0"
+        },
+        {
+          "seat": 0,
+          "difference": "private.seeds.WHEAT: 2 != 0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[0].money: 2980.0 != 3000.0"
+        }
+      ],
+      "official_cash": 2980.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 2,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "numeric_string",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        "2"
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[0].money: 2980.0 != 3000.0"
+        },
+        {
+          "seat": 0,
+          "difference": "private.seeds.WHEAT: 2 != 0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[0].money: 2980.0 != 3000.0"
+        }
+      ],
+      "official_cash": 2980.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 2,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "bool_numeric",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        true
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 1
+      },
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 2990.0,
+      "fixed_cash": 2990.0,
+      "official_seeds": 1,
+      "fixed_seeds": 1
+    },
+    {
+      "case": "int32_overflow",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        2147483649
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2147483649
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[0].money: 0.0 != 3000.0"
+        },
+        {
+          "seat": 0,
+          "difference": "private.seeds.WHEAT: 300 != 0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[0].money: 0.0 != 3000.0"
+        }
+      ],
+      "official_cash": 0.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 300,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "int64_overflow",
+      "seat": 0,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        9223372036854775808
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 9223372036854775808
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[0].money: 0.0 != 3000.0"
+        },
+        {
+          "seat": 0,
+          "difference": "private.seeds.WHEAT: 300 != 0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[0].money: 0.0 != 3000.0"
+        }
+      ],
+      "official_cash": 0.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 300,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "integer_control",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        2
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2
+      },
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 2980.0,
+      "fixed_cash": 2980.0,
+      "official_seeds": 2,
+      "fixed_seeds": 2
+    },
+    {
+      "case": "zero_noop",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        0
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": null,
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 3000.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 0,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "negative_noop",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        -1
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": null,
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 3000.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 0,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "missing_quantity",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT"
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": null,
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 3000.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 0,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "fractional_numeric",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        2.7
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[1].money: 2980.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[1].money: 2980.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "private.seeds.WHEAT: 2 != 0"
+        }
+      ],
+      "official_cash": 2980.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 2,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "numeric_string",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        "2"
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[1].money: 2980.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[1].money: 2980.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "private.seeds.WHEAT: 2 != 0"
+        }
+      ],
+      "official_cash": 2980.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 2,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "bool_numeric",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        true
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 1
+      },
+      "all_fields_equal": true,
+      "differences": [],
+      "official_cash": 2990.0,
+      "fixed_cash": 2990.0,
+      "official_seeds": 1,
+      "fixed_seeds": 1
+    },
+    {
+      "case": "int32_overflow",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        2147483649
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 2147483649
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[1].money: 0.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[1].money: 0.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "private.seeds.WHEAT: 300 != 0"
+        }
+      ],
+      "official_cash": 0.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 300,
+      "fixed_seeds": 0
+    },
+    {
+      "case": "int64_overflow",
+      "seat": 1,
+      "order": [
+        "BUY_SEED",
+        "WHEAT",
+        9223372036854775808
+      ],
+      "runner_basic_action_check_accepts": true,
+      "official_parser": {
+        "type": "BUY_SEED",
+        "item": "WHEAT",
+        "remaining": 9223372036854775808
+      },
+      "all_fields_equal": false,
+      "differences": [
+        {
+          "seat": 0,
+          "difference": "farms[1].money: 0.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "farms[1].money: 0.0 != 3000.0"
+        },
+        {
+          "seat": 1,
+          "difference": "private.seeds.WHEAT: 300 != 0"
+        }
+      ],
+      "official_cash": 0.0,
+      "fixed_cash": 3000.0,
+      "official_seeds": 300,
+      "fixed_seeds": 0
+    }
+  ],
+  "mismatch_cases": 8,
+  "candidate_calls": 0,
+  "new_complete_matches": 0,
+  "interpretation": "一步解析边界研究，含原official parser接受的非典型数量；不混入19条已有轨迹统计，不修改v3或候选。"
+}

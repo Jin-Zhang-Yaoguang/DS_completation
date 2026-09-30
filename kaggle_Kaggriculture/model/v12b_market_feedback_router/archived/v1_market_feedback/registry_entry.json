@@ -1,0 +1,36 @@
+{
+  "schema": "kaggriculture-v12b-registry-entry-1",
+  "parent_models": [
+    "baseline_v8"
+  ],
+  "models": [
+    {
+      "id": "v12b_market_feedback_router",
+      "kind": "python",
+      "path": "main.py",
+      "entrypoint": "agent",
+      "code_paths": [
+        "main.py",
+        "../v8_kawa_lead2_slot/main.py"
+      ],
+      "parent": "baseline_v8",
+      "parent_models": [
+        "baseline_v8"
+      ],
+      "family": "v8_kawa+observable_market_feedback",
+      "lineage": [
+        "baseline_v8",
+        "v12b_market_feedback_router"
+      ],
+      "change_scope": "only reduce existing EGG/MILK/WOOL SELL quantities",
+      "mechanism": "lagged public market flow, deterministic town drain, visible rival animal capacity, duplicate-shop recovery horizon",
+      "tags": [
+        "candidate",
+        "state_feedback",
+        "market_residual",
+        "floor_uncertainty_bypass",
+        "terminal_bypass"
+      ]
+    }
+  ]
+}

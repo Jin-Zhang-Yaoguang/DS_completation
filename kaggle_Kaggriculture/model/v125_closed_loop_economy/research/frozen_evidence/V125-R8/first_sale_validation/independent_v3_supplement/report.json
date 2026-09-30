@@ -1,0 +1,627 @@
+{
+  "tool_sha256": "d353bd04bb4f86f492295a6d197389227934db87ff98414302538a04131a9c67",
+  "test_script_sha256": "7487a84e24e1d1cccac22db036ebf8ae29b391c8cff452012ebe359c1347ccb2",
+  "tests_run": 10,
+  "passed": true,
+  "cases": [
+    {
+      "name": "bool_harvest_quantity",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "INVALID_QUANTITY:0"
+        ],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": null,
+        "first_sale_units": null,
+        "first_sale_cash": null,
+        "first_sale_items": null,
+        "early_days_0_9_cash": null,
+        "early_days_0_9_units": null,
+        "daily": null,
+        "all_sale_cash": null,
+        "all_sale_units": null,
+        "origin_policy": "Invalid evidence domain; no timing, quantity or cash result is reported."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 1,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": true
+          },
+          {
+            "kind": "market",
+            "decision_step": 1,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": 1,
+            "price": 20,
+            "shed_item_before": 1
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "bool_sell_quantity",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "INVALID_QUANTITY:1"
+        ],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": null,
+        "first_sale_units": null,
+        "first_sale_cash": null,
+        "first_sale_items": null,
+        "early_days_0_9_cash": null,
+        "early_days_0_9_units": null,
+        "daily": null,
+        "all_sale_cash": null,
+        "all_sale_units": null,
+        "origin_policy": "Invalid evidence domain; no timing, quantity or cash result is reported."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 1,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "market",
+            "decision_step": 1,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": true,
+            "price": 20,
+            "shed_item_before": true
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "bool_price",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "INVALID_PRICE:1"
+        ],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": null,
+        "first_sale_units": null,
+        "first_sale_cash": null,
+        "first_sale_items": null,
+        "early_days_0_9_cash": null,
+        "early_days_0_9_units": null,
+        "daily": null,
+        "all_sale_cash": null,
+        "all_sale_units": null,
+        "origin_policy": "Invalid evidence domain; no timing, quantity or cash result is reported."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 1,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "market",
+            "decision_step": 1,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": 1,
+            "price": true,
+            "shed_item_before": 1
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "bool_loss",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "INVALID_LOSS_QUANTITY:1"
+        ],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": null,
+        "first_sale_units": null,
+        "first_sale_cash": null,
+        "first_sale_items": null,
+        "early_days_0_9_cash": null,
+        "early_days_0_9_units": null,
+        "daily": null,
+        "all_sale_cash": null,
+        "all_sale_units": null,
+        "origin_policy": "Invalid evidence domain; no timing, quantity or cash result is reported."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 0,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 1,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "manual_drop_overflow",
+            "decision_step": 1,
+            "quantity": {
+              "FERTILIZER": true
+            }
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "negative_loss",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "INVALID_LOSS_QUANTITY:0"
+        ],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": null,
+        "first_sale_units": null,
+        "first_sale_cash": null,
+        "first_sale_items": null,
+        "early_days_0_9_cash": null,
+        "early_days_0_9_units": null,
+        "daily": null,
+        "all_sale_cash": null,
+        "all_sale_units": null,
+        "origin_policy": "Invalid evidence domain; no timing, quantity or cash result is reported."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 0,
+              "buy_product": 0,
+              "sell": 0,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "eod_inventory_drop",
+            "decision_step": 23,
+            "discarded": {
+              "FERTILIZER": -1
+            }
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "last_step_outside_game",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "INVALID_DECISION_STEP:1"
+        ],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": null,
+        "first_sale_units": null,
+        "first_sale_cash": null,
+        "first_sale_items": null,
+        "early_days_0_9_cash": null,
+        "early_days_0_9_units": null,
+        "daily": null,
+        "all_sale_cash": null,
+        "all_sale_units": null,
+        "origin_policy": "Invalid evidence domain; no timing, quantity or cash result is reported."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 1,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "market",
+            "decision_step": 719,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": 1,
+            "price": 20,
+            "shed_item_before": 1
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "missing_actual_shed_supply",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "SELL_NOT_IN_SHED:FERTILIZER"
+        ],
+        "first_sale_step": 1,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": false,
+        "first_sale_units": 1,
+        "first_sale_cash": 20,
+        "first_sale_items": {
+          "FERTILIZER": 1
+        },
+        "early_days_0_9_cash": 20,
+        "early_days_0_9_units": 1,
+        "daily": {
+          "0": {
+            "cash": 20,
+            "units": 1,
+            "by_item": {
+              "FERTILIZER": {
+                "cash": 20,
+                "units": 1
+              }
+            }
+          }
+        },
+        "all_sale_cash": 20,
+        "all_sale_units": 1,
+        "origin_policy": "All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 1,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "market",
+            "decision_step": 1,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": 1,
+            "price": 20,
+            "shed_item_before": 0
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "nonzero_reported_residual",
+      "expected": "PENDING_PROVENANCE",
+      "actual": {
+        "status": "PENDING_PROVENANCE",
+        "issues": [
+          "ITEM_RESIDUAL:FERTILIZER"
+        ],
+        "first_sale_step": 1,
+        "restricted_elapsed_decisions": null,
+        "no_qualifying_sale": false,
+        "first_sale_units": 1,
+        "first_sale_cash": 20,
+        "first_sale_items": {
+          "FERTILIZER": 1
+        },
+        "early_days_0_9_cash": 20,
+        "early_days_0_9_units": 1,
+        "daily": {
+          "0": {
+            "cash": 20,
+            "units": 1,
+            "by_item": {
+              "FERTILIZER": {
+                "cash": 20,
+                "units": 1
+              }
+            }
+          }
+        },
+        "all_sale_cash": 20,
+        "all_sale_units": 1,
+        "origin_policy": "All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 1,
+              "buy_product": 0,
+              "sell": 1,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 1
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "market",
+            "decision_step": 1,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": 1,
+            "price": 20,
+            "shed_item_before": 1
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "normal_empty_eod_loss",
+      "expected": "NUMERIC_COMPLETE",
+      "actual": {
+        "status": "NUMERIC_COMPLETE",
+        "issues": [],
+        "first_sale_step": null,
+        "restricted_elapsed_decisions": 719,
+        "no_qualifying_sale": true,
+        "first_sale_units": 0,
+        "first_sale_cash": 0,
+        "first_sale_items": {},
+        "early_days_0_9_cash": 0,
+        "early_days_0_9_units": 0,
+        "daily": {},
+        "all_sale_cash": 0,
+        "all_sale_units": 0,
+        "origin_policy": "All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 0,
+              "buy_product": 0,
+              "sell": 0,
+              "fertilize": 0,
+              "eod_overflow": 0,
+              "manual_drop_overflow": 0,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "eod_inventory_drop",
+            "decision_step": 23,
+            "discarded": {}
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "name": "normal_consumed_and_lost_then_remaining_sale",
+      "expected": "NUMERIC_COMPLETE",
+      "actual": {
+        "status": "NUMERIC_COMPLETE",
+        "issues": [],
+        "first_sale_step": 24,
+        "restricted_elapsed_decisions": 25,
+        "no_qualifying_sale": false,
+        "first_sale_units": 2,
+        "first_sale_cash": 20,
+        "first_sale_items": {
+          "FERTILIZER": 2
+        },
+        "early_days_0_9_cash": 20,
+        "early_days_0_9_units": 2,
+        "daily": {
+          "1": {
+            "cash": 20,
+            "units": 2,
+            "by_item": {
+              "FERTILIZER": {
+                "cash": 20,
+                "units": 2
+              }
+            }
+          }
+        },
+        "all_sale_cash": 20,
+        "all_sale_units": 2,
+        "origin_policy": "All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used."
+      },
+      "input": {
+        "own": {
+          "all_inventory_residual_zero": true,
+          "inventory_balance": {
+            "FERTILIZER": {
+              "initial": 0,
+              "harvested": 5,
+              "buy_product": 0,
+              "sell": 2,
+              "fertilize": 1,
+              "eod_overflow": 1,
+              "manual_drop_overflow": 1,
+              "terminal_inventory": 0,
+              "residual": 0
+            }
+          }
+        },
+        "events": [
+          {
+            "kind": "harvest",
+            "decision_step": 0,
+            "item": "FERTILIZER",
+            "quantity": 5
+          },
+          {
+            "kind": "fertilize",
+            "decision_step": 1,
+            "item": "FERTILIZER",
+            "quantity": 1
+          },
+          {
+            "kind": "manual_drop_overflow",
+            "decision_step": 2,
+            "quantity": {
+              "FERTILIZER": 1
+            }
+          },
+          {
+            "kind": "eod_inventory_drop",
+            "decision_step": 23,
+            "discarded": {
+              "FERTILIZER": 1
+            }
+          },
+          {
+            "kind": "market",
+            "decision_step": 24,
+            "op": "SELL",
+            "item": "FERTILIZER",
+            "quantity": 2,
+            "price": 10,
+            "shed_item_before": 2
+          }
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "tool_unchanged": true,
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_independent_matches": 0
+}

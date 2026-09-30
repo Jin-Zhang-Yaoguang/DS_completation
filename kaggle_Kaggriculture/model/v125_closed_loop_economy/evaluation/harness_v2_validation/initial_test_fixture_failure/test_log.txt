@@ -1,0 +1,91 @@
+test_official_hook_binds_post_structify_farms (v125_existing_regressions.HarnessTests.test_official_hook_binds_post_structify_farms) ... ok
+test_original_typeerror_is_not_retried (v125_existing_regressions.HarnessTests.test_original_typeerror_is_not_retried) ... ok
+test_same_module_independent_instances (v125_existing_regressions.HarnessTests.test_same_module_independent_instances) ... ok
+test_actual_official_callable_configuration (__main__.VisibilityTests.test_actual_official_callable_configuration) ... ERROR
+test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) ... 
+  test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=False, seat=0) ... FAIL
+  test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=False, seat=1) ... FAIL
+  test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=True, seat=0) ... FAIL
+  test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=True, seat=1) ... FAIL
+  test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='fast', parity=True, seat=0) ... FAIL
+  test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='fast', parity=True, seat=1) ... FAIL
+test_configuration_copy_keeps_all_other_fields (__main__.VisibilityTests.test_configuration_copy_keeps_all_other_fields) ... ok
+test_frozen_analyzer_dynamic_runner_contract (__main__.VisibilityTests.test_frozen_analyzer_dynamic_runner_contract) ... ERROR
+test_old_fast_seed_leak_is_reproduced_without_step (__main__.VisibilityTests.test_old_fast_seed_leak_is_reproduced_without_step) ... ok
+
+======================================================================
+ERROR: test_actual_official_callable_configuration (__main__.VisibilityTests.test_actual_official_callable_configuration)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 65, in test_actual_official_callable_configuration
+    action,log=official_agent.act(self.official.observe(seat))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.venv/lib/python3.12/site-packages/kaggle_environments/agent.py", line 220, in act
+    if duration - self.configuration.actTimeout > observation.remainingOverageTime:
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'remainingOverageTime'
+
+======================================================================
+ERROR: test_frozen_analyzer_dynamic_runner_contract (__main__.VisibilityTests.test_frozen_analyzer_dynamic_runner_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 115, in test_frozen_analyzer_dynamic_runner_contract
+    trace=json.load(gzip.open(source));left=old.Engine('official',trace['seed'],self.make,self.fast);right=dynamic.Engine('official',trace['seed'],self.make,self.fast)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/run_match.py", line 136, in __init__
+    if backend=='official':self.g=make('kaggriculture',configuration={'seed':seed,'episodeSteps':720},debug=False);self.g.reset(2)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: make() got multiple values for argument 'configuration'
+
+======================================================================
+FAIL: test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=False, seat=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 81, in test_all_backend_parity_and_seat_routes
+    self.assertEqual(result['calls'],1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=False, seat=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 81, in test_all_backend_parity_and_seat_routes
+    self.assertEqual(result['calls'],1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=True, seat=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 81, in test_all_backend_parity_and_seat_routes
+    self.assertEqual(result['calls'],1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='official', parity=True, seat=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 81, in test_all_backend_parity_and_seat_routes
+    self.assertEqual(result['calls'],1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='fast', parity=True, seat=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 81, in test_all_backend_parity_and_seat_routes
+    self.assertEqual(result['calls'],1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_all_backend_parity_and_seat_routes (__main__.VisibilityTests.test_all_backend_parity_and_seat_routes) (backend='fast', parity=True, seat=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/test_harness_v2.py", line 81, in test_all_backend_parity_and_seat_routes
+    self.assertEqual(result['calls'],1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.497s
+
+FAILED (failures=6, errors=2)

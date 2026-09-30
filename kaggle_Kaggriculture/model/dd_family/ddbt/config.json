@@ -1,0 +1,29 @@
+{
+  "version": "ddbt",
+  "method": "Replay-distilled service ranking with simulator-calibrated daily routing table",
+  "teacher": "Boey",
+  "source_version": "ddbd",
+  "rank_iterations": 400,
+  "rank_leaves": 63,
+  "negative_candidates": 8,
+  "quantity_trees": 24,
+  "market_trees": 64,
+  "seed": 61071,
+  "rank_sample_weight": "inverse sqrt positive action frequency capped 8; first 3 days times 4",
+  "market_class_weight": "balanced",
+  "negative_sampling": "always WAIT plus hard spatial/action negatives",
+  "execution_guard": "block duplicate held-item pickup and immediate shed transfer reversal; allow productive animal placement and end-of-day return",
+  "seed_stock_guard": "Cap each crop seed stock after our market orders at current worker count; no final-turn buys; fixed-price seeds need no speculative inventory.",
+  "feature_revision": "urgency_cycles_committed_tasks_v1",
+  "market_label": "raw requested intent; teacher-forced own-request shadow; no future opponent fills",
+  "parent": "ddbs",
+  "idle_policy": "When distilled rank selects PASS, retain its relative ranking over reachable unreserved existing-asset services; FEED must already have held wheat. No M&M weights or crew floor.",
+  "value_label": "Mean terminal competitive margin delta against unchanged continuation, one-day intervention.",
+  "value_scope": "Only day 3/10/20 have observed values; all other days retain teacher ranking. Four training seeds, no claim of generalization.",
+  "value_validation_seeds": [
+    919261001,
+    919261002,
+    919261003,
+    919261004
+  ]
+}

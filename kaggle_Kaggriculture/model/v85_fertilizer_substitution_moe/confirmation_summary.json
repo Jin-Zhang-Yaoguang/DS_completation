@@ -1,0 +1,124 @@
+{
+  "schema": "kaggriculture-loop-confirmation-v1",
+  "model_id": "v85_fertilizer_substitution_moe",
+  "engine": "1.32.7",
+  "candidate_archive_sha256": "c2e822ec1d56f76f2edb857b2877041a38257f876cbe14de7d2c4cbd153fe51f",
+  "source_manifest_sha256": "8fa429499171f3efb230be21a94cdb56f7905f9ae87592348aee26293f217fc0",
+  "games_sha256": "9544ada2e4f6b20e5e205d582a5637a83ab46cab816645e950ea8cf54bd1a790",
+  "source_count": 256,
+  "originality_panel": [
+    "v20",
+    "v21",
+    "v32",
+    "v54",
+    "v66",
+    "v76"
+  ],
+  "summary": {
+    "task_count": 6144,
+    "done_count": 6144,
+    "error_count": 0,
+    "task_keys_unique": true,
+    "candidate_panel_score": 0.9150390625,
+    "parent_panel_score": 0.8408203125,
+    "pou_pp": 7.421875,
+    "positive_zero_negative": [
+      386,
+      2686,
+      0
+    ],
+    "by_opponent_pou_pp": {
+      "v20": 0.1953125,
+      "v21": 0.390625,
+      "v32": 0.5859375,
+      "v54": 3.41796875,
+      "v66": 4.00390625,
+      "v76": 35.9375
+    },
+    "candidate_catastrophic_rate": 0.001953125,
+    "parent_catastrophic_rate": 0.00390625,
+    "catastrophic_rate_delta_pp": -0.1953125,
+    "candidate_mean_margin": 813.2532552083334,
+    "parent_mean_margin": 743.830078125,
+    "candidate_action_changed_games": 2676,
+    "safety_violations": 0,
+    "pou_95ci_pp": [
+      6.754557291666669,
+      8.105468750000004
+    ],
+    "panel_score_95ci": [
+      0.8981119791666666,
+      0.9309895833333334
+    ],
+    "gate_checks": {
+      "pou_positive": true,
+      "panel_score_at_least_50pct": true,
+      "each_opponent_delta_at_least_minus_3pp": true,
+      "catastrophic_delta_at_most_1pp": true,
+      "zero_errors_integrity_safety": true,
+      "effective_action_change": true
+    },
+    "gate": "PASS"
+  },
+  "confirmation": {
+    "candidate_score_by_opponent": {
+      "v20": 0.98046875,
+      "v21": 0.97265625,
+      "v32": 0.947265625,
+      "v54": 0.865234375,
+      "v66": 0.865234375,
+      "v76": 0.859375
+    },
+    "parent_score_by_opponent": {
+      "v20": 0.978515625,
+      "v21": 0.96875,
+      "v32": 0.94140625,
+      "v54": 0.8310546875,
+      "v66": 0.8251953125,
+      "v76": 0.5
+    },
+    "direct_parent_score": 0.859375,
+    "direct_parent_score_95ci": [
+      0.833984375,
+      0.884765625
+    ],
+    "mcu_pp": 7.421875,
+    "mcu_95ci_pp": [
+      6.754557291666669,
+      8.105468750000004
+    ],
+    "mechanism_trigger_sources": 256,
+    "mechanism_trigger_shop_regimes": [
+      "BAKERY",
+      "BRUNCH_SPOT",
+      "FARMERS_MARKET",
+      "ICE_CREAM_SHOP",
+      "PET_CAFE",
+      "PIZZA_SHOP",
+      "SMOOTHIE_SHOP",
+      "YARN_STORE"
+    ],
+    "mechanism_trigger_calls": 25618,
+    "w_t_l": [
+      2748,
+      126,
+      198
+    ],
+    "hard_gate_checks": {
+      "pou_at_least_1pp": true,
+      "pou_ci_lower_positive": true,
+      "panel_score_at_least_52pct": true,
+      "panel_ci_lower_above_50pct": true,
+      "direct_parent_score_at_least_50pct": true,
+      "direct_parent_ci_lower_at_least_48pct": true,
+      "every_original_score_at_least_48pct": true,
+      "every_original_delta_at_least_minus_2pp": true,
+      "positive_flips_exceed_negative": true,
+      "mcu_positive_and_ci_lower_positive": true,
+      "trigger_sources_at_least_8": true,
+      "trigger_regimes_at_least_2": true,
+      "zero_errors_integrity_safety": true
+    },
+    "strategy_gate": "PASS"
+  }
+}

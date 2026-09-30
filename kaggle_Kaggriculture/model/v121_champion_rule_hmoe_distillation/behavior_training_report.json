@@ -1,0 +1,239 @@
+{
+  "schema": "kaggriculture-v121-behavior-hmoe-training-v1",
+  "data": {
+    "actor_rows": 139781,
+    "turn_rows": 13661,
+    "episodes": 13,
+    "actor_features": 95,
+    "market_features": 75
+  },
+  "experts": {
+    "CAPACITY": {
+      "unit": {
+        "rows": 32085,
+        "classes": 64,
+        "accuracy": 0.6708119058750195,
+        "balanced_accuracy": 0.5242449309449805,
+        "groups": 3
+      },
+      "market": {
+        "rows": 2976,
+        "targets": 28,
+        "rmse": 1.420852628932977,
+        "nonzero_precision": 0.3160671462829736,
+        "nonzero_recall": 0.510061919504644,
+        "nonzero_f1": 0.39028723719277464,
+        "groups": 3
+      },
+      "unit_tree": {
+        "depth": 22,
+        "nodes": 8073
+      },
+      "market_tree": {
+        "depth": 16,
+        "nodes": 649
+      }
+    },
+    "CROP": {
+      "unit": {
+        "rows": 55462,
+        "classes": 75,
+        "accuracy": 0.6607406873174426,
+        "balanced_accuracy": 0.5191693044174372,
+        "groups": 3
+      },
+      "market": {
+        "rows": 5112,
+        "targets": 28,
+        "rmse": 1.5757969217651142,
+        "nonzero_precision": 0.3143418467583497,
+        "nonzero_recall": 0.456540825285338,
+        "nonzero_f1": 0.3723261433813658,
+        "groups": 3
+      },
+      "unit_tree": {
+        "depth": 22,
+        "nodes": 12301
+      },
+      "market_tree": {
+        "depth": 16,
+        "nodes": 1317
+      }
+    },
+    "LIVESTOCK": {
+      "unit": {
+        "rows": 36436,
+        "classes": 63,
+        "accuracy": 0.7250247008453178,
+        "balanced_accuracy": 0.5910734806972395,
+        "groups": 3
+      },
+      "market": {
+        "rows": 4224,
+        "targets": 28,
+        "rmse": 1.155542260153611,
+        "nonzero_precision": 0.38870339454646635,
+        "nonzero_recall": 0.5189450222882616,
+        "nonzero_f1": 0.4444797963728922,
+        "groups": 3
+      },
+      "unit_tree": {
+        "depth": 22,
+        "nodes": 7705
+      },
+      "market_tree": {
+        "depth": 16,
+        "nodes": 653
+      }
+    },
+    "LIQUIDATE": {
+      "unit": {
+        "rows": 15798,
+        "classes": 55,
+        "accuracy": 0.6010887454108115,
+        "balanced_accuracy": 0.4440624730407052,
+        "groups": 3
+      },
+      "market": {
+        "rows": 1349,
+        "targets": 28,
+        "rmse": 2.555073466877729,
+        "nonzero_precision": 0.22569576820434617,
+        "nonzero_recall": 0.44511278195488724,
+        "nonzero_f1": 0.29951935239058947,
+        "groups": 3
+      },
+      "unit_tree": {
+        "depth": 22,
+        "nodes": 4835
+      },
+      "market_tree": {
+        "depth": 16,
+        "nodes": 263
+      }
+    }
+  },
+  "teachers": {
+    "Crop Dusta": {
+      "actor": {
+        "rows": 30287,
+        "classes": 47,
+        "accuracy": 0.5342556212236274,
+        "balanced_accuracy": 0.5036249628351661,
+        "groups": 3
+      },
+      "basket": {
+        "rows": 2876,
+        "classes": 451,
+        "accuracy": 0.26912378303198886,
+        "balanced_accuracy": 0.024013953706380767,
+        "groups": 3
+      },
+      "actor_tree": {
+        "depth": 26,
+        "nodes": 13241
+      },
+      "basket_tree": {
+        "depth": 22,
+        "nodes": 1351
+      }
+    },
+    "Driz Lo": {
+      "actor": {
+        "rows": 28200,
+        "classes": 81,
+        "accuracy": 0.6333333333333333,
+        "balanced_accuracy": 0.4237137818673408,
+        "groups": 3
+      },
+      "basket": {
+        "rows": 2876,
+        "classes": 383,
+        "accuracy": 0.3101529902642559,
+        "balanced_accuracy": 0.0899272864018618,
+        "groups": 3
+      },
+      "actor_tree": {
+        "depth": 26,
+        "nodes": 9757
+      },
+      "basket_tree": {
+        "depth": 22,
+        "nodes": 1661
+      }
+    },
+    "OceanMix": {
+      "actor": {
+        "rows": 21261,
+        "classes": 82,
+        "accuracy": 0.6053807440854146,
+        "balanced_accuracy": 0.35418968073894475,
+        "groups": 3
+      },
+      "basket": {
+        "rows": 2157,
+        "classes": 307,
+        "accuracy": 0.2257765414928141,
+        "balanced_accuracy": 0.07966972405648805,
+        "groups": 3
+      },
+      "actor_tree": {
+        "depth": 26,
+        "nodes": 8247
+      },
+      "basket_tree": {
+        "depth": 22,
+        "nodes": 1201
+      }
+    },
+    "QQ Farming": {
+      "actor": {
+        "rows": 28976,
+        "classes": 77,
+        "accuracy": 0.7937948647156268,
+        "balanced_accuracy": 0.6685113926982832,
+        "groups": 3
+      },
+      "basket": {
+        "rows": 2876,
+        "classes": 275,
+        "accuracy": 0.5980528511821975,
+        "balanced_accuracy": 0.33613367698800334,
+        "groups": 3
+      },
+      "actor_tree": {
+        "depth": 26,
+        "nodes": 7841
+      },
+      "basket_tree": {
+        "depth": 22,
+        "nodes": 1125
+      }
+    },
+    "tetsuya": {
+      "actor": {
+        "rows": 31057,
+        "classes": 40,
+        "accuracy": 0.7480761181054191,
+        "balanced_accuracy": 0.5336098969280497,
+        "groups": 3
+      },
+      "basket": {
+        "rows": 2876,
+        "classes": 332,
+        "accuracy": 0.674547983310153,
+        "balanced_accuracy": 0.05991823899767513,
+        "groups": 3
+      },
+      "actor_tree": {
+        "depth": 26,
+        "nodes": 8039
+      },
+      "basket_tree": {
+        "depth": 22,
+        "nodes": 895
+      }
+    }
+  },
+  "verdict": "BEHAVIOR_TREES_TRAINED_CLOSED_LOOP_REQUIRED"
+}

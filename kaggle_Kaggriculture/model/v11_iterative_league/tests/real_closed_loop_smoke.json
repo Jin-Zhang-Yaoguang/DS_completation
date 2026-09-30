@@ -1,0 +1,58 @@
+{
+  "schema": "kaggriculture-v11-real-closed-loop-smoke-evidence-1",
+  "created_at": "2026-08-22T02:49:37+08:00",
+  "purpose": "功能准入复核，不作为候选性能证据",
+  "engine": "kaggle_environments.make(kaggriculture)",
+  "closed_loop": true,
+  "trace_agent_playback": false,
+  "sealed_test_used": false,
+  "parent": "baseline_v1",
+  "candidate": "r999_baseline_v1_value_slot_priority",
+  "mutation": "value_slot_priority",
+  "params": {
+    "min_sell_orders": 2
+  },
+  "development_sources": [
+    {"date": "2026-08-18", "episode_id": "94063004", "seed": 1604901024},
+    {"date": "2026-08-18", "episode_id": "94063912", "seed": 167594165},
+    {"date": "2026-08-19", "episode_id": "94348150", "seed": 360415333},
+    {"date": "2026-08-19", "episode_id": "94348175", "seed": 888727729},
+    {"date": "2026-08-20", "episode_id": "94735084", "seed": 1542433895},
+    {"date": "2026-08-20", "episode_id": "94735093", "seed": 969179820}
+  ],
+  "seeds": 6,
+  "seat_assignments_per_seed": 2,
+  "candidate_games": 12,
+  "parent_control_games": 12,
+  "all_done": true,
+  "all_720_steps": true,
+  "zero_stderr": true,
+  "changed_games": 12,
+  "changed_steps": 1475,
+  "market_changed_steps": 1475,
+  "farmer_changed_steps": 0,
+  "hands_changed_steps": 0,
+  "real_action_difference": true,
+  "passed": true,
+  "independent_admission": {
+    "schema": "kaggriculture-v11-independent-admission-1",
+    "candidate_games": 12,
+    "parent_control_games": 12,
+    "all_done": true,
+    "all_720_steps": true,
+    "zero_stderr": true,
+    "changed_games": 12,
+    "changed_steps": 1475,
+    "real_action_difference": true,
+    "passed": true
+  },
+  "raw_report_sha256": "587e9e0ce948400b3be4edcf0a5ea44c8eb1591d322c754c1fb225121f3a6403",
+  "run_admission_smoke_source_sha256": "b818eae954ed4718cd242dec054460a575cfc1c30016fff0bd7b12f4b9783ebb",
+  "code_sha256": {
+    "candidate_agent.py": "10fa61fdca6f70c1f526b18df388eebc35fb73b4ca997c9165c33daa35865ca8",
+    "mutation_catalog.py": "c5ca771acaa4de17e8492d38fbb068f5651ccd2cf807e53b8d0dcac26f1cf008",
+    "strategy_optimizer.py": "07e47aa5dfe9430c0fb28bd3f9350d85065516c6d48b95b9eac27e576953d68c",
+    "admission_smoke.py": "786964964b90975d38777eb77ca84860720228001b38a20663a5917fd870ae63",
+    "admission_verifier.py": "3772a8218682b208484e52740967ad67044fca1b9a95cec61105b13b30f9e2a0"
+  }
+}

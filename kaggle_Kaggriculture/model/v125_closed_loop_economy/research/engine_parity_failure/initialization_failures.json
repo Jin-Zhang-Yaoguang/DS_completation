@@ -1,0 +1,21 @@
+{
+  "failures": [
+    {
+      "stage": "setup import",
+      "error": "ModuleNotFoundError: pybind11",
+      "result": "未安装依赖；改用已有uv缓存头文件"
+    },
+    {
+      "stage": "setup helper with cached pybind11",
+      "error": "ModuleNotFoundError: setuptools / distutils",
+      "result": "改用直接clang++编译，不安装依赖"
+    },
+    {
+      "stage": "old and derived module coexist",
+      "error": "ImportError: generic_type: type \"Stream\" is already registered!",
+      "result": "保留首个派生库，v2仅添加module_local类型注册，再编译新目录"
+    }
+  ],
+  "candidate_calls": 0,
+  "new_complete_matches": 0
+}

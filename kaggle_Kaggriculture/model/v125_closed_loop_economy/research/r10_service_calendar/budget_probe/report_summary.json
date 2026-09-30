@@ -1,0 +1,769 @@
+{
+  "status": "DIAGNOSTIC_COMPLETE",
+  "calls": {
+    "candidate": 719,
+    "saved_action_engine_steps": 719,
+    "opponent_candidate": 0,
+    "new_independent_matches": 0
+  },
+  "source_cash": [
+    133227.0,
+    3000.0
+  ],
+  "rejections": {
+    "cash_prefix": 4259,
+    "labor": 29563,
+    "startup_or_maturity": 54102,
+    "nonpositive_net": 2465
+  },
+  "labor_classes": [
+    {
+      "group": "current_only",
+      "attempts": 3833,
+      "share_of_labor_attempts": 0.1296553123837229,
+      "distinct_steps": 120,
+      "baseline_infeasible_attempts": 661,
+      "modeled_net_positive_attempts": 3053
+    },
+    {
+      "group": "future_only",
+      "attempts": 18596,
+      "share_of_labor_attempts": 0.6290295301559382,
+      "distinct_steps": 242,
+      "baseline_infeasible_attempts": 0,
+      "modeled_net_positive_attempts": 14759
+    },
+    {
+      "group": "current_and_future",
+      "attempts": 7134,
+      "share_of_labor_attempts": 0.24131515746033894,
+      "distinct_steps": 98,
+      "baseline_infeasible_attempts": 3059,
+      "modeled_net_positive_attempts": 5797
+    }
+  ],
+  "labor_by_quote_phase": {
+    "current_only": {
+      "admission_recheck": 1838,
+      "initial_offer": 1995
+    },
+    "future_only": {
+      "admission_recheck": 510,
+      "initial_offer": 18086
+    },
+    "current_and_future": {
+      "admission_recheck": 316,
+      "initial_offer": 6818
+    }
+  },
+  "first_failure_horizon": {
+    "today": 10967,
+    "8_or_more_days": 4379,
+    "2_to_7_days": 12223,
+    "tomorrow": 1994
+  },
+  "first_failure_offset": {
+    "0": 10967,
+    "10": 338,
+    "9": 2459,
+    "8": 1582,
+    "7": 1878,
+    "1": 1994,
+    "6": 841,
+    "5": 334,
+    "4": 740,
+    "3": 2331,
+    "2": 6099
+  },
+  "labor_distinct_decision_steps": 369,
+  "baseline_already_infeasible_attempts": 3720,
+  "first_by_class": {
+    "current_only": {
+      "step": 8,
+      "day": 0,
+      "hour": 8,
+      "item": "TOMATO",
+      "position": [
+        2,
+        0
+      ],
+      "callsite_line": 790,
+      "phase": "admission_recheck",
+      "quote_ordinal_in_step": 114,
+      "reason": "labor",
+      "actual_cash": 893.0,
+      "quote": {
+        "build_first": false,
+        "start_step_model": 12,
+        "first_product_day": 8,
+        "fixed_cash": 50,
+        "gross_cash_model": 244,
+        "net_cash_model": 184.0,
+        "cash_reserved_model": 60.0,
+        "hire_cash_model": 10,
+        "labor": 98,
+        "selection_score": 184.0
+      },
+      "failure_class": "current_only",
+      "first_failure_day": 0,
+      "first_failure_offset": 0,
+      "failure_days": [
+        {
+          "day": 0,
+          "need": 135,
+          "capacity": 128,
+          "deficit": 7,
+          "base_need": 124,
+          "base_capacity": 128,
+          "added_work": 11,
+          "quote_calendar_work": 11
+        }
+      ],
+      "baseline_failure_days": [],
+      "baseline_already_infeasible": false,
+      "current_day": {
+        "base_need": 124,
+        "trial_need": 135,
+        "base_capacity": 128,
+        "trial_capacity": 128
+      },
+      "existing_hands": 7,
+      "base_order_slots": 1,
+      "trial_order_slots": 1,
+      "current_hire_target": 7,
+      "funding_evaluation": "NOT_EVALUATED_ORIGINAL_SHORT_CIRCUIT",
+      "economic_net_checked": false
+    },
+    "future_only": {
+      "step": 270,
+      "day": 11,
+      "hour": 6,
+      "item": "STRAWBERRY",
+      "position": [
+        7,
+        1
+      ],
+      "callsite_line": 790,
+      "phase": "admission_recheck",
+      "quote_ordinal_in_step": 153,
+      "reason": "labor",
+      "actual_cash": 19569.0,
+      "quote": {
+        "build_first": false,
+        "start_step_model": 273,
+        "first_product_day": 21,
+        "fixed_cash": 100,
+        "gross_cash_model": 957,
+        "net_cash_model": 658.0,
+        "cash_reserved_model": 299.0,
+        "hire_cash_model": 199,
+        "labor": 105,
+        "selection_score": 658.0
+      },
+      "failure_class": "future_only",
+      "first_failure_day": 21,
+      "first_failure_offset": 10,
+      "failure_days": [
+        {
+          "day": 21,
+          "need": 309,
+          "capacity": 298,
+          "deficit": 11,
+          "base_need": 297,
+          "base_capacity": 298,
+          "added_work": 12,
+          "quote_calendar_work": 12
+        },
+        {
+          "day": 23,
+          "need": 301,
+          "capacity": 298,
+          "deficit": 3,
+          "base_need": 289,
+          "base_capacity": 298,
+          "added_work": 12,
+          "quote_calendar_work": 12
+        },
+        {
+          "day": 25,
+          "need": 301,
+          "capacity": 298,
+          "deficit": 3,
+          "base_need": 289,
+          "base_capacity": 298,
+          "added_work": 12,
+          "quote_calendar_work": 12
+        }
+      ],
+      "baseline_failure_days": [],
+      "baseline_already_infeasible": false,
+      "current_day": {
+        "base_need": 224,
+        "trial_need": 233,
+        "base_capacity": 234,
+        "trial_capacity": 234
+      },
+      "existing_hands": 12,
+      "base_order_slots": 1,
+      "trial_order_slots": 2,
+      "current_hire_target": 12,
+      "funding_evaluation": "NOT_EVALUATED_ORIGINAL_SHORT_CIRCUIT",
+      "economic_net_checked": false
+    },
+    "current_and_future": {
+      "step": 264,
+      "day": 11,
+      "hour": 0,
+      "item": "MELON",
+      "position": [
+        6,
+        0
+      ],
+      "callsite_line": 790,
+      "phase": "admission_recheck",
+      "quote_ordinal_in_step": 164,
+      "reason": "labor",
+      "actual_cash": 4252.0,
+      "quote": {
+        "build_first": false,
+        "start_step_model": 271,
+        "first_product_day": 21,
+        "fixed_cash": 80,
+        "gross_cash_model": 1467,
+        "net_cash_model": 1387.0,
+        "cash_reserved_model": 80.0,
+        "hire_cash_model": 0.0,
+        "labor": 62,
+        "selection_score": 1387.0
+      },
+      "failure_class": "current_and_future",
+      "first_failure_day": 11,
+      "first_failure_offset": 0,
+      "failure_days": [
+        {
+          "day": 11,
+          "need": 310,
+          "capacity": 297,
+          "deficit": 13,
+          "base_need": 297,
+          "base_capacity": 297,
+          "added_work": 13,
+          "quote_calendar_work": 13
+        },
+        {
+          "day": 21,
+          "need": 304,
+          "capacity": 298,
+          "deficit": 6,
+          "base_need": 291,
+          "base_capacity": 298,
+          "added_work": 13,
+          "quote_calendar_work": 13
+        }
+      ],
+      "baseline_failure_days": [],
+      "baseline_already_infeasible": false,
+      "current_day": {
+        "base_need": 297,
+        "trial_need": 310,
+        "base_capacity": 297,
+        "trial_capacity": 297
+      },
+      "existing_hands": 0,
+      "base_order_slots": 1,
+      "trial_order_slots": 1,
+      "current_hire_target": 9,
+      "funding_evaluation": "NOT_EVALUATED_ORIGINAL_SHORT_CIRCUIT",
+      "economic_net_checked": false
+    }
+  },
+  "first_baseline_infeasible": {
+    "step": 246,
+    "day": 10,
+    "hour": 6,
+    "item": "WHEAT",
+    "position": [
+      4,
+      3
+    ],
+    "callsite_line": 768,
+    "phase": "initial_offer",
+    "quote_ordinal_in_step": 1,
+    "reason": "labor",
+    "actual_cash": 232.0,
+    "quote": {
+      "build_first": false,
+      "start_step_model": 248,
+      "first_product_day": 14,
+      "fixed_cash": 10,
+      "gross_cash_model": 144,
+      "net_cash_model": 132.0,
+      "cash_reserved_model": 12.0,
+      "hire_cash_model": 2,
+      "labor": 13,
+      "selection_score": 132.0
+    },
+    "failure_class": "current_only",
+    "first_failure_day": 10,
+    "first_failure_offset": 0,
+    "failure_days": [
+      {
+        "day": 10,
+        "need": 241,
+        "capacity": 234,
+        "deficit": 7,
+        "base_need": 237,
+        "base_capacity": 234,
+        "added_work": 4,
+        "quote_calendar_work": 4
+      }
+    ],
+    "baseline_failure_days": [
+      {
+        "day": 10,
+        "need": 237,
+        "capacity": 234,
+        "deficit": 3
+      }
+    ],
+    "baseline_already_infeasible": true,
+    "current_day": {
+      "base_need": 237,
+      "trial_need": 241,
+      "base_capacity": 234,
+      "trial_capacity": 234
+    },
+    "existing_hands": 12,
+    "base_order_slots": 0,
+    "trial_order_slots": 1,
+    "current_hire_target": 12,
+    "funding_evaluation": "NOT_EVALUATED_ORIGINAL_SHORT_CIRCUIT",
+    "economic_net_checked": false
+  },
+  "furthest_first_failure_example": {
+    "step": 270,
+    "day": 11,
+    "hour": 6,
+    "item": "STRAWBERRY",
+    "position": [
+      7,
+      1
+    ],
+    "callsite_line": 790,
+    "phase": "admission_recheck",
+    "quote_ordinal_in_step": 153,
+    "reason": "labor",
+    "actual_cash": 19569.0,
+    "quote": {
+      "build_first": false,
+      "start_step_model": 273,
+      "first_product_day": 21,
+      "fixed_cash": 100,
+      "gross_cash_model": 957,
+      "net_cash_model": 658.0,
+      "cash_reserved_model": 299.0,
+      "hire_cash_model": 199,
+      "labor": 105,
+      "selection_score": 658.0
+    },
+    "failure_class": "future_only",
+    "first_failure_day": 21,
+    "first_failure_offset": 10,
+    "failure_days": [
+      {
+        "day": 21,
+        "need": 309,
+        "capacity": 298,
+        "deficit": 11,
+        "base_need": 297,
+        "base_capacity": 298,
+        "added_work": 12,
+        "quote_calendar_work": 12
+      },
+      {
+        "day": 23,
+        "need": 301,
+        "capacity": 298,
+        "deficit": 3,
+        "base_need": 289,
+        "base_capacity": 298,
+        "added_work": 12,
+        "quote_calendar_work": 12
+      },
+      {
+        "day": 25,
+        "need": 301,
+        "capacity": 298,
+        "deficit": 3,
+        "base_need": 289,
+        "base_capacity": 298,
+        "added_work": 12,
+        "quote_calendar_work": 12
+      }
+    ],
+    "baseline_failure_days": [],
+    "baseline_already_infeasible": false,
+    "current_day": {
+      "base_need": 224,
+      "trial_need": 233,
+      "base_capacity": 234,
+      "trial_capacity": 234
+    },
+    "existing_hands": 12,
+    "base_order_slots": 1,
+    "trial_order_slots": 2,
+    "current_hire_target": 12,
+    "funding_evaluation": "NOT_EVALUATED_ORIGINAL_SHORT_CIRCUIT",
+    "economic_net_checked": false
+  },
+  "largest_deficit_example": {
+    "step": 509,
+    "day": 21,
+    "hour": 5,
+    "item": "COW",
+    "position": [
+      2,
+      0
+    ],
+    "callsite_line": 768,
+    "phase": "initial_offer",
+    "quote_ordinal_in_step": 108,
+    "reason": "labor",
+    "actual_cash": 46458.0,
+    "quote": {
+      "build_first": true,
+      "start_step_model": 527,
+      "first_product_day": 29,
+      "fixed_cash": 400,
+      "gross_cash_model": 2461,
+      "net_cash_model": 1350.0,
+      "cash_reserved_model": 1111.0,
+      "hire_cash_model": 367,
+      "labor": 159,
+      "selection_score": 1350.0
+    },
+    "failure_class": "current_and_future",
+    "first_failure_day": 21,
+    "first_failure_offset": 0,
+    "failure_days": [
+      {
+        "day": 21,
+        "need": 292,
+        "capacity": 247,
+        "deficit": 45,
+        "base_need": 266,
+        "base_capacity": 247,
+        "added_work": 26,
+        "quote_calendar_work": 26
+      },
+      {
+        "day": 23,
+        "need": 314,
+        "capacity": 298,
+        "deficit": 16,
+        "base_need": 298,
+        "base_capacity": 298,
+        "added_work": 16,
+        "quote_calendar_work": 16
+      },
+      {
+        "day": 25,
+        "need": 314,
+        "capacity": 298,
+        "deficit": 16,
+        "base_need": 298,
+        "base_capacity": 298,
+        "added_work": 16,
+        "quote_calendar_work": 16
+      }
+    ],
+    "baseline_failure_days": [
+      {
+        "day": 21,
+        "need": 266,
+        "capacity": 247,
+        "deficit": 19
+      }
+    ],
+    "baseline_already_infeasible": true,
+    "current_day": {
+      "base_need": 266,
+      "trial_need": 292,
+      "base_capacity": 247,
+      "trial_capacity": 247
+    },
+    "existing_hands": 12,
+    "base_order_slots": 0,
+    "trial_order_slots": 0,
+    "current_hire_target": 12,
+    "funding_evaluation": "NOT_EVALUATED_ORIGINAL_SHORT_CIRCUIT",
+    "economic_net_checked": false
+  },
+  "labor_by_item": {
+    "TOMATO": {
+      "current_only": 546,
+      "current_and_future": 764,
+      "future_only": 2650
+    },
+    "MELON": {
+      "current_only": 153,
+      "current_and_future": 509,
+      "future_only": 2431
+    },
+    "WHEAT": {
+      "current_only": 1507,
+      "future_only": 2647,
+      "current_and_future": 1299
+    },
+    "CARROT": {
+      "current_only": 1443,
+      "future_only": 2877,
+      "current_and_future": 1376
+    },
+    "COW": {
+      "current_only": 16,
+      "future_only": 2374,
+      "current_and_future": 1168
+    },
+    "SHEEP": {
+      "current_only": 16,
+      "future_only": 3466,
+      "current_and_future": 1435
+    },
+    "STRAWBERRY": {
+      "current_only": 152,
+      "current_and_future": 583,
+      "future_only": 2151
+    }
+  },
+  "labor_by_hour": [
+    {
+      "hour": 0,
+      "attempts": 1553,
+      "groups": {
+        "current_and_future": 630,
+        "future_only": 755,
+        "current_only": 168
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 1,
+      "attempts": 1607,
+      "groups": {
+        "current_and_future": 649,
+        "future_only": 764,
+        "current_only": 194
+      },
+      "baseline_infeasible": 314
+    },
+    {
+      "hour": 2,
+      "attempts": 1646,
+      "groups": {
+        "current_only": 262,
+        "current_and_future": 768,
+        "future_only": 616
+      },
+      "baseline_infeasible": 503
+    },
+    {
+      "hour": 3,
+      "attempts": 1696,
+      "groups": {
+        "current_only": 305,
+        "current_and_future": 863,
+        "future_only": 528
+      },
+      "baseline_infeasible": 647
+    },
+    {
+      "hour": 4,
+      "attempts": 1746,
+      "groups": {
+        "current_only": 396,
+        "future_only": 440,
+        "current_and_future": 910
+      },
+      "baseline_infeasible": 826
+    },
+    {
+      "hour": 5,
+      "attempts": 1820,
+      "groups": {
+        "current_only": 380,
+        "current_and_future": 957,
+        "future_only": 483
+      },
+      "baseline_infeasible": 714
+    },
+    {
+      "hour": 6,
+      "attempts": 1819,
+      "groups": {
+        "current_only": 372,
+        "future_only": 538,
+        "current_and_future": 909
+      },
+      "baseline_infeasible": 446
+    },
+    {
+      "hour": 7,
+      "attempts": 1773,
+      "groups": {
+        "current_only": 326,
+        "future_only": 799,
+        "current_and_future": 648
+      },
+      "baseline_infeasible": 135
+    },
+    {
+      "hour": 8,
+      "attempts": 1757,
+      "groups": {
+        "current_only": 299,
+        "future_only": 1128,
+        "current_and_future": 330
+      },
+      "baseline_infeasible": 135
+    },
+    {
+      "hour": 9,
+      "attempts": 1668,
+      "groups": {
+        "current_only": 223,
+        "future_only": 1241,
+        "current_and_future": 204
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 10,
+      "attempts": 1573,
+      "groups": {
+        "current_only": 165,
+        "future_only": 1250,
+        "current_and_future": 158
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 11,
+      "attempts": 1611,
+      "groups": {
+        "current_only": 156,
+        "future_only": 1347,
+        "current_and_future": 108
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 12,
+      "attempts": 1599,
+      "groups": {
+        "current_only": 155,
+        "future_only": 1444
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 13,
+      "attempts": 1580,
+      "groups": {
+        "current_only": 135,
+        "future_only": 1445
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 14,
+      "attempts": 1541,
+      "groups": {
+        "current_only": 115,
+        "future_only": 1426
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 15,
+      "attempts": 1395,
+      "groups": {
+        "current_only": 81,
+        "future_only": 1314
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 16,
+      "attempts": 1210,
+      "groups": {
+        "future_only": 1154,
+        "current_only": 56
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 17,
+      "attempts": 1010,
+      "groups": {
+        "future_only": 981,
+        "current_only": 29
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 18,
+      "attempts": 675,
+      "groups": {
+        "future_only": 660,
+        "current_only": 15
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 19,
+      "attempts": 237,
+      "groups": {
+        "future_only": 236,
+        "current_only": 1
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 20,
+      "attempts": 47,
+      "groups": {
+        "future_only": 47
+      },
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 21,
+      "attempts": 0,
+      "groups": {},
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 22,
+      "attempts": 0,
+      "groups": {},
+      "baseline_infeasible": 0
+    },
+    {
+      "hour": 23,
+      "attempts": 0,
+      "groups": {},
+      "baseline_infeasible": 0
+    }
+  ],
+  "raw_evidence_directory": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/budget_probe/captured_r9_opened_s0",
+  "qualification": "同一已打开局的内部模型诊断；无新比赛、无G1/G2/Gold裁决",
+  "source_validation": {
+    "action_matches": 719,
+    "receipt_matches": 719,
+    "snapshot_matches": 31,
+    "diagnostics_equal": true,
+    "terminal_equal": true,
+    "source_shas_unchanged": true
+  }
+}

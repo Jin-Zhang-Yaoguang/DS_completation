@@ -1,0 +1,411 @@
+{
+  "source_manifest_sha256": "dfc4dd6d46ad901248c7fc6bb041577cbb055c886ac64849ec903f46d431dc4f",
+  "training_script_sha256": "ce288fe6f8e20e4b11b23a682affcf4af64703ebc275de799ffd954f6929401e",
+  "split": "Same source-seed grouping as ddat, internal validation only.",
+  "label": "Future inventory minus current inventory minus own actual sales; ambiguous $1 clipping windows excluded. Features contain no future observations.",
+  "limitations": "Observed opponent flow can react to teacher market actions; removing self inventory contribution is not a full counterfactual simulation. Conditional leaf quantiles are forecasts, not guaranteed bounds.",
+  "items": {
+    "EGG": {
+      "1": {
+        "samples": 37821,
+        "train": 30662,
+        "validation": 7159,
+        "selection": {
+          "depth": 8,
+          "min_leaf": 200,
+          "weighted_mse": 0.9709217627461351
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 1.1074463552064207
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 1.0452405161804215
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 1.025645020750189
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 0.9872533999894154
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 1.0167979412121861
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 0.9709217627461351
+          }
+        ],
+        "constant_baseline_mse": 2.488349990840508,
+        "export_parity": true
+      },
+      "4": {
+        "samples": 37533,
+        "train": 30409,
+        "validation": 7124,
+        "selection": {
+          "depth": 6,
+          "min_leaf": 50,
+          "weighted_mse": 2.899139489507793
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 3.1115037059128703
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 3.104165081033338
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 2.899139489507793
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 3.052310395899007
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 2.954925055120789
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 3.001019107415698
+          }
+        ],
+        "constant_baseline_mse": 3.9948735339015355,
+        "export_parity": true
+      },
+      "24": {
+        "samples": 35785,
+        "train": 28940,
+        "validation": 6845,
+        "selection": {
+          "depth": 6,
+          "min_leaf": 200,
+          "weighted_mse": 9.689911217400098
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 12.664468197869043
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 12.149568118413216
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 9.878746776860478
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 9.689911217400098
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 10.726459644687253
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 9.779054487937074
+          }
+        ],
+        "constant_baseline_mse": 42.88107966773944,
+        "export_parity": true
+      }
+    },
+    "MILK": {
+      "1": {
+        "samples": 87910,
+        "train": 73407,
+        "validation": 14503,
+        "selection": {
+          "depth": 6,
+          "min_leaf": 50,
+          "weighted_mse": 1.7702614520261735
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 1.813711002686752
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 1.8108332593850736
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 1.7702614520261735
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 1.7776699172762371
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 1.7978323583168485
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 1.7864206433457688
+          }
+        ],
+        "constant_baseline_mse": 4.0177756366765935,
+        "export_parity": true
+      },
+      "4": {
+        "samples": 83499,
+        "train": 69718,
+        "validation": 13781,
+        "selection": {
+          "depth": 8,
+          "min_leaf": 200,
+          "weighted_mse": 6.423677161950373
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 6.427343344427681
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 6.450243090995255
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 6.430016060134856
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 6.441706433665096
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 6.552345789562496
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 6.423677161950373
+          }
+        ],
+        "constant_baseline_mse": 7.502678632630432,
+        "export_parity": true
+      },
+      "24": {
+        "samples": 71161,
+        "train": 58968,
+        "validation": 12193,
+        "selection": {
+          "depth": 8,
+          "min_leaf": 200,
+          "weighted_mse": 29.060949974514454
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 31.282650147197664
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 31.282455069944298
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 29.246462785653748
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 29.376911680023994
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 29.529809662769114
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 29.060949974514454
+          }
+        ],
+        "constant_baseline_mse": 58.150845808598454,
+        "export_parity": true
+      }
+    },
+    "WOOL": {
+      "1": {
+        "samples": 72104,
+        "train": 59901,
+        "validation": 12203,
+        "selection": {
+          "depth": 6,
+          "min_leaf": 50,
+          "weighted_mse": 2.46699353106541
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 2.5120994827612213
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 2.5127027533359967
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 2.46699353106541
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 2.5088740485895906
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 2.4924747000983785
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 2.5142984507528396
+          }
+        ],
+        "constant_baseline_mse": 5.206108946803555,
+        "export_parity": true
+      },
+      "4": {
+        "samples": 68187,
+        "train": 56667,
+        "validation": 11520,
+        "selection": {
+          "depth": 4,
+          "min_leaf": 200,
+          "weighted_mse": 8.342994288915584
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 8.474887557694176
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 8.342994288915584
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 8.40617850652051
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 8.565295808639325
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 8.541495917047204
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 8.470347471416096
+          }
+        ],
+        "constant_baseline_mse": 10.75525060209602,
+        "export_parity": true
+      },
+      "24": {
+        "samples": 52662,
+        "train": 43866,
+        "validation": 8796,
+        "selection": {
+          "depth": 8,
+          "min_leaf": 50,
+          "weighted_mse": 46.471378419313865
+        },
+        "trials": [
+          {
+            "depth": 4,
+            "min_leaf": 50,
+            "weighted_mse": 48.249375369441125
+          },
+          {
+            "depth": 4,
+            "min_leaf": 200,
+            "weighted_mse": 49.704797825732356
+          },
+          {
+            "depth": 6,
+            "min_leaf": 50,
+            "weighted_mse": 47.94617981538661
+          },
+          {
+            "depth": 6,
+            "min_leaf": 200,
+            "weighted_mse": 47.936405080114746
+          },
+          {
+            "depth": 8,
+            "min_leaf": 50,
+            "weighted_mse": 46.471378419313865
+          },
+          {
+            "depth": 8,
+            "min_leaf": 200,
+            "weighted_mse": 46.836344193447054
+          }
+        ],
+        "constant_baseline_mse": 124.67436641360057,
+        "export_parity": true
+      }
+    }
+  }
+}

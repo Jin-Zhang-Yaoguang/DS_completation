@@ -1,0 +1,18 @@
+{
+  "schema": "v116-rc4-ablation-source-diff-v1",
+  "parent": "../shop_router_rc4/main.py",
+  "variant_differences": {
+    "staging_only.py": {
+      "constants": {"ENABLE_STAGING": true, "ENABLE_PROJECTION": false},
+      "gated_sites": ["balanced projection commit", "day4/day8 staging goal"],
+      "other_behavioral_edits": 0
+    },
+    "projection_only.py": {
+      "constants": {"ENABLE_STAGING": false, "ENABLE_PROJECTION": true},
+      "gated_sites": ["balanced projection commit", "day4/day8 staging goal"],
+      "other_behavioral_edits": 0
+    }
+  },
+  "semantic_intent": "all non-gate RC4 code copied unchanged"
+}
+

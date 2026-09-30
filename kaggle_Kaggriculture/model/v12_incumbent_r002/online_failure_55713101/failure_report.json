@@ -1,0 +1,61 @@
+{
+  "schema": "kaggriculture-v12-r002-online-serving-failure-1",
+  "competition": "kaggriculture",
+  "submission": {
+    "id": 55713101,
+    "date_utc": "2026-08-23T11:08:32.403Z",
+    "description": "v12 incumbent r002: formal league winner plus topday throttle",
+    "status": "ERROR",
+    "error_description": "Validation Episode failed.",
+    "submitted_archive_size_bytes": 288950,
+    "submitted_archive_sha256": "453df6eed29e5daa4160371ad31b3286c01ed7a7dbe2e7db735867ba236fe67d"
+  },
+  "validation_episode": {
+    "id": 97566763,
+    "state": "COMPLETED",
+    "replay_steps": 2,
+    "final_agent_statuses": [
+      "ERROR",
+      "ERROR"
+    ],
+    "final_rewards": [
+      null,
+      null
+    ]
+  },
+  "root_cause": {
+    "exception": "NameError: name '__file__' is not defined",
+    "failing_expression": "HERE = Path(__file__).resolve().parent",
+    "loader_behavior": "kaggle_environments.agent.get_last_callable compiles raw main.py and executes it with env = {}; when a path is supplied it temporarily appends the extraction directory to sys.path",
+    "why_previous_qa_missed_it": "the previous clean package test loaded main.py with importlib.util.spec_from_file_location, which injects __file__ and does not reproduce Kaggle raw loading"
+  },
+  "repair": {
+    "normal_module_import": "Path(globals()['__file__']).resolve().parent",
+    "kaggle_raw_loader": "Path(sys.path[-1]).resolve() when '__file__' is absent",
+    "policy_changed": false,
+    "formal_or_test_accessed": false,
+    "submitted_after_repair": false,
+    "repaired_archive_size_bytes": 289074,
+    "repaired_archive_sha256": "6ff786cbba1a6440f844f9c77da934f6dd10b55e43f57b2bd852753cd21ae136"
+  },
+  "artifacts": {
+    "episode-97566763-replay.json": {
+      "size_bytes": 18205,
+      "sha256": "ff19257f7fcc228ed1e88cf730147d6cb3f92734237293ca855a5e57aae127ed"
+    },
+    "episode-97566763-agent-0-logs.json": {
+      "size_bytes": 1196,
+      "sha256": "c6f29d27398598a9e6c36484d95484b2297ca0e674f8d16912f88ff5fdd6a248"
+    },
+    "episode-97566763-agent-1-logs.json": {
+      "size_bytes": 1196,
+      "sha256": "27e7e28de32f2099bfb56bb25e61f3d17cdce86fc09da4d535e811a080553b13"
+    }
+  },
+  "download_commands": [
+    "kaggle competitions episodes 55713101 -v",
+    "kaggle competitions replay 97566763",
+    "kaggle competitions logs 97566763 0",
+    "kaggle competitions logs 97566763 1"
+  ]
+}

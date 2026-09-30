@@ -1,0 +1,38 @@
+{
+  "schema": "kaggriculture-v12b-v2-registry-entry-1",
+  "parent_models": [
+    "baseline_v8"
+  ],
+  "models": [
+    {
+      "id": "v12b_v2_winrisk_feedback_gate",
+      "kind": "python",
+      "path": "main.py",
+      "entrypoint": "agent",
+      "code_paths": [
+        "main.py",
+        "../v8_kawa_lead2_slot/main.py"
+      ],
+      "parent": "baseline_v8",
+      "parent_models": [
+        "baseline_v8"
+      ],
+      "family": "v8_kawa+winrisk_conditioned_market_feedback",
+      "lineage": [
+        "baseline_v8",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "change_scope": "only reduce existing EGG/MILK/WOOL SELL quantities",
+      "mechanism": "retain observable market feedback only while own public bank is tied or behind; strictly protect a visible lead",
+      "tags": [
+        "candidate",
+        "state_feedback",
+        "market_residual",
+        "win_probability_objective",
+        "public_lead_protection",
+        "floor_uncertainty_bypass",
+        "terminal_bypass"
+      ]
+    }
+  ]
+}

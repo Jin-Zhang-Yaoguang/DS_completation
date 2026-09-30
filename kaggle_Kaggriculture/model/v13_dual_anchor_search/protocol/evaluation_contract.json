@@ -1,0 +1,111 @@
+{
+  "schema": "kaggriculture-v13-dual-anchor-evaluation-contract-1",
+  "status": "pre_registered_before_candidate_games",
+  "dates": [
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20"
+  ],
+  "allowed_splits": [
+    "train",
+    "validation"
+  ],
+  "test_access": false,
+  "anchors": {
+    "r002": "v12_incumbent_r002",
+    "a2": "v12a2_no_shop_gate"
+  },
+  "candidate_slate": {
+    "candidate_order": [
+      "v13a_a2_no_wool_throttle",
+      "v13c_a2_v8_no_wool_throttle",
+      "v13d_a2_public_winrisk_gate"
+    ],
+    "candidate_addition_after_screen_forbidden": true,
+    "each_candidate_consumes_screen_once": true,
+    "all_candidates_must_complete_before_finalist_selection": true,
+    "serving_runtime": "safely extracted current GO submission archives using raw Kaggle agent entrypoint",
+    "rejected_before_screen": "v13b_a2_terminal_clearance_716"
+  },
+  "task_design": {
+    "targeted_pairs_per_candidate": [
+      [
+        "candidate",
+        "v12_incumbent_r002"
+      ],
+      [
+        "candidate",
+        "v12a2_no_shop_gate"
+      ]
+    ],
+    "common_source_panel_for_both_anchors": true,
+    "seat_assignments_per_source_per_anchor": 2,
+    "closed_loop": true,
+    "historical_actions_replayed": false,
+    "screen_sources": 36,
+    "screen_games_per_candidate": 144,
+    "confirmatory_sources": 100,
+    "confirmatory_games_for_one_finalist": 400
+  },
+  "metric_definitions": {
+    "pure_win_rate": "wins / games; ties are not wins",
+    "competition_score_rate": "(wins + 0.5 * ties) / games",
+    "mean_margin": "candidate terminal reward minus anchor terminal reward",
+    "source_cluster": "the two opposite-seat games for one source and one anchor",
+    "confidence_interval": "date-stratified source-cluster percentile bootstrap, 10000 resamples, deterministic SHA256-derived RNG seed, 95 percent interval"
+  },
+  "required_outputs": [
+    "W/T/L and games",
+    "pure win rate and source-cluster bootstrap CI95",
+    "competition score rate and source-cluster bootstrap CI95",
+    "mean margin and source-cluster bootstrap CI95",
+    "date-stratified W/T/L, score, win rate, and margin",
+    "candidate-seat-stratified W/T/L, score, win rate, and margin",
+    "error count, DONE/DONE count, status counts",
+    "panel, registry/code, evaluator, run, and games fingerprints"
+  ],
+  "screen_selection": {
+    "candidate_code_must_be_frozen_before_screen": true,
+    "all_candidates_use_identical_screen_panel": true,
+    "hard_integrity_gate": "zero errors, every row DONE/DONE, exact source and seat closure for both anchors",
+    "a2_competition_score_rate_min": 0.53,
+    "r002_competition_score_rate_min": 0.55,
+    "a2_worst_date_competition_score_rate_min": 0.45,
+    "a2_worst_candidate_seat_competition_score_rate_min": 0.45,
+    "selection_order": [
+      "highest A2 competition score rate",
+      "highest r002 competition score rate",
+      "highest A2 mean margin",
+      "lexicographically smallest frozen candidate id"
+    ],
+    "maximum_confirmatory_finalists": 1,
+    "screen_intervals_are_diagnostic_only": true
+  },
+  "confirmatory_gate": {
+    "single_use": true,
+    "finalist_frozen_before_panel_open": true,
+    "zero_errors_and_all_done_done": true,
+    "a2_competition_score_rate_point_min_exclusive": 0.5,
+    "a2_competition_score_rate_ci95_low_min_exclusive": 0.5,
+    "r002_competition_score_rate_point_min_exclusive": 0.5,
+    "r002_competition_score_rate_ci95_low_min_exclusive": 0.5,
+    "worst_date_a2_competition_score_rate_min": 0.45,
+    "worst_candidate_seat_a2_competition_score_rate_min": 0.45,
+    "interpretation": "Only a finalist passing every gate is validated as an improvement over both r002 and A2. Failure cannot be repaired by tuning on this panel."
+  },
+  "fail_closed": {
+    "protocol_seal_verification_required_before_task_construction": true,
+    "registry_and_serving_code_fingerprint_required": true,
+    "evaluator_implementation_fingerprint_required": true,
+    "run_fingerprint_must_bind_contract_panel_registry_code_and_evaluator": true,
+    "resume_requires_identical_run_fingerprint": true,
+    "duplicates_missing_tasks_unknown_models_unknown_sources_nonfinite_rewards_or_status_mismatch_are_fatal": true,
+    "test_split_or_screen_confirmatory_overlap_is_fatal": true,
+    "candidate_must_be_in_exact_pre_screen_slate": true,
+    "candidate_and_anchor_registry_must_equal_clean_package_registry_and_reachable_code_hash": true,
+    "row_schema_engine_closed_loop_trace_seat_models_rewards_and_all_derived_metrics_are_exactly_recomputed": true,
+    "screen_and_confirmatory_consume_locks_use_atomic_create_exclusive": true,
+    "resume_requires_same_lock_run_fingerprint_and_jsonl_path": true,
+    "confirmatory_requires_deterministic_finalist_seal_from_all_three_screen_results": true
+  }
+}

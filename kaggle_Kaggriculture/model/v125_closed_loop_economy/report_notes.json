@@ -1,0 +1,36 @@
+{
+  "delivery": "html",
+  "audience": "technical",
+  "section_mapping": "技术摘要→候选与机制→增量对比→重设计→金牌门→未决问题",
+  "chart_map": [
+    {
+      "id": "r9_real_sales",
+      "type": "line",
+      "question": "首场累计自产非麦销售",
+      "rows": 60,
+      "fields": [
+        "day",
+        "cumulative_cash",
+        "version"
+      ],
+      "palette_policy": "shared-native-tokens; single series or explicitly labeled groups",
+      "sourceId": "r9_opened"
+    },
+    {
+      "id": "mean_delta",
+      "type": "bar",
+      "question": "新场景平均现金增量",
+      "rows": 8,
+      "fields": [
+        "candidate",
+        "mean_delta",
+        null
+      ],
+      "palette_policy": "shared-native-tokens; single series or explicitly labeled groups",
+      "sourceId": "comparison"
+    }
+  ],
+  "validation": "以report:deliver收据为准",
+  "table_rationale": "逐候选增量和失败裁决需精确比较",
+  "authorized_actions": "用户授权本地开发和新模拟比赛；未提交Kaggle或公开发布"
+}

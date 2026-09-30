@@ -1,0 +1,232 @@
+{
+  "schema": "kaggriculture-v10-pairwise-summary-1",
+  "created_at": "2026-08-23T09:10:30.273800+00:00",
+  "run_fingerprint": "471e78746f0deb67fdd0c49c048f5d2f84108a9c3792473fb9d2a2e5cae75f3a",
+  "closed_loop": true,
+  "trace_agent_used": false,
+  "models": [
+    "v12b_market_feedback_router",
+    "v5_topdays"
+  ],
+  "expected_pairs": 1,
+  "observed_pairs": 1,
+  "games_per_pair": 36,
+  "include_self_play": false,
+  "formal_gate_complete": true,
+  "expected_tasks": 36,
+  "deduplicated_tasks": 36,
+  "incomplete_pairs": [],
+  "pairs": {
+    "v12b_market_feedback_router__vs__v5_topdays": {
+      "model_a": "v12b_market_feedback_router",
+      "model_b": "v5_topdays",
+      "scheduled_games": 36,
+      "observed_games": 36,
+      "valid_games": 36,
+      "paired_seeds": 18,
+      "complete": true,
+      "wins_a": 27,
+      "ties": 0,
+      "losses_a": 9,
+      "score_rate_a": 0.75,
+      "paired_score_rate_a": 0.75,
+      "paired_score_ci95": [
+        0.5555555555555556,
+        0.9166666666666666
+      ],
+      "mean_margin_a": 3190.8888888888887,
+      "by_date": {
+        "2026-08-18": {
+          "games": 12,
+          "score_rate_a": 0.6666666666666666
+        },
+        "2026-08-19": {
+          "games": 12,
+          "score_rate_a": 0.75
+        },
+        "2026-08-20": {
+          "games": 12,
+          "score_rate_a": 0.8333333333333334
+        }
+      },
+      "errors": 0,
+      "not_done": 0
+    }
+  },
+  "score_matrix": {
+    "v12b_market_feedback_router": {
+      "v12b_market_feedback_router": 0.5,
+      "v5_topdays": 0.75
+    },
+    "v5_topdays": {
+      "v12b_market_feedback_router": 0.25,
+      "v5_topdays": 0.5
+    }
+  },
+  "provenance": {
+    "registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/frozen_v3/combined_registry.json",
+    "registry_sha256": "06b95963a2aacf6f0e1f8738984a7eb60bb867f84e452130d8fe4d78cb84072f",
+    "registry_file_sha256": "3386ee73d25f3e06b306bd355a73b65a93c8438d024e53739ac46350865a25a3",
+    "evaluation_implementation_sha256": "c25e77330b7451849dea8ac2387caf43b4a7400675a87143790153524cecbc75",
+    "seed_manifest": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/frozen_v3/screen_seed_manifest.jsonl",
+    "dates": [
+      "2026-08-18",
+      "2026-08-19",
+      "2026-08-20"
+    ],
+    "split": "all",
+    "random_seed": 20260823,
+    "seed_panel": [
+      {
+        "date": "2026-08-19",
+        "seed": 1592918943,
+        "episode_id": "94536643",
+        "split": "train",
+        "source_path": "2026-08-19/94536643.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-18",
+        "seed": 419964045,
+        "episode_id": "94326122",
+        "split": "train",
+        "source_path": "2026-08-18/94326122.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-19",
+        "seed": 959093375,
+        "episode_id": "94612757",
+        "split": "train",
+        "source_path": "2026-08-19/94612757.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-19",
+        "seed": 849601565,
+        "episode_id": "94439800",
+        "split": "train",
+        "source_path": "2026-08-19/94439800.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-20",
+        "seed": 850110075,
+        "episode_id": "94849565",
+        "split": "train",
+        "source_path": "2026-08-20/94849565.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-18",
+        "seed": 1539979152,
+        "episode_id": "94114195",
+        "split": "validation",
+        "source_path": "2026-08-18/94114195.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-18",
+        "seed": 1412515565,
+        "episode_id": "94291945",
+        "split": "train",
+        "source_path": "2026-08-18/94291945.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-18",
+        "seed": 1527870741,
+        "episode_id": "94236933",
+        "split": "train",
+        "source_path": "2026-08-18/94236933.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-19",
+        "seed": 358190896,
+        "episode_id": "94430982",
+        "split": "train",
+        "source_path": "2026-08-19/94430982.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-20",
+        "seed": 804364574,
+        "episode_id": "95171438",
+        "split": "train",
+        "source_path": "2026-08-20/95171438.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-19",
+        "seed": 298154402,
+        "episode_id": "94615910",
+        "split": "train",
+        "source_path": "2026-08-19/94615910.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-20",
+        "seed": 1149157816,
+        "episode_id": "94833605",
+        "split": "train",
+        "source_path": "2026-08-20/94833605.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-20",
+        "seed": 416712311,
+        "episode_id": "95203378",
+        "split": "train",
+        "source_path": "2026-08-20/95203378.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-20",
+        "seed": 1205810609,
+        "episode_id": "94959100",
+        "split": "train",
+        "source_path": "2026-08-20/94959100.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-18",
+        "seed": 633339541,
+        "episode_id": "94338432",
+        "split": "train",
+        "source_path": "2026-08-18/94338432.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-19",
+        "seed": 1839118365,
+        "episode_id": "94504057",
+        "split": "train",
+        "source_path": "2026-08-19/94504057.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-18",
+        "seed": 1991475240,
+        "episode_id": "94135309",
+        "split": "validation",
+        "source_path": "2026-08-18/94135309.json",
+        "lineage_fold": ""
+      },
+      {
+        "date": "2026-08-20",
+        "seed": 2074154233,
+        "episode_id": "94769758",
+        "split": "train",
+        "source_path": "2026-08-20/94769758.json",
+        "lineage_fold": ""
+      }
+    ],
+    "num_shards": 1,
+    "shard_index": 0,
+    "run_fingerprint": "471e78746f0deb67fdd0c49c048f5d2f84108a9c3792473fb9d2a2e5cae75f3a",
+    "jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v3/screen_pool/v12b_market_feedback_router__vs__v5_topdays/games.jsonl",
+    "merged_jsonl": [],
+    "sealed_test_protocol": null
+  }
+}

@@ -1,0 +1,159 @@
+Data Science
+English
+中文
+Winning a Kaggle Competition with Generative AI–Assisted Coding
+Apr 23, 2026
+By
+Chris Deotte
+Like
+Discuss (0)
+L
+T
+F
+R
+E
+AI-Generated Summary
+LLM agents including GPT-5.4 Pro, Gemini 3.1 Pro, and Claude Opus 4.6 generated over 600,000 lines of code and ran 850 experiments to win the March 2026
+Kaggle Playground churn prediction competition
+.
+A guided workflow directs agents through exploratory data analysis, baseline modeling with XGBoost and other algorithms, iterative feature engineering, and model combination via hill climbing and stacking.
+GPU-accelerated libraries such as
+cuDF
+and
+cuML
+enable rapid experiment execution alongside agent-written code.
+Next Steps
+Explore the
+cuDF
+library to accelerate data processing workflows.
+Explore the
+cuML
+library for GPU-accelerated machine learning algorithms.
+Enroll in the
+DLI workshop on feature engineering
+to sharpen practical skills.
+Read
+The Kaggle Grandmasters Playbook: 7 Battle-Tested Modeling Techniques for Tabular Data
+for professional modeling strategies.
+Powered by NVIDIA Nemotron. AI-generated content may summarize information incompletely. Verify important information.
+Learn more
+In March 2026, three LLM agents generated over 600,000 lines of code, ran 850 experiments, and helped secure a first-place finish in a Kaggle playground competition.
+Success in modern machine learning competitions is increasingly defined by how quickly you can generate, test, and iterate on ideas. LLM agents, combined with GPU acceleration, dramatically compress this loop.
+Historically, two bottlenecks have limited this experimentation:
+How quickly you can write code for new experiments.
+How quickly you can execute those experiments.
+GPUs and libraries like NVIDIA cuDF, NVIDIA cuML, XGBoost, and PyTorch have largely solved the second problem. LLM agents now address the first problem—unlocking a new scale of rapid, iterative experimentation.
+This blog post describes how I used LLM agents to accelerate the discovery of the most performant tabular data prediction solutions.
+Case study: Kaggle Playground churn prediction
+The March 2026
+Kaggle Playground competition
+challenged participants to predict telecom customer churn with performance measured by area under the curve (AUC)—where the most accurate solution wins.
+The
+first-place solution
+is a four-level stack of 150 models, selected from 850.
+Figure 1. Diagram showing how 150 models are combined into a four-level stack winning solution
+Guided LLM agent workflow
+In this tabular data competition, I guided LLM agents to follow the Kaggle Grandmaster playbook described in a
+previous blog post
+.
+Specifically, LLM agents follow a workflow: starting with exploratory data analysis (EDA), then building baselines, followed by feature engineering, and finally combining models through hill climbing and stacking.
+The solution used multiple LLM agents—GPT-5.4 Pro, Gemini 3.1 Pro, Claude Opus 4.6— in a human-in-the-loop workflow.
+Step 1: LLM agents perform EDA
+An LLM agent must understand data structure before generating a full pipeline.
+Key questions include:
+How many rows and columns are in the training and test sets?
+What’s the target column, and how is it formatted?
+Is the task classification or regression?
+What features are available and how are they formatted?
+Which features are categorical or numeric?
+Is there missing data?
+This information can be provided upfront or inferred automatically through EDA.
+Figure 2. LLM Agents explore the data by repeatedly writing and running EDA code
+If using LLM in a chat window, prompt with:
+“Please write EDA code to explore the CSV file train.csv and test.csv. I will run the code and share the plots and text back with you.”
+If using LLM with code execution like Claude Code, then you can ask the LLM to write and run its own code to understand the data.
+“Please write and run EDA code to understand the CSV files train.csv and test.csv”
+Step 2: LLM agents build baselines
+Once the LLM understands the data, specifically the feature columns and target column, it’s time to write the first full pipeline to train a kfold model by asking the LLM for a specific model.
+“Please write full code pipeline to read train.csv and test.csv and train a kfold XGBoost model. Save the OOF (out of fold predictions) and the Test PREDS to disk as Numpy files. Display the metric score each fold and overall.”
+Copy and paste the output code into your codebase. When using a command-line or IDE agent, have it create a Python or Jupyter Notebook directly.
+Run the code to obtain your first CV metric score, OOF, and Test PRED files.
+You can ask the LLM to build a variety of baselines, including GBDT, NN, and ML models. Each experiment reports a CV score and saves predictions to disk as: “
+train_oof_[MODEL]_[VERSION].npy
+” and “
+test_preds_[MODEL]_[VERSION].npy
+”.
+These files are important, and we’ll use them later.
+Step 3: LLM agents perform feature engineering
+We now have a collection of diverse models and know their baseline CV metric scores. We can improve each model with feature engineering and/or model tuning/improvements. Feature engineering focuses on transforming the data so our models can extract more signal. And model tuning/improvements focus on modifying the model to extract more signal. LLM agents excel at both of these tasks.
+Iteratively running experiments and keeping all ideas that improve the models leads to better and better models. For each experiment, good or bad, always save the OOF and test prediction to disk.
+Figure 3. LLM Agents improve models by repeatedly exploring feature engineering and evaluating the new model
+LLM agents can write code as fast as we want. To accelerate the cycle, we run each experiment as fast as possible by always using GPUs and GPU libraries such as cuDF, cuML, gradient boosting decision tree GPUs, and PyTorch GPUs.
+To generate new ideas, we can either propose them or have LLMs generate them. There are many effective ways to encourage LLMs to generate ideas, such as:
+Ask LLMs to find and read research papers on the topic.
+Ask LLMs to read forums and publicly shared code on the topic.
+Have LLMs perform EDA to determine relationships between features and targets for feature engineering.
+Ask LLMs for ideas based on the current knowledge base.
+Have humans brainstorm with LLMs and create ideas together.
+Using one of our ideas, we can ask an LLM agent to create new code from our old code:
+“Please write me a complete replacement code for the code below that uses XYZ instead of ABC”.
+We now have a new experiment to run!
+Step 4: LLM agents combine models
+At this point, we have lots of experiment results, each with its own model and different feature engineering saved in a Python script or Jupyter Notebook. LLM agents excel at combining all these models and ideas and can help us use and manage all our models in various ways, like:
+Summarize all model types and feature engineering.
+Combine ideas from different models and feature engineering to build new, stronger single models.
+Build ensembles from different models.
+Stack models over other models.
+Use some models to pseudo-label / knowledge distill into new, stronger single models.
+One of the most useful first things I like to do is ask an LLM agent to summarize all our experiments. We can drag and drop files into a chat window, or use an LLM command-line agent (like Claude Code) to read and aggregate results across multiple files. This helps us better understand the data and problem, showing us what is working.
+One powerful technique is to ask the LLM agent to combine multiple ideas/models into a single model.
+“Can you read all these IPYNB files and use all these ideas to write full code to train a new single XGBoost model which is stronger than all of these models?”
+Another technique is to transfer the knowledge from some or all of our models into a single model. We use our OOF and test predictions (which are essentially pseudo-labels) to transfer knowledge into a new, stronger single model.
+“Can you please train a new single NN or GBDT using knowledge distillation from all our OOF and Test PREDs and make a new high performing single model?”
+Both techniques above produce new experiments and new OOF and test prediction files. Each baseline model and experiment with new feature engineering and/or model improvements has an associated OOF and test prediction file. It’s common to have hundreds of files. We can now ask LLMs to combine using hill climbing and/or stacking.
+“Can you please try combining all our OOF and Test PREDs using various meta models? Please try Hill Climbing, Ridge/Logistic regression, NN, and GBDT stackers. Thanks”
+Results
+Following the four steps above, we create a diverse set of models. Then we improve each model’s performance. Finally, we combine everything into a powerful solution. The advantage lies in exploring many ideas quickly with GPU-accelerated model execution and LLM agents to write code faster. Everyone can employ these techniques when searching for the most performant solution to their tabular data prediction tasks.
+Get started
+Ready to accelerate your results? Get started by exploring the
+cuDF
+and
+cuML
+libraries and
+CUDA-X for data science
+.
+For a deeper dive, sharpen your skills with a
+DLI workshop on feature engineering
+. Pick up professional strategies from the post
+The Kaggle Grandmasters Playbook: 7 Battle-Tested Modeling Techniques for Tabular Data
+.
+Discuss (0)
+Like
+Tags
+Agentic AI / Generative AI
+|
+Data Science
+|
+Developer Tools & Techniques
+|
+General
+|
+cuDF
+|
+cuML
+|
+Intermediate Technical
+|
+Tutorial
+|
+featured
+|
+Kaggle
+|
+LLM Techniques
+About the Authors
+About Chris Deotte
+Chris Deotte is a senior data scientist at NVIDIA. Chris has a Ph.D. in computational science and mathematics with a thesis on optimizing parallel processing. Chris is a Kaggle 4x grandmaster.
+View all posts by Chris Deotte
+Comments
+Comments are closed.

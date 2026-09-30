@@ -1,0 +1,178 @@
+{
+  "schema": "kaggriculture-v12-r002-submission-manifest-1",
+  "model_id": "v12_incumbent_r002",
+  "source_model_id": "r002_learned_router_topday_animal_throttle",
+  "policy_changed": false,
+  "archive": "submission.tar.gz",
+  "archive_size_bytes": 289074,
+  "archive_sha256": "6ff786cbba1a6440f844f9c77da934f6dd10b55e43f57b2bd852753cd21ae136",
+  "serving_repair": {
+    "failed_submission_id": 55713101,
+    "failed_validation_episode_id": 97566763,
+    "failed_archive_sha256": "453df6eed29e5daa4160371ad31b3286c01ed7a7dbe2e7db735867ba236fe67d",
+    "failure": "NameError: name '__file__' is not defined",
+    "root_cause": "kaggle_environments.agent.get_last_callable executes raw main.py with env={} and therefore does not define __file__",
+    "repair": "use globals()['__file__'] for normal imports; otherwise use the get_last_callable exec_dir temporarily appended at sys.path[-1]",
+    "repaired_archive_sha256": "6ff786cbba1a6440f844f9c77da934f6dd10b55e43f57b2bd852753cd21ae136",
+    "policy_changed": false
+  },
+  "files": [
+    {
+      "path": "main.py",
+      "size_bytes": 6299,
+      "sha256": "834cdf823fb674b8fbdc296e564a14b0e8b786985e0d37fc6dd352cbcfa43ae0"
+    },
+    {
+      "path": "runtime/__init__.py",
+      "size_bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "runtime/agent_factory.py",
+      "size_bytes": 10574,
+      "sha256": "f1e99c76a6093e03492063990bcc8516bcfa4a483a0330e69fe60bf873c155ce"
+    },
+    {
+      "path": "runtime/expert_registry.py",
+      "size_bytes": 11980,
+      "sha256": "c87159db94965da7115b8af2564eea5442bb1f0b4f7b5e3600250373e011570b"
+    },
+    {
+      "path": "runtime/fast_router.py",
+      "size_bytes": 3820,
+      "sha256": "2e3a943e547455c2c814511de5fd2ae3ff9f20531a0ecd29b7bff4895d173619"
+    },
+    {
+      "path": "runtime/learned_router_weights.npz",
+      "size_bytes": 2681,
+      "sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77"
+    },
+    {
+      "path": "runtime/policy.json",
+      "size_bytes": 3136,
+      "sha256": "1e873a8c8c030d8c0f5556306a26383b819033a1c6e9c307314d6aada881006e"
+    },
+    {
+      "path": "runtime/router.py",
+      "size_bytes": 19271,
+      "sha256": "a5dc4c438ac91984ef0b94091f2831e59df862b05dd36eafc514cb3b9d5c49cb"
+    },
+    {
+      "path": "runtime/variants.py",
+      "size_bytes": 4128,
+      "sha256": "cec11a134636dd6a81360c73be342f741e1268edac4b772c70c05731069029c1"
+    },
+    {
+      "path": "v1_adaptive_market/main.py",
+      "size_bytes": 75428,
+      "sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb"
+    },
+    {
+      "path": "v2_survival_guard/main.py",
+      "size_bytes": 75798,
+      "sha256": "dadc0b09eb16a0528553fbf00dd826fff8efbc826d3ef5864b1cbf6dea5d2a70"
+    },
+    {
+      "path": "v5_rule_hybrid/base_agent.py",
+      "size_bytes": 75799,
+      "sha256": "4fbfee659c8a0d2bcba4940152ea4c7920d3b13bec4afbddf7b069810ef0f294"
+    },
+    {
+      "path": "v5_rule_hybrid/main.py",
+      "size_bytes": 4792,
+      "sha256": "4c36dcd8edd326cd832c12f9cad94d300e95e46a911b75af378e8f3d0e2d5071"
+    },
+    {
+      "path": "v5_rule_hybrid/routes.py",
+      "size_bytes": 54442,
+      "sha256": "02d4427e667bd5d8d661dc4b87c0df5e7fb90dedca020829f9e49c34e053eec7"
+    },
+    {
+      "path": "v5_rule_hybrid/v1_fallback.py",
+      "size_bytes": 75428,
+      "sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb"
+    },
+    {
+      "path": "v8_kawa_lead2_slot/main.py",
+      "size_bytes": 150041,
+      "sha256": "ed2e443f6ae3683da9f34c55920bc8aa06a81e22e3b905df92389597e8adc327"
+    }
+  ],
+  "source_provenance": {
+    "registry_file_sha256": "e98156a0ac3741f5c9cfa698ea00f37d54e9277b53bfa864eb848928eb8dbaf0",
+    "registry_and_code_sha256": "a4d63598c95a165add426aaac7b1dbe2cd9ff2e6f91dde71e6e3ec0e54da26a5",
+    "source_serving_sha256": "38afb12bd5fbc987adf752acb437abe9330bd385233c22782b35353f77be2d74",
+    "router_parent_serving_sha256": "9813b175856c8e702613bb27b4e0a4b95403cae65093615d9611f12cdb184ed6",
+    "exact_mutation_definition": true,
+    "candidate_spec_sha256": "a1d564f22d7b17b01133faa655997bcab5b3d218a1696ccefe0bd4eca256ff79",
+    "mutation_definition": {
+      "parent_id": "learned_router",
+      "mutation_name": "topday_animal_throttle",
+      "mutation_params": {
+        "days": [
+          10,
+          17,
+          24
+        ],
+        "fraction": 0.5
+      }
+    },
+    "source_files": {
+      "agent_factory.py": {
+        "size_bytes": 10574,
+        "sha256": "f1e99c76a6093e03492063990bcc8516bcfa4a483a0330e69fe60bf873c155ce"
+      },
+      "candidate_agent.py": {
+        "size_bytes": 3859,
+        "sha256": "10fa61fdca6f70c1f526b18df388eebc35fb73b4ca997c9165c33daa35865ca8"
+      },
+      "expert_registry.py": {
+        "size_bytes": 11980,
+        "sha256": "c87159db94965da7115b8af2564eea5442bb1f0b4f7b5e3600250373e011570b"
+      },
+      "fast_router.py": {
+        "size_bytes": 3920,
+        "sha256": "556475db915f41f87493679e3d6674f53c3a316d534155a7496def90b18ad608"
+      },
+      "learned_router_weights.npz": {
+        "size_bytes": 2681,
+        "sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77"
+      },
+      "mutation_catalog.py": {
+        "size_bytes": 25637,
+        "sha256": "c5ca771acaa4de17e8492d38fbb068f5651ccd2cf807e53b8d0dcac26f1cf008"
+      },
+      "registry_next.json": {
+        "size_bytes": 33873,
+        "sha256": "e98156a0ac3741f5c9cfa698ea00f37d54e9277b53bfa864eb848928eb8dbaf0"
+      },
+      "router.py": {
+        "size_bytes": 19271,
+        "sha256": "a5dc4c438ac91984ef0b94091f2831e59df862b05dd36eafc514cb3b9d5c49cb"
+      },
+      "variants.py": {
+        "size_bytes": 4128,
+        "sha256": "cec11a134636dd6a81360c73be342f741e1268edac4b772c70c05731069029c1"
+      }
+    }
+  },
+  "clean_match": {
+    "seed": 93451031,
+    "steps": 720,
+    "calls": 719,
+    "statuses": [
+      "DONE",
+      "DONE"
+    ],
+    "rewards": [
+      155692.0,
+      3504.0
+    ],
+    "selected": "baseline_v8",
+    "changed_actions": 5,
+    "runtime_errors": [],
+    "loader": "kaggle_environments.agent.get_last_callable",
+    "loader_globals_has_file": false,
+    "bundle_directory_match": true
+  }
+}

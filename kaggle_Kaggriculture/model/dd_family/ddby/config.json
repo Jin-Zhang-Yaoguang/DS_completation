@@ -1,0 +1,22 @@
+{
+  "version": "ddby",
+  "method": "Neural autoregressive joint behavior cloning",
+  "architecture": "2531->384 ReLU->192 tanh encoder; 192-hidden GRU over 26 slots, previous joint-request embedding64, slot embedding16, local unit16 plus explicit neighborhood105 plus four past same-slot action embeddings32 (128 total); shared 725-class raw request vocabulary",
+  "loss": "Masked cross entropy over active units and market requests through first STOP. Unknown validation requests excluded from CE and reported. Teacher histories used during supervised learning. Runtime uses own histories, resource-constrained units and capacity-bounded HIRE inherited from ddbx.",
+  "optimizer": "AdamW lr8e-4 wd1e-4 cosine to8e-5, gradient clip1",
+  "epochs_max": 20,
+  "batch": 256,
+  "patience": 5,
+  "selection": "Lowest validation teacher-forced cross entropy, no competitive results used. Validation is research holdout, not untouched competition test.",
+  "seed": 21092026,
+  "device": "mps",
+  "torch": "2.14.0",
+  "parameters": 1557397,
+  "training_data_manifest_sha256": "6e8082505b7f63e063d1b9b52db98bbdb70c3f9deddbc2b99b32c13c40d416e9",
+  "trainer_sha256": "29aaf93f59ca080f2ce527e2fb82f16b9d4453662c66302997c32472be9b24ae",
+  "architecture_sha256": "a6b39f31827f963a788a9ed74119196f633de536207d37308aeadb8f8fd374bf",
+  "runtime_sha256": "2d15914c1b9e11f2a152c0e425325cd4277a8931ac51fbb97cc393e07d0a2a09",
+  "local_data_manifest_sha256": "cf9f394c8d5e75e73f6765a4fe41ae5fb295a039ae983f3c79e53b24ba5477c0",
+  "history_data_manifest_sha256": "7e5440a8e98726a090ed37fa4ec018fc494390bd19d41124126155fc41f8d408",
+  "execution_control": "ddbx"
+}

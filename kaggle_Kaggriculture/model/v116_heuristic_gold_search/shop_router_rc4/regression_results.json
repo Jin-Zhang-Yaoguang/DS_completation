@@ -1,0 +1,549 @@
+{
+  "schema": "v116-shop-router-rc4-regression-v1",
+  "engine": "1.32.7",
+  "contract": {
+    "seeds": [
+      7100,
+      7103
+    ],
+    "both_seats": true,
+    "workers": 4,
+    "mean_bank_gate": 70000,
+    "mean_target_realization_gate": 0.9,
+    "minimum_final_productive_assets_gate": 58,
+    "no_target_shrink": "all four final crop targets >=59"
+  },
+  "originality_audit": {
+    "source_sha256": "03be24265a38e6586565732ebd86dfc5d3818a42026a33b4195d973c049eb303",
+    "genome_count": 4,
+    "daily_records_per_genome": 30,
+    "final_crop_targets": {
+      "balanced_root": 59,
+      "wool": 59,
+      "dairy_berry": 59,
+      "tomato_crop": 59
+    },
+    "balanced_projection_targets": {
+      "PET_CAFE": {
+        "WHEAT": 24,
+        "MELON": 15,
+        "STRAWBERRY": 9,
+        "CARROT": 11
+      },
+      "BAKERY": {
+        "WHEAT": 34,
+        "MELON": 14,
+        "STRAWBERRY": 8,
+        "CARROT": 3
+      },
+      "BRUNCH_SPOT": {
+        "WHEAT": 29,
+        "MELON": 12,
+        "STRAWBERRY": 16,
+        "CARROT": 2
+      },
+      "UNKNOWN_SHOP": {
+        "WHEAT": 26,
+        "MELON": 19,
+        "STRAWBERRY": 11,
+        "CARROT": 3
+      }
+    },
+    "largest_list_or_tuple_literal": 9,
+    "forbidden_imports": [],
+    "money_perturbation_changes_action": true,
+    "router_mapping": {
+      "empty": "balanced_root",
+      "yarn": "wool",
+      "smoothie": "dairy_berry",
+      "ice_cream": "dairy_berry",
+      "pizza": "tomato_crop",
+      "farmers": "tomato_crop",
+      "bakery": "balanced_root"
+    },
+    "router_mapping_pass": true,
+    "pass": true
+  },
+  "summary": {
+    "games": 8,
+    "pure_wins": 8,
+    "pure_win_rate_vs_idle": 1,
+    "mean_bank": 74030.625,
+    "median_bank": 78612.0,
+    "minimum_bank": 45372.0,
+    "maximum_bank": 88222.0,
+    "mean_daily_target_realization": 0.8746176357167736,
+    "minimum_daily_target_realization": 0.3472222222222222,
+    "minimum_final_observed_day_target_realization": 0.8611111111111112,
+    "mean_absolute_productive_assets": 50.09051724137931,
+    "minimum_final_absolute_productive_assets": 58,
+    "maximum_absolute_productive_assets": 69,
+    "router_expert_counts": {
+      "dairy_berry": 4,
+      "balanced_root": 2,
+      "wool": 2
+    },
+    "schema_errors": 0,
+    "all_719_calls": true,
+    "mean_latency_us": 2385.576613178025
+  },
+  "episodes": [
+    {
+      "seed": 7100,
+      "seat": 0,
+      "bank": 88222.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 150.0,
+      "router_expert": "dairy_berry",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "ICE_CREAM_SHOP"
+      ],
+      "mean_daily_target_realization": 0.8611372344130965,
+      "minimum_daily_target_realization": 0.3472222222222222,
+      "final_observed_day_target_realization": 0.8611111111111112,
+      "mean_absolute_productive_assets": 49.51724137931034,
+      "maximum_absolute_productive_assets": 69,
+      "final_absolute_productive_assets": 60,
+      "final_crops": {
+        "MELON": 17,
+        "STRAWBERRY": 12,
+        "WHEAT": 18,
+        "TOMATO": 3
+      },
+      "final_animals": {
+        "COW": 6,
+        "SHEEP": 4
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2391.8191891515994,
+      "max_latency_us": 7639.458,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31453,
+        "action_pickup": 54,
+        "action_west": 1591,
+        "market_withheld": 742,
+        "action_place": 10,
+        "action_north": 1594,
+        "action_plant": 216,
+        "action_feed": 238,
+        "action_water": 1305,
+        "action_east": 1136,
+        "action_south": 1029,
+        "action_pass": 1282,
+        "action_care": 175,
+        "action_collect_fertilizer": 204,
+        "router_dairy_berry": 1,
+        "action_harvest": 287,
+        "action_dig": 17,
+        "action_drop": 7
+      }
+    },
+    {
+      "seed": 7100,
+      "seat": 1,
+      "bank": 72740.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 150.0,
+      "router_expert": "dairy_berry",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "ICE_CREAM_SHOP"
+      ],
+      "mean_daily_target_realization": 0.8582636711947057,
+      "minimum_daily_target_realization": 0.3472222222222222,
+      "final_observed_day_target_realization": 0.9305555555555556,
+      "mean_absolute_productive_assets": 49.310344827586206,
+      "maximum_absolute_productive_assets": 69,
+      "final_absolute_productive_assets": 62,
+      "final_crops": {
+        "MELON": 17,
+        "WHEAT": 19,
+        "STRAWBERRY": 13,
+        "TOMATO": 3
+      },
+      "final_animals": {
+        "COW": 6,
+        "SHEEP": 4
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2387.518474269819,
+      "max_latency_us": 7453.333,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31463,
+        "action_pickup": 54,
+        "action_west": 1587,
+        "market_withheld": 743,
+        "action_place": 10,
+        "action_north": 1601,
+        "action_plant": 215,
+        "action_feed": 237,
+        "action_water": 1300,
+        "action_east": 1107,
+        "action_south": 1075,
+        "action_pass": 1251,
+        "action_care": 178,
+        "action_collect_fertilizer": 199,
+        "router_dairy_berry": 1,
+        "action_harvest": 286,
+        "action_dig": 19,
+        "action_drop": 11
+      }
+    },
+    {
+      "seed": 7101,
+      "seat": 0,
+      "bank": 45372.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 154.0,
+      "router_expert": "balanced_root",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "PET_CAFE"
+      ],
+      "mean_daily_target_realization": 0.8606583072100313,
+      "minimum_daily_target_realization": 0.3472222222222222,
+      "final_observed_day_target_realization": 0.9722222222222222,
+      "mean_absolute_productive_assets": 49.48275862068966,
+      "maximum_absolute_productive_assets": 69,
+      "final_absolute_productive_assets": 66,
+      "final_crops": {
+        "WHEAT": 21,
+        "STRAWBERRY": 9,
+        "MELON": 15,
+        "CARROT": 11
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2406.3011919332407,
+      "max_latency_us": 7411.25,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31608,
+        "action_pickup": 55,
+        "action_west": 1573,
+        "market_withheld": 760,
+        "action_place": 11,
+        "action_north": 1591,
+        "action_plant": 270,
+        "action_feed": 237,
+        "action_water": 1337,
+        "action_east": 1153,
+        "action_south": 985,
+        "action_pass": 1198,
+        "action_care": 186,
+        "action_collect_fertilizer": 203,
+        "router_balanced_root": 1,
+        "action_harvest": 306,
+        "action_dig": 10,
+        "action_drop": 8
+      }
+    },
+    {
+      "seed": 7101,
+      "seat": 1,
+      "bank": 59338.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 154.0,
+      "router_expert": "balanced_root",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "PET_CAFE"
+      ],
+      "mean_daily_target_realization": 0.8606583072100313,
+      "minimum_daily_target_realization": 0.3472222222222222,
+      "final_observed_day_target_realization": 0.9722222222222222,
+      "mean_absolute_productive_assets": 49.48275862068966,
+      "maximum_absolute_productive_assets": 69,
+      "final_absolute_productive_assets": 66,
+      "final_crops": {
+        "WHEAT": 21,
+        "STRAWBERRY": 9,
+        "MELON": 15,
+        "CARROT": 11
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2411.707353268428,
+      "max_latency_us": 7439.959,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31626,
+        "action_pickup": 55,
+        "action_west": 1577,
+        "market_withheld": 760,
+        "action_place": 11,
+        "action_north": 1593,
+        "action_plant": 270,
+        "action_feed": 237,
+        "action_water": 1337,
+        "action_east": 1153,
+        "action_south": 985,
+        "action_pass": 1191,
+        "action_care": 186,
+        "action_collect_fertilizer": 203,
+        "router_balanced_root": 1,
+        "action_dig": 11,
+        "action_harvest": 306,
+        "action_drop": 8
+      }
+    },
+    {
+      "seed": 7102,
+      "seat": 0,
+      "bank": 86371.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 154.0,
+      "router_expert": "dairy_berry",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "SMOOTHIE_SHOP"
+      ],
+      "mean_daily_target_realization": 0.859221525600836,
+      "minimum_daily_target_realization": 0.3472222222222222,
+      "final_observed_day_target_realization": 0.9027777777777778,
+      "mean_absolute_productive_assets": 49.37931034482759,
+      "maximum_absolute_productive_assets": 69,
+      "final_absolute_productive_assets": 58,
+      "final_crops": {
+        "STRAWBERRY": 12,
+        "WHEAT": 16,
+        "MELON": 17,
+        "TOMATO": 3
+      },
+      "final_animals": {
+        "COW": 6,
+        "SHEEP": 4
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2413.0841543810848,
+      "max_latency_us": 7479.5,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31534,
+        "action_pickup": 54,
+        "action_west": 1599,
+        "market_withheld": 785,
+        "action_place": 10,
+        "action_north": 1592,
+        "action_plant": 211,
+        "action_feed": 239,
+        "action_water": 1304,
+        "action_east": 1122,
+        "action_south": 1052,
+        "action_pass": 1259,
+        "action_care": 176,
+        "action_collect_fertilizer": 194,
+        "router_dairy_berry": 1,
+        "action_harvest": 286,
+        "action_dig": 16,
+        "action_drop": 9
+      }
+    },
+    {
+      "seed": 7102,
+      "seat": 1,
+      "bank": 82978.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 154.0,
+      "router_expert": "dairy_berry",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "SMOOTHIE_SHOP"
+      ],
+      "mean_daily_target_realization": 0.8611372344130965,
+      "minimum_daily_target_realization": 0.3472222222222222,
+      "final_observed_day_target_realization": 0.8888888888888888,
+      "mean_absolute_productive_assets": 49.51724137931034,
+      "maximum_absolute_productive_assets": 69,
+      "final_absolute_productive_assets": 61,
+      "final_crops": {
+        "WHEAT": 18,
+        "STRAWBERRY": 13,
+        "TOMATO": 3,
+        "MELON": 17
+      },
+      "final_animals": {
+        "COW": 6,
+        "SHEEP": 4
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2400.0965479833103,
+      "max_latency_us": 7571.75,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31497,
+        "action_pickup": 55,
+        "action_west": 1641,
+        "market_withheld": 785,
+        "action_place": 10,
+        "action_north": 1566,
+        "action_plant": 212,
+        "action_feed": 238,
+        "action_water": 1317,
+        "action_east": 1114,
+        "action_south": 1042,
+        "action_pass": 1261,
+        "action_care": 169,
+        "action_collect_fertilizer": 191,
+        "router_dairy_berry": 1,
+        "action_harvest": 287,
+        "action_dig": 14,
+        "action_drop": 6
+      }
+    },
+    {
+      "seed": 7103,
+      "seat": 0,
+      "bank": 79576.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 153.0,
+      "router_expert": "wool",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "YARN_STORE"
+      ],
+      "mean_daily_target_realization": 0.9176929392446634,
+      "minimum_daily_target_realization": 0.5952380952380952,
+      "final_observed_day_target_realization": 0.9722222222222222,
+      "mean_absolute_productive_assets": 52,
+      "maximum_absolute_productive_assets": 68,
+      "final_absolute_productive_assets": 64,
+      "final_crops": {
+        "WHEAT": 26,
+        "MELON": 19,
+        "STRAWBERRY": 8,
+        "CARROT": 2
+      },
+      "final_animals": {
+        "COW": 3,
+        "SHEEP": 6
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2312.182497913769,
+      "max_latency_us": 6835.375,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 30711,
+        "action_pickup": 68,
+        "action_west": 1645,
+        "market_withheld": 718,
+        "action_place": 9,
+        "action_north": 1583,
+        "action_plant": 263,
+        "action_feed": 220,
+        "action_water": 1423,
+        "action_east": 1161,
+        "action_south": 1048,
+        "action_pass": 1030,
+        "action_care": 176,
+        "action_collect_fertilizer": 190,
+        "router_wool": 1,
+        "action_harvest": 293,
+        "action_dig": 7,
+        "action_drop": 9
+      }
+    },
+    {
+      "seed": 7103,
+      "seat": 1,
+      "bank": 77648.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "calls": 719,
+      "schema_errors": 0,
+      "minimum_cash": 153.0,
+      "router_expert": "wool",
+      "router_commit_step": 72,
+      "first_visible_shops": [
+        "YARN_STORE"
+      ],
+      "mean_daily_target_realization": 0.9181718664477285,
+      "minimum_daily_target_realization": 0.5952380952380952,
+      "final_observed_day_target_realization": 0.9722222222222222,
+      "mean_absolute_productive_assets": 52.03448275862069,
+      "maximum_absolute_productive_assets": 68,
+      "final_absolute_productive_assets": 68,
+      "final_crops": {
+        "MELON": 19,
+        "WHEAT": 30,
+        "STRAWBERRY": 8,
+        "CARROT": 2
+      },
+      "final_animals": {
+        "COW": 3,
+        "SHEEP": 6
+      },
+      "final_target_crops": 59,
+      "final_target_animals": 10,
+      "mean_latency_us": 2361.9034965229484,
+      "max_latency_us": 7060.833,
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 31037,
+        "action_pickup": 68,
+        "action_west": 1671,
+        "market_withheld": 719,
+        "action_place": 9,
+        "action_north": 1568,
+        "action_plant": 267,
+        "action_feed": 218,
+        "action_water": 1433,
+        "action_east": 1129,
+        "action_south": 1081,
+        "action_pass": 1011,
+        "action_care": 173,
+        "action_collect_fertilizer": 191,
+        "router_wool": 1,
+        "action_harvest": 292,
+        "action_dig": 7,
+        "action_drop": 9
+      }
+    }
+  ],
+  "decision": "FAILED_RC4_REGRESSION_GATE_STOP"
+}

@@ -1,0 +1,47 @@
+{
+  "topic": {
+    "id": 736219,
+    "title": "1st Place Currently - Submission Strategy for beginners",
+    "authorName": "Ryo Hasegawa",
+    "commentCount": 5,
+    "votes": 43,
+    "postDate": "2026-08-19T22:38:49.801000"
+  },
+  "comments": [
+    {
+      "id": 3514856,
+      "authorName": "SaiKushal185",
+      "votes": 1,
+      "postDate": "2026-08-20T09:16:58.090000",
+      "content": "<p>Thanks for breaking down how elo works bro</p>"
+    },
+    {
+      "id": 3514692,
+      "authorName": "Ryo Hasegawa",
+      "votes": 0,
+      "postDate": "2026-08-19T22:59:28.203000",
+      "content": "<p>Any feedback is appreciated\ud83d\ude4f</p>"
+    },
+    {
+      "id": 3514755,
+      "authorName": "Syed Asad Ali",
+      "votes": 1,
+      "postDate": "2026-08-20T03:48:19.963000",
+      "content": "<p>Hi Ryo,</p>\n<p>Thank you so much for writing this for the benefit of community overall. Really appreciate your insights. The convergence table matches what we've measured almost exactly. Two of our fresh submissions were at ~98% of their current rating by game 60 and the burst rate was 16\u201317 games/hour for the first 4 hours.  I have some questions that I'd love your take on, with my own numbers as trade:</p>\n<p>K-decay shape. From (updated \u2212 initial)/(actual \u2212 expected) on our own episodes, K doesn't decay smoothly: it sits flat at ~220 for the first ~10 games, then cliffs to ~45\u201355 by game 20, and floors at ~8.5 by game 80. Your 200\u00b7e^(\u2212n/26) is gentler in the middle. Did your fits actually prefer the smooth exponential, or would a plateau-then-cliff fit your data too? It matters for how much the first 10 games dominate.</p>\n<p>Ties in the final Bradley-Terry. With so many byte-identical family agents on the ladder, forced draws are common. Do you know (or assume) whether the post-deadline BT fit treats ties as half-wins, discards them, or something else? For agents that mirror a big family this changes the optimization target.</p>\n<p>Seat asymmetry. destbreso's notebooks mention a measured seat-0 win-rate edge. Does your Elo simulator model it, and how large do you estimate it? We're deciding whether to weight our paired evaluations for it.</p>\n<p>The hedge slot. When you say the second slot should be \"a deliberately different version\" - in practice, how different? A different route family entirely, or a different adaptation layer on the same chassis? Curious how you trade off hedging vs. fielding your two strongest.</p>\n<p>Offline sparring pool. You suggest re-checking against the current meta weekly. What do you use as the offline opponent set - reconstructions from ladder replays, public notebook agents, or your own older versions? Reconstructions of adaptive agents are frozen and can mislead, so I'm curious how you handle that.</p>\n<p>Hope the answers help others climbing the same curve. Thanks again!</p>"
+    },
+    {
+      "id": 3514828,
+      "authorName": "Heisenberg",
+      "votes": 0,
+      "postDate": "2026-08-20T08:02:15.010000",
+      "content": "<p>Thank you for this great analysis. Do you think that actually publishing your own strong agent is a good idea? Since the game is relatively symmetric, distilling a strategy from replays seems to be quite simple. Since you are currently the best-performing player, your perspective would be really interesting.</p>"
+    },
+    {
+      "id": 3515205,
+      "authorName": "",
+      "votes": 0,
+      "postDate": "2026-08-21T03:18:57.370000",
+      "content": ""
+    }
+  ]
+}

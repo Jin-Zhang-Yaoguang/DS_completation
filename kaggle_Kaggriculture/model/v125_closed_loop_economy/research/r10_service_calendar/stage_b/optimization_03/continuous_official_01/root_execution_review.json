@@ -1,0 +1,230 @@
+{
+  "schema": "p3-continuous-root-execution-review-v1",
+  "at": "2026-09-05T14:28:34.872607+00:00",
+  "status": "ARTIFICIAL_ENTRY_AND_PARTIAL_EXECUTION_PASS_NOT_QUALIFICATION",
+  "source_sha256": "b5bcdd51829e9df20686de08935e96f65ec3ca7f1bd13bf7f9c756cfaa0465e6",
+  "source_files_verified": 92,
+  "summary_sha256": "b13b1d7614dae5938a56a574dc374a9667769218fc11ca97c68fa7bd405475b8",
+  "results": [
+    {
+      "seat": 0,
+      "actual_steps": 72,
+      "rescue_approval_events": 5,
+      "distinct_rescue_targets": [
+        [
+          "COW",
+          5,
+          5
+        ],
+        [
+          "MELON",
+          1,
+          6
+        ],
+        [
+          "MELON",
+          4,
+          4
+        ]
+      ],
+      "fulfilled_targets": [
+        [
+          "COW",
+          5,
+          5
+        ],
+        [
+          "MELON",
+          4,
+          4
+        ]
+      ],
+      "unfulfilled_targets": [
+        [
+          "MELON",
+          1,
+          6
+        ]
+      ],
+      "actual_plants": [
+        {
+          "step": 211,
+          "item": "MELON",
+          "position": [
+            4,
+            4
+          ],
+          "first_water_step": 212
+        }
+      ],
+      "actual_animal_placements": [
+        {
+          "step": 225,
+          "item": "COW",
+          "position": [
+            5,
+            5
+          ]
+        }
+      ],
+      "actual_builds": [
+        {
+          "step": 218,
+          "position": [
+            5,
+            5
+          ]
+        }
+      ],
+      "market_unit_commits": {
+        "BUY_SEED MELON": 2,
+        "BUY_ANIMAL COW": 1,
+        "BUY_PRODUCT WHEAT": 6
+      },
+      "market_cash_delta": {
+        "BUY_SEED MELON": -160,
+        "BUY_ANIMAL COW": -400,
+        "BUY_PRODUCT WHEAT": -166
+      },
+      "hired": 20,
+      "hire_cash_cost": 430,
+      "final_cash": 98844,
+      "final_private": {
+        "shed": {
+          "COW": 0,
+          "WHEAT": 4,
+          "STRAWBERRY": 48,
+          "FERTILIZER": 1
+        },
+        "seeds": {
+          "MELON": 1
+        },
+        "inventories": [
+          {}
+        ]
+      },
+      "max_entry_seconds": 0.1647330829873681,
+      "first_rescue_approved_step": 210,
+      "actual_first_water_all_new_plants": true,
+      "proof_and_prefix": "Approval branch requires both by frozen source; actual construction/planting/placement established separately from saved official events."
+    },
+    {
+      "seat": 1,
+      "actual_steps": 72,
+      "rescue_approval_events": 5,
+      "distinct_rescue_targets": [
+        [
+          "COW",
+          5,
+          5
+        ],
+        [
+          "MELON",
+          1,
+          6
+        ],
+        [
+          "MELON",
+          4,
+          4
+        ]
+      ],
+      "fulfilled_targets": [
+        [
+          "COW",
+          5,
+          5
+        ],
+        [
+          "MELON",
+          4,
+          4
+        ]
+      ],
+      "unfulfilled_targets": [
+        [
+          "MELON",
+          1,
+          6
+        ]
+      ],
+      "actual_plants": [
+        {
+          "step": 211,
+          "item": "MELON",
+          "position": [
+            4,
+            4
+          ],
+          "first_water_step": 212
+        }
+      ],
+      "actual_animal_placements": [
+        {
+          "step": 225,
+          "item": "COW",
+          "position": [
+            5,
+            5
+          ]
+        }
+      ],
+      "actual_builds": [
+        {
+          "step": 218,
+          "position": [
+            5,
+            5
+          ]
+        }
+      ],
+      "market_unit_commits": {
+        "BUY_SEED MELON": 2,
+        "BUY_ANIMAL COW": 1,
+        "BUY_PRODUCT WHEAT": 6
+      },
+      "market_cash_delta": {
+        "BUY_SEED MELON": -160,
+        "BUY_ANIMAL COW": -400,
+        "BUY_PRODUCT WHEAT": -166
+      },
+      "hired": 20,
+      "hire_cash_cost": 430,
+      "final_cash": 98844,
+      "final_private": {
+        "shed": {
+          "COW": 0,
+          "WHEAT": 4,
+          "STRAWBERRY": 48,
+          "FERTILIZER": 1
+        },
+        "seeds": {
+          "MELON": 1
+        },
+        "inventories": [
+          {}
+        ]
+      },
+      "max_entry_seconds": 0.16904137504752725,
+      "first_rescue_approved_step": 210,
+      "actual_first_water_all_new_plants": true,
+      "proof_and_prefix": "Approval branch requires both by frozen source; actual construction/planting/placement established separately from saved official events."
+    }
+  ],
+  "limits": [
+    "72-step artificial initial states with cash100000, not naturally reached states or strength evidence",
+    "Five approval events per seat represent three distinct targets, not five new projects",
+    "Second MELON seed was bought but target was not planted within this horizon; future outcome unobserved",
+    "No full-game performance, G1 or gold conclusion"
+  ],
+  "counts": {
+    "module_definition_loads": 2,
+    "official_make_calls": 2,
+    "official_initialize_helper_calls": 4,
+    "official_explicit_resets": 2,
+    "P3_complete_agent_calls": 144,
+    "official_short_steps": 144
+  },
+  "new_complete_matches": 0,
+  "gold_status": "NOT_GOLD"
+}

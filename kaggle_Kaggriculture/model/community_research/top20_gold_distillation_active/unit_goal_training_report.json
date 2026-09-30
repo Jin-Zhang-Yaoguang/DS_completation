@@ -1,0 +1,336 @@
+{
+  "schema": "kaggriculture-unit-goal-router-training-v1",
+  "idea": "predict semantic goal, never primitive move direction",
+  "data": {
+    "train": 388827,
+    "dev": 134497,
+    "features": 146,
+    "classes": 25,
+    "split": "episode_id"
+  },
+  "selected": {
+    "prior_exponent": 0.5,
+    "depth": 20,
+    "leaf": 20,
+    "population_accuracy": 0.8273131930782749,
+    "sample_accuracy": 0.834903380744552,
+    "balanced_accuracy": 0.7380852577737183,
+    "nodes": 14953,
+    "selection_score": 0.9450242446330186
+  },
+  "per_class": {
+    "BUILD_COOP": {
+      "support": 591,
+      "recall": 0.7123519458544839,
+      "top_confusion": "WATER"
+    },
+    "BUILD_PASTURE": {
+      "support": 5881,
+      "recall": 0.8996769256929094,
+      "top_confusion": "PLANT_WHEAT"
+    },
+    "CARE": {
+      "support": 8000,
+      "recall": 0.8595,
+      "top_confusion": "FEED"
+    },
+    "COLLECT_FERTILIZER": {
+      "support": 8000,
+      "recall": 0.82725,
+      "top_confusion": "FEED"
+    },
+    "DIG": {
+      "support": 8000,
+      "recall": 0.780875,
+      "top_confusion": "WATER"
+    },
+    "DROP": {
+      "support": 8000,
+      "recall": 0.76125,
+      "top_confusion": "WATER"
+    },
+    "FEED": {
+      "support": 8000,
+      "recall": 0.898625,
+      "top_confusion": "COLLECT_FERTILIZER"
+    },
+    "FERTILIZE": {
+      "support": 8000,
+      "recall": 0.8435,
+      "top_confusion": "WATER"
+    },
+    "HARVEST_ANIMAL": {
+      "support": 8000,
+      "recall": 0.836375,
+      "top_confusion": "WATER"
+    },
+    "HARVEST_CROP": {
+      "support": 8000,
+      "recall": 0.807875,
+      "top_confusion": "WATER"
+    },
+    "IDLE": {
+      "support": 8000,
+      "recall": 0.824375,
+      "top_confusion": "WATER"
+    },
+    "PICKUP_COW": {
+      "support": 1609,
+      "recall": 0.8023617153511498,
+      "top_confusion": "IDLE"
+    },
+    "PICKUP_GOOSE": {
+      "support": 50,
+      "recall": 0.0,
+      "top_confusion": "PICKUP_WHEAT"
+    },
+    "PICKUP_OUTPUT": {
+      "support": 3979,
+      "recall": 0.7393817542096004,
+      "top_confusion": "PICKUP_WHEAT"
+    },
+    "PICKUP_SHEEP": {
+      "support": 1422,
+      "recall": 0.7032348804500703,
+      "top_confusion": "WATER"
+    },
+    "PICKUP_WHEAT": {
+      "support": 8000,
+      "recall": 0.8445,
+      "top_confusion": "WATER"
+    },
+    "PLACE_COW": {
+      "support": 8000,
+      "recall": 0.889125,
+      "top_confusion": "DROP"
+    },
+    "PLACE_GOOSE": {
+      "support": 76,
+      "recall": 0.0,
+      "top_confusion": "FERTILIZE"
+    },
+    "PLACE_SHEEP": {
+      "support": 1664,
+      "recall": 0.9110576923076923,
+      "top_confusion": "WATER"
+    },
+    "PLANT_CARROT": {
+      "support": 2428,
+      "recall": 0.7335255354200988,
+      "top_confusion": "PLANT_WHEAT"
+    },
+    "PLANT_MELON": {
+      "support": 4653,
+      "recall": 0.8934021061680636,
+      "top_confusion": "WATER"
+    },
+    "PLANT_STRAWBERRY": {
+      "support": 8000,
+      "recall": 0.877375,
+      "top_confusion": "WATER"
+    },
+    "PLANT_TOMATO": {
+      "support": 144,
+      "recall": 0.3263888888888889,
+      "top_confusion": "PLANT_WHEAT"
+    },
+    "PLANT_WHEAT": {
+      "support": 8000,
+      "recall": 0.876125,
+      "top_confusion": "WATER"
+    },
+    "WATER": {
+      "support": 8000,
+      "recall": 0.804,
+      "top_confusion": "IDLE"
+    }
+  },
+  "trials": [
+    {
+      "prior_exponent": 0.0,
+      "depth": 16,
+      "leaf": 20,
+      "population_accuracy": 0.7408448291916528,
+      "sample_accuracy": 0.8282340870056581,
+      "balanced_accuracy": 0.7519150306756929,
+      "nodes": 9673,
+      "selection_score": 0.8718818353267914
+    },
+    {
+      "prior_exponent": 0.0,
+      "depth": 16,
+      "leaf": 60,
+      "population_accuracy": 0.7074195337886418,
+      "sample_accuracy": 0.8017948355725406,
+      "balanced_accuracy": 0.7198902342961013,
+      "nodes": 5577,
+      "selection_score": 0.840243580647862
+    },
+    {
+      "prior_exponent": 0.0,
+      "depth": 20,
+      "leaf": 20,
+      "population_accuracy": 0.7581912759186585,
+      "sample_accuracy": 0.8480040446998818,
+      "balanced_accuracy": 0.7793200527134978,
+      "nodes": 14395,
+      "selection_score": 0.8852652864613582
+    },
+    {
+      "prior_exponent": 0.0,
+      "depth": 20,
+      "leaf": 60,
+      "population_accuracy": 0.7086470027133398,
+      "sample_accuracy": 0.8104939143624021,
+      "balanced_accuracy": 0.7271742956839699,
+      "nodes": 7019,
+      "selection_score": 0.8400438618501338
+    },
+    {
+      "prior_exponent": 0.0,
+      "depth": 24,
+      "leaf": 20,
+      "population_accuracy": 0.7649613186842333,
+      "sample_accuracy": 0.8510450047212949,
+      "balanced_accuracy": 0.7816645807445739,
+      "nodes": 16175,
+      "selection_score": 0.8889442348331481
+    },
+    {
+      "prior_exponent": 0.0,
+      "depth": 24,
+      "leaf": 60,
+      "population_accuracy": 0.7100794801708368,
+      "sample_accuracy": 0.8109623262972409,
+      "balanced_accuracy": 0.7273276068174205,
+      "nodes": 7421,
+      "selection_score": 0.8407030015343209
+    },
+    {
+      "prior_exponent": 0.5,
+      "depth": 16,
+      "leaf": 20,
+      "population_accuracy": 0.8126246365659774,
+      "sample_accuracy": 0.805244726648178,
+      "balanced_accuracy": 0.7069276112193387,
+      "nodes": 10145,
+      "selection_score": 0.933720158809845
+    },
+    {
+      "prior_exponent": 0.5,
+      "depth": 16,
+      "leaf": 60,
+      "population_accuracy": 0.7880131647484799,
+      "sample_accuracy": 0.7790508338475951,
+      "balanced_accuracy": 0.6748694971638944,
+      "nodes": 5661,
+      "selection_score": 0.9116650641812589
+    },
+    {
+      "prior_exponent": 0.5,
+      "depth": 20,
+      "leaf": 20,
+      "population_accuracy": 0.8273131930782749,
+      "sample_accuracy": 0.834903380744552,
+      "balanced_accuracy": 0.7380852577737183,
+      "nodes": 14953,
+      "selection_score": 0.9450242446330186
+    },
+    {
+      "prior_exponent": 0.5,
+      "depth": 20,
+      "leaf": 60,
+      "population_accuracy": 0.7957851804416062,
+      "sample_accuracy": 0.7931478025532168,
+      "balanced_accuracy": 0.6858023337337902,
+      "nodes": 7183,
+      "selection_score": 0.9185796471883643
+    },
+    {
+      "prior_exponent": 0.5,
+      "depth": 24,
+      "leaf": 20,
+      "population_accuracy": 0.828741356026515,
+      "sample_accuracy": 0.8376320661427392,
+      "balanced_accuracy": 0.7416462423086269,
+      "nodes": 16679,
+      "selection_score": 0.9437126044882403
+    },
+    {
+      "prior_exponent": 0.5,
+      "depth": 24,
+      "leaf": 60,
+      "population_accuracy": 0.7951114742159363,
+      "sample_accuracy": 0.7936013442679019,
+      "balanced_accuracy": 0.6864660809064467,
+      "nodes": 7539,
+      "selection_score": 0.9173266903972256
+    },
+    {
+      "prior_exponent": 1.0,
+      "depth": 16,
+      "leaf": 20,
+      "population_accuracy": 0.8221383305229274,
+      "sample_accuracy": 0.7363956073369666,
+      "balanced_accuracy": 0.6160802300931946,
+      "nodes": 9927,
+      "selection_score": 0.9255003765415662
+    },
+    {
+      "prior_exponent": 1.0,
+      "depth": 16,
+      "leaf": 60,
+      "population_accuracy": 0.8060814257279685,
+      "sample_accuracy": 0.702387413845662,
+      "balanced_accuracy": 0.578862786177583,
+      "nodes": 5619,
+      "selection_score": 0.9106159829634851
+    },
+    {
+      "prior_exponent": 1.0,
+      "depth": 20,
+      "leaf": 20,
+      "population_accuracy": 0.8318044993019134,
+      "sample_accuracy": 0.7783891090507595,
+      "balanced_accuracy": 0.6686325671082518,
+      "nodes": 14869,
+      "selection_score": 0.9357930127235636
+    },
+    {
+      "prior_exponent": 1.0,
+      "depth": 20,
+      "leaf": 60,
+      "population_accuracy": 0.8118946776385366,
+      "sample_accuracy": 0.7226332185848011,
+      "balanced_accuracy": 0.6048563272203079,
+      "nodes": 7101,
+      "selection_score": 0.9186639430825981
+    },
+    {
+      "prior_exponent": 1.0,
+      "depth": 24,
+      "leaf": 20,
+      "population_accuracy": 0.8340532042860384,
+      "sample_accuracy": 0.7912221090433244,
+      "balanced_accuracy": 0.6858129579002277,
+      "nodes": 16837,
+      "selection_score": 0.9375417958660839
+    },
+    {
+      "prior_exponent": 1.0,
+      "depth": 24,
+      "leaf": 60,
+      "population_accuracy": 0.8127665021055471,
+      "sample_accuracy": 0.7271165899611144,
+      "balanced_accuracy": 0.6109157981972767,
+      "nodes": 7637,
+      "selection_score": 0.9196756617450025
+    }
+  ],
+  "serving": {
+    "format": "pure JSON rule tree",
+    "contains_replay_action_sequence": false,
+    "step_lookup": false
+  },
+  "verdict": "DEVELOPMENT_COMPONENT_ONLY_NOT_MODEL_VERSION"
+}

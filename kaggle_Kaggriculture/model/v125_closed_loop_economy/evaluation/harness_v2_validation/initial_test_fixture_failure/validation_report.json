@@ -1,0 +1,188 @@
+{
+  "schema": "v125-harness-v2-unit-validation",
+  "full_matches_created": 0,
+  "production_candidate_calls": 0,
+  "probe_routes": [
+    {
+      "backend": "fast",
+      "parity": false,
+      "candidate_seat": 0,
+      "physical_steps_primary": 1,
+      "checks": [
+        {
+          "player": 0,
+          "step": 0,
+          "config": {
+            "seed": null,
+            "episodeSteps": 720,
+            "actTimeout": 1,
+            "runTimeout": 1200,
+            "boardSize": 10,
+            "startingMoney": 3000,
+            "maxMarketOrdersPerTurn": 10,
+            "turnsPerDay": 24,
+            "shedCapacity": 100,
+            "weedSpawnChance": 0.005,
+            "townShopUnlockInterval": 3,
+            "townShopSellInterval": 4,
+            "townCenterSellInterval": 24,
+            "farmHandCostMult": 1,
+            "marketParams": {}
+          }
+        },
+        {
+          "player": 0,
+          "step": 1,
+          "config": {
+            "seed": null,
+            "episodeSteps": 720,
+            "actTimeout": 1,
+            "runTimeout": 1200,
+            "boardSize": 10,
+            "startingMoney": 3000,
+            "maxMarketOrdersPerTurn": 10,
+            "turnsPerDay": 24,
+            "shedCapacity": 100,
+            "weedSpawnChance": 0.005,
+            "townShopUnlockInterval": 3,
+            "townShopSellInterval": 4,
+            "townCenterSellInterval": 24,
+            "farmHandCostMult": 1,
+            "marketParams": {}
+          }
+        },
+        {
+          "player": 1,
+          "step": 0,
+          "config": {
+            "seed": null,
+            "episodeSteps": 720,
+            "actTimeout": 1,
+            "runTimeout": 1200,
+            "boardSize": 10,
+            "startingMoney": 3000,
+            "maxMarketOrdersPerTurn": 10,
+            "turnsPerDay": 24,
+            "shedCapacity": 100,
+            "weedSpawnChance": 0.005,
+            "townShopUnlockInterval": 3,
+            "townShopSellInterval": 4,
+            "townCenterSellInterval": 24,
+            "farmHandCostMult": 1,
+            "marketParams": {}
+          }
+        }
+      ],
+      "outcome": "EXPECTED_TEST_SENTINEL_NOT_MATCH_FAILURE",
+      "parity_state_checks": 0
+    },
+    {
+      "backend": "fast",
+      "parity": false,
+      "candidate_seat": 1,
+      "physical_steps_primary": 1,
+      "checks": [
+        {
+          "player": 0,
+          "step": 0,
+          "config": {
+            "seed": null,
+            "episodeSteps": 720,
+            "actTimeout": 1,
+            "runTimeout": 1200,
+            "boardSize": 10,
+            "startingMoney": 3000,
+            "maxMarketOrdersPerTurn": 10,
+            "turnsPerDay": 24,
+            "shedCapacity": 100,
+            "weedSpawnChance": 0.005,
+            "townShopUnlockInterval": 3,
+            "townShopSellInterval": 4,
+            "townCenterSellInterval": 24,
+            "farmHandCostMult": 1,
+            "marketParams": {}
+          }
+        },
+        {
+          "player": 0,
+          "step": 1,
+          "config": {
+            "seed": null,
+            "episodeSteps": 720,
+            "actTimeout": 1,
+            "runTimeout": 1200,
+            "boardSize": 10,
+            "startingMoney": 3000,
+            "maxMarketOrdersPerTurn": 10,
+            "turnsPerDay": 24,
+            "shedCapacity": 100,
+            "weedSpawnChance": 0.005,
+            "townShopUnlockInterval": 3,
+            "townShopSellInterval": 4,
+            "townCenterSellInterval": 24,
+            "farmHandCostMult": 1,
+            "marketParams": {}
+          }
+        },
+        {
+          "player": 1,
+          "step": 0,
+          "config": {
+            "seed": null,
+            "episodeSteps": 720,
+            "actTimeout": 1,
+            "runTimeout": 1200,
+            "boardSize": 10,
+            "startingMoney": 3000,
+            "maxMarketOrdersPerTurn": 10,
+            "turnsPerDay": 24,
+            "shedCapacity": 100,
+            "weedSpawnChance": 0.005,
+            "townShopUnlockInterval": 3,
+            "townShopSellInterval": 4,
+            "townCenterSellInterval": 24,
+            "farmHandCostMult": 1,
+            "marketParams": {}
+          }
+        }
+      ],
+      "outcome": "EXPECTED_TEST_SENTINEL_NOT_MATCH_FAILURE",
+      "parity_state_checks": 0
+    }
+  ],
+  "engine_composite_sha256": "264d0bba1daf534c82668e1c9c445ae9f7c5bd342296375b8f1b3a7e1015aa3a",
+  "official_configuration": {
+    "seed": null,
+    "episodeSteps": 720,
+    "actTimeout": 1,
+    "runTimeout": 1200,
+    "boardSize": 10,
+    "startingMoney": 3000,
+    "maxMarketOrdersPerTurn": 10,
+    "turnsPerDay": 24,
+    "shedCapacity": 100,
+    "weedSpawnChance": 0.005,
+    "townShopUnlockInterval": 3,
+    "townShopSellInterval": 4,
+    "townCenterSellInterval": 24,
+    "farmHandCostMult": 1,
+    "marketParams": {}
+  },
+  "old_fast_leak_reproduced": {
+    "physical_steps": 0,
+    "expected_assertion": "configuration seed leaked"
+  },
+  "tests_run": 8,
+  "failures": 6,
+  "errors": 2,
+  "passed": false,
+  "files": {
+    "runner_v1_sha256": "3a32e264d2df6d3fa419f15aa43d06eaaebb300c5ea864e1e5778a733fcde945",
+    "runner_v2_sha256": "04d0e5ff740c469264561d43e76ef55bc231770e9c190c026173a07fd160002f",
+    "test_source_sha256": "cfb21c762740115abcfe18ff5df2d556f65a4354f348516d8e3573c7d3a8cc80",
+    "legacy_test_source_sha256": "2322e4cc433f88b3a400da740cae78060226f4244aee432271fc2b87bc371de2",
+    "frozen_analyzer_sha256": "cc4d5c01a482034b55b93422e90b332e7058d6a73a096250dad39cc8eae74963"
+  },
+  "original_runner_unchanged": true,
+  "frozen_analyzer_unchanged": true
+}

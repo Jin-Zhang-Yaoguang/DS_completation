@@ -1,0 +1,128 @@
+{
+  "errors": 0,
+  "formal_or_test_accessed": false,
+  "opponents": [
+    "r002_learned_router_topday_animal_throttle",
+    "baseline_v1",
+    "baseline_v5",
+    "baseline_v8",
+    "learned_router",
+    "rule_router",
+    "v5_topdays",
+    "v8_topdays"
+  ],
+  "results": {
+    "no_wool_throttle": {
+      "common_margin_uplift": 61.45238095238095,
+      "common_score_uplift": 0.07539682539682539,
+      "direct_parent": {
+        "games": 36,
+        "mean_margin": 78.52777777777777,
+        "score_rate": 0.8055555555555556
+      },
+      "per_opponent": {
+        "baseline_v1": {
+          "games": 36,
+          "margin_uplift_vs_parent": 45.80555555555556,
+          "mean_margin": 5072.222222222223,
+          "score_rate": 0.8333333333333334,
+          "score_uplift_vs_parent": 0.0,
+          "transitions": {
+            "0->0": 6,
+            "1->1": 30
+          }
+        },
+        "baseline_v5": {
+          "games": 36,
+          "margin_uplift_vs_parent": 51.361111111111114,
+          "mean_margin": 4341.194444444444,
+          "score_rate": 0.8611111111111112,
+          "score_uplift_vs_parent": 0.0,
+          "transitions": {
+            "0->0": 5,
+            "1->1": 31
+          }
+        },
+        "baseline_v8": {
+          "games": 36,
+          "margin_uplift_vs_parent": 70.61111111111111,
+          "mean_margin": 1036.8055555555557,
+          "score_rate": 0.75,
+          "score_uplift_vs_parent": 0.1111111111111111,
+          "transitions": {
+            "0->0": 9,
+            "0->1": 4,
+            "1->1": 23
+          }
+        },
+        "learned_router": {
+          "games": 36,
+          "margin_uplift_vs_parent": 71.11111111111111,
+          "mean_margin": 131.91666666666666,
+          "score_rate": 0.7222222222222222,
+          "score_uplift_vs_parent": 0.1111111111111111,
+          "transitions": {
+            "0->0": 10,
+            "0->1": 4,
+            "1->1": 22
+          }
+        },
+        "r002_learned_router_topday_animal_throttle": {
+          "games": 36,
+          "mean_margin": 78.52777777777777,
+          "score_rate": 0.8055555555555556
+        },
+        "rule_router": {
+          "games": 36,
+          "margin_uplift_vs_parent": 50.861111111111114,
+          "mean_margin": 5246.083333333333,
+          "score_rate": 0.8888888888888888,
+          "score_uplift_vs_parent": 0.0,
+          "transitions": {
+            "0->0": 4,
+            "1->1": 32
+          }
+        },
+        "v5_topdays": {
+          "games": 36,
+          "margin_uplift_vs_parent": 57.111111111111114,
+          "mean_margin": 4133.527777777777,
+          "score_rate": 0.8611111111111112,
+          "score_uplift_vs_parent": 0.027777777777777776,
+          "transitions": {
+            "0->0": 5,
+            "0.5->1": 2,
+            "1->1": 29
+          }
+        },
+        "v8_topdays": {
+          "games": 36,
+          "margin_uplift_vs_parent": 83.30555555555556,
+          "mean_margin": 1029.25,
+          "score_rate": 0.8333333333333334,
+          "score_uplift_vs_parent": 0.2777777777777778,
+          "transitions": {
+            "0->0": 6,
+            "0->1": 4,
+            "0.5->1": 12,
+            "1->1": 14
+          }
+        }
+      },
+      "transitions": {
+        "0->0": 45,
+        "0->1": 12,
+        "0.5->1": 14,
+        "1->1": 181
+      },
+      "worst_opponent_score_uplift": 0.0
+    }
+  },
+  "schema": "kaggriculture-v12a-mechanism-ablation-report-1",
+  "screen_only": true,
+  "valid_games": 288,
+  "variants": [
+    "no_wool_throttle"
+  ],
+  "version": "v3"
+}

@@ -1,0 +1,452 @@
+{
+  "schema": "v116-labor-planner-rc2-idle-smoke-v1",
+  "engine": "1.32.7",
+  "contract": {
+    "seeds": [
+      7100,
+      7103
+    ],
+    "both_seats": true,
+    "workers": 4,
+    "idle_strength_gate_mean_bank": 70000,
+    "target_realization_gate": 0.75
+  },
+  "genome": {
+    "schema": "v116-daily-aggregate-genome-v1",
+    "land_days": [
+      0,
+      5,
+      9
+    ],
+    "crop_blocks": [
+      {
+        "WHEAT": 8,
+        "MELON": 7
+      },
+      {
+        "WHEAT": 8,
+        "MELON": 5,
+        "STRAWBERRY": 6
+      },
+      {
+        "WHEAT": 10,
+        "MELON": 7,
+        "STRAWBERRY": 5,
+        "CARROT": 3
+      }
+    ],
+    "animal_waves": [
+      {
+        "day": 0,
+        "kind": "SHEEP",
+        "count": 4
+      },
+      {
+        "day": 5,
+        "kind": "COW",
+        "count": 4
+      },
+      {
+        "day": 9,
+        "kind": "SHEEP",
+        "count": 2
+      }
+    ],
+    "labour": {
+      "plateau": 14,
+      "ramp_days": 7,
+      "tiles_per_hand": 4
+    },
+    "market": {
+      "cash_reserve": 100,
+      "feed_days": 2,
+      "sell_buffer": 8
+    }
+  },
+  "originality_audit": {
+    "source_sha256": "4e51c4e8abe8225e79d07397d519daa160c696dc0fba2db6c81c19f29fb48c63",
+    "largest_list_or_tuple_literal": 5,
+    "forbidden_imports": [],
+    "daily_goal_records": 30,
+    "money_perturbation_changes_action": true,
+    "contains_actions_constant": false,
+    "pass": true
+  },
+  "summary": {
+    "games": 8,
+    "pure_wins": 8,
+    "pure_win_rate_vs_idle": 1,
+    "mean_bank": 67603.0,
+    "median_bank": 70423.5,
+    "minimum_bank": 56308.0,
+    "maximum_bank": 72155.0,
+    "mean_daily_target_realization": 0.8061509491466388,
+    "minimum_daily_target_realization": 0.5,
+    "minimum_final_observed_day_target_realization": 0.7083333333333334,
+    "schema_errors": 0,
+    "all_719_calls": true,
+    "mean_latency_us": 1203.8129707927678
+  },
+  "episodes": [
+    {
+      "seed": 7100,
+      "seat": 0,
+      "calls": 719,
+      "bank": 67359.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 102.0,
+      "mean_daily_target_realization": 0.8178247997213515,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.7916666666666666,
+      "mean_latency_us": 1160.595997218359,
+      "max_latency_us": 3314.167,
+      "schema_errors": 0,
+      "final_crops": {
+        "STRAWBERRY": 3,
+        "MELON": 19,
+        "WHEAT": 20
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 40696,
+        "action_pickup": 74,
+        "action_west": 1189,
+        "action_place": 10,
+        "action_north": 1116,
+        "action_plant": 211,
+        "action_feed": 213,
+        "action_water": 1089,
+        "action_east": 859,
+        "action_south": 814,
+        "action_pass": 319,
+        "action_care": 72,
+        "market_withheld": 49,
+        "action_collect_fertilizer": 99,
+        "action_harvest": 239,
+        "action_dig": 21,
+        "action_drop": 4
+      }
+    },
+    {
+      "seed": 7100,
+      "seat": 1,
+      "calls": 719,
+      "bank": 70874.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 102.0,
+      "mean_daily_target_realization": 0.8096830372692442,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.75,
+      "mean_latency_us": 1185.1939694019472,
+      "max_latency_us": 3329.0,
+      "schema_errors": 0,
+      "final_crops": {
+        "STRAWBERRY": 1,
+        "MELON": 19,
+        "WHEAT": 18
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 40881,
+        "action_pickup": 64,
+        "action_west": 1173,
+        "action_place": 10,
+        "action_north": 1149,
+        "action_plant": 202,
+        "action_feed": 222,
+        "action_water": 1096,
+        "action_east": 911,
+        "action_south": 786,
+        "action_pass": 315,
+        "action_care": 77,
+        "market_withheld": 49,
+        "action_collect_fertilizer": 112,
+        "action_harvest": 240,
+        "action_dig": 15,
+        "action_drop": 1
+      }
+    },
+    {
+      "seed": 7101,
+      "seat": 0,
+      "calls": 719,
+      "bank": 69973.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 100.0,
+      "mean_daily_target_realization": 0.8149512365029606,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.7916666666666666,
+      "mean_latency_us": 1215.2685910987482,
+      "max_latency_us": 3320.417,
+      "schema_errors": 0,
+      "final_crops": {
+        "WHEAT": 17,
+        "MELON": 17,
+        "STRAWBERRY": 5
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 40328,
+        "action_pickup": 79,
+        "action_west": 1204,
+        "action_place": 10,
+        "action_north": 1182,
+        "action_plant": 206,
+        "action_feed": 201,
+        "action_water": 1073,
+        "action_east": 970,
+        "action_south": 797,
+        "action_pass": 319,
+        "action_care": 78,
+        "market_withheld": 50,
+        "action_collect_fertilizer": 118,
+        "action_harvest": 236,
+        "action_dig": 19,
+        "action_drop": 3
+      }
+    },
+    {
+      "seed": 7101,
+      "seat": 1,
+      "calls": 719,
+      "bank": 71760.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 100.0,
+      "mean_daily_target_realization": 0.8068094740508533,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.7083333333333334,
+      "mean_latency_us": 1247.5824700973574,
+      "max_latency_us": 3325.75,
+      "schema_errors": 0,
+      "final_crops": {
+        "MELON": 18,
+        "WHEAT": 20,
+        "STRAWBERRY": 1
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 5
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 40292,
+        "action_pickup": 80,
+        "action_west": 1239,
+        "action_place": 9,
+        "action_north": 1194,
+        "action_plant": 215,
+        "action_feed": 199,
+        "action_water": 1064,
+        "action_east": 996,
+        "action_south": 792,
+        "action_pass": 316,
+        "action_care": 75,
+        "market_withheld": 50,
+        "action_collect_fertilizer": 112,
+        "action_dig": 24,
+        "action_harvest": 238,
+        "action_drop": 5
+      }
+    },
+    {
+      "seed": 7102,
+      "seat": 0,
+      "calls": 719,
+      "bank": 71810.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 102.0,
+      "mean_daily_target_realization": 0.8072884012539185,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.7916666666666666,
+      "mean_latency_us": 1200.5164033379695,
+      "max_latency_us": 3362.416,
+      "schema_errors": 0,
+      "final_crops": {
+        "STRAWBERRY": 4,
+        "MELON": 18,
+        "WHEAT": 21
+      },
+      "final_animals": {
+        "COW": 3,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 40913,
+        "action_pickup": 73,
+        "action_west": 1176,
+        "action_place": 9,
+        "action_north": 1129,
+        "action_plant": 215,
+        "action_feed": 212,
+        "action_water": 1088,
+        "action_east": 890,
+        "action_south": 838,
+        "action_pass": 319,
+        "action_care": 79,
+        "market_withheld": 50,
+        "action_collect_fertilizer": 94,
+        "action_harvest": 240,
+        "action_dig": 23,
+        "action_drop": 4
+      }
+    },
+    {
+      "seed": 7102,
+      "seat": 1,
+      "calls": 719,
+      "bank": 72155.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 102.0,
+      "mean_daily_target_realization": 0.8072884012539185,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.7083333333333334,
+      "mean_latency_us": 1203.0695799721836,
+      "max_latency_us": 3428.375,
+      "schema_errors": 0,
+      "final_crops": {
+        "MELON": 18,
+        "WHEAT": 20
+      },
+      "final_animals": {
+        "COW": 3,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 41105,
+        "action_pickup": 72,
+        "action_west": 1186,
+        "action_place": 9,
+        "action_north": 1141,
+        "action_plant": 212,
+        "action_feed": 212,
+        "action_water": 1071,
+        "action_east": 867,
+        "action_south": 855,
+        "action_pass": 319,
+        "action_care": 77,
+        "market_withheld": 50,
+        "action_collect_fertilizer": 100,
+        "action_harvest": 244,
+        "action_dig": 18,
+        "action_drop": 6
+      }
+    },
+    {
+      "seed": 7103,
+      "seat": 0,
+      "calls": 719,
+      "bank": 60585.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 100.0,
+      "mean_daily_target_realization": 0.7929205851619645,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.75,
+      "mean_latency_us": 1196.0203783031989,
+      "max_latency_us": 3174.166,
+      "schema_errors": 0,
+      "final_crops": {
+        "MELON": 19,
+        "WHEAT": 20,
+        "STRAWBERRY": 3
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 41941,
+        "action_pickup": 75,
+        "action_west": 1189,
+        "action_place": 11,
+        "action_north": 1210,
+        "action_plant": 204,
+        "action_feed": 206,
+        "action_water": 997,
+        "action_east": 846,
+        "action_south": 829,
+        "action_pass": 319,
+        "action_care": 78,
+        "market_withheld": 50,
+        "action_collect_fertilizer": 109,
+        "action_harvest": 228,
+        "action_dig": 23,
+        "action_drop": 2
+      }
+    },
+    {
+      "seed": 7103,
+      "seat": 1,
+      "calls": 719,
+      "bank": 56308.0,
+      "idle_bank": 3000.0,
+      "pure_win": true,
+      "minimum_cash": 100.0,
+      "mean_daily_target_realization": 0.7924416579588993,
+      "minimum_daily_target_realization": 0.5,
+      "final_observed_day_target_realization": 0.7638888888888888,
+      "mean_latency_us": 1222.2563769123783,
+      "max_latency_us": 3589.375,
+      "schema_errors": 0,
+      "final_crops": {
+        "STRAWBERRY": 1,
+        "MELON": 16,
+        "WHEAT": 14
+      },
+      "final_animals": {
+        "COW": 4,
+        "SHEEP": 6
+      },
+      "action_audit": {
+        "action_build_pasture": 10,
+        "calls": 719,
+        "jobs_generated": 41715,
+        "action_pickup": 77,
+        "action_west": 1222,
+        "action_place": 11,
+        "action_north": 1174,
+        "action_plant": 197,
+        "action_feed": 205,
+        "action_water": 1008,
+        "action_east": 954,
+        "action_south": 766,
+        "action_pass": 319,
+        "action_care": 77,
+        "market_withheld": 50,
+        "action_collect_fertilizer": 111,
+        "action_harvest": 232,
+        "action_dig": 13,
+        "action_drop": 4
+      }
+    }
+  ],
+  "decision": "FAILED_IDLE_STRENGTH_GATE_DO_NOT_REGISTER_GOLDEN_MODEL"
+}

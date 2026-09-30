@@ -1,0 +1,62 @@
+{
+  "schema": "kaggriculture-v18-task-dag-decision-v1",
+  "decision": "FAIL_DO_NOT_FREEZE_DO_NOT_CONFIRM_DO_NOT_SUBMIT",
+  "packaging_override": {
+    "reason": "User explicitly requested both P0 candidates be submitted after the research decision.",
+    "remote_submitted": false,
+    "archive_sha256": "2eef5879900eeda8c28528415edaac43b9bcc6b4de68e2377f4e0ff4f5038a54",
+    "main_sha256": "4021aa06cce00e835ee2d1dd78793129af73d7e5b247fd06101b2b1e5fb4bd89",
+    "package_qa_pass": true
+  },
+  "reason": "The resource-complete overlay removed rejected unit pickups but produced no score, margin, bank, deadline, or lifecycle-yield gain. The one permitted lifecycle-only revision found zero recovery opportunities.",
+  "frozen_parent_sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1",
+  "development_contract": {
+    "date_source": "2026-08-25 route provenance and local deduplicated proxy families",
+    "seed_range": [50000, 50007],
+    "test_or_confirm_run": false,
+    "invalid_precontract_smoke": "seed 31990 was syntax/runtime smoke only and was excluded from all selection"
+  },
+  "dev": {
+    "games": 112,
+    "families": 7,
+    "both_seats": true,
+    "parent_score_rate": 0.8571428571428571,
+    "candidate_score_rate": 0.8571428571428571,
+    "score_uplift_pp": 0.0,
+    "mean_bank_delta": -0.03571428571428571,
+    "mean_margin_delta": -0.03571428571428571,
+    "parent_margin_p10": -347.5999999999996,
+    "candidate_margin_p10": -347.5999999999996,
+    "parent_margin_cvar10": -6038.636363636364,
+    "candidate_margin_cvar10": -6038.636363636364,
+    "parent_deadline_completion_rate": 1.0,
+    "candidate_deadline_completion_rate": 1.0,
+    "parent_harvest_units": 141550,
+    "candidate_harvest_units": 141550,
+    "parent_unit_execution_failures": 224,
+    "candidate_unit_execution_failures": 0,
+    "parent_runtime_us_per_call": 263.44977426485195,
+    "candidate_runtime_us_per_call": 715.1298758444268
+  },
+  "modification_decomposition": {
+    "atomic_pickup_caps": 364,
+    "time_equivalent_care": 224,
+    "lifecycle_repairs": 0,
+    "deviation_beam_repairs": 0,
+    "economic_interpretation": "The only effective change was making already-rejected concurrent PICKUP orders explicit/capped. CARE additions were completed but did not change harvest, bank, or score."
+  },
+  "gate": {
+    "required_score_uplift_pp": 2.0,
+    "required_seed_cluster_ci95_lower_gt_zero": true,
+    "observed_score_uplift_ci95_pp": [0.0, 0.0],
+    "pass": false
+  },
+  "artifacts": [
+    "task_dag.json",
+    "parent_parity.json",
+    "planner_qa.json",
+    "dev_results.json",
+    "submission_manifest.json",
+    "package_qa.json"
+  ]
+}

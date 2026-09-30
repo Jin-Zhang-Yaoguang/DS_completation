@@ -1,0 +1,84 @@
+{
+  "schema": "v117-r2.1-a-loss-attribution-tests-v1",
+  "checks": {
+    "all_seven_categories_defined": true,
+    "all_seven_categories_triggered": true,
+    "financing_uses_daily_peak_not_turn_sum": true,
+    "overdue_task_is_deduplicated": true,
+    "blocked_move_is_detected": true,
+    "high_price_loss_requires_observed_drop": true,
+    "terminal_is_recorded_once": true,
+    "top_three_are_ranked": true,
+    "diagnostics_forbidden_as_strategy_input": true,
+    "no_replay_or_future_runtime_attribute": true
+  },
+  "totals": {
+    "TERMINAL_UNREALIZED": {
+      "label": "终局未兑现",
+      "estimated_value": 1210.0,
+      "units": 14.0,
+      "events": 1
+    },
+    "FINANCING_SHORTFALL": {
+      "label": "融资不足",
+      "estimated_value": 500.0,
+      "units": 1.0,
+      "events": 1
+    },
+    "FEED_SHORTAGE": {
+      "label": "饲料短缺",
+      "estimated_value": 250.0,
+      "units": 2.0,
+      "events": 1
+    },
+    "MISSED_HIGH_PRICE_SALE": {
+      "label": "错失高价销售",
+      "estimated_value": 100.0,
+      "units": 5.0,
+      "events": 1
+    },
+    "OVERDUE_TASK": {
+      "label": "任务逾期",
+      "estimated_value": 100.0,
+      "units": 1.0,
+      "events": 1
+    },
+    "INVENTORY_OVERHANG": {
+      "label": "库存积压",
+      "estimated_value": 60.0,
+      "units": 20.0,
+      "events": 2
+    },
+    "UNPRODUCTIVE_MOVE": {
+      "label": "无效移动",
+      "estimated_value": 25.0,
+      "units": 1.0,
+      "events": 1
+    }
+  },
+  "top_losses": [
+    {
+      "category": "TERMINAL_UNREALIZED",
+      "label": "终局未兑现",
+      "estimated_value": 1210.0,
+      "units": 14.0,
+      "events": 1
+    },
+    {
+      "category": "FINANCING_SHORTFALL",
+      "label": "融资不足",
+      "estimated_value": 500.0,
+      "units": 1.0,
+      "events": 1
+    },
+    {
+      "category": "FEED_SHORTAGE",
+      "label": "饲料短缺",
+      "estimated_value": 250.0,
+      "units": 2.0,
+      "events": 1
+    }
+  ],
+  "event_count": 8,
+  "pass": true
+}

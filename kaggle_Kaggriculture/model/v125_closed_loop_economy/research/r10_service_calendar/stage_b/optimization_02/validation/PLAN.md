@@ -1,0 +1,13 @@
+# P2 有限静态验证计划
+
+P1交付已锁，P0/P1均不重跑。此次只验证P2 full分支与保存的P1四类接口完整结果等价，以及production_compact_v1的隔离/拒绝/分阶段提交边界。最后仅P2在相同已打开day8 funded seat0初态调用new_state1、完整economic1，不加profile120秒保护；严格对保存P1所有typed plan/state以及342/1038/926/4原审计计数，1秒要求不变。
+
+调用预算：pure route11；calendar88（24 MELON加64外围STRAW）；aggregate2；cache构造5；compile_day_problem最多9；原生scheduler/checker各最多5；full custom schedule/check各1，compact hooks实际调用必须0。完整agent0、官方engine0、新完整比赛0。
+
+四个full控制复用冻结P1 fixture与同一透明原生返回观察器：cold、hit、仅自定义schedule、仅自定义check。逐项对P1保存的修改前result/cache及修改后反向别名效果；保留原full接口，不预设不存在的隔离。
+
+compact七类：cold；修改返回四项small stats及witness start_shed/reserved_shed/buy后hit；cache模式错配；篡改命中entry内implementation身份；显式schedule拒绝；显式check拒绝；多日staged回滚。主体用相同24MELON来源，compact结果的业务字段及四stats对full参照；cache_key因明确的mode/schema参与hash而不同，单独重算验证，不静默删除其它字段。小cache不含problem/certificate/verification，修改公开返回不得污染小cache；错误mode/identity/hooks必须拒绝且没有solver/checker调用。
+
+多日回滚复用旧64外围STRAW人工日历条件与保存原劳动/资金字段，重新生成calendar并核聚合一致。原day9 need392、day10 need784，capacity均298；仅事先登记startup_fallback_days=[10]。本次必须实际观察day9证书和checker通过，再在day10因startup不支持拒绝；cache需仍空，不能把局部staged提交出去。不能仅凭旧结果或设置意图标通过。
+
+P2 full接口与compact接口只加载一次独立模块；完整economic另一次全新模块。pure监控只观测原code对象，不改变函数；完整economic绝不加profile。来源和输出目录controls_v1事前冻结，根release后才执行。失败保留、不重复择优、不扩大旧suite；新增优化另冻结源码和假设。

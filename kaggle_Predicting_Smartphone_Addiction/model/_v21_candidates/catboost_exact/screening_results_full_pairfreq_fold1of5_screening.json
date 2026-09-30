@@ -1,0 +1,103 @@
+{
+  "experiment": "v21_catboost_exact",
+  "mode": "single_full_data_fold_screening",
+  "is_complete_oof": false,
+  "must_not_submit": true,
+  "feature_set": "full",
+  "pair_frequency": true,
+  "fold": 1,
+  "n_folds_contract": 5,
+  "random_state": 42,
+  "official_row_order": true,
+  "feature_metadata": {
+    "feature_set": "full",
+    "uses_train_test_frequency": true,
+    "uses_train_test_pair_frequency": true,
+    "frequency_uses_labels": false,
+    "uses_lattice": true,
+    "raw_numeric_count": 9,
+    "budget_features": [
+      "component_sum_available",
+      "other_screen_available",
+      "n_components_observed"
+    ],
+    "raw_exact_key_count": 12,
+    "pair_key_count": 3,
+    "categorical_feature_count": 15,
+    "frequency_feature_count": 12,
+    "pair_frequency_feature_count": 3,
+    "lattice_feature_count": 18,
+    "feature_count": 60,
+    "categorical_features": [
+      "key_age",
+      "key_daily_screen_time_hours",
+      "key_social_media_hours",
+      "key_gaming_hours",
+      "key_work_study_hours",
+      "key_sleep_hours",
+      "key_notifications_per_day",
+      "key_app_opens_per_day",
+      "key_weekend_screen_time",
+      "key_gender",
+      "key_stress_level",
+      "key_academic_work_impact",
+      "key_pair_daily_social_0p1",
+      "key_pair_social_weekend_0p1",
+      "key_pair_daily_weekend_0p1"
+    ],
+    "frequency_cardinality": {
+      "age": 19,
+      "daily_screen_time_hours": 1398,
+      "social_media_hours": 730,
+      "gaming_hours": 402,
+      "work_study_hours": 602,
+      "sleep_hours": 452,
+      "notifications_per_day": 232,
+      "app_opens_per_day": 167,
+      "weekend_screen_time": 1460,
+      "gender": 4,
+      "stress_level": 4,
+      "academic_work_impact": 3
+    },
+    "pair_cardinality": {
+      "daily_social": 6932,
+      "social_weekend": 9102,
+      "daily_weekend": 13131
+    },
+    "memory": {
+      "train_bytes": 175925187,
+      "test_bytes": 77158437,
+      "total_bytes": 253083624,
+      "total_mib": 241.3593521118164,
+      "train_bytes_per_row": 254.4591773712735,
+      "test_bytes_per_row": 260.4047120842924
+    }
+  },
+  "params": {
+    "iterations": 3000,
+    "learning_rate": 0.05,
+    "depth": 8,
+    "l2_leaf_reg": 6.0,
+    "loss_function": "Logloss",
+    "eval_metric": "AUC",
+    "random_seed": 42,
+    "one_hot_max_size": 4,
+    "max_ctr_complexity": 2,
+    "od_type": "Iter",
+    "od_wait": 200,
+    "allow_writing_files": false,
+    "thread_count": -1,
+    "verbose": 200
+  },
+  "valid_auc": 0.9672295673050468,
+  "v3_same_fold_auc": 0.9671253347295624,
+  "delta_vs_v3_same_fold": 0.00010423257548441978,
+  "best_iteration": 2987,
+  "runtime_seconds": 2735.6349127292633,
+  "outputs": {
+    "valid_idx": "valid_idx_full_pairfreq_fold1of5_screening.npy",
+    "valid_pred": "valid_pred_full_pairfreq_fold1of5_screening.npy",
+    "test_pred_for_diagnostics_only": "test_pred_full_pairfreq_fold1of5_screening.npy",
+    "fold_assignment": "fold_assignment_seed42.npy"
+  }
+}

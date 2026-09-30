@@ -1,0 +1,108 @@
+{
+  "created_at_utc": "2026-09-05T12:34:06.225013+00:00",
+  "source_sha256": {
+    "script": "f70f462554700aa13f1575180c900b5a9e8e49297db0061c1c05ea789437899d",
+    "rules": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+    "source": "47218bab7fb12c00ec40bc9bc84f8012ea449c0065f914411bb51fc464db5447"
+  },
+  "official_buy_controls": [
+    {
+      "item": "STRAWBERRY",
+      "requested": 8,
+      "actual_quantity": 0,
+      "actual_spend": 0.0,
+      "allowed": false
+    },
+    {
+      "item": "MILK",
+      "requested": 8,
+      "actual_quantity": 0,
+      "actual_spend": 0.0,
+      "allowed": false
+    },
+    {
+      "item": "WOOL",
+      "requested": 8,
+      "actual_quantity": 0,
+      "actual_spend": 0.0,
+      "allowed": false
+    },
+    {
+      "item": "MELON",
+      "requested": 8,
+      "actual_quantity": 0,
+      "actual_spend": 0.0,
+      "allowed": false
+    },
+    {
+      "item": "WHEAT",
+      "requested": 8,
+      "actual_quantity": 8,
+      "actual_spend": 216.0,
+      "allowed": true
+    },
+    {
+      "item": "FERTILIZER",
+      "requested": 8,
+      "actual_quantity": 8,
+      "actual_spend": 807.0,
+      "allowed": true
+    }
+  ],
+  "ghost_position_control": {
+    "requested_orders": [
+      [
+        "BUY_PRODUCT",
+        "STRAWBERRY",
+        8
+      ]
+    ],
+    "internal_position": {
+      "STRAWBERRY": 8
+    },
+    "actual_strawberry": 0,
+    "cash_delta": 0.0
+  },
+  "sell_existing_stock_control": {
+    "synthetic_self_produced_units_before": 4,
+    "requested_orders": [
+      [
+        "SELL",
+        "STRAWBERRY",
+        4
+      ]
+    ],
+    "actual_strawberry_after": 0,
+    "cash_delta": 468.0,
+    "internal_position_after": {
+      "STRAWBERRY": 4
+    },
+    "meaning": "未成交低吸也能触发后续出售原有库存；这里只证明可达行为，不归因历史整局收益"
+  },
+  "animal_count_control": {
+    "official_tile": {
+      "kind": "PASTURE",
+      "animal": "COW",
+      "placed_day": 0,
+      "yield_units": 0,
+      "consecutive_unfed": 0,
+      "fed_today": false,
+      "cared_today": false,
+      "fertilizer_available": false,
+      "pending_care_bonus": 0
+    },
+    "actual_cows": 1,
+    "reported_cows": 0,
+    "reported_sheep": 0
+  },
+  "all_assertions_passed": true,
+  "calls": {
+    "whole_candidate": 0,
+    "complete_matches": 0,
+    "official_market_function": 8,
+    "official_interpreter_steps": 0,
+    "extracted_mm_function": 2,
+    "extracted_animal_count_function": 1
+  },
+  "limitations": "人工函数边界控制；未运行完整候选、未重算M6、未读取线上实际成交，也不证明策略强度"
+}

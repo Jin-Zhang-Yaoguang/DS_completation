@@ -1,0 +1,73 @@
+{
+  "family": "codez-v54",
+  "baseline": "v000",
+  "hypothesis": "H001: exact mirror-family key plus BRUNCH/YARN has a robust whole-route alternative on unmodified V54, across v54/v56/rescue7 and both seats.",
+  "scope": "Independent local research and packaging; no Kaggle submissions.",
+  "axes": {
+    "1": "Freeze v54/v56/rescue7, audit exact keys under own opening; no unsupported nearest-neighbor identity claims.",
+    "2": "Search 13 whole routes; preserve all existing route internals. New tape synthesis deferred until library exhaustion is demonstrated.",
+    "3": "First experiment only at t144; t216 conditional rerouting reserved for separately tested hypotheses.",
+    "4": "Immutable versions, frozen hashes, paired manifests, resumable error-preserving results, disjoint seed stages."
+  },
+  "cell": [
+    "BRUNCH_SPOT",
+    "YARN_STORE"
+  ],
+  "rkey": [
+    1042.0,
+    9989
+  ],
+  "routes": [
+    0,
+    100,
+    101,
+    103,
+    107,
+    110,
+    112,
+    115,
+    118,
+    120,
+    123,
+    124,
+    126
+  ],
+  "opponents": [
+    "v54",
+    "v56",
+    "rescue7"
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "development_seeds": [
+    13055,
+    13063,
+    13133
+  ],
+  "holdout_seeds": [
+    14029,
+    14048,
+    14165,
+    14427,
+    14451
+  ],
+  "confirmation_seed_range": [
+    230000,
+    230512
+  ],
+  "confirmation_rule": "First 5 matching BRUNCH/YARN seeds from ascending fresh prefix scan. Selected only by environment before any outcome; 30 paired games = 5 seeds x3 opponents x2 seats.",
+  "acceptance": {
+    "all_stages": "All jobs successful; both seats and each opponent have >= baseline wins; total wins strictly improve; paired signed mean margin improvement >0; no tuning after holdout.",
+    "holdout": "At least 30 paired target games.",
+    "confirmation": "At least 30 paired target games; one-sided exact discordant win p<=0.05. This is a narrow-cell gate, not evidence of global leaderboard strength.",
+    "regression": "gate9 seed1100-1115 x2 seats; no win regressions per opponent, zero errors; unmatched-cell action trace equality.",
+    "serving": "Packaged entrypoint and sampled official-engine parity."
+  },
+  "limitations": [
+    "Copied Claude index is development/holdout metadata; confirmation uses freshly scanned seeds.",
+    "Legacy gate9 opponents do not represent the full current online field.",
+    "Do not compare win rates across different opponent/seed panels."
+  ]
+}

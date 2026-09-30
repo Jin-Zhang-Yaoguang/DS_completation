@@ -1,0 +1,720 @@
+{
+  "scope": "已打开单席诊断数字，非正式G1新8seed双席资格",
+  "metrics": {
+    "engineering": {
+      "status": "PASS",
+      "reason": "来源完整调用与异常记录满足工程观测要求",
+      "environment_calls": 719,
+      "agent_calls": [
+        719,
+        719
+      ],
+      "errors": [],
+      "candidate_latency_ms": {
+        "max": 147.95012504328042,
+        "mean": 37.26517827517544,
+        "p50": 17.654750030487776,
+        "p95": 115.93083408661187,
+        "p99": 131.62570807617158,
+        "total": 26793.663179851137
+      },
+      "parity_pass": true
+    },
+    "action_validity": {
+      "status": "PASS",
+      "reason": "剔除PASS与四个移动指令；原子播种阻断计无效，不确定请求仍留分母且不当成功",
+      "numerator_confirmed_invalid": 0,
+      "denominator": 1810,
+      "uncertain_count": 0,
+      "confirmed_invalid_rate": 0.0,
+      "invalid_or_uncertain_rate": 0.0,
+      "threshold": 0.01,
+      "per_operation": {
+        "BUILD_PASTURE": {
+          "raw_requested": 11,
+          "observed_after_atomic_filter": 11,
+          "state_changed": 11,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "PICKUP": {
+          "raw_requested": 186,
+          "observed_after_atomic_filter": 186,
+          "state_changed": 186,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "PLACE": {
+          "raw_requested": 38,
+          "observed_after_atomic_filter": 38,
+          "state_changed": 38,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "PLANT": {
+          "raw_requested": 80,
+          "observed_after_atomic_filter": 80,
+          "state_changed": 80,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "FEED": {
+          "raw_requested": 212,
+          "observed_after_atomic_filter": 212,
+          "state_changed": 212,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "WATER": {
+          "raw_requested": 557,
+          "observed_after_atomic_filter": 557,
+          "state_changed": 557,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "CARE": {
+          "raw_requested": 196,
+          "observed_after_atomic_filter": 196,
+          "state_changed": 196,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "COLLECT_FERTILIZER": {
+          "raw_requested": 207,
+          "observed_after_atomic_filter": 207,
+          "state_changed": 207,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "HARVEST": {
+          "raw_requested": 229,
+          "observed_after_atomic_filter": 229,
+          "state_changed": 229,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "FERTILIZE": {
+          "raw_requested": 83,
+          "observed_after_atomic_filter": 83,
+          "state_changed": 83,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "DIG": {
+          "raw_requested": 11,
+          "observed_after_atomic_filter": 11,
+          "state_changed": 11,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        }
+      }
+    },
+    "planting_first_day_water": {
+      "status": "PASS",
+      "reason": "分母为官方引擎实际接受并耗种成功的全部PLANT；未耗种的任务分派/取消不创造植物暴露",
+      "actual_accepted_plantings": 80,
+      "first_day_watered": 80,
+      "first_day_not_watered": 0,
+      "unknown_count": 0,
+      "unknown_events": [],
+      "numerator": 80,
+      "denominator": 80,
+      "ratio": 1.0,
+      "threshold": 0.99,
+      "external_terminal_checks": [],
+      "prospective_task_assignments_or_cancellations": "UNAVAILABLE_SEPARATE_DIAGNOSTIC_NOT_PLANT_DENOMINATOR"
+    },
+    "care_losses": {
+      "status": "PASS",
+      "reason": "两种分母都须≤1%；规则自然寿命衰败另列，未取得事前退出日志，因此所有缺水消失/逃逸均计入",
+      "plant_loss": 0,
+      "plant_eod_denominator": 844,
+      "planting_denominator": 80,
+      "plant_loss_per_eod": 0.0,
+      "plant_loss_per_planting": 0.0,
+      "animal_loss": 0,
+      "animal_eod_denominator": 213,
+      "placed_animal_denominator": 11,
+      "animal_loss_per_eod": 0.0,
+      "animal_loss_per_placed": 0.0,
+      "predeclared_exit_exclusions": 0,
+      "exit_evidence_status": "NO_PREDECLARED_OBJECT_LOG_SUPPLIED",
+      "threshold": 0.01,
+      "natural_standing_yield_decay": {}
+    },
+    "procurement_confirmation_and_targets": {
+      "status": "PENDING",
+      "reason": "现有累计requested/confirmed及实际成交账本不能证明逐笔净目标、下一帧确认与超目标审计；不得推断缺失次数为0",
+      "issued_orders": 39,
+      "issued_quantity": 103,
+      "issued_order_records": [
+        {
+          "decision_step": 1,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "SHEEP",
+          "quantity": 1
+        },
+        {
+          "decision_step": 2,
+          "order_index": 8,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 18
+        },
+        {
+          "decision_step": 8,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 11,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 73,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 2
+        },
+        {
+          "decision_step": 77,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 97,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 186,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 217,
+          "order_index": 0,
+          "op": "BUY_LAND",
+          "item": "land",
+          "quantity": 1
+        },
+        {
+          "decision_step": 221,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 222,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 223,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 4
+        },
+        {
+          "decision_step": 223,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 242,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 243,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 248,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 260,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 264,
+          "order_index": 9,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 18
+        },
+        {
+          "decision_step": 266,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 19
+        },
+        {
+          "decision_step": 268,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 274,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 284,
+          "order_index": 0,
+          "op": "BUY_LAND",
+          "item": "land",
+          "quantity": 1
+        },
+        {
+          "decision_step": 285,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 306,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 400,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 402,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 415,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 481,
+          "order_index": 6,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 515,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 534,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "SHEEP",
+          "quantity": 1
+        },
+        {
+          "decision_step": 640,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 642,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 656,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 657,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 3
+        },
+        {
+          "decision_step": 658,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 659,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 4
+        },
+        {
+          "decision_step": 660,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 662,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 664,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "CARROT",
+          "quantity": 2
+        }
+      ],
+      "last_decision_orders": [],
+      "actual_engine_ledger": {
+        "BUY_ANIMAL_cash": {
+          "COW": 3600,
+          "SHEEP": 1000
+        },
+        "BUY_ANIMAL_qty": {
+          "COW": 9,
+          "SHEEP": 2
+        },
+        "BUY_LAND_cash": {
+          "unlocked_quadrants": 3000.0
+        },
+        "BUY_LAND_qty": {
+          "unlocked_quadrants": 2
+        },
+        "BUY_PRODUCT_cash": {
+          "WHEAT": 10812
+        },
+        "BUY_PRODUCT_qty": {
+          "WHEAT": 263
+        },
+        "BUY_SEED_cash": {
+          "CARROT": 340,
+          "MELON": 3200,
+          "STRAWBERRY": 2800,
+          "TOMATO": 150,
+          "WHEAT": 20
+        },
+        "BUY_SEED_qty": {
+          "CARROT": 17,
+          "MELON": 40,
+          "STRAWBERRY": 28,
+          "TOMATO": 3,
+          "WHEAT": 2
+        },
+        "HIRE_cash": {
+          "hands": 5173.0
+        },
+        "HIRE_qty": {
+          "hands": 254
+        },
+        "SELL_cash": {
+          "CARROT": 1810,
+          "FERTILIZER": 10800,
+          "MELON": 31505,
+          "MILK": 57501,
+          "STRAWBERRY": 50681,
+          "TOMATO": 1221,
+          "WHEAT": 2688,
+          "WOOL": 9308
+        },
+        "SELL_qty": {
+          "CARROT": 31,
+          "FERTILIZER": 123,
+          "MELON": 177,
+          "MILK": 203,
+          "STRAWBERRY": 195,
+          "TOMATO": 20,
+          "WHEAT": 56,
+          "WOOL": 40
+        }
+      },
+      "self_reported_cumulative_metrics": {
+        "batch_feed_extra_requested": 281,
+        "confirmed_BUILD_PASTURE": 11,
+        "confirmed_CARE": 192,
+        "confirmed_COLLECT_FERTILIZER": 206,
+        "confirmed_DIG": 11,
+        "confirmed_FEED": 212,
+        "confirmed_FERTILIZE": 78,
+        "confirmed_HARVEST": 229,
+        "confirmed_PLACE": 10,
+        "confirmed_PLANT": 80,
+        "confirmed_WATER": 557,
+        "contract_accepted": 967,
+        "contract_completed": 954,
+        "contract_terminal_return": 2,
+        "dispatched_BUILD_PASTURE": 11,
+        "dispatched_CARE": 196,
+        "dispatched_COLLECT_FERTILIZER": 207,
+        "dispatched_DIG": 11,
+        "dispatched_EAST": 388,
+        "dispatched_FEED": 212,
+        "dispatched_FERTILIZE": 83,
+        "dispatched_HARVEST": 229,
+        "dispatched_NORTH": 941,
+        "dispatched_PICKUP": 186,
+        "dispatched_PLACE": 11,
+        "dispatched_PLANT": 80,
+        "dispatched_SOUTH": 407,
+        "dispatched_WATER": 557,
+        "dispatched_WEST": 927,
+        "expert_balanced": 651,
+        "expert_dairy": 17,
+        "expert_fiber": 2,
+        "expert_horticulture": 49,
+        "hire_confirmed": 254,
+        "hire_requested": 254,
+        "investment_budget_rejected_quotes": 104662,
+        "investment_permit_quotes": 495,
+        "pass": 1934,
+        "purchase_confirmed": 103,
+        "purchase_requested": 103,
+        "receipt_confirmed": 4435,
+        "receipt_unknown": 11,
+        "terminal_harvest_stages_pruned": 0,
+        "unit_commands": 6455
+      },
+      "self_reported_purchase_misses": [],
+      "per_order_confirmation_coverage": null,
+      "duplicate_over_target_count": null,
+      "required_evidence": [
+        "逐笔step+order_index身份",
+        "发出前真实资产/净目标缺口",
+        "真实成交量",
+        "下一可见step核对",
+        "末帧外部终态核对",
+        "未成交不减少目标缺口",
+        "重复超目标审计"
+      ]
+    },
+    "terminal_liquidation": {
+      "status": "PASS",
+      "reason": "末日真实卖出与残留/已可售销毁按同一终局价格加权",
+      "day": 29,
+      "decision_window": [
+        696,
+        718
+      ],
+      "numerator": 18191,
+      "denominator": 18419,
+      "ratio": 0.9876214778218144,
+      "threshold": 0.95,
+      "real_sale_qty": {
+        "MILK": 27,
+        "STRAWBERRY": 16,
+        "WOOL": 6,
+        "FERTILIZER": 22,
+        "WHEAT": 11,
+        "MELON": 6,
+        "CARROT": 31
+      },
+      "real_sale_cash": {
+        "MILK": 8232,
+        "STRAWBERRY": 4274,
+        "WOOL": 1472,
+        "FERTILIZER": 1710,
+        "WHEAT": 528,
+        "MELON": 265,
+        "CARROT": 1810
+      },
+      "real_sale_cash_total": 18291,
+      "final_quote_prices": {
+        "WHEAT": 49,
+        "CARROT": 57,
+        "TOMATO": 61,
+        "STRAWBERRY": 270,
+        "MELON": 34,
+        "EGG": 57,
+        "MILK": 305,
+        "WOOL": 246,
+        "FERTILIZER": 75
+      },
+      "sold_at_final_quote": 18191,
+      "terminal_remaining_at_final_quote": 228,
+      "ready_destroyed_at_final_quote": 0,
+      "terminal_inventory_qty": {},
+      "terminal_mature_field_and_fertilizer_qty": {
+        "CARROT": 4
+      },
+      "final_day_bought": {},
+      "final_day_consumed": {},
+      "ready_destroyed_qty": {},
+      "ready_destroyed_events": [],
+      "independent_material_balance": {
+        "CARROT": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 19,
+          "new_ready_production": 16,
+          "buy_product": 0,
+          "real_sell_quantity": 31,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 4,
+          "residual": 0
+        },
+        "EGG": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 0,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "FERTILIZER": {
+          "opening_inventory": 11,
+          "opening_mature_field_and_fertilizer": 11,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 22,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "MELON": {
+          "opening_inventory": 6,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 6,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "MILK": {
+          "opening_inventory": 15,
+          "opening_mature_field_and_fertilizer": 12,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 27,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "STRAWBERRY": {
+          "opening_inventory": 14,
+          "opening_mature_field_and_fertilizer": 2,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 16,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "TOMATO": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 0,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "WHEAT": {
+          "opening_inventory": 11,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 11,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "WOOL": {
+          "opening_inventory": 6,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 6,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        }
+      },
+      "material_closed": true,
+      "material_errors": [],
+      "formula": "Σ(p_end*q_real_SELL_lastday) / Σ[p_end*(q_real_SELL_lastday+q_remaining_end+q_ready_destroyed_lastday)]",
+      "no_full_season_cash_or_sales_in_denominator": true
+    }
+  },
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_complete_matches": 0,
+  "gold_status": "NOT_GOLD"
+}

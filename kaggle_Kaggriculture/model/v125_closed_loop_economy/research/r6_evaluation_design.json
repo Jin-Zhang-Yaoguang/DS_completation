@@ -1,0 +1,23 @@
+{
+  "role": "PRE_RUN_DEVELOPMENT_DESIGN_NOT_GOLD",
+  "candidate": "V125-R6",
+  "implementation_parent": "V125-R5",
+  "additional_comparator": "V125-R0",
+  "diagnostic_seed": 1950905001,
+  "seeds": [1950905601, 1950905602, 1950905603],
+  "seats": [0, 1],
+  "opponent": "PASS",
+  "primary_mechanism": "Successful wheat PICKUP actions per actual FEED fall at least 20 percent versus R5. Report absolute pickup count, wheat quantity, feeding, movement/production action ratio, water/survival, overflow and final cash. Requests cannot substitute for actual actions if any pickup was rejected.",
+  "screen_criteria": {
+    "mandatory_contract_reservations_never_borrowed": true,
+    "pickup_actions_per_feed_relative_reduction_vs_R5": 0.2,
+    "cash_positive_fraction_vs_each_comparator": 0.6,
+    "mean_cash_delta_by_each_seat_vs_each_comparator_minimum": 0,
+    "first_water_not_worse": true,
+    "survival_loss_ratios_not_worse": true,
+    "overflow_and_terminal_remaining_quote_value_max_relative_increase": 0.1
+  },
+  "mechanism_scope": "After all active and new contracts reserve mandatory materials, expand real depot WHEAT pickups using only remaining currently observed supply, with a fixed total cap of four and synchronized actual-action receipts. No other policy change.",
+  "candidate_sha256": "PENDING_FINAL_MICRO",
+  "formal_gates": "This three-seed screen is only development. G1/G2 and all online gold gates remain mandatory. Any failure retires the version and leaves its opened seed block diagnostic."
+}

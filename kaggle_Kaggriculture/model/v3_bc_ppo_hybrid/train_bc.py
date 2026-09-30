@@ -76,6 +76,7 @@ def make_loss(model, label_smoothing):
             "value_loss": value_loss,
             "route_accuracy": accuracies[0],
             "macro_accuracy": jnp.mean(jnp.stack(accuracies[1:])),
+            **{f"head_{index}_accuracy": accuracy for index, accuracy in enumerate(accuracies)},
         }
         return total, metrics
 
@@ -153,6 +154,13 @@ def train(data_dir, output_dir, epochs=5, batch_size=128, learning_rate=3e-4, la
         "history": history,
         "checkpoint": checkpoint.name,
         "weights": weights.name,
+    }
+    report["gates"] = {
+        "parity_le_1e-5": parity <= 1e-5,
+        "route_accuracy_ge_99pct": bool(test_metrics and test_metrics["route_accuracy"] >= 0.99),
+        "default_macro_accuracy_ge_99_5pct": bool(
+            test_metrics and min(test_metrics[f"head_{index}_accuracy"] for index in range(1, len(main.HEAD_SIZES))) >= 0.995
+        ),
     }
     (output_dir / "bc_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return report

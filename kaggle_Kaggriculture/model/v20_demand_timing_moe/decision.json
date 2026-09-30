@@ -1,0 +1,54 @@
+{
+  "candidate": "V20 demand-timing hierarchical MoE RC1",
+  "decision": "PROMOTE_AS_OFFLINE_GOLD_CANDIDATE",
+  "online_status": "PENDING",
+  "submission_id": 55821249,
+  "submitted_at": "2026-08-27 15:14:33.300000",
+  "parent": "V19 hierarchical MoE step-360 RC1",
+  "engine": "1.32.7",
+  "mechanism": "On eligible all-SELL turns, delay 25% of products consumed by same-step town demand to the following turn; preserve production and total sell quantity.",
+  "anti_overfit": {
+    "development_models": 5,
+    "confirmation_models": 7,
+    "fixed_seeds": true,
+    "double_seat": true
+  },
+  "frozen_confirmation": {
+    "seed_range": [96000, 96127],
+    "candidate_games": 1792,
+    "parent_games": 1792,
+    "score_uplift_pp": 6.529017857142858,
+    "score_uplift_ci95_pp": [5.189732142857142, 7.924107142857142],
+    "positive_zero_negative": [220, 1556, 16],
+    "mean_margin_delta": 91.4375,
+    "mean_own_delta": 34.81919642857143,
+    "primary_pass": true,
+    "guardrail_pass": true
+  },
+  "negative_flip_audit": {
+    "count": 16,
+    "all_parent_outcomes": "tie",
+    "interpretation": "controlled symmetry breaking; 220 positive flips versus 16 negative flips"
+  },
+  "qa": {
+    "research_package_exact_games": [8, 8],
+    "official_cpp_exact_games": [4, 4],
+    "official_statuses_all_done": true,
+    "action_safety_games": 224,
+    "unit_orders": 1495967,
+    "unit_precondition_invalid": 0,
+    "market_overflow": 0,
+    "hand_mismatch": 0
+  },
+  "artifact": {
+    "main_sha256": "d5d8e8c4369f20c5acc7d736afa371b2154c7d496a2ca7b63264a3de54d8e8fa",
+    "archive_sha256": "af3d21444a83cda7a99485af69e1158abeeef1addf125c1f1e5319a7ed3b154a",
+    "archive_bytes": 64636
+  },
+  "parent_online_snapshot": {
+    "submission_id": 55819961,
+    "status": "COMPLETE",
+    "public_score": 2098.0,
+    "observed_at": "2026-08-27 after V20 submission"
+  }
+}

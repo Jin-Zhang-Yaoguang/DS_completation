@@ -1,0 +1,49 @@
+{
+  "schema": "kaggriculture-v121-contract-distillation-dataset-v1",
+  "source": "current Top5 public Replay teacher trajectories",
+  "admission": {
+    "minimum_actual_date": "2026-08-20",
+    "engine": "1.32.7",
+    "dedupe": "episode_id + replay_sha256"
+  },
+  "alignment": "steps[t].observation -> aggregate steps[t+1:t+h].actions",
+  "split_unit": "episode_id",
+  "episodes": 13,
+  "teacher_trajectories": 19,
+  "teachers": {
+    "tetsuya": 120,
+    "Crop Dusta": 120,
+    "QQ Farming": 120,
+    "Driz Lo": 120,
+    "OceanMix": 90
+  },
+  "rows": {
+    "macro_3day": 190,
+    "daily_contract": 570,
+    "global_market": 570
+  },
+  "expert_distribution": {
+    "macro": {
+      "LIVESTOCK": 68,
+      "CAPACITY": 33,
+      "CROP": 70,
+      "LIQUIDATE": 19
+    },
+    "daily": {
+      "LIVESTOCK": 176,
+      "CAPACITY": 124,
+      "CROP": 213,
+      "LIQUIDATE": 57
+    }
+  },
+  "forbidden_runtime_fields": [
+    "episode_id",
+    "replay_sha256",
+    "teacher",
+    "submission_id",
+    "seat",
+    "seed",
+    "future_shop"
+  ],
+  "status": "RESEARCH_DATA_ONLY"
+}

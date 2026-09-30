@@ -1,0 +1,124 @@
+{
+  "topic": {
+    "id": 726799,
+    "title": "1st Place - Kaggle Agent - Pipeline overview",
+    "authorName": "Eduardo Rocha de Andrade",
+    "commentCount": 16,
+    "votes": 34,
+    "postDate": "2026-07-16T16:48:06.406000"
+  },
+  "comments": [
+    {
+      "id": 3508138,
+      "authorName": "Wasiq Ali",
+      "votes": 2,
+      "postDate": "2026-08-03T18:44:54.463000",
+      "content": "<p>Thanks <a href=\"https://www.kaggle.com/arc144\" target=\"_blank\">@arc144</a> for sharing this impressive information for us it's my first time seeing a solution pipeline and I am also work on a project which also required a pipeline and this information is really informative for us. Keep learning keep exploring and keep growing for working on creating real world problem solution </p>"
+    },
+    {
+      "id": 3499181,
+      "authorName": "Tony Li",
+      "votes": 6,
+      "postDate": "2026-07-16T18:12:38.017000",
+      "content": "<p>Thanks for sharing\u2014this is really insightful and wonderful. Matheus discovered something similar and helped our team break through a long plateau.</p>\n<p>Near the end, though, we ran out of time and capacity to catch up your team. We had many promising improvements in the pipeline, but because scoring running time limited, we could not submit all of them.</p>\n<p>How did your team handle this running time bottleneck while continuing to improve? Did you also finish with many potential points that you discovered but never had enough runtime to score or submit?</p>"
+    },
+    {
+      "id": 3499210,
+      "authorName": "Eduardo Rocha de Andrade",
+      "votes": 3,
+      "postDate": "2026-07-16T19:00:09.317000",
+      "content": "<p>Hey Tony, thanks a lot for all your contributions to the discussion forums throughout the competition!</p>\n<p>Regarding the timeout, we did something similar to what <a href=\"https://www.kaggle.com/yiheng\" target=\"_blank\">@yiheng</a> shared <a href=\"https://www.kaggle.com/competitions/neurogolf-2026/discussion/704762#3467761\" target=\"_blank\">here</a>. We asked our agents to keep the same score but improve the runtime (only for slow tasks). Additionally, <a href=\"https://www.kaggle.com/jiweiliu\" target=\"_blank\">@jiweiliu</a>'s amazing <a href=\"https://daxiongshu.github.io/kaggle-agent-neurogolf-2026/\" target=\"_blank\">dashboard</a> (hover the cursor over a task to see all candidates with score and runtime) allowed us to store all candidate solution for each task so we could quickly swap a top scoring, yet slow, task by a good enough alternative. In fact, for our submission selection strategy, we picked our best sub (~30 min) and another faster sub scoring LB8310 (~18min).</p>"
+    },
+    {
+      "id": 3499296,
+      "authorName": "Tony Li",
+      "votes": 4,
+      "postDate": "2026-07-16T22:27:21.113000",
+      "content": "<p>Wow, that\u2019s really cool\u2014and brilliant! \u2600\ufe0f No wonder your team performed so well. You had such a systematic and advanced approach about running time, far beyond what we managed. </p>\n<p>Being able to prepare two 8300+ leaderboard submissions with such close scores\u2014 30 minutes best and 18 minutes faster LB 8310 \u2014 is truly impressive. Thanks for sharing! \ud83e\udd70</p>"
+    },
+    {
+      "id": 3499212,
+      "authorName": "Evolvion",
+      "votes": 2,
+      "postDate": "2026-07-16T19:02:41.067000",
+      "content": "<p>Hi Tony just wanted to say congratulations to 3rd place and I hope I gave you good fight as I promised back then \ud83d\ude05</p>"
+    },
+    {
+      "id": 3499299,
+      "authorName": "Tony Li",
+      "votes": 0,
+      "postDate": "2026-07-16T22:36:20.803000",
+      "content": "<p>Thanks, and congratulations to you too! You definitely delivered on what you promised\u2014we were worried until the very last minute about your possible 100-point jump\ud83d\ude05,  But let\u2019s not take the discussion off-topic. Thanks \ud83d\ude03</p>"
+    },
+    {
+      "id": 3499214,
+      "authorName": "Chris Deotte",
+      "votes": 5,
+      "postDate": "2026-07-16T19:06:33.010000",
+      "content": "<p>Congratulations <a href=\"https://www.kaggle.com/tonylica\" target=\"_blank\">@tonylica</a> and your team!</p>\n<p>Our team's dashboard used Multiple-Choice Knapsack Problem (MCKP) to pick our best LB submission. And we had a dedicated Claude Code Fable 5 that was rewriting onnx and speeding them up. </p>"
+    },
+    {
+      "id": 3499298,
+      "authorName": "Tony Li",
+      "votes": 2,
+      "postDate": "2026-07-16T22:33:50.320000",
+      "content": "<p>Chris, thanks for your kind words\ud83d\ude03. One of my teammates also used the Multiple-Choice Knapsack Problem (MCKP) to select our best submission under the runtime limit, while I simply let Codex choose automatically each time\ud83d\ude05.</p>\n<p>However, our progress in using LLMs to rewrite and speed up the ONNX models was much slower than our progress in improving their scores. Since we were rushing near the end, we never really had a chance to manage this part properly.</p>"
+    },
+    {
+      "id": 3501974,
+      "authorName": "Navneet",
+      "votes": 2,
+      "postDate": "2026-07-23T07:58:30.657000",
+      "content": "<p>Thank you for the Token efficiency <a href=\"https://www.kaggle.com/arc144\" target=\"_blank\">@arc144</a> </p>"
+    },
+    {
+      "id": 3501229,
+      "authorName": "Bambang Satmoko",
+      "votes": 2,
+      "postDate": "2026-07-21T16:58:30.503000",
+      "content": "<p>CONGRATULATION !!! highly appreciate for how the think work. it's incredible team work build this kind of solution that's deepest understanding. </p>"
+    },
+    {
+      "id": 3499264,
+      "authorName": "",
+      "votes": 2,
+      "postDate": "2026-07-16T20:49:28.870000",
+      "content": "<p>Congrats on winning the competition and thanks for sharing the detailed pipeline architecture. Really impressed by your teams progress, it was honestly a motivation. </p>\n<p>I have a question about how did you guys handled token sink/hallucination in those score targeted optimization runs? I tried something similar by giving the agent a score target, but wasn't successful in getting it to produce any meaningful improvement. In most cases I was only able to get +0.05 - 0.2. The main issue I found was that for rewrites, Codex had longer thinking session, in some cases 20+ minutes for a single round and upon followup I would get a response like \"I veered off in a random direction that I used and not what you asked.\"</p>"
+    },
+    {
+      "id": 3499269,
+      "authorName": "Chris Deotte",
+      "votes": 2,
+      "postDate": "2026-07-16T20:56:52.423000",
+      "content": "<p>I think having good prompt/plan and cookbooks (i.e. accumulated techniques from weeks of previous work) helped encourage agents to reach their target. When our score was 7900 and above, and we submitted a single task to ChatGPT with target +0.5 it achieved target 33% of the time. And it achieved a target of +0.3 at 50% of the time. Success rate was incredible. </p>"
+    },
+    {
+      "id": 3499275,
+      "authorName": "",
+      "votes": 1,
+      "postDate": "2026-07-16T21:12:17.500000",
+      "content": "<p>What thinking level did you used with ChatGPT Extra High or Pro? The turnaround for pro was too high and Extra High kept arguing with me. \ud83d\ude03</p>\n<p>So I mostly stuck with codex as churn was higher and for scalability. For some reason OAI just kept giving me quota resets (not sure why \ud83d\ude03) but I am glad for that. Maybe I needed to use ChatGPT more for strategy exploration. </p>"
+    },
+    {
+      "id": 3499276,
+      "authorName": "Chris Deotte",
+      "votes": 3,
+      "postDate": "2026-07-16T21:18:28.880000",
+      "content": "<p>We used ChatGPT Pro. We submitted a single question (i.e not multi-turn conversation). We uploaded a <code>tar.gz</code> file along with our single prompt (The tar.gz installed onnx WHLs and contained cookbooks and helpful guidance). The average thinking time was ~80 minutes and the success rate of improvement was unbelievable. It performed better than Codex and Claude Code using maximum thinking.</p>"
+    },
+    {
+      "id": 3499263,
+      "authorName": "hongan",
+      "votes": 2,
+      "postDate": "2026-07-16T20:44:38.757000",
+      "content": "<p>Congrats and thanks for sharing! We had something similar to your cookbook and I found out this trick from it in the last days but ran out of time to try applying it to every task. It can almost always bump score from 17~18 range to 20+ (only had time to apply to this range of scores). Maybe your agents found something similar:</p>\n<p>Float32 ULP-cancellation hashes, fused into a single graph-output Einsum. searched ULP cancellation tables plus enormous repeated-input, repeated-weight terminal Einsum programs.</p>"
+    },
+    {
+      "id": 3499270,
+      "authorName": "Chris Deotte",
+      "votes": 1,
+      "postDate": "2026-07-16T20:59:09.183000",
+      "content": "<p>Congratulations <a href=\"https://www.kaggle.com/honganzhu\" target=\"_blank\">@honganzhu</a> and team! I forget if we had that specific discovery but we had 100s of discoveries in our cookbooks. So when an agent was given these priceless cookbooks and asked to boost score by a significant amount it succeeded with a high success rate.</p>"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "v14-online-diagnosis-reporting-qa-v1",
+  "generated_at_utc": "2026-08-24T13:39:17.880587Z",
+  "status": "PASS",
+  "notebook": {
+    "path": "v14_online_diagnosis.ipynb",
+    "executed_top_to_bottom": true,
+    "code_cells": 7,
+    "error_outputs": 0,
+    "sha256": "baeff7a9c0db9ceacde862c58ba808d3e8e6eb46af334fcaa54d4222805674af"
+  },
+  "canonical_artifact": {
+    "path": "artifact.json",
+    "surface": "report",
+    "visible_title": "V14 本地胜 A2、线上 Rating 更低：技术诊断",
+    "blocks": 15,
+    "cards": 6,
+    "charts": 3,
+    "tables": 1,
+    "source_count": 17,
+    "snapshot_status": "ready",
+    "snapshot_dataset_rows": {
+      "headline_metrics": 1,
+      "online_model_summary": 3,
+      "opponent_mix_long": 4,
+      "mechanism_long": 6,
+      "runtime_summary": 1,
+      "active_copy_summary": 2,
+      "current_team_summary": 1,
+      "reorder_episode_summary": 8,
+      "time_path_windows": 5
+    },
+    "sha256": "24b7f09154ae015d729bb94cf785535e3b3c158d5234ac46fb25a7a2c99670e7",
+    "portable_html_created": false
+  },
+  "runtime_probe_snapshot": {
+    "replays": 87,
+    "archive_action_exact_reproduced": 87,
+    "exact_a2_opponent_games": 0,
+    "games_with_v14_reorder": 8,
+    "games_shadow_trusted_at_end": 0
+  },
+  "official_rules": {
+    "receipt_content_sha256": "5ac05ca0977a0c200a203c46dc8ef031344000143bfa1e864723ee87aff62cfc",
+    "content_hash_revalidated_in_notebook": true
+  },
+  "input_hashes": {
+    "metric_audit": "aef764dd42b1786fb1b93a1e56d392a4f561c093c893970481887b652daabe28",
+    "runtime_probe": "3b6ff68806d434a7521b6ef0072b3f0e23cf430833321865ce24102401ba0142",
+    "runtime_analysis": "918a1fedae22ebc8c8c5e61e0883d0a3b086ef8bfc51a7f0d567a5cd0338de20",
+    "data_inventory": "d024adfaa86a03ed1013cba9eedbe5bb452eba5e1fbe5ee80db2baa03d9b5df5",
+    "evaluation_rules_receipt": "c119282b76301d5e30ff1975603af3c292db73e7101e280f8107437b6d99c25e"
+  },
+  "data_drift": {
+    "immutable_hash_mismatches": 0,
+    "volatile_snapshot_drift_rows": 2,
+    "interpretation": "Leaderboard snapshot files refreshed after the frozen metric audit. The audit JSON preserves the earlier aggregate decomposition; current runtime mapping is reported separately."
+  },
+  "figure_dimensions": {
+    "01_metric_mismatch.png": {
+      "width": 2090,
+      "height": 830
+    },
+    "02_opponent_mix.png": {
+      "width": 2090,
+      "height": 830
+    },
+    "03_mechanism_activation.png": {
+      "width": 1730,
+      "height": 884
+    }
+  },
+  "outputs": {
+    "v14_online_diagnosis.ipynb": "baeff7a9c0db9ceacde862c58ba808d3e8e6eb46af334fcaa54d4222805674af",
+    "technical_report.md": "8935682882ef19fbf1c9383d0534fede9c5a290808745575f06bd4b4d4101569",
+    "artifact.json": "24b7f09154ae015d729bb94cf785535e3b3c158d5234ac46fb25a7a2c99670e7",
+    "outputs/analysis_summary.json": "7842719497e542028d3977316912314db88a25a54ed4f2cb4ac7cddeea83732d",
+    "evaluation_rules_receipt.json": "c119282b76301d5e30ff1975603af3c292db73e7101e280f8107437b6d99c25e",
+    "chart_map.json": "17e9ec872983ce10f74c82bd50539ff984520191e73389b133ee1b5e039636c1",
+    "figures/01_metric_mismatch.png": "bbf90a0ac6980540f8bbe4c52d351d8198cc8bcbbf7ef49961c5619b7178b739",
+    "figures/02_opponent_mix.png": "a46cf8ebbbecd713c2357db41061e63d6b7cda0567a74635a97b250b53fc84a3",
+    "figures/03_mechanism_activation.png": "135953fd9bfcee934da409affb943bc32f3a25132a2a36b495bf37055173c495",
+    "outputs/online_summary.csv": "18bf059b53ad76ff6b9f57f7e2afcbf0de555b540de7f8df2e782ae96bbf6ea7",
+    "outputs/opponent_mix_summary.csv": "add5bb3c8e42e581d1fb04ac8d1418536552c891034e887758aeffbf148918e4",
+    "outputs/mechanism_summary.csv": "611dd539be43a7571e4950bf8c602fccfd39b7307176069843046c6c2055e42d",
+    "outputs/parent_equivalence_summary.csv": "de2d6f4285f4bda3f8ac9a57d7acf91cb5ff0e731346b8099d08432bcca7b975",
+    "outputs/reorder_episode_summary.csv": "c73dac67ce7f0af9b0a5e1af246490e960ffddd9eb33021fcd67f9b237ba123a",
+    "outputs/source_hash_check.csv": "f6b5105259e5f4d23d12744fceabaa2fc973bdf4db9a2dac7aaff3e3a551c865",
+    "outputs/artifact_source_tables.sqlite": "ab6dd046d700153afe3931894524a426a28840350b8797c42165951d61184d89"
+  },
+  "assertions": [
+    "All immutable source_inventory SHA256 values matched; volatile leaderboard snapshot drift was detected and preserved as a caveat.",
+    "Official Evaluation content SHA256 and UTF-8 byte length matched the receipt.",
+    "W/T/L was recomputed from raw public episodes and matched the independent metric audit.",
+    "Notebook executed top-to-bottom without error outputs.",
+    "All three figures exceeded the minimum 1200x600 raster size.",
+    "Report and notebook used the same runtime_probe replay count.",
+    "All online reorder steps occurred before the first observable mismatch, and wrong-current-shadow reorder steps were zero.",
+    "Canonical artifact has visible title, Executive Summary, metric cards, three native charts, a table, canonical sourceIds, and bounded snapshot datasets.",
+    "No portable HTML report was created."
+  ],
+  "scope_guard": "No new games, test access, strategy changes, Kaggle submission, or browser usage."
+}

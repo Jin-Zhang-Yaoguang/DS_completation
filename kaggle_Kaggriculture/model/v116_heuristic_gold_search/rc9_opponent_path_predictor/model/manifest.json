@@ -1,0 +1,47 @@
+{
+  "schema": "v116-rc9-model-manifest-v1",
+  "model": "v116_rc9_opponent_path_predictor",
+  "status": "REJECTED_NO_WIN_AND_NEGATIVE_ABLATION",
+  "parent_source": "kaggle_Kaggriculture/model/v116_heuristic_gold_search/rc8_parametric_search/candidate/candidate.py",
+  "parent_source_sha256": "2e21fdaf9be6381476f580f4ef8c5db92e5a42a9bd6aa60c916eb2264dd9fd65",
+  "overlay_sha256": "b69d8b2eec18a12d94a15c98bd374e79c3ad4e4c2f415390027ed3534d8bf21d",
+  "main_sha256": "70e67c0f1408c21e86840b08b5ac74069c378341f4db12fa879201bf85b07ea7",
+  "default_config": "p0064_3f0eb3eec9",
+  "default_params_hash": "3f0eb3eec980aa0100dab9bc3a001d022b9b354770e9944fec4568ccb8ff0766",
+  "router_depth": 2,
+  "modes": [
+    "base",
+    "router_log_only",
+    "target_only",
+    "market_only",
+    "full",
+    "fixed_collision",
+    "fixed_scarcity",
+    "fixed_liquidator"
+  ],
+  "interfaces": [
+    "build_executor(params, mode)",
+    "executor.diagnostics()",
+    "make_agent()"
+  ],
+  "information_boundary": {
+    "public_current_and_past_only": true,
+    "replay_actions": false,
+    "future_state": false,
+    "opponent_private_state": false,
+    "parent_agent": false
+  },
+  "evaluation": {
+    "games": 504,
+    "panel": "exposed_r3_mechanism_only",
+    "wins": 0,
+    "candidate_schema_violations": 0,
+    "all_719_calls": true,
+    "full_mean_bank": 47916.65277777778,
+    "full_mean_margin": -81541.36111111111,
+    "full_vs_base_mean_bank_delta": -1185.75,
+    "full_vs_base_mean_margin_delta": -1944.0972222222222,
+    "summary_sha256": "99ec27e74e8b7673b8758afdebfced67b52948059c546b14f55dad3c8291500f",
+    "gold_claim": false
+  }
+}

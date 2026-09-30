@@ -1,0 +1,444 @@
+{
+  "experiment": "v21_lookup_transformer_candidate",
+  "status": "trained_not_submitted",
+  "created_utc": "2026-08-23T17:47:52Z",
+  "source_notebook": "https://www.kaggle.com/code/tamerlanomralinov/s6e8-lookup-transformer-insights-lb-0-97041",
+  "source_notebook_sha256_at_review": "a3b1d7468389bf9d53a7c49da1ba002636b48dcfcbb5deaa7af60c635b0b5806",
+  "public_predictions_used": false,
+  "run_signature": "2b9543455c6231d525893a16584417ebf16045b0370f7c0ec1dfa6c5766a3cca",
+  "resume": {
+    "checkpoint_version": 1,
+    "resumed_folds": [],
+    "checkpoint_directory": "fold_checkpoints"
+  },
+  "fold_contract": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "splitter_random_state": 42,
+    "training_seed_policy": "SEED + fold_index",
+    "training_fold_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "row_order": "official train.csv physical row order; no sort/reindex",
+    "train_id_sha256": "a0c49502b9d043d854539e0f18a324a28d30608994e5fc98d863cca9486a1182",
+    "test_id_sha256": "e21918e18e73ad88d4fd8dd08592269348d108807f7e2bffd1af520c0f4d4b5c"
+  },
+  "config": {
+    "d_model": 128,
+    "plr_frequencies": 24,
+    "layers": 4,
+    "heads": 8,
+    "dropout": 0.1,
+    "epochs": 32,
+    "batch_size": 2048,
+    "predict_batch_size": 16384,
+    "learning_rate": 0.002,
+    "augmentation_rate": 0.1,
+    "ema_decay": 0.999,
+    "eval_start_epoch": 5,
+    "eval_every": 2,
+    "early_stopping_checks": 5
+  },
+  "features": {
+    "raw": [
+      "age",
+      "daily_screen_time_hours",
+      "social_media_hours",
+      "gaming_hours",
+      "work_study_hours",
+      "sleep_hours",
+      "notifications_per_day",
+      "app_opens_per_day",
+      "weekend_screen_time",
+      "gender",
+      "stress_level",
+      "academic_work_impact"
+    ],
+    "derived": [
+      "other_screen",
+      "sgw",
+      "other_frac",
+      "wk_minus_sgw",
+      "wk_other",
+      "sgw_frac"
+    ],
+    "vocab_sizes": {
+      "age": 19,
+      "daily_screen_time_hours": 1398,
+      "social_media_hours": 730,
+      "gaming_hours": 402,
+      "work_study_hours": 602,
+      "sleep_hours": 452,
+      "notifications_per_day": 232,
+      "app_opens_per_day": 167,
+      "weekend_screen_time": 1460,
+      "gender": 4,
+      "stress_level": 4,
+      "academic_work_impact": 3
+    },
+    "total_vocab": 5473,
+    "label_free_train_plus_test_preprocessing": [
+      "exact-value vocabulary",
+      "rank-gauss raw numerics",
+      "rank-gauss budget features"
+    ]
+  },
+  "validation": {
+    "oof_auc": 0.9685596133944011,
+    "oof_primary_metric_input": "raw cross-fold logits",
+    "oof_fold_rank_auc": 0.9685680355471754,
+    "oof_fold_rank_purpose": "secondary diagnostic robust to cross-fold logit-scale drift",
+    "fold_auc": [
+      0.9679361416101194,
+      0.9685130698973208,
+      0.9687942718884599,
+      0.969156703095104,
+      0.9684399897619449
+    ],
+    "fold_reports": [
+      {
+        "fold": 0,
+        "fold_seed": 42,
+        "train_rows": 553095,
+        "valid_rows": 138274,
+        "best_auc": 0.9679361416101194,
+        "epochs_completed": 22,
+        "epoch_history": [
+          {
+            "epoch": 6,
+            "train_loss": 0.22068247769370541,
+            "valid_auc": 0.9634006074257628
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.21630725451775915,
+            "valid_auc": 0.9666563940678121
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.21336607804717092,
+            "valid_auc": 0.9677292386106807
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.20890559600972708,
+            "valid_auc": 0.9679361416101194
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.20502032878619406,
+            "valid_auc": 0.9678393062293498
+          },
+          {
+            "epoch": 16,
+            "train_loss": 0.2010929123839485,
+            "valid_auc": 0.9676154370007712
+          },
+          {
+            "epoch": 18,
+            "train_loss": 0.19684025235266997,
+            "valid_auc": 0.9672602147289042
+          },
+          {
+            "epoch": 20,
+            "train_loss": 0.19253949649246513,
+            "valid_auc": 0.9668118206603207
+          },
+          {
+            "epoch": 22,
+            "train_loss": 0.18874529353004457,
+            "valid_auc": 0.9663572072902301
+          }
+        ],
+        "runtime_seconds": 864.4858410358429,
+        "device_memory": {
+          "allocated_bytes": 241845504,
+          "reserved_bytes": 5888376832,
+          "max_allocated_bytes": null
+        }
+      },
+      {
+        "fold": 1,
+        "fold_seed": 43,
+        "train_rows": 553095,
+        "valid_rows": 138274,
+        "best_auc": 0.9685130698973208,
+        "epochs_completed": 22,
+        "epoch_history": [
+          {
+            "epoch": 6,
+            "train_loss": 0.22141734805955576,
+            "valid_auc": 0.9640094306760569
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.21706832686970592,
+            "valid_auc": 0.9673003132075759
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.21287708259883023,
+            "valid_auc": 0.9683255829165455
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.20999540088049973,
+            "valid_auc": 0.9685130698973208
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.20645340086241964,
+            "valid_auc": 0.9684623763421928
+          },
+          {
+            "epoch": 16,
+            "train_loss": 0.202366018156917,
+            "valid_auc": 0.9682315114301545
+          },
+          {
+            "epoch": 18,
+            "train_loss": 0.19803600929767942,
+            "valid_auc": 0.9679288617607165
+          },
+          {
+            "epoch": 20,
+            "train_loss": 0.19303271533371302,
+            "valid_auc": 0.9675340818134887
+          },
+          {
+            "epoch": 22,
+            "train_loss": 0.1876131982299605,
+            "valid_auc": 0.9670290571513162
+          }
+        ],
+        "runtime_seconds": 927.1682438850403,
+        "device_memory": {
+          "allocated_bytes": 261741056,
+          "reserved_bytes": 5896765440,
+          "max_allocated_bytes": null
+        }
+      },
+      {
+        "fold": 2,
+        "fold_seed": 44,
+        "train_rows": 553095,
+        "valid_rows": 138274,
+        "best_auc": 0.9687942718884599,
+        "epochs_completed": 22,
+        "epoch_history": [
+          {
+            "epoch": 6,
+            "train_loss": 0.22159028116779214,
+            "valid_auc": 0.9638519159713034
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.21603243735253438,
+            "valid_auc": 0.9673645711195497
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.21320010859346045,
+            "valid_auc": 0.9685382313961528
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.2102176304477531,
+            "valid_auc": 0.9687942718884599
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.20585907484247734,
+            "valid_auc": 0.9687277212393902
+          },
+          {
+            "epoch": 16,
+            "train_loss": 0.20233711828438153,
+            "valid_auc": 0.9684739016815342
+          },
+          {
+            "epoch": 18,
+            "train_loss": 0.19808855452047117,
+            "valid_auc": 0.9681123581128839
+          },
+          {
+            "epoch": 20,
+            "train_loss": 0.19371208833925455,
+            "valid_auc": 0.9676818757595009
+          },
+          {
+            "epoch": 22,
+            "train_loss": 0.18910405592619714,
+            "valid_auc": 0.9671733210966403
+          }
+        ],
+        "runtime_seconds": 1000.0698900222778,
+        "device_memory": {
+          "allocated_bytes": 259212288,
+          "reserved_bytes": 5896765440,
+          "max_allocated_bytes": null
+        }
+      },
+      {
+        "fold": 3,
+        "fold_seed": 45,
+        "train_rows": 553095,
+        "valid_rows": 138274,
+        "best_auc": 0.969156703095104,
+        "epochs_completed": 22,
+        "epoch_history": [
+          {
+            "epoch": 6,
+            "train_loss": 0.22173996442744917,
+            "valid_auc": 0.9649100136971664
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.21683636513618817,
+            "valid_auc": 0.9679797159203466
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.21336359203663025,
+            "valid_auc": 0.9689929753049735
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.21057577134127048,
+            "valid_auc": 0.969156703095104
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.20652036777135935,
+            "valid_auc": 0.9690535773713411
+          },
+          {
+            "epoch": 16,
+            "train_loss": 0.2024895135555375,
+            "valid_auc": 0.9688219877092876
+          },
+          {
+            "epoch": 18,
+            "train_loss": 0.19762893919670219,
+            "valid_auc": 0.9684600026685467
+          },
+          {
+            "epoch": 20,
+            "train_loss": 0.19318381109935906,
+            "valid_auc": 0.9680476022762102
+          },
+          {
+            "epoch": 22,
+            "train_loss": 0.18802324871857456,
+            "valid_auc": 0.9675132194662892
+          }
+        ],
+        "runtime_seconds": 837.5708811283112,
+        "device_memory": {
+          "allocated_bytes": 259367936,
+          "reserved_bytes": 5896765440,
+          "max_allocated_bytes": null
+        }
+      },
+      {
+        "fold": 4,
+        "fold_seed": 46,
+        "train_rows": 553096,
+        "valid_rows": 138273,
+        "best_auc": 0.9684399897619449,
+        "epochs_completed": 22,
+        "epoch_history": [
+          {
+            "epoch": 6,
+            "train_loss": 0.21984611679075602,
+            "valid_auc": 0.9640446512306589
+          },
+          {
+            "epoch": 8,
+            "train_loss": 0.21636406982241782,
+            "valid_auc": 0.9671097344003604
+          },
+          {
+            "epoch": 10,
+            "train_loss": 0.21299921826409882,
+            "valid_auc": 0.9682193373513194
+          },
+          {
+            "epoch": 12,
+            "train_loss": 0.20989854722326684,
+            "valid_auc": 0.9684399897619449
+          },
+          {
+            "epoch": 14,
+            "train_loss": 0.20557110282392208,
+            "valid_auc": 0.9683245861318198
+          },
+          {
+            "epoch": 16,
+            "train_loss": 0.2012718378681097,
+            "valid_auc": 0.968044534187603
+          },
+          {
+            "epoch": 18,
+            "train_loss": 0.19747598913660558,
+            "valid_auc": 0.9676765593893113
+          },
+          {
+            "epoch": 20,
+            "train_loss": 0.1932974084742974,
+            "valid_auc": 0.9672094576192501
+          },
+          {
+            "epoch": 22,
+            "train_loss": 0.1872860763547377,
+            "valid_auc": 0.9666596056291743
+          }
+        ],
+        "runtime_seconds": 844.093964099884,
+        "device_memory": {
+          "allocated_bytes": 259509248,
+          "reserved_bytes": 5899845632,
+          "max_allocated_bytes": null
+        }
+      }
+    ]
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit_learn": "1.7.2",
+    "torch": "2.12.1",
+    "device": "mps",
+    "cuda_available": false,
+    "cuda_version": null,
+    "mps_built": true,
+    "mps_available": true,
+    "cuda_device": null
+  },
+  "runtime_seconds": 4475.747905015945,
+  "input_sha256": {
+    "train.csv": "f4669147311c76eb03496061a852af283efcf0f12cf5c19274e775def81edd9c",
+    "test.csv": "8b462dd47fe8165cd0b082bf33b56523c5811453070af48b9f86b2eb928de49e",
+    "sample_submission.csv": "206763fe5786fb9c80d4e9289a3b812030d3dbb36450c6eb63348098154ce63e"
+  },
+  "outputs": [
+    "oof_score.npy",
+    "test_score.npy",
+    "oof_proba.npy",
+    "test_proba.npy",
+    "fold_id.npy",
+    "oof_fold_rank.npy",
+    "submission.csv",
+    "run_signature.json",
+    "fold_checkpoints/",
+    "cv_results.json"
+  ]
+}

@@ -1,0 +1,637 @@
+"""v55 离线带生成器 MVP:fam_F 前缀(t<72)+ 配方驱动贪心调度器(t>=72)。
+只在开发机运行(不受 1s 限制),产物是动作带。
+配方参照金牌解剖:高密度施肥(d13-27)、番茄(d12+)/胡萝卜(d24+)轮作、
+匀产匀卖小批量、每日雇工、动物链全程维护。
+"""
+import json
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+TAPES = HERE.parent / "v16_online_fidelity" / "tapes"
+_FAMF = json.load(open(TAPES / "fam_F_new.json"))["actions"]
+
+DIRS = {"NORTH": (-1, 0), "SOUTH": (1, 0), "EAST": (0, 1), "WEST": (0, -1)}
+PREMIUM = {"STRAWBERRY": 1, "MILK": 1, "WOOL": 1, "MELON": 1, "EGG": 1}  # lot 由 cfg.prem_lot 控制
+BULK = {"WHEAT": 0, "FERTILIZER": 6, "CARROT": 2, "TOMATO": 2}  # WHEAT 阈值由 cfg 控制
+SHED_SPOTS = {(4, 4), (4, 5), (5, 4), (5, 5)}  # 中心 2x2(经验交互点)
+BASE_PRICE = {"WHEAT": 25, "CARROT": 35, "TOMATO": 60, "STRAWBERRY": 120, "MELON": 250,
+              "EGG": 50, "MILK": 160, "WOOL": 200, "FERTILIZER": 100}
+# 引擎作物机制(实测源码):once 作物浇水窗口 [ceil(myd/2), myd] 内 +1/浇(施肥+2);
+# ongoing 作物产出日 = planted+first, +interval... 共 max_yield 次(浇水日,施肥翻倍)
+CROPM = {"WHEAT": {"first": 2, "myd": 4, "iv": 0, "cap": 6, "on": False},
+         "CARROT": {"first": 2, "myd": 3, "iv": 0, "cap": 4, "on": False},
+         "TOMATO": {"first": 8, "myd": 8, "iv": 1, "cap": 4, "on": True},
+         "STRAWBERRY": {"first": 10, "myd": 10, "iv": 2, "cap": 4, "on": True},
+         "MELON": {"first": 10, "myd": 12, "iv": 0, "cap": 6, "on": False}}
+
+
+class Cfg:
+    hire_per_day = 12
+    fert_lo, fert_hi = 10, 27
+    fert_crops = ("STRAWBERRY", "TOMATO")
+    feed_reserve = 3
+    tomato_from, carrot_from = 12, 23
+    plant_stop = 26
+    sell_every = 2
+    keep_fert = 12
+    prem_lot = 5
+    wheat_sell_th = 20
+    seed_money = 250
+    feed_money = 150
+    early_hands = 8
+    pasture_target = 10
+    animal_workers = 2
+    fert_workers = 2
+    share_wheat = 10
+    share_straw = 16
+    share_tomato = 8
+    share_carrot = 10
+    price_floor = 0.0
+    coop_target = 3
+    build_until = 8
+    cow_until = 9
+    goose_until = 16
+    patrol = 1
+    own_opening = 0
+    share_melon = 12
+    sell_timing = 1
+    pick_qty = 4
+    prio_band = 0
+    inertia = 0
+    core_ring = 0
+    day_chain = 0
+    shop_adapt = 0
+    mm_on = 0
+    sell_first = 0
+    melon_age = 12   # K1:瓜提前收割龄(<=11 生效;12 = 旧规则)
+    melon_dump = 0   # K1:瓜收到即整批抛售(0 = 旧的小批匀卖)
+
+    def __init__(self, **kw):
+        for k, v in kw.items():
+            setattr(self, k, v)
+
+
+class Sched:
+    def __init__(self, cfg=None):
+        self.cfg = cfg or Cfg()
+        self.day_hired = -1
+        self.tick = 0
+        self.ema = {}
+        self.last_dir = {}
+
+    # ---------- 感知 ----------
+    def parse(self, obs):
+        seat = obs.get("player", 0)
+        farm = obs["farms"][seat]
+        self.tiles = farm["tiles"]
+        self.money = farm.get("money", 0)
+        self.pos = [tuple(farm.get("farmer") or (4, 4))] + [tuple(h) for h in (farm.get("hands") or [])]
+        priv = obs.get("private") or {}
+        self.shed = dict(priv.get("shed") or {})
+        self.seeds = dict(priv.get("seeds") or {})
+        self.invs = [dict(x or {}) for x in (priv.get("inventories") or [])]
+        while len(self.invs) < len(self.pos):
+            self.invs.append({})
+        self.day = int(obs.get("day", 0))
+        self.hour = int(obs.get("hour", 0))
+        self.shops = set()
+        for sp in ((obs.get("town") or {}).get("unlocked_shops") or []):
+            self.shops.add(sp if isinstance(sp, str) else str(sp.get("name")))
+        self.market = obs.get("market") or {}
+        self.prices = self.market.get("prices") or {}
+        for it, pv in self.prices.items():
+            self.ema[it] = pv if it not in self.ema else self.ema[it] * 0.92 + pv * 0.08
+
+    def unlocked(self, x, y):
+        t = self.tiles[y][x]
+        return t != "LOCKED"
+
+    # ---------- 任务生成 ----------
+    def build_tasks(self):
+        """返回 [(prio, (r,c), kind, need_carry)] prio 小者优先"""
+        tasks = []
+        c = self.cfg
+        for y in range(10):
+            for x in range(10):
+                t = self.tiles[y][x]
+                if not isinstance(t, dict):
+                    continue
+                k = t.get("kind")
+                if k == "PLANT":
+                    crop = t.get("crop")
+                    cm = CROPM.get(crop, {"first": 2, "myd": 4, "iv": 0, "cap": 6, "on": False})
+                    yu = int(t.get("yield_units", 0) or 0)
+                    watered = t.get("watered_today")
+                    age = self.day - int(t.get("planted_day", self.day) or 0)
+                    once = not cm["on"]
+                    # 顶格收:once 作物 age>=myd 当天(浇完后收:priority 低于 WATER);ongoing 有产即收
+                    early = crop == "MELON" and c.melon_age <= 11 and age >= c.melon_age
+                    if yu > 0 and ((not once) or age >= cm["myd"] or early):
+                        tasks.append((10 if not once else 9, (x, y), "HARVEST", None, "farm"))
+                    if not watered and self.day <= 28:
+                        # 窗口内浇水(+产量)优先于窗口外(仅保命)
+                        in_window = ((once and (cm["myd"] + 1) // 2 <= age <= cm["myd"])
+                                     or (cm["on"] and age >= cm["first"] - 1))
+                        wp = 7 if in_window else 8
+                        tasks.append((wp, (x, y), "WATER", None, "farm"))
+                    # 产出日对齐施肥:ongoing 在产出日前一天/当天(肥效3天);once 在浇水窗口内
+                    if int(t.get("fertilized_until_day", -1)) < self.day and self.day <= c.fert_hi:
+                        want = False
+                        if cm["on"]:
+                            ds = self.day - int(t.get("planted_day", 0) or 0) - cm["first"]
+                            nxt = ds % max(cm["iv"], 1)
+                            want = (ds >= -1) and (nxt == 0 or nxt == max(cm["iv"], 1) - 1 or ds == -1)
+                        elif crop in ("WHEAT", "MELON"):
+                            want = (cm["myd"] + 1) // 2 <= age <= cm["myd"]
+                        if want:
+                            tasks.append((14, (x, y), "FERTILIZE", "FERTILIZER", "fert"))
+                elif k == "WEED":
+                    tasks.append((50, (x, y), "DIG", None, "farm"))
+                elif k in ("PASTURE", "COOP"):
+                    if not t.get("animal"):
+                        if k == "COOP":
+                            if self.shed.get("GOOSE", 0) > 0:
+                                tasks.append((11, (x, y), ("PLACE", "GOOSE"), "GOOSE", "animal"))
+                        else:
+                            for have in ("COW", "SHEEP"):
+                                if self.shed.get(have, 0) > 0:
+                                    tasks.append((11, (x, y), ("PLACE", have), have, "animal"))
+                                    break
+                    if t.get("animal"):
+                        if not t.get("fed_today"):
+                            pr = 5 if int(t.get("consecutive_unfed", 0) or 0) >= 1 else 15
+                            tasks.append((pr, (x, y), "FEED", "WHEAT", "animal"))
+                        if not t.get("cared_today"):
+                            tasks.append((25, (x, y), "CARE", None, "animal"))
+                        if int(t.get("yield_units", 0) or 0) > 0:
+                            tasks.append((12, (x, y), "HARVEST", None, "animal"))
+                        if t.get("fertilizer_available"):
+                            tasks.append((18, (x, y), "COLLECT_FERTILIZER", None, "animal"))
+                elif k == "EMPTY" or t == {} or k is None:
+                    pass
+        # 建栏:牧栏总数低于目标时,取一块空地建
+        n_pasture = sum(1 for y in range(10) for x in range(10)
+                        if isinstance(self.tiles[y][x], dict) and self.tiles[y][x].get("kind") in ("PASTURE", "COOP"))
+        if n_pasture < getattr(c, "pasture_target", 10) and self.day <= getattr(c, "build_until", 8):
+            n_coop = sum(1 for y in range(10) for x in range(10)
+                         if isinstance(self.tiles[y][x], dict) and self.tiles[y][x].get("kind") == "COOP")
+            build = "BUILD_COOP" if n_coop < getattr(c, "coop_target", 3) else "BUILD_PASTURE"
+            pens = [(x, y) for y in range(10) for x in range(10)
+                    if isinstance(self.tiles[y][x], dict) and self.tiles[y][x].get("kind") in ("PASTURE", "COOP")]
+            def pen_dist(x, y):
+                if not pens:
+                    return abs(x - 4.5) + abs(y - 4.5)
+                return min(abs(x - px) + abs(y - py) for px, py in pens)
+            spots = [(pen_dist(x, y), x, y)
+                     for y in range(10) for x in range(10)
+                     if (self.tiles[y][x] is None or self.tiles[y][x] == "EMPTY") and self.unlocked(x, y)]
+            if spots:
+                _, x, y = min(spots)
+                tasks.append((12, (x, y), build, None, "farm"))
+        # 补种:空可用格(种子由 market 常备)
+        if self.day <= c.plant_stop:
+            crop = self.pick_crop()
+            if crop and self.seeds.get(crop, 0) > 0:
+                for y in range(10):
+                    for x in range(10):
+                        t = self.tiles[y][x]
+                        empty = (t is None) or (t == "EMPTY") or (isinstance(t, dict) and t.get("kind") in (None, "EMPTY"))
+                        if empty and self.unlocked(x, y):
+                            tasks.append((13, (x, y), ("PLANT", crop), None, "farm"))
+        return tasks
+
+    def pick_crop(self):
+        d, c = self.day, self.cfg
+        cur = {}
+        for y in range(10):
+            for x in range(10):
+                t = self.tiles[y][x]
+                if isinstance(t, dict) and t.get("kind") == "PLANT":
+                    cur[t.get("crop")] = cur.get(t.get("crop"), 0) + 1
+        # shop 适应(实证消耗谱):PET_CAFE 吃胡萝卜 274,PIZZA 吃番茄,SMOOTHIE/ICE/BRUNCH 吃草莓
+        sa = getattr(c, "shop_adapt", 0)
+        shops = getattr(self, "shops", set())
+        straw_sh = getattr(c, "share_straw", 16)
+        tom_sh = getattr(c, "share_tomato", 8)
+        car_sh = getattr(c, "share_carrot", 10)
+        if sa:
+            n_straw_shop = sum(1 for x2 in ("SMOOTHIE_SHOP", "ICE_CREAM_SHOP", "BRUNCH_SPOT") if x2 in shops)
+            straw_sh += sa * n_straw_shop
+            tom_sh += sa if ("PIZZA_SHOP" in shops or "FARMERS_MARKET" in shops) else -sa // 2
+            car_sh += sa * 2 if "PET_CAFE" in shops else -sa
+        # 瓜:开局窗口(d<=2)
+        if d <= 2 and cur.get("MELON", 0) < getattr(c, "share_melon", 12):
+            return "MELON"
+        if d <= 16 and cur.get("STRAWBERRY", 0) < straw_sh:
+            return "STRAWBERRY"
+        tom_from = c.tomato_from
+        car_from = c.carrot_from
+        if sa:
+            if "PIZZA_SHOP" in shops:
+                tom_from = min(tom_from, 8)
+            if "PET_CAFE" in shops:
+                car_from = min(car_from, 6)
+        if tom_from <= d <= 22 and cur.get("TOMATO", 0) < tom_sh:
+            return "TOMATO"
+        if d >= car_from and cur.get("CARROT", 0) < car_sh:
+            return "CARROT"
+        if d <= 24 and cur.get("WHEAT", 0) < getattr(c, "share_wheat", 10):
+            return "WHEAT"
+        return None
+
+    # ---------- 分配与移动 ----------
+    ROLE_OF = {}  # ui -> role,动态算
+
+    def role_of(self, ui, n_units):
+        if ui == 0:
+            return None
+        aw = self.cfg.animal_workers
+        fw = self.cfg.fert_workers
+        if ui <= aw:
+            return "animal"
+        if ui <= aw + fw and self.day >= self.cfg.fert_lo:
+            return "fert"
+        return "farm"
+
+    def build_day_chains(self, n_units):
+        """每天一次:farm 工人带内全部田格(作物+空地)按最近邻成链。"""
+        self.day_chains = {}
+        farm_units = [u for u in range(1, n_units) if self.role_of(u, n_units) == "farm"]
+        if not farm_units:
+            return
+        nf = len(farm_units)
+        cells_by_u = {u: [] for u in farm_units}
+        for y in range(10):
+            for x in range(10):
+                t = self.tiles[y][x]
+                is_plot = (isinstance(t, dict) and t.get("kind") in ("PLANT", "WEED")) or t is None or t == "EMPTY"
+                if is_plot and self.unlocked(x, y):
+                    owner = farm_units[min(x * nf // 10, nf - 1)]
+                    cells_by_u[owner].append((x, y))
+        for u, cells in cells_by_u.items():
+            if not cells:
+                continue
+            chain = []
+            cur = self.pos[u] if u < len(self.pos) else (4, 4)
+            rest = set(cells)
+            while rest:
+                nxt = min(rest, key=lambda c2: abs(c2[0] - cur[0]) + abs(c2[1] - cur[1]))
+                chain.append(nxt)
+                rest.discard(nxt)
+                cur = nxt
+            self.day_chains[u] = chain
+
+    def cell_todo(self, x, y):
+        """该格当前该做的事;None=无活。"""
+        t = self.tiles[y][x]
+        day = self.day
+        if isinstance(t, dict) and t.get("kind") == "PLANT":
+            crop = t.get("crop")
+            yu = int(t.get("yield_units", 0) or 0)
+            once = crop in ("WHEAT", "CARROT", "MELON")
+            lifespan = int(t.get("max_lifespan_step", 99999) or 99999)
+            age = day - int(t.get("planted_day", day) or 0)
+            early = crop == "MELON" and self.cfg.melon_age <= 11 and age >= self.cfg.melon_age
+            if yu > 0 and ((not once) or self.tick >= lifespan - 30 or early):
+                return ["HARVEST"]
+            if not t.get("watered_today") and day <= 28:
+                return ["WATER"]
+            return None
+        if isinstance(t, dict) and t.get("kind") == "WEED":
+            return ["DIG"]
+        if (t is None or t == "EMPTY") and day <= self.cfg.plant_stop:
+            crop = self.pick_crop()
+            if crop and self.seeds.get(crop, 0) > 0:
+                return ["PLANT", crop]
+        return None
+
+    def chain_act(self, ui):
+        """沿链执行:本格有活干活;链头无活弹出;链空返回 None(落回竞价)。"""
+        # 本格优先
+        x0, y0 = self.pos[ui]
+        act0 = self.cell_todo(x0, y0)
+        if act0 is not None:
+            return act0
+        chain = getattr(self, "day_chains", {}).get(ui)
+        while chain:
+            x, y = chain[0]
+            if (x, y) == (x0, y0):
+                chain.pop(0)
+                continue
+            if self.cell_todo(x, y) is None:
+                chain.pop(0)
+                continue
+            return self.step_to(ui, (x, y))
+        return None
+
+    def assign(self, tasks):
+        """角色过滤 + 组内贪心 + 动物划区承包。返回 unit -> action"""
+        acts = [None] * len(self.pos)
+        taken = set()
+        n_units = len(self.pos)
+        order = sorted(range(len(tasks)), key=lambda i: tasks[i][0])
+        aw = max(1, self.cfg.animal_workers)
+        animal_cells = sorted((x, y) for y in range(10) for x in range(10)
+                              if isinstance(self.tiles[y][x], dict)
+                              and self.tiles[y][x].get("kind") in ("PASTURE", "COOP"))
+        cell_owner = {}
+        if animal_cells:
+            per = max(1, (len(animal_cells) + aw - 1) // aw)
+            for idx, cell in enumerate(animal_cells):
+                cell_owner[cell] = 1 + min(idx // per, aw - 1)  # unit 1..aw
+        # 农耕带状承包:x 坐标 % 农耕工人数
+        fw = self.cfg.fert_workers
+        farm_units = [u for u in range(1, n_units) if self.role_of(u, n_units) == "farm"]
+        farm_owner = {}
+        if farm_units:
+            nf = len(farm_units)
+            for y in range(10):
+                for x in range(10):
+                    farm_owner[(x, y)] = farm_units[min(x * nf // 10, nf - 1)]
+        if self.hour == 2 and getattr(self.cfg, "day_chain", 0):
+            self.build_day_chains(n_units)
+        for ui in range(len(self.pos)):
+            role = self.role_of(ui, n_units)
+            if role == "farm" and getattr(self.cfg, "day_chain", 0):
+                ca = self.chain_act(ui)
+                if ca is not None:
+                    acts[ui] = ca
+                    continue
+            if role == "farm" and getattr(self.cfg, "patrol", 1):
+                acts[ui] = self.patrol_act(ui, n_units)
+                continue
+            best = None
+            for ti in order:
+                if ti in taken:
+                    continue
+                prio, (r, c), kind, need, tag = tasks[ti]
+                if role is not None and tag != role:
+                    continue
+                if tag == "animal" and role == "animal" and cell_owner.get((r, c), ui) != ui:
+                    continue
+                if tag == "farm" and role == "farm" and farm_owner.get((r, c), ui) != ui:
+                    continue
+                dist = abs(self.pos[ui][0] - r) + abs(self.pos[ui][1] - c)
+                # 需要携带物的任务:没带就先去 shed(距离加惩罚)
+                carry_pen = 0
+                if need and self.invs[ui].get(need, 0) <= 0:
+                    if (self.shed.get(need, 0) if need != "WHEAT" else max(self.shed.get(need, 0), 1)) <= 0:
+                        continue
+                    sd = min(abs(self.pos[ui][0] - sr) + abs(self.pos[ui][1] - sc) for sr, sc in SHED_SPOTS)
+                    carry_pen = sd + 1
+                inertia = getattr(self.cfg, "inertia", 0)
+                if inertia and dist > 0:
+                    ld = self.last_dir.get(ui)
+                    if ld:
+                        dx = (r > self.pos[ui][0]) - (r < self.pos[ui][0])
+                        dy = (c > self.pos[ui][1]) - (c < self.pos[ui][1])
+                        if (dx, dy) != (0, 0) and (dx == ld[0] or dy == ld[1]):
+                            dist = max(1, dist * (100 - inertia) // 100)
+                band = getattr(self.cfg, "prio_band", 0)
+                if band:
+                    score = (prio // band) * 400 + (dist + carry_pen) * 12
+                else:
+                    score = prio * 100 + dist + carry_pen
+                if dist == 0 and carry_pen == 0:
+                    score = prio - 10000  # 本格任务零成本,绝对优先
+                if best is None or score < best[0]:
+                    best = (score, ti, dist, carry_pen)
+            if best is None:
+                for ti in order:
+                    if ti in taken:
+                        continue
+                    prio, (r, c), kind, need, tag = tasks[ti]
+                    if need and self.invs[ui].get(need, 0) <= 0 and self.shed.get(need, 0) <= 0:
+                        continue
+                    dist = abs(self.pos[ui][0] - r) + abs(self.pos[ui][1] - c)
+                    best = (0, ti, dist, 0)
+                    break
+                if best is None:
+                    acts[ui] = ["PASS"]
+                    continue
+            _, ti, dist, carry_pen = best
+            taken.add(ti)
+            prio, (r, c), kind, need, tag = tasks[ti]
+            if need and self.invs[ui].get(need, 0) <= 0:
+                # 先去 shed 取
+                qty = getattr(self.cfg, "pick_qty", 4)
+                qty = min(qty, max(1, self.shed.get(need, 1)))
+                acts[ui] = self.goto_or(ui, min(SHED_SPOTS, key=lambda s: abs(self.pos[ui][0]-s[0])+abs(self.pos[ui][1]-s[1])),
+                                        ["PICKUP", need, qty])
+            elif dist == 0:
+                acts[ui] = [kind[0], kind[1]] if isinstance(kind, tuple) else [kind]
+            else:
+                acts[ui] = self.step_to(ui, (r, c))
+        return acts
+
+    def patrol_act(self, ui, n_units):
+        """蛇形巡回自己的 x 带:脚下有活干活,否则走蛇形下一格。"""
+        farm_units = [u for u in range(1, n_units) if self.role_of(u, n_units) == "farm"]
+        if ui not in farm_units:
+            return ["PASS"]
+        idx = farm_units.index(ui)
+        nf = len(farm_units)
+        x0 = idx * 10 // nf
+        x1 = (idx + 1) * 10 // nf - 1
+        x, y = self.pos[ui]
+        # 脚下活
+        t = self.tiles[y][x]
+        day = self.day
+        if isinstance(t, dict) and t.get("kind") == "PLANT":
+            crop = t.get("crop")
+            yu = int(t.get("yield_units", 0) or 0)
+            lifespan = int(t.get("max_lifespan_step", 99999) or 99999)
+            once = crop in ("WHEAT", "CARROT", "MELON")
+            age = day - int(t.get("planted_day", day) or 0)
+            early = crop == "MELON" and self.cfg.melon_age <= 11 and age >= self.cfg.melon_age
+            if yu > 0 and ((not once) or self.tick >= lifespan - 30 or early):
+                return ["HARVEST"]
+            if not t.get("watered_today") and day <= 28:
+                return ["WATER"]
+        elif (t is None or t == "EMPTY") and self.unlocked(x, y) and day <= self.cfg.plant_stop:
+            crop = self.pick_crop()
+            if crop and self.seeds.get(crop, 0) > 0:
+                return ["PLANT", crop]
+        elif isinstance(t, dict) and t.get("kind") == "WEED":
+            return ["DIG"]
+        # 蛇形下一格(带内)
+        if not (x0 <= x <= x1):
+            return ["EAST"] if x < x0 else ["WEST"]
+        down = (x - x0) % 2 == 0
+        ny = y + 1 if down else y - 1
+        if 0 <= ny <= 9 and self.unlocked(x, ny if False else x) or True:
+            if (down and y < 9) or ((not down) and y > 0):
+                # 检查目标格未锁
+                ty = y + (1 if down else -1)
+                if self.tiles[ty][x] != "LOCKED":
+                    return ["SOUTH"] if down else ["NORTH"]
+            # 换列
+            if x < x1:
+                return ["EAST"]
+            return ["WEST"] if x > x0 else (["SOUTH"] if y < 9 else ["NORTH"])
+        return ["PASS"]
+
+    def goto_or(self, ui, target, action_at):
+        if self.pos[ui] == target or (self.pos[ui] in SHED_SPOTS and target in SHED_SPOTS):
+            return action_at
+        return self.step_to(ui, target)
+
+    def step_to(self, ui, target):
+        x0, y0 = self.pos[ui]
+        x1, y1 = target
+        self.last_dir[ui] = ((x1 > x0) - (x1 < x0), (y1 > y0) - (y1 < y0))
+        if abs(x1 - x0) >= abs(y1 - y0):
+            return ["EAST"] if x1 > x0 else ["WEST"] if x1 < x0 else ["PASS"]
+        return ["SOUTH"] if y1 > y0 else ["NORTH"] if y1 < y0 else ["PASS"]
+
+    # ---------- 市场 ----------
+    def market_orders(self):
+        c = self.cfg
+        orders = []
+        if getattr(c, "own_opening", 0) and self.day == 0 and self.hour == 0:
+            for _ in range(getattr(c, "open_hire", 7)):
+                orders.append(["HIRE"])
+            orders.append(["BUY_SEED", "MELON", getattr(c, "share_melon", 12)])
+            orders.append(["BUY_ANIMAL", "COW", getattr(c, "open_cows", 2)])
+            return orders[:10]
+        # 每日雇工:渐进 + 现金守卫(HIRE 当日 Fibonacci 涨价,穷时只雇 1)
+        late = getattr(c, "hire_per_day_late", None)
+        target = c.early_hands if self.day < 6 else (c.hire_per_day if self.day <= 26 else (late if late is not None else c.hire_per_day))
+        have = len(self.pos) - 1
+        burst = getattr(c, "hire_burst", 3)
+        if have < target and self.day <= 29:
+            for _ in range(max(0, min(target - have, burst))):
+                orders.append(["HIRE"])
+        # 买地扩张
+        n_locked = sum(1 for y in range(10) for x in range(10) if self.tiles[y][x] == "LOCKED")
+        if (n_locked >= 75 and self.day >= 4) or (n_locked >= 50 and self.day >= 9 and self.money > 2400):
+            orders.append(["BUY_LAND"])
+        # 买动物:有空栏且富余
+        n_empty_pa = sum(1 for y in range(10) for x in range(10)
+                         if isinstance(self.tiles[y][x], dict)
+                         and self.tiles[y][x].get("kind") == "PASTURE"
+                         and not self.tiles[y][x].get("animal"))
+        n_empty_co = sum(1 for y in range(10) for x in range(10)
+                         if isinstance(self.tiles[y][x], dict)
+                         and self.tiles[y][x].get("kind") == "COOP"
+                         and not self.tiles[y][x].get("animal"))
+        stock_pa = self.shed.get("COW", 0) + self.shed.get("SHEEP", 0)
+        stock_co = self.shed.get("GOOSE", 0)
+        if n_empty_pa > stock_pa and self.day <= getattr(c, "cow_until", 9):
+            if getattr(self.cfg, "shop_adapt", 0) and "YARN_STORE" in getattr(self, "shops", set()):
+                kind = "SHEEP" if (self.tick // 24) % 2 == 0 else "COW"
+            else:
+                kind = "COW" if (self.tick // 24) % 3 != 2 else "SHEEP"
+            orders.append(["BUY_ANIMAL", kind, 1])
+        if n_empty_co > stock_co and self.day <= getattr(c, "goose_until", 16):
+            orders.append(["BUY_ANIMAL", "GOOSE", 1])
+        # 饲料
+        total_wheat = self.shed.get("WHEAT", 0) + sum(i.get("WHEAT", 0) for i in self.invs)
+        n_animals = sum(1 for y in range(10) for x in range(10)
+                        if isinstance(self.tiles[y][x], dict) and self.tiles[y][x].get("animal"))
+        if total_wheat < n_animals * c.feed_reserve:
+            orders.append(["BUY_PRODUCT", "WHEAT", n_animals * c.feed_reserve])
+        # 种子补给
+        crop = self.pick_crop()
+        if crop and self.seeds.get(crop, 0) < 10 and self.day <= c.plant_stop:
+            orders.append(["BUY_SEED", crop, 10])
+        # 卖出:premium 小批量匀卖(现金紧张时降低门槛加速变现)
+        if self.tick % c.sell_every == 0 or self.money < 400:
+            for item in PREMIUM:
+                lot = c.prem_lot
+                pv = self.prices.get(item, 0)
+                em = self.ema.get(item, pv)
+                if getattr(c, "sell_timing", 1):
+                    lot = lot * 2 if pv > em * 1.02 else (max(1, lot // 2) if pv < em * 0.98 else lot)
+                q = self.shed.get(item, 0)
+                if item == "MELON" and getattr(c, "melon_dump", 0) and q > 0:
+                    orders.append(["SELL", item, q])
+                    continue
+                if q >= (1 if self.money < 400 else min(lot, c.prem_lot)):
+                    orders.append(["SELL", item, min(q, lot)])
+        if self.money < 200:
+            for item, q in self.shed.items():
+                if q > 0 and item not in ("WHEAT", "COW", "SHEEP", "GOOSE") and item not in PREMIUM:
+                    orders.append(["SELL", item, q])
+        # 大宗:超阈值即卖(肥料留用 keep_fert)
+        for item, th in BULK.items():
+            q = self.shed.get(item, 0)
+            if item == "WHEAT":
+                if self.money < 400:      # 起步期:清仓变现雇人
+                    keep = min(n_animals, 4)
+                    th = 1
+                else:
+                    keep = n_animals * c.feed_reserve + 4
+                    th = c.wheat_sell_th
+            elif item == "FERTILIZER":
+                keep = c.keep_fert
+            else:
+                keep = 0
+            if q - keep >= max(th, 1):
+                orders.append(["SELL", item, min(q - keep, max(th, 1))])
+        # --- MM 层(低吸高抛,独立记账) ---
+        if getattr(c, "mm_on", 0):
+            mm = getattr(self, "_mm", None)
+            if mm is None or self.tick <= 1:
+                mm = self._mm = {}
+            for it in ("STRAWBERRY", "MILK", "WOOL", "MELON"):
+                pv = self.prices.get(it, 0)
+                base = BASE_PRICE[it]
+                pos = mm.get(it, 0)
+                if pv <= base * 0.80 and pos < 24 and self.money > 800 and len(orders) < 9:
+                    q = min(8, 24 - pos)
+                    orders.append(["BUY_PRODUCT", it, q]) if it in ("WHEAT", "FERTILIZER") else None
+                    # 仅 WHEAT/FERTILIZER 可买;premium 不可 BUY_PRODUCT,跳过买入侧
+                if pos > 0 and pv >= base * 0.93 and len(orders) < 9:
+                    orders.append(["SELL", it, min(pos, 8)])
+                    mm[it] = pos - min(pos, 8)
+        # --- 卖单前置(同 turn 槽位抢占) ---
+        if getattr(c, "sell_first", 1):
+            hires = [o for o in orders if o and o[0] == "HIRE"]
+            sells = [o for o in orders if o and o[0] == "SELL"]
+            others = [o for o in orders if o and o[0] not in ("HIRE", "SELL")]
+            orders = hires + sells + others
+        return orders[:10]
+
+    # ---------- 主入口 ----------
+    def act(self, obs):
+        day = int(obs.get("day", 0) or 0)
+        hour = int(obs.get("hour", 0) or 0)
+        t = day * 24 + hour
+        if t < 72 and not getattr(self.cfg, "own_opening", 0):
+            a = _FAMF[t]
+            return {"farmer": list(a.get("farmer") or ["PASS"]),
+                    "hands": [list(h) for h in (a.get("hands") or [])],
+                    "market": [list(o) for o in (a.get("market") or [])]}
+        self.parse(obs)
+        self.tick = t
+        tasks = self.build_tasks()
+        acts = self.assign(tasks)
+        return {"farmer": acts[0] if acts else ["PASS"],
+                "hands": acts[1:],
+                "market": self.market_orders()}
+
+
+_S = {}
+_BEST = None
+
+
+def _best_cfg():
+    global _BEST
+    if _BEST is None:
+        try:
+            _BEST = Cfg(**json.load(open(HERE / "best_cfg.json"))["cfg"])
+        except Exception:
+            _BEST = Cfg()
+    return _BEST
+
+
+def agent(obs, configuration=None):
+    seat = obs.get("player", 0)
+    t = int(obs.get("day", 0)) * 24 + int(obs.get("hour", 0))
+    if t == 0 or seat not in _S:
+        _S[seat] = Sched(_best_cfg())
+    try:
+        return _S[seat].act(obs)
+    except Exception:
+        return {"farmer": ["PASS"], "hands": [], "market": []}

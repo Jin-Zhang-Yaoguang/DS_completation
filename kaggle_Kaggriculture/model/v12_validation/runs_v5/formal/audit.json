@@ -1,0 +1,489 @@
+{
+  "any_fixed_sequence_candidate_qualified": true,
+  "candidate_parent_uplift": [
+    {
+      "bootstrap": {
+        "date_counts": {
+          "2026-08-18": 34,
+          "2026-08-19": 33,
+          "2026-08-20": 33
+        },
+        "method": "source-cluster bootstrap stratified by date",
+        "rounds": 10000
+      },
+      "candidate": "v12_incumbent_r002",
+      "common_opponent_uplift": {
+        "margin_uplift": 26.902857142857147,
+        "margin_uplift_ci95": [
+          -0.16092857142857311,
+          54.390535714285704
+        ],
+        "opponents": [
+          "baseline_v1",
+          "baseline_v5",
+          "baseline_v8",
+          "rule_router",
+          "v5_topdays",
+          "v8_topdays",
+          "v8_conservative"
+        ],
+        "paired_source_clusters": 100,
+        "per_opponent": {
+          "baseline_v1": {
+            "margin_uplift": -49.63,
+            "margin_uplift_ci95": [
+              -83.3555,
+              -15.209500000000007
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.01,
+            "score_uplift_ci95": [
+              0.0,
+              0.03
+            ]
+          },
+          "baseline_v5": {
+            "margin_uplift": 104.31,
+            "margin_uplift_ci95": [
+              68.704875,
+              138.49124999999998
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0925,
+            "score_uplift_ci95": [
+              0.0575,
+              0.1325
+            ]
+          },
+          "baseline_v8": {
+            "margin_uplift": 37.505,
+            "margin_uplift_ci95": [
+              -17.4305,
+              98.29549999999999
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0675,
+            "score_uplift_ci95": [
+              -0.01,
+              0.145
+            ]
+          },
+          "rule_router": {
+            "margin_uplift": 86.705,
+            "margin_uplift_ci95": [
+              49.094875,
+              123.39049999999999
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0325,
+            "score_uplift_ci95": [
+              0.0075,
+              0.0625
+            ]
+          },
+          "v5_topdays": {
+            "margin_uplift": 10.445,
+            "margin_uplift_ci95": [
+              -20.225625,
+              40.760124999999995
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0825,
+            "score_uplift_ci95": [
+              0.0475,
+              0.12
+            ]
+          },
+          "v8_conservative": {
+            "margin_uplift": -54.72,
+            "margin_uplift_ci95": [
+              -99.586125,
+              -8.422875000000031
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": -0.02,
+            "score_uplift_ci95": [
+              -0.05,
+              0.0
+            ]
+          },
+          "v8_topdays": {
+            "margin_uplift": 53.705,
+            "margin_uplift_ci95": [
+              -0.8369999999999982,
+              113.08212499999996
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0725,
+            "score_uplift_ci95": [
+              -0.0025624999999999433,
+              0.1475
+            ]
+          }
+        },
+        "per_opponent_ci_gate": false,
+        "score_uplift": 0.04821428571428571,
+        "score_uplift_ci95": [
+          0.021785714285714283,
+          0.07392857142857143
+        ],
+        "worst_opponent_score_ci95_low": -0.05,
+        "worst_opponent_score_uplift": -0.02
+      },
+      "direct_parent": {
+        "mean_margin": 64.59,
+        "mean_margin_ci95": [
+          9.734625,
+          123.63774999999997
+        ],
+        "paired_sources": 100,
+        "score_rate": 0.625,
+        "score_rate_ci95": [
+          0.545,
+          0.705
+        ]
+      },
+      "fixed_sequence_qualified": true,
+      "fixed_sequence_status": "primary_confirmatory_test",
+      "parent": "learned_router",
+      "promotion_gates": {
+        "common_opponent_uplift_ci95_low": true,
+        "common_opponent_uplift_point": true,
+        "direct_parent_score_ci95_low": true,
+        "direct_parent_score_point": true,
+        "worst_common_opponent_point": true
+      },
+      "promotion_qualified": true
+    },
+    {
+      "bootstrap": {
+        "date_counts": {
+          "2026-08-18": 34,
+          "2026-08-19": 33,
+          "2026-08-20": 33
+        },
+        "method": "source-cluster bootstrap stratified by date",
+        "rounds": 10000
+      },
+      "candidate": "v12a2_no_shop_gate",
+      "common_opponent_uplift": {
+        "margin_uplift": 50.39214285714285,
+        "margin_uplift_ci95": [
+          42.00405357142856,
+          58.55789285714286
+        ],
+        "opponents": [
+          "baseline_v1",
+          "baseline_v5",
+          "baseline_v8",
+          "rule_router",
+          "v5_topdays",
+          "v8_topdays",
+          "v8_conservative"
+        ],
+        "paired_source_clusters": 100,
+        "per_opponent": {
+          "baseline_v1": {
+            "margin_uplift": 46.39,
+            "margin_uplift_ci95": [
+              35.534749999999995,
+              57.635124999999995
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "baseline_v5": {
+            "margin_uplift": 49.075,
+            "margin_uplift_ci95": [
+              41.06975,
+              57.2405
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "baseline_v8": {
+            "margin_uplift": 52.115,
+            "margin_uplift_ci95": [
+              40.75975,
+              63.26
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.06,
+            "score_uplift_ci95": [
+              0.01,
+              0.115
+            ]
+          },
+          "rule_router": {
+            "margin_uplift": 40.85,
+            "margin_uplift_ci95": [
+              30.945,
+              50.46087499999999
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "v5_topdays": {
+            "margin_uplift": 54.55,
+            "margin_uplift_ci95": [
+              46.034875,
+              62.960125
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0425,
+            "score_uplift_ci95": [
+              0.01,
+              0.0775
+            ]
+          },
+          "v8_conservative": {
+            "margin_uplift": 50.075,
+            "margin_uplift_ci95": [
+              38.885,
+              61.43
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.01,
+            "score_uplift_ci95": [
+              0.0,
+              0.03
+            ]
+          },
+          "v8_topdays": {
+            "margin_uplift": 59.69,
+            "margin_uplift_ci95": [
+              49.14925,
+              70.38037499999999
+            ],
+            "paired_sources": 100,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.2925,
+            "score_uplift_ci95": [
+              0.2425,
+              0.34
+            ]
+          }
+        },
+        "per_opponent_ci_gate": false,
+        "score_uplift": 0.05785714285714285,
+        "score_uplift_ci95": [
+          0.04535714285714284,
+          0.07035714285714284
+        ],
+        "worst_opponent_score_ci95_low": 0.0,
+        "worst_opponent_score_uplift": 0.0
+      },
+      "direct_parent": {
+        "mean_margin": 61.89,
+        "mean_margin_ci95": [
+          52.42,
+          71.53049999999999
+        ],
+        "paired_sources": 100,
+        "score_rate": 0.8,
+        "score_rate_ci95": [
+          0.745,
+          0.855
+        ]
+      },
+      "fixed_sequence_qualified": true,
+      "fixed_sequence_status": "secondary_confirmatory_interpretation",
+      "parent": "v12_incumbent_r002",
+      "promotion_gates": {
+        "common_opponent_uplift_ci95_low": true,
+        "common_opponent_uplift_point": true,
+        "direct_parent_score_ci95_low": true,
+        "direct_parent_score_point": true,
+        "worst_common_opponent_point": true
+      },
+      "promotion_qualified": true
+    }
+  ],
+  "checks": {
+    "common_panel_all_target_pairs": true,
+    "each_target_pair_100_sources_two_seats": true,
+    "exact_run_fingerprint": true,
+    "exact_targeted_physical_row_count": true,
+    "preflight_passed": true,
+    "task_grain_exact_unique_set": true,
+    "task_id_exact_unique_set": true,
+    "zero_row_errors": true
+  },
+  "config": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/frozen_v5/validation_config.json",
+  "config_file_sha256": "720968d61c73d9a787ec32dd45191ba07de5c4058176042a571a7ce1c639ad6c",
+  "expected": {
+    "models": 10,
+    "run_fingerprint": "3ccb7c391af0109c79d2041245a962346daacd15a5642017a6111b5cfa8a38ae",
+    "seats_per_source": 2,
+    "sources_per_pair": 100,
+    "targeted_pairs": 23,
+    "tasks": 4600
+  },
+  "fixed_sequence": {
+    "policy": "primary must pass every pre-registered gate before secondary is confirmatorily interpreted",
+    "primary": "v12_incumbent_r002",
+    "primary_qualified": true,
+    "secondary": "v12a2_no_shop_gate",
+    "secondary_formally_tested": true,
+    "secondary_qualified": true
+  },
+  "grain": "registered ordered pair x official source x fixed model_a seat",
+  "integrity_errors": [],
+  "integrity_passed": true,
+  "interpretation": {
+    "bootstrap": "10,000 source-cluster resamples within each date stratum",
+    "common_opponent_uplift": "candidate minus parent against identical opponents/source/seats",
+    "direct_parent": "candidate vs its own parent, paired over source and both seats",
+    "multiplicity": "fixed sequence: incumbent r002 primary; A2 confirmatory only if the primary passes every gate, otherwise A2 is exploratory",
+    "promotion_note": "no effect claim is computed until every integrity check passes"
+  },
+  "observed": {
+    "physical_rows": 4600,
+    "run_fingerprints": [
+      "3ccb7c391af0109c79d2041245a962346daacd15a5642017a6111b5cfa8a38ae"
+    ],
+    "unique_task_grain": 4600,
+    "unique_task_ids": 4600
+  },
+  "preflight": {
+    "candidate_exposure_files": [
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_incumbent_r002/package_qa_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_incumbent_r002/submission_manifest.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12a2_no_shop_gate/README.md",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12a2_no_shop_gate/package_qa_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12a2_no_shop_gate/submission_manifest.json"
+    ],
+    "checks": {
+      "archive_rebuild:v12_incumbent_r002:closure_member_exact_match": true,
+      "archive_rebuild:v12_incumbent_r002:files_exist": true,
+      "archive_rebuild:v12_incumbent_r002:manifest_archive_sha": true,
+      "archive_rebuild:v12_incumbent_r002:manifest_archive_size": true,
+      "archive_rebuild:v12_incumbent_r002:manifest_member_exact_match": true,
+      "archive_rebuild:v12_incumbent_r002:safe_unique_regular_members": true,
+      "archive_rebuild:v12a2_no_shop_gate:closure_member_exact_match": true,
+      "archive_rebuild:v12a2_no_shop_gate:files_exist": true,
+      "archive_rebuild:v12a2_no_shop_gate:manifest_archive_sha": true,
+      "archive_rebuild:v12a2_no_shop_gate:manifest_archive_size": true,
+      "archive_rebuild:v12a2_no_shop_gate:manifest_member_exact_match": true,
+      "archive_rebuild:v12a2_no_shop_gate:safe_unique_regular_members": true,
+      "asset:combined_registry.json": true,
+      "asset:formal_panel.json": true,
+      "asset:formal_seed_manifest.jsonl": true,
+      "asset:submission_closure.json": true,
+      "asset:validation_config.json": true,
+      "asset_manifest_binds_config": true,
+      "asset_manifest_exact_v5_set": true,
+      "asset_manifest_unique_well_formed_rows": true,
+      "asset_sha_manifest_exists": true,
+      "candidate_entry:v12_incumbent_r002": true,
+      "candidate_entry:v12a2_no_shop_gate": true,
+      "candidate_exposure_inventory_complete": true,
+      "candidate_package_qa_pass:v12_incumbent_r002": true,
+      "candidate_package_qa_pass:v12a2_no_shop_gate": true,
+      "candidate_source_parent:v12_incumbent_r002": true,
+      "candidate_source_parent:v12a2_no_shop_gate": true,
+      "clean_archive:v12_incumbent_r002": true,
+      "clean_archive:v12a2_no_shop_gate": true,
+      "clean_archive_manifest:v12_incumbent_r002": true,
+      "clean_archive_manifest:v12a2_no_shop_gate": true,
+      "clean_archive_members:v12_incumbent_r002": true,
+      "clean_archive_members:v12a2_no_shop_gate": true,
+      "clean_archive_registry_binding:v12_incumbent_r002": true,
+      "clean_archive_registry_binding:v12a2_no_shop_gate": true,
+      "combined_registry_file": true,
+      "combined_registry_runtime": true,
+      "context_artifact:README.md:af113971": true,
+      "context_artifact:development_evidence.json:08350717": true,
+      "context_has_no_direct_seed:development_evidence.json": true,
+      "context_has_no_seed_literal:README.md": true,
+      "exact_23_pairs_4600_games": true,
+      "exact_required_pair_set": true,
+      "exact_v5_candidate_sequence": true,
+      "exact_v5_common_opponents": true,
+      "exact_v5_fixed_sequence": true,
+      "exact_v5_formal_execution_contract": true,
+      "exact_v5_formal_model_order": true,
+      "exact_v5_quality_thresholds": true,
+      "exclusion_artifact:frozen_v3:screen_panel.json": true,
+      "exclusion_artifact:frozen_v3:screen_panel.json:seed_binding": true,
+      "exclusion_artifact:frozen_v4:screen_panel.json": true,
+      "exclusion_artifact:frozen_v4:screen_panel.json:seed_binding": true,
+      "exclusion_artifact:round_001:panel.json": true,
+      "exclusion_artifact:round_001:panel.json:seed_binding": true,
+      "exclusion_artifact:round_002:panel.json": true,
+      "exclusion_artifact:round_002:panel.json:seed_binding": true,
+      "exclusion_artifact:round_003:panel.json": true,
+      "exclusion_artifact:round_003:panel.json:seed_binding": true,
+      "exclusion_artifact:v10_replay_lolo_router:router_fit_source_exclusions.json": true,
+      "exclusion_artifact:v10_replay_lolo_router:router_fit_source_exclusions.json:seed_binding": true,
+      "exclusion_artifact:v12_incumbent_r002:package_qa_report.json": true,
+      "exclusion_artifact:v12_incumbent_r002:package_qa_report.json:seed_binding": true,
+      "exclusion_artifact:v12_incumbent_r002:submission_manifest.json": true,
+      "exclusion_artifact:v12_incumbent_r002:submission_manifest.json:seed_binding": true,
+      "exclusion_artifact:v12a2_no_shop_gate:README.md": true,
+      "exclusion_artifact:v12a2_no_shop_gate:README.md:seed_binding": true,
+      "exclusion_artifact:v12a2_no_shop_gate:package_qa_report.json": true,
+      "exclusion_artifact:v12a2_no_shop_gate:package_qa_report.json:seed_binding": true,
+      "exclusion_artifact:v12a2_no_shop_gate:submission_manifest.json": true,
+      "exclusion_artifact:v12a2_no_shop_gate:submission_manifest.json:seed_binding": true,
+      "external_parent_registry_file": true,
+      "external_parent_registry_runtime": true,
+      "formal_evaluator_reuses_frozen_source_set": true,
+      "formal_exact_100_unique": true,
+      "formal_exact_date_strata": true,
+      "formal_exclusion_disjoint": true,
+      "formal_locked_lineage_file": true,
+      "formal_locked_lineage_records": true,
+      "formal_manifest_exact_raw_rows": true,
+      "formal_panel_file": true,
+      "formal_panel_manifest_full_record_match": true,
+      "formal_panel_records_hash_locked": true,
+      "formal_requires_explicit_execution_flag": true,
+      "formal_seed_manifest_file": true,
+      "formal_zero_test": true,
+      "implementation:audit_results.py": true,
+      "implementation:build_validation_assets.py": true,
+      "implementation:protocol.py": true,
+      "implementation:run_validation.sh": true,
+      "implementation:targeted_evaluate.py": true,
+      "incumbent_source_r002_serving_fingerprint": true,
+      "submission_closure_exact_candidates": true,
+      "submission_closure_file": true,
+      "v10_evaluator_implementation": true
+    },
+    "combined_registry_and_code_sha256": "769f39bd09a3b32bc426c064da0cb07975a1f5fe3b7f76e982254edd5b3b3857",
+    "config": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/frozen_v5/validation_config.json",
+    "external_parent_registry_and_code_sha256": "a4d63598c95a165add426aaac7b1dbe2cd9ff2e6f91dde71e6e3ec0e54da26a5",
+    "passed": true,
+    "schema": "kaggriculture-v12-preflight-1"
+  },
+  "read_only": true,
+  "results_jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v5/formal/games.jsonl",
+  "results_jsonl_sha256": "0d622a3a7154b74ab3e222fadbdd356d917feaf0f8aa84e4bf2bd7e44ad7588e",
+  "schema": "kaggriculture-v12-targeted-formal-audit-2"
+}

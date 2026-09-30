@@ -1,0 +1,32 @@
+{
+  "source_manifest_sha256": "6e8082505b7f63e063d1b9b52db98bbdb70c3f9deddbc2b99b32c13c40d416e9",
+  "compiler_sha256": "8df4e0728a00bf7d9ab98314ff9deac966fd3368c6eb2c07fe8bfa31a2a2b888",
+  "shape_per_frame": [
+    26,
+    4
+  ],
+  "lag_order": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "padding": 0,
+  "semantics": "Previous emitted/requested actions, not successful outcomes. Unit slot histories are absent before the worker exists. Reset all history at day start and episode start. Market slots keep previous same-slot requests, including STOP padding. No current/future labels.",
+  "checks": {
+    "train": {
+      "exact_streaming_frames": 104974,
+      "new_worker_slots_zeroed": 38582,
+      "day_zero_history": true
+    },
+    "validation": {
+      "exact_streaming_frames": 28760,
+      "new_worker_slots_zeroed": 10570,
+      "day_zero_history": true
+    }
+  },
+  "hashes": {
+    "validation_history.npy": "65c0edf27b65ab30fcb8f103f980e1c6368c33f965333695a7e1bbbf6d9798dc",
+    "train_history.npy": "3cd5d3425639a17c64d3151cffdc4fd5b27f6823a25ece9f184887e39019dc68"
+  }
+}

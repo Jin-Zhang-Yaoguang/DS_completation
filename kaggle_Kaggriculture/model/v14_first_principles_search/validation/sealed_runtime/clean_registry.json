@@ -1,0 +1,161 @@
+{
+  "candidate_slate_core_sha256": "4f5c58f8203f3beb407795da983fc01197c214a05c249176b8fafb67cbfdeae6",
+  "models": [
+    {
+      "change_scope": "无策略变化；将 V11 Round3 冠军 r002 原样物化，并修复 Kaggle raw-loader 不提供 __file__ 时的 bundle 路径定位",
+      "clean_submission_closure_sha256": "a70dbabb2d0406317f7d1f16f28dc860a59257fdaabccb26355ddda4b10f6a5d",
+      "code_paths": [
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/__init__.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/agent_factory.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/expert_registry.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/fast_router.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/learned_router_weights.npz",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/policy.json",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/router.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/runtime/variants.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v1_adaptive_market/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v2_survival_guard/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v5_rule_hybrid/base_agent.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v5_rule_hybrid/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v5_rule_hybrid/routes.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v5_rule_hybrid/v1_fallback.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/v8_kawa_lead2_slot/main.py"
+      ],
+      "entrypoint": "agent",
+      "family": "learned_router+topday_animal_throttle",
+      "id": "v12_incumbent_r002",
+      "kind": "python",
+      "lineage": [
+        "learned_router",
+        "r002_learned_router_topday_animal_throttle"
+      ],
+      "package_qa_file_sha256": "fe9b65d57a6b24bc9153cdecfc46f816396b15172b1b171dbeb2e87a8f95af24",
+      "parent_models": [
+        "learned_router"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12_incumbent_r002/main.py",
+      "source_archive_sha256": "6ff786cbba1a6440f844f9c77da934f6dd10b55e43f57b2bd852753cd21ae136",
+      "source_model_id": "r002_learned_router_topday_animal_throttle",
+      "source_serving_sha256": "38afb12bd5fbc987adf752acb437abe9330bd385233c22782b35353f77be2d74",
+      "submission_manifest_file_sha256": "4cd32f109365947f72fca17b1e7c74c77e400811fb0b39dc7f149fdf01512681",
+      "tags": [
+        "incumbent",
+        "requalified",
+        "policy-unchanged",
+        "serving-entry-repaired",
+        "raw-loader-verified",
+        "learned-full-expert-router",
+        "market-residual",
+        "mutation:topday_animal_throttle"
+      ],
+      "validation_runtime": "safe_exact_archive_raw_agent_entrypoint"
+    },
+    {
+      "change_scope": "仅删除 V12A 的已解锁商店逐商品过滤；分支、小额、同回合入库、仓位、terminal 与 worker 路径不变",
+      "clean_submission_closure_sha256": "ba82131cbe582e228f16822602b47d670d391fab6b96a3972aed84b3ea9b3830",
+      "code_paths": [
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/base_agent.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/__init__.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/agent_factory.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/expert_registry.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/fast_router.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/learned_router_weights.npz",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/policy.json",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/router.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/runtime/variants.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v1_adaptive_market/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v2_survival_guard/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v5_rule_hybrid/base_agent.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v5_rule_hybrid/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v5_rule_hybrid/routes.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v5_rule_hybrid/v1_fallback.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/v8_kawa_lead2_slot/main.py"
+      ],
+      "entrypoint": "agent",
+      "family": "r002+branch-storage-guards-no-shop-gate",
+      "id": "v12a2_no_shop_gate",
+      "kind": "python",
+      "lineage": [
+        "learned_router",
+        "r002_learned_router_topday_animal_throttle",
+        "v12a_terminal_branch_guard",
+        "v12a2_no_shop_gate"
+      ],
+      "package_qa_file_sha256": "75ac09550972a556a2fa74d7d6311fb29a81ced409a07a82568b3938ea291d94",
+      "parent_models": [
+        "r002_learned_router_topday_animal_throttle"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v12a2_no_shop_gate/main.py",
+      "source_archive_sha256": "e4c8e07fc607ccff3d9592c5774cbd866a11de096a7b12a7c3c642eda76adbf8",
+      "submission_manifest_file_sha256": "558a2659561d2248b027f225cd1a9698d7c4e410faf768aa1c8d4c3a8080ce41",
+      "tags": [
+        "market-residual",
+        "causal-ablation-repair",
+        "no-shop-demand-gate",
+        "no-premium-floor"
+      ],
+      "validation_runtime": "safe_exact_archive_raw_agent_entrypoint"
+    },
+    {
+      "change_scope": "独立推进并逐步核验对手 A2 隐状态；仅删除冗余的完整 public-production equality，保留 clone_distance<=4；只在72步完整公开一致、双方均为 V8 且 SELL-only 时重排既有卖单，不改生产动作、商品与数量",
+      "clean_submission_closure_sha256": "5ab10fd125a07f7b62ecee2b70c39530d92efb6075f5fc795f39c37608808b7a",
+      "code_paths": [
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/a2_agent.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/base_agent.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/kaggriculture.json",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/official_kaggriculture.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/queue_core.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/__init__.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/agent_factory.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/expert_registry.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/fast_router.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/learned_router_weights.npz",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/policy.json",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/router.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/runtime/variants.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v1_adaptive_market/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v2_survival_guard/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v5_rule_hybrid/base_agent.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v5_rule_hybrid/main.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v5_rule_hybrid/routes.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v5_rule_hybrid/v1_fallback.py",
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/v8_kawa_lead2_slot/main.py"
+      ],
+      "entrypoint": "agent",
+      "family": "a2-stateful-shadow-no-public-equality-queue-best-response",
+      "id": "v14_queue_stateful_no_mirror",
+      "kind": "python",
+      "lineage": [
+        "learned_router",
+        "r002_learned_router_topday_animal_throttle",
+        "v12a_terminal_branch_guard",
+        "v12a2_no_shop_gate",
+        "v14_queue_best_response",
+        "v14_queue_stateful_no_mirror"
+      ],
+      "package_qa_file_sha256": "5486afdf762c71087ece7a90f7ebe1a41f975704c8a4ccc07617d7bf2fc36414",
+      "parent_models": [
+        "v12a2_no_shop_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_first_principles_search/validation/sealed_runtime/clean_submissions/v14_queue_stateful_no_mirror/main.py",
+      "source_archive_sha256": "d7d2e8210041d695a10ddc7797efbfd5c4ca3a0f8c33c70e0fd5d597fd4d4f9f",
+      "submission_manifest_file_sha256": "bb6ef857ba21a0bc0428b8b0648a66824c8c1febc87726bb16dda8bc12a2b379",
+      "tags": [
+        "a2-descendant",
+        "stateful-opponent-shadow",
+        "no-full-public-equality-gate",
+        "retains-clone-distance-4",
+        "sell-queue-best-response",
+        "fail-closed",
+        "preregistered"
+      ],
+      "validation_runtime": "safe_exact_archive_raw_agent_entrypoint"
+    }
+  ],
+  "purpose": "screen/confirmatory only; exact archives through raw agent entrypoint",
+  "schema": "kaggriculture-v14-clean-dual-anchor-registry-1",
+  "test_sources_allowed": false
+}

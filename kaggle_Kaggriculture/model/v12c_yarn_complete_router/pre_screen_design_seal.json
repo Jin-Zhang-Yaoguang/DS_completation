@@ -1,0 +1,105 @@
+{
+  "schema": "kaggriculture-v12c-pre-screen-design-seal-1",
+  "sealed_at_utc": "2026-08-23T09:39:51Z",
+  "model_id": "v12c_yarn_complete_router",
+  "mechanism": "在 step 72 只读取公开 town.unlocked_shops；若包含 YARN_STORE，则一次性选择完整 baseline_v5，否则选择完整 baseline_v8；选择后本局不再切换",
+  "parent_experts": [
+    "baseline_v5",
+    "baseline_v8"
+  ],
+  "switch_step": 72,
+  "public_inputs": [
+    "obs.step",
+    "obs.town.unlocked_shops"
+  ],
+  "prefix_contract": "step 0..71 同时推进 V5/V8 并逐动作核对；只有 72 个前缀动作全部一致且 V5 无错误时才允许 YARN 分支，否则 fail-closed 到 V8",
+  "post_switch_contract": "只推进被选中的完整专家；不拼接 worker 计划，不使用未同步专家回退",
+  "forbidden_mechanisms": [
+    "fixed-day animal throttling",
+    "premium price floor",
+    "market-order residual",
+    "learned or tuned numeric threshold",
+    "screen-dependent parameter change"
+  ],
+  "development_evidence": {
+    "comparison": "相对固定 baseline_v8 的同 seed、双席位、共同对手配对反事实；只在 YARN_STORE 上用 baseline_v5 结果，其余保持 baseline_v8",
+    "round_001": {
+      "common_games": 2400,
+      "source_seeds": 100,
+      "seats": 2,
+      "common_opponents": 12,
+      "yarn_games": 360,
+      "overall_score_uplift": 0.050416666666666665,
+      "conditional_yarn_score_uplift": 0.33611111111111114,
+      "date_conditional_uplift": {
+        "2026-08-18": 0.4226190476190476,
+        "2026-08-19": 0.4027777777777778,
+        "2026-08-20": 0.175
+      },
+      "worst_common_opponent_conditional_uplift": 0.13333333333333333
+    },
+    "round_002": {
+      "common_games": 2600,
+      "source_seeds": 100,
+      "seats": 2,
+      "common_opponents": 13,
+      "yarn_games": 312,
+      "overall_score_uplift": 0.04423076923076923,
+      "conditional_yarn_score_uplift": 0.3685897435897436,
+      "date_conditional_uplift": {
+        "2026-08-18": 0.4230769230769231,
+        "2026-08-19": 0.34615384615384615,
+        "2026-08-20": 0.3557692307692308
+      },
+      "worst_common_opponent_conditional_uplift": 0.0
+    },
+    "round_003": {
+      "common_games": 2800,
+      "source_seeds": 100,
+      "seats": 2,
+      "common_opponents": 14,
+      "yarn_games": 420,
+      "overall_score_uplift": 0.05178571428571429,
+      "conditional_yarn_score_uplift": 0.34523809523809523,
+      "date_conditional_uplift": {
+        "2026-08-18": 0.3333333333333333,
+        "2026-08-19": 0.32142857142857145,
+        "2026-08-20": 0.375
+      },
+      "worst_common_opponent_conditional_uplift": 0.03333333333333333
+    },
+    "source_files": [
+      {
+        "path": "../v11_iterative_league/runs/round_001/games.jsonl",
+        "sha256": "cf59475eb7f732fb41bce11bb8f51236bde8d5d2dce123da3f9025ea33e613d7"
+      },
+      {
+        "path": "../v11_iterative_league/runs/round_002/games.jsonl",
+        "sha256": "719a01a92cb03d77fc70bb7d2c23862cc781922da1c370f1b5e067f067607e94"
+      },
+      {
+        "path": "../v11_iterative_league/runs/round_003/games.jsonl",
+        "sha256": "fce17c11ff163603ecc26b8bb87c8c320f14527dd8fa74ab3a2175adcdff77ae"
+      }
+    ]
+  },
+  "screen_contract": {
+    "asset": "../v12_validation/frozen_v3/screen_panel.json",
+    "asset_sha256": "45312668bdb99e09c27a0e7e8e9efab1d5a6b27b45c603446c117576a38fefca",
+    "source_seeds": 18,
+    "required_analyses": [
+      "direct candidate vs baseline_v8",
+      "common-opponent paired score uplift vs baseline_v8",
+      "per-opponent point uplift",
+      "clean archive runtime integrity"
+    ],
+    "formal_or_test_access_allowed": false
+  },
+  "implementation_seal": {
+    "main_sha256": "82dceb028ed88183073e93c145cd2965cf875beb575c055186893e08db43cdc9",
+    "registry_entry_sha256": "03b7889dea857098dcd674ba16799f00b3dd76206d60ad343130f27410233e53",
+    "submission_archive_sha256": "8e18de5acf2e531345a6b1adfcab42db3cd1e81c4ecc468efa3e24531dc2e3fe",
+    "submission_manifest_sha256": "ef0e8ee03737fdaa3a8e62de49f5f17bbd2147d2cf2edbe8ceab7907b1652da3"
+  },
+  "post_seal_policy": "只允许不改变 main.py、registry_entry.json 和提交归档内容的 QA/报告机械修复；若策略逻辑、参数或提交成员变化，必须作废本 seal 并重新开始独立 screen"
+}

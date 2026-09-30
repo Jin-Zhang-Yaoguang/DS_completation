@@ -1,0 +1,20 @@
+{
+  "schema": "kaggriculture-gold-goal-originality-decision-v1",
+  "portfolio_id": "hier-moe-gold-5-20260829",
+  "model_id": "v85_fertilizer_substitution_moe",
+  "parent": "v76_adjacent_safe_buy_lead",
+  "decision": "SAME_LINEAGE_PATCH_NOT_COUNTED",
+  "gold_count_increment": 0,
+  "strategy_evidence": {
+    "development_pou_pp": 7.6822916666666625,
+    "confirmation_pou_pp": 7.421875,
+    "confirmation_pou_95ci_pp": [6.754557291666669, 8.105468750000004],
+    "confirmation_games": 6144,
+    "positive_zero_negative": [386, 2686, 0],
+    "strategy_gate": "PASS"
+  },
+  "originality_gate": "FAIL",
+  "originality_failure": "main.py calls the complete frozen V76 agent and only post-processes parent PASS actions with COLLECT_FERTILIZER; this is a strong overlay patch, not an independently constructed Hierarchical MoE model.",
+  "official_parity": "INTERRUPTED_AFTER_USER_ORIGINALITY_CORRECTION_NOT_REQUIRED_FOR_NONCOUNTING_PATCH",
+  "remote_submission": "NOT_AUTHORIZED_NOT_SUBMITTED"
+}

@@ -1,0 +1,734 @@
+{
+  "schema": "r10-b-checker-handwritten-tests-v1",
+  "created_utc": "20260905T124949699048Z",
+  "checker_sha256": "38ebf30d214a7500c09c128e1c061ac7cbc5b9f149c9eda67c40f408024ea2fa",
+  "harness_sha256": "1f1e799583151a7a85ea30bcb762e05b744cc28ea39747830bb6ddcce8b6fbe9",
+  "schema_sha256": "ba7a320b49982707e3ec35458d7ed559228f23c6f5e6629badec2c07b8e24dc4",
+  "test_methods": 14,
+  "cases": [
+    {
+      "name": "animal_all_services",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "reserved_wheat_may_feed",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "missing_water_action",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DEPENDENCY_NOT_DONE",
+          "detail": "harvest"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "move_claims_water",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "NON_SERVICE_ALLOCATION",
+          "detail": "(1, 0)"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "duplicate_water_action",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FIELD_TARGET_OR_REPEAT",
+          "detail": "water"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "wrong_worker_location",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FIELD_TARGET_OR_REPEAT",
+          "detail": "water"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "wrong_harvest_amount",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "GOODS_COVERAGE",
+          "detail": "预期产出、田间来源和交付数量必须一致"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "forged_complete_list",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FORGED_COMPLETION",
+          "detail": "scheduled字段不符真实动作"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "fake_terminal",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "TERMINAL_POSITION",
+          "detail": "终点不符动作"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "missed_deadline",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FIELD_DEADLINE",
+          "detail": "water"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "already_watered",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "WATER_ELIGIBILITY",
+          "detail": "water"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "locked_asset",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "ASSET_STATE",
+          "detail": "未知/null/LOCKED不能作为活动资产"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "identity_birth_changed",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "ASSET_IDENTITY",
+          "detail": "plant:MELON:0:3,4"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "dependency_cycle",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DEPENDENCY_CYCLE",
+          "detail": "water"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "empty",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "12hands_h0nine_h1three",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 297
+    },
+    {
+      "name": "eod_unused_feed_overflow_explicit",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "h1_postmove_spawn",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 253
+    },
+    {
+      "name": "extra_prebirth_action",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PREBIRTH_OR_EXTRA_SLOT",
+          "detail": "含出生前或额外unit时槽"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "h0_ten_hires",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "H0_HIRE_LIMIT",
+          "detail": "0"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "h1_newworker_early",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PREBIRTH_OR_EXTRA_SLOT",
+          "detail": "含出生前或额外unit时槽"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "eleven_orders",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "MARKET_SLOT",
+          "detail": "市场记录或10订单槽"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "wrong_fib_total",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "HIRE_COST",
+          "detail": "实际FIB费用不符"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "fake_spawn_terminal",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "TERMINAL_POSITION",
+          "detail": "终点不符动作"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "missing_market_hour",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "MARKET_COVERAGE",
+          "detail": "每小时精确一条市场记录"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "boolean_n_hands",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "HAND_COUNT",
+          "detail": "0..12整数"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "harvest_at_mls_before_decay",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "deadline_beyond_mls",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "LIFESPAN_DEADLINE",
+          "detail": "harvest"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "already_expired",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "EXPIRED_ASSET",
+          "detail": "plant:MELON:0:3,4"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "no_pickup_feed",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "MATERIAL_SHORTFALL",
+          "detail": "unit0 WHEAT need1"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "pickup_before_market_arrives",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FARMER_H0",
+          "detail": "农夫h0必须PASS"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "double_feed",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FIELD_TARGET_OR_REPEAT",
+          "detail": "feed"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "buy_17",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "BUY_PROTOCOL",
+          "detail": "仅h0一笔≤16麦，h1可用"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "feed_17",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "FEED_LIMIT",
+          "detail": "当日feed必须≤16"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "pickup_five",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "R9_PICKUP_LIMIT",
+          "detail": "(1, 0)"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "full_shed_blocks_buy",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "BUY_QUANTITY_CAPACITY",
+          "detail": "['BUY_PRODUCT', 'WHEAT', 1]"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "sell_reserved",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "RESERVED_SELL",
+          "detail": "['SELL', 'TOMATO', 1]"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "boolean_buy_qty",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "BUY_ORDER",
+          "detail": "['BUY_PRODUCT', 'WHEAT', True]"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "negative_sell",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "SELL_ORDER",
+          "detail": "['SELL', 'MILK', -1]"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "cross_item_place_merge",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PLACE_SERVICE",
+          "detail": "milk_drop"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "duplicate_delivery_alloc",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DUPLICATE_ALLOCATION",
+          "detail": "(7, 0)"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "existing_milk_cannot_fake_harvest",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DEPENDENCY_NOT_DONE",
+          "detail": "milk_drop"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "market_sale_after_unit_place",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "same_hour_sale_cannot_preclear_place",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PLACE_ACTUAL_QUANTITY",
+          "detail": "(7, 0)"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "melon_water_then_harvest",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "day29_h22_delivery",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 23
+    },
+    {
+      "name": "day29_h23_illegal",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "ACTION_SLOT",
+          "detail": "非法时槽或unit"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "two_workers_one_grain",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PICKUP_PARTIAL",
+          "detail": "(1, 1)"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "eod_auto_drop_not_delivery",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "MISSING_SERVICE",
+          "detail": "['milk_drop']"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "truthful_partial_place_qty",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "requested_not_actual_place",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PLACE_ACTUAL_QUANTITY",
+          "detail": "(7, 0)"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "same_day_not_future",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DAY",
+          "detail": "只接受未来完整日"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "unsupported_not_pass",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "UNSUPPORTED",
+          "detail": "不接受fallback问题"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "no_certificate_not_pass",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "NO_CERTIFICATE",
+          "detail": "未找到证书不等于通过"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "duplicate_asset",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DUPLICATE_ASSET",
+          "detail": "animal:COW:0:4,4"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "missing_field_service",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "GOODS_COVERAGE",
+          "detail": "预期产出、田间来源和交付数量必须一致"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "wrong_hash",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "PROBLEM_HASH",
+          "detail": "问题摘要不符"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "combined_same_product_two_sources",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 24
+    },
+    {
+      "name": "same_source_double_spend",
+      "expected_valid": false,
+      "valid": false,
+      "errors": [
+        {
+          "code": "DELIVERY_PROVENANCE",
+          "detail": "p1"
+        }
+      ],
+      "resource_identity": null,
+      "unit_actions": null
+    },
+    {
+      "name": "split_delivery_two_workers",
+      "expected_valid": true,
+      "valid": true,
+      "errors": [],
+      "resource_identity": true,
+      "unit_actions": 47
+    }
+  ],
+  "case_count": 60,
+  "success": false,
+  "failures": 1,
+  "errors": 0,
+  "candidate_calls": 0,
+  "engine_calls": 0,
+  "generator_calls": 0,
+  "compiler_calls": 0,
+  "complete_matches": 0
+}

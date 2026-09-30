@@ -1,0 +1,13 @@
+{
+  "failure": "FIRST_SALE_AUDIT_NOT_REPRODUCIBLE",
+  "actual_differences": [
+    "daily"
+  ],
+  "cause": "冻结v3的audit()返回daily以int作字典key；其CLI JSON序列化把对象key变为str。冻结measurement346直接用Python字典==比较，因此真实同一证据JSON往返后误拒绝。",
+  "serialized_form_equal": true,
+  "first_sale_source_sha256": "d353bd04bb4f86f492295a6d197389227934db87ff98414302538a04131a9c67",
+  "original_measurement_sha256": "346f0f05786e4228135cf6e6840cff302666b1104e18e42643d528db3cc4a5d1",
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_independent_matches": 0
+}

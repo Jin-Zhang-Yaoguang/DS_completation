@@ -1,0 +1,26 @@
+{
+  "schema": "kaggriculture-v20-demand-delay-confirmation-v1",
+  "phase": "v20_confirmation",
+  "candidate": "V19 switch_360 plus demand_delay_25",
+  "parent": "V19 switch_360",
+  "frozen_before_outcomes": true,
+  "seed_range": [96000, 96127],
+  "opponent_families": [
+    "adaptive_market",
+    "bc_ppo",
+    "v13c_a2",
+    "v16_town_drain",
+    "v17_portfolio",
+    "v18_shop_moe",
+    "v19_gold"
+  ],
+  "double_seat": true,
+  "candidate_games": 1792,
+  "baseline_games": 1792,
+  "acceptance": {
+    "paired_score_uplift_ci95_lower_pp": "> 0",
+    "per_family_score_uplift_pp": ">= -2",
+    "positive_zero_negative": "no unexplained negative flip cluster",
+    "package_and_official_parity": "required after statistical pass"
+  }
+}

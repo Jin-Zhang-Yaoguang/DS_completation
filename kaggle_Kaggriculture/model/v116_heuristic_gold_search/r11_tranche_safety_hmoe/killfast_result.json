@@ -1,0 +1,238 @@
+{
+  "action_counts": {
+    "BUILD_PASTURE": 4,
+    "DIG": 38,
+    "DROP": 52,
+    "EAST": 667,
+    "FEED": 25,
+    "HARVEST": 74,
+    "NORTH": 879,
+    "PASS": 8,
+    "PICKUP": 27,
+    "PLACE": 1,
+    "PLANT": 87,
+    "SOUTH": 556,
+    "WATER": 350,
+    "WEST": 911
+  },
+  "bank": 14288.0,
+  "calls": 719,
+  "candidate_schema": "v116-r11-tranche-safety-hmoe-v1",
+  "candidate_sha256": "493a77a9127dc06489d508a8581802060d4c02853b8306ff37fd6ab027d0ca2d",
+  "decision": "NOT_GOLD_KILLFAST_REJECT",
+  "diagnostics": {
+    "actors": {
+      "0": {
+        "active_ticket": "DIG:4:3",
+        "day": 29,
+        "role": "runner",
+        "zone": 0
+      },
+      "1": {
+        "active_ticket": "D29:WATER:1:0",
+        "day": 29,
+        "role": "builder_planter",
+        "zone": 1
+      },
+      "2": {
+        "active_ticket": "DIG:7:4",
+        "day": 29,
+        "role": "harvester",
+        "zone": 0
+      },
+      "3": {
+        "active_ticket": "DIG:0:4",
+        "day": 29,
+        "role": "caretaker",
+        "zone": 1
+      },
+      "4": {
+        "active_ticket": "DIG:0:0",
+        "day": 29,
+        "role": "runner",
+        "zone": 0
+      },
+      "5": {
+        "active_ticket": "BUILD:6:1:PASTURE",
+        "day": 29,
+        "role": "builder_planter",
+        "zone": 1
+      }
+    },
+    "audit": {
+      "action_build_pasture": 4,
+      "action_dig": 38,
+      "action_drop": 52,
+      "action_east": 667,
+      "action_feed": 25,
+      "action_harvest": 74,
+      "action_north": 879,
+      "action_pass": 8,
+      "action_pickup": 27,
+      "action_place": 1,
+      "action_plant": 87,
+      "action_south": 556,
+      "action_water": 350,
+      "action_west": 911,
+      "calls": 719,
+      "completed_build": 3,
+      "completed_dig": 38,
+      "completed_feed": 25,
+      "completed_harvest": 54,
+      "completed_place": 1,
+      "completed_plant": 74,
+      "completed_water": 345,
+      "daily_ticket_cancelled": 75,
+      "day_rebinds": 30,
+      "harvest_inventory_confirmed": 74,
+      "harvest_overnight_drop": 2,
+      "layout_rebuilds": 15,
+      "max_live_tickets": 44,
+      "max_service_cap": 36,
+      "nonprogress_move": 31,
+      "receipts_reconciled": 211,
+      "route_dairy_berry": 1,
+      "runnable_pass": 0,
+      "safety_preemptions": 28,
+      "ticket_cancelled": 99,
+      "ticket_failed_asset_loss": 19,
+      "ticket_reason_active_validation": 40,
+      "ticket_reason_daily_rollover": 75,
+      "ticket_reason_layout_change": 3,
+      "tickets_assigned": 749
+    },
+    "cash_ledger": {
+      "cash": 14288,
+      "conservative_sales": 0,
+      "planned_spend": 0,
+      "reserve": 296
+    },
+    "commit_step": 72,
+    "committed": true,
+    "expert": "dairy_berry",
+    "expired_live_tickets": 0,
+    "first_shop": "PIZZA_SHOP",
+    "layout_assets": {
+      "ANIMAL:COW": 4,
+      "CROP:STRAWBERRY": 12,
+      "CROP:TOMATO": 6,
+      "CROP:WHEAT": 14
+    },
+    "layout_lease_count": 36,
+    "mode": "router",
+    "orphan_live_tickets": 0,
+    "pending_receipts": [],
+    "phase": 2,
+    "resource_ledger": {
+      "carried": {},
+      "pending": {},
+      "reserved_seeds": {},
+      "seeds": {
+        "CARROT": 2,
+        "MELON": 0,
+        "STRAWBERRY": 0,
+        "TOMATO": 1,
+        "WHEAT": 1
+      },
+      "shed": {
+        "CARROT": 0,
+        "COW": 1,
+        "EGG": 0,
+        "FERTILIZER": 0,
+        "GOOSE": 0,
+        "MELON": 0,
+        "MILK": 0,
+        "SHEEP": 0,
+        "STRAWBERRY": 0,
+        "TOMATO": 0,
+        "WHEAT": 0,
+        "WOOL": 0
+      }
+    },
+    "route_scores": {
+      "dairy_berry": 144.495,
+      "fiber_grain": 98.1,
+      "root_exchange": 139.62
+    },
+    "schema": "v116-r11-tranche-safety-hmoe-v1",
+    "sell_states": {
+      "CARROT:OPERATING_RESERVE": 31,
+      "CARROT:SCARCITY_RELEASE": 1,
+      "MELON:SCARCITY_RELEASE": 2,
+      "MILK:HOLD_FOR_KNOWN_DEMAND": 4,
+      "MILK:SCARCITY_RELEASE": 9,
+      "STRAWBERRY:HOLD_FOR_KNOWN_DEMAND": 10,
+      "STRAWBERRY:SCARCITY_RELEASE": 22,
+      "WHEAT:HOLD_FOR_KNOWN_DEMAND": 7,
+      "WHEAT:SCARCITY_RELEASE": 23,
+      "WHEAT:TERMINAL_LIQUIDATION": 1
+    },
+    "service_cap": 36,
+    "strategy_parent": null,
+    "task_states": {
+      "CANCELLED": 6,
+      "COMPLETE": 30,
+      "EXECUTE": 1,
+      "TRAVEL": 13
+    }
+  },
+  "engine_version": "1.32.7",
+  "gates": {
+    "calls_719": true,
+    "expired_live_zero": true,
+    "invalid_water_feed_place_zero": true,
+    "missed_water_weeds_zero": false,
+    "orphan_live_zero": true,
+    "runtime_errors_zero": true,
+    "step144_assets_ge_12": false,
+    "terminal_assets_ge_30": false,
+    "terminal_bank_ge_60000": false
+  },
+  "invalid_actions": {},
+  "missed_water_weeds": 23,
+  "mode": "router",
+  "opponent": "idle",
+  "passed": false,
+  "runtime_errors": [],
+  "schema": "v116-r11-killfast-evidence-v1",
+  "scope": "One exposed seed versus idle; never gold evidence.",
+  "seed": 7100,
+  "single_process": true,
+  "step144": {
+    "animals": {
+      "COW": 1
+    },
+    "assets": 5,
+    "crops": {
+      "MELON": 2,
+      "STRAWBERRY": 1,
+      "WHEAT": 1
+    },
+    "day": 6,
+    "dry_risk": 0,
+    "hands": 0,
+    "hour": 0,
+    "lands": 1,
+    "money": 1852,
+    "step": 144,
+    "weeds": 1
+  },
+  "terminal": {
+    "animals": {
+      "COW": 1
+    },
+    "assets": 12,
+    "crops": {
+      "STRAWBERRY": 4,
+      "WHEAT": 7
+    },
+    "day": 29,
+    "dry_risk": 1,
+    "hands": 5,
+    "hour": 23,
+    "lands": 2,
+    "money": 14288,
+    "step": 719,
+    "weeds": 9
+  }
+}

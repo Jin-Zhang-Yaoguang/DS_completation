@@ -1,0 +1,40 @@
+{
+  "schema": "v116-shop-router-rc3-decision-v1",
+  "candidate": "v116_shop_router_rc3",
+  "evidence": "smoke_results.json",
+  "health_gate": {
+    "required_mean_bank": 70000,
+    "actual_mean_bank": 69882.125,
+    "bank_pass": false,
+    "required_mean_daily_target_realization": 0.9,
+    "actual_mean_daily_target_realization": 0.8992223652783997,
+    "target_realization_pass": false,
+    "both_required": true
+  },
+  "absolute_productive_assets": {
+    "mean_over_daily_observations": 51.16379310344828,
+    "minimum_final": 63,
+    "maximum_observed": 68,
+    "final_crop_target_per_expert": 59
+  },
+  "execution": {
+    "games": 8,
+    "seeds": [7100, 7101, 7102, 7103],
+    "both_seats": true,
+    "all_719_calls": true,
+    "schema_errors": 0,
+    "pure_win_rate_vs_idle": 1.0
+  },
+  "originality": {
+    "static_audit_pass": true,
+    "compact_genomes": 4,
+    "daily_records_per_genome": 30,
+    "parent_agent": false,
+    "replay_or_per_step_payload": false,
+    "state_perturbation_changes_action": true
+  },
+  "decision": "FAILED_RC3_HEALTH_GATE_DO_NOT_RUN_GOLD_ARENA",
+  "gold_arena_run": false,
+  "registered": false,
+  "submitted": false
+}

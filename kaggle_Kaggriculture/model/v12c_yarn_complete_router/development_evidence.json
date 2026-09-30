@@ -1,0 +1,146 @@
+{
+  "schema": "kaggriculture-v12c-development-evidence-1",
+  "candidate": "v12c_yarn_complete_router",
+  "epistemic_status": "Round1-3 development evidence computed before the frozen_v3 screen result; not formal and not online evidence",
+  "counterfactual_definition": {
+    "baseline": "baseline_v8",
+    "candidate": "for each identical source seed, seat and common opponent, use baseline_v5's closed-loop result iff the public step-72 feature shop.YARN_STORE is positive; otherwise retain baseline_v8's result",
+    "score": "win=1, tie=0.5, loss=0",
+    "pairing_keys": [
+      "source.date",
+      "source.seed",
+      "candidate_seat",
+      "common_opponent"
+    ],
+    "selection_inputs": [
+      "public obs.step",
+      "public obs.town.unlocked_shops"
+    ]
+  },
+  "discovery": {
+    "old_rule_router_direction": "YARN_STORE -> baseline_v8; default -> baseline_v5",
+    "old_rule_router_source": "../v10_replay_lolo_router/final_registry.json",
+    "old_rule_router_source_sha256": "babf1803c0e56aefa1805fce82cf1961bf8b4c508ef9d4c0754c127681911409",
+    "audited_direction": "YARN_STORE -> baseline_v5; otherwise -> baseline_v8",
+    "mechanism_interpretation": "YARN_STORE is a public demand-regime observation. The router selects a whole season expert rather than modifying any individual order."
+  },
+  "rounds": {
+    "round_001": {
+      "panel_sha256": "22f9c3a7b52dc43c01f3858b133c5b284e75ee20434fed6e7ddbc4e01bc95434",
+      "source_seeds": 100,
+      "seats_per_seed": 2,
+      "common_opponents": 12,
+      "common_paired_games": 2400,
+      "yarn_paired_games": 360,
+      "overall_score_uplift_vs_fixed_v8": 0.050416666666666665,
+      "conditional_yarn_score_uplift": 0.33611111111111114,
+      "conditional_yarn_by_date": {
+        "2026-08-18": {
+          "games": 168,
+          "score_uplift": 0.4226190476190476
+        },
+        "2026-08-19": {
+          "games": 72,
+          "score_uplift": 0.4027777777777778
+        },
+        "2026-08-20": {
+          "games": 120,
+          "score_uplift": 0.175
+        }
+      },
+      "worst_common_opponent_conditional_uplift": 0.13333333333333333,
+      "conditional_transitions": {
+        "1->1": 150,
+        "0->1": 116,
+        "0->0": 60,
+        "0.5->1": 18,
+        "0->0.5": 8,
+        "1->0": 8
+      }
+    },
+    "round_002": {
+      "panel_sha256": "ee40d326639a345ce426d3377cac71f65adbb809a855c9efeb23368bf3c36fef",
+      "source_seeds": 100,
+      "seats_per_seed": 2,
+      "common_opponents": 13,
+      "common_paired_games": 2600,
+      "yarn_paired_games": 312,
+      "overall_score_uplift_vs_fixed_v8": 0.04423076923076923,
+      "conditional_yarn_score_uplift": 0.3685897435897436,
+      "conditional_yarn_by_date": {
+        "2026-08-18": {
+          "games": 78,
+          "score_uplift": 0.4230769230769231
+        },
+        "2026-08-19": {
+          "games": 130,
+          "score_uplift": 0.34615384615384615
+        },
+        "2026-08-20": {
+          "games": 104,
+          "score_uplift": 0.3557692307692308
+        }
+      },
+      "worst_common_opponent_conditional_uplift": 0.0,
+      "conditional_transitions": {
+        "1->1": 145,
+        "0->1": 115,
+        "0->0": 28,
+        "0->0.5": 12,
+        "1->0": 8,
+        "0.5->1": 4
+      }
+    },
+    "round_003": {
+      "panel_sha256": "b74b8b77efe510f7b5158dee512bf82982178be302b02fd3d9effcb4e288baaa",
+      "source_seeds": 100,
+      "seats_per_seed": 2,
+      "common_opponents": 14,
+      "common_paired_games": 2800,
+      "yarn_paired_games": 420,
+      "overall_score_uplift_vs_fixed_v8": 0.05178571428571429,
+      "conditional_yarn_score_uplift": 0.34523809523809523,
+      "conditional_yarn_by_date": {
+        "2026-08-18": {
+          "games": 84,
+          "score_uplift": 0.3333333333333333
+        },
+        "2026-08-19": {
+          "games": 168,
+          "score_uplift": 0.32142857142857145
+        },
+        "2026-08-20": {
+          "games": 168,
+          "score_uplift": 0.375
+        }
+      },
+      "worst_common_opponent_conditional_uplift": 0.03333333333333333,
+      "conditional_transitions": {
+        "1->1": 198,
+        "0->1": 131,
+        "0->0": 63,
+        "0->0.5": 18,
+        "0.5->1": 10,
+        "1->0": 0
+      }
+    }
+  },
+  "prefix_evidence": {
+    "contract": "the existing V10 full-expert routers advanced V5 and V8 on the same reached observations through step 72 and recorded exact prefix equality",
+    "round_001_router_games_checked": 5200,
+    "round_002_router_games_checked": 5600,
+    "round_003_router_games_checked": 6000,
+    "prefix_failures": 0,
+    "candidate_runtime_check": "V12C independently repeats exact V5/V8 action comparison for steps 0..71 and fails closed to V8 on any mismatch"
+  },
+  "source_game_files": {
+    "round_001": "cf59475eb7f732fb41bce11bb8f51236bde8d5d2dce123da3f9025ea33e613d7",
+    "round_002": "719a01a92cb03d77fc70bb7d2c23862cc781922da1c370f1b5e067f067607e94",
+    "round_003": "fce17c11ff163603ecc26b8bb87c8c320f14527dd8fa74ab3a2175adcdff77ae"
+  },
+  "negative_controls": [
+    "No formal100 or test split was read or run.",
+    "The 18-seed screen is not included in this development evidence.",
+    "No numeric threshold was searched: shop presence is a categorical public state."
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "topic": {
+    "id": 726883,
+    "title": "1st Place - Kaggle Agent - Self Evolving Prompts",
+    "authorName": "Chris Deotte",
+    "commentCount": 10,
+    "votes": 38,
+    "postDate": "2026-07-16T20:37:04.910000"
+  },
+  "comments": [
+    {
+      "id": 3500007,
+      "authorName": "Navneet",
+      "votes": 1,
+      "postDate": "2026-07-18T10:33:43.190000",
+      "content": "<p>Thank you for the Kaggle Agent <a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> </p>"
+    },
+    {
+      "id": 3499893,
+      "authorName": "c0sm1c",
+      "votes": 1,
+      "postDate": "2026-07-18T07:45:49.170000",
+      "content": "<p>This plan is extremely creative. Although I'm aware that AI has a certain degree of randomness, I never thought of optimizing in this way before. It's really impressive.\ud83d\ude03</p>"
+    },
+    {
+      "id": 3499266,
+      "authorName": "mudesteven",
+      "votes": 2,
+      "postDate": "2026-07-16T20:53:42.917000",
+      "content": "<p>Wow intresting approach. Does the manager agent manage across tasks? How many tasks/agents can it realistically manage? </p>"
+    },
+    {
+      "id": 3499271,
+      "authorName": "Chris Deotte",
+      "votes": 1,
+      "postDate": "2026-07-16T21:01:26.537000",
+      "content": "<p>The manager has no trouble keeping up because the agents are spending like 30 minutes to 2 hours on a task. Improvement happens slowly and the manager can easily read logs and follow and coach the work.</p>"
+    },
+    {
+      "id": 3499567,
+      "authorName": "Evolvion",
+      "votes": 1,
+      "postDate": "2026-07-17T16:19:50.190000",
+      "content": "<p>How did your manager automatically collect and monitor the agents\u2019 results? Did you use the OpenAI API or another supported integration? My understanding is that automated scraping of the ChatGPT UI may be restricted, so I\u2019m curious how you implemented this compliantly.</p>"
+    },
+    {
+      "id": 3499580,
+      "authorName": "Evolvion",
+      "votes": 1,
+      "postDate": "2026-07-17T16:33:01.597000",
+      "content": "<p>Just for clarification our process intentionally used only the ONNX files. We manually downloaded  and consciously ignored all other generated outputs. This was a deliberate design choice, not an omission. I will explain the reasoning and workflow in more detail in the full write-up.</p>"
+    },
+    {
+      "id": 3499774,
+      "authorName": "Chris Deotte",
+      "votes": 1,
+      "postDate": "2026-07-17T21:56:44.367000",
+      "content": "<p>Hi Evolvion, great question.</p>\n<blockquote>\n  <p>How did your manager automatically collect and monitor the agents' results?</p>\n</blockquote>\n<p>This discussion post refers to the multi-turn conversations locally run by Codex CLI and Claude Code CLI. Agents write activity logs describing what they are doing and write improved ONNX to a shared folder. The manager reads these files from the shared folders. The manager can then inject instructions/guidance into the agents' conversation streams.</p>\n<p>For ChatGPT, the process is different. We create a <code>tar.gz</code> file with inputs and a prompt for a specific task. Then we manually upload this <code>tar.gz</code> file and paste the prompt in ChatGPT. Afterward, we manually download the ONNX file from ChatGPT.</p>"
+    },
+    {
+      "id": 3499817,
+      "authorName": "mudesteven",
+      "votes": 1,
+      "postDate": "2026-07-18T01:20:32.683000",
+      "content": "<p>Oh that makes so much sense. We have a github connector setup so agents can upload onnx and logs directly to github which allowed us to just launch them and forget about collection. However once the agents produce results the github is often flooded with commits every few seconds since we often parallel a lot of tasks at the same time. </p>"
+    },
+    {
+      "id": 3499818,
+      "authorName": "mudesteven",
+      "votes": 1,
+      "postDate": "2026-07-18T01:20:52.370000",
+      "content": "<p>I mean chatgpt web agents not local code agents. </p>"
+    },
+    {
+      "id": 3499265,
+      "authorName": "",
+      "votes": 1,
+      "postDate": "2026-07-16T20:53:16.077000",
+      "content": ""
+    }
+  ]
+}
