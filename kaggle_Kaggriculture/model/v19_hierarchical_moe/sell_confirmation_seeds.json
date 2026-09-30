@@ -1,0 +1,18 @@
+{
+  "schema": "kaggriculture-v19-fertilizer-sell-confirmation-v1",
+  "phase": "sell_confirmation",
+  "comparison": "boost_fertilizer_vs_same_router_none",
+  "frozen_before_outcomes": true,
+  "seed_range": [72000, 72047],
+  "opponent_families": ["adaptive_market", "bc_ppo", "anti_mirror", "incumbent_r002", "ppo_topdays", "rule_hybrid", "kawa_lead2"],
+  "double_seat": true,
+  "candidate_games": 672,
+  "baseline_games": 672,
+  "controller": {
+    "product": "FERTILIZER",
+    "minimum_observed_price": 57,
+    "boost_fraction": 0.25,
+    "only_existing_sell_orders": true,
+    "bounded_by_projected_shed": true
+  }
+}

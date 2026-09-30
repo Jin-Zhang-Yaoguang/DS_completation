@@ -1,0 +1,131 @@
+{
+  "schema": "r10-p3-root-internal-decision-v1",
+  "created_at_utc": "2026-09-05T14:23:45.211599+00:00",
+  "source_sha256": "b5bcdd51829e9df20686de08935e96f65ec3ca7f1bd13bf7f9c756cfaa0465e6",
+  "release_sha256": "a77ef126904b2a22a1056f5b241fe2673c29dfbcb6d2023165c13182c34e31d1",
+  "summary_sha256": "7c6f29058dfe2041cec3d6000666942ad215d482212522433aefc31172a7f372",
+  "status": "BOUNDED_INTERNAL_PASS_FULL_AGENT_AND_SUCCESSFUL_RESCUE_PENDING",
+  "verified_source_files": 88,
+  "verified_output_records": 11,
+  "counts": {
+    "module_definition_loads": 6,
+    "pure_key_calls": 7,
+    "pure_select_calls": 8,
+    "pure_fail_calls": 3,
+    "new_state_calls": 5,
+    "internal_economic_calls": 5
+  },
+  "nested_economic_counts": {
+    "route_attempts": 2,
+    "scheduler_calls": 6,
+    "checker_calls": 6
+  },
+  "performance": {
+    "day8_funded_s0": {
+      "returned": true,
+      "seconds": 0.19554916699416935,
+      "over_1s": false,
+      "observation_unchanged": true
+    },
+    "day8_funded_s1": {
+      "returned": true,
+      "seconds": 0.19338520790915936,
+      "over_1s": false,
+      "observation_unchanged": true
+    },
+    "day8_zero_cash_s0": {
+      "returned": true,
+      "seconds": 0.137506042025052,
+      "over_1s": false,
+      "observation_unchanged": true
+    },
+    "day8_zero_cash_s1": {
+      "returned": true,
+      "seconds": 0.1283785830019042,
+      "over_1s": false,
+      "observation_unchanged": true
+    },
+    "day3_in_transit_batch24_s0": {
+      "returned": true,
+      "seconds": 0.1021099160425365,
+      "over_1s": false,
+      "observation_unchanged": true
+    }
+  },
+  "case_comparisons": {
+    "day8_funded_s0": {
+      "passed": true,
+      "counts": {
+        "route_attempts": 1,
+        "scheduler_calls": 3,
+        "checker_calls": 3
+      },
+      "rescue_approved": false,
+      "rescue_status": "ROUTE_REJECTED",
+      "cheap_accepted_count": 0,
+      "post_route_cash_branch": "PENDING_BRANCH_NOT_COVERED"
+    },
+    "day8_funded_s1": {
+      "passed": true,
+      "counts": {
+        "route_attempts": 1,
+        "scheduler_calls": 3,
+        "checker_calls": 3
+      },
+      "rescue_approved": false,
+      "rescue_status": "ROUTE_REJECTED",
+      "cheap_accepted_count": 0,
+      "post_route_cash_branch": "PENDING_BRANCH_NOT_COVERED"
+    },
+    "day8_zero_cash_s0": {
+      "passed": true,
+      "counts": {
+        "route_attempts": 0,
+        "scheduler_calls": 0,
+        "checker_calls": 0
+      },
+      "rescue_approved": false,
+      "rescue_status": "NO_ELIGIBLE_RESCUE",
+      "cheap_accepted_count": 0,
+      "post_route_cash_branch": "PENDING_BRANCH_NOT_COVERED"
+    },
+    "day8_zero_cash_s1": {
+      "passed": true,
+      "counts": {
+        "route_attempts": 0,
+        "scheduler_calls": 0,
+        "checker_calls": 0
+      },
+      "rescue_approved": false,
+      "rescue_status": "NO_ELIGIBLE_RESCUE",
+      "cheap_accepted_count": 0,
+      "post_route_cash_branch": "PENDING_BRANCH_NOT_COVERED"
+    },
+    "day3_in_transit_batch24_s0": {
+      "passed": true,
+      "counts": {
+        "route_attempts": 0,
+        "scheduler_calls": 0,
+        "checker_calls": 0
+      },
+      "rescue_approved": false,
+      "rescue_status": "NO_ELIGIBLE_RESCUE",
+      "cheap_accepted_count": 24,
+      "post_route_cash_branch": "PENDING_BRANCH_NOT_COVERED"
+    }
+  },
+  "max_internal_seconds": 0.19554916699416935,
+  "successful_rescues": 0,
+  "cheap_batch24_preserved": true,
+  "pending": [
+    "No full agent or actual execution in these controls",
+    "All five cases did not approve a rescue; full successful route-to-cash-to-permit path still unobserved",
+    "Current sheep first choice failed; continuous cycling and opportunity cost need live observation",
+    "No new complete match, formal qualification or gold evidence"
+  ],
+  "next_scope": "Preregister continuous official short trajectories on already opened funded day8 inputs, with original P3 source and a fixed horizon; record full entry latency, actual actions and rescue outcomes. Do not infer strength from those artificial states.",
+  "full_agent_calls": 0,
+  "official_steps": 0,
+  "new_complete_matches": 0,
+  "gold_status": "NOT_GOLD"
+}

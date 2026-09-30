@@ -1,0 +1,57 @@
+{
+  "schema": "v14-online-diagnosis-chart-map-v1",
+  "charts": [
+    {
+      "path": "figures/01_metric_mismatch.png",
+      "segment": "未加权胜率与 Rating 的方向确实相反",
+      "question": "三个 submission 的未加权胜率与冻结 Rating 是否同序？",
+      "family": "comparison",
+      "type": "two-panel bar with Wilson intervals",
+      "fields": [
+        "model",
+        "pure_win_rate",
+        "ci_low",
+        "ci_high",
+        "public_rating",
+        "games"
+      ],
+      "claim": "V14 raw win rate highest but Rating below A2; metrics are not interchangeable.",
+      "source": "official episodes_full.json plus saved submission publicScore"
+    },
+    {
+      "path": "figures/02_opponent_mix.png",
+      "segment": "对手构成足以消除高总胜率的表象",
+      "question": "V14 与 A2 是否面对同难度对手，且同层表现如何？",
+      "family": "composition and comparison",
+      "type": "stacked bar plus grouped bar",
+      "fields": [
+        "model",
+        "opponent_rating_proxy_bin",
+        "games",
+        "share",
+        "score_rate"
+      ],
+      "claim": "V14 sees fewer >=2000 proxy opponents and is weaker within that segment.",
+      "limitation": "Current post-outcome team Score proxy, not per-game pre-rating; descriptive only.",
+      "source": "official episodes_full.json plus leaderboard snapshot"
+    },
+    {
+      "path": "figures/03_mechanism_activation.png",
+      "segment": "本地高覆盖的新增机制，线上只在短暂 A2-compatible 前缀触发",
+      "question": "V14 exact-A2 specialization conditions and reorder trigger occur how often locally vs online?",
+      "family": "comparison",
+      "type": "grouped bar",
+      "fields": [
+        "cohort",
+        "exact_a2_share",
+        "shadow_trusted_end_share",
+        "games_with_reorder_share"
+      ],
+      "claim": "Online probed replays contain no exact A2 or trusted terminal shadow, and reorder activates in only 8 of 87 games.",
+      "validation": "Only archive action 100% reproduced replay games are attributed.",
+      "source": "local confirmatory games plus runtime_probe.json"
+    }
+  ],
+  "palette_policy": "hard two-root cap plus neutral",
+  "qa_notes": "All percentage axes start at zero; direct labels include denominator or n; no causal title is used for the proxy decomposition."
+}

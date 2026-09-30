@@ -1,0 +1,56 @@
+{
+  "training_examples": 120,
+  "validation_examples": 80,
+  "training_seeds": 12,
+  "validation_seeds": 8,
+  "chosen": "tree3",
+  "baseline_mean_intervention_regret": 1143.7875,
+  "ranking": [
+    {
+      "name": "tree2",
+      "mean_intervention_regret": 1644.3875,
+      "sign_accuracy": 0.6125,
+      "wrong_switch_loss": 0.0,
+      "validation_switches": 0
+    },
+    {
+      "name": "tree3",
+      "mean_intervention_regret": 1181.2125,
+      "sign_accuracy": 0.6875,
+      "wrong_switch_loss": 2225.0,
+      "validation_switches": 10
+    },
+    {
+      "name": "tree4",
+      "mean_intervention_regret": 1381.3875,
+      "sign_accuracy": 0.6125,
+      "wrong_switch_loss": 18239.0,
+      "validation_switches": 16
+    },
+    {
+      "name": "rf",
+      "mean_intervention_regret": 1577.5625,
+      "sign_accuracy": 0.6125,
+      "wrong_switch_loss": 3234.0,
+      "validation_switches": 4
+    },
+    {
+      "name": "extra",
+      "mean_intervention_regret": 1400.2375,
+      "sign_accuracy": 0.6375,
+      "wrong_switch_loss": 2225.0,
+      "validation_switches": 6
+    },
+    {
+      "name": "gbr",
+      "mean_intervention_regret": 1516.75,
+      "sign_accuracy": 0.6125,
+      "wrong_switch_loss": 11546.0,
+      "validation_switches": 8
+    }
+  ],
+  "export_parity": true,
+  "dataset_sha256": "51057e156ba3a45f8ce817762b3c56eb8db24a9b0f11b7997f3e7fc42502f3c0",
+  "training_script_sha256": "390083c7262eec769f60d47ffdd94b71b6e54e0e1ceebd437f5ceb258a24caf8",
+  "caveat": "Single-intervention outcomes do not prove composed policy returns. All seeds are development, including internal validation."
+}

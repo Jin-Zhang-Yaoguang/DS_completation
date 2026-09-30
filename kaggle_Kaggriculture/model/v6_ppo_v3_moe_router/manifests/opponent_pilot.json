@@ -1,0 +1,39 @@
+{
+  "schema": "kaggriculture-ppo-v3-opponent-manifest-1",
+  "scope": "small deterministic D2 pilot only; this is not the 24-32 opponent production league",
+  "opponents": [
+    {
+      "id": "starter",
+      "family": "official_starter",
+      "lineage": "kaggle-environments-starter",
+      "deterministic_replay": true,
+      "allowed_data": ["D0", "D1", "D2"]
+    },
+    {
+      "id": "forced_low",
+      "family": "route_template_low",
+      "lineage": "catalog-v1-routes-1",
+      "deterministic_replay": true,
+      "allowed_data": ["D0", "D1", "D2"]
+    },
+    {
+      "id": "forced_high",
+      "family": "route_template_high",
+      "lineage": "catalog-v1-routes-1",
+      "deterministic_replay": true,
+      "allowed_data": ["D0", "D1", "D2"]
+    },
+    {
+      "id": "v1",
+      "family": "adaptive_market",
+      "lineage": "v1_adaptive_market",
+      "deterministic_replay": true,
+      "allowed_data": ["D0", "D1", "D2"]
+    }
+  ],
+  "excluded": [
+    "official random agent: process-local RNG makes replay recipes nonportable",
+    "public replay without executable opponent code: cannot create a closed-loop counterfactual label",
+    "online opponent private state and account identifiers"
+  ]
+}

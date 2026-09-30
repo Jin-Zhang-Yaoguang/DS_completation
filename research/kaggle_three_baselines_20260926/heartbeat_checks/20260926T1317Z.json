@@ -1,0 +1,218 @@
+{
+  "checked_at_utc": "2026-09-26T13:18:22.802055+00:00",
+  "baseline_live_status": {
+    "gemma-4-developer-agent": {
+      "phase": "submitted_waiting_for_online_score",
+      "submission_id": 56575684,
+      "submission_status": "PENDING",
+      "public_score": null,
+      "updated_at": "2026-09-26T13:18:05.836436Z",
+      "monitor": {
+        "script": "track_result.py",
+        "pid": 71095,
+        "interval_seconds": 120,
+        "log": "tracking.log",
+        "mode": "read_only_cli",
+        "downloads_notebook_output_on_terminal_status": true
+      },
+      "blocker": "Kaggle 评分仍在处理，尚无最终公榜分数"
+    },
+    "arc-prize-2026-arc-agi-3": {
+      "phase": "complete",
+      "submission_id": 56576143,
+      "submission_status": "SubmissionStatus.COMPLETE",
+      "public_score": 0.09,
+      "updated_at": "2026-09-26T10:07:44.911924+00:00",
+      "monitor": null,
+      "blocker": null
+    },
+    "arc-prize-2026-arc-agi-2": {
+      "phase": "submission_complete",
+      "submission_id": 56575976,
+      "submission_status": "COMPLETE",
+      "public_score": 0.0,
+      "updated_at": "2026-09-26T09:54:06.465965+00:00",
+      "monitor": null,
+      "blocker": null
+    }
+  },
+  "ev_status": {
+    "updated_at_utc": "2026-09-26T13:18:12.070129+00:00",
+    "phase": "P3_E2E_RUNNING",
+    "current_experiment": "p3_e2e_outer5",
+    "process": {
+      "pid": 2726,
+      "active": true
+    },
+    "checkpoint": {
+      "outer": 1,
+      "family": "v85",
+      "atom": 38
+    },
+    "baseline": {
+      "online_ref": "56023943",
+      "online_public_score": 0.94635,
+      "v85_oof_auc": 0.946270227355629,
+      "v90_oof_auc": 0.946372074576589,
+      "v100_development_oof_auc": 0.9463981465241269,
+      "online_rank_snapshot": 648,
+      "team_id": "16810341",
+      "daily_remaining_at_probe": 10
+    },
+    "oof": {
+      "P1_B": 0.9463315543380929,
+      "P1_C": 0.9463785735522274,
+      "P1_M": 0.9463941900980236,
+      "V100": 0.9463981465241269,
+      "P2_A": 0.9460627523329033,
+      "P2_B": 0.9460339632783785,
+      "P2_fixed_blend": 0.946068821486031
+    },
+    "submission": {
+      "new_submission_created": false,
+      "best_ref": "56023943",
+      "best_public_score": 0.94635,
+      "rank_snapshot": 650
+    },
+    "blocker": null,
+    "next_action": "Detached P3 supervisor continues original 600-atom contract; independent U verification then gated one-shot CLI submission",
+    "authorization_restored": true,
+    "permission_probe": "model/takeover_20260926/permission_probe.json",
+    "p1_diagnostic_gate": {
+      "B": true,
+      "fixed_blend": true,
+      "any_pass": true
+    },
+    "e2e_protocol": {
+      "revision": "R02",
+      "status": "FROZEN_WAITING_FORMAL_ACTIVATION",
+      "audit": "model/takeover_20260926/p1_e2e_outer5/protocol_audit.json",
+      "audit_sha256": "74d320a40ac6d86ae4980c203ff19a3c8b96c98d47a335744e816d83a06255f9",
+      "final_comparator": "FAITHFUL_ONLINE_V100_ALGORITHM",
+      "old_A_B_gate_inherited": false,
+      "CT_model_state_bytes_archived": false
+    },
+    "formal_gate": {
+      "c": false,
+      "m": false
+    },
+    "formal_verification": "PASS",
+    "formal_verification_path": "model/takeover_20260926/p1_source_group_constraints_40f/verification.json",
+    "p1_closure": {
+      "status": "VERIFIED_NO_GO",
+      "C": 0.9463785735522274,
+      "M": 0.9463941900980236,
+      "V100": 0.9463981465241269,
+      "e2e_not_activated": true
+    },
+    "p2_gate": {
+      "B": false,
+      "fixed_blend": false
+    },
+    "p2_verification": "PASS",
+    "closeout_path": "model/takeover_20260926/takeover_closeout.json",
+    "goal_achieved": false,
+    "p3": {
+      "plan": "research/kaggle_three_baselines_20260926/ev_takeover/P3_PLAN.md",
+      "preregistration": "model/takeover_20260926/p3_internal_v85_family_replace_20260926/preregistration.json",
+      "source_freeze": "model/takeover_20260926/p3_internal_v85_family_replace_20260926/source_freeze.json",
+      "development_result": "model/takeover_20260926/p3_internal_v85_family_replace_20260926/development_result.json",
+      "development_verification": "model/takeover_20260926/p3_internal_v85_family_replace_20260926/independent_verification.json",
+      "development_gate": true,
+      "development_auc": 0.9464368745463543,
+      "development_delta": 3.872802222737448e-05,
+      "positive_blocks": 5,
+      "e2e_activated": true,
+      "e2e_protocol": "model/takeover_20260926/p3_e2e_outer5/protocol_audit.json",
+      "e2e_protocol_sha256": "0c29d546ee678921053329f99dffe4af6deaed15f769956bc5cc2c78b34f328a",
+      "e2e_preflight_sha256": "7b87093b24176c536c4ea375917bdcd67d707629da1456d459dde2d9c27a16fa",
+      "ct_model_state_bytes_archived": false
+    },
+    "p3_recovery": {
+      "status": "RECOVERY_ACCEPTED_DETACHED_AND_RESUMED",
+      "audit": "model/takeover_20260926/p3_e2e_outer5/recovery_20260926T1224/recovery_audit.json",
+      "launch": "model/takeover_20260926/p3_e2e_outer5/recovery_20260926T1224/launch.json",
+      "acceptance": "model/takeover_20260926/p3_e2e_outer5/recovery_20260926T1224/acceptance.json",
+      "same_contract_sha256": "4d254f2215f566fc8cefb11575645b177dfa8f9f4c4c3e9345ab3cf2f4f52466",
+      "old_atoms_unchanged": 10,
+      "new_atoms_confirmed": 2,
+      "budget_adjustment_seconds": 120.0,
+      "supervisor_pid": 2725,
+      "trainer_pid_at_launch": 2726
+    }
+  },
+  "progress": {
+    "completed_atoms": 78,
+    "total_atoms": 600,
+    "outer": 1,
+    "family": "v85",
+    "atom": 38,
+    "spent_seconds": 3546.6635194160044,
+    "contract_sha256": "4d254f2215f566fc8cefb11575645b177dfa8f9f4c4c3e9345ab3cf2f4f52466",
+    "updated_at_utc": "2026-09-26T13:18:12.069476+00:00"
+  },
+  "budget": {
+    "spent_seconds": 3546.68009566603,
+    "peak_rss_bytes": 8243806208,
+    "pid": 2726,
+    "updated_at_utc": "2026-09-26T13:18:12.085141+00:00"
+  },
+  "locks": {
+    "supervisor.lock": "HELD",
+    "run.lock": "HELD"
+  },
+  "pid_snapshot": "  PID  PPID  PGID  ELAPSED STAT COMMAND\n 2725     1  2725    52:50 Ss   /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/continue.py\n 2726  2725  2725    52:50 R    /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/run.py\n47168     1 47168 03:45:14 Ss   codex -c approval_policy=\"never\" -c sandbox_mode=\"danger-full-access\" app-server --listen unix:///tmp/kaggle-baselines-a1-6-20260926/control.sock\n71095     1 71095 03:14:36 Ss   /opt/anaconda3/bin/python3 /Users/a1-6/.codex/worktrees/kaggle-gemma-fullaccess/DS_completation/kaggle_Gemma4_Developer_Agent/track_result.py --poll --interval 120\n",
+  "threads": [
+    {
+      "thread_id": "01a0dd16-f6f6-7e33-b134-99cf641860f9",
+      "runtime_status": {
+        "type": "notLoaded"
+      },
+      "turn_id": "01a0dd16-f96f-7830-b982-effb0c78275f",
+      "turn_status": "completed",
+      "error": null
+    },
+    {
+      "thread_id": "01a0dd17-010e-7361-97d2-a68ca9192b78",
+      "runtime_status": {
+        "type": "notLoaded"
+      },
+      "turn_id": "01a0dd17-03f3-7f83-9e35-5b0e6deca4d6",
+      "turn_status": "completed",
+      "error": null
+    },
+    {
+      "thread_id": "01a0dd17-0ca4-77c1-8c93-bfe71436d9a4",
+      "runtime_status": {
+        "type": "notLoaded"
+      },
+      "turn_id": "01a0dd17-0f71-7e82-b700-ab4425644c78",
+      "turn_status": "completed",
+      "error": null
+    },
+    {
+      "thread_id": "01a0dd23-ef6a-7a61-b789-5565365ac9f2",
+      "runtime_status": {
+        "type": "notLoaded"
+      },
+      "turn_id": "01a0ddab-283b-7821-885c-606ed678d658",
+      "turn_status": "completed",
+      "error": null
+    }
+  ],
+  "terminal_artifacts": [],
+  "checkpoint_checks": {
+    "latest_model": true,
+    "latest_predictions": true,
+    "contract": true,
+    "within_budget": true
+  },
+  "pipeline_processes": [
+    " 2725     1  2725 /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/continue.py",
+    " 2726  2725  2725 /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/run.py"
+  ],
+  "pipeline_health": "HEALTHY_PROGRESSING",
+  "action": "Updated coordination only; no new controller, thread turn or submission",
+  "all_acceptance_complete": false,
+  "notification_required": false
+}

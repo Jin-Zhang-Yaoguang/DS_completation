@@ -1,0 +1,6 @@
+print("variant:", VARIANT)
+print("submission candidate:", archive)
+print("files:", "main.py (standalone)")
+print("internet required: NO")
+print("external Dataset required: NO")
+print("RELEASE ACTIONS: OUTSIDE THIS NOTEBOOK")

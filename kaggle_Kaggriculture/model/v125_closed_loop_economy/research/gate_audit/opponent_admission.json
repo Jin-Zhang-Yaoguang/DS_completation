@@ -1,0 +1,124 @@
+{
+  "audited_at_utc": "2026-09-05T09:49:56.440548+00:00",
+  "gold_opponents_admitted": 0,
+  "note": "不能把能响应状态、当前标题高分、更新日期、作者家族数与真实动态金牌对手数等同。",
+  "public_sources": [
+    {
+      "ref": "kaitofukami/238-238-known-streams-v58-minimax-closed-loop",
+      "family": "KAITO_V58_ROUTE_LIBRARY",
+      "reactivity": "在72/96/144/360等检查点按公开状态选完整719动作续着；真正live可响应，但生产仍为编译路线库",
+      "source": "public_sources/kaitofukami__238-238-known-streams-v58-minimax-closed-loop/extracted_agent.py",
+      "license": "Apache-2.0由pilkwang上游归属声明；本次Kaggle API不返回license字段，应保留上游许可并补权利链",
+      "data_provenance": "显式使用Islet103819410、Yukino103808285及历史compiled routes，未给全体episode日期/规则配置/SHA；不能证明全部>=2026-08-20",
+      "strength": "238/238是作者已知冻结streams开发结果；对live v57仅2胜8平2负，未知对手强度未证实",
+      "admission": "DIAGNOSTIC_ONLY_PROVENANCE_UNRESOLVED",
+      "url": "https://www.kaggle.com/code/kaitofukami/238-238-known-streams-v58-minimax-closed-loop",
+      "downloaded_notebook_executed": false
+    },
+    {
+      "ref": "pilkwang/kaggriculture-structured-economic-policy",
+      "family": "KAITO_V58_ROUTE_LIBRARY",
+      "reactivity": "上面v58的原样fork加loader shim，不增加独立家族",
+      "source": "public_sources/pilkwang__kaggriculture-structured-economic-policy/extracted_agent.py",
+      "license": "源码SPDX Apache-2.0与原作者归属可见",
+      "data_provenance": "继承v58完整路线库，日期/规则边界未解决；不能因09-03更新而放行",
+      "strength": "无独立的新强度证明",
+      "admission": "DIAGNOSTIC_ONLY_SAME_FAMILY",
+      "url": "https://www.kaggle.com/code/pilkwang/kaggriculture-structured-economic-policy",
+      "downloaded_notebook_executed": false
+    },
+    {
+      "ref": "destbreso/v7-38-finance7-a-full-agent-layer-by-layer",
+      "family": "YHAY81_3DAY_ROUTER",
+      "reactivity": "yhay81两条C++tape+step360分支，外加镜像/融资修复；是会响应的混合router，不是独立生产算法",
+      "source": "public_sources/destbreso__v7-38-finance7-a-full-agent-layer-by-layer/extracted_agent.py + cell_08.py中C++源码",
+      "license": "chassis各源文件SPDX Apache-2.0；作者自有layer许可未在API独立给出",
+      "data_provenance": "两条tape来源没有本项目要求的日期、规则与Replay SHA完整登记",
+      "strength": "前代2593.8/203episodes为作者历史自述；原样复制已知204streams结果相同。不得拿作当前Top25动态实力",
+      "admission": "DIAGNOSTIC_ONLY_PROVENANCE_UNRESOLVED",
+      "url": "https://www.kaggle.com/code/destbreso/v7-38-finance7-a-full-agent-layer-by-layer",
+      "downloaded_notebook_executed": false
+    },
+    {
+      "ref": "tetsutani/shape-the-shop-work-the-pasture-kaggriculture",
+      "family": "YHAY81_3DAY_ROUTER",
+      "reactivity": "相同两条native路线、相同step360树，增加最后一回合产品扫货",
+      "source": "public_sources/tetsutani__shape-the-shop-work-the-pasture-kaggriculture/extracted_agent.py",
+      "license": "许可未由本次API返回；需要核实native chassis和封装各层出处",
+      "data_provenance": "未提供完整两条路线日期/规则SHA；embedded native binary不是独立原创证明",
+      "strength": "只有ABI/runtime自检描述，没有金牌对抗证据",
+      "admission": "DIAGNOSTIC_ONLY_SAME_FAMILY",
+      "url": "https://www.kaggle.com/code/tetsutani/shape-the-shop-work-the-pasture-kaggriculture",
+      "downloaded_notebook_executed": false
+    },
+    {
+      "ref": "yhay81/six-day-public-state-fieldbook",
+      "family": "YHAY81_6DAY_ROUTE_LIBRARY",
+      "reactivity": "8条历史tape，四棵树分144回合区块选择；状态可响应，但不是自有状态上的自由生产规划",
+      "source": "public_sources/yhay81__six-day-public-state-fieldbook/six-day-public-state-fieldbook.ipynb；另需公开dataset yhay81/six-day-public-state-agent-source（本次未下载）",
+      "license": "notebook声明source dataset Apache-2.0，尚未独立读取该dataset许可文件",
+      "data_provenance": "正文明确用current top200及older public replays、400 historical episodes；没有最早日期/完整SHA，不能证明>=08-20",
+      "strength": "22,795胜/58平/1,211负是对188冻结外部histories的作者本地测量，非188动态对手",
+      "admission": "DIAGNOSTIC_ONLY_PROVENANCE_UNRESOLVED",
+      "url": "https://www.kaggle.com/code/yhay81/six-day-public-state-fieldbook",
+      "downloaded_notebook_executed": false
+    },
+    {
+      "ref": "dianatofficial/kaggriculture-reactive-agent-strategy-eda",
+      "family": "SMALL_REACTIVE_RULE_BASELINE",
+      "reactivity": "可读约3KB规则函数，按当前植物、水分、仓库和价格行动；未见嵌入Replay/模型权重",
+      "source": "public_sources/dianatofficial__kaggriculture-reactive-agent-strategy-eda/extracted_agent.py",
+      "license": "本次API无license字段；未作为发布依赖",
+      "data_provenance": "未见Replay数据读取或压缩路线；静态检查不证明作者全部开发过程",
+      "strength": "没有可核对的高分/胜率证据；未运行，不算强对手",
+      "admission": "QA_BASELINE_CANDIDATE_NOT_GOLD_OPPONENT",
+      "url": "https://www.kaggle.com/code/dianatofficial/kaggriculture-reactive-agent-strategy-eda",
+      "downloaded_notebook_executed": false
+    }
+  ],
+  "top5_crop_search": [
+    {
+      "user": "keizkeiz",
+      "fetched_at_utc": "2026-09-05T09:45:23.975967+00:00",
+      "returncode": 0,
+      "notebooks": [],
+      "error": ""
+    },
+    {
+      "user": "jessebullard",
+      "fetched_at_utc": "2026-09-05T09:45:23.977237+00:00",
+      "returncode": 0,
+      "notebooks": [],
+      "error": ""
+    },
+    {
+      "user": "andreytikhomirov",
+      "fetched_at_utc": "2026-09-05T09:45:25.403836+00:00",
+      "returncode": 0,
+      "notebooks": [],
+      "error": ""
+    },
+    {
+      "user": "mariotrsn",
+      "fetched_at_utc": "2026-09-05T09:45:26.655599+00:00",
+      "returncode": 0,
+      "notebooks": [],
+      "error": ""
+    },
+    {
+      "user": "bohannnwang",
+      "fetched_at_utc": "2026-09-05T09:45:27.454174+00:00",
+      "returncode": 0,
+      "notebooks": [],
+      "error": ""
+    },
+    {
+      "user": "rishigottumukkala",
+      "fetched_at_utc": "2026-09-05T09:45:28.699845+00:00",
+      "returncode": 0,
+      "notebooks": [],
+      "error": ""
+    }
+  ],
+  "search_limitation": "只证明本次competition-filtered公开notebook查询未找到，不证明这些作者在全互联网绝无公开代码。"
+}

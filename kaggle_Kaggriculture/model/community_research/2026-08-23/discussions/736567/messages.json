@@ -1,0 +1,163 @@
+[
+  {
+    "id": 3515353,
+    "authorName": "",
+    "postDate": "2026-08-21T15:03:47.630000",
+    "votes": 9,
+    "content": "<p>I spent nearly a week experimenting with reinforcement learning, using a model to directly control every action at every turn. Unfortunately, I wasn't able to make it work.</p>\n<p>The biggest challenge was cold start. I tried behavior cloning first, and although there are plenty of available replays, most of them are highly similar. As a result, the model could imitate some stereotyped behavior patterns, but it struggled to learn the underlying principles of farm management and long-term decision making.</p>\n<p>Exploration was even harder. There are many crop types, their growing cycles are long, and the farmer has a very large action space. This makes meaningful exploration extremely difficult.</p>\n<p>I also experimented with many forms of reward shaping. Eventually, the agent learned to manage the first plot of land reasonably well, but it failed to generalize that behavior to the second and third plots. On those additional plots, the successful harvest rate was only around 20%\u201340% at best.</p>\n<p>This created another problem: from the agent's perspective, buying additional land appeared to have negative expected value. As training continued, the policy gradually stopped purchasing land altogether.</p>\n<p>So far, my experience has been that directly learning low-level control with RL is much harder than I initially expected, especially because failures in long-horizon farming decisions can make otherwise useful strategic actions look unprofitable.</p>"
+  },
+  {
+    "id": 3515358,
+    "authorName": "",
+    "postDate": "2026-08-21T15:22:39.503000",
+    "votes": 1,
+    "content": "<p>Currently I'm trying to only focus on the first 14 days. If I can get my agent to do well in those 14 days, then I can start making the horizon longer.</p>"
+  },
+  {
+    "id": 3515390,
+    "authorName": "",
+    "postDate": "2026-08-21T16:43:43.900000",
+    "votes": 0,
+    "content": "<p>I am currently just trying to maximize final bank with only one tile being used and only wheat planting and selling is allowed. This is in itself difficult enough already:D</p>"
+  },
+  {
+    "id": 3515392,
+    "authorName": "",
+    "postDate": "2026-08-21T16:45:45.980000",
+    "votes": 0,
+    "content": "<p>AlphaStar gives me hope though</p>"
+  },
+  {
+    "id": 3515402,
+    "authorName": "",
+    "postDate": "2026-08-21T17:15:40.350000",
+    "votes": 1,
+    "content": "<p>Take it easy, one breakthrough at a time \ud83d\ude06</p>"
+  },
+  {
+    "id": 3515409,
+    "authorName": "",
+    "postDate": "2026-08-21T17:24:23.150000",
+    "votes": 0,
+    "content": "<p>Coding Agents can't really do it on their own so I need to see what's going on and what's possible^^' haven't experimented with RL too much yet, but it's so easy to mess around with anything now so I got pulled in :D it's so fascinating to see any progress</p>"
+  },
+  {
+    "id": 3515410,
+    "authorName": "",
+    "postDate": "2026-08-21T17:27:09.810000",
+    "votes": 0,
+    "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F3623956%2Fad48b68fd88b5dda0a3d0eec201fcdb9%2FCaptura%20desde%202026-08-21%2019-25-51.png?generation=1787333202692528&amp;alt=media\" alt=\"\"></p>\n<p>oh</p>"
+  },
+  {
+    "id": 3515483,
+    "authorName": "",
+    "postDate": "2026-08-21T20:28:30.193000",
+    "votes": 0,
+    "content": "<p>are you aware how many cpus did it take to train alphastar?</p>"
+  },
+  {
+    "id": 3515630,
+    "authorName": "",
+    "postDate": "2026-08-22T07:05:31.437000",
+    "votes": 0,
+    "content": "<p>that FIDE chess challenge was nothing but modifying the source of stockfish chess engine, so it's not that impressive \ud83d\ude02</p>"
+  },
+  {
+    "id": 3516058,
+    "authorName": "",
+    "postDate": "2026-08-23T01:11:50.840000",
+    "votes": 0,
+    "content": "<p>They used a mix of TPUs and CPUs for league training which lasted 44 days.  So, assuming that I am reading the paper correctly; here is the breakdown:</p>\n<ul>\n<li>384 v3 TPUs: (12 flavors of agents x 32 v3 TPUs)</li>\n<li>1800 processors w/ 28 cores: (12 learning envs x 150 processors)</li>\n<li>Unlisted: Extra processors used for evaluation benchmarks</li>\n</ul>\n<p>Here is a <a href=\"https://www.nature.com/articles/s41586-019-1724-z\" target=\"_blank\">link </a>to the paper, but it is behind a paywall.  They also open sourced some code on GitHub that is written in Jax, <a href=\"https://github.com/google-deepmind/alphastar/tree/main\" target=\"_blank\">link</a>  </p>"
+  },
+  {
+    "id": 3515610,
+    "authorName": "",
+    "postDate": "2026-08-22T06:21:59.090000",
+    "votes": 0,
+    "content": "<p>That makes a lot of sense. I think shortening the horizon is probably one of the most practical ways to make the problem learnable.</p>"
+  },
+  {
+    "id": 3515359,
+    "authorName": "",
+    "postDate": "2026-08-21T15:29:36.707000",
+    "votes": 0,
+    "content": "<p>It's good to hear that I'm not the only one having trouble. </p>\n<p>I'm still struggling with getting the training runs to produce something useful. I keep finding bugs that make some actions impossible for the agent to even attempt. </p>\n<p>I started with behavior cloning and then to self play.</p>\n<p>I think I'm getting close to a working solution.</p>\n<p>I'm using an expected value reward system where a seed is worth it's purchase cost but a plant has a growing value and a harvested crop the most value. This is true with animals too. </p>\n<p>I'm not 100% it will work but there needs to be some feedback that causes the agent to add value to his board. </p>"
+  },
+  {
+    "id": 3515564,
+    "authorName": "",
+    "postDate": "2026-08-22T01:32:31.373000",
+    "votes": 0,
+    "content": "<p>Can your BC work? My BC model has a poor score. It will have some single moves that look correct. But it cannot make effective decisions due to the accumulated error problem in BC.</p>"
+  },
+  {
+    "id": 3515616,
+    "authorName": "",
+    "postDate": "2026-08-22T06:35:25.843000",
+    "votes": 1,
+    "content": "<p>That is similar to what I observed. Although there are many leaderboard replays, the effective behavioral diversity seems much smaller than the replay count suggests. Therefore, the model performs poorly on out-of-distribution states.</p>"
+  },
+  {
+    "id": 3515419,
+    "authorName": "",
+    "postDate": "2026-08-21T17:50:01.080000",
+    "votes": 0,
+    "content": "<p>eventually u will get ahead</p>"
+  },
+  {
+    "id": 3515613,
+    "authorName": "",
+    "postDate": "2026-08-22T06:31:25.143000",
+    "votes": 0,
+    "content": "<p>Thanks! Still experimenting</p>"
+  },
+  {
+    "id": 3515578,
+    "authorName": "",
+    "postDate": "2026-08-22T03:18:26.160000",
+    "votes": 0,
+    "content": "<p>With great identification of the issue demands a great setup of an awarding mechanism. \nWhat hardware are you training on btw? if its not something crazy, it's usually recommended to start with heuristics and then fine-tune with rl. </p>"
+  },
+  {
+    "id": 3515618,
+    "authorName": "",
+    "postDate": "2026-08-22T06:40:14.353000",
+    "votes": 0,
+    "content": "<p>I actually have access to a 192-core CPU machine, which is one of the reasons I wanted to give RL a serious try. I\u2019m still quite new to RL though, so I\u2019m sure I\u2019m not using the hardware nearly as effectively as I could yet</p>"
+  },
+  {
+    "id": 3516086,
+    "authorName": "",
+    "postDate": "2026-08-23T04:30:52.057000",
+    "votes": 0,
+    "content": "<p>wow. for sure yeah. high investment high return. recommend to look into past competitions' top solutions.</p>"
+  },
+  {
+    "id": 3515623,
+    "authorName": "",
+    "postDate": "2026-08-22T06:52:23.350000",
+    "votes": 1,
+    "content": "<p>Hi, we\u2019re also looking into this problem. Although I\u2019ve been continuously training RL models, unfortunately, all of our high-scoring models so far have been rule-based.</p>\n<p>I have a few ideas, but I still feel like I\u2019m missing the key insight.</p>\n<p>If there\u2019s an opportunity, I\u2019d love to team up and discuss it together.</p>"
+  },
+  {
+    "id": 3515866,
+    "authorName": "",
+    "postDate": "2026-08-22T11:38:17.983000",
+    "votes": 1,
+    "content": "<p>Thanks a lot for the invitation! Since you're ranked much higher than me, I'd of course be very happy to team up.</p>\n<p>However, I just want to be transparent that I'm still quite new to kaggle and RL, and my current rank is only around 500. So I'm worried that I may not be able to contribute as much as you might expect, or keep up with the team technically.</p>\n<p>That said, I'd definitely be happy to discuss ideas, share what I've tried so far, and contribute wherever I can. If you're still comfortable with that, I'd be glad to team up.</p>"
+  },
+  {
+    "id": 3516091,
+    "authorName": "",
+    "postDate": "2026-08-23T04:58:27.470000",
+    "votes": 1,
+    "content": "<p>We\u2019re also just getting started with RL, so there\u2019s absolutely no need to feel any pressure.</p>\n<p>Discussing ideas together, exchanging insights, and learning from different ways of thinking are exactly why we joined this competition in the first place.</p>\n<p>We\u2019ve already sent you a team invitation and look forward to hearing from you.</p>"
+  },
+  {
+    "id": 3516128,
+    "authorName": "",
+    "postDate": "2026-08-23T07:43:21.563000",
+    "votes": 0,
+    "content": "<p>I believe the problems will be solved. \nLike in Orbitwars\u2014\u2014in the early stage of that competition, I made a post to ask why nobody had used RL and many people discussed about it.  </p>\n<p>I regret giving up that competition too early. It's too early to abandon a potential method.</p>\n<p>Although the competitions are so different, I believe new problems would also be tackled by you people.  </p>\n<p>Best of luck to you!</p>"
+  }
+]

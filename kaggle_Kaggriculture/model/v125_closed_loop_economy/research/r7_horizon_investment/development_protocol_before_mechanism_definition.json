@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-09-05T10:49:07.877527+00:00",
+  "status": "PREALLOCATED_BEFORE_PROTOTYPE_COMPLETE",
+  "candidate": "V125-R7",
+  "source_sha256": "PENDING_FREEZE_BEFORE_RUN",
+  "implementation_parent": "V125-R6",
+  "references": [
+    "V125-R0",
+    "V125-R6"
+  ],
+  "hypothesis": "Replace price-label caps with a common finite-horizon investment calculation. Maturity and care/feed costs plus shared cash, labor and placeable-land budgets prevent investments that cannot be supported or monetized; existing assets continue receiving care.",
+  "scope": "Economic plan and necessary investment/plant-admission interfaces only. Frozen execution contracts, supply batching and procurement confirmation unchanged.",
+  "micro_requirements": [
+    "Same visible count but different maturity produces different dated product supply, verified against official daily refresh controls.",
+    "Increasing wheat cost can veto otherwise identical new animal investment; high existing product price alone does not force purchase.",
+    "New purchases respect joint budget after expert switch; existing assets are not removed to meet a cap.",
+    "No new investment when current action capacity is exhausted; before hire cutoff affordable planned labor may be admitted only through an executable hire interface.",
+    "Assets whose first collectible output falls after final return/sell window are excluded from that output revenue.",
+    "All emitted quantities are Python positive integers <=100; any other parsing is explicitly outside local fast-engine parity contract."
+  ],
+  "opened_diagnostic_seed": 1950905001,
+  "fresh_development_seeds": [
+    1950905701,
+    1950905702,
+    1950905703
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponents": [
+    "PASS",
+    "references/V120_local_anchor/main.py"
+  ],
+  "candidate_count": 3,
+  "expected_fresh_development_games": 36,
+  "no_qualification_claim": "This is a pre-screen and representation diagnostic, not G1/G2 or gold. Freeze candidate and all dependency SHAs before any fresh block result is opened.",
+  "development_promotion_rule": {
+    "complete": "All 36 planned cases must be completed and retained, 719 calls, zero candidate errors, official/fast per-state parity with frozen v3. A parity error stops and preserves evidence.",
+    "pairwise": "Against BOTH R0 and R6, each opponent separately must have >=4/6 positive margin deltas, positive median delta, and no negative seat mean delta. PASS margin is own cash minus PASS cash; V120 margin includes both strategy responses.",
+    "mechanism": "All micro_requirements must pass an independent review before running. Actual in-transit animal steps per purchased animal and all first-water/loss/terminal metrics will be reported; full G1 thresholds and G2 >=20% primary mechanism requirement still apply on their later fresh blocks.",
+    "no_outcome_cherrypicking": "All profiles, opponents and seats retained. Cash improvement without actual G1 closure cannot advance to gold qualification."
+  },
+  "formal_gate_protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+  "seed_exposure_policy": "Do not run baseline/reference cases before R7 source and development manifest freeze."
+}

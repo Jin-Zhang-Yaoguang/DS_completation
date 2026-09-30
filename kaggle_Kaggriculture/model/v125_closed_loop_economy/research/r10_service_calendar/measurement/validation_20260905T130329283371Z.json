@@ -1,0 +1,355 @@
+{
+  "created_at_utc": "2026-09-05T13:03:29.283200+00:00",
+  "role": "PURE_SYNTHETIC_DATA_VALIDATION_NOT_MATCH",
+  "passed": 42,
+  "total": 42,
+  "checks": [
+    {
+      "name": "263_excluded_264_and_718_included",
+      "passed": true,
+      "evidence": {
+        "status": "NUMERIC_COMPLETE",
+        "issues": [],
+        "window_decisions": [
+          264,
+          718
+        ],
+        "cash": 24,
+        "units": 2,
+        "by_item": {
+          "MILK": {
+            "cash": 24,
+            "units": 2
+          }
+        },
+        "daily": {
+          "11": {
+            "cash": 11,
+            "units": 1
+          },
+          "12": {
+            "cash": 0,
+            "units": 0
+          },
+          "13": {
+            "cash": 0,
+            "units": 0
+          },
+          "14": {
+            "cash": 0,
+            "units": 0
+          },
+          "15": {
+            "cash": 0,
+            "units": 0
+          },
+          "16": {
+            "cash": 0,
+            "units": 0
+          },
+          "17": {
+            "cash": 0,
+            "units": 0
+          },
+          "18": {
+            "cash": 0,
+            "units": 0
+          },
+          "19": {
+            "cash": 0,
+            "units": 0
+          },
+          "20": {
+            "cash": 0,
+            "units": 0
+          },
+          "21": {
+            "cash": 0,
+            "units": 0
+          },
+          "22": {
+            "cash": 0,
+            "units": 0
+          },
+          "23": {
+            "cash": 0,
+            "units": 0
+          },
+          "24": {
+            "cash": 0,
+            "units": 0
+          },
+          "25": {
+            "cash": 0,
+            "units": 0
+          },
+          "26": {
+            "cash": 0,
+            "units": 0
+          },
+          "27": {
+            "cash": 0,
+            "units": 0
+          },
+          "28": {
+            "cash": 0,
+            "units": 0
+          },
+          "29": {
+            "cash": 13,
+            "units": 1
+          }
+        },
+        "sale_receipts": [
+          {
+            "source_event_index": 2,
+            "decision_step": 264,
+            "recorded_step": 265,
+            "day": 11,
+            "item": "MILK",
+            "quantity": 1,
+            "price": 11,
+            "cash": 11
+          },
+          {
+            "source_event_index": 3,
+            "decision_step": 718,
+            "recorded_step": 719,
+            "day": 29,
+            "item": "MILK",
+            "quantity": 1,
+            "price": 13,
+            "cash": 13
+          }
+        ],
+        "origin_status": "NUMERIC_COMPLETE",
+        "no_qualifying_sale": false,
+        "definition": "day11h0..day29h22 实际官方 SELL 非WHEAT（含FERTILIZER）；全季非麦零初始/零外购且完整物量闭合。"
+      }
+    },
+    {
+      "name": "recorded_719_maps_to_decision718",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "decision719_rejected_not_silently_excluded",
+      "passed": true,
+      "evidence": [
+        "INVALID_EVENT_STEP:3",
+        "ORIGIN:INVALID_DECISION_STEP:3"
+      ]
+    },
+    {
+      "name": "complete_zero_window_sales_is_real_zero",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "fully_zero_game_is_numeric_zero",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "otherseat_sale_not_counted",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "fertilizer_included",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "wheat_excluded",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "external_buy_resale_pending_even_before_window",
+      "passed": true,
+      "evidence": [
+        "ORIGIN:EVENT_BALANCE_MISMATCH:MILK:terminal",
+        "ORIGIN:EXTERNAL_EVENT:MILK",
+        "ORIGIN:EXTERNAL_OR_INITIAL_SOURCE:MILK",
+        "ORIGIN:NEGATIVE_PRODUCED_STOCK"
+      ]
+    },
+    {
+      "name": "initial_mixed_stock_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "other_nonwheat_initial_stock_makes_whole_game_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "outside_wheat_purchase_does_not_contaminate_nonwheat_origin",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "sale_before_production_rejected",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "consumed_or_lost_goods_cannot_be_sold_again",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "legal_consumption_and_loss_can_close_zero_sales",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "duplicate_sale_event_without_source_balance_fails",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "bool_seat_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "missing_recorded_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "bool_clock_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "wrong_day_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "float_official_price_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "nan_price_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "bool_quantity_pending",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "exact20_percent_boundary_passes",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "below20_percent_fails",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "parent_zero_pending_not_false_success",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "missing_game_fails_closed",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "duplicate_cell_fails_closed",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "duplicate_source_key_fails_closed",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "one_pending_source_blocks_primary",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "early_window_cannot_substitute_late_window",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "seat_decline_cannot_be_hidden_by_pool",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "pooled_cash_not_mean_of_per_game_ratios",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "zero_sale_games_remain_in_complete24",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "invalid_cash_True",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "invalid_cash_-1",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "invalid_cash_None",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "invalid_cash_120.0",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "parsed_source_drift_caught_before_output",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "same_path_new_bytes_cannot_overwrite_fingerprint",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "missing_source_file_cannot_fill_zero",
+      "passed": true,
+      "evidence": null
+    },
+    {
+      "name": "test_and_frozen_dependency_sources_unchanged",
+      "passed": true,
+      "evidence": null
+    }
+  ],
+  "source_sha256": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/measurement/assess_late_produced_sales.py": "e908b0f2b2721825fe824fc0adb7a6410dc007665cb0ba41179a0ed6b3d718e1",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/summarize_first_produced_sale_v3.py": "d353bd04bb4f86f492295a6d197389227934db87ff98414302538a04131a9c67",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/measurement/test_late_produced_sales.py": "e485e2475958ad7c89c5ae65dc5ea85e0c9ae815d3811589275b1d103610bbb4"
+  },
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "real_game_files_read": 0,
+  "new_complete_matches": 0,
+  "status": "PASS",
+  "tool_freeze_status": "AWAIT_FINAL_DEVELOPMENT_PROTOCOL"
+}

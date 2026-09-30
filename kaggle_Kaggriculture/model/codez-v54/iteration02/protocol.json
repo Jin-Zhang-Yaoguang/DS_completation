@@ -1,0 +1,40 @@
+{
+  "objective": "Broad modern-opponent advantage, not one-cell improvement",
+  "controls": [
+    "v002",
+    "v003 (imported r14)"
+  ],
+  "modern_opponents": [
+    "v54",
+    "v56",
+    "rescue7",
+    "metav4",
+    "v54r14"
+  ],
+  "development_seeds": [
+    310000,
+    310004
+  ],
+  "gate_seeds": [
+    320000,
+    320016
+  ],
+  "confirmation_seeds": [
+    330000,
+    330032
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "bar": {
+    "modern_strict_win_rate": 0.7,
+    "improvement_over_v002_pp": 20,
+    "r14_head_to_head_win_rate": 0.65,
+    "r14_seed_cluster_margin_bootstrap_lower_95_gt": 0,
+    "no_errors": true,
+    "legacy_gate": "No regression in legacy paired gate9"
+  },
+  "replay_use": "Read-only CLI snapshots; original source and both-action historical reproduction first; counterfactual tapes are development diagnostics only, never formal wins; final panels run adaptive live opponent programs.",
+  "candidate_changes": "v003 imported strong execution control; H003 adds observable-state shadow opponents and supplies predicted orders to existing CXD optimizer. No future seed, future observed actions, or private rival state may enter inference."
+}

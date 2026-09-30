@@ -1,0 +1,79 @@
+[
+  {
+    "id": 3499261,
+    "authorName": "",
+    "postDate": "2026-07-16T20:37:04.910000",
+    "votes": 38,
+    "content": "<p>I really enjoyed this competition. This was my largest collaboration with a team of agents (and humans). Personally I love collaborating with agents. They are so fascinating. I can watch and talk with them for hours!</p>\n<p>I would like to share my approach to prompt engineering which I call \"Self Evolving Prompts\". I don't create the final prompts. They evolve via genetic algorithm (i.e. survival of the fittest).</p>\n<p>(Our team solution introduction is <a href=\"https://www.kaggle.com/competitions/neurogolf-2026/writeups/1st-place-kaggle-agent\" target=\"_blank\">here</a> and team solution pipeline overview is <a href=\"https://www.kaggle.com/competitions/neurogolf-2026/discussion/726799\" target=\"_blank\">here</a>)</p>\n<h1>What is a Prompt?</h1>\n<p>When we give an agent a prompt, it receives more than just what we typed. Our prompt gets appended (beforehand) by lots of system info plus conversation history (i.e. context or summarized context):</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Jul-2026/prompt.png\" alt=\"\"></p>\n<h1>What is Context?</h1>\n<p>Context is our conversation history (and tool history) or a summary thereof. Some models have 1 million input token capacity. When the conversation history exceeds 1M, it gets \"compacted\" (i.e. summarized to shorter length). Over time, this context is the model's personality and core memory! It gets fed into the agent with every prompt so we want it to be good and encourage productive behavior!</p>\n<h1>Discover Context with Evolution</h1>\n<p>We can create a \"mini contest\" among multiple agents. Give them a basic prompt with lots of helpful resources and tell them to \"achieve the most total onnx LB score gain in 4 hours\" (i.e. they have 4 hours and can work on as few or as many onxx as they choose). </p>\n<p>Maybe one agent learns that when it spends lots of time on one onnx, it fails. Maybe another agent learns that when it spends lots of time on a task it gets gains! Maybe another agent learns that using a certain resource is helpful. Maybe one tackles many onnx. Maybe one tackles only a few onnx. Etc Etc. These experiences get encoded into the context (i.e. conversation history). Different agents achieve different performance results:</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Jul-2026/evolution2.png\" alt=\"\"></p>\n<h1>Human Mentorship</h1>\n<p>To help our agents succeed, we humans can mentor them. We read their thought processes and what their actions are. We give them guidance during their 4-hour mini-contests. We stay stuff, like \"keep trying\" or \"try applying what you discovered to other similar onnx\". These suggestions get encoded into their context and help create more positive experiences because our advice promotes success. We also involve the agent in its own self review between campaigns. The self review gets written into the context.</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Jul-2026/mentor.png\" alt=\"\"></p>\n<h1>Promotion</h1>\n<p>After three 4-hour mini-contests, we select the top performer. He/she has the best \"context\" and we promote him/her to manager. We then ask him/her to manage the other agents by watching and giving guidance based on their previous success. We can also ask the top performer to write new <code>cookbook.md</code> that can be used for prosperity and/or to onboard new agents.</p>\n<p><img src=\"https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Jul-2026/promotion.png\" alt=\"\"></p>"
+  },
+  {
+    "id": 3499265,
+    "authorName": "",
+    "postDate": "2026-07-16T20:53:16.077000",
+    "votes": 1,
+    "content": ""
+  },
+  {
+    "id": 3499266,
+    "authorName": "",
+    "postDate": "2026-07-16T20:53:42.917000",
+    "votes": 2,
+    "content": "<p>Wow intresting approach. Does the manager agent manage across tasks? How many tasks/agents can it realistically manage? </p>"
+  },
+  {
+    "id": 3499271,
+    "authorName": "",
+    "postDate": "2026-07-16T21:01:26.537000",
+    "votes": 1,
+    "content": "<p>The manager has no trouble keeping up because the agents are spending like 30 minutes to 2 hours on a task. Improvement happens slowly and the manager can easily read logs and follow and coach the work.</p>"
+  },
+  {
+    "id": 3499567,
+    "authorName": "",
+    "postDate": "2026-07-17T16:19:50.190000",
+    "votes": 1,
+    "content": "<p>How did your manager automatically collect and monitor the agents\u2019 results? Did you use the OpenAI API or another supported integration? My understanding is that automated scraping of the ChatGPT UI may be restricted, so I\u2019m curious how you implemented this compliantly.</p>"
+  },
+  {
+    "id": 3499580,
+    "authorName": "",
+    "postDate": "2026-07-17T16:33:01.597000",
+    "votes": 1,
+    "content": "<p>Just for clarification our process intentionally used only the ONNX files. We manually downloaded  and consciously ignored all other generated outputs. This was a deliberate design choice, not an omission. I will explain the reasoning and workflow in more detail in the full write-up.</p>"
+  },
+  {
+    "id": 3499774,
+    "authorName": "",
+    "postDate": "2026-07-17T21:56:44.367000",
+    "votes": 1,
+    "content": "<p>Hi Evolvion, great question.</p>\n<blockquote>\n  <p>How did your manager automatically collect and monitor the agents' results?</p>\n</blockquote>\n<p>This discussion post refers to the multi-turn conversations locally run by Codex CLI and Claude Code CLI. Agents write activity logs describing what they are doing and write improved ONNX to a shared folder. The manager reads these files from the shared folders. The manager can then inject instructions/guidance into the agents' conversation streams.</p>\n<p>For ChatGPT, the process is different. We create a <code>tar.gz</code> file with inputs and a prompt for a specific task. Then we manually upload this <code>tar.gz</code> file and paste the prompt in ChatGPT. Afterward, we manually download the ONNX file from ChatGPT.</p>"
+  },
+  {
+    "id": 3499817,
+    "authorName": "",
+    "postDate": "2026-07-18T01:20:32.683000",
+    "votes": 1,
+    "content": "<p>Oh that makes so much sense. We have a github connector setup so agents can upload onnx and logs directly to github which allowed us to just launch them and forget about collection. However once the agents produce results the github is often flooded with commits every few seconds since we often parallel a lot of tasks at the same time. </p>"
+  },
+  {
+    "id": 3499818,
+    "authorName": "",
+    "postDate": "2026-07-18T01:20:52.370000",
+    "votes": 1,
+    "content": "<p>I mean chatgpt web agents not local code agents. </p>"
+  },
+  {
+    "id": 3499893,
+    "authorName": "",
+    "postDate": "2026-07-18T07:45:49.170000",
+    "votes": 1,
+    "content": "<p>This plan is extremely creative. Although I'm aware that AI has a certain degree of randomness, I never thought of optimizing in this way before. It's really impressive.\ud83d\ude03</p>"
+  },
+  {
+    "id": 3500007,
+    "authorName": "",
+    "postDate": "2026-07-18T10:33:43.190000",
+    "votes": 1,
+    "content": "<p>Thank you for the Kaggle Agent <a href=\"https://www.kaggle.com/cdeotte\" target=\"_blank\">@cdeotte</a> </p>"
+  }
+]

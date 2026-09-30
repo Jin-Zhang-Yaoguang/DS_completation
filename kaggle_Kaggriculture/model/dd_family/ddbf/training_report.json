@@ -1,0 +1,94 @@
+{
+  "version": "ddbf",
+  "source_seeds": {
+    "train": [
+      397180947,
+      1267203393,
+      1965541545,
+      349971651,
+      1604789308,
+      1698873326,
+      439635196,
+      125264262,
+      1978586982,
+      1785245498,
+      971576591,
+      2091802124,
+      207235955,
+      1569680726,
+      1968012038,
+      2142438268,
+      418946244,
+      1595603583,
+      1794373915,
+      330329637,
+      2050944643
+    ],
+    "validation": [
+      679290740,
+      551460113,
+      1584858237,
+      923837467,
+      1672971668,
+      434235108,
+      811426878
+    ]
+  },
+  "source_states_verified": 20132,
+  "test_used": false,
+  "selection": "Fixed hyperparameters; validation reported, no test used. Full-candidate metrics every 32nd source query.",
+  "models": {
+    "goal_rank": {
+      "train_rows": 764869,
+      "validation_rows": 252053,
+      "train_score": 0.96209154770294,
+      "validation_score": 0.9577469817855768,
+      "export_max_abs_error": 1.5987211554602254e-14,
+      "seconds": 126.11932845896808,
+      "full_legal_candidate_validation": {
+        "queries": 920,
+        "top1": 0.6891304347826087,
+        "top5": 0.9260869565217391,
+        "mean_candidates": 132.40652173913043
+      }
+    },
+    "goal_quantity": {
+      "train_rows": 5199,
+      "validation_rows": 1711,
+      "train_score": 0.9841394477890988,
+      "validation_score": 0.8345984150316694,
+      "export_max_abs_error": 1.3322676295501878e-15,
+      "seconds": 0.296826541016344
+    },
+    "market_policy": {
+      "train_rows": 89205,
+      "validation_rows": 28219,
+      "train_score": 0.7962782355249145,
+      "validation_score": 0.5031361848400014,
+      "export_max_abs_error": 2.220446049250313e-16,
+      "seconds": 18.076025082962587
+    },
+    "market_quantity": {
+      "train_rows": 54672,
+      "validation_rows": 17348,
+      "train_score": 0.8749972417829583,
+      "validation_score": 0.6007842300457917,
+      "export_max_abs_error": 5.329070518200751e-15,
+      "seconds": 2.285893250023946
+    }
+  },
+  "algorithm": "Offline supervised gradient-boosted goal ranking and ExtraTrees quantities/market. Not PPO, self-play, or oracle relabelling.",
+  "hashes": {
+    "task_features.py": "6c5690dcbc36684f39f8117c6d440360c11c2e8b0d0aa813824a89e227d95b0d",
+    "config.json": "a971983d4fc1a66e7570f00f478f4732ad6e2df901b5091903d7ee7f959ce935",
+    "market_quantity.npz": "29ac7bd628941189e5c8df93096a09eaea744916266325ec76f17009e5d3ce93",
+    "goal_rank.npz": "a7dd9805cad7b8054b6dd611da8ec44c3367323812d24300d32f174f41737847",
+    "rules.py": "7bc531159afa5903d99f52412805a09f9531df01ba502b46c64c43d7754a2d03",
+    "features.py": "de09e62ebee57732958c48a9932c3a566388bb5a3ecb4aa9b21de6d74416d3f6",
+    "tree_runtime.py": "586e99dd4a9f1800b9976b508404577d6e2b6dfec7c623f95378527bdefc8991",
+    "goal_quantity.npz": "8c1f87135c8b351d653724c8a58dd13368985a0e8aff5817852020f23f847723",
+    "market_policy.npz": "d421ab7ec5da72bb2326681e6f4dde17e288f6664df7c1c6a29e7681c23c90be",
+    "main.py": "38328362cb2a113d708c51334a56e8bec4d6e30eeb5fafc1648c4051ec15f817",
+    "action_space.py": "3d4f055e0ea637778af9aa4287bf05fb303b970332f6a2e4eb986d67f9d95e79"
+  }
+}

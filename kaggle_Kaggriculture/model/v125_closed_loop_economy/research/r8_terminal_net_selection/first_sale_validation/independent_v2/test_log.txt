@@ -1,0 +1,84 @@
+test_buy_then_resell_is_not_self_produced (__main__.Counterexamples.test_buy_then_resell_is_not_self_produced) ... ok
+test_consumed_stock_cannot_be_sold_again (__main__.Counterexamples.test_consumed_stock_cannot_be_sold_again) ... ok
+test_duplicate_inputs_rejected (__main__.Counterexamples.test_duplicate_inputs_rejected) ... ok
+test_earlier_input_drift_during_later_input_must_be_rejected (__main__.Counterexamples.test_earlier_input_drift_during_later_input_must_be_rejected) ... ok
+test_eod_discarded_stock_cannot_be_sold_again (__main__.Counterexamples.test_eod_discarded_stock_cannot_be_sold_again) ... ok
+test_final_step_sale_and_day_10_boundary (__main__.Counterexamples.test_final_step_sale_and_day_10_boundary) ... ok
+test_initial_stock_mixing_blocks_entire_game (__main__.Counterexamples.test_initial_stock_mixing_blocks_entire_game) ... ok
+test_invalid_time_is_pending (__main__.Counterexamples.test_invalid_time_is_pending) ... ok
+test_manual_discarded_stock_cannot_be_sold_again (__main__.Counterexamples.test_manual_discarded_stock_cannot_be_sold_again) ... ok
+test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) ... 
+  test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='analysis.json') ... FAIL
+  test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='events.jsonl.gz') ... FAIL
+  test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='audit_manifest.json') ... FAIL
+test_missing_used_file_rejected (__main__.Counterexamples.test_missing_used_file_rejected) ... ok
+test_negative_quantity_flows_must_not_be_valid (__main__.Counterexamples.test_negative_quantity_flows_must_not_be_valid) ... FAIL
+test_no_sale_is_censored_at_719 (__main__.Counterexamples.test_no_sale_is_censored_at_719) ... ok
+test_normal_sale_and_first_frame_basket (__main__.Counterexamples.test_normal_sale_and_first_frame_basket) ... ok
+test_opened_r7_real_source (__main__.Counterexamples.test_opened_r7_real_source) ... ok
+test_runtime_fingerprint_drift_rejected (__main__.Counterexamples.test_runtime_fingerprint_drift_rejected) ... ok
+test_sale_before_harvest_cannot_be_repaired_retroactively (__main__.Counterexamples.test_sale_before_harvest_cannot_be_repaired_retroactively) ... ok
+test_unrelated_outside_product_blocks_entire_game (__main__.Counterexamples.test_unrelated_outside_product_blocks_entire_game) ... ok
+test_wheat_only_is_excluded (__main__.Counterexamples.test_wheat_only_is_excluded) ... ok
+test_zero_quantity_sell_must_not_create_first_sale (__main__.Counterexamples.test_zero_quantity_sell_must_not_create_first_sale) ... FAIL
+
+======================================================================
+FAIL: test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='analysis.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 96, in test_missing_required_fingerprint_rejected
+    with self.assertRaises((ValueError,OSError)):MOD.audit(BASE)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised
+
+======================================================================
+FAIL: test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='events.jsonl.gz')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 96, in test_missing_required_fingerprint_rejected
+    with self.assertRaises((ValueError,OSError)):MOD.audit(BASE)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised
+
+======================================================================
+FAIL: test_missing_required_fingerprint_rejected (__main__.Counterexamples.test_missing_required_fingerprint_rejected) (required='audit_manifest.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 96, in test_missing_required_fingerprint_rejected
+    with self.assertRaises((ValueError,OSError)):MOD.audit(BASE)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'OSError'>) not raised
+
+======================================================================
+FAIL: test_negative_quantity_flows_must_not_be_valid (__main__.Counterexamples.test_negative_quantity_flows_must_not_be_valid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 69, in test_negative_quantity_flows_must_not_be_valid
+    self.pending(own(harvested=-1,sell=-1),[sell(0,n=-1),harvest(1,n=-1)])
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 22, in pending
+    r=MOD.calculate(stock,events);self.assertEqual(r['status'],'PENDING_PROVENANCE',r);self.assertIsNone(r['restricted_elapsed_decisions'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NUMERIC_COMPLETE' != 'PENDING_PROVENANCE'
+- NUMERIC_COMPLETE
++ PENDING_PROVENANCE
+ : {'status': 'NUMERIC_COMPLETE', 'issues': [], 'first_sale_step': 0, 'restricted_elapsed_decisions': 1, 'no_qualifying_sale': False, 'first_sale_units': -1, 'first_sale_cash': -20, 'first_sale_items': {'CARROT': -1}, 'early_days_0_9_cash': -20, 'early_days_0_9_units': -1, 'daily': {0: {'cash': -20, 'units': -1, 'by_item': {'CARROT': {'cash': -20, 'units': -1}}}}, 'all_sale_cash': -20, 'all_sale_units': -1, 'origin_policy': 'All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used.'}
+
+======================================================================
+FAIL: test_zero_quantity_sell_must_not_create_first_sale (__main__.Counterexamples.test_zero_quantity_sell_must_not_create_first_sale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 66, in test_zero_quantity_sell_must_not_create_first_sale
+    def test_zero_quantity_sell_must_not_create_first_sale(self):self.pending(own(),[sell(0,n=0)])
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/test_first_produced_sale.py", line 22, in pending
+    r=MOD.calculate(stock,events);self.assertEqual(r['status'],'PENDING_PROVENANCE',r);self.assertIsNone(r['restricted_elapsed_decisions'])
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'NUMERIC_COMPLETE' != 'PENDING_PROVENANCE'
+- NUMERIC_COMPLETE
++ PENDING_PROVENANCE
+ : {'status': 'NUMERIC_COMPLETE', 'issues': [], 'first_sale_step': 0, 'restricted_elapsed_decisions': 1, 'no_qualifying_sale': False, 'first_sale_units': 0, 'first_sale_cash': 0, 'first_sale_items': {'CARROT': 0}, 'early_days_0_9_cash': 0, 'early_days_0_9_units': 0, 'daily': {0: {'cash': 0, 'units': 0, 'by_item': {'CARROT': {'cash': 0, 'units': 0}}}}, 'all_sale_cash': 0, 'all_sale_units': 0, 'origin_policy': 'All qualifying non-WHEAT stock starts at zero and has zero outside purchase; aggregate flow remains nonnegative and exactly closes. Actual official SELL requires that product in shed. Any mixed origin makes the entire game PENDING; no inferred FIFO is used.'}
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.176s
+
+FAILED (failures=5)

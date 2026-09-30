@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kaggriculture-v15-score-only-feedback-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "attempt_id",
+    "integrity_passed",
+    "primary_anchor_pure_win_rate",
+    "secondary_anchor_pure_win_rate",
+    "lineage_equal_pool_score_rate",
+    "lineage_equal_pool_score_ci95_low",
+    "paired_uplift_rate",
+    "paired_uplift_ci95_low",
+    "overall_passed"
+  ],
+  "properties": {
+    "schema": {"const": "kaggriculture-v15-score-only-feedback-v1"},
+    "attempt_id": {"type": "string", "pattern": "^attempt_[0-9]{3}$"},
+    "integrity_passed": {"type": "boolean"},
+    "primary_anchor_pure_win_rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "secondary_anchor_pure_win_rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "lineage_equal_pool_score_rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "lineage_equal_pool_score_ci95_low": {"type": "number", "minimum": 0, "maximum": 1},
+    "paired_uplift_rate": {"type": "number", "minimum": -1, "maximum": 1},
+    "paired_uplift_ci95_low": {"type": "number", "minimum": -1, "maximum": 1},
+    "overall_passed": {"type": "boolean"}
+  }
+}

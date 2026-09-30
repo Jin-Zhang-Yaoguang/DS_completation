@@ -1,0 +1,52 @@
+{
+  "schema": "v116-r12-manifest-v1",
+  "candidate_schema": "v116-r12-plant-water-bundle-hmoe-v1",
+  "strategy_parent": null,
+  "status": "NOT_GOLD_KILLFAST_REJECT",
+  "gold_registered": false,
+  "p2_run": false,
+  "p3_run": false,
+  "replay_run": false,
+  "modes": [
+    "router",
+    "fixed_root_exchange",
+    "fixed_dairy_berry",
+    "fixed_fiber_grain"
+  ],
+  "params_hash": "0fc2fbba40390937164faafdd92dac9bc0e77262d77c4ff0a071d0e0eb8f894e",
+  "files_sha256": {
+    "main.py": "5e5dce217bc92ed437295dfb0625fd75af618183953a8712ecdc57592878df62",
+    "test_r12.py": "120209aa1691a1e27d3a2ed8d799c7364df003fd8ad10ea42287e8a98a2d73f8",
+    "evaluate_killfast.py": "73cc166c7df5e3a9fc81a594f65d89f2b70bedd9831010bd5cb614215d4da297",
+    "mechanism_results.json": "abf1f9e05a22f109d63b797964d70ec24ed7ca8527a2afc8a9416e909c9ea876",
+    "killfast_result.json": "07269575d0b4ae12ac9fe08f2d6f2e477979b60932f0d155da7560ec73a8599f",
+    "daily_diagnostics.json": "ab7da5b3c319f9da8182dee6e5e7f0f481bf022068c6a47cb314cf82ee0581ba"
+  },
+  "mechanism": {
+    "passed": true,
+    "static_checks": 4,
+    "invariant_checks": 12
+  },
+  "killfast": {
+    "seed": 7100,
+    "candidate_seat": 0,
+    "opponent": "idle",
+    "calls": 719,
+    "bank": 13994.0,
+    "step144_assets": 5,
+    "terminal_assets": 7,
+    "missed_water_weeds": 0,
+    "invalid_water_feed_place": 0,
+    "orphan_live": 0,
+    "expired_live": 0,
+    "direction_moves": 1077,
+    "pass_actions": 627,
+    "decision": "NOT_GOLD_KILLFAST_REJECT"
+  },
+  "next_revision_hypotheses": [
+    "allow bounded parallel plant-water bundles only when same-day service budget proves closure",
+    "count harvested finite-crop replacement backlog in realized production capacity",
+    "avoid route-commit layout churn by retaining healthy bootstrap leases until replacement is ready",
+    "keep zero-missed-water invariant while reducing global bundle serialization"
+  ]
+}

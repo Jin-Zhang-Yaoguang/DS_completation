@@ -1,0 +1,28 @@
+{
+  "id": "v12c_yarn_complete_router",
+  "kind": "python",
+  "path": "main.py",
+  "factory": "make_agent",
+  "family": "observable_yarn_complete_expert_router",
+  "lineage": [
+    "baseline_v5",
+    "baseline_v8",
+    "v12c_yarn_complete_router"
+  ],
+  "parent_models": [
+    "baseline_v5",
+    "baseline_v8"
+  ],
+  "change_scope": "step 72 仅依据公开 YARN_STORE 解锁状态，在两个完整且从 step 0 同步的专家之间一次性选择；YARN 走 V5，其余走 V8",
+  "tags": [
+    "complete-expert-router",
+    "observable-shop-demand",
+    "yarn-store",
+    "one-shot-selection",
+    "no-market-residual",
+    "no-price-threshold"
+  ],
+  "code_paths": [
+    "main.py"
+  ]
+}

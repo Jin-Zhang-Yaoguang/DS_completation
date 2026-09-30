@@ -1,0 +1,28 @@
+{
+  "schema": "kaggriculture-v3-training-1",
+  "bc": {
+    "episodes": 10000,
+    "workers": 12,
+    "epochs": 5,
+    "batch_size": 128,
+    "learning_rate": 0.0003,
+    "label_smoothing": 0.03
+  },
+  "ppo": {
+    "iterations": 50,
+    "episodes_per_iteration": 2048,
+    "workers": 12,
+    "epochs": 4,
+    "transition_batch": 4096,
+    "clip": 0.2,
+    "gamma": 0.995,
+    "gae_lambda": 0.95,
+    "learning_rate_start": 0.0003,
+    "learning_rate_end": 0.00005,
+    "entropy_start": 0.02,
+    "entropy_end": 0.002,
+    "value_coefficient": 0.5,
+    "gradient_clip": 0.5,
+    "target_kl": 0.02
+  }
+}

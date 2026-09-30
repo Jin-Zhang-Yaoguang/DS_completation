@@ -1,0 +1,22 @@
+{
+  "schema": "kaggriculture-v20-demand-delay-screen-v1",
+  "phase": "demand_delay_screen",
+  "comparison": "post-town-demand-sell-delay-vs-v19",
+  "development_only": true,
+  "frozen_before_outcomes": true,
+  "seed_range": [94000, 94031],
+  "opponent_families": ["adaptive_market", "anti_mirror", "incumbent_r002", "kawa_lead2"],
+  "double_seat": true,
+  "candidate_games_per_mode": 256,
+  "baseline_games_per_mode": 256,
+  "modes": ["demand_delay_25", "demand_delay_50", "demand_delay_100"],
+  "controller_contract": {
+    "active_steps": [360, 671],
+    "production_unchanged": true,
+    "total_sell_quantity_preserved": true,
+    "shift_horizon": 1,
+    "only_all_sell_market_queues": true,
+    "shed_pressure_guard": 80,
+    "engine_ordering_fact": "market orders execute before same-step town demand"
+  }
+}

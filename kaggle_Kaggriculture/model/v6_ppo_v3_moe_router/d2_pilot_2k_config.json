@@ -1,0 +1,24 @@
+{
+  "schema": "kaggriculture-ppo-v3-d2-orchestrator-1",
+  "seed_start": 97400000,
+  "seed_count": 100,
+  "seed_stride": 7919,
+  "opponents": ["starter", "forced_low", "forced_high", "v1"],
+  "source_expert": "E_V1",
+  "production_days": [3],
+  "market_days": [10, 17, 24],
+  "production": ["E_V1"],
+  "market": ["M_NONE", "M_ANIMAL_HALF_TOPDAYS"],
+  "market_horizon_days": 1,
+  "state_shards": 16,
+  "fork_shards": 16,
+  "workers": 16,
+  "min_coverage": {
+    "total_states": 2000,
+    "per_split": {"train": 1500, "validation": 100, "test": 100},
+    "effective_production": {},
+    "effective_market": {
+      "M_ANIMAL_HALF_TOPDAYS": 100
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "status": "PROPOSED_FREEZE_BEFORE_CANDIDATE_SELECTION",
+  "not_a_test_result": true,
+  "goal_completion_allowed_now": false,
+  "reason": "规则源码已核对；当前可获取源代码尚无已准入的真实动态金牌对手，且没有V125本账号线上结果。",
+  "authorization": {
+    "development_restart": "本轮用户已明确重启，CLAUDE第7条的停止要求被该次新命令覆盖",
+    "kaggle_submission": "CLAUDE第8条仍要求每次明确授权；本子任务未提交、未要求授权",
+    "before_authorization": "继续完成源代码、准入、执行器、离线评测、失败归因、固定候选SHA、raw-loader QA、打包、资源预算和部署说明；缺上线授权不等于可以先把研究宣布完成"
+  },
+  "invariants": [
+    "不降低50%纯胜率旧硬线，不把平局记胜",
+    "不以mean margin/对PASS cash/准确率替代胜率",
+    "每代新假设、新candidate SHA、新确认块；已打开Blind只作后续Dev",
+    "同家族重复对手不能加权成独立覆盖",
+    "原始真实线上、官方独立确认、模拟闭环、固定stream反事实四层单列",
+    "统计方法/样本/阈值在结果揭晓前冻结；连续挑选候选应记录多重比较或预设alpha spending"
+  ],
+  "gates": [
+    {
+      "id": "G0_SOURCE_RUNTIME",
+      "minimum": "候选源码、package、官方engine/schema/config、每个对手与每个样本均登记SHA；禁止缺失日期/规则的数据进入晋级；官方raw-file loader使用提交入口，双方座位完整运行，0异常/timeout/非法输出",
+      "pass_means": "可运行与来源可信，不代表强度"
+    },
+    {
+      "id": "G1_LEGACY_64",
+      "minimum": "保留现有32新seed×双座=64局/对手/候选硬门；各旧锚点纯胜率>=50%，draw/error不计胜。即使全胜，也只为回归门。",
+      "pass_means": "旧基线回归通过，不代表当前金牌"
+    },
+    {
+      "id": "G2_DYNAMIC_SCREEN",
+      "minimum": "至少5个独立行为家族（其中至少3个须有当前Top25团队的真实可执行动态提交证据或同等级现役闭环实力证据），每家族256个新seed×双座=512局；纯胜率各家族>=50%，家族等权总体>=60%；以seed双座为一cluster的预注册单侧95%下界>55%；0runtime failure。",
+      "pass_means": "本地强度资格；缺真实dynamic身份/数据准入时该门保持NOT_ELIGIBLE，不由旧tape/router补数量",
+      "current_availability": "gold_opponents_admitted=0；仅有公共router诊断库，需先建立真动态对手准入"
+    },
+    {
+      "id": "G3_OWN_ONLINE_PRIMARY",
+      "minimum": "必须是V125候选自身官方对局，非借旧账号Replay取seed重跑。>=200场非validation且跨>=3个UTC日期；固定定义最近80场稳定段，纯胜率>=50%，0运行失败。记录每局对手submission、当时rank/rating、是否金牌范围、日期、seat、Replay/package SHA；不能以低段位爬分胜率代替目标对手强度。",
+      "pass_means": "本账号主面板行为和线上排名证据成立；只有逐次授权后才可开始提交与后续在线收集"
+    },
+    {
+      "id": "G4_OFFICIAL_INDEPENDENT",
+      "minimum": "仅官方按日>=2026-08-20且当前规则，来源去重、按日期Train/Dev/Blind；最终单次未见确认块至少64对局场景/覆盖8个独立家族或明确说明不足。真实历史行为诊断与候选闭环重跑分别报告，后者不能伪装成真实官方比赛。主面板失败时任何官方样本量都不能覆盖。",
+      "pass_means": "独立确认覆盖；不把固定stream反事实当真实动态胜率"
+    },
+    {
+      "id": "G5_GOLD_STOP",
+      "minimum": "G0–G4均通过且候选同一SHA在实际官方当前金牌名次范围内，至少3个间隔>=24小时的排行榜快照（总跨度>=48小时）；最后快照对应G3稳定段，若提交更换/源码改变/规则改变则重置。本地任何一门通过只可称predeployment/qualification，不能提前记goal完成。最终奖牌只有赛事结算后可确认。",
+      "pass_means": "当前规则下有稳定线上金牌范围证据，可结束该代严格金牌研究；不是最终奖牌保证"
+    }
+  ]
+}

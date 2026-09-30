@@ -1,0 +1,59 @@
+{
+  "schema": "kaggriculture-v15-cleanroom-policy-1",
+  "generator_session": {
+    "fork_turns": "none",
+    "history_inherited": false,
+    "network_access": "forbidden",
+    "filesystem_discovery": "forbidden",
+    "shell_access": "forbidden_except_explicit_allowlisted_commands",
+    "allowed_read_classes": [
+      "official_rules",
+      "own_prior_work",
+      "score_feedback",
+      "generator_output"
+    ],
+    "forbidden_information": [
+      "individual_game_outcomes",
+      "loss_reasons",
+      "replays_or_episode_logs",
+      "opponent_actions_or_private_state",
+      "historical_model_source_or_design",
+      "model_pool_names_or_identity_mapping",
+      "seed_or_source_level_metrics",
+      "per_opponent_metrics",
+      "market_or_turn_level_diagnostics"
+    ]
+  },
+  "candidate": {
+    "required_files": [
+      "main.py",
+      "submission.tar.gz",
+      "submission_manifest.json",
+      "package_qa_report.json",
+      "generation_attestation.json",
+      "generation_log.jsonl",
+      "strategy_note.md"
+    ],
+    "maximum_files": 7,
+    "maximum_file_bytes": 2097152,
+    "maximum_total_bytes": 4194304,
+    "runtime_archive_members": ["main.py"],
+    "forbid_all_imports": true,
+    "forbid_dynamic_code": true,
+    "forbid_runtime_io": true,
+    "forbid_symlinks": true,
+    "forbid_hardlinks": true
+  },
+  "public_feedback": {
+    "aggregate_rates_only": true,
+    "anchors_are_anonymous": true,
+    "model_pool_identity_is_private": true,
+    "individual_games_are_private": true,
+    "free_text_is_forbidden": true
+  },
+  "hidden_panel": {
+    "single_use": true,
+    "reservation_consumes_panel_even_on_failure": true,
+    "result_is_evaluator_private": true
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "schema": "kaggriculture-v14-independent-online-metric-audit-1",
+  "generated_at_utc": "2026-08-24T13:02:14Z",
+  "status": "PASS_WITH_NONIDENTIFIABLE_RATING_DELTAS",
+  "scope": {
+    "primary_comparison": {
+      "v14_submission_id": 55722630,
+      "a2_fixed_submission_id": 55713355
+    },
+    "secondary_comparison": {
+      "v13c_submission_id": 55719781,
+      "reason": "V13C is A2 plus a V8-only no-WOOL throttle and is not silently relabeled as pure A2."
+    },
+    "excluded_from_primary_comparison": [
+      {
+        "submission_ids": [55743118, 55743125, 55743133],
+        "reason": "same-day A2 repeats had no comparable public window at snapshot time and are not merged with A2 fixed"
+      }
+    ],
+    "independence_note": "All online W/T/L and segment statistics were recomputed directly from raw episodes_full.json. No v14_online_diagnosis main analysis output was executed or consumed."
+  },
+  "metric_definitions": {
+    "pure_win_rate": "wins / all public games; ties are not wins",
+    "outcome_score_rate": "(wins + 0.5 * ties) / all public games",
+    "public_simulation_rating": "Kaggle publicScore for a simulation submission; an ELO/Bradley-Terry-style path statistic driven by each outcome and both players' pre-match ratings, not a direct win percentage and not a gold-margin metric",
+    "online_ci95": "Wilson score interval for wins / games. Every audited online target has zero ties, so it is also the interval for outcome_score_rate in this sample.",
+    "local_ci95": "20,000-replicate date-stratified nonparametric bootstrap over 100 source clusters; each source cluster contains both candidate seats",
+    "opponent_rating_proxy": "opponent team's current leaderboard Score at 2026-08-24T20:55:19+08:00; this is post-outcome, team-level, and is not the unavailable pre-match opponent rating"
+  },
+  "source_paths_relative_to": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_online_diagnosis",
+  "source_inventory": [
+    {
+      "path": "raw/v14/episodes_full.json",
+      "sha256": "9f39a03b7921f8e341b34751d2e9781b7ae15abdf9e6713ac2c5812cdd38fb4d",
+      "bytes": 54985
+    },
+    {
+      "path": "raw/a2/episodes_full.json",
+      "sha256": "0345341fff3e870087daa530835502ad142e854af4e7c293feab7160a349edd9",
+      "bytes": 39920
+    },
+    {
+      "path": "raw/v13c/episodes_full.json",
+      "sha256": "f118f6637d195612dc9c21e5b9a54d1bd5f8a0d15dd1154be38fb9cda6ec9bf4",
+      "bytes": 54317
+    },
+    {
+      "path": "raw/snapshot/current_snapshot.json",
+      "sha256": "07dc0eb60a6b75314ffed9e9804829b29d3f16e6a83b8877f36d29bafb73e3d0",
+      "bytes": 8774
+    },
+    {
+      "path": "raw/snapshot/kaggriculture_public_leaderboard.csv",
+      "sha256": "80615513f996ef1042b4940fca71cb77bdf87dcbca751f09dce109df5c126cf8",
+      "bytes": 436050
+    },
+    {
+      "path": "../v14_first_principles_search/validation/runs/confirmatory/v14_queue_stateful_no_mirror/games.jsonl",
+      "sha256": "3e604b3f601d268f659bc8d6add42eb4b7ec06ae9717f88fe1b78d0cc386d5f9",
+      "bytes": 6774388
+    },
+    {
+      "path": "../../playground/game_rules.html",
+      "sha256": "12aa729b38aae9ebedb84273fae7010e22c504d16958b44c9724b261f916e1d9",
+      "bytes": 29333
+    }
+  ],
+  "data_quality": {
+    "intended_grain": "one row per submission-visible episode; public W/T/L grain is one completed public episode",
+    "checks": {
+      "v14": {
+        "rows": 88,
+        "public_rows": 87,
+        "validation_rows_excluded": 1,
+        "duplicate_episode_ids": 0,
+        "completed_rows": 88,
+        "two_agents_all_rows": true,
+        "candidate_exactly_once_all_public_rows": true,
+        "finite_rewards_all_public_rows": true,
+        "opponent_snapshot_rating_join": "87/87",
+        "pre_or_post_rating_key_hits": 0
+      },
+      "a2": {
+        "rows": 64,
+        "public_rows": 63,
+        "validation_rows_excluded": 1,
+        "duplicate_episode_ids": 0,
+        "completed_rows": 64,
+        "two_agents_all_rows": true,
+        "candidate_exactly_once_all_public_rows": true,
+        "finite_rewards_all_public_rows": true,
+        "opponent_snapshot_rating_join": "63/63",
+        "pre_or_post_rating_key_hits": 0
+      },
+      "v13c": {
+        "rows": 87,
+        "public_rows": 86,
+        "validation_rows_excluded": 1,
+        "duplicate_episode_ids": 0,
+        "completed_rows": 87,
+        "two_agents_all_rows": true,
+        "candidate_exactly_once_all_public_rows": true,
+        "finite_rewards_all_public_rows": true,
+        "opponent_snapshot_rating_join": "86/86",
+        "pre_or_post_rating_key_hits": 0
+      },
+      "cross_target_duplicate_public_episode_ids": 0
+    },
+    "decision": "Safe for W/T/L, score-rate, seat, time, opponent-submission, and current-opponent-rating-proxy summaries. Unsafe for exact per-game Rating attribution."
+  },
+  "online": {
+    "v14": {
+      "submission_id": 55722630,
+      "public_simulation_rating": 1885.2,
+      "is_active_latest_two_at_snapshot": false,
+      "public_window": {
+        "games": 87,
+        "first_end_time": "2026-08-23 18:45:09.072000",
+        "last_end_time": "2026-08-24 11:27:37.306000",
+        "elapsed_hours": 16.707843
+      },
+      "overall": {
+        "games": 87,
+        "wins": 66,
+        "ties": 0,
+        "losses": 21,
+        "pure_win_rate": 0.758621,
+        "outcome_score_rate": 0.758621,
+        "ci95": [0.65901, 0.836358]
+      },
+      "by_candidate_seat": {
+        "0": {"games": 51, "wins": 39, "ties": 0, "losses": 12, "score_rate": 0.764706, "ci95": [0.632378, 0.859951], "opponent_rating_proxy_mean": 1745.61},
+        "1": {"games": 36, "wins": 27, "ties": 0, "losses": 9, "score_rate": 0.75, "ci95": [0.589295, 0.862495], "opponent_rating_proxy_mean": 1775.3}
+      },
+      "time_path": {
+        "climb_games_1_40": {"games": 40, "wins": 34, "ties": 0, "losses": 6, "score_rate": 0.85, "ci95": [0.709277, 0.929388], "opponent_rating_proxy_mean": 1560.47},
+        "stable_games_41_80": {"games": 40, "wins": 30, "ties": 0, "losses": 10, "score_rate": 0.75, "ci95": [0.59806, 0.858129], "opponent_rating_proxy_mean": 1899.95},
+        "post80_games_81_87": {"games": 7, "wins": 2, "ties": 0, "losses": 5, "score_rate": 0.285714, "ci95": [0.082219, 0.641066], "opponent_rating_proxy_mean": 2074.23},
+        "ten_game_score_path": [0.9, 0.9, 0.9, 0.7, 1.0, 0.9, 0.5, 0.6, 0.285714],
+        "ten_game_opponent_rating_proxy_mean_path": [1075.76, 1657.33, 1647.39, 1861.42, 1832.77, 1917.32, 1969.95, 1879.77, 2074.23]
+      },
+      "opponent_distribution": {
+        "unique_teams": 87,
+        "unique_submission_ids": 87,
+        "maximum_submission_share": 0.011494,
+        "rating_proxy": {"coverage": "87/87", "mean": 1757.89, "median": 1812.0, "q25": 1606.25, "q75": 2007.1, "min": 638.7, "max": 2755.4},
+        "rating_bins": {
+          "lt1500": {"games": 17, "wins": 15, "losses": 2, "score_rate": 0.882353},
+          "1500_1999": {"games": 47, "wins": 40, "losses": 7, "score_rate": 0.851064},
+          "2000_2499": {"games": 22, "wins": 10, "losses": 12, "score_rate": 0.454545},
+          "gte2500": {"games": 1, "wins": 1, "losses": 0, "score_rate": 1.0}
+        },
+        "binary_2000_cut": {
+          "lt2000": {"games": 64, "share": 0.735632, "wins": 55, "losses": 9, "score_rate": 0.859375},
+          "gte2000": {"games": 23, "share": 0.264368, "wins": 11, "losses": 12, "score_rate": 0.478261, "ci95": [0.292372, 0.670373]}
+        },
+        "mean_rating_proxy_of_defeated_opponents": 1693.97,
+        "mean_rating_proxy_of_loss_opponents": 1958.8
+      }
+    },
+    "a2": {
+      "submission_id": 55713355,
+      "public_simulation_rating": 2429.0,
+      "is_active_latest_two_at_snapshot": false,
+      "public_window": {
+        "games": 63,
+        "first_end_time": "2026-08-23 11:32:44.817000",
+        "last_end_time": "2026-08-23 15:55:43.758000",
+        "elapsed_hours": 4.383039
+      },
+      "overall": {
+        "games": 63,
+        "wins": 41,
+        "ties": 0,
+        "losses": 22,
+        "pure_win_rate": 0.650794,
+        "outcome_score_rate": 0.650794,
+        "ci95": [0.527515, 0.75674]
+      },
+      "by_candidate_seat": {
+        "0": {"games": 29, "wins": 19, "ties": 0, "losses": 10, "score_rate": 0.655172, "ci95": [0.473451, 0.800593], "opponent_rating_proxy_mean": 2175.52},
+        "1": {"games": 34, "wins": 22, "ties": 0, "losses": 12, "score_rate": 0.647059, "ci95": [0.47914, 0.785121], "opponent_rating_proxy_mean": 1964.09}
+      },
+      "time_path": {
+        "climb_games_1_40": {"games": 40, "wins": 29, "ties": 0, "losses": 11, "score_rate": 0.725, "ci95": [0.57165, 0.83892], "opponent_rating_proxy_mean": 1927.59},
+        "partial_stable_games_41_63": {"games": 23, "wins": 12, "ties": 0, "losses": 11, "score_rate": 0.521739, "ci95": [0.329627, 0.707628], "opponent_rating_proxy_mean": 2294.15},
+        "formal_80_game_window_complete": false,
+        "ten_game_score_path": [1.0, 1.0, 0.3, 0.6, 0.4, 0.6, 0.666667],
+        "ten_game_opponent_rating_proxy_mean_path": [1094.37, 2132.44, 2226.9, 2256.66, 2293.28, 2276.64, 2355.4]
+      },
+      "opponent_distribution": {
+        "unique_teams": 57,
+        "unique_submission_ids": 57,
+        "maximum_submission_share": 0.047619,
+        "rating_proxy": {"coverage": "63/63", "mean": 2061.41, "median": 2249.0, "q25": 1879.6, "q75": 2382.0, "min": 649.4, "max": 2672.0},
+        "rating_bins": {
+          "lt1500": {"games": 8, "wins": 8, "losses": 0, "score_rate": 1.0},
+          "1500_1999": {"games": 12, "wins": 8, "losses": 4, "score_rate": 0.666667},
+          "2000_2499": {"games": 39, "wins": 23, "losses": 16, "score_rate": 0.589744},
+          "gte2500": {"games": 4, "wins": 2, "losses": 2, "score_rate": 0.5}
+        },
+        "binary_2000_cut": {
+          "lt2000": {"games": 20, "share": 0.31746, "wins": 16, "losses": 4, "score_rate": 0.8},
+          "gte2000": {"games": 43, "share": 0.68254, "wins": 25, "losses": 18, "score_rate": 0.581395, "ci95": [0.433286, 0.716154]}
+        },
+        "mean_rating_proxy_of_defeated_opponents": 1950.23,
+        "mean_rating_proxy_of_loss_opponents": 2268.61,
+        "repeated_opponent_submission_counts": [3, 2, 2, 2, 2]
+      }
+    },
+    "v13c": {
+      "submission_id": 55719781,
+      "public_simulation_rating": 2062.9,
+      "is_active_latest_two_at_snapshot": false,
+      "overall": {"games": 86, "wins": 53, "ties": 0, "losses": 33, "pure_win_rate": 0.616279, "outcome_score_rate": 0.616279, "ci95": [0.510629, 0.711986]},
+      "by_candidate_seat": {
+        "0": {"games": 49, "wins": 28, "losses": 21, "score_rate": 0.571429},
+        "1": {"games": 37, "wins": 25, "losses": 12, "score_rate": 0.675676}
+      },
+      "time_path": {
+        "climb_games_1_40": {"games": 40, "wins": 27, "losses": 13, "score_rate": 0.675, "opponent_rating_proxy_mean": 1828.62},
+        "stable_games_41_80": {"games": 40, "wins": 24, "losses": 16, "score_rate": 0.6, "opponent_rating_proxy_mean": 2152.58},
+        "post80_games_81_86": {"games": 6, "wins": 2, "losses": 4, "score_rate": 0.333333, "opponent_rating_proxy_mean": 2110.7}
+      },
+      "opponent_distribution": {
+        "unique_teams": 80,
+        "unique_submission_ids": 81,
+        "rating_proxy": {"coverage": "86/86", "mean": 1998.98, "median": 2041.7, "q25": 1914.7, "q75": 2154.18, "min": 555.8, "max": 2971.7},
+        "gte2000": {"games": 52, "share": 0.604651, "wins": 25, "losses": 27, "score_rate": 0.480769}
+      }
+    }
+  },
+  "local_confirmatory": {
+    "candidate": "v14_queue_stateful_no_mirror",
+    "design": {
+      "unique_sources": 100,
+      "source_dates": {"2026-08-18": 34, "2026-08-19": 33, "2026-08-20": 33},
+      "source_splits": {"train": 88, "validation": 12, "test": 0},
+      "fixed_opponents": ["v12a2_no_shop_gate", "v12_incumbent_r002"],
+      "candidate_seats_per_source_per_opponent": [0, 1],
+      "games_per_opponent": 200,
+      "total_games": 400,
+      "effective_source_clusters_per_opponent": 100,
+      "pairing_note": "Both seats reuse the same source seed against the same fixed opponent, so the two games are a cluster, not 200 independent sources."
+    },
+    "independent_recompute": {
+      "vs_a2": {"games": 200, "source_clusters": 100, "wins": 149, "ties": 18, "losses": 33, "pure_win_rate": 0.745, "pure_win_rate_ci95": [0.68, 0.805], "outcome_score_rate": 0.79, "outcome_score_rate_ci95": [0.74, 0.84]},
+      "vs_r002": {"games": 200, "source_clusters": 100, "wins": 156, "ties": 0, "losses": 44, "pure_win_rate": 0.78, "pure_win_rate_ci95": [0.725, 0.835], "outcome_score_rate": 0.78, "outcome_score_rate_ci95": [0.725, 0.835]}
+    }
+  },
+  "comparison": {
+    "local_a2_vs_online_v14_same_scale": {
+      "local_pure_win_rate": 0.745,
+      "online_v14_pure_win_rate": 0.758621,
+      "online_minus_local_pure_win_rate_pp": 1.3621,
+      "local_outcome_score_rate": 0.79,
+      "online_v14_outcome_score_rate": 0.758621,
+      "online_minus_local_outcome_score_rate_pp": -3.1379,
+      "interpretation": "No observed collapse in unweighted outcomes. Both differences are small relative to their 95% intervals and the cohorts are not exchangeable."
+    },
+    "online_v14_vs_a2_unadjusted": {
+      "v14_minus_a2_outcome_score_rate_pp": 10.7827,
+      "independent_difference_ci95_bootstrap_pp": [-3.9409, 25.6158],
+      "v14_minus_a2_public_simulation_rating": -543.8,
+      "interpretation": "The higher raw V14 win rate and lower V14 Rating are not contradictory because Rating weights the chronological opponent-strength path."
+    },
+    "opponent_mix_diagnostics": {
+      "a2_minus_v14_opponent_rating_proxy_mean": 303.52,
+      "a2_minus_v14_opponent_rating_proxy_median": 437.0,
+      "a2_minus_v14_gte2000_opponent_share_pp": 41.8172,
+      "v14_minus_a2_gte2000_score_rate_pp": -10.3134,
+      "two_bin_kitagawa_decomposition_at_2000": {
+        "raw_v14_minus_a2_score_rate_pp": 10.7827,
+        "opponent_mix_component_pp": 12.5393,
+        "opponent_mix_component_bootstrap_ci95_pp": [5.2432, 21.68],
+        "within_bin_performance_component_pp": -1.7566,
+        "within_bin_component_bootstrap_ci95_pp": [-17.4017, 14.2403],
+        "a2_score_standardized_to_v14_mix": 0.742208,
+        "v14_score_standardized_to_a2_mix": 0.599249,
+        "identity_check_pp": 10.7827,
+        "caveat": "Exact descriptive identity for a chosen two-bin cut, not a causal correction. It uses post-outcome current team ratings rather than pre-match ratings."
+      }
+    },
+    "seat_diagnostics": {
+      "v14_seat0_minus_seat1_score_rate_pp": 1.4706,
+      "a2_seat0_minus_seat1_score_rate_pp": 0.8113,
+      "interpretation": "Seat imbalance is too small to explain the 543.8 Rating-point gap and both seat CIs strongly overlap."
+    },
+    "path_diagnostics": {
+      "first_20": {
+        "v14": {"wins": 18, "losses": 2, "opponent_rating_proxy_mean": 1366.55},
+        "a2": {"wins": 20, "losses": 0, "opponent_rating_proxy_mean": 1613.41}
+      },
+      "v14_last_7": {"wins": 2, "losses": 5, "opponent_rating_proxy_mean": 2074.23},
+      "interpretation": "The raw path is consistent with early divergence in rating/matchmaking and a late V14 drawdown, but the platform's hidden pre-rating path is needed to turn this into Rating points."
+    }
+  },
+  "rating_attribution": {
+    "generic_path_equation": "R_(t+1) = R_t + update(S_t, R_t, R_opp,t); S_t is 1/0.5/0 for win/tie/loss. Gold margin is absent from the update.",
+    "public_rating_gap_v14_minus_a2": -543.8,
+    "pre_match_candidate_rating_available": false,
+    "pre_match_opponent_rating_available": false,
+    "post_match_candidate_rating_available": false,
+    "exact_per_game_rating_delta_available": false,
+    "exact_rating_points_attributable_from_raw": 0,
+    "meaning_of_zero": "Zero points can be exactly attributed, not that opponent mix or path had zero effect.",
+    "minimum_data_needed": "For every public episode: candidate and opponent pre-rating, candidate post-rating or platform update parameters, and exact chronological application order."
+  },
+  "epistemic_status": {
+    "verified": [
+      "V14 online public W/T/L is 66/0/21 and outcome score rate is 75.8621% over 87 games.",
+      "A2 fixed online public W/T/L is 41/0/22 and outcome score rate is 65.0794% over 63 games.",
+      "V13C online public W/T/L is 53/0/33 and outcome score rate is 61.6279% over 86 games.",
+      "V14 local confirmatory result versus fixed A2 is 149/18/33: 74.5% pure wins and 79.0% outcome score over 100 paired source clusters.",
+      "V14 has no online raw-win collapse relative to its local fixed-A2 result; the apparent contradiction is a metric-scale mismatch.",
+      "V14's online opponents are materially easier by current-rating proxy than A2's, while V14 performs worse in the >=2000 proxy segment.",
+      "Candidate seat does not materially explain the primary gap.",
+      "No raw episode payload contains pre/post rating fields, so exact per-game Rating attribution is impossible."
+    ],
+    "likely_but_not_proven": [
+      "The easier V14 opponent pool and weaker strong-opponent segment explain much of why a high unweighted win rate did not translate into a high Simulation Rating.",
+      "A2's 20-0 first 20 games versus V14's 18-2, followed by much stronger A2 opponents, is consistent with a favorable early rating/matchmaking path.",
+      "V14's 2-5 post-80 tail likely reduced its final Rating."
+    ],
+    "unknown": [
+      "How many of the 543.8 Rating points are caused by opponent strength, early path, update constants, or inactive-submission freeze timing.",
+      "The exact platform Rating update formula and every player's pre-match rating.",
+      "A causal estimate of V14 versus A2 online: they were not paired on the same seed, opponent, seat, or clock time."
+    ]
+  },
+  "bottom_line": "Local confirm asks whether V14 beats two fixed experts on paired seeds; online Rating asks how a chronological, heterogeneous, unpaired sequence scores after opponent-strength weighting. V14 passed the first question but the available raw data does not establish the second."
+}

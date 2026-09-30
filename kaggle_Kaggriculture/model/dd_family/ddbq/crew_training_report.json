@@ -1,0 +1,64 @@
+{
+  "version": "ddbq",
+  "test_used": false,
+  "source_manifest_sha256": "5a15e60bcdac706e8e8a59fa6c37072d8738bd7d9505748e8485a7e4cd023129",
+  "features": 143,
+  "algorithm": "ExtraTrees regression from day-start visible state to actual teacher daily maximum crew; behavioral supervision, not optimal staffing or reinforcement learning.",
+  "target_boundary": "Maximum hands in observation states [24*day, min(24*day+24,720)); next day reset excluded.",
+  "validation_mae": 0.741038724036037,
+  "validation_median_baseline_mae": 2.433333333333333,
+  "train_median": 10.0,
+  "validation_r2": 0.8902651178551566,
+  "export_max_abs_error": 3.552713678800501e-15,
+  "seconds": 38.96240249997936,
+  "splits": {
+    "train": {
+      "sources": 146,
+      "days": 4380,
+      "crew_min": 1,
+      "crew_max": 14,
+      "crew_quantiles": [
+        1.0,
+        7.0,
+        10.0,
+        11.0,
+        14.0
+      ],
+      "sha256": "e80c629dbcd86e4126d43990e0b9d25ab26b2e7f210bceae7d052ffcbf16c0ba"
+    },
+    "validation": {
+      "sources": 40,
+      "days": 1200,
+      "crew_min": 1,
+      "crew_max": 14,
+      "crew_quantiles": [
+        1.0,
+        6.75,
+        10.0,
+        11.0,
+        14.0
+      ],
+      "sha256": "c225d54f3aec9bf5cd743fe008404bd12ed4109b820f0b4b1857643cc60ae9fc"
+    }
+  },
+  "hashes": {
+    "task_features.py": "daaf22f85a547134055b670ec5f7a1a917664ab5cd4014aed93be12579b5fe13",
+    "source_manifest.json": "5a15e60bcdac706e8e8a59fa6c37072d8738bd7d9505748e8485a7e4cd023129",
+    "maintenance.py": "14161b7e4b7dce9fd28df991dd92499b95c414ddcca46b02c7a9eb556c4c5cf0",
+    "config.json": "7943d6e46fa2d9246efa873681428abf7e240f8da553ff855e3e8ec51a094d72",
+    "market_quantity.npz": "6487d242b639ab24ac49eb00f0d546e039dbcc72ff17537bfe30718e86b5f90b",
+    "goal_rank.npz": "1ad50020b9de19baa9027a0acde72e93f9a246fc071e7256031260b18abd22c4",
+    "rules.py": "7bc531159afa5903d99f52412805a09f9531df01ba502b46c64c43d7754a2d03",
+    "features.py": "de09e62ebee57732958c48a9932c3a566388bb5a3ecb4aa9b21de6d74416d3f6",
+    "daily_crew.npz": "7d31057bab014b8c157536bf351f066d54bd6963273c62b29ffd8ac30e04cc5d",
+    "crew_features.py": "021d8e1229aeddba8e0ab79018e897e853ed4597208f54fd320abdee34649d3e",
+    "tree_runtime.py": "71353c29eccd22a0f0e135f77c28400ba919d2f04cbd5e71dfa325665e9582c2",
+    "goal_quantity.npz": "06f114528dfa0884c237a258b14d0852804b9be9da1495d1de9f7de94f91210d",
+    "market_policy.npz": "dcc3625aba9c81f0804a4a0ca958fcae761abb1173bb7825a1344f2c2095b718",
+    "main.py": "b945d73e6061e9a8e0465a6ddcc78ed595a3b1bfdd5f8cb76f5e5fe8f9feb059",
+    "action_space.py": "3d4f055e0ea637778af9aa4287bf05fb303b970332f6a2e4eb986d67f9d95e79",
+    "parent_provenance.json": "fbb017cabfb2dc139aae33e8c4ea136e7ca4acd248fa952b7dbf9340df35117c",
+    "feature_schema.json": "d49139264b20b0820ad63f643bcc5182ed687dfe99bf02319c71496ee324ac94",
+    "production.py": "bb9456e9b88f49c3e7a4495cee2b8f8225b88c74ff5407b7cdf7884d1209ccfd"
+  }
+}

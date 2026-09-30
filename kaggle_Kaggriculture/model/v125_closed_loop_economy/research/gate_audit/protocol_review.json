@@ -1,0 +1,71 @@
+{
+  "reviewed_at_utc": "2026-09-05T09:56:53.827404+00:00",
+  "reviewed_protocol_version": "1.2",
+  "reviewed_protocol_sha256": "ae3bee95da7659da9ed08b081bbdff2980d61a91fdbc6bbf52c9dea2a5c15a72",
+  "snapshot": "reviewed_GATE_PROTOCOL_1_2.md",
+  "review_scope": "只读根协议；本目录产物独立审查，不修改根协议，不执行比赛或上线",
+  "status": "ACCEPTABLE_FOR_LOCAL_RESEARCH_ONLINE_EXECUTION_DETAILS_PENDING",
+  "gold_evidence_passed": false,
+  "actual_gold_opponents_admitted_from_public_source": 0,
+  "findings": [
+    {
+      "id": "G3_CIRCULAR_DEPENDENCY",
+      "severity": "resolved_in_reviewed_1_2",
+      "finding": "私人强手源码不可得会令旧版全部本地门→首次上线形成循环。",
+      "resolution": "1.2允许实际线上替代，本地可执行门及包先全部完成，线上强家族覆盖保持PENDING。"
+    },
+    {
+      "id": "G3_SAMPLE_REDUCTION",
+      "severity": "resolved_in_reviewed_1_2",
+      "finding": "最初替代路径32局／每席8低于本地64局／每席32。",
+      "resolution": "1.2恢复每家族64实际局、每席32，纯胜率与区间下限不降。"
+    },
+    {
+      "id": "LOCAL_FAMILY_AVAILABILITY",
+      "severity": "resolved_in_reviewed_1_2",
+      "finding": "本地四家族若同时要求当前金牌源码会重建不可达依赖。",
+      "resolution": "1.2明确本地Router消融可用四个合规独立机制家族，强弱分层；强度由实际线上覆盖确认。"
+    },
+    {
+      "id": "OPPONENT_SUBMISSION_STRENGTH",
+      "severity": "resolved_in_reviewed_1_2_appendix",
+      "finding": "金牌团队有两个active提交，团队高分不能证明匹配到的实际较弱提交有金牌强度。",
+      "recommendation": "登记opponent_submission_id、同时间榜单金牌截止分、该active提交评分；只有实际提交达到当时截止且身份可核实才计强来源。缺证据仅计普通覆盖。",
+      "resolution": "根已追加实际opponent_submission_id自身评分达到当时金牌边界；不能用同队另一个更高分active替代，缺证只计普通覆盖。"
+    },
+    {
+      "id": "FAMILY_SELECTION",
+      "severity": "resolved_in_reviewed_1_2_appendix",
+      "finding": "公开行为不同不能证明算法谱系独立；若按胜负选择四家族，会引入事后选择。",
+      "recommendation": "冻结可见行为特征、保守归并、准入窗口和全部合格家族纳入规则；归并过程不看候选胜负。不能区分时合并，称行为家族而不是源码独立已证。",
+      "resolution": "根已追加冻结行为特征、准入窗口、分组算法，聚类不使用候选胜负，窗口内全部合格家族纳入。"
+    },
+    {
+      "id": "OFFICIAL_HOLDOUT",
+      "severity": "resolved_in_reviewed_1_2_appendix",
+      "finding": "相同对局从官方日包另取一份不产生独立样本；去重本身未预先定义独立日期块。",
+      "recommendation": "预留未来官方日期块，登记打开时间，episode_id+Replay SHA全局去重；与G3/G4主窗口分开；官方抽样偏置仍需披露。",
+      "resolution": "根已追加预留独立未来日期块、打开前登记窗口；官方复制的主面板同局不能作独立样本。"
+    },
+    {
+      "id": "ONLINE_CLUSTER_METHOD",
+      "severity": "implementation_detail_to_freeze",
+      "finding": "线上无法控制seed，按日期／对手分块的算法和窗口尚需在执行清单明确。",
+      "recommendation": "锁定UTC日期边界、实际对手submission聚类和bootstrap算法、样本收集截止及重复检验规则；不足的cluster不以大量同一对手局冒充独立。"
+    },
+    {
+      "id": "G2_ZERO_HEADROOM",
+      "severity": "implementation_detail_to_freeze",
+      "finding": "主机制指标已达到极值（例如错误0）时，不能再改善20%；协议尚未给出可计算的预注册指标规则。",
+      "recommendation": "每代主假设须选择具有真实改善空间的机制指标并冻结绝对值、方向、分母和相对公式。不得等结果后更换指标或虚构改善。"
+    }
+  ],
+  "initial_proposal_status": "strict_gate_proposal.json和initial_gate_audit_proposal.md为未采用初稿，不是根冻结协议或执行结果。",
+  "authorizations": {
+    "restart": "用户已明确重启开发研究",
+    "submission": "CLAUDE.md第8条仍要求逐次明确授权；此审查不提供上线授权",
+    "work_before_submission": "候选实现、有效本地门、失败归因、固定SHA、raw-loader与打包审阅材料全部先做完；不能因尚缺线上授权把研究宣布完成。"
+  },
+  "prior_reviewed_protocol_sha256": "d2b8c98dd5a12809a14865743654d0f4b42b2919ed9a60850426427ad36e7ed7",
+  "refresh_scope": "按根请求仅刷新一次协议附加条款；未新增调查、Replay读取或比赛。"
+}

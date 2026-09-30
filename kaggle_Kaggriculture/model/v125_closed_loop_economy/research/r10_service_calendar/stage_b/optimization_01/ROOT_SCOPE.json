@@ -1,0 +1,38 @@
+{
+  "created_at_utc": "2026-09-05T13:36:27.984311+00:00",
+  "purpose": "First semantics-preserving performance revision after actual940 engineering failure",
+  "parent_prototype_sha256": "940a7438f57d10978ef93ee2eb4168a04e644f0fa8531180f1c960719f5471f0",
+  "profile_source_sha256": "8accea8bce7b821af91e2c506f15babf37be4b0993c82a8756f1e83c9656acce",
+  "hypothesis": "Removing three proved-redundant outer deepcopy calls for default scheduler/checker preserves full plans/state and custom-hook isolation, while reducing actual internal plan runtime. Whether it meets1s remains an empirical check.",
+  "allowed_changes": [
+    "Only default schedule/check outer input copies; provided custom hooks keep old isolation",
+    "Prototype label and construction-local directory adaptation"
+  ],
+  "forbidden_changes": [
+    "Original B sources or prior failures",
+    "staged/evidence cache isolation",
+    "checker internal copies or rule validation",
+    "scores/cash/old labor values or acceptance thresholds",
+    "lazy offer ordering or budget truncation"
+  ],
+  "registered_checks": {
+    "pure_route_calls": 8,
+    "pure_calendar_calls": 48,
+    "pure_aggregate_calls": 2,
+    "cache_constructions": 6,
+    "native_scheduler_calls": 6,
+    "native_checker_calls": 6,
+    "custom_schedule_hook_calls": 2,
+    "custom_check_hook_calls": 2,
+    "new_state_calls": 2,
+    "internal_economic_calls": 2,
+    "unprofiled_internal_call_guard_seconds": 120,
+    "whole_agent_calls": 0,
+    "official_steps": 0,
+    "new_complete_matches": 0
+  },
+  "equivalence_requirement": "Same exact opened fixture in isolated modules; complete plan and state field-by-field equal, only explicit candidate label metadata may be separated. No partial prefix accepted as whole-plan proof.",
+  "performance_requirement": "Record both one-shot raw runtimes and1s outcome; extended guard is diagnostic completion only and does not relax gate.",
+  "failure_policy": "Keep every timeout/mismatch, no retry selecting fastest; further revision needs distinct falsifiable hypothesis and sourcefreeze.",
+  "formal_status": "NOT_GOLD"
+}

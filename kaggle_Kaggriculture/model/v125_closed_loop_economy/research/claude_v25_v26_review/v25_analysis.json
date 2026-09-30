@@ -1,0 +1,312 @@
+{
+  "created_at_utc": "2026-09-05T12:34:52.111395+00:00",
+  "scope": "V25 read-only source/artifact review",
+  "executions": {
+    "candidate_calls": 0,
+    "official_steps": 0,
+    "new_complete_matches": 0,
+    "new_replays": 0,
+    "claude_files_modified": 0
+  },
+  "source_sha256": {
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py": "576211de2cf41921def9c6fc1e968058896b473fdcc8bc3f0baadfbdc06b9f71",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/dist/main.py": "47218bab7fb12c00ec40bc9bc84f8012ea449c0065f914411bb51fc464db5447",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/build.py": "8de107d6c5798c38c422e18d20130057177630e423437c9ee541e5fcf23b6e82",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/README.md": "396765c10cb546980d7640777a58b7e9f036162e641cebc940f6c784a96cc8d6",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/m6.json": "5082c1e4e4c25cc0e79c717b6d8b40a34df5a966713d4c213591a8a8e58470e0",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/m6.log": "fabd7fd8b9f6e94d2bbf68377f073e8e55a8c3c0c2a5f512b40acbc146ed7d3f",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/submission.tar.gz": "f606e87731f3a781cbe627116d37cb5f6175c8e2c822a4650968953dec0f6448",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v24_hybrid/main.py": "aabc432f06cdfaaea6d1e137964c1e0c07fd861a344e9ca43e899648aeebf009",
+    ".venv/lib/python3.12/site-packages/kaggle_environments/envs/kaggriculture/kaggriculture.py": "bc8a54879ef02c7ea64b8b333d6a976f0ea65c4949149d01f463f23bccee653e",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/community_research/2026-08-26/live_cli/external_repos/kaggriculture-cppsim/sim/sim.hpp": "bcaf73c91cfe673199f985c0e7a70c204e6319a4f934a42272baf7edb3ce8096",
+    ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v4_demand_race/harness/arena.py": "37862953f9977fa6c0212812a1f9267c3d3224afdb3b67a873f08dc3422abbdb"
+  },
+  "route_data": {
+    "length": 719,
+    "decompressed_text_sha256": "d93aa81501b0418627dbfaaae206d22e071bb0ab038183b2769085df622f5e88",
+    "method": "ast literal compressed data decoded only; no candidate import or execution"
+  },
+  "package": {
+    "members": [
+      "._main.py",
+      "main.py"
+    ],
+    "main_sha256": "47218bab7fb12c00ec40bc9bc84f8012ea449c0065f914411bb51fc464db5447",
+    "main_equals_dist": true,
+    "research_main_equals_dist": false
+  },
+  "temporary_entrypoint_wrapper": {
+    "path": "/tmp/v25_cand.py",
+    "sha256": "e25fa89741255557d48226ebce8bfceeff1c6a3f35a5425307f853461aaab159",
+    "binding_to_historical_m6": "PENDING"
+  },
+  "m6_recomputed": {
+    "v120": {
+      "games": 128,
+      "unique_seeds": 64,
+      "unique_seed_seats": 128,
+      "W": 125,
+      "L": 3,
+      "T": 0,
+      "mean_margin_recomputed": 18951.4765625,
+      "row_arithmetic_errors": 0,
+      "all_row_keys": [
+        "margin",
+        "mine",
+        "seat",
+        "seed",
+        "theirs"
+      ],
+      "provenance_binding": "PENDING_SOURCE_ENTRYPOINT_ENV_ENGINE_COMMAND_HASH"
+    },
+    "v76": {
+      "games": 128,
+      "unique_seeds": 64,
+      "unique_seed_seats": 128,
+      "W": 118,
+      "L": 10,
+      "T": 0,
+      "mean_margin_recomputed": 9534.203125,
+      "row_arithmetic_errors": 0,
+      "all_row_keys": [
+        "margin",
+        "mine",
+        "seat",
+        "seed",
+        "theirs"
+      ],
+      "provenance_binding": "PENDING_SOURCE_ENTRYPOINT_ENV_ENGINE_COMMAND_HASH"
+    },
+    "v20": {
+      "games": 128,
+      "unique_seeds": 64,
+      "unique_seed_seats": 128,
+      "W": 118,
+      "L": 10,
+      "T": 0,
+      "mean_margin_recomputed": 9803.40625,
+      "row_arithmetic_errors": 0,
+      "all_row_keys": [
+        "margin",
+        "mine",
+        "seat",
+        "seed",
+        "theirs"
+      ],
+      "provenance_binding": "PENDING_SOURCE_ENTRYPOINT_ENV_ENGINE_COMMAND_HASH"
+    }
+  },
+  "findings": [
+    {
+      "id": "illegal_premium_buys",
+      "status": "CONFIRMED_STATIC_RULE_CONTRADICTION",
+      "claim": "MM买入集合四品种均不在官方BUY_PRODUCT允许集合，C++规则同限制。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2470",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2520",
+        ".venv/lib/python3.12/site-packages/kaggle_environments/envs/kaggriculture/kaggriculture.py:598",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/community_research/2026-08-26/live_cli/external_repos/kaggriculture-cppsim/sim/sim.hpp:563"
+      ]
+    },
+    {
+      "id": "phantom_inventory",
+      "status": "CONFIRMED_STATIC",
+      "claim": "BUY请求即增加pos，SELL请求即减少或清零，无真实成交确认；可能在以后出售自产货。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2498",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2514",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2521"
+      ]
+    },
+    {
+      "id": "animal_count_schema",
+      "status": "CONFIRMED_STATIC",
+      "claim": "V17计数未匹配官方animal字符串和PASTURE结构，可能将已落地牛羊视为缺货。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2332",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2363",
+        ".venv/lib/python3.12/site-packages/kaggle_environments/envs/kaggriculture/kaggriculture.py:229"
+      ]
+    },
+    {
+      "id": "aggregate_budget_guards",
+      "status": "CONFIRMED_STATIC_GUARD_GAP_CURRENT_PREMIUM_BUYS_ARE_INVALID",
+      "claim": "25%逐item不是总额；不扣前层支出/循环shed_room；pos阈值不裁lot到剩余cap。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2504",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2506",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2516",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2521"
+      ]
+    },
+    {
+      "id": "nonindependent_lineage",
+      "status": "CONFIRMED_STATIC",
+      "claim": "嵌入V120固定719步动作带加V10/V17/V24/V25反应层，不是V125独立经营主生成。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:1374",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2234",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2240",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2530",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/build.py:78"
+      ]
+    },
+    {
+      "id": "entrypoint_ambiguity",
+      "status": "ENTRYPOINTS_DIFFER_RUN_BINDING_PENDING",
+      "claim": "main.agent是V10，末尾kaggriculture_agent_v25才有所有层；已有临时wrapper将末callable回绑agent，不能断言历史测错。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2305",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/main.py:2529",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v4_demand_race/harness/arena.py:29",
+        "/tmp/v25_cand.py:4"
+      ]
+    },
+    {
+      "id": "result_arithmetic",
+      "status": "INTERNALLY_CONSISTENT_NOT_CAUSAL",
+      "claim": "m6行级胜负margin闭合，但缺入口/source/env/engine绑定，97.7%不能证明做市成功。",
+      "evidence": [
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/m6.json",
+        ".claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v25_market_maker/README.md:16"
+      ]
+    }
+  ],
+  "symbolic_counterexample": {
+    "method": "manually derived from source, not executed",
+    "input": {
+      "day": 10,
+      "hour": 0,
+      "cash": 10000,
+      "shed": {},
+      "pos": {},
+      "STRAWBERRY_price": 60,
+      "prior_market": []
+    },
+    "premium_buy_request": [
+      "BUY_PRODUCT",
+      "STRAWBERRY",
+      8
+    ],
+    "local_pos_after_request": 8,
+    "official_effect_of_request": "no-op because product not buyable",
+    "later_condition": {
+      "STRAWBERRY_price": 112,
+      "actual_self_produced_STRAWBERRY_in_shed": 8
+    },
+    "later_extra_sell": [
+      "SELL",
+      "STRAWBERRY",
+      8
+    ],
+    "attribution": "sale of own production, not profit on purchased strawberries"
+  },
+  "migration_verdict": "extract falsifiable sale-timing / legal wheat-perturbation hypotheses; do not import wrapper lineage or claim premium market making",
+  "report_sha256": "e7a4e7e6504d290932d44836e668ab5903e7ae0898de8b23225bf1134e57a025",
+  "independent_root_controls": {
+    "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json",
+    "sha256": "80f8deebe6427ea7f6cd5f49f78e00acc60dd4ba5b3beef33230e9515f7c981b",
+    "calls": {
+      "whole_candidate": 0,
+      "complete_matches": 0,
+      "official_market_function": 8,
+      "official_interpreter_steps": 0,
+      "extracted_mm_function": 2,
+      "extracted_animal_count_function": 1
+    },
+    "all_assertions_passed": true,
+    "core_results": {
+      "official_buy_controls": [
+        {
+          "item": "STRAWBERRY",
+          "requested": 8,
+          "actual_quantity": 0,
+          "actual_spend": 0.0,
+          "allowed": false
+        },
+        {
+          "item": "MILK",
+          "requested": 8,
+          "actual_quantity": 0,
+          "actual_spend": 0.0,
+          "allowed": false
+        },
+        {
+          "item": "WOOL",
+          "requested": 8,
+          "actual_quantity": 0,
+          "actual_spend": 0.0,
+          "allowed": false
+        },
+        {
+          "item": "MELON",
+          "requested": 8,
+          "actual_quantity": 0,
+          "actual_spend": 0.0,
+          "allowed": false
+        },
+        {
+          "item": "WHEAT",
+          "requested": 8,
+          "actual_quantity": 8,
+          "actual_spend": 216.0,
+          "allowed": true
+        },
+        {
+          "item": "FERTILIZER",
+          "requested": 8,
+          "actual_quantity": 8,
+          "actual_spend": 807.0,
+          "allowed": true
+        }
+      ],
+      "ghost_position_control": {
+        "requested_orders": [
+          [
+            "BUY_PRODUCT",
+            "STRAWBERRY",
+            8
+          ]
+        ],
+        "internal_position": {
+          "STRAWBERRY": 8
+        },
+        "actual_strawberry": 0,
+        "cash_delta": 0.0
+      },
+      "sell_existing_stock_control": {
+        "synthetic_self_produced_units_before": 4,
+        "requested_orders": [
+          [
+            "SELL",
+            "STRAWBERRY",
+            4
+          ]
+        ],
+        "actual_strawberry_after": 0,
+        "cash_delta": 468.0,
+        "internal_position_after": {
+          "STRAWBERRY": 4
+        },
+        "meaning": "未成交低吸也能触发后续出售原有库存；这里只证明可达行为，不归因历史整局收益"
+      },
+      "animal_count_control": {
+        "official_tile": {
+          "kind": "PASTURE",
+          "animal": "COW",
+          "placed_day": 0,
+          "yield_units": 0,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "cared_today": false,
+          "fertilizer_available": false,
+          "pending_care_bonus": 0
+        },
+        "actual_cows": 1,
+        "reported_cows": 0,
+        "reported_sheep": 0
+      }
+    },
+    "limitations": "人工函数边界控制；未运行完整候选、未重算M6、未读取线上实际成交，也不证明策略强度"
+  }
+}

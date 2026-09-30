@@ -1,0 +1,206 @@
+{
+  "development_lineages": 7,
+  "development_models": 7,
+  "development_selection_rule": "one highest historical publicScore representative per lineage",
+  "direct_anchor_mapping": {
+    "primary": "pool_01",
+    "secondary": "pool_08"
+  },
+  "hidden_lineages": 7,
+  "hidden_models": 11,
+  "hidden_selection_rule": "all exact-serving-unique models with publicScore > 2000",
+  "lineage_weighting": "models equal within lineage; lineages equal in final pool score",
+  "lineages": [
+    {
+      "behaviour_lineage": "a2_router_residual",
+      "development_representative_pool_id": "pool_01",
+      "hidden_member_count": 2,
+      "hidden_member_pool_ids": [
+        "pool_01",
+        "pool_02"
+      ]
+    },
+    {
+      "behaviour_lineage": "adaptive_market_guard",
+      "development_representative_pool_id": "pool_03",
+      "hidden_member_count": 2,
+      "hidden_member_pool_ids": [
+        "pool_03",
+        "pool_04"
+      ]
+    },
+    {
+      "behaviour_lineage": "bc_ppo_executor",
+      "development_representative_pool_id": "pool_05",
+      "hidden_member_count": 1,
+      "hidden_member_pool_ids": [
+        "pool_05"
+      ]
+    },
+    {
+      "behaviour_lineage": "kawa_market_microstructure",
+      "development_representative_pool_id": "pool_06",
+      "hidden_member_count": 2,
+      "hidden_member_pool_ids": [
+        "pool_06",
+        "pool_07"
+      ]
+    },
+    {
+      "behaviour_lineage": "learned_router_incumbent",
+      "development_representative_pool_id": "pool_08",
+      "hidden_member_count": 1,
+      "hidden_member_pool_ids": [
+        "pool_08"
+      ]
+    },
+    {
+      "behaviour_lineage": "ppo_topday_residual",
+      "development_representative_pool_id": "pool_09",
+      "hidden_member_count": 1,
+      "hidden_member_pool_ids": [
+        "pool_09"
+      ]
+    },
+    {
+      "behaviour_lineage": "rule_hybrid",
+      "development_representative_pool_id": "pool_10",
+      "hidden_member_count": 2,
+      "hidden_member_pool_ids": [
+        "pool_10",
+        "pool_11"
+      ]
+    }
+  ],
+  "models": [
+    {
+      "behaviour_lineage": "a2_router_residual",
+      "catalog_key": "a2_fixed",
+      "code_fingerprint": "f5c7771648a8c55e942c0cd4d9fc7f986e505c60eaf0205d59617b3f43f5234b",
+      "development_representative": true,
+      "display_name": "v12a2_no_shop_gate",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_01",
+      "peak_public_score": 2429.0,
+      "serving_fingerprint": "f26b23a1e21c3e1e64fdd3489c89abdf359bd8b56445c14b8ea6b238d8e72b49"
+    },
+    {
+      "behaviour_lineage": "a2_router_residual",
+      "catalog_key": "v13c_fixed",
+      "code_fingerprint": "c3f8defc0bbb8e420d80b273670d90de9a356ec0932949e868522829e1636408",
+      "development_representative": false,
+      "display_name": "v13c_a2_v8_no_wool_throttle",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_02",
+      "peak_public_score": 2062.9,
+      "serving_fingerprint": "9206dbee8d85248bf2a04c268d82a2e6458ac5767933ce3f9c90f61fc44da59d"
+    },
+    {
+      "behaviour_lineage": "adaptive_market_guard",
+      "catalog_key": "v1_adaptive",
+      "code_fingerprint": "de8e11a98b573236fc980568a4e97b4c405e2f606d648854643cecd4c4b491f0",
+      "development_representative": true,
+      "display_name": "v1_adaptive_market",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_03",
+      "peak_public_score": 2727.5,
+      "serving_fingerprint": "de8e11a98b573236fc980568a4e97b4c405e2f606d648854643cecd4c4b491f0"
+    },
+    {
+      "behaviour_lineage": "adaptive_market_guard",
+      "catalog_key": "v2_survival",
+      "code_fingerprint": "a12ed6b696e92960f500a98d14a38873b5593bd7a719e4830471c276ef036b11",
+      "development_representative": false,
+      "display_name": "v2_survival_guard",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_04",
+      "peak_public_score": 2576.9,
+      "serving_fingerprint": "a12ed6b696e92960f500a98d14a38873b5593bd7a719e4830471c276ef036b11"
+    },
+    {
+      "behaviour_lineage": "bc_ppo_executor",
+      "catalog_key": "v3_bc_ppo",
+      "code_fingerprint": "d9a0a379def565b6ec96c7b921d4c25ecd8fdaa27ff8b16b5c317563a5d4e1e0",
+      "development_representative": true,
+      "display_name": "v3_bc_ppo_hybrid",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_05",
+      "peak_public_score": 2261.1,
+      "serving_fingerprint": "d8f44764d5a6f3bdf7e9c76f13f1c6aca3bdbe57453c677640202c844673b703"
+    },
+    {
+      "behaviour_lineage": "kawa_market_microstructure",
+      "catalog_key": "v9_anti_mirror",
+      "code_fingerprint": "276d5db65d6d70dddddead6234671b4110a39192465c05e61b78dbc3b0afb1fd",
+      "development_representative": true,
+      "display_name": "v9_anti_mirror",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_06",
+      "peak_public_score": 2079.3,
+      "serving_fingerprint": "276d5db65d6d70dddddead6234671b4110a39192465c05e61b78dbc3b0afb1fd"
+    },
+    {
+      "behaviour_lineage": "kawa_market_microstructure",
+      "catalog_key": "v8_kawa",
+      "code_fingerprint": "7f7c4bf6e56d730bd445b8ff74ca7a1cfa5cb66dc92c85b0dd8e6e0a458561ed",
+      "development_representative": false,
+      "display_name": "v8_kawa_lead2_slot",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_07",
+      "peak_public_score": 2066.1,
+      "serving_fingerprint": "7f7c4bf6e56d730bd445b8ff74ca7a1cfa5cb66dc92c85b0dd8e6e0a458561ed"
+    },
+    {
+      "behaviour_lineage": "learned_router_incumbent",
+      "catalog_key": "r002_fixed",
+      "code_fingerprint": "c8f4642d2a8f4d4d51815184bbcdea0d1c4c3a4e8e9980a944e7168cf0b2022b",
+      "development_representative": true,
+      "display_name": "v12_incumbent_r002",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_08",
+      "peak_public_score": 2034.4,
+      "serving_fingerprint": "c11f5f0320e7235cf452f21965d11a6d144ba166c7e71bb3ca8539ffa959b668"
+    },
+    {
+      "behaviour_lineage": "ppo_topday_residual",
+      "catalog_key": "v5_ppo_topdays",
+      "code_fingerprint": "59f380742662fe3ed8897a122ab9fb8835dec30d52c38e7011d8812f413d2015",
+      "development_representative": true,
+      "display_name": "v5_ppo_v2_topdays",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_09",
+      "peak_public_score": 2219.4,
+      "serving_fingerprint": "2aaa4a80ae15b24a1a0cf7bd7da66347001d217265955f046fe33d559bdd0a6e"
+    },
+    {
+      "behaviour_lineage": "rule_hybrid",
+      "catalog_key": "v5_rule",
+      "code_fingerprint": "bcbdc24443ef5dce6f28cf974b42152a46cf7b58041ed0e9c091139b3d1128c3",
+      "development_representative": true,
+      "display_name": "v5_rule_hybrid",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_10",
+      "peak_public_score": 2368.6,
+      "serving_fingerprint": "bcbdc24443ef5dce6f28cf974b42152a46cf7b58041ed0e9c091139b3d1128c3"
+    },
+    {
+      "behaviour_lineage": "rule_hybrid",
+      "catalog_key": "v4_rule",
+      "code_fingerprint": "2992f007866de75b55f5082a6d23d4246b215c4fe64ccf7d8cee072c01bf9679",
+      "development_representative": false,
+      "display_name": "v4_rule_hybrid",
+      "hidden_included": true,
+      "opaque_pool_id": "pool_11",
+      "peak_public_score": 2295.3,
+      "serving_fingerprint": "2992f007866de75b55f5082a6d23d4246b215c4fe64ccf7d8cee072c01bf9679"
+    }
+  ],
+  "parent_mapping": {
+    "catalog_key": "a2_fixed",
+    "opaque_pool_id": "pool_01",
+    "public_alias": "P0",
+    "serving_fingerprint": "f26b23a1e21c3e1e64fdd3489c89abdf359bd8b56445c14b8ea6b238d8e72b49"
+  },
+  "schema": "kaggriculture-v15-lineage-seal-1",
+  "seal_sha256": "2285f00fcb0e7d656227a78b1b4206c008ea3223d4dd2cc4a104e8781d3545ba"
+}

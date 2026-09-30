@@ -1,0 +1,48 @@
+{
+  "schema": "v125-procurement-receipts-v1",
+  "started_at_utc": "2026-09-05T10:33:14.540164+00:00",
+  "source_run": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r4_pass_diagnostic_s0",
+  "source_game_index": 0,
+  "source_game_key": "297884e200df43805eb409479a739cdbcfe55119d07ecf4ac0cb23e6a529dbe5:adeca793d523849add68c2ed3a10e6aedcb209f44deb95707b80e3ae91d9e6e0:1950905001:0:264d0bba1daf534c82668e1c9c445ae9f7c5bd342296375b8f1b3a7e1015aa3a",
+  "source_games_sha256": "321aa0542c98875bb4d41eec02e3e96185e0f22fe5f7d2de5a370ed8b214fac5",
+  "source_trace": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r4_pass_diagnostic_s0/trace_1950905001_seat0.json.gz",
+    "sha256": "0e96c8161f61dd0135e6fc70825d403990dfb55f2b327eb21f06e7c97ed4d056"
+  },
+  "candidate": {
+    "entry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/candidates/V125-R4/main.py",
+    "files": {
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/candidates/V125-R4/main.py": "8d3b634468d58c47df7c2c87644af04aa9d493e7c6381969866d4acfa3558431"
+    },
+    "entry_sha256": "8d3b634468d58c47df7c2c87644af04aa9d493e7c6381969866d4acfa3558431",
+    "composite_sha256": "297884e200df43805eb409479a739cdbcfe55119d07ecf4ac0cb23e6a529dbe5",
+    "closure_policy": "entry plus package Python/binary/weight files; dynamic external dependencies must use --candidate-file/--opponent-file"
+  },
+  "harness": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/run_match_v2.py",
+    "sha256": "04d0e5ff740c469264561d43e76ef55bc231770e9c190c026173a07fd160002f"
+  },
+  "engine_composite_sha256": "264d0bba1daf534c82668e1c9c445ae9f7c5bd342296375b8f1b3a7e1015aa3a",
+  "observer_script": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/procurement_receipt_audit/audit_receipts.py",
+    "sha256": "a05363656cd1c9a0c0de62df9819c6e0295ad5db66995f2f89c1f0da881f9a30"
+  },
+  "guarded_files": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/run_match.py": "3a32e264d2df6d3fa419f15aa43d06eaaebb300c5ea864e1e5778a733fcde945",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/run_match_v2.py": "04d0e5ff740c469264561d43e76ef55bc231770e9c190c026173a07fd160002f",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/summarize_g1.py": "fe4ebdfebd652a93e0847d5330355f1280a5fcf91db4239f65bc57734dcf2399",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/mechanism_analysis/analyze_trace.py": "cc4d5c01a482034b55b93422e90b332e7058d6a73a096250dad39cc8eae74963"
+  },
+  "workers": 1,
+  "evidence_role": "SAME_EXISTING_EPISODE_WITH_CANDIDATE_ACTION_REPRODUCTION_NOT_NEW_MATCH",
+  "requested_candidate_calls": 719,
+  "target_interpretation": {
+    "animal": "原plan总资产目标",
+    "seed": "原market库存缓冲目标",
+    "land": {
+      "ceiling": 3,
+      "condition": "lands < 3 and 3 <= day < 19 and (occupied >= lands * 25 - 8) and (cash > (1000, 2000, 4000)[lands - 1] + 600)",
+      "line": 858
+    }
+  }
+}

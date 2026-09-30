@@ -1,0 +1,394 @@
+{
+  "schema": "kaggriculture-ppo-v2-g0-audit-1",
+  "runtime": {
+    "python": "3.12.13",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "numpy": "2.5.2"
+  },
+  "primary_baseline": "v1",
+  "safety_comparator": "v2",
+  "opponent_pool": {
+    "target": 28,
+    "allowed": [
+      24,
+      32
+    ],
+    "manifest_entries": 28,
+    "executable_available_families": 12,
+    "families": [
+      "exploit_cleanup",
+      "exploit_wheat",
+      "market_buy",
+      "market_delay",
+      "market_priority",
+      "production_high",
+      "production_low",
+      "starter",
+      "v1_rule",
+      "v2_rule",
+      "v3_macro",
+      "v4_rule"
+    ],
+    "minimum_effective_families": 12,
+    "implemented_family_ids": [
+      "exploit_cleanup",
+      "exploit_wheat",
+      "market_buy",
+      "market_delay",
+      "market_priority",
+      "production_high",
+      "production_low",
+      "starter",
+      "v1",
+      "v2",
+      "v3",
+      "v4"
+    ],
+    "missing_external": [
+      "replay_rank2_5",
+      "replay_rank6_10"
+    ],
+    "planned_not_counted": [
+      "production_mixed",
+      "livestock",
+      "premium_crop",
+      "expansion_fast",
+      "market_pressure",
+      "market_clear",
+      "exploit_feed",
+      "exploit_storage"
+    ],
+    "data_only_not_counted": [
+      "ppo_early",
+      "ppo_mid",
+      "ppo_late",
+      "ppo_best",
+      "replay_rank1",
+      "replay_public_holdout"
+    ]
+  },
+  "bc_legacy": {
+    "shards": [
+      {
+        "file": "bc-0000.npz",
+        "episodes": 1000,
+        "sha256": "9cb6740617443e01ac76199f63d27dbdc2d0f6a7d089cd4981d6d3e5054219c0"
+      },
+      {
+        "file": "bc-0001.npz",
+        "episodes": 1000,
+        "sha256": "cde15652c82df12fd9dc5a9185c1a2a0056719d531cb8b9699b45e2afc4d27cf"
+      },
+      {
+        "file": "bc-0002.npz",
+        "episodes": 1000,
+        "sha256": "4c22d6d97566ba5f682c0b42f56ec1ae1489d35e5a5b8ec4c0b158a79a7bc09f"
+      },
+      {
+        "file": "bc-0003.npz",
+        "episodes": 1000,
+        "sha256": "610a7662bc19ecb97cb03cb4c75a2c6ed9d6839496d406ab2ac6770b3534ed61"
+      },
+      {
+        "file": "bc-0004.npz",
+        "episodes": 1000,
+        "sha256": "017ca32ca3dea138ce0f2acd8a985ef895456226dab99f5fcb4cc438527db661"
+      },
+      {
+        "file": "bc-0005.npz",
+        "episodes": 1000,
+        "sha256": "88a8847045e287523de1bfbef547b9cb7f3a5690bc0f84d504fc4c8e1a208c3f"
+      },
+      {
+        "file": "bc-0006.npz",
+        "episodes": 1000,
+        "sha256": "062b5b1c859009a257744ca72a40580185e70f74c8564fc8cd9e705f56723ce3"
+      },
+      {
+        "file": "bc-0007.npz",
+        "episodes": 1000,
+        "sha256": "901cbea81045c4c811f251d3be0adbe9abf2eb500196f7ce80ddf19d5fcf8272"
+      },
+      {
+        "file": "bc-0008.npz",
+        "episodes": 1000,
+        "sha256": "584be57030361b6d77ca7c1be52d409655d7dd33e118f372acdc4c4d1450ef02"
+      },
+      {
+        "file": "bc-0009.npz",
+        "episodes": 1000,
+        "sha256": "b4b40be699db4dc2c0bee43427e4ce183b82741f9199bc07627690a229087528"
+      },
+      {
+        "file": "bc-0010.npz",
+        "episodes": 1000,
+        "sha256": "c8577a4282f926f085a79d2ac2bf1becdc2d0abe38e405caa39c001aa671829a"
+      },
+      {
+        "file": "bc-0011.npz",
+        "episodes": 1000,
+        "sha256": "99e407f08e8de71b7fc5fd62d7e726a50bacaebd2372d311f70919d48e54fb48"
+      },
+      {
+        "file": "bc-0012.npz",
+        "episodes": 1000,
+        "sha256": "7c1f8cb0a9f667c0e9c4fe4e95802cebaf86fdc43b6c67cd712aae5f7be75946"
+      },
+      {
+        "file": "bc-0013.npz",
+        "episodes": 1000,
+        "sha256": "74a42da24f826f3a9d4b6a920468019459b94110a1e015240c2783e83c14171a"
+      },
+      {
+        "file": "bc-0014.npz",
+        "episodes": 1000,
+        "sha256": "83c0556bb60af09b75385e6bd0f1f283c042b9d3c8eddcb2422467fbadb3cc24"
+      },
+      {
+        "file": "bc-0015.npz",
+        "episodes": 1000,
+        "sha256": "2a228eec5328a1066ab0df2ad80e78eec9bb0c7683ea0088096824884054ba77"
+      },
+      {
+        "file": "bc-0016.npz",
+        "episodes": 1000,
+        "sha256": "15908e6112d7425572837484b0a87185fc9ae3e6f5124ef5e9da445e2bbed67f"
+      },
+      {
+        "file": "bc-0017.npz",
+        "episodes": 1000,
+        "sha256": "fb819630b28479ef846258f72877f1c4aa5e69552a4a69d139b3ca2d2d735547"
+      },
+      {
+        "file": "bc-0018.npz",
+        "episodes": 1000,
+        "sha256": "9b7bd628ff66eb0345c28d33d4886851a7814dd0fceae2111aa060171adebc37"
+      },
+      {
+        "file": "bc-0019.npz",
+        "episodes": 1000,
+        "sha256": "9c2c83643f2f68cac1a8d951529b4bc7f0baf3cb862ca3166d51f20bde8648d1"
+      }
+    ],
+    "episodes": 20000,
+    "groups": 20000,
+    "split_counts": {
+      "train": 15954,
+      "test": 2092,
+      "validation": 1954
+    },
+    "family_counts": {
+      "forced_high|test": 197,
+      "forced_high|train": 1601,
+      "forced_high|validation": 202,
+      "forced_low|test": 236,
+      "forced_low|train": 1546,
+      "forced_low|validation": 218,
+      "market_double|test": 217,
+      "market_double|train": 1588,
+      "market_double|validation": 195,
+      "market_half|test": 181,
+      "market_half|train": 1654,
+      "market_half|validation": 165,
+      "random|test": 207,
+      "random|train": 1601,
+      "random|validation": 192,
+      "starter|test": 215,
+      "starter|train": 1600,
+      "starter|validation": 185,
+      "v0|test": 207,
+      "v0|train": 1599,
+      "v0|validation": 194,
+      "v1|test": 204,
+      "v1|train": 1577,
+      "v1|validation": 219,
+      "v2|test": 428,
+      "v2|train": 3188,
+      "v2|validation": 384
+    },
+    "exact_action_sequence_hashes": 2,
+    "duplicate_action_rows": 19998,
+    "group_leakage_count": 0,
+    "group_leakage_examples": {},
+    "legacy_warning": null
+  },
+  "public_replays": [
+    {
+      "file": "episode-93879892-opponent.json.gz",
+      "episode_id": "93879892",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "29b30d4440a925e6b70ce147f5e395c77c4640838609cb17625a1b8c3853f3d8",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93881633-opponent.json.gz",
+      "episode_id": "93881633",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "c15a122e377968c70a68658b9e53cf083bac3d7c7e815e0c76da833c17f179b6",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93883388-opponent.json.gz",
+      "episode_id": "93883388",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "f913dc089ccef4b2b00a6c458c5976ff0acf468301e35e116742078385d4f52d",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93884259-opponent.json.gz",
+      "episode_id": "93884259",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "c5d0632b26152e2e73dc08beacd7199592150ff1e0a7a9d79f027cf2f2f6eb46",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93890403-opponent.json.gz",
+      "episode_id": "93890403",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "612cf990e4ca9f985d3a3130bdf33f4d404af725e7eab0152413952b98437598",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93891282-opponent.json.gz",
+      "episode_id": "93891282",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "8be24d5f86dc06991d76911ee2ba899865ce8ec35ba0dbf411b240e743c10ee8",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93898412-opponent.json.gz",
+      "episode_id": "93898412",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "ffa6f98111bf48cfdee0439ee0e3ce32c6f5f6ffea0955df967f3107ca963da7",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93902833-opponent.json.gz",
+      "episode_id": "93902833",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "1d04a4298d40946108a3acc6e2effa81479e53c40859bc46937b7971aaae4654",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93905477-opponent.json.gz",
+      "episode_id": "93905477",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "fb5bed71128babfcd9048ce3c3c9a5cfcfe6ef028ebc1153dcb292b57371867b",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93909034-opponent.json.gz",
+      "episode_id": "93909034",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "a43a389bd7ec186681d50cafc65074b9901e333e6fd6adf61be0871211afa020",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-93909918-opponent.json.gz",
+      "episode_id": "93909918",
+      "records": 0,
+      "teams": [],
+      "seed": null,
+      "records_have_public_actions": false,
+      "sha256": "d10147a365a10545ba80d37a72ca728b8425ea64b9e98cd7a9f087320474316b",
+      "status": "available_public_fixture"
+    },
+    {
+      "file": "episode-94106275-replay.json",
+      "episode_id": "94106275",
+      "records": 720,
+      "teams": [
+        "カワシギ",
+        "Thomas Tschinkel"
+      ],
+      "seed": 359366946,
+      "records_have_public_actions": true,
+      "sha256": "b4c74ba01d4a1c3d5bda85cea83682af918ade0739500d58d8c4203b598a299f",
+      "status": "available_rank1_public_replay"
+    },
+    {
+      "file": "episode-94121252-replay.json",
+      "episode_id": "94121252",
+      "records": 720,
+      "teams": [
+        "Thomas Tschinkel",
+        "カワシギ"
+      ],
+      "seed": 1119903242,
+      "records_have_public_actions": true,
+      "sha256": "606560836bddb099d223f9362839727a307d8d89d0d3c68b4234569294e6589a",
+      "status": "available_rank1_public_replay"
+    },
+    {
+      "file": "episode-94135297-replay.json",
+      "episode_id": "94135297",
+      "records": 720,
+      "teams": [
+        "Thomas Tschinkel",
+        "カワシギ"
+      ],
+      "seed": 750583912,
+      "records_have_public_actions": true,
+      "sha256": "8b6ad062c7cc8f2ef099bbece221b3ca6a582e4edae8551898dc9cee44bf78a4",
+      "status": "available_rank1_public_replay"
+    },
+    {
+      "file": "episode-94135298-replay.json",
+      "episode_id": "94135298",
+      "records": 720,
+      "teams": [
+        "カワシギ",
+        "Thomas Tschinkel"
+      ],
+      "seed": 1918864023,
+      "records_have_public_actions": true,
+      "sha256": "7c389666219af006d48627e07849398433f25c5e4936d46c94746e02f2202506",
+      "status": "available_rank1_public_replay"
+    }
+  ],
+  "split_contract": {
+    "group_key": "source|strategy_family|episode_id|seed",
+    "train": "hash bucket 0-79",
+    "validation": "hash bucket 80-89",
+    "test": "hash bucket 90-99",
+    "same_seed_dual_seat_locked": true,
+    "near_duplicate_policy": "trajectory/action signature clustering required before final PPO"
+  },
+  "gates": {
+    "primary_baseline_declared": true,
+    "group_leakage_zero": true,
+    "minimum_families_for_full_ppo": true,
+    "champion_top10_replays_present": false,
+    "legacy_data_regeneration_required": false
+  }
+}

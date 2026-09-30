@@ -1,0 +1,129 @@
+{
+  "sources": [
+    {
+      "version": "ddm",
+      "episodes": 146,
+      "purchase_turns": 1758,
+      "with_unplaced_animals": 118,
+      "manifest_sha256": "003c4ccda5e0fbcb66f224ce39b13e090de0299978c70bedc1aece5235e06f4c"
+    },
+    {
+      "version": "dde",
+      "episodes": 121,
+      "purchase_turns": 1678,
+      "with_unplaced_animals": 1000,
+      "manifest_sha256": "36bbc2d932785204e294cb32d77594cac0d170ea278a68f6c924c032ed2034f6"
+    },
+    {
+      "version": "ddo",
+      "episodes": 148,
+      "purchase_turns": 1477,
+      "with_unplaced_animals": 263,
+      "manifest_sha256": "025821673f10276e914b5dce0034bc2e5cac0ef5de0177b6312951d2c50f71a5"
+    }
+  ],
+  "samples": 4913,
+  "train_turns": 3881,
+  "validation_turns": 1032,
+  "selection": {
+    "depth": 6,
+    "min_leaf": 20,
+    "weighted_mse": 0.0160554989237983,
+    "weighted_mae": 0.05136185206001404
+  },
+  "candidates": [
+    {
+      "depth": 3,
+      "min_leaf": 20,
+      "weighted_mse": 0.026716519240478593,
+      "weighted_mae": 0.08521755148125801
+    },
+    {
+      "depth": 3,
+      "min_leaf": 40,
+      "weighted_mse": 0.026716519240478593,
+      "weighted_mae": 0.08521755148125801
+    },
+    {
+      "depth": 3,
+      "min_leaf": 80,
+      "weighted_mse": 0.026716519240478593,
+      "weighted_mae": 0.08521755148125801
+    },
+    {
+      "depth": 4,
+      "min_leaf": 20,
+      "weighted_mse": 0.02376455290085478,
+      "weighted_mae": 0.07765098854283285
+    },
+    {
+      "depth": 4,
+      "min_leaf": 40,
+      "weighted_mse": 0.023416015024607065,
+      "weighted_mae": 0.06863242602736365
+    },
+    {
+      "depth": 4,
+      "min_leaf": 80,
+      "weighted_mse": 0.024224167399209715,
+      "weighted_mae": 0.06965648666919506
+    },
+    {
+      "depth": 5,
+      "min_leaf": 20,
+      "weighted_mse": 0.02065098778275893,
+      "weighted_mae": 0.0657245651830691
+    },
+    {
+      "depth": 5,
+      "min_leaf": 40,
+      "weighted_mse": 0.02185328066656531,
+      "weighted_mae": 0.06081105327258394
+    },
+    {
+      "depth": 5,
+      "min_leaf": 80,
+      "weighted_mse": 0.022900634516304932,
+      "weighted_mae": 0.06392849106645207
+    },
+    {
+      "depth": 6,
+      "min_leaf": 20,
+      "weighted_mse": 0.0160554989237983,
+      "weighted_mae": 0.05136185206001404
+    },
+    {
+      "depth": 6,
+      "min_leaf": 40,
+      "weighted_mse": 0.02105145486899838,
+      "weighted_mae": 0.059331893282649796
+    },
+    {
+      "depth": 6,
+      "min_leaf": 80,
+      "weighted_mse": 0.022306969850452434,
+      "weighted_mae": 0.06350288712356054
+    }
+  ],
+  "constant_baseline_mse": 0.08109096487119971,
+  "per_source": {
+    "ddm": {
+      "validation_turns": 362,
+      "weighted_mse": 0.010867178545668285
+    },
+    "dde": {
+      "validation_turns": 383,
+      "weighted_mse": 0.025210987968856135
+    },
+    "ddo": {
+      "validation_turns": 287,
+      "weighted_mse": 0.05849298697915483
+    }
+  },
+  "export_parity": true,
+  "training_script_sha256": "a8e4eb5488b6e67760b558ecd93ba758b04a88d85cf797d3f6773d10ae96f223",
+  "features_sha256": "904c5a6c7f5050fb2a21c1cab06605db6d6963f46bda77254b7ddf153d966c0a",
+  "split": "Source-seed hash shared by all teachers; validation selects hyperparameters, not an untouched test.",
+  "label": "Requested sheep count divided by all requested livestock within the same turn. Intent labels, not successful-fill labels.",
+  "scope": "Offline supervised regression; no y68 labels, seed features, future state or teacher identity."
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "v116-r11-manifest-v1",
+  "candidate_schema": "v116-r11-tranche-safety-hmoe-v1",
+  "strategy_parent": null,
+  "status": "NOT_GOLD_KILLFAST_REJECT",
+  "gold_registered": false,
+  "p2_run": false,
+  "p3_run": false,
+  "replay_run": false,
+  "modes": [
+    "router",
+    "fixed_root_exchange",
+    "fixed_dairy_berry",
+    "fixed_fiber_grain"
+  ],
+  "params_hash": "7f9d88c317ee689a8d7e3febcc5dadeeed423c3e353bc65a8873fe6a7b4ce72d",
+  "files_sha256": {
+    "main.py": "493a77a9127dc06489d508a8581802060d4c02853b8306ff37fd6ab027d0ca2d",
+    "test_r11.py": "e20e44771bbb176d53ebdf11cf0d346f2e971b6938972b89f64c4577bb4aca30",
+    "evaluate_killfast.py": "d488a24d367527ccefbd4e18c814bc19dcf20b523379f33924a92824ecfd8174",
+    "mechanism_results.json": "8b2b51ef04182914dcbe242020845a4dfd0d10e3f6c03ea897c7bc31a14f0d13",
+    "killfast_result.json": "4c73a6ed651fa8bfb15da1ca4a5784bb952bd62466f01591caf64b48cf1eccfc",
+    "daily_diagnostics.json": "04b15fe8e64b12c38e26ea1b8dc00b97403ed8ef437f2fa2e8f531f058666685"
+  },
+  "mechanism": {
+    "passed": true,
+    "static_checks": 4,
+    "invariant_checks": 8
+  },
+  "killfast": {
+    "seed": 7100,
+    "candidate_seat": 0,
+    "opponent": "idle",
+    "calls": 719,
+    "bank": 14288.0,
+    "step144_assets": 5,
+    "terminal_assets": 12,
+    "missed_water_weeds": 23,
+    "invalid_water_feed_place": 0,
+    "orphan_live": 0,
+    "expired_live": 0,
+    "decision": "NOT_GOLD_KILLFAST_REJECT"
+  },
+  "next_revision_hypotheses": [
+    "forbid planting when remaining same-day service budget cannot guarantee water",
+    "bind PLANT to an immediate WATER successor before admitting more production",
+    "batch spatial maintenance routes and reduce ticket reassignment churn",
+    "make realized maintained assets, not planned service_cap, control the next tranche"
+  ]
+}

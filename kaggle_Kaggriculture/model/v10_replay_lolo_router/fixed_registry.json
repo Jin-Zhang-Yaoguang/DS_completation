@@ -1,0 +1,137 @@
+{
+  "schema": "kaggriculture-v10-fixed-expert-registry-1",
+  "models": [
+    {
+      "id": "baseline_v1",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v1"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v1_adaptive_market/main.py"],
+      "family": "v1_adaptive_market",
+      "lineage": ["baseline_v1"],
+      "tags": ["保留基线", "adaptive"]
+    },
+    {
+      "id": "baseline_v2",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v2"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v2_survival_guard/main.py"],
+      "family": "v2_survival_guard",
+      "lineage": ["baseline_v2"],
+      "tags": ["保留基线", "survival"]
+    },
+    {
+      "id": "baseline_v5",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v5"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v5_rule_hybrid/main.py", "../v5_rule_hybrid/base_agent.py", "../v5_rule_hybrid/routes.py", "../v5_rule_hybrid/v1_fallback.py"],
+      "family": "v5_rule_hybrid",
+      "lineage": ["baseline_v5"],
+      "tags": ["保留基线", "champion-route"]
+    },
+    {
+      "id": "baseline_v8",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v8"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v8_kawa_lead2_slot/main.py"],
+      "family": "v8_kawa_lead2_slot",
+      "lineage": ["baseline_v8"],
+      "tags": ["保留基线", "kawa"]
+    },
+    {
+      "id": "v1_topdays",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v1_topdays"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v1_adaptive_market/main.py"],
+      "family": "v1_adaptive_market+topdays",
+      "lineage": ["baseline_v1", "v1_topdays"],
+      "tags": ["待评测", "adaptive", "topdays"]
+    },
+    {
+      "id": "v2_topdays",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v2_topdays"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v2_survival_guard/main.py"],
+      "family": "v2_survival_guard+topdays",
+      "lineage": ["baseline_v2", "v2_topdays"],
+      "tags": ["待评测", "survival", "topdays"]
+    },
+    {
+      "id": "v5_topdays",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v5_topdays"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v5_rule_hybrid/main.py", "../v5_rule_hybrid/base_agent.py", "../v5_rule_hybrid/routes.py", "../v5_rule_hybrid/v1_fallback.py"],
+      "family": "v5_rule_hybrid+topdays",
+      "lineage": ["baseline_v5", "v5_topdays"],
+      "tags": ["待评测", "champion-route", "topdays"]
+    },
+    {
+      "id": "v8_topdays",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v8_topdays"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v8_kawa_lead2_slot/main.py"],
+      "family": "v8_kawa+topdays",
+      "lineage": ["baseline_v8", "v8_topdays"],
+      "tags": ["待评测", "kawa", "topdays"]
+    },
+    {
+      "id": "v5_price_slot",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v5_price_slot"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v5_rule_hybrid/main.py", "../v5_rule_hybrid/base_agent.py", "../v5_rule_hybrid/routes.py", "../v5_rule_hybrid/v1_fallback.py"],
+      "family": "v5_rule_hybrid+price_slot",
+      "lineage": ["baseline_v5", "v5_price_slot"],
+      "tags": ["待评测", "champion-route", "slot"]
+    },
+    {
+      "id": "v8_lead1",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v8_lead1"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v8_kawa_lead2_slot/main.py"],
+      "family": "v8_kawa+lead1_ablation",
+      "lineage": ["baseline_v8", "v8_lead1"],
+      "tags": ["待评测", "kawa", "ablation"]
+    },
+    {
+      "id": "v8_no_preempt",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v8_no_preempt"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v8_kawa_lead2_slot/main.py"],
+      "family": "v8_kawa+no_preempt_ablation",
+      "lineage": ["baseline_v8", "v8_no_preempt"],
+      "tags": ["待评测", "kawa", "ablation"]
+    },
+    {
+      "id": "v8_conservative",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["v8_conservative"],
+      "code_paths": ["expert_registry.py", "variants.py", "../v8_kawa_lead2_slot/main.py"],
+      "family": "v8_kawa+conservative_preempt",
+      "lineage": ["baseline_v8", "v8_conservative"],
+      "tags": ["待评测", "kawa", "conservative"]
+    }
+  ]
+}

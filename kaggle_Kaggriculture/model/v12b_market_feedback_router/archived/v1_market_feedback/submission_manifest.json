@@ -1,0 +1,64 @@
+{
+  "schema": "kaggriculture-v12b-submission-manifest-1",
+  "archive": "submission.tar.gz",
+  "files": [
+    "main.py",
+    "parent_agent.py"
+  ],
+  "size_bytes": 100365,
+  "sha256": "385961583deaa8f3c225f2a6a22dd0a6be55336345f2b69ddaf000a7bb76eef9",
+  "parent_model": "baseline_v8",
+  "parent_source": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v8_kawa_lead2_slot/main.py",
+  "parent_sha256": "ed2e443f6ae3683da9f34c55920bc8aa06a81e22e3b905df92389597e8adc327",
+  "clean_match": {
+    "seed": 120012,
+    "steps": 720,
+    "statuses": [
+      "DONE",
+      "DONE"
+    ],
+    "rewards": [
+      156842.0,
+      3606.0
+    ],
+    "diagnostics": {
+      "schema": "kaggriculture-v12b-observable-market-feedback-1",
+      "model_id": "v12b_market_feedback_router",
+      "parent_model": "baseline_v8",
+      "parent_sha256": "ed2e443f6ae3683da9f34c55920bc8aa06a81e22e3b905df92389597e8adc327",
+      "calls": 719,
+      "trigger_count": 0,
+      "held_quantity": 0,
+      "last_events": [
+        {
+          "item": "MILK",
+          "original_quantity": 6,
+          "new_quantity": 6,
+          "triggered": false,
+          "reason": "terminal_bypass",
+          "severity": "none"
+        }
+      ],
+      "errors": [],
+      "gates": {
+        "eligible_products": [
+          "EGG",
+          "MILK",
+          "WOOL"
+        ],
+        "weak_price_ratio": 0.9,
+        "min_glut": 20,
+        "min_flow": 4,
+        "min_price_drop_ratio": 0.025,
+        "min_opponent_supply_lower_bound": 2,
+        "rival_supply": "opponent_capacity >= max(2, own_capacity)",
+        "max_shed_fill": 0.7,
+        "max_total_private_stock": 88,
+        "terminal_bypass_step": 672,
+        "requires_product_specific_shop": true,
+        "requires_recovery_before_terminal": true,
+        "floor_price": "uncertainty_bypass_not_hold_signal"
+      }
+    }
+  }
+}

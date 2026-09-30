@@ -1,0 +1,35 @@
+{
+  "decision": "REJECT_TOMATO_AS_CURRENT_GOLD_GAP",
+  "engine": "kaggle-environments 1.32.7 official interpreter",
+  "reason": "No positive shop-observable regime survives exact official-engine mechanism screens. Building a live router from isolated replay wins would be replay overfit.",
+  "evidence": {
+    "top_routes": 18,
+    "baseline_identity_checks": 18,
+    "broad_full_substitution": {
+      "capacity": "100% STRAWBERRY production orders to TOMATO",
+      "own_positive_zero_negative": [0, 0, 18],
+      "margin_positive_zero_negative": [0, 0, 18],
+      "score_uplift_pp": -44.44444444444444,
+      "w_to_l": 8,
+      "l_to_w": 0
+    },
+    "isolated_micro_capacity": {
+      "treated_replays": 72,
+      "tomato_shops_ge2": {
+        "1_tile": {"n": 5, "margin_mean": -2820.0, "margin_p10": -7954.2, "margin_positive_zero_negative": [1, 0, 4], "w_to_l": 1, "l_to_w": 0},
+        "2_tile": {"n": 5, "margin_mean": -2340.6, "margin_p10": -11081.6, "margin_positive_zero_negative": [2, 0, 3], "w_to_l": 2, "l_to_w": 0},
+        "4_tile": {"n": 5, "margin_mean": -6195.6, "margin_p10": -10306.0, "margin_positive_zero_negative": [0, 0, 5], "w_to_l": 2, "l_to_w": 0},
+        "8_tile": {"n": 5, "margin_mean": -10890.0, "margin_p10": -25094.0, "margin_positive_zero_negative": [1, 0, 4], "w_to_l": 2, "l_to_w": 0}
+      },
+      "crossed_hinge_knee": {
+        "definition": "baseline TOMATO inventory below 9800 (I0-T)",
+        "1_tile": {"n": 4, "own_mean": -15858.25, "margin_mean": -3894.0, "margin_positive_zero_negative": [0, 0, 4], "score_uplift_pp": -25.0, "w_to_l": 1, "l_to_w": 0}
+      }
+    }
+  },
+  "not_run_by_design": {
+    "closed_loop_tomato_expert": "Conditional build gate failed",
+    "unseen_seed_live_pool": "No candidate was promoted; running it would test a replay-selected policy without a mechanism-positive regime"
+  },
+  "scope": "Rejects STRAWBERRY-to-TOMATO production substitution as the current gold gap. It does not prove TOMATO can never be useful in a jointly optimized route discovered independently."
+}

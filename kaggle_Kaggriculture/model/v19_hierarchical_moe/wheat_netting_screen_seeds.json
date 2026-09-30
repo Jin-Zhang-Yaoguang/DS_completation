@@ -1,0 +1,18 @@
+{
+  "schema": "kaggriculture-v19-wheat-netting-screen-v1",
+  "phase": "wheat_netting_screen",
+  "comparison": "v17_wheat_roundtrip_netting_vs_v17_parent",
+  "development_only": true,
+  "frozen_before_outcomes": true,
+  "seed_range": [81000, 81063],
+  "opponent_families": ["adaptive_market", "anti_mirror", "incumbent_r002", "kawa_lead2"],
+  "double_seat": true,
+  "candidate_games": 512,
+  "parent_games": 512,
+  "controller": {
+    "active_from_step": 360,
+    "product": "WHEAT",
+    "operation": "cancel_equal_quantities_of_same_turn_SELL_and_BUY_PRODUCT",
+    "net_inventory_change_preserved": true
+  }
+}

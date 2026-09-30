@@ -1,0 +1,125 @@
+{
+  "archive": "submission.tar.gz",
+  "archive_sha256": "ef279bbc937c73027ce17293aba19eeaa419563d2093880487ec9849400af0c1",
+  "archive_size_bytes": 293034,
+  "change_scope": "A2仅在baseline_v8分支删除WOOL节流，baseline_v5完全不变",
+  "clean_match": {
+    "changed_steps": 2,
+    "residual_fallbacks": 0,
+    "rewards": [
+      173438.0,
+      3439.0
+    ],
+    "seed": 434439023,
+    "selected": "baseline_v8",
+    "statuses": [
+      "DONE",
+      "DONE"
+    ],
+    "steps": 720
+  },
+  "files": [
+    {
+      "path": "a2_agent.py",
+      "sha256": "f1b49085c5bc7964b744312fdf42fb24fd3f32d0d84c0daac5b2fb09d93b6e8b",
+      "size_bytes": 1531
+    },
+    {
+      "path": "base_agent.py",
+      "sha256": "fe9ee6cd50db010d88b3f11c1e5080c864b1ba288db44b7144eedaa4278f0aa4",
+      "size_bytes": 15766
+    },
+    {
+      "path": "main.py",
+      "sha256": "b879a21ef457da4c6de48eebcbceeba9bd6af54ace46a38051a63de71da0f9bb",
+      "size_bytes": 2674
+    },
+    {
+      "path": "runtime/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "runtime/agent_factory.py",
+      "sha256": "f1e99c76a6093e03492063990bcc8516bcfa4a483a0330e69fe60bf873c155ce",
+      "size_bytes": 10574
+    },
+    {
+      "path": "runtime/expert_registry.py",
+      "sha256": "c87159db94965da7115b8af2564eea5442bb1f0b4f7b5e3600250373e011570b",
+      "size_bytes": 11980
+    },
+    {
+      "path": "runtime/fast_router.py",
+      "sha256": "2e3a943e547455c2c814511de5fd2ae3ff9f20531a0ecd29b7bff4895d173619",
+      "size_bytes": 3820
+    },
+    {
+      "path": "runtime/learned_router_weights.npz",
+      "sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77",
+      "size_bytes": 2681
+    },
+    {
+      "path": "runtime/policy.json",
+      "sha256": "b94bdebd644271b725e803128ed21b03971dde8804e95dedc4b30800c37dc220",
+      "size_bytes": 2771
+    },
+    {
+      "path": "runtime/router.py",
+      "sha256": "a5dc4c438ac91984ef0b94091f2831e59df862b05dd36eafc514cb3b9d5c49cb",
+      "size_bytes": 19271
+    },
+    {
+      "path": "runtime/variants.py",
+      "sha256": "cec11a134636dd6a81360c73be342f741e1268edac4b772c70c05731069029c1",
+      "size_bytes": 4128
+    },
+    {
+      "path": "v1_adaptive_market/main.py",
+      "sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb",
+      "size_bytes": 75428
+    },
+    {
+      "path": "v2_survival_guard/main.py",
+      "sha256": "dadc0b09eb16a0528553fbf00dd826fff8efbc826d3ef5864b1cbf6dea5d2a70",
+      "size_bytes": 75798
+    },
+    {
+      "path": "v5_rule_hybrid/base_agent.py",
+      "sha256": "4fbfee659c8a0d2bcba4940152ea4c7920d3b13bec4afbddf7b069810ef0f294",
+      "size_bytes": 75799
+    },
+    {
+      "path": "v5_rule_hybrid/main.py",
+      "sha256": "4c36dcd8edd326cd832c12f9cad94d300e95e46a911b75af378e8f3d0e2d5071",
+      "size_bytes": 4792
+    },
+    {
+      "path": "v5_rule_hybrid/routes.py",
+      "sha256": "02d4427e667bd5d8d661dc4b87c0df5e7fb90dedca020829f9e49c34e053eec7",
+      "size_bytes": 54442
+    },
+    {
+      "path": "v5_rule_hybrid/v1_fallback.py",
+      "sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb",
+      "size_bytes": 75428
+    },
+    {
+      "path": "v8_kawa_lead2_slot/main.py",
+      "sha256": "ed2e443f6ae3683da9f34c55920bc8aa06a81e22e3b905df92389597e8adc327",
+      "size_bytes": 150041
+    }
+  ],
+  "kaggle_raw_loader": {
+    "a2_module_is_extracted": true,
+    "callable_name": "agent",
+    "code_filename_is_extracted_main": true,
+    "core_module_is_extracted": true,
+    "is_agent_global": true,
+    "is_not_model_status": true
+  },
+  "model_id": "v13c_a2_v8_no_wool_throttle",
+  "parent_id": "v12a2_no_shop_gate",
+  "schema": "kaggriculture-v13-a2-residual-submission-1",
+  "serving_main_avoids_file_assumption": true
+}

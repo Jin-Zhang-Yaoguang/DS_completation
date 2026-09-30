@@ -1,0 +1,1591 @@
+[
+  {
+    "source": "ddm",
+    "prototype": 35,
+    "source_sha256": "5a6fd789da993877d3e53b030ef188ae4689a79708594532a1c689d06ea7c49e",
+    "counts": {
+      "goals": 4073,
+      "feasible_from_current_visible_state": 4052,
+      "PICKUP": 197,
+      "PLANT": 314,
+      "BUILD_PASTURE": 12,
+      "WATER": 1475,
+      "PLACE": 24,
+      "FEED": 360,
+      "CARE": 303,
+      "COLLECT_FERTILIZER": 454,
+      "DROP": 61,
+      "HARVEST": 564,
+      "BUILD_COOP": 12,
+      "FERTILIZE": 253,
+      "DIG": 44
+    },
+    "mean_travel_or_wait_turns": 0.6872084458630002,
+    "max_travel_or_wait_turns": 8,
+    "blocked_examples": [
+      {
+        "start": 0,
+        "unit": 0,
+        "target": {
+          "step": 1,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "SHEEP",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 24,
+        "unit": 0,
+        "target": {
+          "step": 25,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            2
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "WHEAT",
+          "fertilized_until_day": -1,
+          "kind": "PLANT",
+          "max_lifespan_step": 120,
+          "planted_day": 0,
+          "watered_today": false,
+          "yield_units": 1
+        }
+      },
+      {
+        "start": 72,
+        "unit": 0,
+        "target": {
+          "step": 73,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "SHEEP",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "animal": "GOOSE",
+          "cared_today": false,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "fertilizer_available": true,
+          "kind": "COOP",
+          "pending_care_bonus": 1,
+          "placed_day": 2,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 120,
+        "unit": 0,
+        "target": {
+          "step": 122,
+          "unit": 0,
+          "xy": [
+            5,
+            3
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      },
+      {
+        "start": 169,
+        "unit": 1,
+        "target": {
+          "step": 170,
+          "unit": 1,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "WHEAT",
+          "fertilized_until_day": -1,
+          "kind": "PLANT",
+          "max_lifespan_step": 240,
+          "planted_day": 5,
+          "watered_today": false,
+          "yield_units": 1
+        }
+      },
+      {
+        "start": 193,
+        "unit": 1,
+        "target": {
+          "step": 194,
+          "unit": 1,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "SHEEP",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "STRAWBERRY",
+          "fertilized_until_day": -1,
+          "kind": "PLANT",
+          "max_lifespan_step": -1,
+          "planted_day": 7,
+          "watered_today": false,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 193,
+        "unit": 6,
+        "target": {
+          "step": 194,
+          "unit": 6,
+          "xy": [
+            4,
+            5
+          ],
+          "action": [
+            "PICKUP",
+            "GOOSE",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      },
+      {
+        "start": 193,
+        "unit": 7,
+        "target": {
+          "step": 194,
+          "unit": 7,
+          "xy": [
+            5,
+            5
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      },
+      {
+        "start": 216,
+        "unit": 0,
+        "target": {
+          "step": 218,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "GOOSE",
+            2
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "animal": "GOOSE",
+          "cared_today": false,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "fertilizer_available": true,
+          "kind": "COOP",
+          "pending_care_bonus": 1,
+          "placed_day": 2,
+          "yield_units": 1
+        }
+      },
+      {
+        "start": 217,
+        "unit": 1,
+        "target": {
+          "step": 218,
+          "unit": 1,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "GOOSE",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "STRAWBERRY",
+          "fertilized_until_day": -1,
+          "kind": "PLANT",
+          "max_lifespan_step": -1,
+          "planted_day": 7,
+          "watered_today": false,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 217,
+        "unit": 2,
+        "target": {
+          "step": 219,
+          "unit": 2,
+          "xy": [
+            3,
+            5
+          ],
+          "action": [
+            "PLANT",
+            "MELON"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      },
+      {
+        "start": 217,
+        "unit": 3,
+        "target": {
+          "step": 220,
+          "unit": 3,
+          "xy": [
+            4,
+            6
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      },
+      {
+        "start": 264,
+        "unit": 0,
+        "target": {
+          "step": 265,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            4
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "animal": "GOOSE",
+          "cared_today": false,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "fertilizer_available": true,
+          "kind": "COOP",
+          "pending_care_bonus": 1,
+          "placed_day": 2,
+          "yield_units": 2
+        }
+      },
+      {
+        "start": 265,
+        "unit": 3,
+        "target": {
+          "step": 267,
+          "unit": 3,
+          "xy": [
+            5,
+            6
+          ],
+          "action": [
+            "PLANT",
+            "CARROT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      },
+      {
+        "start": 266,
+        "unit": 5,
+        "target": {
+          "step": 267,
+          "unit": 5,
+          "xy": [
+            5,
+            5
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 266,
+        "unit": 8,
+        "target": {
+          "step": 271,
+          "unit": 8,
+          "xy": [
+            7,
+            6
+          ],
+          "action": [
+            "PLANT",
+            "CARROT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 266,
+        "unit": 10,
+        "target": {
+          "step": 270,
+          "unit": 10,
+          "xy": [
+            5,
+            8
+          ],
+          "action": [
+            "PLANT",
+            "TOMATO"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 289,
+        "unit": 4,
+        "target": {
+          "step": 290,
+          "unit": 4,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            4
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "animal": "GOOSE",
+          "cared_today": false,
+          "consecutive_unfed": 1,
+          "fed_today": false,
+          "fertilizer_available": true,
+          "kind": "COOP",
+          "pending_care_bonus": 0,
+          "placed_day": 2,
+          "yield_units": 1
+        }
+      },
+      {
+        "start": 409,
+        "unit": 9,
+        "target": {
+          "step": 410,
+          "unit": 9,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            3
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "STRAWBERRY",
+          "fertilized_until_day": 18,
+          "kind": "PLANT",
+          "max_lifespan_step": -1,
+          "planted_day": 7,
+          "watered_today": false,
+          "yield_units": 2
+        }
+      },
+      {
+        "start": 457,
+        "unit": 9,
+        "target": {
+          "step": 458,
+          "unit": 9,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            2
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "STRAWBERRY",
+          "fertilized_until_day": 18,
+          "kind": "PLANT",
+          "max_lifespan_step": -1,
+          "planted_day": 7,
+          "watered_today": false,
+          "yield_units": 2
+        }
+      },
+      {
+        "start": 673,
+        "unit": 9,
+        "target": {
+          "step": 674,
+          "unit": 9,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "FERTILIZER",
+            3
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "WHEAT",
+          "fertilized_until_day": -1,
+          "kind": "PLANT",
+          "max_lifespan_step": 720,
+          "planted_day": 25,
+          "watered_today": false,
+          "yield_units": 2
+        }
+      }
+    ],
+    "scope": "Feasibility diagnostic only. Goal location/action are supervision targets, not model inputs. No model fitted or competitive claim."
+  },
+  {
+    "source": "ddm",
+    "prototype": 0,
+    "source_sha256": "9c33122d5c0e578c67b72b821e93f342eb0499f5c9f33ae7baf9d744a3410db8",
+    "counts": {
+      "goals": 3625,
+      "feasible_from_current_visible_state": 3622,
+      "PICKUP": 187,
+      "PLANT": 284,
+      "WATER": 1291,
+      "BUILD_PASTURE": 16,
+      "PLACE": 20,
+      "FEED": 336,
+      "CARE": 320,
+      "COLLECT_FERTILIZER": 396,
+      "DROP": 55,
+      "HARVEST": 469,
+      "BUILD_COOP": 4,
+      "FERTILIZE": 219,
+      "DIG": 28
+    },
+    "mean_travel_or_wait_turns": 0.7343448275862069,
+    "max_travel_or_wait_turns": 8,
+    "blocked_examples": [
+      {
+        "start": 0,
+        "unit": 0,
+        "target": {
+          "step": 1,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 24,
+        "unit": 0,
+        "target": {
+          "step": 25,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            3
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "WHEAT",
+          "fertilized_until_day": -1,
+          "kind": "PLANT",
+          "max_lifespan_step": 120,
+          "planted_day": 0,
+          "watered_today": false,
+          "yield_units": 1
+        }
+      },
+      {
+        "start": 216,
+        "unit": 0,
+        "target": {
+          "step": 220,
+          "unit": 0,
+          "xy": [
+            3,
+            5
+          ],
+          "action": [
+            "PLANT",
+            "MELON"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": "LOCKED"
+      }
+    ],
+    "scope": "Feasibility diagnostic only. Goal location/action are supervision targets, not model inputs. No model fitted or competitive claim."
+  },
+  {
+    "source": "dde",
+    "prototype": 0,
+    "source_sha256": "1e41cd62511571c9d872182b24327205923dcc7d58171ad26ab97211dd829605",
+    "counts": {
+      "goals": 3646,
+      "feasible_from_current_visible_state": 3630,
+      "PICKUP": 224,
+      "BUILD_PASTURE": 23,
+      "PLACE": 134,
+      "FEED": 453,
+      "CARE": 457,
+      "PLANT": 267,
+      "WATER": 1018,
+      "COLLECT_FERTILIZER": 455,
+      "HARVEST": 425,
+      "DROP": 50,
+      "DIG": 23,
+      "FERTILIZE": 117
+    },
+    "mean_travel_or_wait_turns": 0.7709818979703785,
+    "max_travel_or_wait_turns": 20,
+    "blocked_examples": [
+      {
+        "start": 0,
+        "unit": 0,
+        "target": {
+          "step": 1,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 13,
+        "unit": 0,
+        "target": {
+          "step": 15,
+          "unit": 0,
+          "xy": [
+            0,
+            4
+          ],
+          "action": [
+            "WATER"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 2,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 2
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 17,
+        "unit": 4,
+        "target": {
+          "step": 18,
+          "unit": 4,
+          "xy": [
+            0,
+            1
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 20,
+        "unit": 4,
+        "target": {
+          "step": 21,
+          "unit": 4,
+          "xy": [
+            0,
+            0
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 32,
+        "unit": 1,
+        "target": {
+          "step": 35,
+          "unit": 1,
+          "xy": [
+            2,
+            3
+          ],
+          "action": [
+            "PLANT",
+            "MELON"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 32,
+        "unit": 2,
+        "target": {
+          "step": 34,
+          "unit": 2,
+          "xy": [
+            3,
+            3
+          ],
+          "action": [
+            "PLANT",
+            "MELON"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 108,
+        "unit": 4,
+        "target": {
+          "step": 113,
+          "unit": 4,
+          "xy": [
+            0,
+            3
+          ],
+          "action": [
+            "PLANT",
+            "STRAWBERRY"
+          ]
+        },
+        "inventory": {
+          "WHEAT": 1
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 110,
+        "unit": 6,
+        "target": {
+          "step": 111,
+          "unit": 6,
+          "xy": [
+            0,
+            1
+          ],
+          "action": [
+            "PLANT",
+            "STRAWBERRY"
+          ]
+        },
+        "inventory": {
+          "WHEAT": 8
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 154,
+        "unit": 6,
+        "target": {
+          "step": 157,
+          "unit": 6,
+          "xy": [
+            5,
+            0
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 163,
+        "unit": 6,
+        "target": {
+          "step": 164,
+          "unit": 6,
+          "xy": [
+            8,
+            0
+          ],
+          "action": [
+            "PLANT",
+            "TOMATO"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 1
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 204,
+        "unit": 4,
+        "target": {
+          "step": 206,
+          "unit": 4,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "SHEEP",
+            1
+          ]
+        },
+        "inventory": {
+          "WHEAT": 4
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 1
+        },
+        "target_current_tile": {
+          "animal": "SHEEP",
+          "cared_today": true,
+          "consecutive_unfed": 0,
+          "fed_today": true,
+          "fertilizer_available": false,
+          "kind": "PASTURE",
+          "pending_care_bonus": 2,
+          "placed_day": 6,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 229,
+        "unit": 3,
+        "target": {
+          "step": 230,
+          "unit": 3,
+          "xy": [
+            1,
+            5
+          ],
+          "action": [
+            "WATER"
+          ]
+        },
+        "inventory": {
+          "FERTILIZER": 1,
+          "WHEAT": 2
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 1,
+          "WHEAT": 2
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 278,
+        "unit": 0,
+        "target": {
+          "step": 282,
+          "unit": 0,
+          "xy": [
+            3,
+            3
+          ],
+          "action": [
+            "FEED"
+          ]
+        },
+        "inventory": {
+          "FERTILIZER": 3,
+          "WHEAT": 4
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 2,
+          "WHEAT": 4
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 601,
+        "unit": 5,
+        "target": {
+          "step": 602,
+          "unit": 5,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "WHEAT",
+            2
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 4,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 3
+        },
+        "target_current_tile": {
+          "animal": "SHEEP",
+          "cared_today": false,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "fertilizer_available": true,
+          "kind": "PASTURE",
+          "pending_care_bonus": 2,
+          "placed_day": 6,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 616,
+        "unit": 7,
+        "target": {
+          "step": 617,
+          "unit": 7,
+          "xy": [
+            2,
+            9
+          ],
+          "action": [
+            "PLANT",
+            "CARROT"
+          ]
+        },
+        "inventory": {
+          "WHEAT": 10
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 1
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 697,
+        "unit": 8,
+        "target": {
+          "step": 717,
+          "unit": 8,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "kind": "PASTURE"
+        }
+      }
+    ],
+    "scope": "Feasibility diagnostic only. Goal location/action are supervision targets, not model inputs. No model fitted or competitive claim."
+  },
+  {
+    "source": "ddbc",
+    "prototype": 0,
+    "source_sha256": "cc1573c1a22a435bf86bb6ad4a2c750169a43eec7e2b386f4060cb9345b31f0b",
+    "counts": {
+      "goals": 3564,
+      "feasible_from_current_visible_state": 3553,
+      "PICKUP": 174,
+      "BUILD_PASTURE": 16,
+      "PLACE": 119,
+      "FEED": 297,
+      "CARE": 300,
+      "PLANT": 259,
+      "WATER": 1300,
+      "COLLECT_FERTILIZER": 355,
+      "HARVEST": 470,
+      "DROP": 67,
+      "FERTILIZE": 166,
+      "DIG": 41
+    },
+    "mean_travel_or_wait_turns": 0.8204264870931538,
+    "max_travel_or_wait_turns": 12,
+    "blocked_examples": [
+      {
+        "start": 0,
+        "unit": 0,
+        "target": {
+          "step": 1,
+          "unit": 0,
+          "xy": [
+            4,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 7,
+        "unit": 4,
+        "target": {
+          "step": 19,
+          "unit": 4,
+          "xy": [
+            0,
+            1
+          ],
+          "action": [
+            "PLANT",
+            "WHEAT"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 2,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 32,
+        "unit": 2,
+        "target": {
+          "step": 34,
+          "unit": 2,
+          "xy": [
+            3,
+            3
+          ],
+          "action": [
+            "PLANT",
+            "MELON"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 83,
+        "unit": 4,
+        "target": {
+          "step": 87,
+          "unit": 4,
+          "xy": [
+            0,
+            4
+          ],
+          "action": [
+            "PLANT",
+            "STRAWBERRY"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 153,
+        "unit": 8,
+        "target": {
+          "step": 160,
+          "unit": 8,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "FEED"
+          ]
+        },
+        "inventory": {
+          "WHEAT": 1
+        },
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": {
+          "kind": "PASTURE"
+        }
+      },
+      {
+        "start": 155,
+        "unit": 2,
+        "target": {
+          "step": 157,
+          "unit": 2,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 2,
+          "TOMATO": 0,
+          "WHEAT": 1
+        },
+        "target_current_tile": {
+          "animal": "COW",
+          "cared_today": false,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "fertilizer_available": false,
+          "kind": "PASTURE",
+          "pending_care_bonus": 0,
+          "placed_day": 6,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 157,
+        "unit": 4,
+        "target": {
+          "step": 159,
+          "unit": 4,
+          "xy": [
+            5,
+            4
+          ],
+          "action": [
+            "PICKUP",
+            "COW",
+            1
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 1,
+          "TOMATO": 0,
+          "WHEAT": 1
+        },
+        "target_current_tile": {
+          "animal": "COW",
+          "cared_today": false,
+          "consecutive_unfed": 0,
+          "fed_today": false,
+          "fertilizer_available": false,
+          "kind": "PASTURE",
+          "pending_care_bonus": 0,
+          "placed_day": 6,
+          "yield_units": 0
+        }
+      },
+      {
+        "start": 179,
+        "unit": 8,
+        "target": {
+          "step": 181,
+          "unit": 8,
+          "xy": [
+            6,
+            0
+          ],
+          "action": [
+            "PLANT",
+            "STRAWBERRY"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 0,
+          "MELON": 0,
+          "STRAWBERRY": 0,
+          "TOMATO": 0,
+          "WHEAT": 0
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 572,
+        "unit": 5,
+        "target": {
+          "step": 573,
+          "unit": 5,
+          "xy": [
+            9,
+            0
+          ],
+          "action": [
+            "PLANT",
+            "CARROT"
+          ]
+        },
+        "inventory": {
+          "FERTILIZER": 2,
+          "STRAWBERRY": 2
+        },
+        "seeds": {
+          "CARROT": 8,
+          "MELON": 0,
+          "STRAWBERRY": 1,
+          "TOMATO": 0,
+          "WHEAT": 18
+        },
+        "target_current_tile": {
+          "kind": "WEED"
+        }
+      },
+      {
+        "start": 586,
+        "unit": 1,
+        "target": {
+          "step": 587,
+          "unit": 1,
+          "xy": [
+            8,
+            2
+          ],
+          "action": [
+            "WATER"
+          ]
+        },
+        "inventory": {},
+        "seeds": {
+          "CARROT": 6,
+          "MELON": 0,
+          "STRAWBERRY": 1,
+          "TOMATO": 0,
+          "WHEAT": 17
+        },
+        "target_current_tile": null
+      },
+      {
+        "start": 645,
+        "unit": 6,
+        "target": {
+          "step": 646,
+          "unit": 6,
+          "xy": [
+            1,
+            7
+          ],
+          "action": [
+            "PLANT",
+            "CARROT"
+          ]
+        },
+        "inventory": {
+          "CARROT": 3,
+          "TOMATO": 2,
+          "WHEAT": 8
+        },
+        "seeds": {
+          "CARROT": 1,
+          "MELON": 0,
+          "STRAWBERRY": 1,
+          "TOMATO": 0,
+          "WHEAT": 17
+        },
+        "target_current_tile": {
+          "consecutive_unwatered": 0,
+          "crop": "CARROT",
+          "fertilized_until_day": 27,
+          "kind": "PLANT",
+          "max_lifespan_step": 648,
+          "planted_day": 23,
+          "watered_today": true,
+          "yield_units": 4
+        }
+      }
+    ],
+    "scope": "Feasibility diagnostic only. Goal location/action are supervision targets, not model inputs. No model fitted or competitive claim."
+  }
+]

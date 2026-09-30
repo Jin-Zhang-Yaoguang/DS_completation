@@ -1,0 +1,54 @@
+{
+  "schema": "v125-r10-development-protocol-v1",
+  "created_at_utc": "2026-09-05T13:00:56.708573+00:00",
+  "status": "REGISTERED_BEFORE_CANDIDATE_AND_NEW_SEEDS",
+  "candidate": "V125-R10",
+  "candidate_sha256": null,
+  "implementation_parent": "V125-R9",
+  "parent_sha256": "e7f1fd549fc67ccec74015299af5366812abe43ec78c4142bb019429b6bb22e0",
+  "hypothesis": "原模型对每资产反复收取移动成本，导致未来完整日劳动被错误判为超限。以完整服务日程及独立规则检查解除这类拒绝，可增加中后期真实自产销售，同时改善双方现金分差。",
+  "single_primary_change": "仅d>today且原劳动失败的日，以固定12雇工的完整条件服务证书判断可行；旧capacity/cash/total_cost/净值/score不改，当前日原门保持。",
+  "mechanism_metric": {
+    "window_decision_steps_inclusive": [
+      264,
+      718
+    ],
+    "name": "actual_self_produced_nonwheat_sales_cash",
+    "products": "All officially committed SELL products except WHEAT; includes self-produced FERTILIZER",
+    "source_proof": "原非WHEAT初存为零、无外购非WHEAT且全局物量闭合；需复现冻结来源审计。预测售价、发单量、内部持仓、日末自动转仓不是销售现金。",
+    "reason_for_window": "已打开R9首场精确拒绝捕获中future-only劳动失败始于day11；在任何R10完整调用/600x场景前登记。",
+    "threshold": "PASS与V120分别按3 seeds x 2 seats的现金sum，5*R10>=6*R9；每席3局现金sum不退；R9sum0或缺证PENDING，不通过。"
+  },
+  "primary_numeric_is_not_causal_or_strength_qualification": true,
+  "other_required_evidence": [
+    "确有旧未来劳动拒绝由完整有效证书解除，现金检查依然真实执行",
+    "所有已有资产、承诺、在途和trial义务完整，已知不可能历史不产生未来活资产证据",
+    "当前/原未来可行日行为及旧各项费用评分保持；日程构造失败保持拒绝",
+    "原G1硬机制、超仓及终局兑现伴随检查，不能把证书存在当原执行器已兑现",
+    "与R0及R9分别对PASS/V120比较配对双方现金分差；各组至少4/6正、中位正、每席均值不负"
+  ],
+  "proposed_development_seeds": [
+    1950906001,
+    1950906002,
+    1950906003
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponents": [
+    "PASS",
+    "V120"
+  ],
+  "references": [
+    "V125-R0",
+    "V125-R9"
+  ],
+  "expected_complete_games": 36,
+  "opened_diagnostic_seed": 1950905001,
+  "new_seeds_opened": false,
+  "candidate_execution_started": false,
+  "formal_protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+  "formal_status": "NOT_GOLD",
+  "retirement": "任一必需开发强度或主机制/安全条件失败，保留失败、停止该候选晋级，另立可证伪假设；不得改阈值或挑种子。"
+}

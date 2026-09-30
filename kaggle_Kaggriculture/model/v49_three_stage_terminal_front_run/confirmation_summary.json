@@ -1,0 +1,118 @@
+{
+  "schema": "kaggriculture-loop-confirmation-v1",
+  "model_id": "v49_three_stage_terminal_front_run",
+  "engine": "1.32.7",
+  "single_use_confirmation_consumed": true,
+  "candidate_archive_sha256": "d5bdac72ab932113a0e283b2e7d8040b8554174b17bc8ca5a006e88fc95de165",
+  "source_manifest_sha256": "fb4c94db7888483824e261a3c4d927927c63b9f20669d05ae418eb5eb9dfea0b",
+  "games_sha256": "444d49f92ebc062e091137951330d5387d40af30df89e1ab08657ab6c3ad741e",
+  "source_count": 256,
+  "gold_lineages": [
+    "v19",
+    "v20",
+    "v21",
+    "v32",
+    "v33",
+    "v34",
+    "v37",
+    "v46"
+  ],
+  "summary": {
+    "task_count": 8192,
+    "done_count": 8192,
+    "error_count": 0,
+    "task_keys_unique": true,
+    "candidate_pool_score": 0.874267578125,
+    "parent_pool_score": 0.867431640625,
+    "pgu_pp": 0.68359375,
+    "positive_zero_negative": [
+      45,
+      4051,
+      0
+    ],
+    "by_family_pgu_pp": {
+      "v19": 0.0,
+      "v20": 0.0,
+      "v21": 0.0,
+      "v32": 0.1953125,
+      "v33": 0.1953125,
+      "v34": 0.1953125,
+      "v37": 1.171875,
+      "v46": 3.7109375
+    },
+    "candidate_catastrophic_rate": 0.00732421875,
+    "parent_catastrophic_rate": 0.00732421875,
+    "catastrophic_rate_delta_pp": 0.0,
+    "candidate_mean_margin": 857.53369140625,
+    "parent_mean_margin": 851.36669921875,
+    "candidate_preempt_events": 155113,
+    "candidate_preempt_units": 827146,
+    "candidate_action_changed_games": 4096,
+    "safety_violations": 0,
+    "pgu_95ci_pp": [
+      0.439453125,
+      0.9521484375
+    ],
+    "pool_score_95ci": [
+      0.859130859375,
+      0.888671875
+    ],
+    "gate_checks": {
+      "pgu_positive": true,
+      "pool_score_at_least_50pct": true,
+      "each_family_delta_at_least_minus_3pp": true,
+      "catastrophic_delta_at_most_1pp": true,
+      "zero_errors_integrity_safety": true,
+      "effective_action_change": true
+    },
+    "gate": "PASS"
+  },
+  "direct_parent_score": 0.537109375,
+  "direct_parent_score_95ci": [
+    0.5234375,
+    0.55078125
+  ],
+  "by_family_candidate_score": {
+    "v19": 0.97265625,
+    "v20": 0.970703125,
+    "v21": 0.9609375,
+    "v32": 0.90234375,
+    "v33": 0.90234375,
+    "v34": 0.88671875,
+    "v37": 0.861328125,
+    "v46": 0.537109375
+  },
+  "candidate_cvar10_margin": -2362.387804878049,
+  "parent_cvar10_margin": -2369.2170731707315,
+  "cvar10_tolerance": 118.46085365853658,
+  "changed_source_count": 256,
+  "changed_shop_regimes": [
+    "BAKERY",
+    "BRUNCH_SPOT",
+    "FARMERS_MARKET",
+    "ICE_CREAM_SHOP",
+    "PET_CAFE",
+    "PIZZA_SHOP",
+    "SMOOTHIE_SHOP",
+    "YARN_STORE"
+  ],
+  "strength_gate_checks": {
+    "pgu_at_least_1pp": false,
+    "pgu_ci_lower_above_zero": true,
+    "pool_score_at_least_52pct": true,
+    "pool_ci_lower_above_50pct": true,
+    "direct_parent_score_at_least_50pct": true,
+    "direct_parent_ci_lower_at_least_48pct": true,
+    "each_gold_score_at_least_48pct": true,
+    "each_family_delta_at_least_minus_2pp": true,
+    "positive_flips_above_negative": true,
+    "catastrophic_delta_at_most_half_pp": true,
+    "cvar10_within_tolerance": true,
+    "changed_at_least_8_sources": true,
+    "changed_at_least_2_shop_regimes": true,
+    "zero_errors_integrity_safety": true,
+    "serving_fingerprint_differs_parent": true
+  },
+  "strength_gate": "FAIL",
+  "engineering_gate": "PENDING_PACKAGE_AND_OFFICIAL_PARITY"
+}

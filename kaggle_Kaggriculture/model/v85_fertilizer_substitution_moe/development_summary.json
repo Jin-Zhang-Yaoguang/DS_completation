@@ -1,0 +1,67 @@
+{
+  "schema": "kaggriculture-loop-development-v1",
+  "model_id": "v85_fertilizer_substitution_moe",
+  "engine": "1.32.7",
+  "candidate_archive_sha256": "c2e822ec1d56f76f2edb857b2877041a38257f876cbe14de7d2c4cbd153fe51f",
+  "source_manifest_sha256": "f6e72907c1bc8e0ce57e194678e68f1f6a37f0a1ebb7e05571f033b65c12a6f2",
+  "games_sha256": "bb04f3ba64aba46890b8faf17f6c6b946e60d1f01c77fb71a2f3271df24f9ef6",
+  "source_count": 64,
+  "originality_panel": [
+    "v20",
+    "v21",
+    "v32",
+    "v54",
+    "v66",
+    "v76"
+  ],
+  "ablation": {
+    "model": "frozen_v76_parent",
+    "mcu_equals_pou": true
+  },
+  "summary": {
+    "task_count": 1536,
+    "done_count": 1536,
+    "error_count": 0,
+    "task_keys_unique": true,
+    "candidate_panel_score": 0.90625,
+    "parent_panel_score": 0.8294270833333334,
+    "pou_pp": 7.6822916666666625,
+    "positive_zero_negative": [
+      100,
+      668,
+      0
+    ],
+    "by_opponent_pou_pp": {
+      "v20": 0.0,
+      "v21": 0.0,
+      "v32": 0.0,
+      "v54": 4.6875,
+      "v66": 4.6875,
+      "v76": 36.71875
+    },
+    "candidate_catastrophic_rate": 0.0234375,
+    "parent_catastrophic_rate": 0.0234375,
+    "catastrophic_rate_delta_pp": 0.0,
+    "candidate_mean_margin": 752.6927083333334,
+    "parent_mean_margin": 705.4166666666666,
+    "candidate_action_changed_games": 732,
+    "safety_violations": 0,
+    "pou_95ci_pp": [
+      6.380208333333336,
+      9.114583333333336
+    ],
+    "panel_score_95ci": [
+      0.8671875,
+      0.9427083333333334
+    ],
+    "gate_checks": {
+      "pou_positive": true,
+      "panel_score_at_least_50pct": true,
+      "each_opponent_delta_at_least_minus_3pp": true,
+      "catastrophic_delta_at_most_1pp": true,
+      "zero_errors_integrity_safety": true,
+      "effective_action_change": true
+    },
+    "gate": "PASS"
+  }
+}

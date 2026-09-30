@@ -1,0 +1,48 @@
+{
+  "status": "SUBMIT_WORTHY_NOT_GOLD_PROOF",
+  "frozen_candidate": {
+    "name": "V17 top complete portfolio RC1 two-route",
+    "main_sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1",
+    "archive_sha256": "0c1b9b3203924f21389f0b39cfaf9fd535708cdc01c1a7d3ec15359fea1e2ba6",
+    "default_route": "tyz123456::99609968",
+    "yarn_route": "Kronki::99596430",
+    "router_step": 72
+  },
+  "heldout_historical": {
+    "source_dates": ["2026-08-20", "2026-08-21", "2026-08-22", "2026-08-23", "2026-08-24"],
+    "seed_range": [45000, 45023],
+    "behavior_unique_families": 10,
+    "games": 480,
+    "score_rate": 0.8583333333333333,
+    "family_equal_score_rate": 0.8583333333333334,
+    "family_equal_seed_cluster_bootstrap_ci95": [0.8083333333333333, 0.9020833333333333],
+    "worst_family_score_rate": 0.5625,
+    "worst_family_seed_cluster_bootstrap_ci95": [0.375, 0.7083333333333334],
+    "mean_margin": 11766.229166666666,
+    "margin_p10": -1902.0,
+    "margin_cvar10": -8484.270833333334
+  },
+  "router_vs_single_default": {
+    "score_uplift_pp": 0.4166666666666667,
+    "seed_cluster_bootstrap_ci95_pp": [0.0, 1.25],
+    "positive_zero_negative": [2, 478, 0],
+    "mean_margin_delta": 1554.3458333333333,
+    "mean_own_delta": 2334.139583333333
+  },
+  "qa": {
+    "causal_public_feature": true,
+    "native_source_state_homomorphic_except_shop": true,
+    "raw_loader": true,
+    "official_done_zero_output": true,
+    "unit_precondition_valid_rate": 1.0,
+    "land_success_rate": 1.0,
+    "seed_buy_success_rate": 1.0,
+    "hire_success_non_dayend_rate": 0.9997725204731575
+  },
+  "limitations": [
+    "historical routes are behavior-deduplicated but share a live repair executor",
+    "worst family has 48 games and its confidence interval crosses 0.5",
+    "later three-route policy and finance edits are outside this frozen verdict"
+  ],
+  "verdict": "Submit the frozen two-route RC1 as an out-of-sample probe; do not call it gold proof."
+}

@@ -1,0 +1,79 @@
+{
+  "experiment": "v18_single_model_stacking",
+  "competition": "playground-series-s6e8",
+  "single_models": [
+    "v1_baseline_lgbm",
+    "v2_budget_lgbm",
+    "v3_dual_catboost",
+    "v5_hierarchical_lookup",
+    "v6_highres_lgbm",
+    "v7_catboost_bagging",
+    "v9_catboost_engineered",
+    "v11_xgboost_engineered",
+    "v13_lgbm",
+    "v13_cat",
+    "v13_xgb"
+  ],
+  "train_size": 691369,
+  "test_size": 296302,
+  "n_features": 11,
+  "seed": 42,
+  "stack": {
+    "cv_folds": 5,
+    "oof_auc": 0.9683357543605584,
+    "meta_coef": [
+      -0.8034283652795249,
+      -0.9008688057361204,
+      0.1359208378035318,
+      1.1591043089040147,
+      1.1953884476818677,
+      2.172757104965972,
+      -0.18024869794454246,
+      1.2370515507598696,
+      0.287344438867779,
+      1.7629821674199135,
+      1.3682663485831688
+    ],
+    "meta_intercept": -3.5401115874592923,
+    "fold_scores": [
+      0.9676435826225882,
+      0.9683994127807192,
+      0.9684549875202246,
+      0.9691240075198376,
+      0.9681787862040876
+    ]
+  },
+  "blend": {
+    "objective": "maximize AUC under non-negative simplex",
+    "oof_auc": 0.9681166698571109,
+    "weights": {
+      "v1_baseline_lgbm": 0.0755857998543882,
+      "v2_budget_lgbm": 0.011503170857412842,
+      "v3_dual_catboost": 0.26541776505986087,
+      "v5_hierarchical_lookup": 0.09732825743064147,
+      "v6_highres_lgbm": 0.19105892218500428,
+      "v7_catboost_bagging": 3.880008149229238e-06,
+      "v9_catboost_engineered": 0.06163851871476,
+      "v11_xgboost_engineered": 0.07679325260471652,
+      "v13_lgbm": 0.012273679111932693,
+      "v13_cat": 0.07707348403521884,
+      "v13_xgb": 0.13132327013791514
+    }
+  },
+  "rank_reference": {
+    "uniform_rank_oof_auc": 0.9673351399847214
+  },
+  "outputs": {
+    "stack_submission": "submission_stack_meta_lr.csv",
+    "blend_submission": "submission_blend_auc_opt.csv",
+    "uniform_submission": "submission_uniform_avg.csv",
+    "rank_submission": "submission_rank_uniform.csv"
+  },
+  "selection": {
+    "selected": "stack",
+    "selected_submission": "submission_stack_meta_lr.csv",
+    "selected_oof_auc": 0.9683357543605584
+  },
+  "runtime_seconds": 53.221047163009644,
+  "created_utc": "2026-08-18T01:23:05Z"
+}

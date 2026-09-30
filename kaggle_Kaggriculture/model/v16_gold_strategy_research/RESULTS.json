@@ -1,0 +1,68 @@
+{
+  "status": "RESEARCH_PASS_NOT_SUBMISSION_QUALIFIED",
+  "engine": "1.32.7",
+  "nonw_delay": {
+    "full_two_step_oracle_frozen_stream": {
+      "command": ".venv/bin/python kaggle_Kaggriculture/model/v16_gold_strategy_research/run_nonw_delay_pilot.py --seeds 10 --mode frozen --oracle full",
+      "comparisons": 20,
+      "identity_failures": 0,
+      "own_positive_zero_negative": [20, 0, 0],
+      "own_delta_mean": 139.7,
+      "own_delta_median": 126.5,
+      "own_delta_min": 33.0,
+      "own_delta_max": 409.0,
+      "margin_positive_zero_negative": [20, 0, 0],
+      "margin_delta_mean": 111.4,
+      "delayed_units": 666,
+      "predicted_margin_gain": 2228,
+      "observed_margin_gain": 2228
+    },
+    "sell_only_live": {
+      "command": ".venv/bin/python kaggle_Kaggriculture/model/v16_gold_strategy_research/run_nonw_delay_pilot.py --seeds 20 --mode live --sell-only-window",
+      "comparisons": 40,
+      "identity_failures": 0,
+      "own_positive_zero_negative": [10, 2, 28],
+      "own_delta_mean": -23.85,
+      "margin_positive_zero_negative": [0, 2, 38],
+      "margin_delta_mean": -53.1,
+      "delayed_units": 420,
+      "unwind_shortfall_units": 0
+    },
+    "live_opponent_flow_buffer_sweep": [
+      {"buffer": 0.0, "comparisons": 40, "own_delta_mean": -1954.175, "margin_delta_mean": -3495.65},
+      {"buffer": 1.0, "comparisons": 40, "own_delta_mean": -1882.225, "margin_delta_mean": -3360.45},
+      {"buffer": 2.0, "comparisons": 40, "own_delta_mean": -1822.55, "margin_delta_mean": -3185.275},
+      {"buffer": 4.0, "comparisons": 40, "own_delta_mean": -1770.05, "margin_delta_mean": -3036.675}
+    ]
+  },
+  "portfolio_mining": {
+    "command": ".venv/bin/python kaggle_Kaggriculture/model/v16_gold_strategy_research/mine_portfolio_templates.py --latest-per-team 12",
+    "source_date": "2026-08-25",
+    "latest_per_team": 12,
+    "descriptive_not_causal": true,
+    "unique_requested_portfolios": {
+      "Crop Dusta": 12,
+      "Ryo Hasegawa": 12,
+      "Subramanya N": 12,
+      "tetsuya": 12,
+      "Kronki": 3,
+      "tyz123456": 3
+    },
+    "median_land3_observed_step": {
+      "Crop Dusta": 201.5,
+      "Ryo Hasegawa": 254.5,
+      "Subramanya N": 258.5,
+      "tetsuya": 229.0,
+      "Kronki": 253.0,
+      "tyz123456": 253.0
+    },
+    "median_max_hands": {
+      "Crop Dusta": 12.0,
+      "Ryo Hasegawa": 12.0,
+      "Subramanya N": 12.0,
+      "tetsuya": 12.0,
+      "Kronki": 15.0,
+      "tyz123456": 15.0
+    }
+  }
+}

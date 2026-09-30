@@ -1,0 +1,98 @@
+{
+  "schema": "kaggriculture-v10-router-grid-audit-1",
+  "audited_at": "2026-08-21T18:33:15.474374+00:00",
+  "read_only": true,
+  "environment_games_started": false,
+  "jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/router_grid_train_val.jsonl",
+  "expected": {
+    "tasks": 6400,
+    "contexts": 1600,
+    "candidates_per_context": 4,
+    "collection_fingerprint": "c6e0ca056510ce00ca82a7e79c97aaa8467d509b944f08bd7770f1deb2d26f29",
+    "registry_and_code_sha256": "439707be83cc8b066404a6ffb23d8528ed5cf51a1e0122234b8552dfb1417c73",
+    "collector_implementation_sha256": "b6dfa09e63e995e1a5f78bb38ddb1c93251b1aa48d32d746632fed4ae66610ec",
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "seeds_per_split": 100,
+    "candidates": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8"
+    ],
+    "opponents": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8"
+    ],
+    "anchor": "baseline_v1",
+    "switch_step": 72
+  },
+  "observed": {
+    "relevant_tasks": 6400,
+    "missing_tasks": 0,
+    "foreign_tasks": 0,
+    "complete_contexts": 1600,
+    "partial_contexts": 0,
+    "feature_mismatched_contexts": 0,
+    "duplicate_candidate_contexts": 0
+  },
+  "jsonl_audit": {
+    "physical_records": 6400,
+    "unique_task_ids": 6400,
+    "bad_json": [],
+    "conflicting_task_ids": []
+  },
+  "row_failures": {},
+  "failure_examples": {},
+  "panel_audit": {
+    "train": {
+      "expected_sources": 100,
+      "observed_sources": 100,
+      "missing_sources": 0,
+      "foreign_sources": 0,
+      "expected_by_date": {
+        "2026-08-20": 33,
+        "2026-08-19": 33,
+        "2026-08-18": 34
+      },
+      "observed_by_date": {
+        "2026-08-18": 34,
+        "2026-08-19": 33,
+        "2026-08-20": 33
+      }
+    },
+    "validation": {
+      "expected_sources": 100,
+      "observed_sources": 100,
+      "missing_sources": 0,
+      "foreign_sources": 0,
+      "expected_by_date": {
+        "2026-08-20": 33,
+        "2026-08-19": 33,
+        "2026-08-18": 34
+      },
+      "observed_by_date": {
+        "2026-08-20": 33,
+        "2026-08-18": 34,
+        "2026-08-19": 33
+      }
+    }
+  },
+  "summary_audit": {
+    "present": true,
+    "schema": "kaggriculture-v10-router-grid-summary-1",
+    "collection_fingerprint": "c6e0ca056510ce00ca82a7e79c97aaa8467d509b944f08bd7770f1deb2d26f29",
+    "scheduled_games": 6400,
+    "observed_games": 6400,
+    "valid_done_games": 6400,
+    "missing_games": 0,
+    "errors": 0,
+    "complete": true,
+    "matches_expected_fingerprint": true
+  },
+  "strict_complete": true
+}

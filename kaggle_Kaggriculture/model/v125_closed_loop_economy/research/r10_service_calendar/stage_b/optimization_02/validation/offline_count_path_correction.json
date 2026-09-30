@@ -1,0 +1,82 @@
+{
+  "schema": "r10-p2-offline-count-path-correction-v1",
+  "created_at_utc": "2026-09-05T14:03:30.513373+00:00",
+  "original_summary_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_02/validation/controls_v1/summary.json",
+  "original_summary_sha256": "81d8db688ccad498b72bdf387f39385e2f58a3042d6f44891dba32301a5c30e4",
+  "original_status": "EQUIVALENCE_OR_SOURCE_FAILURE",
+  "original_actual_counts": {
+    "route_attempts": null,
+    "scheduler_calls": null,
+    "checker_calls": null,
+    "cache_hits": null
+  },
+  "bug": "原harness从r10_future_route直接取计数；真实计数在r10_future_route['counts']。",
+  "correct_path": "state['investment_receipts'][-1]['r10_future_route']['counts']",
+  "full_counts": {
+    "P1": {
+      "route_attempts": 342,
+      "actual_calendar_compilations": 48,
+      "quote_calendar_compilations": 312,
+      "scheduler_calls": 1038,
+      "checker_calls": 926,
+      "cache_hits": 4,
+      "route_successful_quotes": 216,
+      "route_failed_quotes": 126,
+      "quote_calendar_cache_hits": 862
+    },
+    "P2": {
+      "route_attempts": 342,
+      "actual_calendar_compilations": 48,
+      "quote_calendar_compilations": 312,
+      "scheduler_calls": 1038,
+      "checker_calls": 926,
+      "cache_hits": 4,
+      "route_successful_quotes": 216,
+      "route_failed_quotes": 126,
+      "quote_calendar_cache_hits": 862
+    }
+  },
+  "all_nine_counts_equal": true,
+  "count_differences": [],
+  "registered_four_counts": {
+    "expected": {
+      "route_attempts": 342,
+      "scheduler_calls": 1038,
+      "checker_calls": 926,
+      "cache_hits": 4
+    },
+    "actual": {
+      "route_attempts": 342,
+      "scheduler_calls": 1038,
+      "checker_calls": 926,
+      "cache_hits": 4
+    },
+    "equal": true
+  },
+  "entire_typed_plan_state_equal": true,
+  "plan_state_differences": [],
+  "typed_plan_sha256": {
+    "P1": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+    "P2": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134"
+  },
+  "typed_state_sha256": {
+    "P1": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000",
+    "P2": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000"
+  },
+  "all_individual_record_checks_pass": true,
+  "complete_pure_matrix_pass": true,
+  "source_integrity_checked": true,
+  "corrected_equivalence_and_source_integrity_pass": true,
+  "corrected_status": "P2_TIME_THRESHOLD_FAILED",
+  "P2_seconds": 13.305441375006922,
+  "P2_within_1s": false,
+  "source_output_paths": {
+    "P1": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_01/validation/controls_v1/P1_full_economic_once.json.gz",
+    "P2": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_02/validation/controls_v1/P2_full_economic_once.json.gz"
+  },
+  "new_candidate_calls": 0,
+  "new_pure_strategy_calls": 0,
+  "new_engine_calls": 0,
+  "new_matches": 0,
+  "scope": "离线后处理更正；原脚本和原false结果保留。未改变任何策略输出、阈值或原耗时。"
+}

@@ -1,0 +1,950 @@
+{
+  "schema": "kaggriculture-v12-static-minimax-mixture-audit-1",
+  "created_at": "2026-08-23T09:55:09.393791+00:00",
+  "status": "rejected",
+  "decision": "Do not implement, package, validate on formal/test, or submit the static mixture. Existing development evidence selects a pure expert, and step-zero observation exposes no fair reproducible entropy.",
+  "data_boundary": {
+    "used": [
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/pairwise_summary.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/pairwise_summary.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_003/pairwise_summary.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_001/panel.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/panel.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_003/panel.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v3/screen_control",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control"
+    ],
+    "formal_or_test_accessed": false,
+    "round_file_sha256": {
+      "1": "1af2d23dfe95f696dbb8709aee7ebcccb3c550157225588fe5a21ae36880d276",
+      "2": "f63877b4d126c02137300c4eeb063c6cf6ef3afd42b81c89e58ae401fd9d25ad",
+      "3": "1150822b1f237a895e7b6bbff47fe32989372a40baa978e7d2d3b7c09b1934a9"
+    },
+    "panel_file_sha256": {
+      "1": "22f9c3a7b52dc43c01f3858b133c5b284e75ee20434fed6e7ddbc4e01bc95434",
+      "2": "ee40d326639a345ce426d3377cac71f65adbb809a855c9efeb23368bf3c36fef",
+      "3": "b74b8b77efe510f7b5158dee512bf82982178be302b02fd3d9effcb4e288baaa"
+    }
+  },
+  "common_support_leave_one_round_out": {
+    "support": [
+      "baseline_v5",
+      "baseline_v8",
+      "learned_router"
+    ],
+    "opponents": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8",
+      "learned_router",
+      "rule_router",
+      "v1_topdays",
+      "v2_topdays",
+      "v5_price_slot",
+      "v5_topdays",
+      "v8_conservative",
+      "v8_lead1",
+      "v8_no_preempt",
+      "v8_topdays"
+    ],
+    "note": "r002 was activated only in Round 3, so honest three-fold LOO is identifiable only for the support common to all three rounds.",
+    "folds": [
+      {
+        "held_out_round": 1,
+        "weights": {
+          "baseline_v5": 0.0,
+          "baseline_v8": 0.0,
+          "learned_router": 1.0
+        },
+        "training_maximin_floor": 0.44999999999999996,
+        "holdout": {
+          "overall_score": 0.7160714285714287,
+          "worst_opponent_score": 0.47750000000000004,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.8049999999999999,
+            "baseline_v2": 0.8049999999999999,
+            "baseline_v5": 0.6174999999999999,
+            "baseline_v8": 0.5675,
+            "learned_router": 0.5,
+            "rule_router": 0.6825,
+            "v1_topdays": 0.8,
+            "v2_topdays": 0.8,
+            "v5_price_slot": 0.83,
+            "v5_topdays": 0.55,
+            "v8_conservative": 0.855,
+            "v8_lead1": 0.855,
+            "v8_no_preempt": 0.88,
+            "v8_topdays": 0.47750000000000004
+          }
+        },
+        "holdout_best_fixed": {
+          "by_overall": {
+            "expert": "learned_router",
+            "overall_score": 0.7160714285714287,
+            "worst_opponent_score": 0.47750000000000004,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.8049999999999999,
+              "baseline_v2": 0.8049999999999999,
+              "baseline_v5": 0.6174999999999999,
+              "baseline_v8": 0.5675,
+              "learned_router": 0.5,
+              "rule_router": 0.6825,
+              "v1_topdays": 0.8,
+              "v2_topdays": 0.8,
+              "v5_price_slot": 0.83,
+              "v5_topdays": 0.55,
+              "v8_conservative": 0.855,
+              "v8_lead1": 0.855,
+              "v8_no_preempt": 0.88,
+              "v8_topdays": 0.47750000000000004
+            }
+          },
+          "by_worst": {
+            "expert": "learned_router",
+            "overall_score": 0.7160714285714287,
+            "worst_opponent_score": 0.47750000000000004,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.8049999999999999,
+              "baseline_v2": 0.8049999999999999,
+              "baseline_v5": 0.6174999999999999,
+              "baseline_v8": 0.5675,
+              "learned_router": 0.5,
+              "rule_router": 0.6825,
+              "v1_topdays": 0.8,
+              "v2_topdays": 0.8,
+              "v5_price_slot": 0.83,
+              "v5_topdays": 0.55,
+              "v8_conservative": 0.855,
+              "v8_lead1": 0.855,
+              "v8_no_preempt": 0.88,
+              "v8_topdays": 0.47750000000000004
+            }
+          },
+          "all": [
+            {
+              "expert": "baseline_v5",
+              "overall_score": 0.5508928571428572,
+              "worst_opponent_score": 0.22,
+              "worst_opponent": "v5_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.725,
+                "baseline_v2": 0.725,
+                "baseline_v5": 0.5,
+                "baseline_v8": 0.44,
+                "learned_router": 0.3825,
+                "rule_router": 0.565,
+                "v1_topdays": 0.725,
+                "v2_topdays": 0.725,
+                "v5_price_slot": 0.945,
+                "v5_topdays": 0.22,
+                "v8_conservative": 0.45,
+                "v8_lead1": 0.44,
+                "v8_no_preempt": 0.45,
+                "v8_topdays": 0.42
+              }
+            },
+            {
+              "expert": "baseline_v8",
+              "overall_score": 0.6691071428571428,
+              "worst_opponent_score": 0.4325,
+              "worst_opponent": "learned_router",
+              "opponent_scores": {
+                "baseline_v1": 0.75,
+                "baseline_v2": 0.75,
+                "baseline_v5": 0.56,
+                "baseline_v8": 0.5,
+                "learned_router": 0.4325,
+                "rule_router": 0.625,
+                "v1_topdays": 0.745,
+                "v2_topdays": 0.745,
+                "v5_price_slot": 0.685,
+                "v5_topdays": 0.535,
+                "v8_conservative": 0.845,
+                "v8_lead1": 0.86,
+                "v8_no_preempt": 0.885,
+                "v8_topdays": 0.45
+              }
+            },
+            {
+              "expert": "learned_router",
+              "overall_score": 0.7160714285714287,
+              "worst_opponent_score": 0.47750000000000004,
+              "worst_opponent": "v8_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.8049999999999999,
+                "baseline_v2": 0.8049999999999999,
+                "baseline_v5": 0.6174999999999999,
+                "baseline_v8": 0.5675,
+                "learned_router": 0.5,
+                "rule_router": 0.6825,
+                "v1_topdays": 0.8,
+                "v2_topdays": 0.8,
+                "v5_price_slot": 0.83,
+                "v5_topdays": 0.55,
+                "v8_conservative": 0.855,
+                "v8_lead1": 0.855,
+                "v8_no_preempt": 0.88,
+                "v8_topdays": 0.47750000000000004
+              }
+            }
+          ]
+        },
+        "delta_vs_best_fixed_overall": 0.0,
+        "delta_vs_best_fixed_worst": 0.0
+      },
+      {
+        "held_out_round": 2,
+        "weights": {
+          "baseline_v5": 0.0,
+          "baseline_v8": 0.0,
+          "learned_router": 1.0
+        },
+        "training_maximin_floor": 0.46875,
+        "holdout": {
+          "overall_score": 0.7430357142857141,
+          "worst_opponent_score": 0.43999999999999995,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.85,
+            "baseline_v2": 0.85,
+            "baseline_v5": 0.65,
+            "baseline_v8": 0.5425,
+            "learned_router": 0.5,
+            "rule_router": 0.7050000000000001,
+            "v1_topdays": 0.845,
+            "v2_topdays": 0.845,
+            "v5_price_slot": 0.84,
+            "v5_topdays": 0.6,
+            "v8_conservative": 0.895,
+            "v8_lead1": 0.92,
+            "v8_no_preempt": 0.92,
+            "v8_topdays": 0.43999999999999995
+          }
+        },
+        "holdout_best_fixed": {
+          "by_overall": {
+            "expert": "learned_router",
+            "overall_score": 0.7430357142857141,
+            "worst_opponent_score": 0.43999999999999995,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.85,
+              "baseline_v2": 0.85,
+              "baseline_v5": 0.65,
+              "baseline_v8": 0.5425,
+              "learned_router": 0.5,
+              "rule_router": 0.7050000000000001,
+              "v1_topdays": 0.845,
+              "v2_topdays": 0.845,
+              "v5_price_slot": 0.84,
+              "v5_topdays": 0.6,
+              "v8_conservative": 0.895,
+              "v8_lead1": 0.92,
+              "v8_no_preempt": 0.92,
+              "v8_topdays": 0.43999999999999995
+            }
+          },
+          "by_worst": {
+            "expert": "learned_router",
+            "overall_score": 0.7430357142857141,
+            "worst_opponent_score": 0.43999999999999995,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.85,
+              "baseline_v2": 0.85,
+              "baseline_v5": 0.65,
+              "baseline_v8": 0.5425,
+              "learned_router": 0.5,
+              "rule_router": 0.7050000000000001,
+              "v1_topdays": 0.845,
+              "v2_topdays": 0.845,
+              "v5_price_slot": 0.84,
+              "v5_topdays": 0.6,
+              "v8_conservative": 0.895,
+              "v8_lead1": 0.92,
+              "v8_no_preempt": 0.92,
+              "v8_topdays": 0.43999999999999995
+            }
+          },
+          "all": [
+            {
+              "expert": "baseline_v5",
+              "overall_score": 0.5385714285714286,
+              "worst_opponent_score": 0.19,
+              "worst_opponent": "v5_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.745,
+                "baseline_v2": 0.75,
+                "baseline_v5": 0.5,
+                "baseline_v8": 0.4,
+                "learned_router": 0.35,
+                "rule_router": 0.555,
+                "v1_topdays": 0.75,
+                "v2_topdays": 0.755,
+                "v5_price_slot": 0.955,
+                "v5_topdays": 0.19,
+                "v8_conservative": 0.4,
+                "v8_lead1": 0.41,
+                "v8_no_preempt": 0.4,
+                "v8_topdays": 0.38
+              }
+            },
+            {
+              "expert": "baseline_v8",
+              "overall_score": 0.708392857142857,
+              "worst_opponent_score": 0.42,
+              "worst_opponent": "v8_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.795,
+                "baseline_v2": 0.795,
+                "baseline_v5": 0.6,
+                "baseline_v8": 0.5,
+                "learned_router": 0.4575,
+                "rule_router": 0.655,
+                "v1_topdays": 0.79,
+                "v2_topdays": 0.79,
+                "v5_price_slot": 0.725,
+                "v5_topdays": 0.585,
+                "v8_conservative": 0.915,
+                "v8_lead1": 0.94,
+                "v8_no_preempt": 0.95,
+                "v8_topdays": 0.42
+              }
+            },
+            {
+              "expert": "learned_router",
+              "overall_score": 0.7430357142857141,
+              "worst_opponent_score": 0.43999999999999995,
+              "worst_opponent": "v8_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.85,
+                "baseline_v2": 0.85,
+                "baseline_v5": 0.65,
+                "baseline_v8": 0.5425,
+                "learned_router": 0.5,
+                "rule_router": 0.7050000000000001,
+                "v1_topdays": 0.845,
+                "v2_topdays": 0.845,
+                "v5_price_slot": 0.84,
+                "v5_topdays": 0.6,
+                "v8_conservative": 0.895,
+                "v8_lead1": 0.92,
+                "v8_no_preempt": 0.92,
+                "v8_topdays": 0.43999999999999995
+              }
+            }
+          ]
+        },
+        "delta_vs_best_fixed_overall": 0.0,
+        "delta_vs_best_fixed_worst": 0.0
+      },
+      {
+        "held_out_round": 3,
+        "weights": {
+          "baseline_v5": 0.0,
+          "baseline_v8": 0.0,
+          "learned_router": 1.0
+        },
+        "training_maximin_floor": 0.45875,
+        "holdout": {
+          "overall_score": 0.7405357142857143,
+          "worst_opponent_score": 0.45999999999999996,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.85,
+            "baseline_v2": 0.85,
+            "baseline_v5": 0.645,
+            "baseline_v8": 0.5725,
+            "learned_router": 0.5,
+            "rule_router": 0.72,
+            "v1_topdays": 0.8200000000000001,
+            "v2_topdays": 0.8200000000000001,
+            "v5_price_slot": 0.87,
+            "v5_topdays": 0.5700000000000001,
+            "v8_conservative": 0.89,
+            "v8_lead1": 0.9,
+            "v8_no_preempt": 0.9,
+            "v8_topdays": 0.45999999999999996
+          }
+        },
+        "holdout_best_fixed": {
+          "by_overall": {
+            "expert": "learned_router",
+            "overall_score": 0.7405357142857143,
+            "worst_opponent_score": 0.45999999999999996,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.85,
+              "baseline_v2": 0.85,
+              "baseline_v5": 0.645,
+              "baseline_v8": 0.5725,
+              "learned_router": 0.5,
+              "rule_router": 0.72,
+              "v1_topdays": 0.8200000000000001,
+              "v2_topdays": 0.8200000000000001,
+              "v5_price_slot": 0.87,
+              "v5_topdays": 0.5700000000000001,
+              "v8_conservative": 0.89,
+              "v8_lead1": 0.9,
+              "v8_no_preempt": 0.9,
+              "v8_topdays": 0.45999999999999996
+            }
+          },
+          "by_worst": {
+            "expert": "learned_router",
+            "overall_score": 0.7405357142857143,
+            "worst_opponent_score": 0.45999999999999996,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.85,
+              "baseline_v2": 0.85,
+              "baseline_v5": 0.645,
+              "baseline_v8": 0.5725,
+              "learned_router": 0.5,
+              "rule_router": 0.72,
+              "v1_topdays": 0.8200000000000001,
+              "v2_topdays": 0.8200000000000001,
+              "v5_price_slot": 0.87,
+              "v5_topdays": 0.5700000000000001,
+              "v8_conservative": 0.89,
+              "v8_lead1": 0.9,
+              "v8_no_preempt": 0.9,
+              "v8_topdays": 0.45999999999999996
+            }
+          },
+          "all": [
+            {
+              "expert": "baseline_v5",
+              "overall_score": 0.5453571428571428,
+              "worst_opponent_score": 0.175,
+              "worst_opponent": "v5_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.755,
+                "baseline_v2": 0.755,
+                "baseline_v5": 0.5,
+                "baseline_v8": 0.415,
+                "learned_router": 0.355,
+                "rule_router": 0.575,
+                "v1_topdays": 0.735,
+                "v2_topdays": 0.735,
+                "v5_price_slot": 0.97,
+                "v5_topdays": 0.175,
+                "v8_conservative": 0.415,
+                "v8_lead1": 0.425,
+                "v8_no_preempt": 0.415,
+                "v8_topdays": 0.41
+              }
+            },
+            {
+              "expert": "baseline_v8",
+              "overall_score": 0.6948214285714288,
+              "worst_opponent_score": 0.425,
+              "worst_opponent": "v8_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.79,
+                "baseline_v2": 0.79,
+                "baseline_v5": 0.585,
+                "baseline_v8": 0.5,
+                "learned_router": 0.4275,
+                "rule_router": 0.66,
+                "v1_topdays": 0.77,
+                "v2_topdays": 0.77,
+                "v5_price_slot": 0.725,
+                "v5_topdays": 0.56,
+                "v8_conservative": 0.905,
+                "v8_lead1": 0.905,
+                "v8_no_preempt": 0.915,
+                "v8_topdays": 0.425
+              }
+            },
+            {
+              "expert": "learned_router",
+              "overall_score": 0.7405357142857143,
+              "worst_opponent_score": 0.45999999999999996,
+              "worst_opponent": "v8_topdays",
+              "opponent_scores": {
+                "baseline_v1": 0.85,
+                "baseline_v2": 0.85,
+                "baseline_v5": 0.645,
+                "baseline_v8": 0.5725,
+                "learned_router": 0.5,
+                "rule_router": 0.72,
+                "v1_topdays": 0.8200000000000001,
+                "v2_topdays": 0.8200000000000001,
+                "v5_price_slot": 0.87,
+                "v5_topdays": 0.5700000000000001,
+                "v8_conservative": 0.89,
+                "v8_lead1": 0.9,
+                "v8_no_preempt": 0.9,
+                "v8_topdays": 0.45999999999999996
+              }
+            }
+          ]
+        },
+        "delta_vs_best_fixed_overall": 0.0,
+        "delta_vs_best_fixed_worst": 0.0
+      }
+    ],
+    "max_pairwise_weight_l1": 0.0,
+    "all_folds_non_degenerate_mixture": false,
+    "strictly_beats_best_fixed_overall_every_fold": false,
+    "strictly_beats_best_fixed_worst_every_fold": false
+  },
+  "proposed_support_round3": {
+    "support": [
+      "baseline_v5",
+      "baseline_v8",
+      "learned_router",
+      "r002_learned_router_topday_animal_throttle"
+    ],
+    "opponents_excluding_exact_r002": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8",
+      "v1_topdays",
+      "v2_topdays",
+      "v5_topdays",
+      "v8_topdays",
+      "v5_price_slot",
+      "v8_lead1",
+      "v8_no_preempt",
+      "v8_conservative",
+      "rule_router",
+      "learned_router",
+      "r001_learned_router_premium_floor_guard"
+    ],
+    "maximin_weights": {
+      "baseline_v5": 0.0,
+      "baseline_v8": 0.0,
+      "learned_router": 0.0,
+      "r002_learned_router_topday_animal_throttle": 1.0
+    },
+    "maximin_floor": 0.5775,
+    "maximin": {
+      "overall_score": 0.7921666666666667,
+      "worst_opponent_score": 0.5775,
+      "worst_opponent": "v8_topdays",
+      "opponent_scores": {
+        "baseline_v1": 0.845,
+        "baseline_v2": 0.845,
+        "baseline_v5": 0.71,
+        "baseline_v8": 0.685,
+        "v1_topdays": 0.81,
+        "v2_topdays": 0.81,
+        "v5_topdays": 0.625,
+        "v8_topdays": 0.5775,
+        "v5_price_slot": 0.89,
+        "v8_lead1": 0.905,
+        "v8_no_preempt": 0.915,
+        "v8_conservative": 0.89,
+        "rule_router": 0.75,
+        "learned_router": 0.64,
+        "r001_learned_router_premium_floor_guard": 0.985
+      }
+    },
+    "best_fixed": {
+      "by_overall": {
+        "expert": "r002_learned_router_topday_animal_throttle",
+        "overall_score": 0.7921666666666667,
+        "worst_opponent_score": 0.5775,
+        "worst_opponent": "v8_topdays",
+        "opponent_scores": {
+          "baseline_v1": 0.845,
+          "baseline_v2": 0.845,
+          "baseline_v5": 0.71,
+          "baseline_v8": 0.685,
+          "v1_topdays": 0.81,
+          "v2_topdays": 0.81,
+          "v5_topdays": 0.625,
+          "v8_topdays": 0.5775,
+          "v5_price_slot": 0.89,
+          "v8_lead1": 0.905,
+          "v8_no_preempt": 0.915,
+          "v8_conservative": 0.89,
+          "rule_router": 0.75,
+          "learned_router": 0.64,
+          "r001_learned_router_premium_floor_guard": 0.985
+        }
+      },
+      "by_worst": {
+        "expert": "r002_learned_router_topday_animal_throttle",
+        "overall_score": 0.7921666666666667,
+        "worst_opponent_score": 0.5775,
+        "worst_opponent": "v8_topdays",
+        "opponent_scores": {
+          "baseline_v1": 0.845,
+          "baseline_v2": 0.845,
+          "baseline_v5": 0.71,
+          "baseline_v8": 0.685,
+          "v1_topdays": 0.81,
+          "v2_topdays": 0.81,
+          "v5_topdays": 0.625,
+          "v8_topdays": 0.5775,
+          "v5_price_slot": 0.89,
+          "v8_lead1": 0.905,
+          "v8_no_preempt": 0.915,
+          "v8_conservative": 0.89,
+          "rule_router": 0.75,
+          "learned_router": 0.64,
+          "r001_learned_router_premium_floor_guard": 0.985
+        }
+      },
+      "all": [
+        {
+          "expert": "baseline_v5",
+          "overall_score": 0.5700000000000001,
+          "worst_opponent_score": 0.175,
+          "worst_opponent": "v5_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.755,
+            "baseline_v2": 0.755,
+            "baseline_v5": 0.5,
+            "baseline_v8": 0.415,
+            "v1_topdays": 0.735,
+            "v2_topdays": 0.735,
+            "v5_topdays": 0.175,
+            "v8_topdays": 0.41,
+            "v5_price_slot": 0.97,
+            "v8_lead1": 0.425,
+            "v8_no_preempt": 0.415,
+            "v8_conservative": 0.415,
+            "rule_router": 0.575,
+            "learned_router": 0.355,
+            "r001_learned_router_premium_floor_guard": 0.915
+          }
+        },
+        {
+          "expert": "baseline_v8",
+          "overall_score": 0.7135,
+          "worst_opponent_score": 0.425,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.79,
+            "baseline_v2": 0.79,
+            "baseline_v5": 0.585,
+            "baseline_v8": 0.5,
+            "v1_topdays": 0.77,
+            "v2_topdays": 0.77,
+            "v5_topdays": 0.56,
+            "v8_topdays": 0.425,
+            "v5_price_slot": 0.725,
+            "v8_lead1": 0.905,
+            "v8_no_preempt": 0.915,
+            "v8_conservative": 0.905,
+            "rule_router": 0.66,
+            "learned_router": 0.4275,
+            "r001_learned_router_premium_floor_guard": 0.975
+          }
+        },
+        {
+          "expert": "learned_router",
+          "overall_score": 0.7565000000000002,
+          "worst_opponent_score": 0.45999999999999996,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.85,
+            "baseline_v2": 0.85,
+            "baseline_v5": 0.645,
+            "baseline_v8": 0.5725,
+            "v1_topdays": 0.8200000000000001,
+            "v2_topdays": 0.8200000000000001,
+            "v5_topdays": 0.5700000000000001,
+            "v8_topdays": 0.45999999999999996,
+            "v5_price_slot": 0.87,
+            "v8_lead1": 0.9,
+            "v8_no_preempt": 0.9,
+            "v8_conservative": 0.89,
+            "rule_router": 0.72,
+            "learned_router": 0.5,
+            "r001_learned_router_premium_floor_guard": 0.98
+          }
+        },
+        {
+          "expert": "r002_learned_router_topday_animal_throttle",
+          "overall_score": 0.7921666666666667,
+          "worst_opponent_score": 0.5775,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.845,
+            "baseline_v2": 0.845,
+            "baseline_v5": 0.71,
+            "baseline_v8": 0.685,
+            "v1_topdays": 0.81,
+            "v2_topdays": 0.81,
+            "v5_topdays": 0.625,
+            "v8_topdays": 0.5775,
+            "v5_price_slot": 0.89,
+            "v8_lead1": 0.905,
+            "v8_no_preempt": 0.915,
+            "v8_conservative": 0.89,
+            "rule_router": 0.75,
+            "learned_router": 0.64,
+            "r001_learned_router_premium_floor_guard": 0.985
+          }
+        }
+      ]
+    },
+    "forced_r002_v8_50_50": {
+      "weights": {
+        "baseline_v5": 0.0,
+        "baseline_v8": 0.5,
+        "learned_router": 0.0,
+        "r002_learned_router_topday_animal_throttle": 0.5
+      },
+      "overall_score": 0.7528333333333334,
+      "worst_opponent_score": 0.50125,
+      "worst_opponent": "v8_topdays",
+      "opponent_scores": {
+        "baseline_v1": 0.8175,
+        "baseline_v2": 0.8175,
+        "baseline_v5": 0.6475,
+        "baseline_v8": 0.5925,
+        "v1_topdays": 0.79,
+        "v2_topdays": 0.79,
+        "v5_topdays": 0.5925,
+        "v8_topdays": 0.50125,
+        "v5_price_slot": 0.8075,
+        "v8_lead1": 0.905,
+        "v8_no_preempt": 0.915,
+        "v8_conservative": 0.8975,
+        "rule_router": 0.7050000000000001,
+        "learned_router": 0.53375,
+        "r001_learned_router_premium_floor_guard": 0.98
+      },
+      "delta_vs_pure_r002_overall": -0.03933333333333333,
+      "delta_vs_pure_r002_worst": -0.07625000000000004
+    },
+    "external_opponents_only": {
+      "opponents": [
+        "baseline_v1",
+        "baseline_v2",
+        "v1_topdays",
+        "v2_topdays",
+        "v5_topdays",
+        "v8_topdays",
+        "v5_price_slot",
+        "v8_lead1",
+        "v8_no_preempt",
+        "v8_conservative",
+        "rule_router",
+        "r001_learned_router_premium_floor_guard"
+      ],
+      "maximin_weights": {
+        "baseline_v5": 0.0,
+        "baseline_v8": 0.0,
+        "learned_router": 0.0,
+        "r002_learned_router_topday_animal_throttle": 1.0
+      },
+      "maximin_floor": 0.5775,
+      "maximin": {
+        "overall_score": 0.820625,
+        "worst_opponent_score": 0.5775,
+        "worst_opponent": "v8_topdays",
+        "opponent_scores": {
+          "baseline_v1": 0.845,
+          "baseline_v2": 0.845,
+          "v1_topdays": 0.81,
+          "v2_topdays": 0.81,
+          "v5_topdays": 0.625,
+          "v8_topdays": 0.5775,
+          "v5_price_slot": 0.89,
+          "v8_lead1": 0.905,
+          "v8_no_preempt": 0.915,
+          "v8_conservative": 0.89,
+          "rule_router": 0.75,
+          "r001_learned_router_premium_floor_guard": 0.985
+        }
+      },
+      "best_fixed": {
+        "by_overall": {
+          "expert": "r002_learned_router_topday_animal_throttle",
+          "overall_score": 0.820625,
+          "worst_opponent_score": 0.5775,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.845,
+            "baseline_v2": 0.845,
+            "v1_topdays": 0.81,
+            "v2_topdays": 0.81,
+            "v5_topdays": 0.625,
+            "v8_topdays": 0.5775,
+            "v5_price_slot": 0.89,
+            "v8_lead1": 0.905,
+            "v8_no_preempt": 0.915,
+            "v8_conservative": 0.89,
+            "rule_router": 0.75,
+            "r001_learned_router_premium_floor_guard": 0.985
+          }
+        },
+        "by_worst": {
+          "expert": "r002_learned_router_topday_animal_throttle",
+          "overall_score": 0.820625,
+          "worst_opponent_score": 0.5775,
+          "worst_opponent": "v8_topdays",
+          "opponent_scores": {
+            "baseline_v1": 0.845,
+            "baseline_v2": 0.845,
+            "v1_topdays": 0.81,
+            "v2_topdays": 0.81,
+            "v5_topdays": 0.625,
+            "v8_topdays": 0.5775,
+            "v5_price_slot": 0.89,
+            "v8_lead1": 0.905,
+            "v8_no_preempt": 0.915,
+            "v8_conservative": 0.89,
+            "rule_router": 0.75,
+            "r001_learned_router_premium_floor_guard": 0.985
+          }
+        },
+        "all": [
+          {
+            "expert": "baseline_v5",
+            "overall_score": 0.6066666666666667,
+            "worst_opponent_score": 0.175,
+            "worst_opponent": "v5_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.755,
+              "baseline_v2": 0.755,
+              "v1_topdays": 0.735,
+              "v2_topdays": 0.735,
+              "v5_topdays": 0.175,
+              "v8_topdays": 0.41,
+              "v5_price_slot": 0.97,
+              "v8_lead1": 0.425,
+              "v8_no_preempt": 0.415,
+              "v8_conservative": 0.415,
+              "rule_router": 0.575,
+              "r001_learned_router_premium_floor_guard": 0.915
+            }
+          },
+          {
+            "expert": "baseline_v8",
+            "overall_score": 0.7658333333333333,
+            "worst_opponent_score": 0.425,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.79,
+              "baseline_v2": 0.79,
+              "v1_topdays": 0.77,
+              "v2_topdays": 0.77,
+              "v5_topdays": 0.56,
+              "v8_topdays": 0.425,
+              "v5_price_slot": 0.725,
+              "v8_lead1": 0.905,
+              "v8_no_preempt": 0.915,
+              "v8_conservative": 0.905,
+              "rule_router": 0.66,
+              "r001_learned_router_premium_floor_guard": 0.975
+            }
+          },
+          {
+            "expert": "learned_router",
+            "overall_score": 0.8025000000000001,
+            "worst_opponent_score": 0.45999999999999996,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.85,
+              "baseline_v2": 0.85,
+              "v1_topdays": 0.8200000000000001,
+              "v2_topdays": 0.8200000000000001,
+              "v5_topdays": 0.5700000000000001,
+              "v8_topdays": 0.45999999999999996,
+              "v5_price_slot": 0.87,
+              "v8_lead1": 0.9,
+              "v8_no_preempt": 0.9,
+              "v8_conservative": 0.89,
+              "rule_router": 0.72,
+              "r001_learned_router_premium_floor_guard": 0.98
+            }
+          },
+          {
+            "expert": "r002_learned_router_topday_animal_throttle",
+            "overall_score": 0.820625,
+            "worst_opponent_score": 0.5775,
+            "worst_opponent": "v8_topdays",
+            "opponent_scores": {
+              "baseline_v1": 0.845,
+              "baseline_v2": 0.845,
+              "v1_topdays": 0.81,
+              "v2_topdays": 0.81,
+              "v5_topdays": 0.625,
+              "v8_topdays": 0.5775,
+              "v5_price_slot": 0.89,
+              "v8_lead1": 0.905,
+              "v8_no_preempt": 0.915,
+              "v8_conservative": 0.89,
+              "rule_router": 0.75,
+              "r001_learned_router_premium_floor_guard": 0.985
+            }
+          }
+        ]
+      }
+    }
+  },
+  "already_open_screen_controls": {
+    "v3": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v3/screen_control/r002_learned_router_topday_animal_throttle__vs__baseline_v8/summary.json",
+      "sha256": "e696e96506be11abccc889ab123989256803ea6e4fc934d80f319be2c1ccf63f",
+      "games": 36,
+      "paired_seeds": 18,
+      "r002_score": 0.6388888888888888,
+      "r002_ci95": [
+        0.4444444444444444,
+        0.8333333333333334
+      ],
+      "errors": 0,
+      "not_done": 0
+    },
+    "v4": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__baseline_v8/summary.json",
+      "sha256": "d1a75dd7ddb183d6d98334b11b2e88665e93fee85d13c818085b3fa01af62c6c",
+      "games": 36,
+      "paired_seeds": 18,
+      "r002_score": 0.6944444444444444,
+      "r002_ci95": [
+        0.5,
+        0.8888888888888888
+      ],
+      "errors": 0,
+      "not_done": 0
+    }
+  },
+  "step0_entropy_audit": {
+    "source_seeds": 300,
+    "seat_observations": 600,
+    "unique_public_initial_observation_hashes": 1,
+    "public_initial_observation_hashes": [
+      "9474d11454742748d51d39ad09d32639d33518f370616b68a17d743d3bf10e65"
+    ],
+    "configuration_seed_values_visible_to_agent_runner": [
+      "None"
+    ],
+    "player_values": [
+      0,
+      1
+    ],
+    "player_is_fair_entropy": false,
+    "player_rejection_reason": "seat is a two-valued, opponent-predictable role label rather than episode randomness; it cannot implement general weights and a knowledgeable opponent can condition on it",
+    "fair_reproducible_step0_entropy_available": false
+  },
+  "acceptance_gates": {
+    "honest_r002_three_round_loo_identifiable": false,
+    "common_support_loo_is_non_degenerate_mixture": false,
+    "common_support_loo_strict_overall_gain_every_fold": false,
+    "common_support_loo_strict_worst_gain_every_fold": false,
+    "round3_maximin_keeps_r002_and_v8": false,
+    "fair_reproducible_step0_entropy_available": false
+  },
+  "all_acceptance_gates_pass": false,
+  "artifacts_intentionally_absent": [
+    "main.py",
+    "submission.tar.gz",
+    "registry_entry.json",
+    "formal results"
+  ]
+}

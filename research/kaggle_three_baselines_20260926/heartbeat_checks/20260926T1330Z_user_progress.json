@@ -1,0 +1,83 @@
+{
+  "checked_at_utc": "2026-09-26T13:32:24.068234+00:00",
+  "baseline_status": {
+    "gemma-4-developer-agent": {
+      "phase": "submitted_waiting_for_online_score",
+      "submission_id": 56575684,
+      "submission_status": "PENDING",
+      "public_score": null,
+      "updated_at": "2026-09-26T13:30:32.630507Z",
+      "development_notebook": {
+        "status": "COMPLETE",
+        "cases_resolved": 0,
+        "cases_total": 2,
+        "exit_codes": [
+          1,
+          124
+        ],
+        "source_content_comparison": {
+          "file_contents_identical": false,
+          "submitted_zip_sha256": "a7bae692d770d6bc5c0b273c197db9434e47ec7e1cf2465b4f178c8e7a68bf91",
+          "notebook_output_zip_sha256": "e4f7a4aba6589221605f675cd0e5cf70b3a53879394f893f0c188093e9985007",
+          "file_count": 4,
+          "differing_entries": [
+            "sub_agents/code_analyzer.yaml",
+            "prompts/analyzer.md"
+          ]
+        },
+        "results": [
+          "-> resolved=False, exit_code=1, patch_chars=1968, tool_calls=15, duration=262.5s",
+          "-> resolved=False, exit_code=124, patch_chars=1988, tool_calls=18, duration=303.1s"
+        ],
+        "official_submission_score_still_pending": true
+      }
+    },
+    "arc-prize-2026-arc-agi-3": {
+      "phase": "complete",
+      "submission_id": 56576143,
+      "submission_status": "SubmissionStatus.COMPLETE",
+      "public_score": 0.09,
+      "updated_at": "2026-09-26T10:07:44.911924+00:00"
+    },
+    "arc-prize-2026-arc-agi-2": {
+      "phase": "submission_complete",
+      "submission_id": 56575976,
+      "submission_status": "COMPLETE",
+      "public_score": 0.0,
+      "updated_at": "2026-09-26T09:54:06.465965+00:00"
+    }
+  },
+  "ev_progress": {
+    "completed_atoms": 87,
+    "total_atoms": 600,
+    "outer": 1,
+    "family": "grouped_v85",
+    "atom": 7,
+    "spent_seconds": 4180.328774499998,
+    "contract_sha256": "4d254f2215f566fc8cefb11575645b177dfa8f9f4c4c3e9345ab3cf2f4f52466",
+    "updated_at_utc": "2026-09-26T13:28:45.735604+00:00"
+  },
+  "ev_rank_snapshot": {
+    "rank": 651,
+    "teams": 3074,
+    "public_score": 0.94635,
+    "submission_count": 21,
+    "team_id": "16810341",
+    "source_csv": "playground-series-s6e9-publicleaderboard-2026-09-26T13:31:25.csv",
+    "source_zip": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/research/kaggle_three_baselines_20260926/heartbeat_checks/20260926T1330Z_leaderboard/playground-series-s6e9.zip"
+  },
+  "ev_new_submissions": 0,
+  "all_acceptance_complete": false,
+  "gemma_artifact_comparison_detail": {
+    "shared_submitted_files_identical": true,
+    "shared_file_count": 4,
+    "extra_notebook_files": [
+      "prompts/analyzer.md",
+      "sub_agents/code_analyzer.yaml"
+    ],
+    "extra_files_referenced_by_root_agent": false,
+    "zip_bytes_identical": false,
+    "interpretation": "Notebook executed same four root agent/config/prompt files; output ZIP additionally contains two unreferenced starter files. Do not claim ZIP byte identity."
+  },
+  "ev_current_process_snapshot": "  PID  PPID  %CPU      TIME    RSS STAT COMMAND\n 2725     1   0.0   0:00.02  13632 Ss   /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/continue.py\n 2726  2725  66.1 253:07.02 8718320 R    /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/run.py\n"
+}

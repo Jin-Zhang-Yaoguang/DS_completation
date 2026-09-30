@@ -1,0 +1,70 @@
+{
+  "sources": [
+    {
+      "version": "ddm",
+      "episodes": 146,
+      "purchase_orders": 2633
+    },
+    {
+      "version": "dde",
+      "episodes": 121,
+      "purchase_orders": 1883
+    },
+    {
+      "version": "ddo",
+      "episodes": 148,
+      "purchase_orders": 1625
+    }
+  ],
+  "samples": 6141,
+  "train_orders": 4851,
+  "validation_orders": 1290,
+  "selection": {
+    "depth": 4,
+    "min_leaf": 40,
+    "balanced_accuracy": 0.820404547628364,
+    "accuracy": 0.927994833710042
+  },
+  "candidates": [
+    {
+      "depth": 3,
+      "min_leaf": 20,
+      "balanced_accuracy": 0.8203048355175484,
+      "accuracy": 0.9268647077817243
+    },
+    {
+      "depth": 3,
+      "min_leaf": 40,
+      "balanced_accuracy": 0.8203048355175484,
+      "accuracy": 0.9268647077817243
+    },
+    {
+      "depth": 4,
+      "min_leaf": 20,
+      "balanced_accuracy": 0.8201273857658362,
+      "accuracy": 0.9275104940264772
+    },
+    {
+      "depth": 4,
+      "min_leaf": 40,
+      "balanced_accuracy": 0.820404547628364,
+      "accuracy": 0.927994833710042
+    },
+    {
+      "depth": 5,
+      "min_leaf": 20,
+      "balanced_accuracy": 0.8101405798991725,
+      "accuracy": 0.9329996771068776
+    },
+    {
+      "depth": 5,
+      "min_leaf": 40,
+      "balanced_accuracy": 0.8166048546093458,
+      "accuracy": 0.9318695511785599
+    }
+  ],
+  "export_probability_parity": true,
+  "split": "hash of source seed, shared across all teachers; no seed enters model",
+  "training_script_sha256": "851e5fb6cae07e444e097ab07a1dca1f2a04f342e478c329842fa768f10cdb52",
+  "scope": "supervised binary allocation; no online RL; no y68 labels; no trajectory ID or future market input"
+}

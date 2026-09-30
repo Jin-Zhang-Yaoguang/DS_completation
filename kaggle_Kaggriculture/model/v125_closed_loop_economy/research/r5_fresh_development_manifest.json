@@ -1,0 +1,35 @@
+{
+  "role": "PRE_RUN_DEVELOPMENT_DESIGN_NOT_GOLD",
+  "candidate": "V125-R5",
+  "implementation_parent": "V125-R4",
+  "additional_comparator": "V125-R0",
+  "diagnostic_seed": 1950905001,
+  "seeds": [
+    1950905501,
+    1950905502,
+    1950905503
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponent": "PASS",
+  "primary_mechanism": "Controlled misassignment cases must be fixed. On fresh complete games, movement per successful production action must fall at least 20 percent versus R4. Production actions are PLANT,WATER,FEED,CARE,FERTILIZE,HARVEST,COLLECT_FERTILIZER,BUILD,DIG; all counts are also reported separately.",
+  "screen_criteria": {
+    "controlled_urgency_counterexamples_all_fixed": true,
+    "movement_per_production_action_relative_reduction_vs_R4": 0.2,
+    "cash_positive_fraction_vs_each_comparator": 0.6,
+    "mean_cash_delta_by_each_seat_vs_each_comparator_minimum": 0,
+    "first_water_not_worse": true,
+    "survival_loss_ratios_not_worse": true
+  },
+  "mechanism_scope": "Shared task urgency, bonus restricted to edges capable of the necessary operation, full owner coverage and a lexicographic bound consistent with the existing 1.15 multiplier. Economy, market, single-unit feed pickup and ordinary cargo return remain R4.",
+  "candidate_sha256": "7091a3ad25bdc64854987592d38148404e84cc1b6e9a5fef101662f7e53999a2",
+  "formal_gates": "This three-seed screen does not replace G1 eight fresh seeds or G2 sixteen fresh seeds and old anchors. Failing versions are retired and the opened panel remains diagnostic.",
+  "frozen_at_utc": "2026-09-05T10:27:41.725116+00:00",
+  "sources": {
+    "V125-R0": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+    "V125-R4": "8d3b634468d58c47df7c2c87644af04aa9d493e7c6381969866d4acfa3558431",
+    "V125-R5": "7091a3ad25bdc64854987592d38148404e84cc1b6e9a5fef101662f7e53999a2"
+  }
+}

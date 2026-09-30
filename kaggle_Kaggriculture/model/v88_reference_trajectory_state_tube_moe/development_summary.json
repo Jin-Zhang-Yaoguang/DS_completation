@@ -1,0 +1,91 @@
+{
+  "schema": "kaggriculture-loop-development-v2",
+  "model_id": "v88_reference_trajectory_state_tube_moe",
+  "engine": "1.32.7",
+  "candidate_archive_sha256": "34eda74edac494fb351326147294778ce34f2f6bcdffa34f984608add6788fa8",
+  "source_manifest_sha256": "45e77fc8ef13f6b5081b4652f0f0d405235d5a2b9adcb49252fa8e37fa27246d",
+  "games_sha256": "e270925c44c8fdcdfb3d338dbfb534916b2b8ecab28f950f5a24c7092babb5aa",
+  "source_count": 64,
+  "originality_panel": [
+    "v20",
+    "v21",
+    "v32",
+    "v54",
+    "v66",
+    "v76"
+  ],
+  "summary": {
+    "task_count": 1536,
+    "done_count": 1536,
+    "error_count": 0,
+    "task_keys_unique": true,
+    "candidate_panel_score": 0.9375,
+    "parent_panel_score": 0.822265625,
+    "pou_pp": 11.5234375,
+    "positive_zero_negative": [
+      169,
+      569,
+      30
+    ],
+    "by_opponent_pou_pp": {
+      "v20": -0.78125,
+      "v21": -0.78125,
+      "v32": 1.5625,
+      "v54": 12.109375,
+      "v66": 13.28125,
+      "v76": 43.75
+    },
+    "candidate_catastrophic_rate": 0.0546875,
+    "parent_catastrophic_rate": 0.020833333333333332,
+    "catastrophic_rate_delta_pp": 3.385416666666667,
+    "candidate_mean_margin": 7303.149739583333,
+    "parent_mean_margin": 736.65234375,
+    "candidate_action_changed_games": 768,
+    "safety_violations": 0,
+    "pou_95ci_pp": [
+      6.445312500000003,
+      16.276041666666668
+    ],
+    "panel_score_95ci": [
+      0.8828125,
+      0.984375
+    ],
+    "gate_checks": {
+      "pou_positive": true,
+      "panel_score_at_least_50pct": true,
+      "each_opponent_delta_at_least_minus_3pp": true,
+      "catastrophic_delta_at_most_1pp": false,
+      "zero_errors_integrity_safety": true,
+      "effective_action_change": true,
+      "mcu_positive": true,
+      "mechanism_trigger_sources_at_least_8": true,
+      "mechanism_trigger_regimes_at_least_2": true
+    },
+    "gate": "FAIL"
+  },
+  "ablation": {
+    "opponents": [
+      "v54",
+      "v76"
+    ],
+    "games_per_policy": 256,
+    "mcu_pp": 10.9375,
+    "positive_zero_negative": [
+      28,
+      228,
+      0
+    ],
+    "mean_margin_delta": 4126.15234375,
+    "mechanism_trigger_sources": 64,
+    "mechanism_trigger_shop_regimes": [
+      "BAKERY",
+      "BRUNCH_SPOT",
+      "FARMERS_MARKET",
+      "ICE_CREAM_SHOP",
+      "PET_CAFE",
+      "PIZZA_SHOP",
+      "SMOOTHIE_SHOP",
+      "YARN_STORE"
+    ]
+  }
+}

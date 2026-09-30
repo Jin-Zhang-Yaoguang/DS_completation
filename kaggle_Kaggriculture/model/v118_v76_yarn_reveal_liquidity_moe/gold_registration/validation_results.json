@@ -1,0 +1,151 @@
+{
+  "schema": "kaggriculture-v118-gold-registration-validation-v1",
+  "checks": [
+    {
+      "name": "admission_pass",
+      "passed": true,
+      "detail": {
+        "count_128": true,
+        "balanced_16_per_first_shop": true,
+        "episode_ids_unique": true,
+        "seeds_unique": true,
+        "scenarios_unique": true,
+        "v118_development_and_gate_overlap_zero": true,
+        "official_episode_overlap_zero": true,
+        "official_seed_overlap_zero": true,
+        "official_scenario_overlap_zero": true,
+        "all_after_cutoff": true,
+        "module_exact": true,
+        "configuration_exact": true,
+        "historical_actions_results_market_excluded": true
+      }
+    },
+    {
+      "name": "preflight_pass",
+      "passed": true,
+      "detail": {
+        "engine_1_32_7": true,
+        "candidate_hash_exact": true,
+        "gold18_sources_hash_locked": true,
+        "two_panels_128_each": true,
+        "all_after_cutoff": true,
+        "module_exact": true,
+        "configuration_exact": true,
+        "historical_actions_results_market_excluded": true,
+        "cross_panel_episode_isolation": true,
+        "cross_panel_seed_isolation": true,
+        "cross_panel_scenario_isolation": true,
+        "forced_shop_trajectory_exact": true,
+        "all_256_scenarios_checked_720_steps": true
+      }
+    },
+    {
+      "name": "candidate_hash_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_locked_input_hashes_exact",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "game_count_9216",
+      "passed": true,
+      "detail": 9216
+    },
+    {
+      "name": "zero_errors",
+      "passed": true,
+      "detail": {
+        "DONE": 9216
+      }
+    },
+    {
+      "name": "task_keys_unique",
+      "passed": true,
+      "detail": 9216
+    },
+    {
+      "name": "all_719_calls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "margin_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "only_frozen_panel_ids_used",
+      "passed": true,
+      "detail": {
+        "account_online": 128,
+        "official_daily": 128
+      }
+    },
+    {
+      "name": "each_panel_opponent_has_256_games",
+      "passed": true,
+      "detail": {
+        "256": 36
+      }
+    },
+    {
+      "name": "each_seat_direction_has_128_games",
+      "passed": true,
+      "detail": {
+        "128": 72
+      }
+    },
+    {
+      "name": "aggregates_recompute_exactly",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "strict_gold_gate_recomputed",
+      "passed": true,
+      "detail": {
+        "account_online": {
+          "games": 4608,
+          "wins": 4104,
+          "ties": 84,
+          "losses": 420,
+          "pure_win_rate": 0.890625
+        },
+        "official_daily": {
+          "games": 4608,
+          "wins": 4095,
+          "ties": 118,
+          "losses": 395,
+          "pure_win_rate": 0.888671875
+        }
+      }
+    },
+    {
+      "name": "account_official_isolation",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 15,
+  "failed": 0,
+  "recomputed": {
+    "account_online": {
+      "games": 4608,
+      "wins": 4104,
+      "ties": 84,
+      "losses": 420,
+      "pure_win_rate": 0.890625
+    },
+    "official_daily": {
+      "games": 4608,
+      "wins": 4095,
+      "ties": 118,
+      "losses": 395,
+      "pure_win_rate": 0.888671875
+    }
+  },
+  "status": "PASS"
+}

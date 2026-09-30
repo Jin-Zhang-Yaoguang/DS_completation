@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-09-05T13:50:10.728091+00:00",
+  "parent_prototype_sha256": "e39c7064ad404e3f79078cca97fde85dce4d496ac53cca5867347f0d8a235d42",
+  "parent_failure": "18.025442334 seconds for full internal planning; exact P0/P1 equivalence established",
+  "design_sha256": "c393462516297ea3ea3cc581e5c3739806155257767f21c45b67d02597ae3320",
+  "hypothesis": "Only shrink fully verified runtime evidence and cache storage; preserve exact production plan/state, acceptance and all solver/checker/cachehit counts while reducing runtime",
+  "change_scope": [
+    "full route API remains default and retains P1 results and cache format",
+    "production_compact_v1 explicit in context and route, default frozen scheduler/checker only",
+    "Complete problem and implementation/mode identity retained; all independent checks and postconditions still run",
+    "Cache and outputs own separate mutable small dictionaries; full failed-day rollback retained"
+  ],
+  "unchanged": [
+    "calendar/scheduler/checker implementations",
+    "costs/capacities/scores/funding and offers order",
+    "number of scheduling/checking attempts and all diagnostic counts",
+    "legacy_fields_unchanged full snapshot",
+    "Original P0/P1 evidence and sources"
+  ],
+  "expected_saved_reference": {
+    "plan_sha256": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+    "state_sha256": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000",
+    "route_attempts": 342,
+    "scheduler_calls": 1038,
+    "checker_calls": 926,
+    "cache_hits": 4
+  },
+  "registered_internal_check": {
+    "fixture": "opened day8 funded seat0, same as frozen P1",
+    "new_state": 1,
+    "internal_economic": 1,
+    "profile": false,
+    "guard_seconds": 120,
+    "reference": "Saved exact P1 output; do not rerun P0/P1",
+    "pass_requirement": "Complete exact plan/state plus counts, and P2 runtime<=1s; extended guard does not relax threshold"
+  },
+  "pure_interface_budget": "To be fixed in separate execution manifest before any calls; limited to changed interface, cache identity, rollback and alias behavior",
+  "whole_agent_calls": 0,
+  "official_steps": 0,
+  "new_complete_matches": 0,
+  "formal_status": "NOT_GOLD"
+}

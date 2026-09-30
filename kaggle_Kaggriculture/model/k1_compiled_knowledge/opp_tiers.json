@@ -1,0 +1,59 @@
+{
+ "_doc": "分层对手池（2026-09-15，opp_probe*.py 实测 K1 当前池 4 seed×双席位分差分层）。每代每层按 per_gen 抽取；holdout 固定跨层。金币恒 3000 的早期版本(v22/v23/v14/v36/v21/v30/v5_tape_tree/v4h_tape_ledger)为加载后空转，已排除。",
+ "M": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model",
+ "K1": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/serene-cerf-f00e3b/kaggle_Kaggriculture/model/k1_compiled_knowledge",
+ "tiers": {
+  "easy": {"per_gen": 1, "note": "K1 胜 5-8/8，分差 +1.4~+2.7 万", "opps": [
+   "sub:{M}/v1_baseline_scheduler/main.py",
+   "tape:{M}/opponent_pool_v1/tapes/nl_SpaTaro_107289135.json",
+   "tape:{K1}/opp_tapes/majkel_107678936.json"]},
+  "medium": {"per_gen": 1, "note": "早期规则/自适应版本，分差 -3.4~-5.1 万", "opps": [
+   "sub:{M}/v119_center_livestock_spatial_moe/main.py",
+   "sub:{M}/v2_survival_guard/main.py",
+   "sub:{M}/v29_adaptive/main.py",
+   "sub:{M}/v1_adaptive_market/main.py",
+   "sub:{M}/v25_market_maker/main.py",
+   "tape:{M}/opponent_pool_v1/tapes/nl_Otter_Vibe_107377081.json"]},
+  "hard": {"per_gen": 2, "note": "旗舰/公开强包，分差 -5.8~-7.8 万", "opps": [
+   "sub:{M}/v58_mosaic/dist_backup/y68g_main.py",
+   "sub:{M}/opponent_pool_v1/packs/y68c_main.py",
+   "sub:{M}/opponent_pool_v1/packs/y68f_main.py",
+   "sub:{M}/opponent_pool_v1/packs/y68a_main.py",
+   "sub:{M}/opponent_pool_v1/packs/y68b_main.py",
+   "sub:{M}/opponent_pool_v1/packs/y67_main.py",
+   "sub:{M}/opponent_pool_v1/packs/y66_main.py",
+   "sub:{M}/opponent_pool_v1/packs/v38_main.py",
+   "sub:{M}/opponent_pool_v1/packs/v35_main.py",
+   "sub:{M}/opponent_pool_v1/packs/v58_rebuild.py",
+   "sub:{M}/opponent_pool_v1/packs/m2448_main.py",
+   "sub:{M}/opponent_pool_v1/packs/p955_main.py"]},
+  "tape": {"per_gen": 1, "note": "线上强者一局演绎（不反应），含 Majkel 回放 tape", "opps": [
+   "tape:{M}/opponent_pool_v1/tapes/ymg_slice0.json",
+   "tape:{M}/opponent_pool_v1/tapes/ymg_slice1.json",
+   "tape:{M}/opponent_pool_v1/tapes/fta_slice0.json",
+   "tape:{M}/opponent_pool_v1/tapes/fta_slice1.json",
+   "tape:{M}/opponent_pool_v1/tapes/ult_normal.json",
+   "tape:{K1}/opp_tapes/majkel_107620962.json",
+   "tape:{K1}/opp_tapes/majkel_107624912.json",
+   "tape:{K1}/opp_tapes/majkel_107629571.json",
+   "tape:{K1}/opp_tapes/majkel_107637563.json",
+   "tape:{K1}/opp_tapes/majkel_107756423.json",
+   "tape:{K1}/opp_tapes/majkel_107976609.json"]},
+  "mixed": {"per_gen": 1, "note": "蒸馏/路由/混合结构版本，分差 -5.2~-5.7 万", "opps": [
+   "sub:{M}/v120_hierarchical_top5_distillation/main.py",
+   "sub:{M}/v24_hybrid/main.py",
+   "sub:{M}/v33_opp_router/main.py",
+   "sub:{M}/v31_sell_timing/main.py",
+   "sub:{M}/v39_pure_tape/main.py"]}
+ },
+ "holdout": [
+  "sub:{M}/v1_baseline_scheduler/main.py",
+  "sub:{M}/v29_adaptive/main.py",
+  "sub:{M}/v58_mosaic/dist_backup/y68g_main.py",
+  "sub:{M}/opponent_pool_v1/packs/y68c_main.py",
+  "sub:{M}/opponent_pool_v1/packs/y67_main.py",
+  "tape:{M}/opponent_pool_v1/tapes/ymg_slice0.json",
+  "tape:{K1}/opp_tapes/majkel_107637563.json",
+  "sub:{M}/v120_hierarchical_top5_distillation/main.py"
+ ]
+}

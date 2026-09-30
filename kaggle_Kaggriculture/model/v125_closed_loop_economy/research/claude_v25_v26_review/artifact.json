@@ -1,0 +1,650 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Claude V25 / V26A30：思路、实现与可迁移部分",
+    "generatedAt": "2026-09-05T12:38:55.925503+00:00",
+    "description": "源码和包身份审查 · 官方函数反例 · 历史成绩的证据边界",
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Claude V25 / V26A30\n\n源码审查与当前研发决策"
+      },
+      {
+        "id": "decision",
+        "type": "markdown",
+        "body": "## 判断：有参考价值，两个核心增益解释需要推翻\n\n**保留订单顺序、合法小麦扰动和自产商品销售时机这三类研究线索。当前实现不直接并入V125。**\n\nV25的四种“低吸”商品在官方规则下不能买入；V26A30的新F动作表在进入执行器时被旧表覆盖。现有高胜率记录不能为这两种解释背书。它们仍可作为待重新绑定、验证的历史对照，但不满足本轮独立主动作生成及完整金牌门。",
+        "sourceId": "v25"
+      },
+      {
+        "id": "intent",
+        "type": "markdown",
+        "body": "## 先理解设计意图\n\n**V25**建立在V120固定动作表上，叠加按商店过滤牛羊采购、开局小麦扰动、动物补购、原地空闲动作填充，以及一层价格阈值交易。交易层在step240–648生效，低于基准价80%请求买入、达到93%请求卖出，step649起尝试清仓。\n\n**V26A30**打算保留上述保护和交易层，换成F家族动作表，并把开局额外买麦/次帧卖麦改成30/25。当前包还移除了V25的V10牛羊采购过滤；这是一项真实可生效的差异，不能忽略后把变化全部归于换表。\n\n源码位置：V25 main.py:2274、2317、2407、2470、2490、2529；V26 variant_a30.py:2238、2265、2273、2341、2485。",
+        "sourceId": "v26"
+      },
+      {
+        "id": "illegal_buy",
+        "type": "markdown",
+        "body": "## 关键发现一：V25没有买到所声称的商品\n\nKaggle官方市场只允许通过BUY_PRODUCT购买小麦和肥料。V25交易清单却全部是草莓、牛奶、羊毛和甜瓜，这四类买单会被丢弃。对应代码为V25 main.py:2470、2520与本地官方kaggriculture.py:598–607；联网官方源码也有相同限制。\n\n下面使用真实官方市场函数，给足现金和仓容，每类分别请求8份。它是人工边界控制，不是完整比赛。",
+        "sourceId": "official"
+      },
+      {
+        "id": "buy_controls_block",
+        "type": "table",
+        "tableId": "buy_controls",
+        "layout": "full"
+      },
+      {
+        "id": "ghost",
+        "type": "markdown",
+        "body": "### 未成交却记仓位，随后可能卖出自产库存\n\n提取发布包原始_mm_layer作两步控制：草莓价格60时请求买8份，官方实际成交0，但内部pos已经等于8。之后明确人工提供4份原有自产库存、价格恢复至120，原函数发出SELL4，官方实际收入468，内部pos还剩4。\n\n这证明一种可达行为：虚构的买入记录改变了后续真实库存的卖出时序。**468不是套利利润，也不是本次种植收入测量；四份库存由控制显式提供。** 历史整局增益究竟来自额外卖单、命令顺序或其它变化，仍需独立消融。\n\n另外，原动物补购函数对官方格式kind=PASTURE、animal=COW的一头在田牛返回0，可能追加多余采购。这一计数反例也已实际执行。源码：V25 main.py:2332、2363、2498、2514、2521。",
+        "sourceId": "controls"
+      },
+      {
+        "id": "route",
+        "type": "markdown",
+        "body": "## 关键发现二：V26A30的F动作表未进入实际执行核\n\n当前包载入时把_ACTIONS、_LOW_ROUTE_ACTIONS、_HIGH_ROUTE_ACTIONS指向F表。但每次真正调用的_v120_distilled_expert又执行_ACTIONS = _V120_DISTILLED_ROUTE，然后由_V19_CORE按step取动作。\n\n可达链是：末尾V25入口 → V24 → V17 → V120入口 → 重设旧表 → 原执行核。_V19_CORE在1601指向1418保存的原核，并没有再经过旧的动态选表入口。相关代码位于variant_a30.py:1372、1418、1601、2238–2243、2267–2269、2273。\n\n因此“换成更强F母带”不能解释当前包的行为。30/25的小麦扰动、删除V10过滤等其它差异需要分别评估；不能把扰动30称为全局最优。",
+        "sourceId": "v26"
+      },
+      {
+        "id": "route_probe_note",
+        "type": "markdown",
+        "body": "上述覆盖路径还做了单次真实入口诊断。结果与精确调用计数见来源文件；这项检查只确认动作表身份，不验证整局强度或金牌资格。",
+        "sourceId": "route_probe"
+      },
+      {
+        "id": "identities",
+        "type": "markdown",
+        "body": "## 读取的是哪个版本\n\nV25发布dist与tar内main相同，SHA前缀47218bab；研究main为576211de，允许通过MM_PARAMS调整参数，两者不能混作同一源。\n\nV26A30的variant_a30、dist/main与tar内main逐字节相同，SHA前缀f22026c8；该目录main仍是53/48变体，SHA前缀dcd5f38c。build.py当前也生成53版本。后续若用错目录main，会把A30与其它版本混淆。\n\n完整SHA及文件时间保存在来源清单。未改动Claude任何文件，也未提交或重新部署。",
+        "sourceId": "sources"
+      },
+      {
+        "id": "history_scores_block",
+        "type": "table",
+        "tableId": "history_scores",
+        "layout": "full"
+      },
+      {
+        "id": "old_m6_margin_block",
+        "type": "chart",
+        "chartId": "old_m6_margin",
+        "layout": "full"
+      },
+      {
+        "id": "validation_limits",
+        "type": "markdown",
+        "body": "### 成绩存在，验证口径需要收紧\n\n三份M6共1152行旧数据通过54项算术与键核对；但记录缺候选/入口/引擎SHA、每场719步、异常和逐状态一致性证据。现有通用runner会将策略异常替成PASS。\n\n直接读取模块.agent会绕过追加层；本地也找到了正确选择“末尾callable”的临时包装，所以**不能断言历史一定测错入口**。缺的是把具体历史运行、包装文件、环境参数与发布包关联起来的证据。\n\nV26A30的47/56家族合计在算术上成立，但pert_1只有4/8；V25的C、F各6/16。它们并非各家族都占优。0/20/30/53等扰动量与交易参数已经被扫描，未找到冻结后全新确认清单。“30全局最优”和“金牌门全绿”超出了现有证据。",
+        "sourceId": "evidence"
+      },
+      {
+        "id": "adoption",
+        "type": "markdown",
+        "body": "## 怎样帮助当前V125\n\n1. **把小麦扰动做成对手压力测试。** 检验开局现金与采购顺序在共享价格变化下是否仍能落实动物、饲料和雇工。之后再独立研究是否主动扰动；30与53都不是可直接移植的答案。\n\n2. **只研究真实自产库存的销售时机和命令位置。** 删除不合法的低吸前提，所有卖出必须有真实可用库存。用相同田间动作隔离销售层，比较双方现金分差、仓满损失及投入机会成本。V125本来就会售出入仓货物，不能假定复制一个额外SELL层就有增益。\n\n3. **加入严格的入口和成交确认检查。** 包内最终入口、被执行动作表、真实成交与内部库存逐项绑定。V25的幽灵持仓、V26的覆盖赋值都应成为预检反例。\n\n4. **继续R10完整劳动日程，暂不复制动作表。** 这次审查没有提供一个已经验证成功的独立调度器，也没有推翻R9未来日劳动重复计费的证据。保留这条研发主线，将上述市场压力和真实销售假设另行登记，逐项验证。",
+        "sourceId": "v25"
+      },
+      {
+        "id": "qualification",
+        "type": "markdown",
+        "body": "## 当前结论与边界\n\nV25、V26A30有可借鉴的市场反应思路；核心说明与真实代码之间有实质偏差。它们可成为研究对象和待验证对照，不能作为当前已获金牌能力的证明。V125完整本地研究比赛仍为220场，金牌门尚未通过，原目标继续。\n\n本次增量包括源码/包/旧结果只读复核、8次官方市场函数控制、提取函数反例，以及另列的单次入口诊断；不计为新的完整研究比赛。线上排名与对手比例未重新刷新，文档中的每日数据只保留为带日期的历史记录。",
+        "sourceId": "evidence"
+      }
+    ],
+    "charts": [
+      {
+        "id": "old_m6_margin",
+        "title": "相同胜率，分差优势可能很不同",
+        "type": "bar",
+        "dataset": "old_m6_margin",
+        "sourceId": "native_old_m6_margin",
+        "layout": "full",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "opponent",
+            "type": "nominal",
+            "label": "旧M6对手"
+          },
+          "y": {
+            "field": "margin",
+            "type": "quantitative",
+            "label": "平均现金分差",
+            "format": "number"
+          },
+          "color": {
+            "field": "version",
+            "type": "nominal",
+            "label": "版本"
+          }
+        },
+        "settings": {
+          "orientation": "vertical",
+          "sort": "none",
+          "showPoints": "never",
+          "groupMode": "grouped"
+        },
+        "labels": {
+          "values": "auto"
+        },
+        "subtitle": "V120组两版同为125/128胜，但旧结果中的平均分差不同；这些历史数据的运行身份绑定仍待补齐。",
+        "showDescription": true
+      }
+    ],
+    "tables": [
+      {
+        "id": "buy_controls",
+        "title": "相同买入请求，实际成交不同",
+        "dataset": "buy_controls",
+        "sourceId": "native_buy_controls",
+        "columns": [
+          {
+            "field": "item",
+            "label": "商品",
+            "type": "text"
+          },
+          {
+            "field": "requested",
+            "label": "请求数量",
+            "format": "number"
+          },
+          {
+            "field": "filled",
+            "label": "实际成交",
+            "format": "number"
+          },
+          {
+            "field": "spent",
+            "label": "实际花费",
+            "format": "number"
+          }
+        ],
+        "defaultSort": {
+          "field": "item",
+          "direction": "asc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "subtitle": "四个交易目标全部零成交；小麦和肥料是正控制。",
+        "showDescription": true
+      },
+      {
+        "id": "history_scores",
+        "title": "旧M6结果文件的数字复核",
+        "dataset": "history_scores",
+        "sourceId": "native_history_scores",
+        "columns": [
+          {
+            "field": "version",
+            "label": "版本",
+            "type": "text"
+          },
+          {
+            "field": "opponent",
+            "label": "对手",
+            "type": "text"
+          },
+          {
+            "field": "result",
+            "label": "纯胜场",
+            "type": "text"
+          },
+          {
+            "field": "winrate",
+            "label": "纯胜率",
+            "format": "percent"
+          },
+          {
+            "field": "margin",
+            "label": "平均现金分差",
+            "format": "number"
+          }
+        ],
+        "defaultSort": {
+          "field": "version",
+          "direction": "asc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "subtitle": "每个版本每个对手64场景×双席；同一批旧场景。内部数值闭合不等于新确认。",
+        "showDescription": true
+      }
+    ],
+    "cards": [],
+    "sources": [
+      {
+        "id": "v25",
+        "label": "V25源码分析",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v25_analysis.md",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "固定动作带、V10/V17/V24/MM可达调用链与精确行号。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v25_analysis.md"
+          ]
+        }
+      },
+      {
+        "id": "v26",
+        "label": "V26A30源码分析",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_analysis.md",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "A30包身份、F动作表被覆盖的调用路径及实际差异。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_analysis.md"
+          ]
+        }
+      },
+      {
+        "id": "evidence",
+        "label": "历史M6与家族门控证据",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "54项只读核对、1152行旧结果；不重新运行M6，也不证明当时包和引擎身份。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json"
+          ]
+        }
+      },
+      {
+        "id": "controls",
+        "label": "官方市场及持仓函数控制",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "8次官方市场函数；2次提取MM函数、1次动物计数；无完整候选或比赛。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json"
+          ]
+        }
+      },
+      {
+        "id": "sources",
+        "label": "此次读取的文件与包SHA",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/source_manifest.json",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "当前文件和tar成员逐字节身份；与历史运行绑定分开。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/source_manifest.json"
+          ]
+        }
+      },
+      {
+        "id": "official",
+        "label": "Kaggle官方Kaggriculture源码",
+        "path": "kaggle_environments/envs/kaggriculture/kaggriculture.py",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "2026-09-05联网读取，_process_market仅允许BUY_PRODUCT WHEAT/FERTILIZER；相关限制与本地官方引擎相同。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_environments/envs/kaggriculture/kaggriculture.py"
+          ]
+        },
+        "href": "https://raw.githubusercontent.com/Kaggle/kaggle-environments/master/kaggle_environments/envs/kaggriculture/kaggriculture.py"
+      },
+      {
+        "id": "route_probe",
+        "label": "V26A30实际入口诊断",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/result.json",
+        "query": {
+          "engine": "源码与已保存结果的只读审查",
+          "description": "一次人工初态调用，记录实际进入执行核时使用哪张动作表；无完整比赛。",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/result.json"
+          ]
+        }
+      },
+      {
+        "id": "native_buy_controls",
+        "label": "相同买入请求，实际成交不同｜数据来源",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+        "query": {
+          "engine": "SQLite 3 JSON1",
+          "language": "sql",
+          "sql": "SELECT json_extract(value, '$.item') AS item, json_extract(value, '$.requested') AS requested, json_extract(value, '$.filled') AS filled, json_extract(value, '$.spent') AS spent FROM json_each(:reviewed_json, '$.buy_controls');",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "description": "显示已审JSON行的SQL投影。原始来源：kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json"
+          ],
+          "filters": {
+            "json_parameter": ":reviewed_json = reviewed_tables.json全文"
+          }
+        }
+      },
+      {
+        "id": "native_history_scores",
+        "label": "旧M6结果文件的数字复核｜数据来源",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+        "query": {
+          "engine": "SQLite 3 JSON1",
+          "language": "sql",
+          "sql": "SELECT json_extract(value, '$.version') AS version, json_extract(value, '$.opponent') AS opponent, json_extract(value, '$.result') AS result, json_extract(value, '$.winrate') AS winrate, json_extract(value, '$.margin') AS margin FROM json_each(:reviewed_json, '$.history_scores');",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "description": "显示已审JSON行的SQL投影。原始来源：kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json"
+          ],
+          "filters": {
+            "json_parameter": ":reviewed_json = reviewed_tables.json全文"
+          }
+        }
+      },
+      {
+        "id": "native_old_m6_margin",
+        "label": "相同胜率，分差优势可能很不同｜数据来源",
+        "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+        "query": {
+          "engine": "SQLite 3 JSON1",
+          "language": "sql",
+          "sql": "SELECT json_extract(value, '$.opponent') AS opponent, json_extract(value, '$.version') AS version, json_extract(value, '$.margin') AS margin FROM json_each(:reviewed_json, '$.old_m6_margin');",
+          "executed_at": "2026-09-05T12:38:55.925503+00:00",
+          "description": "显示已审JSON行的SQL投影。原始来源：kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json",
+          "tables_used": [
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+            "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json"
+          ],
+          "filters": {
+            "json_parameter": ":reviewed_json = reviewed_tables.json全文"
+          }
+        }
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-09-05T12:38:55.925503+00:00",
+    "status": "ready",
+    "datasets": {
+      "buy_controls": [
+        {
+          "item": "草莓",
+          "requested": 8,
+          "filled": 0,
+          "spent": 0.0
+        },
+        {
+          "item": "牛奶",
+          "requested": 8,
+          "filled": 0,
+          "spent": 0.0
+        },
+        {
+          "item": "羊毛",
+          "requested": 8,
+          "filled": 0,
+          "spent": 0.0
+        },
+        {
+          "item": "甜瓜",
+          "requested": 8,
+          "filled": 0,
+          "spent": 0.0
+        },
+        {
+          "item": "小麦",
+          "requested": 8,
+          "filled": 8,
+          "spent": 216.0
+        },
+        {
+          "item": "肥料",
+          "requested": 8,
+          "filled": 8,
+          "spent": 807.0
+        }
+      ],
+      "history_scores": [
+        {
+          "version": "V25",
+          "opponent": "V120",
+          "result": "125/128",
+          "winrate": 0.9765625,
+          "margin": 18951.4765625
+        },
+        {
+          "version": "V25",
+          "opponent": "V76",
+          "result": "118/128",
+          "winrate": 0.921875,
+          "margin": 9534.203125
+        },
+        {
+          "version": "V25",
+          "opponent": "V20",
+          "result": "118/128",
+          "winrate": 0.921875,
+          "margin": 9803.40625
+        },
+        {
+          "version": "V26 A30",
+          "opponent": "V120",
+          "result": "125/128",
+          "winrate": 0.9765625,
+          "margin": 4848.5
+        },
+        {
+          "version": "V26 A30",
+          "opponent": "V76",
+          "result": "114/128",
+          "winrate": 0.890625,
+          "margin": 9008.8203125
+        },
+        {
+          "version": "V26 A30",
+          "opponent": "V20",
+          "result": "116/128",
+          "winrate": 0.90625,
+          "margin": 9257.2734375
+        }
+      ],
+      "old_m6_margin": [
+        {
+          "version": "V25",
+          "opponent": "V120",
+          "result": "125/128",
+          "winrate": 0.9765625,
+          "margin": 18951.4765625
+        },
+        {
+          "version": "V25",
+          "opponent": "V76",
+          "result": "118/128",
+          "winrate": 0.921875,
+          "margin": 9534.203125
+        },
+        {
+          "version": "V25",
+          "opponent": "V20",
+          "result": "118/128",
+          "winrate": 0.921875,
+          "margin": 9803.40625
+        },
+        {
+          "version": "V26 A30",
+          "opponent": "V120",
+          "result": "125/128",
+          "winrate": 0.9765625,
+          "margin": 4848.5
+        },
+        {
+          "version": "V26 A30",
+          "opponent": "V76",
+          "result": "114/128",
+          "winrate": 0.890625,
+          "margin": 9008.8203125
+        },
+        {
+          "version": "V26 A30",
+          "opponent": "V20",
+          "result": "116/128",
+          "winrate": 0.90625,
+          "margin": 9257.2734375
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "v25",
+      "label": "V25源码分析",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v25_analysis.md",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "固定动作带、V10/V17/V24/MM可达调用链与精确行号。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v25_analysis.md"
+        ]
+      }
+    },
+    {
+      "id": "v26",
+      "label": "V26A30源码分析",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_analysis.md",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "A30包身份、F动作表被覆盖的调用路径及实际差异。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_analysis.md"
+        ]
+      }
+    },
+    {
+      "id": "evidence",
+      "label": "历史M6与家族门控证据",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "54项只读核对、1152行旧结果；不重新运行M6，也不证明当时包和引擎身份。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json"
+        ]
+      }
+    },
+    {
+      "id": "controls",
+      "label": "官方市场及持仓函数控制",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "8次官方市场函数；2次提取MM函数、1次动物计数；无完整候选或比赛。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json"
+        ]
+      }
+    },
+    {
+      "id": "sources",
+      "label": "此次读取的文件与包SHA",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/source_manifest.json",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "当前文件和tar成员逐字节身份；与历史运行绑定分开。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/source_manifest.json"
+        ]
+      }
+    },
+    {
+      "id": "official",
+      "label": "Kaggle官方Kaggriculture源码",
+      "path": "kaggle_environments/envs/kaggriculture/kaggriculture.py",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "2026-09-05联网读取，_process_market仅允许BUY_PRODUCT WHEAT/FERTILIZER；相关限制与本地官方引擎相同。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_environments/envs/kaggriculture/kaggriculture.py"
+        ]
+      },
+      "href": "https://raw.githubusercontent.com/Kaggle/kaggle-environments/master/kaggle_environments/envs/kaggriculture/kaggriculture.py"
+    },
+    {
+      "id": "route_probe",
+      "label": "V26A30实际入口诊断",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/result.json",
+      "query": {
+        "engine": "源码与已保存结果的只读审查",
+        "description": "一次人工初态调用，记录实际进入执行核时使用哪张动作表；无完整比赛。",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/v26_entry_probe/result.json"
+        ]
+      }
+    },
+    {
+      "id": "native_buy_controls",
+      "label": "相同买入请求，实际成交不同｜数据来源",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+      "query": {
+        "engine": "SQLite 3 JSON1",
+        "language": "sql",
+        "sql": "SELECT json_extract(value, '$.item') AS item, json_extract(value, '$.requested') AS requested, json_extract(value, '$.filled') AS filled, json_extract(value, '$.spent') AS spent FROM json_each(:reviewed_json, '$.buy_controls');",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "description": "显示已审JSON行的SQL投影。原始来源：kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/controlled_checks/result.json"
+        ],
+        "filters": {
+          "json_parameter": ":reviewed_json = reviewed_tables.json全文"
+        }
+      }
+    },
+    {
+      "id": "native_history_scores",
+      "label": "旧M6结果文件的数字复核｜数据来源",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+      "query": {
+        "engine": "SQLite 3 JSON1",
+        "language": "sql",
+        "sql": "SELECT json_extract(value, '$.version') AS version, json_extract(value, '$.opponent') AS opponent, json_extract(value, '$.result') AS result, json_extract(value, '$.winrate') AS winrate, json_extract(value, '$.margin') AS margin FROM json_each(:reviewed_json, '$.history_scores');",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "description": "显示已审JSON行的SQL投影。原始来源：kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json"
+        ],
+        "filters": {
+          "json_parameter": ":reviewed_json = reviewed_tables.json全文"
+        }
+      }
+    },
+    {
+      "id": "native_old_m6_margin",
+      "label": "相同胜率，分差优势可能很不同｜数据来源",
+      "path": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+      "query": {
+        "engine": "SQLite 3 JSON1",
+        "language": "sql",
+        "sql": "SELECT json_extract(value, '$.opponent') AS opponent, json_extract(value, '$.version') AS version, json_extract(value, '$.margin') AS margin FROM json_each(:reviewed_json, '$.old_m6_margin');",
+        "executed_at": "2026-09-05T12:38:55.925503+00:00",
+        "description": "显示已审JSON行的SQL投影。原始来源：kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json",
+        "tables_used": [
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/reviewed_tables.json",
+          "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/claude_v25_v26_review/evidence_review.json"
+        ],
+        "filters": {
+          "json_parameter": ":reviewed_json = reviewed_tables.json全文"
+        }
+      }
+    }
+  ]
+}

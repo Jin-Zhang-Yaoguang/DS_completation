@@ -1,0 +1,914 @@
+{
+  "schema": "r10-p1-validation-compact-v1",
+  "created_at_utc": "2026-09-05T13:45:13.380510+00:00",
+  "status": "P1_TIME_THRESHOLD_FAILED",
+  "counts": {
+    "module_definition_loads": 4,
+    "pure_calendar_calls": 48,
+    "pure_aggregate_calls": 2,
+    "pure_cache_constructions": 6,
+    "pure_route_calls": 8,
+    "pure_compile_day_problem_calls": 8,
+    "pure_native_scheduler_calls": 6,
+    "pure_native_checker_calls": 6,
+    "pure_custom_schedule_calls": 2,
+    "pure_custom_check_calls": 2,
+    "new_state_calls": 2,
+    "internal_economic_calls": 2
+  },
+  "whole_agent_calls": 0,
+  "official_calls": 0,
+  "new_complete_matches": 0,
+  "equivalence_and_source_integrity_pass": true,
+  "full_plan_and_state_comparison": {
+    "both_returned": true,
+    "exact_full_plan_and_state_equal": true,
+    "differences": [],
+    "missing_outputs": []
+  },
+  "pure_interface_comparison": {
+    "default_cold": {
+      "both_complete": true,
+      "exact_pre_mutation_result_cache_and_alias_effect_equal": true,
+      "exact_result_and_cache_equal": true,
+      "differences": []
+    },
+    "default_cache_hit": {
+      "both_complete": true,
+      "exact_pre_mutation_result_cache_and_alias_effect_equal": true,
+      "exact_result_and_cache_equal": true,
+      "differences": []
+    },
+    "custom_schedule_only": {
+      "both_complete": true,
+      "exact_pre_mutation_result_cache_and_alias_effect_equal": true,
+      "exact_result_and_cache_equal": true,
+      "differences": []
+    },
+    "custom_check_only": {
+      "both_complete": true,
+      "exact_pre_mutation_result_cache_and_alias_effect_equal": true,
+      "exact_result_and_cache_equal": true,
+      "differences": []
+    }
+  },
+  "unprofiled_internal_calls": {
+    "P0": {
+      "module": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_01/p0/integration_prototype.py",
+        "sha256": "940a7438f57d10978ef93ee2eb4168a04e644f0fa8531180f1c960719f5471f0",
+        "candidate_id": "V125-R10-PROTOTYPE",
+        "parameters": {
+          "cash_funding": "cash_prefix",
+          "router": "adaptive",
+          "investment_selection": "terminal_net",
+          "task_cost": "full",
+          "care_weight": 1.0,
+          "max_hands": 12,
+          "forecast_days": 6,
+          "early_animals": 4,
+          "r10_route_mode": "future_failure_certificate"
+        }
+      },
+      "returned": true,
+      "seconds": 21.198174457997084,
+      "over_1s": true,
+      "observation_unchanged": true,
+      "plan_sha256": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+      "state_sha256": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000",
+      "complete_plan_companions": {
+        "expert": "horticulture",
+        "crop_choice": "MELON",
+        "admitted_count": 26,
+        "admitted_items": {
+          "MELON": 26
+        },
+        "cash_after_reserve_model": 97097.0,
+        "buy_land": false,
+        "original_rejected_types": {
+          "labor": 217
+        },
+        "route_audit": {
+          "mode": "future_failure_certificate",
+          "counts": {
+            "route_attempts": 342,
+            "actual_calendar_compilations": 48,
+            "quote_calendar_compilations": 312,
+            "scheduler_calls": 1038,
+            "checker_calls": 926,
+            "cache_hits": 4,
+            "route_successful_quotes": 216,
+            "route_failed_quotes": 126,
+            "quote_calendar_cache_hits": 862
+          },
+          "reason_counts": {
+            "CONDITIONAL_ROUTE_LABOR_FEASIBLE": 216,
+            "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL": 8,
+            "NO_CERTIFICATE": 112,
+            "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY": 6
+          },
+          "first_events": [
+            {
+              "item": "WHEAT",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "CARROT",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "COW",
+              "position": [
+                4,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 16,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "SHEEP",
+              "position": [
+                4,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 14,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "TOMATO",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "MELON",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "WHEAT",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "CARROT",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "COW",
+              "position": [
+                5,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 16,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "SHEEP",
+              "position": [
+                5,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 14,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "TOMATO",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "MELON",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "WHEAT",
+              "position": [
+                4,
+                5
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "CARROT",
+              "position": [
+                4,
+                5
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "COW",
+              "position": [
+                4,
+                5
+              ],
+              "status": "REJECTED",
+              "failed_day": 16,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "SHEEP",
+              "position": [
+                4,
+                5
+              ],
+              "status": "REJECTED",
+              "failed_day": 14,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            }
+          ],
+          "event_detail_limit": 16,
+          "events_are_quote_attempts_not_actual_permits": true,
+          "final_legacy_failed_days": [
+            10,
+            12,
+            14,
+            15,
+            16
+          ],
+          "final_effective_labor_feasible": true,
+          "last_accepted_proof": {
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "labor_feasible_after_routes": true,
+            "route_feasibility_by_day": {
+              "10": true,
+              "12": true,
+              "14": true,
+              "15": true,
+              "16": true
+            },
+            "reason": null,
+            "failed_day": null,
+            "trial_legacy_sha256": "ed4dde82add6eb6199cf2fb491e9c5d896feea33635838da94bab5e4ddac41ec",
+            "witnesses": [
+              {
+                "day": 10,
+                "problem_sha256": "9446d9c35327f22bab4336eb262c4a4261a321a89c381e203fb1879da1436e89",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 12,
+                "problem_sha256": "a522b976a0f7944d27e026532443ab54378bb1b9f80da22eb0c7c197b59debf9",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 14,
+                "problem_sha256": "3c15e9a4df4df817edf70283e47ebd54c914d89573b4f6b8636d4e5721dc4f9a",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 15,
+                "problem_sha256": "8796b0d5b7f5dfc83ee9f439d40e40c70ae310edce3eec4435bef80d4e717e5a",
+                "old_need": 310,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 74,
+                "delivered_goods": {},
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 16,
+                "problem_sha256": "e586803cb0ff88369f25f7bdc8088d9b1872c57ddd94bfad5cf18108d83b7d27",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              }
+            ],
+            "conditional_not_actual_execution": true
+          },
+          "source_quote_count": 26,
+          "compiled_quote_cache_entries": 312,
+          "route_cache_entries": 862,
+          "unrepresented_commitments": [],
+          "cash_and_three_scores_unchanged": true,
+          "prior_product_sales_are_conditional": true
+        }
+      }
+    },
+    "P1": {
+      "module": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_01/integration_prototype.py",
+        "sha256": "e39c7064ad404e3f79078cca97fde85dce4d496ac53cca5867347f0d8a235d42",
+        "candidate_id": "V125-R10-OPT01-PROTOTYPE",
+        "parameters": {
+          "cash_funding": "cash_prefix",
+          "router": "adaptive",
+          "investment_selection": "terminal_net",
+          "task_cost": "full",
+          "care_weight": 1.0,
+          "max_hands": 12,
+          "forecast_days": 6,
+          "early_animals": 4,
+          "r10_route_mode": "future_failure_certificate"
+        }
+      },
+      "returned": true,
+      "seconds": 18.025442334008403,
+      "over_1s": true,
+      "observation_unchanged": true,
+      "plan_sha256": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+      "state_sha256": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000",
+      "complete_plan_companions": {
+        "expert": "horticulture",
+        "crop_choice": "MELON",
+        "admitted_count": 26,
+        "admitted_items": {
+          "MELON": 26
+        },
+        "cash_after_reserve_model": 97097.0,
+        "buy_land": false,
+        "original_rejected_types": {
+          "labor": 217
+        },
+        "route_audit": {
+          "mode": "future_failure_certificate",
+          "counts": {
+            "route_attempts": 342,
+            "actual_calendar_compilations": 48,
+            "quote_calendar_compilations": 312,
+            "scheduler_calls": 1038,
+            "checker_calls": 926,
+            "cache_hits": 4,
+            "route_successful_quotes": 216,
+            "route_failed_quotes": 126,
+            "quote_calendar_cache_hits": 862
+          },
+          "reason_counts": {
+            "CONDITIONAL_ROUTE_LABOR_FEASIBLE": 216,
+            "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL": 8,
+            "NO_CERTIFICATE": 112,
+            "KNOWN_IMPOSSIBLE_CALENDAR_HISTORY": 6
+          },
+          "first_events": [
+            {
+              "item": "WHEAT",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "CARROT",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "COW",
+              "position": [
+                4,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 16,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "SHEEP",
+              "position": [
+                4,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 14,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "TOMATO",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "MELON",
+              "position": [
+                4,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "WHEAT",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "CARROT",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "COW",
+              "position": [
+                5,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 16,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "SHEEP",
+              "position": [
+                5,
+                4
+              ],
+              "status": "REJECTED",
+              "failed_day": 14,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "TOMATO",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "MELON",
+              "position": [
+                5,
+                4
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "WHEAT",
+              "position": [
+                4,
+                5
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "CARROT",
+              "position": [
+                4,
+                5
+              ],
+              "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+              "failed_day": null,
+              "reason": null,
+              "route_days": [
+                10,
+                12,
+                14,
+                16
+              ]
+            },
+            {
+              "item": "COW",
+              "position": [
+                4,
+                5
+              ],
+              "status": "REJECTED",
+              "failed_day": 16,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            },
+            {
+              "item": "SHEEP",
+              "position": [
+                4,
+                5
+              ],
+              "status": "REJECTED",
+              "failed_day": 14,
+              "reason": "ENDING_WHEAT_RESERVED_SOURCE_SHORTFALL",
+              "route_days": []
+            }
+          ],
+          "event_detail_limit": 16,
+          "events_are_quote_attempts_not_actual_permits": true,
+          "final_legacy_failed_days": [
+            10,
+            12,
+            14,
+            15,
+            16
+          ],
+          "final_effective_labor_feasible": true,
+          "last_accepted_proof": {
+            "status": "CONDITIONAL_ROUTE_LABOR_FEASIBLE",
+            "labor_feasible_after_routes": true,
+            "route_feasibility_by_day": {
+              "10": true,
+              "12": true,
+              "14": true,
+              "15": true,
+              "16": true
+            },
+            "reason": null,
+            "failed_day": null,
+            "trial_legacy_sha256": "ed4dde82add6eb6199cf2fb491e9c5d896feea33635838da94bab5e4ddac41ec",
+            "witnesses": [
+              {
+                "day": 10,
+                "problem_sha256": "9446d9c35327f22bab4336eb262c4a4261a321a89c381e203fb1879da1436e89",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 12,
+                "problem_sha256": "a522b976a0f7944d27e026532443ab54378bb1b9f80da22eb0c7c197b59debf9",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 14,
+                "problem_sha256": "3c15e9a4df4df817edf70283e47ebd54c914d89573b4f6b8636d4e5721dc4f9a",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 15,
+                "problem_sha256": "8796b0d5b7f5dfc83ee9f439d40e40c70ae310edce3eec4435bef80d4e717e5a",
+                "old_need": 310,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 74,
+                "delivered_goods": {},
+                "purchased_goods": {},
+                "terminal_shed": {}
+              },
+              {
+                "day": 16,
+                "problem_sha256": "e586803cb0ff88369f25f7bdc8088d9b1872c57ddd94bfad5cf18108d83b7d27",
+                "old_need": 493,
+                "old_capacity": 298,
+                "old_hire_cash": 376,
+                "buffer_debit": 0,
+                "start_shed": {},
+                "reserved_shed": {},
+                "buy": {
+                  "qty": 0,
+                  "estimated_cash": 0.0,
+                  "order_hour": 0,
+                  "available_from_hour": 1
+                },
+                "service_count": 122,
+                "delivered_goods": {
+                  "STRAWBERRY": 48
+                },
+                "purchased_goods": {},
+                "terminal_shed": {}
+              }
+            ],
+            "conditional_not_actual_execution": true
+          },
+          "source_quote_count": 26,
+          "compiled_quote_cache_entries": 312,
+          "route_cache_entries": 862,
+          "unrepresented_commitments": [],
+          "cash_and_three_scores_unchanged": true,
+          "prior_product_sales_are_conditional": true
+        }
+      }
+    }
+  },
+  "P1_within_1s": false,
+  "source_drift": [],
+  "errors": [],
+  "observed_relative_time_reduction": 0.14967006381965864,
+  "scope": "相同已打开人工初态，各一次完整内部经济调用；非完整agent延迟，不覆盖旧940失败；单次时间差不外推其他状态。"
+}

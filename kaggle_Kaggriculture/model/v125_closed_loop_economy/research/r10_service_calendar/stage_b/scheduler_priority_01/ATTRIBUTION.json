@@ -1,0 +1,15 @@
+{
+  "status": "CAPTURE_VALID_GREEDY_PRIORITY_STARVATION_HYPOTHESIS",
+  "source": "f7cae1801de3506bd1691914ac5d6806d47a7af51b7c5ee5f55299735dc59540",
+  "services": 89,
+  "remaining_services": 14,
+  "remaining_assets": [
+    "animal:COW:0:1,4",
+    "animal:COW:11:4,2",
+    "animal:COW:8:1,0"
+  ],
+  "pass_actions": 105,
+  "mechanism": "截止日相同，旧规则先选短任务。3处动物长任务未安排，后段出现105次PASS；这是构造器未找到日程，不能判为实际无解。",
+  "hypothesis": "以仓口最短完整服务跨度决定优先级，先安排耗时长的义务，再按当前插入成本选工；全部服务和独立checker不变。",
+  "original_capture_failure": "首轮271动作全相等，Python整数日期键对JSON键直接比较失败，原脚本/输出保留。v2只修表示转换和提前保存；又271次调用，动作及全部收据JSON表示完全相同，两次共542调用/重放步，0新局。"
+}

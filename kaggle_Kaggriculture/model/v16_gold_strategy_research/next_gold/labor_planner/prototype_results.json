@@ -1,0 +1,1629 @@
+{
+  "schema": "kaggriculture-labor-planner-prototype-v1",
+  "seeds": [
+    5000,
+    5001,
+    5002,
+    5003,
+    5004,
+    5005,
+    5006,
+    5007,
+    5008,
+    5009,
+    5010,
+    5011
+  ],
+  "both_seats": true,
+  "fixed_genome": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v16_gold_strategy_research/production_optimizer/best_genome.json",
+  "summary": {
+    "stock": {
+      "episodes": 24,
+      "mean_bank": 33756.25,
+      "mean_daily_target_realization": 0.6126670178984154,
+      "minimum_final_target_realization": 0.2571428571428571,
+      "runtime_us_per_call": 78.8634819193324
+    },
+    "autodrop_greedy": {
+      "episodes": 24,
+      "mean_bank": 53153.083333333336,
+      "mean_daily_target_realization": 0.6963381306382668,
+      "minimum_final_target_realization": 0.2571428571428571,
+      "runtime_us_per_call": 144.13364400788132
+    },
+    "joint_mpc": {
+      "episodes": 24,
+      "mean_bank": 57129.041666666664,
+      "mean_daily_target_realization": 0.7001679029027033,
+      "minimum_final_target_realization": 0.22857142857142856,
+      "runtime_us_per_call": 276.9752058993973
+    }
+  },
+  "episodes": [
+    {
+      "mode": "stock",
+      "seed": 5000,
+      "seat": 0,
+      "bank": 21512.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6063914677276746,
+        "minimum_daily_target_realization": 0.21052631578947367,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 80.91375382475661,
+        "hour23_target_misses": {
+          "plant_empty": 208,
+          "animal_missing": 96,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5000,
+      "seat": 0,
+      "bank": 47190.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6974686799890975,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 140.26189429763562,
+        "hour23_target_misses": {
+          "plant_empty": 230,
+          "animal_missing": 20,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1975,
+          "move": 3378,
+          "pickup": 60,
+          "drop": 20,
+          "pass": 1951
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5000,
+      "seat": 0,
+      "bank": 53326.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6938377192982456,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 272.3484033379694,
+        "hour23_target_misses": {
+          "plant_empty": 244,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2042,
+          "move": 3262,
+          "pickup": 48,
+          "drop": 22,
+          "pass": 2094
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5000,
+      "seat": 1,
+      "bank": 35113.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6211261658788882,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 74.55857858136301,
+        "hour23_target_misses": {
+          "plant_empty": 223,
+          "animal_missing": 62,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5000,
+      "seat": 1,
+      "bank": 38403.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6930117485357957,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 134.3008525730181,
+        "hour23_target_misses": {
+          "plant_empty": 217,
+          "animal_missing": 20,
+          "plant_other": 128
+        },
+        "action_counts": {
+          "service": 1934,
+          "move": 3253,
+          "pickup": 54,
+          "drop": 19,
+          "pass": 2124
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5000,
+      "seat": 1,
+      "bank": 43419.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6993132449824827,
+        "minimum_daily_target_realization": 0.22857142857142856,
+        "final_daily_target_realization": 0.22857142857142856,
+        "runtime_us_per_call": 273.39899443671766,
+        "hour23_target_misses": {
+          "plant_empty": 238,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2036,
+          "move": 3260,
+          "pickup": 45,
+          "drop": 20,
+          "pass": 2107
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5001,
+      "seat": 0,
+      "bank": 35815.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6251994791355046,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 75.0638942976356,
+        "hour23_target_misses": {
+          "plant_empty": 225,
+          "animal_missing": 57,
+          "plant_other": 166,
+          "plant_weed": 1
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5001,
+      "seat": 0,
+      "bank": 52111.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6976057268502822,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 141.99260917941587,
+        "hour23_target_misses": {
+          "plant_empty": 236,
+          "animal_missing": 15,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1989,
+          "move": 3411,
+          "pickup": 52,
+          "drop": 18,
+          "pass": 1893
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5001,
+      "seat": 0,
+      "bank": 53771.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7019370458639969,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 270.62350625869266,
+        "hour23_target_misses": {
+          "plant_empty": 235,
+          "plant_other": 104,
+          "animal_missing": 13
+        },
+        "action_counts": {
+          "service": 2039,
+          "move": 3193,
+          "pickup": 48,
+          "drop": 22,
+          "pass": 2145
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5001,
+      "seat": 1,
+      "bank": 34643.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6162385489586034,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 76.53962030598052,
+        "hour23_target_misses": {
+          "plant_empty": 223,
+          "animal_missing": 68,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5001,
+      "seat": 1,
+      "bank": 53635.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6956675923894617,
+        "minimum_daily_target_realization": 0.3142857142857143,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 146.32104033379693,
+        "hour23_target_misses": {
+          "plant_empty": 236,
+          "animal_missing": 18,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1988,
+          "move": 3551,
+          "pickup": 56,
+          "drop": 15,
+          "pass": 1753
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5001,
+      "seat": 1,
+      "bank": 52247.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7010561300466019,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 273.6308484005563,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2043,
+          "move": 3229,
+          "pickup": 46,
+          "drop": 20,
+          "pass": 2109
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5002,
+      "seat": 0,
+      "bank": 32309.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6134167065541839,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 78.61934631432545,
+        "hour23_target_misses": {
+          "plant_empty": 212,
+          "animal_missing": 87,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5002,
+      "seat": 0,
+      "bank": 57759.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6989366403409053,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 141.28082197496522,
+        "hour23_target_misses": {
+          "plant_empty": 233,
+          "animal_missing": 15,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1995,
+          "move": 3334,
+          "pickup": 48,
+          "drop": 19,
+          "pass": 1967
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5002,
+      "seat": 0,
+      "bank": 64239.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7081589002346715,
+        "minimum_daily_target_realization": 0.3142857142857143,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 274.2067621696801,
+        "hour23_target_misses": {
+          "plant_empty": 229,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2028,
+          "move": 3298,
+          "pickup": 44,
+          "drop": 21,
+          "pass": 2056
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5002,
+      "seat": 1,
+      "bank": 29591.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.5960592296390844,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 78.836702364395,
+        "hour23_target_misses": {
+          "plant_empty": 223,
+          "animal_missing": 97,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5002,
+      "seat": 1,
+      "bank": 59145.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6958490805927285,
+        "minimum_daily_target_realization": 0.3142857142857143,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 144.27068289290682,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "animal_missing": 18,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1991,
+          "move": 3412,
+          "pickup": 54,
+          "drop": 17,
+          "pass": 1889
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5002,
+      "seat": 1,
+      "bank": 61669.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7008383442026818,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 268.4604144645341,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2040,
+          "move": 3214,
+          "pickup": 45,
+          "drop": 21,
+          "pass": 2127
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5003,
+      "seat": 0,
+      "bank": 35806.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.623233622850229,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 75.90445062586926,
+        "hour23_target_misses": {
+          "plant_empty": 211,
+          "animal_missing": 67,
+          "plant_other": 166,
+          "plant_weed": 4
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5003,
+      "seat": 0,
+      "bank": 47729.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7012449309613557,
+        "minimum_daily_target_realization": 0.34285714285714286,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 132.01037552155773,
+        "hour23_target_misses": {
+          "plant_empty": 212,
+          "animal_missing": 16,
+          "plant_other": 128,
+          "plant_weed": 1
+        },
+        "action_counts": {
+          "service": 1945,
+          "move": 3210,
+          "pickup": 51,
+          "drop": 18,
+          "pass": 2160
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5003,
+      "seat": 0,
+      "bank": 56945.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.697742673992674,
+        "minimum_daily_target_realization": 0.22857142857142856,
+        "final_daily_target_realization": 0.22857142857142856,
+        "runtime_us_per_call": 268.71089151599443,
+        "hour23_target_misses": {
+          "plant_empty": 240,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2036,
+          "move": 3233,
+          "pickup": 46,
+          "drop": 23,
+          "pass": 2130
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5003,
+      "seat": 1,
+      "bank": 41726.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6142837780791501,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 76.15651321279555,
+        "hour23_target_misses": {
+          "plant_empty": 224,
+          "animal_missing": 74,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5003,
+      "seat": 1,
+      "bank": 53287.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6999848178137652,
+        "minimum_daily_target_realization": 0.35,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 141.50314881780253,
+        "hour23_target_misses": {
+          "plant_empty": 233,
+          "animal_missing": 18,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1974,
+          "move": 3371,
+          "pickup": 56,
+          "drop": 17,
+          "pass": 1945
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5003,
+      "seat": 1,
+      "bank": 59271.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7057558767608677,
+        "minimum_daily_target_realization": 0.34285714285714286,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 274.22186369958274,
+        "hour23_target_misses": {
+          "plant_empty": 232,
+          "plant_other": 104,
+          "animal_missing": 14
+        },
+        "action_counts": {
+          "service": 2025,
+          "move": 3306,
+          "pickup": 48,
+          "drop": 21,
+          "pass": 2047
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5004,
+      "seat": 0,
+      "bank": 41000.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6238299412323913,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 74.4251933240612,
+        "hour23_target_misses": {
+          "plant_empty": 221,
+          "animal_missing": 61,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5004,
+      "seat": 0,
+      "bank": 52384.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6975239574400192,
+        "minimum_daily_target_realization": 0.34285714285714286,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 141.98300556328235,
+        "hour23_target_misses": {
+          "plant_empty": 240,
+          "animal_missing": 13,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1991,
+          "move": 3412,
+          "pickup": 55,
+          "drop": 19,
+          "pass": 1886
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5004,
+      "seat": 0,
+      "bank": 58988.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7007605635441388,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 272.470314325452,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2037,
+          "move": 3280,
+          "pickup": 47,
+          "drop": 23,
+          "pass": 2060
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5004,
+      "seat": 1,
+      "bank": 38431.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.616119285282171,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 73.60865646731571,
+        "hour23_target_misses": {
+          "plant_empty": 235,
+          "animal_missing": 55,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5004,
+      "seat": 1,
+      "bank": 54470.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6920637552103069,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 144.3724993045897,
+        "hour23_target_misses": {
+          "plant_empty": 246,
+          "animal_missing": 13,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1984,
+          "move": 3454,
+          "pickup": 54,
+          "drop": 21,
+          "pass": 1850
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5004,
+      "seat": 1,
+      "bank": 63472.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6996353366838848,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 271.4148150208623,
+        "hour23_target_misses": {
+          "plant_empty": 238,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2036,
+          "move": 3245,
+          "pickup": 45,
+          "drop": 22,
+          "pass": 2099
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5005,
+      "seat": 0,
+      "bank": 32287.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6228084219168611,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 76.79986369958276,
+        "hour23_target_misses": {
+          "plant_empty": 211,
+          "animal_missing": 69,
+          "plant_other": 166,
+          "plant_weed": 6
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5005,
+      "seat": 0,
+      "bank": 56426.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6882576883189406,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 140.42051182197497,
+        "hour23_target_misses": {
+          "plant_empty": 245,
+          "animal_missing": 19,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1975,
+          "move": 3327,
+          "pickup": 58,
+          "drop": 22,
+          "pass": 1981
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5005,
+      "seat": 0,
+      "bank": 62152.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6999309031863479,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 270.041331015299,
+        "hour23_target_misses": {
+          "plant_empty": 238,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2039,
+          "move": 3220,
+          "pickup": 45,
+          "drop": 21,
+          "pass": 2122
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5005,
+      "seat": 1,
+      "bank": 42722.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.62427708030022,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 73.54568011126565,
+        "hour23_target_misses": {
+          "plant_empty": 227,
+          "animal_missing": 53,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5005,
+      "seat": 1,
+      "bank": 58952.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6914155830557827,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 194.053247566064,
+        "hour23_target_misses": {
+          "plant_empty": 242,
+          "animal_missing": 19,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1979,
+          "move": 3347,
+          "pickup": 57,
+          "drop": 17,
+          "pass": 1963
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5005,
+      "seat": 1,
+      "bank": 62329.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7026532262353496,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 393.2897107093185,
+        "hour23_target_misses": {
+          "plant_empty": 235,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2037,
+          "move": 3206,
+          "pickup": 46,
+          "drop": 23,
+          "pass": 2135
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5006,
+      "seat": 0,
+      "bank": 36743.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6070211171163984,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 118.36302086230877,
+        "hour23_target_misses": {
+          "plant_empty": 229,
+          "animal_missing": 78,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5006,
+      "seat": 0,
+      "bank": 48250.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6997256154311509,
+        "minimum_daily_target_realization": 0.35,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 198.87032962447844,
+        "hour23_target_misses": {
+          "plant_empty": 213,
+          "animal_missing": 18,
+          "plant_other": 128
+        },
+        "action_counts": {
+          "service": 1936,
+          "move": 3253,
+          "pickup": 54,
+          "drop": 17,
+          "pass": 2103
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5006,
+      "seat": 0,
+      "bank": 55728.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.700978349388059,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 273.8485507649513,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2037,
+          "move": 3230,
+          "pickup": 46,
+          "drop": 23,
+          "pass": 2111
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5006,
+      "seat": 1,
+      "bank": 39649.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6191030460767303,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 73.63396801112657,
+        "hour23_target_misses": {
+          "plant_empty": 222,
+          "animal_missing": 67,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5006,
+      "seat": 1,
+      "bank": 49063.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7023707561343677,
+        "minimum_daily_target_realization": 0.35,
+        "final_daily_target_realization": 0.4,
+        "runtime_us_per_call": 130.98537691237829,
+        "hour23_target_misses": {
+          "plant_empty": 210,
+          "animal_missing": 17,
+          "plant_other": 128
+        },
+        "action_counts": {
+          "service": 1934,
+          "move": 3122,
+          "pickup": 53,
+          "drop": 20,
+          "pass": 2234
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5006,
+      "seat": 1,
+      "bank": 58686.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7012226604309182,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 276.47589986091793,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2039,
+          "move": 3254,
+          "pickup": 46,
+          "drop": 23,
+          "pass": 2085
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5007,
+      "seat": 0,
+      "bank": 28153.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.5988887919400624,
+        "minimum_daily_target_realization": 0.22807017543859648,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 80.99838664812239,
+        "hour23_target_misses": {
+          "plant_empty": 218,
+          "animal_missing": 94,
+          "plant_other": 166,
+          "plant_weed": 4
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5007,
+      "seat": 0,
+      "bank": 56916.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7013227116198986,
+        "minimum_daily_target_realization": 0.35,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 134.9368442280946,
+        "hour23_target_misses": {
+          "plant_empty": 211,
+          "animal_missing": 17,
+          "plant_other": 128,
+          "plant_weed": 1
+        },
+        "action_counts": {
+          "service": 1955,
+          "move": 3184,
+          "pickup": 52,
+          "drop": 21,
+          "pass": 2172
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5007,
+      "seat": 0,
+      "bank": 58699.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.696913013634883,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 276.95480389429764,
+        "hour23_target_misses": {
+          "plant_empty": 241,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2037,
+          "move": 3235,
+          "pickup": 47,
+          "drop": 23,
+          "pass": 2105
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5007,
+      "seat": 1,
+      "bank": 36719.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6155355065382289,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 75.95465090403337,
+        "hour23_target_misses": {
+          "plant_empty": 214,
+          "animal_missing": 78,
+          "plant_other": 166,
+          "plant_weed": 4
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5007,
+      "seat": 1,
+      "bank": 53066.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.692654888215233,
+        "minimum_daily_target_realization": 0.3142857142857143,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 141.63706815020862,
+        "hour23_target_misses": {
+          "plant_empty": 242,
+          "animal_missing": 17,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1977,
+          "move": 3413,
+          "pickup": 57,
+          "drop": 19,
+          "pass": 1897
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5007,
+      "seat": 1,
+      "bank": 60557.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6968352329763401,
+        "minimum_daily_target_realization": 0.22857142857142856,
+        "final_daily_target_realization": 0.22857142857142856,
+        "runtime_us_per_call": 270.35032684283726,
+        "hour23_target_misses": {
+          "plant_empty": 241,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2034,
+          "move": 3218,
+          "pickup": 45,
+          "drop": 21,
+          "pass": 2129
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5008,
+      "seat": 0,
+      "bank": 34349.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6085853310331532,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 78.83305146036162,
+        "hour23_target_misses": {
+          "plant_empty": 223,
+          "animal_missing": 81,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5008,
+      "seat": 0,
+      "bank": 47659.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6986701917259993,
+        "minimum_daily_target_realization": 0.35,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 134.02296244784424,
+        "hour23_target_misses": {
+          "plant_empty": 215,
+          "animal_missing": 18,
+          "plant_other": 128
+        },
+        "action_counts": {
+          "service": 1934,
+          "move": 3344,
+          "pickup": 53,
+          "drop": 17,
+          "pass": 2036
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5008,
+      "seat": 0,
+      "bank": 55246.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6976194215645214,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 279.7173755215577,
+        "hour23_target_misses": {
+          "plant_empty": 241,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2043,
+          "move": 3308,
+          "pickup": 45,
+          "drop": 21,
+          "pass": 2051
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5008,
+      "seat": 1,
+      "bank": 35653.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6201353599516032,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 77.10500973574408,
+        "hour23_target_misses": {
+          "plant_empty": 217,
+          "animal_missing": 71,
+          "plant_other": 166,
+          "plant_weed": 1
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5008,
+      "seat": 1,
+      "bank": 52692.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.700212442578595,
+        "minimum_daily_target_realization": 0.35,
+        "final_daily_target_realization": 0.4,
+        "runtime_us_per_call": 132.51433657858138,
+        "hour23_target_misses": {
+          "plant_empty": 212,
+          "animal_missing": 19,
+          "plant_other": 128
+        },
+        "action_counts": {
+          "service": 1941,
+          "move": 3145,
+          "pickup": 54,
+          "drop": 18,
+          "pass": 2226
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5008,
+      "seat": 1,
+      "bank": 50486.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7028710120792698,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 270.82888178025036,
+        "hour23_target_misses": {
+          "plant_empty": 235,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2037,
+          "move": 3207,
+          "pickup": 47,
+          "drop": 23,
+          "pass": 2154
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5009,
+      "seat": 0,
+      "bank": 22733.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.594686060309926,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 78.72767732962448,
+        "hour23_target_misses": {
+          "plant_empty": 232,
+          "animal_missing": 89,
+          "plant_other": 166,
+          "plant_weed": 4
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5009,
+      "seat": 0,
+      "bank": 50571.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6918459693663868,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 140.4918344923505,
+        "hour23_target_misses": {
+          "plant_empty": 244,
+          "animal_missing": 15,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1974,
+          "move": 3367,
+          "pickup": 56,
+          "drop": 20,
+          "pass": 1946
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5009,
+      "seat": 0,
+      "bank": 56428.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6995673949462515,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 270.63202781641166,
+        "hour23_target_misses": {
+          "plant_empty": 239,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2053,
+          "move": 3215,
+          "pickup": 46,
+          "drop": 23,
+          "pass": 2110
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5009,
+      "seat": 1,
+      "bank": 35151.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6269856421557873,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.4,
+        "runtime_us_per_call": 76.61067176634215,
+        "hour23_target_misses": {
+          "plant_empty": 220,
+          "animal_missing": 63,
+          "plant_other": 166
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5009,
+      "seat": 1,
+      "bank": 52811.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6997379805614833,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 140.9467273991655,
+        "hour23_target_misses": {
+          "plant_empty": 233,
+          "animal_missing": 15,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 2019,
+          "move": 3313,
+          "pickup": 53,
+          "drop": 20,
+          "pass": 1958
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5009,
+      "seat": 1,
+      "bank": 54948.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6977841570105635,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 272.5224840055633,
+        "hour23_target_misses": {
+          "plant_empty": 241,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2041,
+          "move": 3275,
+          "pickup": 46,
+          "drop": 20,
+          "pass": 2065
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5010,
+      "seat": 0,
+      "bank": 28829.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6115168391801785,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 77.1432364394993,
+        "hour23_target_misses": {
+          "plant_empty": 216,
+          "animal_missing": 84,
+          "plant_other": 166,
+          "plant_weed": 3
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5010,
+      "seat": 0,
+      "bank": 58205.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6945475509064438,
+        "minimum_daily_target_realization": 0.34285714285714286,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 140.34810848400556,
+        "hour23_target_misses": {
+          "plant_empty": 240,
+          "animal_missing": 17,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1980,
+          "move": 3337,
+          "pickup": 54,
+          "drop": 18,
+          "pass": 1974
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5010,
+      "seat": 0,
+      "bank": 59577.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7005427777002187,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 270.3055507649513,
+        "hour23_target_misses": {
+          "plant_empty": 237,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2035,
+          "move": 3282,
+          "pickup": 45,
+          "drop": 20,
+          "pass": 2065
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5010,
+      "seat": 1,
+      "bank": 28100.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.598153207953571,
+        "minimum_daily_target_realization": 0.22807017543859648,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 81.7097454798331,
+        "hour23_target_misses": {
+          "plant_empty": 226,
+          "animal_missing": 98,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5010,
+      "seat": 1,
+      "bank": 58875.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6914349949808207,
+        "minimum_daily_target_realization": 0.26666666666666666,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 138.34190403337968,
+        "hour23_target_misses": {
+          "plant_empty": 235,
+          "animal_missing": 18,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1964,
+          "move": 3270,
+          "pickup": 53,
+          "drop": 19,
+          "pass": 2013
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5010,
+      "seat": 1,
+      "bank": 50422.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6978560874999169,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 261.3577705146036,
+        "hour23_target_misses": {
+          "plant_empty": 236,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2021,
+          "move": 3137,
+          "pickup": 47,
+          "drop": 24,
+          "pass": 2090
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5011,
+      "seat": 0,
+      "bank": 29375.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.5881658223808859,
+        "minimum_daily_target_realization": 0.2631578947368421,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 80.51009874826147,
+        "hour23_target_misses": {
+          "plant_empty": 238,
+          "animal_missing": 92,
+          "plant_other": 166,
+          "plant_weed": 4
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5011,
+      "seat": 0,
+      "bank": 60616.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.693473446547403,
+        "minimum_daily_target_realization": 0.3142857142857143,
+        "final_daily_target_realization": 0.3142857142857143,
+        "runtime_us_per_call": 141.52377051460363,
+        "hour23_target_misses": {
+          "plant_empty": 236,
+          "animal_missing": 19,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1991,
+          "move": 3343,
+          "pickup": 54,
+          "drop": 22,
+          "pass": 1995
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5011,
+      "seat": 0,
+      "bank": 58400.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.699853122527805,
+        "minimum_daily_target_realization": 0.2571428571428571,
+        "final_daily_target_realization": 0.2571428571428571,
+        "runtime_us_per_call": 266.87565368567454,
+        "hour23_target_misses": {
+          "plant_empty": 238,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2040,
+          "move": 3177,
+          "pickup": 46,
+          "drop": 22,
+          "pass": 2162
+        }
+      }
+    },
+    {
+      "mode": "stock",
+      "seed": 5011,
+      "seat": 1,
+      "bank": 33741.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6122479773704819,
+        "minimum_daily_target_realization": 0.24561403508771928,
+        "final_daily_target_realization": 0.37142857142857144,
+        "runtime_us_per_call": 78.16179554937413,
+        "hour23_target_misses": {
+          "plant_empty": 215,
+          "animal_missing": 86,
+          "plant_other": 166,
+          "plant_weed": 2
+        }
+      }
+    },
+    {
+      "mode": "autodrop_greedy",
+      "seed": 5011,
+      "seat": 1,
+      "bank": 55459.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.6970883857521789,
+        "minimum_daily_target_realization": 0.34285714285714286,
+        "final_daily_target_realization": 0.34285714285714286,
+        "runtime_us_per_call": 141.81750347705145,
+        "hour23_target_misses": {
+          "plant_empty": 239,
+          "animal_missing": 14,
+          "plant_other": 104
+        },
+        "action_counts": {
+          "service": 1996,
+          "move": 3299,
+          "pickup": 52,
+          "drop": 19,
+          "pass": 1997
+        }
+      }
+    },
+    {
+      "mode": "joint_mpc",
+      "seed": 5011,
+      "seat": 1,
+      "bank": 60092.0,
+      "certificate": {
+        "mean_daily_target_realization": 0.7003664748741881,
+        "minimum_daily_target_realization": 0.2857142857142857,
+        "final_daily_target_realization": 0.2857142857142857,
+        "runtime_us_per_call": 274.71776077885954,
+        "hour23_target_misses": {
+          "plant_empty": 238,
+          "plant_other": 104,
+          "animal_missing": 12
+        },
+        "action_counts": {
+          "service": 2040,
+          "move": 3271,
+          "pickup": 46,
+          "drop": 23,
+          "pass": 2067
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "created_at_utc": "2026-09-05T11:26:03.013830+00:00",
+  "status": "PREALLOCATED_BEFORE_SOURCE_FREEZE_AND_ANY_R8_FULL_GAME",
+  "candidate": "V125-R8",
+  "source_sha256": null,
+  "implementation_parent": "V125-R7",
+  "references": [
+    "V125-R0",
+    "V125-R7"
+  ],
+  "formal_gate_protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+  "hypothesis": "Within unchanged cash, daily labor, land and investment feasibility constraints, choose feasible offers by maximum single-project predicted net terminal cash instead of net cash per work. This may shorten initial cash stagnation while improving full-game competitive margin.",
+  "scope": "Only investment-selection expert score and offer sort use selection_score=net_cash_model. Existing q.score and st.crop_scores retain net/labor for unchanged execution task values. No change to cash financing, calendars, labor estimates, market or action contracts.",
+  "opened_diagnostic_seed": 1950905001,
+  "fresh_development_seeds": [
+    1950905801,
+    1950905802,
+    1950905803
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponents": [
+    "PASS",
+    "V120"
+  ],
+  "candidate_count": 3,
+  "expected_fresh_development_games": 36,
+  "required_run_options": {
+    "backend": "official",
+    "parity": true,
+    "trace": true,
+    "audit_actions": true,
+    "daily": true,
+    "diagnostics": true,
+    "workers": 1
+  },
+  "promotion_rule": {
+    "complete": "All 36 cells, 719 decisions per seat, zero errors, frozen official/v3 per-state parity and max callable latency <=1000ms. Preserve and stop on engine/error failure; no deleting completed bad outcomes.",
+    "strength": "Against BOTH R0 and R7, each opponent separately: >=4/6 positive two-sided margin deltas, median>0, each seat mean>=0. All preregistered games included.",
+    "mechanism": "Primary early-produced-sale time must improve >=20% versus R7 pooled across both seats within EACH opponent, and neither seat mean can increase. All required provenance must reconcile.",
+    "formal_boundary": "Development prescreen only; full G1/G2/G3/G4/G5 remain required."
+  },
+  "primary_mechanism": {
+    "name": "Restricted elapsed decision time to first actual sale of a self-produced non-WHEAT product",
+    "unit": "For each full game, actual first qualifying SELL decision step plus 1; no qualifying sale receives 719. Steps are 0..718.",
+    "qualifying": "Actual accepted HARVEST or COLLECT_FERTILIZER material from this own farm, then actual accepted SELL of that same product through the actual inventory flow. Exclude initial stock and externally bought/re-sold product; exclude WHEAT because feed purchases and resale mix in this lineage.",
+    "provenance": "Trace quantities across harvest/collection, carry, PLACE or end-of-day shed return, loss and sale. Product FIFO accounting convention may be used for fungible stock only when all flows reconcile. Missing or ambiguous source attribution is PENDING, never proof of early output.",
+    "statistic": "T=sum(game elapsed first-sale decision time)/6 separately by opponent; per-seat means over 3 seeds also reported. Improvement=1-T_R8/T_R7. A zero parent T or missing event provenance is PENDING.",
+    "failure_to_sell": "No produced sale is retained at penalty719 in the fixed denominator, with no-event count and identities explicitly reported.",
+    "companions": [
+      "First-sale item, quantity, realized sale cash and step per game",
+      "Actual self-produced non-WHEAT sales quantity and cash during days0..9 inclusive (step<240), and daily cash/sales",
+      "All successful animal purchases, placement/loss and production; count/composition changes",
+      "First-water/drought/escapes/action validity/overflow/final realization/material closure",
+      "Whole-game own and opponent cash; all pairwise strength guards"
+    ]
+  },
+  "causal_boundary": "A first tiny fertilizer sale is only a timing marker, not sufficient proof of scale, profit or gold. Maximum single-project net is a greedy heuristic, not portfolio optimization. Unchanged budgets and execution priorities isolate ranking, but natural market/shop paths remain endogenous.",
+  "micro_requirements": [
+    "Controlled feasible options change selection when net and net/work ranks differ",
+    "Net still includes buffer feed and marginal hiring, not pre-hire gross quote",
+    "Cash/labor/maturity infeasibility remain rejection regardless of high net",
+    "Unchanged q.score/crop_scores keep identical PLANT task values for equal plans",
+    "Per-step at most one new animal and all order limits remain valid",
+    "Old selection mode on same-source diagnostic variant matches R7 in short official action controls; preserve real new and parent source hashes"
+  ],
+  "seed_exposure_policy": "Do not execute any5801..5803 candidate or reference full game before R8 source and full bundle with dependencies and tool hashes freeze.",
+  "training_data": "NONE_RULES_AND_ALREADY_OPENED_OWN_DIAGNOSTIC_ONLY"
+}

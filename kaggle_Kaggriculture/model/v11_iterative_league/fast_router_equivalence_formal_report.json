@@ -1,0 +1,708 @@
+{
+  "schema": "kaggriculture-v11-fast-router-equivalence-report-3",
+  "created_at": "2026-08-21T19:32:39.563486+00:00",
+  "formal": true,
+  "formal_complete": true,
+  "test_sources_accessed": false,
+  "run_fingerprint": "0bab9f4a46fd46081805e085fc8395bbce156252302c31e24af3b57d0c4f344b",
+  "equivalence_implementation_sha256": "e7e1c5e1a0994bc339e79ef1aaddf1a7a11689475ca53752a8bf0763b3e18eba",
+  "source_final_registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/final_registry.json",
+  "source_final_registry_file_sha256": "babf1803c0e56aefa1805fce82cf1961bf8b4c508ef9d4c0754c127681911409",
+  "source_final_registry_and_code_sha256": "74c47874dd6f439d5cb8943b94d264e8cba70fab8bfbf9e3139bdfb872ca9930",
+  "serving_fingerprints": {
+    "rule_router": "fd036466aabf9fd34587c100c476a3603d8d8ed2f1bdc2491db1165d1060ff16",
+    "learned_router": "9cf62805fe675e32753e79e03b2509fa21b3e03bbe0b30b92f5ef1c6030c54d8",
+    "baseline_v1": "6fc2c6efad4b43b8a9e719a8055b82894d8d3bae6bb7f526ff70888bedd4b7a6",
+    "baseline_v2": "73e20dbc43b20927fb933715fbdea8fedda14dd4e22e86a56da5c28a3d820f97",
+    "baseline_v5": "e86953210f9d18ad009d746892c1a83b1009e3b444078d5e9e74fb5de8ffff40",
+    "baseline_v8": "63c8074aec824e4c29532f1b19fedb6cbd2a5b260c1a52df6fdd505f2c76f421"
+  },
+  "final14_freeze_audit": {
+    "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/freeze_chain_final14_audit.json",
+    "file_sha256": "95f9a543a2f33c0793fb08c1f782c464bb226e2380a52685e45a28f7c87987c3",
+    "schema": "kaggriculture-v10-freeze-chain-audit-1",
+    "registry_and_code_sha256": "74c47874dd6f439d5cb8943b94d264e8cba70fab8bfbf9e3139bdfb872ca9930",
+    "models": [
+      "baseline_v1",
+      "baseline_v2",
+      "baseline_v5",
+      "baseline_v8",
+      "v1_topdays",
+      "v2_topdays",
+      "v5_topdays",
+      "v8_topdays",
+      "v5_price_slot",
+      "v8_lead1",
+      "v8_no_preempt",
+      "v8_conservative",
+      "rule_router",
+      "learned_router"
+    ]
+  },
+  "training_report": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/learned_router_training_report.json",
+  "training_report_sha256": "a3af70340132dfd81e4d660358bac91def3047f0a54c162cbe45fd0a066b85cf",
+  "learned_weights": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/learned_router_weights.npz",
+  "learned_weights_sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77",
+  "source_manifest_sha256": "8642c6d61888784f4dc97d7348bc1b7f7fa6be1896d337175763798cffdfa216",
+  "fit_exclusions": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/router_fit_source_exclusions.json",
+  "fit_exclusions_file_sha256": "1de48ec3f1406a0ff15932c2b3e42f2bd4472421e44d9fb2c96c813745fb00c7",
+  "fit_exclusions_records_sha256": "7bbed6cb6a2ef81a1c3a759a5c8b1a54e2b58e108c11934ed5a46c15398adcf4",
+  "environment_split": "validation",
+  "routers": [
+    "rule_router",
+    "learned_router"
+  ],
+  "opponents": [
+    "baseline_v1",
+    "baseline_v2",
+    "baseline_v5",
+    "baseline_v8"
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "sources": [
+    {
+      "date": "2026-08-18",
+      "episode_id": "94333218",
+      "seed": 23666547,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94245972",
+      "seed": 277637970,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94135244",
+      "seed": 297303566,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94269987",
+      "seed": 332540241,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94251422",
+      "seed": 396340471,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94337524",
+      "seed": 407339409,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94134439",
+      "seed": 451507999,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94144059",
+      "seed": 478547692,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94131822",
+      "seed": 647067000,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94258946",
+      "seed": 654689804,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94093842",
+      "seed": 694537375,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94133546",
+      "seed": 764851558,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94214765",
+      "seed": 830761675,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94308596",
+      "seed": 838270497,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94129881",
+      "seed": 920409500,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94130963",
+      "seed": 1037609653,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94114079",
+      "seed": 1077039788,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94139615",
+      "seed": 1125233940,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94064060",
+      "seed": 1186026809,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94297141",
+      "seed": 1338017041,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94070179",
+      "seed": 1421466882,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94127374",
+      "seed": 1606482384,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94262797",
+      "seed": 1606967481,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94138785",
+      "seed": 1635404527,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94299000",
+      "seed": 1676896375,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94290969",
+      "seed": 1770205571,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94268124",
+      "seed": 1808104016,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94128118",
+      "seed": 1825716793,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94096598",
+      "seed": 1973175606,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94136961",
+      "seed": 1998327645,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94115090",
+      "seed": 2066831350,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94177272",
+      "seed": 2116363300,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94241330",
+      "seed": 2119622091,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-18",
+      "episode_id": "94327979",
+      "seed": 2141789002,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94731917",
+      "seed": 30535801,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94479250",
+      "seed": 52308389,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94508456",
+      "seed": 81833875,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94610970",
+      "seed": 84210540,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94545411",
+      "seed": 182743313,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94541977",
+      "seed": 185307858,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94501442",
+      "seed": 224129459,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94387632",
+      "seed": 279911561,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94565010",
+      "seed": 281680911,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94502159",
+      "seed": 347100275,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94698282",
+      "seed": 371393758,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94668130",
+      "seed": 493751328,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94371074",
+      "seed": 503702435,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94647825",
+      "seed": 608629892,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94534838",
+      "seed": 681812862,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94404472",
+      "seed": 730839833,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94407110",
+      "seed": 760407897,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94384090",
+      "seed": 827747418,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94606122",
+      "seed": 945510214,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94383428",
+      "seed": 947012844,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94606067",
+      "seed": 1026701376,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94696649",
+      "seed": 1067242333,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94636063",
+      "seed": 1086398345,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94383217",
+      "seed": 1179602837,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94679895",
+      "seed": 1338117857,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94379013",
+      "seed": 1368740556,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94406254",
+      "seed": 1429021206,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94401808",
+      "seed": 1497328171,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94362316",
+      "seed": 1577366131,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94549097",
+      "seed": 1641286086,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94530395",
+      "seed": 1819706109,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94384258",
+      "seed": 1936125511,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-19",
+      "episode_id": "94634383",
+      "seed": 1980679058,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95511373",
+      "seed": 119572785,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94993394",
+      "seed": 161618906,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95267398",
+      "seed": 329521006,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95064124",
+      "seed": 354499200,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94847283",
+      "seed": 419811033,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95217130",
+      "seed": 425959419,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95187456",
+      "seed": 483362948,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95490724",
+      "seed": 513020838,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95543253",
+      "seed": 600520678,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95018516",
+      "seed": 685700010,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95187476",
+      "seed": 706994224,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95171439",
+      "seed": 726354602,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95515894",
+      "seed": 739359592,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94854181",
+      "seed": 775095117,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94959102",
+      "seed": 992016600,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95383771",
+      "seed": 1113451571,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95004769",
+      "seed": 1210496324,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94993418",
+      "seed": 1211316720,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94959016",
+      "seed": 1260603383,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95472467",
+      "seed": 1271902049,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95048156",
+      "seed": 1275106155,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95045749",
+      "seed": 1321835183,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94933885",
+      "seed": 1463690896,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95253584",
+      "seed": 1475236526,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94936175",
+      "seed": 1561398341,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94760668",
+      "seed": 1676284286,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95381513",
+      "seed": 1687231640,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95550073",
+      "seed": 1832041435,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95515889",
+      "seed": 1878594254,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95182768",
+      "seed": 1901515765,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "95233018",
+      "seed": 1909412145,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94847281",
+      "seed": 2074810581,
+      "split": "validation"
+    },
+    {
+      "date": "2026-08-20",
+      "episode_id": "94945286",
+      "seed": 2088375135,
+      "split": "validation"
+    }
+  ],
+  "source_count": 100,
+  "expected_comparisons": 1600,
+  "successful_comparisons": 1600,
+  "missing_comparisons": 0,
+  "missing_task_ids": [],
+  "coverage": {
+    "rule_router__vs__baseline_v1__seat0": 100,
+    "rule_router__vs__baseline_v1__seat1": 100,
+    "rule_router__vs__baseline_v2__seat0": 100,
+    "rule_router__vs__baseline_v2__seat1": 100,
+    "rule_router__vs__baseline_v5__seat0": 100,
+    "rule_router__vs__baseline_v5__seat1": 100,
+    "rule_router__vs__baseline_v8__seat0": 100,
+    "rule_router__vs__baseline_v8__seat1": 100,
+    "learned_router__vs__baseline_v1__seat0": 100,
+    "learned_router__vs__baseline_v1__seat1": 100,
+    "learned_router__vs__baseline_v2__seat0": 100,
+    "learned_router__vs__baseline_v2__seat1": 100,
+    "learned_router__vs__baseline_v5__seat0": 100,
+    "learned_router__vs__baseline_v5__seat1": 100,
+    "learned_router__vs__baseline_v8__seat0": 100,
+    "learned_router__vs__baseline_v8__seat1": 100
+  },
+  "exact_cell_coverage": true,
+  "all_equivalent": true,
+  "selection_counts": {
+    "rule_router": {
+      "baseline_v5": 720,
+      "baseline_v8": 80
+    },
+    "learned_router": {
+      "baseline_v8": 680,
+      "baseline_v5": 120
+    }
+  },
+  "resume_audit": {
+    "physical_records": 1600,
+    "successful_tasks": 1600
+  },
+  "games_jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/fast_router_equivalence_formal.jsonl",
+  "games_jsonl_file_sha256": "6ae5127b368575888b99012acb68aeddbb4825421a0a69602b49448cb71d3260"
+}

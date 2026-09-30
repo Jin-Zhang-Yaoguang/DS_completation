@@ -1,0 +1,137 @@
+{
+  "errors": 0,
+  "formal_or_test_accessed": false,
+  "opponents": [
+    "r002_learned_router_topday_animal_throttle",
+    "baseline_v1",
+    "baseline_v5",
+    "baseline_v8",
+    "learned_router",
+    "rule_router",
+    "v5_topdays",
+    "v8_topdays"
+  ],
+  "results": {
+    "no_wool_throttle": {
+      "common_margin_uplift": 27.047619047619047,
+      "common_score_uplift": 0.09126984126984126,
+      "direct_parent": {
+        "games": 36,
+        "mean_margin": -2.3055555555555554,
+        "score_rate": 0.6944444444444444
+      },
+      "per_opponent": {
+        "baseline_v1": {
+          "games": 36,
+          "margin_uplift_vs_parent": 54.80555555555556,
+          "mean_margin": 2580.75,
+          "score_rate": 0.7222222222222222,
+          "score_uplift_vs_parent": 0.0,
+          "transitions": {
+            "0->0": 10,
+            "1->1": 26
+          }
+        },
+        "baseline_v5": {
+          "games": 36,
+          "margin_uplift_vs_parent": 69.75,
+          "mean_margin": 2633.4166666666665,
+          "score_rate": 0.75,
+          "score_uplift_vs_parent": 0.05555555555555555,
+          "transitions": {
+            "0->0": 9,
+            "0->1": 2,
+            "1->1": 25
+          }
+        },
+        "baseline_v8": {
+          "games": 36,
+          "margin_uplift_vs_parent": -28.36111111111111,
+          "mean_margin": 691.9722222222222,
+          "score_rate": 0.8611111111111112,
+          "score_uplift_vs_parent": 0.16666666666666666,
+          "transitions": {
+            "0->0": 4,
+            "0->1": 7,
+            "1->0.5": 2,
+            "1->1": 23
+          }
+        },
+        "learned_router": {
+          "games": 36,
+          "margin_uplift_vs_parent": -5.222222222222222,
+          "mean_margin": 150.91666666666666,
+          "score_rate": 0.8333333333333334,
+          "score_uplift_vs_parent": 0.19444444444444445,
+          "transitions": {
+            "0->0": 5,
+            "0->1": 8,
+            "1->0.5": 2,
+            "1->1": 21
+          }
+        },
+        "r002_learned_router_topday_animal_throttle": {
+          "games": 36,
+          "mean_margin": -2.3055555555555554,
+          "score_rate": 0.6944444444444444
+        },
+        "rule_router": {
+          "games": 36,
+          "margin_uplift_vs_parent": 41.05555555555556,
+          "mean_margin": 4275.027777777777,
+          "score_rate": 0.7777777777777778,
+          "score_uplift_vs_parent": 0.0,
+          "transitions": {
+            "0->0": 8,
+            "1->1": 28
+          }
+        },
+        "v5_topdays": {
+          "games": 36,
+          "margin_uplift_vs_parent": 83.83333333333333,
+          "mean_margin": 2470.222222222222,
+          "score_rate": 0.5555555555555556,
+          "score_uplift_vs_parent": 0.013888888888888888,
+          "transitions": {
+            "0->0": 11,
+            "0.5->0": 4,
+            "0.5->1": 7,
+            "1->0": 1,
+            "1->1": 13
+          }
+        },
+        "v8_topdays": {
+          "games": 36,
+          "margin_uplift_vs_parent": -26.52777777777778,
+          "mean_margin": 591.6388888888889,
+          "score_rate": 0.8333333333333334,
+          "score_uplift_vs_parent": 0.20833333333333334,
+          "transitions": {
+            "0->0": 4,
+            "0->1": 3,
+            "0.5->0": 2,
+            "0.5->1": 11,
+            "1->1": 16
+          }
+        }
+      },
+      "transitions": {
+        "0->0": 51,
+        "0->1": 20,
+        "0.5->0": 6,
+        "0.5->1": 18,
+        "1->0": 1,
+        "1->0.5": 4,
+        "1->1": 152
+      },
+      "worst_opponent_score_uplift": 0.0
+    }
+  },
+  "schema": "kaggriculture-v12a-mechanism-ablation-report-1",
+  "screen_only": true,
+  "valid_games": 288,
+  "variants": [
+    "no_wool_throttle"
+  ],
+  "version": "v4"
+}

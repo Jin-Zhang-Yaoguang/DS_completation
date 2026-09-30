@@ -1,0 +1,253 @@
+{
+  "schema": "v116-rc9-ablation-preregistered-v1",
+  "created_at_utc": "2026-08-30T13:22:00.245696+00:00",
+  "purpose": "mechanism_ablation_only_not_advancement",
+  "config_id": "p0064_3f0eb3eec9",
+  "param_hash": "3f0eb3eec980aa0100dab9bc3a001d022b9b354770e9944fec4568ccb8ff0766",
+  "params": {
+    "experts": {
+      "wool": {
+        "focus2": 2,
+        "focus3": 4,
+        "donor_template": 0,
+        "animal_suffix": 0
+      },
+      "dairy_berry": {
+        "focus2": 2,
+        "focus3": 4,
+        "donor_template": 0,
+        "animal_suffix": 0
+      },
+      "tomato_market": {
+        "focus2": 2,
+        "focus3": 6,
+        "donor_template": 0,
+        "animal_suffix": 0
+      },
+      "root": {
+        "focus2": 2,
+        "focus3": 4,
+        "donor_template": 0,
+        "animal_suffix": 0
+      },
+      "grain_egg": {
+        "focus2": 2,
+        "focus3": 4,
+        "donor_template": 0,
+        "animal_suffix": 0
+      }
+    },
+    "auction": {
+      "harvest_priority": 3,
+      "plant_priority": 2,
+      "place_priority": 3,
+      "sticky_bonus": 5,
+      "role_penalty": 3,
+      "replacement": "none"
+    },
+    "market": {
+      "finance_stress": 48,
+      "ordinary_stress": 8,
+      "sale_floor": 0.45,
+      "pressure": 88,
+      "liquidation": 708,
+      "regular_cap": 36
+    }
+  },
+  "variants": [
+    {
+      "variant_id": "base",
+      "mode": "base",
+      "target_predictor": false,
+      "market_predictor": false,
+      "fixed_path": null,
+      "diagnostic_only": true
+    },
+    {
+      "variant_id": "target_only",
+      "mode": "target_only",
+      "target_predictor": true,
+      "market_predictor": false,
+      "fixed_path": null,
+      "diagnostic_only": true
+    },
+    {
+      "variant_id": "market_only",
+      "mode": "market_only",
+      "target_predictor": false,
+      "market_predictor": true,
+      "fixed_path": null,
+      "diagnostic_only": true
+    },
+    {
+      "variant_id": "full",
+      "mode": "full",
+      "target_predictor": true,
+      "market_predictor": true,
+      "fixed_path": null,
+      "diagnostic_only": true
+    },
+    {
+      "variant_id": "fixed_collision",
+      "mode": "fixed_collision",
+      "target_predictor": true,
+      "market_predictor": true,
+      "fixed_path": "collision",
+      "diagnostic_only": true
+    },
+    {
+      "variant_id": "fixed_scarcity",
+      "mode": "fixed_scarcity",
+      "target_predictor": true,
+      "market_predictor": true,
+      "fixed_path": "scarcity",
+      "diagnostic_only": true
+    },
+    {
+      "variant_id": "fixed_liquidator",
+      "mode": "fixed_liquidator",
+      "target_predictor": true,
+      "market_predictor": true,
+      "fixed_path": "liquidator",
+      "diagnostic_only": true
+    }
+  ],
+  "include_fixed_paths": true,
+  "gold_opponents": [
+    "v19",
+    "v20",
+    "v21",
+    "v32",
+    "v33",
+    "v34",
+    "v37",
+    "v46",
+    "v51",
+    "v52",
+    "v53",
+    "v54",
+    "v66",
+    "v70",
+    "v71",
+    "v72",
+    "v73",
+    "v76"
+  ],
+  "r3_exposed_seeds": [
+    1641819451,
+    915926955
+  ],
+  "both_seats": true,
+  "planned_games": 504,
+  "planned_games_per_variant": 72,
+  "planned_base_pairs": 432,
+  "planned_synergy_rows": 72,
+  "workers": 8,
+  "max_workers": 8,
+  "source_hashes": {
+    "candidate_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v116_heuristic_gold_search/rc9_opponent_path_predictor/model/main.py",
+    "candidate_tree_sha256": "4a6e41d5f50d724cb1827bde39bd03a2291b8e785c1ede9a03243e060269ca85",
+    "candidate_file_sha256": "70e67c0f1408c21e86840b08b5ac74069c378341f4db12fa879201bf85b07ea7",
+    "evaluator_sha256": "9c11eaa6604a0a00350001f331ff4c6b34b1bdc562bfde761a6b65b28384b0ce",
+    "search_support_sha256": "4a30bd1b9e90d070eb2e8cf58c43470e8b5ced9500fa9338ce2f67db80569b3b",
+    "diagnosis_support_sha256": "fe4215e759995589dc88ddbf1f09477d730cae0f37f61b0e0a908d8d4dd1416e",
+    "r3_summary_sha256": "d439637eb228f08be8b651f8e8bfa557b6b2fa301a31531f730a943334269a4e",
+    "r3_run_manifest_sha256": "d27126b46b900ec99e9fe023a3f0c898d10d23821f894caf7ecb866419c5fe8a",
+    "agent_factory_sha256": "f1e99c76a6093e03492063990bcc8516bcfa4a483a0330e69fe60bf873c155ce",
+    "kagsim_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/community_research/2026-08-26/live_cli/external_repos/kaggriculture-cppsim/build/lib.macosx-11.0-arm64-cpython-312/kagsim.cpython-312-darwin.so",
+    "kagsim_sha256": "525217c7288c443d5a2e3fc860b6d1c1113fa28f93575e22dca0cadf31edd4c1",
+    "opponents": {
+      "v19": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v19_hierarchical_moe/main.py",
+        "sha256": "bf2e5422c48fb37b77143ac6676c1cdc0baaa3702403450dea736f16add679ab"
+      },
+      "v20": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v20_demand_timing_moe/main.py",
+        "sha256": "d5d8e8c4369f20c5acc7d736afa371b2154c7d496a2ca7b63264a3de54d8e8fa"
+      },
+      "v21": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v21_top_meta_moe/main.py",
+        "sha256": "007201884aca5342674ebf7d219a2c2b45882a1e90d52ff53bb0198fe7821c57"
+      },
+      "v32": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v32_clone_horizon_preempt/main.py",
+        "sha256": "1d469948c591a28d88affbf1b0967798f79be6039328f9f069c8375f51eee5ba"
+      },
+      "v33": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v33_demand_gap_horizon4/main.py",
+        "sha256": "7d9e8f619671dad8dd0613a10eff4e067d2e56150bdb7846d07fed2a1c84b6cc"
+      },
+      "v34": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v34_demand_boundary_preempt/main.py",
+        "sha256": "8e235e223447ae8b6923d8850dad3eb9b2b03d11638591135d0cbb5798d94303"
+      },
+      "v37": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v37_preterminal_boundary_preempt/main.py",
+        "sha256": "678a3c0c4db8c38604db795ff8824d6240e5a3a89ca87487e1e697b6fb43e6f6"
+      },
+      "v46": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v46_full_terminal_front_run/main.py",
+        "sha256": "06946a91bdf7b10f25289f333e850b8b1641cdb367f5ba3ad78e41ed7a8cd475"
+      },
+      "v51": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v51_post_action_terminal_sell/main.py",
+        "sha256": "ed4570791cf233668bc3c176186e6a622d02ae82df7306cc8ebe903787f115b1"
+      },
+      "v52": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v52_terminal_route_acceleration/main.py",
+        "sha256": "a85d18defff273db6db9619652c6548d4774b6c9093fcd13f7b7c9f7b58bff2c"
+      },
+      "v53": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v53_terminal_access_flush/main.py",
+        "sha256": "dd3822557b1265366084bc88f1571217f1ba632348e8790f465be9aac7c0c328"
+      },
+      "v54": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v54_terminal_water_bypass/main.py",
+        "sha256": "726e8868149bbde178f83c8092e7391999c7a362609865a2e8a7a4942673dd99"
+      },
+      "v66": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v66_margin_gated_sell_bubble/main.py",
+        "sha256": "f2adb110d0ff469ac663aa5759c1ba7d9932cd8964971cc0ae0b70f06f3ca6fe"
+      },
+      "v70": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v70_duplicate_wheat_buy_lead/main.py",
+        "sha256": "ca720fc672bbe197955bb63379ef18ba0a88e2744806ffb1f8e331121ae0904e"
+      },
+      "v71": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v71_duplicate_wheat_buy_lead_50/main.py",
+        "sha256": "f08b02f10a9f1fd4ea64b6373c7267673148395554a1b8dde92fdb180c142c8f"
+      },
+      "v72": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v72_duplicate_wheat_buy_lead_75/main.py",
+        "sha256": "8b1ea49cddd250d243894b3afb43dc6db05fc0b45c77e0eb5b26568c0bd37af7"
+      },
+      "v73": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v73_duplicate_wheat_buy_full_merge/main.py",
+        "sha256": "30539b2eda23b2959a422f1f2d621c3d5593450abfcf54cf426c316467673234"
+      },
+      "v76": {
+        "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v76_adjacent_safe_buy_lead/main.py",
+        "sha256": "efa9442da3c7d2bca333cccdcf46757fb1286c3bc09e81a91e971764353f776e"
+      }
+    },
+    "variants": {
+      "base": "9e73884561bb2fecb39158de20bbb224f9cc5940d29807f21b1f50aa77fd42b8",
+      "target_only": "58258c2b22a249543f120ec8d9440104ecaf65a9490d452d246709cc91b07e3f",
+      "market_only": "b26dc564116afe8249f2aa7b6c16515f5de1a68787edd153ec372105855c81a8",
+      "full": "bba3db62025dd453e18327e1714b4319ea49897b7e288bb5e853fbd55a1fe871",
+      "fixed_collision": "6f68f1de21b7fd79853ea918602d0b80ab1b0d63910fcb83298b093e989aa4b0",
+      "fixed_scarcity": "bc38cc223bfe6e20043d49997226c0a116e9514d21bc5fb743aac3f7f2e8fa09",
+      "fixed_liquidator": "7f5175e3f4eacd6bc9b469a64cfa63597f16cfa6e6a70bed16289897b36cf1b1"
+    }
+  },
+  "task_plan_sha256": "9478e4f5895bd2e69213b8ce259fa8072d648b67cd9726393418edb61b5c3995",
+  "seed_list_sha256": "a15cfc4a83c54eb5f0d0035e6bb8bc75262778905d446af913dd73fb85f6b077",
+  "uses_development": false,
+  "uses_confirmation": false,
+  "planned_denominator_frozen": true,
+  "candidate_schema_required_zero": true,
+  "calls_required_per_game": 719,
+  "diagnostics_required": true,
+  "gold_evidence": false,
+  "run_fingerprint": "df03171c6a66de45a8f20c00bfe324d5b80f9deb3ac3b23bbce7dda791de7bed"
+}

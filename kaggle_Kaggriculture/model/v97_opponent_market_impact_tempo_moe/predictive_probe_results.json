@@ -1,0 +1,121 @@
+{
+  "schema": "kaggriculture-v97-market-impact-predictive-probe-v1",
+  "status": "SYNTHETIC_PRECONSTRUCTION_NOT_MODEL_EVIDENCE",
+  "engine": "1.32.7",
+  "synthetic_seed_range": [
+    97101,
+    97112
+  ],
+  "games": 144,
+  "features_are_public_at_next_call": true,
+  "opponent_actions_used_as_offline_labels_only": true,
+  "official_replay_sources_consumed": 0,
+  "metrics": {
+    "rows": 931824,
+    "class_counts": {
+      "-1": 13730,
+      "0": 846921,
+      "1": 71173
+    },
+    "oof_balanced_accuracy": 0.9803910153732946,
+    "ablation_balanced_accuracy": 0.9236802044298961,
+    "majority_balanced_accuracy": 0.3333333333333333,
+    "oof_macro_f1": 0.8791431795586603,
+    "confusion_matrix_labels_minus1_0_1": [
+      [
+        13450,
+        240,
+        40
+      ],
+      [
+        10551,
+        828543,
+        7827
+      ],
+      [
+        160,
+        1031,
+        69982
+      ]
+    ],
+    "folds": [
+      {
+        "fold": 1,
+        "train_seeds": [
+          97101,
+          97102,
+          97103,
+          97105,
+          97106,
+          97107,
+          97109,
+          97110,
+          97111
+        ],
+        "valid_seeds": [
+          97104,
+          97108,
+          97112
+        ]
+      },
+      {
+        "fold": 2,
+        "train_seeds": [
+          97101,
+          97102,
+          97104,
+          97105,
+          97106,
+          97108,
+          97109,
+          97110,
+          97112
+        ],
+        "valid_seeds": [
+          97103,
+          97107,
+          97111
+        ]
+      },
+      {
+        "fold": 3,
+        "train_seeds": [
+          97101,
+          97103,
+          97104,
+          97105,
+          97107,
+          97108,
+          97109,
+          97111,
+          97112
+        ],
+        "valid_seeds": [
+          97102,
+          97106,
+          97110
+        ]
+      },
+      {
+        "fold": 4,
+        "train_seeds": [
+          97102,
+          97103,
+          97104,
+          97106,
+          97107,
+          97108,
+          97110,
+          97111,
+          97112
+        ],
+        "valid_seeds": [
+          97101,
+          97105,
+          97109
+        ]
+      }
+    ]
+  },
+  "gate": "PASS_PREDICTIVE_PROBE"
+}

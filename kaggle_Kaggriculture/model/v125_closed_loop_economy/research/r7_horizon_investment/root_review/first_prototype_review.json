@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-09-05T11:02:22.100195+00:00",
+  "reviewed_source_sha256": "cd32b67c0db1b12fe2e6d6e62e54a8b9bf5e8281f16929431362ccec3f0f7501",
+  "status": "REQUIRES_CHANGES_BEFORE_FREEZE",
+  "source_scope": {
+    "changed_parent_functions": [
+      "economic_plan",
+      "make_tasks",
+      "market_orders"
+    ],
+    "new_functions": [
+      "project_calendar",
+      "dated_market_model",
+      "labor_schedule",
+      "investment_quote"
+    ],
+    "all_other_parent_function_AST_unchanged": true,
+    "last_callable": "agent"
+  },
+  "issues": [
+    {
+      "id": "R7-ROOT-1",
+      "finding": "Existing in-transit animals reserve current-day placement workload only; subsequent feed/care/harvest obligations missing from shared future budget."
+    },
+    {
+      "id": "R7-ROOT-2",
+      "finding": "Animal start_step estimates transport but labor workload omits PICKUP/transit/PLACE, especially an existing empty building with setup=0."
+    },
+    {
+      "id": "R7-ROOT-3",
+      "finding": "Dated market projections omit current-day goods from visible mature fields when stepping forward, undercounting known potential sales supply."
+    },
+    {
+      "id": "R7-ROOT-4",
+      "finding": "All new-project feed cost is charged as new cash even when existing wheat exists, contrary to planned separation of opportunity cost and actual cash."
+    },
+    {
+      "id": "R7-ROOT-5",
+      "finding": "Eliminating all land purchases reduces farm scope from up to75 to25 tiles and confounds parent comparison; retain parent land timing/occupancy rule under explicit shared cash affordability, or isolate this capability reduction."
+    }
+  ],
+  "implementation_owner_acknowledged": true,
+  "complete_matches_started": 0,
+  "candidate_agent_calls": 0,
+  "note": "Source review findings; local_audit records concrete failing controls before correcting its unfrozen prototype. No candidate qualification or new seeded experiment started."
+}

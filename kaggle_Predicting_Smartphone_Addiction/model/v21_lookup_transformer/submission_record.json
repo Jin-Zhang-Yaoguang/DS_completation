@@ -1,0 +1,47 @@
+{
+  "experiment": "v21_lookup_transformer",
+  "competition": "playground-series-s6e8",
+  "submitted_utc": "2026-08-23T17:52:56.080000Z",
+  "submission_ref": 55721780,
+  "status": "COMPLETE",
+  "public_score": 0.96997,
+  "private_score": null,
+  "description": "v21: 5-fold Lookup-Transformer single model OOF 0.968560",
+  "training_script": "source/v21_lookup_transformer.py",
+  "submission_file": "full_run/submission.csv",
+  "validation_file": "full_run/validation_results.json",
+  "training_manifest": "full_run/cv_results.json",
+  "run_signature_file": "full_run/run_signature.json",
+  "local_validation": {
+    "oof_auc": 0.9685596133944011,
+    "oof_fold_rank_auc": 0.9685680355471754,
+    "delta_vs_v3": 0.0005943555796747,
+    "delta_vs_v7": 0.0004273377816799,
+    "delta_vs_v20": -0.0002332340730841,
+    "folds_won_vs_v3": 5,
+    "folds_won_vs_v7": 5,
+    "folds_won_vs_v20": 0
+  },
+  "online_comparison": {
+    "v3_public": 0.96946,
+    "delta_vs_v3": 0.00051,
+    "v17_public": 0.96977,
+    "delta_vs_v17": 0.0002,
+    "v20_public": 0.96998,
+    "delta_vs_v20": -0.00001,
+    "current_best": "v20_v17_negative_v1_corrector"
+  },
+  "sha256": {
+    "training_script": "cc84f2e6ec6a7b8fc511b224847a47e4d3418be113efa1aa956cad17b25db61b",
+    "submission": "d25b8fc04309abcd0642eb5daa33dae3f91aca2f85f0e8f051e7b4632d425feb",
+    "oof_score": "adf9e3ca6a3f085c0b1d0707ed2696904d665cf1ad1ab5bfa845588497f8b992",
+    "test_score": "18c3e436b27fdddcb29d750e6bac19ea9722855e82164514cf701d2195dd0b01",
+    "cv_results": "36b9c8ba535721c6318a136ffac373e742b836046dbf89a26b222b19c6ff1bd8",
+    "run_signature_file": "67ed7dcad6f622923a7ce2830b42b295651f3f237b4d826ae35372346b7cba57",
+    "validation_results": "88bc64723d6881f9c82304ef76f45c14bd232d598e09b409f197ceab05462b92"
+  },
+  "run_signature": "2b9543455c6231d525893a16584417ebf16045b0370f7c0ec1dfa6c5766a3cca",
+  "public_predictions_used": false,
+  "is_single_model_family": true,
+  "test_aggregation": "five fold raw-logit mean followed by global percentile rank"
+}
