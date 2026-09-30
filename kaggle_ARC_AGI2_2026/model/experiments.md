@@ -22,3 +22,11 @@
 - 正式提交：ID `56575976`，`COMPLETE`，`publicScore=0.00`。公开 evaluation 是 `0/172`，因此零分如实保留。
 - 正式提交命令：`kaggle competitions submit arc-prize-2026-arc-agi-2 -k yaoguang516/arc-agi-2-rule-search-v1 -v 2 -f submission.json -m "Rule search v1 baseline, Notebook v2"`。最终 CLI 结果见 `../submission_result.json`。
 - `kaggle kernels pull .../2` 返回 403，未从远端直接拉取 Notebook 源码；版本身份由 v2 完成状态、交接记录和明确 v2 输出确认。
+
+## nvarc_baseline_v1 — 2026-10-01（公开 NVARC 基线原样）
+
+- 方法：`koushikrudra/arc-agi2-original-kg` 原样（Qwen3-4B `sorokin/qwen3_4b_grids15_sft139` + 逐题 LoRA 测试时训练 + 16 视角 DFS + `score_kgmon`），代码零改动；元数据只去掉未引用的 `gpt-oss-120b` 并设为私有。源码与发布信息见 `../discussion/nvarc_baseline_v1/`。
+- Notebook：`yaoguang516/arc-agi2-nvarc-baseline-v1` v1，4×L4，保存运行 `COMPLETE`。
+- 冒烟（evaluation 4 题 5 个输出）：`score_kgmon` 3/4 题，`score_full_probmul_3` 3/4 题。单题耗时 530.5s / 645.4s / 1095.8s / 1242.9s。
+- 正式提交：ID `56712831`，2026-09-30 16:13 UTC 提交，状态 `PENDING`，线上分数待填。
+- 目标：线上 ≥28（社区同流水线单次运行 26.9–33.9；当前前 10% 线 31.67，前 5% 线 32.22）。
