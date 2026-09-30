@@ -1,0 +1,33 @@
+{
+  "topic": {
+    "id": 686416,
+    "title": "Simplified submission framework",
+    "authorName": "Jeroen Cottaar",
+    "commentCount": 3,
+    "votes": 41,
+    "postDate": "2026-03-31T07:29:19.755000"
+  },
+  "comments": [
+    {
+      "id": 3432536,
+      "authorName": "Greg Kamradt",
+      "votes": 3,
+      "postDate": "2026-03-31T18:18:57.703000",
+      "content": "<p>Thank you for this contribution</p>"
+    },
+    {
+      "id": 3444786,
+      "authorName": "Gabriel Mirea",
+      "votes": 0,
+      "postDate": "2026-04-18T12:31:56.887000",
+      "content": "<p>Hey, any idea why this scores 0.00 while the official random example scores 0.something? I tried increasing the max iterations to 100k and making it parallel w/ 20 threads, still 0.00. On the test set it scores something (solving some first levels, and even 2nd levels on 2 problems). I would expect it to score at least one level on the LB as well. </p>"
+    },
+    {
+      "id": 3447413,
+      "authorName": "Gabriel Mirea",
+      "votes": 0,
+      "postDate": "2026-04-23T05:06:11.770000",
+      "content": "<p>I figured it out, posting here for posterity. My first attempt at parallelising the code was calling env.make() in each process, you can't do that as it will open a scorecard for each process, and end up with a 0 code. I followed the code in the agent repo and called make() on the main thread, and then parallelised it, works like that - code scored 0.11 on LB. </p>"
+    }
+  ]
+}
