@@ -17,10 +17,29 @@
 | `v1_baseline_scheduler` | 本地验收通过，未提交 | 另起一条**原创（非 replay 复刻）**线：确定性任务调度器，作为可归因、可调参的起跑线 |
 | `v4_demand_race` | M0–M6 完成，未提交 | 原创线完整实现（账本×3 + Router + 分层执行器 + CEM）；M6 对 V76/V20 0/128，结构性差距如实记录 |
 | `v4h_demand_race_hybrid` | M6 完成，未提交 | V4 市场层嫁接强底盘；M6 对 V76/V20 各 43/128（33.6%），margin −4.4k，与 benchmark 同量级 |
+| `k1_compiled_knowledge` | B1 骨架完成，未提交 | 知识编译型四层 agent（Majkel 逆向日程×v4 执行器）：solo 54k→93k(6seed)；对战证伪 solo 口径与旋钮搜索（holdout 不优于基线），差距=结构性执行密度墙，B2 攻 S3 调度算法 |
 | `v1_wheat_loop` | 已由 v0 覆盖 | 完成小麦种植、浇水、收获、出售闭环 |
 | `v2_daily_scheduler` | 待开始 | 加入寻路、每日任务队列与临时工分配 |
 | `v3_roi_planner` | 待开始 | 按剩余天数计算作物、动物和扩地回报 |
 | `v4_market_adaptive` | 待开始 | 根据市场库存、城镇需求和对手供给调整生产与出售 |
+
+### `k1_compiled_knowledge`（2026-09-13 立项，B1 首日）
+
+- 代码目录：`model/k1_compiled_knowledge/`；设计与教训详见其 README.md
+- 架构：S0 知识包(knowledge.json, 策略即数据) + S1 t0 初始化 + S2 零方差日程(Majkel1337
+  逆向表) + S3 反应式调度(v4 执行器骨架) + S4 市场节拍层 + S5 守护层
+- 环境：kagsim(v4_demand_race/harness)，seed 1009/1046/2083/3120 训练、900007+ holdout
+- B1 进度：solo 54.0k→93.2k(6 seed)；水/喂覆盖 0.95+；hands 曲线偏差 3%；零饿死；
+  idle 0.74(目标 0.50 未达，差距=移动效率)
+- 关键正知识：P3+ 任务大桶按(距离,优先级)排序使同块任务串联（+28k，单次最大增量）；
+  ongoing 作物收获提前至 P5（草莓产出 26→90 个/局）
+- 关键负知识：solo fitness 证伪（solo 93k 对战崩至 17-40k，高价品集中被市场竞争砸穿）；
+  对战口径 CEM 旋钮搜索到顶（训练 margin −85k→−64k，holdout −99k 不优于基线 −93k）——
+  与 y67 带 150k 的差距是结构性执行密度墙，出路在 S3 算法（分区驻守/任务束）而非参数
+- 管线组件（自动化框架，均已验证可用）：profile_opponent.py（对手卡片：录带判别+行为
+  参数+可收编性，Majkel 自动取证与 v71 人工逆向一致）、tune_cem/tune_vs（CEM 旋钮搜索，
+  8 并行）、build_submission.py（内嵌打包+_ENTRY 口径+48 步 parity 自检）
+- Kaggle：未提交（距门控尚远）
 
 ## 实验表
 
