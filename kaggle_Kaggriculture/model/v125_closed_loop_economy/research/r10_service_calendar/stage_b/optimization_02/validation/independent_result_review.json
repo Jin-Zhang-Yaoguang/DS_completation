@@ -1,0 +1,227 @@
+{
+  "schema": "r10-p2-independent-result-review-v1",
+  "reviewed_at_utc": "2026-09-05T14:03:47.976157+00:00",
+  "status": "EQUIVALENCE_CONFIRMED_TIME_THRESHOLD_FAILED",
+  "checks": {
+    "release_is_authorized": true,
+    "release_binds_original_freeze": true,
+    "summary_binds_actual_release": true,
+    "all_registered_input_sha_match": true,
+    "all_record_gzip_sha_match": true,
+    "P2_source_sha_exact": true,
+    "entire_typed_plan_exact_P1": true,
+    "entire_typed_state_exact_P1": true,
+    "recomputed_typed_plan_sha": true,
+    "recomputed_typed_state_sha": true,
+    "correct_four_nested_counts_exact_expected": true,
+    "original_actual_counts_all_null": true,
+    "audit_top_level_does_not_contain_four_counts": true,
+    "complete_internal_returned_unprofiled": true,
+    "one_second_threshold_actually_failed": true,
+    "original_source_count_error_lists_empty": true,
+    "registered_pure_call_count_11": true,
+    "actual_counts_within_predeclared_budgets": true,
+    "only_P2_internal_once": true,
+    "whole_agent_official_newmatch_zero": true,
+    "all_saved_assertions_true": true,
+    "full_default_cold_typed_result_cache_alias_exact": true,
+    "full_default_cache_hit_typed_result_cache_alias_exact": true,
+    "full_custom_schedule_only_typed_result_cache_alias_exact": true,
+    "full_custom_check_only_typed_result_cache_alias_exact": true,
+    "compact_cold_independent_projection_exact": true,
+    "public_mutation_really_changed_values": true,
+    "hit_restores_cold_result_except_hit_counts": true,
+    "mutated_return_did_not_change_next_hit_cache": true,
+    "compact_hit_no_solver_or_checker": true,
+    "compact_mutated_return_then_hit_independent_projection_exact": true,
+    "compact_cache_mode_mismatch_independent_rejection": true,
+    "compact_cache_identity_mismatch_independent_rejection": true,
+    "compact_schedule_hook_rejected_independent_rejection": true,
+    "compact_check_hook_rejected_independent_rejection": true,
+    "rollback_day9_full_success_observed": true,
+    "rollback_day9_entered_staged": true,
+    "rollback_day10_unsupported_startup_observed": true,
+    "rollback_result_correct_and_cache_empty": true,
+    "rollback_exactly_one_native_pair_two_compiles": true
+  },
+  "passed": 40,
+  "total": 40,
+  "files_verified": {
+    "registered_inputs": 82,
+    "result_records": 17,
+    "input_drift": [],
+    "record_drift": []
+  },
+  "source_sha256": "370063a750dfb8775a155fc9f36bcaff3f8e676795f70c91d8927dec5852e895",
+  "release_sha256": "fdc0121ba3700a9ecfb5473b2caea06f211520c8edb1f27cbf694ce421b93b4b",
+  "original_freeze_sha256": "e562b700f3025324a64d6c75f17f84b8ea3f6fed102dcaf498d9237699058761",
+  "original_summary_sha256": "81d8db688ccad498b72bdf387f39385e2f58a3042d6f44891dba32301a5c30e4",
+  "original_summary_status": "EQUIVALENCE_OR_SOURCE_FAILURE",
+  "original_postprocessing_error": {
+    "file": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_02/validation/run_validation.py",
+    "line": 315,
+    "incorrect_lookup": "audit.get(k)",
+    "correct_lookup": "audit['counts'][k]",
+    "original_wrong_actual_counts": {
+      "route_attempts": null,
+      "scheduler_calls": null,
+      "checker_calls": null,
+      "cache_hits": null
+    },
+    "correct_nested_counts": {
+      "route_attempts": 342,
+      "scheduler_calls": 1038,
+      "checker_calls": 926,
+      "cache_hits": 4
+    },
+    "raw_summary_not_modified": true
+  },
+  "full_typed": {
+    "plan_sha256": "c49439dd90d9caa8b3b5e80fca48fb388e3b2e919e21731e69352838bbaef134",
+    "state_sha256": "1d3b341ec49a288c53269f16772974c8c650a9a9ab0e0fe7636d165c86c9c000",
+    "plan_equal": true,
+    "state_equal": true
+  },
+  "full_interface_comparisons": {
+    "default_cold": {
+      "result": true,
+      "cache": true,
+      "result_reverse_alias_changes": true,
+      "result_after_external_mutation": true
+    },
+    "default_cache_hit": {
+      "result": true,
+      "cache": true,
+      "result_reverse_alias_changes": true,
+      "result_after_external_mutation": true
+    },
+    "custom_schedule_only": {
+      "result": true,
+      "cache": true,
+      "result_reverse_alias_changes": true,
+      "result_after_external_mutation": true
+    },
+    "custom_check_only": {
+      "result": true,
+      "cache": true,
+      "result_reverse_alias_changes": true,
+      "result_after_external_mutation": true
+    }
+  },
+  "compact_projection_comparisons": {
+    "compact_cold": {
+      "typed_projected_result_exact": true,
+      "typed_projected_cache_exact": true
+    },
+    "compact_mutated_return_then_hit": {
+      "typed_projected_result_exact": true,
+      "typed_projected_cache_exact": true
+    }
+  },
+  "compact_rejections": {
+    "compact_cache_mode_mismatch": {
+      "reason": "CACHE_EVIDENCE_MODE_MISMATCH",
+      "not_feasible": true,
+      "cache_unchanged": true,
+      "native_solver_checker_zero": true
+    },
+    "compact_cache_identity_mismatch": {
+      "reason": "COMPACT_CACHE_IDENTITY_MISMATCH",
+      "not_feasible": true,
+      "cache_unchanged": true,
+      "native_solver_checker_zero": true
+    },
+    "compact_schedule_hook_rejected": {
+      "reason": "COMPACT_MODE_REQUIRES_DEFAULT_IMPLEMENTATIONS",
+      "not_feasible": true,
+      "cache_unchanged": true,
+      "native_solver_checker_zero": true
+    },
+    "compact_check_hook_rejected": {
+      "reason": "COMPACT_MODE_REQUIRES_DEFAULT_IMPLEMENTATIONS",
+      "not_feasible": true,
+      "cache_unchanged": true,
+      "native_solver_checker_zero": true
+    }
+  },
+  "rollback": {
+    "events": [
+      {
+        "kind": "compile_day_problem",
+        "day": 9,
+        "status": "SUPPORTED",
+        "valid": null,
+        "unsupported_reasons": []
+      },
+      {
+        "kind": "native_scheduler",
+        "day": 9,
+        "status": "FEASIBLE",
+        "valid": null,
+        "unsupported_reasons": null
+      },
+      {
+        "kind": "native_checker",
+        "day": 9,
+        "status": null,
+        "valid": true,
+        "unsupported_reasons": null
+      },
+      {
+        "kind": "compile_day_problem",
+        "day": 10,
+        "status": "UNSUPPORTED",
+        "valid": null,
+        "unsupported_reasons": [
+          "UNSUPPORTED_STARTUP_FRONTIER"
+        ]
+      }
+    ],
+    "staged_count_at_failure": 1,
+    "admitted_days_before_failure": [
+      9
+    ],
+    "committed_cache_count": 0,
+    "reason": "UNSUPPORTED:UNSUPPORTED_STARTUP_FRONTIER",
+    "failed_day": 10,
+    "native_delta": {
+      "pure_route_calls": 1,
+      "pure_compile_day_problem_calls": 2,
+      "pure_native_scheduler_calls": 1,
+      "pure_native_checker_calls": 1
+    },
+    "scope": "day9真实完整checker通过后，day10在compiler startup门拒绝；未测试day10 solver失败。"
+  },
+  "registered_execution_counts": {
+    "module_definition_loads": 2,
+    "pure_calendar_calls": 88,
+    "pure_aggregate_calls": 2,
+    "pure_cache_constructions": 5,
+    "pure_route_calls": 11,
+    "pure_compile_day_problem_calls": 9,
+    "pure_native_scheduler_calls": 5,
+    "pure_native_checker_calls": 5,
+    "pure_custom_schedule_calls": 1,
+    "pure_custom_check_calls": 1,
+    "new_state_calls": 1,
+    "internal_economic_calls": 1
+  },
+  "performance": {
+    "P2_seconds": 13.305441375006922,
+    "saved_P1_seconds": 18.025442334008403,
+    "observed_relative_reduction": 0.2618521571643381,
+    "threshold_seconds": 1,
+    "pass": false,
+    "scope": "各版本单次同一人工已打开状态的内部经济函数；不等于完整agent性能，单次差异不外推。"
+  },
+  "review_new_calls": {
+    "candidate_definition_loads": 0,
+    "quote": 0,
+    "internal_economic": 0,
+    "agent": 0,
+    "solver": 0,
+    "checker": 0,
+    "engine": 0
+  },
+  "review_method": "只读原始gzip与冻结SHA，直接比较完整带类型有序编码；独立小型解码/投影只处理数据，不导入任何候选/审计harness。"
+}

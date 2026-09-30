@@ -1,0 +1,87 @@
+{
+  "mode": "smoke",
+  "created_utc": "2026-08-23T16:18:12Z",
+  "feature_set": "full",
+  "sample_train_rows": 30000,
+  "sample_test_rows": 8000,
+  "fixed_fold_seed": 42,
+  "fixed_fold_assignment_unique": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "feature_metadata": {
+    "feature_set": "full",
+    "uses_train_test_frequency": true,
+    "uses_train_test_pair_frequency": true,
+    "frequency_uses_labels": false,
+    "uses_lattice": true,
+    "raw_numeric_count": 9,
+    "budget_features": [
+      "component_sum_available",
+      "other_screen_available",
+      "n_components_observed"
+    ],
+    "raw_exact_key_count": 12,
+    "pair_key_count": 3,
+    "categorical_feature_count": 15,
+    "frequency_feature_count": 12,
+    "pair_frequency_feature_count": 3,
+    "lattice_feature_count": 18,
+    "feature_count": 60,
+    "categorical_features": [
+      "key_age",
+      "key_daily_screen_time_hours",
+      "key_social_media_hours",
+      "key_gaming_hours",
+      "key_work_study_hours",
+      "key_sleep_hours",
+      "key_notifications_per_day",
+      "key_app_opens_per_day",
+      "key_weekend_screen_time",
+      "key_gender",
+      "key_stress_level",
+      "key_academic_work_impact",
+      "key_pair_daily_social_0p1",
+      "key_pair_social_weekend_0p1",
+      "key_pair_daily_weekend_0p1"
+    ],
+    "frequency_cardinality": {
+      "age": 19,
+      "daily_screen_time_hours": 1200,
+      "social_media_hours": 652,
+      "gaming_hours": 401,
+      "work_study_hours": 596,
+      "sleep_hours": 452,
+      "notifications_per_day": 232,
+      "app_opens_per_day": 167,
+      "weekend_screen_time": 1262,
+      "gender": 4,
+      "stress_level": 4,
+      "academic_work_impact": 3
+    },
+    "pair_cardinality": {
+      "daily_social": 4742,
+      "social_weekend": 5617,
+      "daily_weekend": 7172
+    },
+    "memory": {
+      "train_bytes": 9394101,
+      "test_bytes": 3894101,
+      "total_bytes": 13288202,
+      "total_mib": 12.672616958618164,
+      "train_bytes_per_row": 313.1367,
+      "test_bytes_per_row": 486.762625
+    }
+  },
+  "linear_full_feature_frame_estimate_mib": 344.01106496338843,
+  "smoke_iterations": 60,
+  "best_iteration": 60,
+  "valid_auc": 0.9567476747852026,
+  "test_prediction_min": 0.00934404640706457,
+  "test_prediction_max": 0.9993125087963316,
+  "runtime_seconds": 2.156006097793579,
+  "catboost_version": "1.2.10"
+}

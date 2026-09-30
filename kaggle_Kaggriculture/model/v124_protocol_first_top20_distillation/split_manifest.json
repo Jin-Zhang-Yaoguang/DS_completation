@@ -1,0 +1,32 @@
+{
+  "blind": {
+    "opened": false,
+    "reason": "single training collection date and Gate 2 failure"
+  },
+  "opponent_families": [
+    "opponent_family_00",
+    "opponent_family_01",
+    "opponent_family_02",
+    "opponent_family_03"
+  ],
+  "outer_episode_overlap_zero": true,
+  "schema": "kaggriculture-v124-split-manifest-v1",
+  "status": "NESTED_SPLITS_COMPLETE_TIME_BLIND_DEFERRED",
+  "teacher_families": [
+    "teacher_family_00",
+    "teacher_family_01",
+    "teacher_family_02"
+  ],
+  "training_axis": {
+    "legacy_receipt_split_ignored": true,
+    "next_stage": "behavior-family clustering then purged nested CV",
+    "opponent_axis": "inner leave-one-opponent-family-out with episode purge",
+    "purge_unit": "episode_id+replay_sha256",
+    "teacher_axis": "leave-one-behavior-family-out",
+    "time_axis_dates": [
+      "2026-09-02"
+    ],
+    "time_axis_status": "BLOCKED_SINGLE_COLLECTION_DATE",
+    "time_blind_replacement": "future own-online primary plus separate official-daily confirmation; never pooled"
+  }
+}

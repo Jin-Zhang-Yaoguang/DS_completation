@@ -1,0 +1,59 @@
+{
+  "schema": "v116-r16-value-backbone-cap11-hmoe-manifest-v1",
+  "model": "r16_value_backbone_cap11_hmoe",
+  "strategy_parent": null,
+  "self_contained": true,
+  "runtime_wraps_historical_model": false,
+  "experts": 5,
+  "labor_hand_cap": 11,
+  "settlement_purchase_cutoff_step": 696,
+  "terminal_asset_floor": 58,
+  "router_overrides": {
+    "PET_CAFE": "dairy_berry",
+    "PIZZA_SHOP": "wool"
+  },
+  "status": "NOT_GOLD_KILLFAST_REJECT",
+  "mechanism_checks": {
+    "passed": true,
+    "static_passed": 10,
+    "static_total": 10,
+    "mechanism_passed": 17,
+    "mechanism_total": 17
+  },
+  "killfast": {
+    "run_count": 1,
+    "passed": false,
+    "seed": 7100,
+    "mode": "router",
+    "seat": 0,
+    "opponent": "idle",
+    "bank": 97030.0,
+    "step144_assets": 22,
+    "terminal_assets": 63,
+    "calls": 719,
+    "runtime_errors": 0,
+    "schema_violations": 0,
+    "invalid_actions": 0,
+    "missed_water_weeds": 0,
+    "failed_gates": [
+      "terminal_bank_ge_105000"
+    ]
+  },
+  "evaluation": {
+    "p2_run": false,
+    "p3_run": false,
+    "replay_used": false
+  },
+  "registration": {
+    "golden_model": false,
+    "kaggle_ready": false
+  },
+  "sha256": {
+    "main.py": "c083fd63976c44684ad3c9849d2b5f024194c88cacd1cbfc8727484985df12fe",
+    "test_r16.py": "2c442043469c94230c0aa3107df0902c5d37775575b7844ffaaacf0605e64d5f",
+    "evaluate_killfast.py": "e072f900a37f4c8af6a4ebcd550b5efa828baf0679ecdd6aa9ea56bfc511e5aa",
+    "mechanism_results.json": "c68d25fcb282259b174ba413d6b1a05e25756b5281ffa1ef685c9552d694b826",
+    "killfast_result.json": "09fcba25cc39022e5efbd609c1dc3e419becdd96b0efc61acfa18007ca5bb581",
+    "daily_diagnostics.json": "7f1c437add44d177ee46a682edc2cd09c2b8d787429b07ad19c9fce890c12e35"
+  }
+}

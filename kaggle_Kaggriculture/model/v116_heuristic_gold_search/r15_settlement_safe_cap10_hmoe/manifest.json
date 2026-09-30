@@ -1,0 +1,56 @@
+{
+  "schema": "v116-r15-settlement-safe-cap10-hmoe-manifest-v1",
+  "model": "r15_settlement_safe_cap10_hmoe",
+  "strategy_parent": null,
+  "self_contained": true,
+  "runtime_wraps_historical_model": false,
+  "experts": 5,
+  "labor_hand_cap": 10,
+  "settlement_purchase_cutoff_step": 696,
+  "terminal_asset_floor": 58,
+  "status": "NOT_GOLD_KILLFAST_REJECT",
+  "mechanism_checks": {
+    "passed": true,
+    "static_passed": 10,
+    "static_total": 10,
+    "mechanism_passed": 14,
+    "mechanism_total": 14
+  },
+  "killfast": {
+    "run_count": 1,
+    "passed": false,
+    "seed": 7100,
+    "mode": "router",
+    "seat": 0,
+    "opponent": "idle",
+    "bank": 96287.0,
+    "step144_assets": 22,
+    "terminal_assets": 52,
+    "calls": 719,
+    "runtime_errors": 0,
+    "schema_violations": 0,
+    "invalid_actions": 0,
+    "missed_water_weeds": 0,
+    "failed_gates": [
+      "terminal_bank_ge_100000",
+      "terminal_assets_ge_58"
+    ]
+  },
+  "evaluation": {
+    "p2_run": false,
+    "p3_run": false,
+    "replay_used": false
+  },
+  "registration": {
+    "golden_model": false,
+    "kaggle_ready": false
+  },
+  "sha256": {
+    "main.py": "e08df0a05a208973a52d44f99f5a05fff5442649e030557b9f2dd2acefd58441",
+    "test_r15.py": "99b4284ddecbdf22860bd1a0b192969b8ae8042385b5b427e1fdce3bbe18862e",
+    "evaluate_killfast.py": "d0404adbe24e253b923f0346e819499468b9ce39ce4c92a80534ab401c37d147",
+    "mechanism_results.json": "d66f49bdd54d82c07f7abf8429eb5844fcd3089e8b93ba3e1fc2fbab9ee79d11",
+    "killfast_result.json": "ad2425a082596ed828cfeaff2787e0263e5f9c3b6dad74d298ed74c0c3cd0b47",
+    "daily_diagnostics.json": "d7f4052a95d30914d7130f3941a4316abeaff853fea129d0bdde2cc786a81ff9"
+  }
+}

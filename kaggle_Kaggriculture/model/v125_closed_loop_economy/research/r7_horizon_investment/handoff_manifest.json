@@ -1,0 +1,51 @@
+{
+  "created_at_utc": "2026-09-05T11:15:05.749749+00:00",
+  "status": "READY_FOR_ROOT_FREEZE_NOT_QUALIFIED",
+  "candidate": "V125-R7",
+  "source_sha256": "ea57c77215d6728e64a3c46c5cf1c2b21f2efa72d12dbb53240b544e27500e7f",
+  "parent": "V125-R6",
+  "parent_sha256": "b599d1653380aa2d9033a5aaf190e6f01f601d69cfa092d4ab40e37f8393a58c",
+  "files": {
+    "main.py": "ea57c77215d6728e64a3c46c5cf1c2b21f2efa72d12dbb53240b544e27500e7f",
+    "parent_r6.py": "b599d1653380aa2d9033a5aaf190e6f01f601d69cfa092d4ab40e37f8393a58c",
+    "planning_layer.py": "5a59330fc8bddd35011e5a9aeaf09911b735b11b365722ed42d6d93fc9df4c3a",
+    "build_singlefile.py": "b931879a35f27ccb5f9721963177c66632d37206bfb34568b8ebef51b0d35fd0",
+    "test_investment_micro.py": "dc1b1b69225b89b46cb43e34a89911e94c9be4a11dc17f1a0758c45569dc96b9",
+    "test_calendar_review.py": "45f7843a61946d33135161234e7e853ef136add70221f448da96e72253115b72",
+    "investment_micro_ea57c77215d6_20260905T111216575776Z.json": "52ca90531fc114fd7f78e087a6e94f67accbe9b278d005664d08ff92fd17e82b",
+    "calendar_review_ea57c77215d6_20260905T111241494503Z.json": "d95cf4ae798c3f11804dacc46b1865e7c3a8316aa202d6cb2fcd78d79f85e95a",
+    "reviewer_notes.md": "f241d4b4e9fc39e460194bb0a814a7e771984c254978a6f5489be3229c8b18f2",
+    "DESIGN.md": "78c31d87d022fecd9152af67f32845ba1e78ca75bc3541fa16d40a489511d0ac",
+    "VALIDATION.md": "87653cb3dbb4cead7f16c73ed4d14c1fd0174eb877db60201f8183c1674b61e0"
+  },
+  "allowed_changed_existing_functions": [
+    "economic_plan",
+    "make_tasks",
+    "market_orders",
+    "diagnostics"
+  ],
+  "investment_micro": {
+    "passed": 60,
+    "total": 60
+  },
+  "calendar_micro": {
+    "scenarios": 46,
+    "required_passed": 140,
+    "required_total": 140,
+    "additional_exact_passed": 4,
+    "additional_exact_total": 7,
+    "conservative_differences": 3
+  },
+  "independent_reviewer": "/root/local_audit/r4_review",
+  "no_new_full_games": true,
+  "no_new_replays": true,
+  "no_kaggle_submission": true,
+  "known_limits": [
+    "全额预留未来现金可能压低增长",
+    "存量资金短缺时仍可许可0现金自有种子再利用，不能称存量都已融资",
+    "跨h23动物启动可能估早一帧；实际在途必须用官方事件",
+    "终局最后一帧可交付窗口有三项保守漏计",
+    "同R6执行谱系，不是独立原创执行器"
+  ],
+  "protocol_owned_by_root_not_modified": true
+}

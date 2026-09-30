@@ -1,0 +1,570 @@
+{
+  "schema": "v116-rc4-two-by-two-paired-v1",
+  "panel": {
+    "seeds": [
+      7100,
+      7101,
+      7102,
+      7103
+    ],
+    "both_seats": true,
+    "exposed_mechanism_attribution_only": true
+  },
+  "mode_definition": {
+    "none": {
+      "staging": false,
+      "projection": false,
+      "source": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v116_heuristic_gold_search/shop_router_rc3/smoke_results.json"
+    },
+    "staging_only": {
+      "staging": true,
+      "projection": false
+    },
+    "projection_only": {
+      "staging": false,
+      "projection": true
+    },
+    "both": {
+      "staging": true,
+      "projection": true,
+      "source": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v116_heuristic_gold_search/shop_router_rc4/regression_results.json"
+    }
+  },
+  "summary": {
+    "bank": {
+      "staging_without_projection": {
+        "mean": 7592.875,
+        "median": 5611.5,
+        "minimum": -4114.0,
+        "maximum": 16910.0,
+        "positive": 7,
+        "negative": 1,
+        "zero": 0
+      },
+      "projection_without_staging": {
+        "mean": 5308.375,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 25196.0,
+        "positive": 2,
+        "negative": 0,
+        "zero": 6
+      },
+      "staging_with_projection": {
+        "mean": -1159.875,
+        "median": 4822.5,
+        "minimum": -29483.0,
+        "maximum": 16910.0,
+        "positive": 5,
+        "negative": 3,
+        "zero": 0
+      },
+      "projection_with_staging": {
+        "mean": -3444.375,
+        "median": 0.0,
+        "minimum": -20226.0,
+        "maximum": 0.0,
+        "positive": 0,
+        "negative": 2,
+        "zero": 6
+      },
+      "interaction": {
+        "mean": -8752.75,
+        "median": 0.0,
+        "minimum": -45422.0,
+        "maximum": 0.0,
+        "positive": 0,
+        "negative": 2,
+        "zero": 6
+      }
+    },
+    "realization": {
+      "staging_without_projection": {
+        "mean": -0.025203388565457507,
+        "median": -0.03463079066527336,
+        "minimum": -0.040769766631835624,
+        "maximum": 0.009304871373836954,
+        "positive": 2,
+        "negative": 6,
+        "zero": 0
+      },
+      "projection_without_staging": {
+        "mean": -0.0015456287008011188,
+        "median": 0.0,
+        "minimum": -0.007140369209334696,
+        "maximum": 0.0,
+        "positive": 0,
+        "negative": 2,
+        "zero": 6
+      },
+      "staging_with_projection": {
+        "mean": -0.023059100860824966,
+        "median": -0.03321577847439916,
+        "minimum": -0.036154649947753414,
+        "maximum": 0.009304871373836954,
+        "positive": 2,
+        "negative": 6,
+        "zero": 0
+      },
+      "projection_with_staging": {
+        "mean": 0.0005986590038314227,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.002873563218390829,
+        "positive": 2,
+        "negative": 0,
+        "zero": 6
+      },
+      "interaction": {
+        "mean": 0.0021442877046325415,
+        "median": 0.0,
+        "minimum": 0.0,
+        "maximum": 0.010013932427725525,
+        "positive": 2,
+        "negative": 0,
+        "zero": 6
+      }
+    },
+    "final_assets": {
+      "staging_without_projection": {
+        "mean": -2.875,
+        "median": -2.5,
+        "minimum": -9,
+        "maximum": 5,
+        "positive": 1,
+        "negative": 6,
+        "zero": 1
+      },
+      "projection_without_staging": {
+        "mean": -1.625,
+        "median": 0.0,
+        "minimum": -10,
+        "maximum": 0,
+        "positive": 0,
+        "negative": 2,
+        "zero": 6
+      },
+      "staging_with_projection": {
+        "mean": -0.875,
+        "median": -0.5,
+        "minimum": -9,
+        "maximum": 9,
+        "positive": 3,
+        "negative": 4,
+        "zero": 1
+      },
+      "projection_with_staging": {
+        "mean": 0.375,
+        "median": 0.0,
+        "minimum": 0,
+        "maximum": 2,
+        "positive": 2,
+        "negative": 0,
+        "zero": 6
+      },
+      "interaction": {
+        "mean": 2,
+        "median": 0.0,
+        "minimum": 0,
+        "maximum": 12,
+        "positive": 2,
+        "negative": 0,
+        "zero": 6
+      }
+    }
+  },
+  "pairs": [
+    {
+      "seed": 7100,
+      "seat": 0,
+      "modes": {
+        "none": {
+          "bank": 82001.0,
+          "realization": 0.8958551027516545,
+          "final_assets": 67
+        },
+        "staging_only": {
+          "bank": 88222.0,
+          "realization": 0.8611372344130965,
+          "final_assets": 60
+        },
+        "projection_only": {
+          "bank": 82001.0,
+          "realization": 0.8958551027516545,
+          "final_assets": 67
+        },
+        "both": {
+          "bank": 88222.0,
+          "realization": 0.8611372344130965,
+          "final_assets": 60
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 6221.0,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 6221.0,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "realization": {
+          "staging_without_projection": -0.034717868338557945,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": -0.034717868338557945,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "final_assets": {
+          "staging_without_projection": -7,
+          "projection_without_staging": 0,
+          "staging_with_projection": -7,
+          "projection_with_staging": 0,
+          "interaction": 0
+        }
+      }
+    },
+    {
+      "seed": 7100,
+      "seat": 1,
+      "modes": {
+        "none": {
+          "bank": 76854.0,
+          "realization": 0.8928073841866945,
+          "final_assets": 63
+        },
+        "staging_only": {
+          "bank": 72740.0,
+          "realization": 0.8582636711947057,
+          "final_assets": 62
+        },
+        "projection_only": {
+          "bank": 76854.0,
+          "realization": 0.8928073841866945,
+          "final_assets": 63
+        },
+        "both": {
+          "bank": 72740.0,
+          "realization": 0.8582636711947057,
+          "final_assets": 62
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": -4114.0,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": -4114.0,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "realization": {
+          "staging_without_projection": -0.03454371299198877,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": -0.03454371299198877,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "final_assets": {
+          "staging_without_projection": -1,
+          "projection_without_staging": 0,
+          "staging_with_projection": -1,
+          "projection_with_staging": 0,
+          "interaction": 0
+        }
+      }
+    },
+    {
+      "seed": 7101,
+      "seat": 0,
+      "modes": {
+        "none": {
+          "bank": 49659.0,
+          "realization": 0.8985545106234761,
+          "final_assets": 67
+        },
+        "staging_only": {
+          "bank": 65598.0,
+          "realization": 0.8577847439916405,
+          "final_assets": 64
+        },
+        "projection_only": {
+          "bank": 74855.0,
+          "realization": 0.8914141414141414,
+          "final_assets": 57
+        },
+        "both": {
+          "bank": 45372.0,
+          "realization": 0.8606583072100313,
+          "final_assets": 66
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 15939.0,
+          "projection_without_staging": 25196.0,
+          "staging_with_projection": -29483.0,
+          "projection_with_staging": -20226.0,
+          "interaction": -45422.0
+        },
+        "realization": {
+          "staging_without_projection": -0.040769766631835624,
+          "projection_without_staging": -0.007140369209334696,
+          "staging_with_projection": -0.0307558342041101,
+          "projection_with_staging": 0.002873563218390829,
+          "interaction": 0.010013932427725525
+        },
+        "final_assets": {
+          "staging_without_projection": -3,
+          "projection_without_staging": -10,
+          "staging_with_projection": 9,
+          "projection_with_staging": 2,
+          "interaction": 12
+        }
+      }
+    },
+    {
+      "seed": 7101,
+      "seat": 1,
+      "modes": {
+        "none": {
+          "bank": 63621.0,
+          "realization": 0.898075583420411,
+          "final_assets": 67
+        },
+        "staging_only": {
+          "bank": 66667.0,
+          "realization": 0.8587425983977708,
+          "final_assets": 65
+        },
+        "projection_only": {
+          "bank": 80892.0,
+          "realization": 0.8928509230233368,
+          "final_assets": 64
+        },
+        "both": {
+          "bank": 59338.0,
+          "realization": 0.8606583072100313,
+          "final_assets": 66
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 3046.0,
+          "projection_without_staging": 17271.0,
+          "staging_with_projection": -21554.0,
+          "projection_with_staging": -7329.0,
+          "interaction": -24600.0
+        },
+        "realization": {
+          "staging_without_projection": -0.039332985022640266,
+          "projection_without_staging": -0.0052246603970742544,
+          "staging_with_projection": -0.03219261581330546,
+          "projection_with_staging": 0.0019157088122605526,
+          "interaction": 0.007140369209334807
+        },
+        "final_assets": {
+          "staging_without_projection": -2,
+          "projection_without_staging": -3,
+          "staging_with_projection": 2,
+          "projection_with_staging": 1,
+          "interaction": 4
+        }
+      }
+    },
+    {
+      "seed": 7102,
+      "seat": 0,
+      "modes": {
+        "none": {
+          "bank": 69461.0,
+          "realization": 0.8953761755485894,
+          "final_assets": 67
+        },
+        "staging_only": {
+          "bank": 86371.0,
+          "realization": 0.859221525600836,
+          "final_assets": 58
+        },
+        "projection_only": {
+          "bank": 69461.0,
+          "realization": 0.8953761755485894,
+          "final_assets": 67
+        },
+        "both": {
+          "bank": 86371.0,
+          "realization": 0.859221525600836,
+          "final_assets": 58
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 16910.0,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 16910.0,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "realization": {
+          "staging_without_projection": -0.036154649947753414,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": -0.036154649947753414,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "final_assets": {
+          "staging_without_projection": -9,
+          "projection_without_staging": 0,
+          "staging_with_projection": -9,
+          "projection_with_staging": 0,
+          "interaction": 0
+        }
+      }
+    },
+    {
+      "seed": 7102,
+      "seat": 1,
+      "modes": {
+        "none": {
+          "bank": 69882.0,
+          "realization": 0.8953761755485894,
+          "final_assets": 67
+        },
+        "staging_only": {
+          "bank": 82978.0,
+          "realization": 0.8611372344130965,
+          "final_assets": 61
+        },
+        "projection_only": {
+          "bank": 69882.0,
+          "realization": 0.8953761755485894,
+          "final_assets": 67
+        },
+        "both": {
+          "bank": 82978.0,
+          "realization": 0.8611372344130965,
+          "final_assets": 61
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 13096.0,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 13096.0,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "realization": {
+          "staging_without_projection": -0.03423894113549286,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": -0.03423894113549286,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "final_assets": {
+          "staging_without_projection": -6,
+          "projection_without_staging": 0,
+          "staging_with_projection": -6,
+          "projection_with_staging": 0,
+          "interaction": 0
+        }
+      }
+    },
+    {
+      "seed": 7103,
+      "seat": 0,
+      "modes": {
+        "none": {
+          "bank": 74574.0,
+          "realization": 0.9088669950738916,
+          "final_assets": 64
+        },
+        "staging_only": {
+          "bank": 79576.0,
+          "realization": 0.9176929392446634,
+          "final_assets": 64
+        },
+        "projection_only": {
+          "bank": 74574.0,
+          "realization": 0.9088669950738916,
+          "final_assets": 64
+        },
+        "both": {
+          "bank": 79576.0,
+          "realization": 0.9176929392446634,
+          "final_assets": 64
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 5002.0,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 5002.0,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "realization": {
+          "staging_without_projection": 0.008825944170771871,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 0.008825944170771871,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "final_assets": {
+          "staging_without_projection": 0,
+          "projection_without_staging": 0,
+          "staging_with_projection": 0,
+          "projection_with_staging": 0,
+          "interaction": 0
+        }
+      }
+    },
+    {
+      "seed": 7103,
+      "seat": 1,
+      "modes": {
+        "none": {
+          "bank": 73005.0,
+          "realization": 0.9088669950738916,
+          "final_assets": 63
+        },
+        "staging_only": {
+          "bank": 77648.0,
+          "realization": 0.9181718664477285,
+          "final_assets": 68
+        },
+        "projection_only": {
+          "bank": 73005.0,
+          "realization": 0.9088669950738916,
+          "final_assets": 63
+        },
+        "both": {
+          "bank": 77648.0,
+          "realization": 0.9181718664477285,
+          "final_assets": 68
+        }
+      },
+      "effects": {
+        "bank": {
+          "staging_without_projection": 4643.0,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 4643.0,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "realization": {
+          "staging_without_projection": 0.009304871373836954,
+          "projection_without_staging": 0.0,
+          "staging_with_projection": 0.009304871373836954,
+          "projection_with_staging": 0.0,
+          "interaction": 0.0
+        },
+        "final_assets": {
+          "staging_without_projection": 5,
+          "projection_without_staging": 0,
+          "staging_with_projection": 5,
+          "projection_with_staging": 0,
+          "interaction": 0
+        }
+      }
+    }
+  ]
+}

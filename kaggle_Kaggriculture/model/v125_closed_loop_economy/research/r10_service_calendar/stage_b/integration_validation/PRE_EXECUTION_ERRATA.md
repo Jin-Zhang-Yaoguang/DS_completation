@@ -1,0 +1,7 @@
+# 执行前口径勘误
+
+本文件写于任何候选/官方工程控制之前。PLAN表格中的“实际applied动作”描述过宽：legacy控制实际保存原始dispatch动作相等与完整官方后观测相等，不逐字段留独立applied事件。R9执行器/defaultR10控制另保存原子helper真实效果。最终报告严格使用这一区分。
+
+旧fixtures里的default_prefix仅为文字缩写，执行代码严格验证原PARAMS.cash_funding == cash_prefix。原本已锁JSON保持原字节。
+
+profile从locals.q取报价，并独立记录返回是否含q。已静态核当前R9/prototype在labor/nonpositive/cash_prefix返回同一q，startup才None；该调整不代表当前源码曾丢失现金拒绝证据。人工toy只验证观测器捕获语义，不算候选调用或现有策略反例。

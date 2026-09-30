@@ -1,0 +1,720 @@
+{
+  "all_candidates_formal_ready": false,
+  "candidate_parent_uplift": [
+    {
+      "bootstrap": {
+        "date_counts": {
+          "2026-08-18": 6,
+          "2026-08-19": 6,
+          "2026-08-20": 6
+        },
+        "method": "source-cluster bootstrap stratified by date",
+        "rounds": 10000
+      },
+      "candidate": "v12a_terminal_branch_guard",
+      "common_opponent_uplift": {
+        "margin_uplift": 12.67460317460317,
+        "margin_uplift_ci95": [
+          -74.89861111111111,
+          68.60744047619048
+        ],
+        "opponents": [
+          "learned_router",
+          "v8_topdays",
+          "baseline_v8",
+          "v5_topdays",
+          "baseline_v5",
+          "rule_router",
+          "baseline_v1"
+        ],
+        "paired_source_clusters": 18,
+        "per_opponent": {
+          "baseline_v1": {
+            "margin_uplift": 51.25,
+            "margin_uplift_ci95": [
+              37.49930555555556,
+              64.52916666666664
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "baseline_v5": {
+            "margin_uplift": 62.52777777777778,
+            "margin_uplift_ci95": [
+              42.0,
+              82.72222222222223
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.05555555555555555,
+            "score_uplift_ci95": [
+              0.0,
+              0.16666666666666666
+            ]
+          },
+          "baseline_v8": {
+            "margin_uplift": -53.638888888888886,
+            "margin_uplift_ci95": [
+              -245.41666666666666,
+              59.140277777777754
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": -0.027777777777777776,
+            "score_uplift_ci95": [
+              -0.16666666666666666,
+              0.08333333333333333
+            ]
+          },
+          "learned_router": {
+            "margin_uplift": -28.083333333333332,
+            "margin_uplift_ci95": [
+              -219.80694444444444,
+              77.80624999999999
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              -0.1111111111111111,
+              0.1111111111111111
+            ]
+          },
+          "rule_router": {
+            "margin_uplift": 33.388888888888886,
+            "margin_uplift_ci95": [
+              2.4166666666666665,
+              63.30624999999999
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "v5_topdays": {
+            "margin_uplift": 72.66666666666667,
+            "margin_uplift_ci95": [
+              47.77777777777778,
+              97.66944444444441
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.041666666666666664,
+            "score_uplift_ci95": [
+              -0.06944444444444445,
+              0.1527777777777778
+            ]
+          },
+          "v8_topdays": {
+            "margin_uplift": -49.388888888888886,
+            "margin_uplift_ci95": [
+              -239.44930555555555,
+              64.2784722222222
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.20833333333333334,
+            "score_uplift_ci95": [
+              0.08333333333333333,
+              0.3333333333333333
+            ]
+          }
+        },
+        "per_opponent_ci_gate": false,
+        "score_uplift": 0.03968253968253968,
+        "score_uplift_ci95": [
+          -0.019841269841269844,
+          0.09523809523809523
+        ],
+        "worst_opponent_score_ci95_low": -0.16666666666666666,
+        "worst_opponent_score_uplift": -0.027777777777777776
+      },
+      "direct_parent": {
+        "mean_margin": -22.86111111111111,
+        "mean_margin_ci95": [
+          -214.6125,
+          86.08402777777776
+        ],
+        "paired_sources": 18,
+        "score_rate": 0.6944444444444444,
+        "score_rate_ci95": [
+          0.5277777777777778,
+          0.8611111111111112
+        ]
+      },
+      "parent": "r002_learned_router_topday_animal_throttle",
+      "promotion_gates": {
+        "common_opponent_uplift_ci95_low": false,
+        "common_opponent_uplift_point": true,
+        "direct_parent_score_ci95_low": true,
+        "direct_parent_score_point": true,
+        "worst_common_opponent_point": false
+      },
+      "promotion_qualified": false,
+      "screen_formal_gates": {
+        "common_opponent_uplift_point": true,
+        "direct_parent_score_point": true,
+        "worst_common_opponent_point": false
+      },
+      "screen_formal_ready": false
+    },
+    {
+      "bootstrap": {
+        "date_counts": {
+          "2026-08-18": 6,
+          "2026-08-19": 6,
+          "2026-08-20": 6
+        },
+        "method": "source-cluster bootstrap stratified by date",
+        "rounds": 10000
+      },
+      "candidate": "v12b_v2_winrisk_feedback_gate",
+      "common_opponent_uplift": {
+        "margin_uplift": 17.484126984126984,
+        "margin_uplift_ci95": [
+          6.336904761904762,
+          31.843452380952346
+        ],
+        "opponents": [
+          "learned_router",
+          "r002_learned_router_topday_animal_throttle",
+          "v8_topdays",
+          "v5_topdays",
+          "baseline_v5",
+          "rule_router",
+          "baseline_v1"
+        ],
+        "paired_source_clusters": 18,
+        "per_opponent": {
+          "baseline_v1": {
+            "margin_uplift": 32.72222222222222,
+            "margin_uplift_ci95": [
+              7.166666666666667,
+              65.0
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.027777777777777776,
+            "score_uplift_ci95": [
+              0.0,
+              0.08333333333333333
+            ]
+          },
+          "baseline_v5": {
+            "margin_uplift": 9.666666666666666,
+            "margin_uplift_ci95": [
+              -3.6666666666666665,
+              28.333333333333332
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "learned_router": {
+            "margin_uplift": 10.972222222222221,
+            "margin_uplift_ci95": [
+              -0.9166666666666666,
+              29.63888888888889
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "r002_learned_router_topday_animal_throttle": {
+            "margin_uplift": 26.13888888888889,
+            "margin_uplift_ci95": [
+              2.9722222222222223,
+              56.166666666666664
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "rule_router": {
+            "margin_uplift": -1.4444444444444444,
+            "margin_uplift_ci95": [
+              -5.668055555555554,
+              2.2222222222222223
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "v5_topdays": {
+            "margin_uplift": 41.94444444444444,
+            "margin_uplift_ci95": [
+              4.108333333333335,
+              86.00138888888887
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "v8_topdays": {
+            "margin_uplift": 2.388888888888889,
+            "margin_uplift_ci95": [
+              -0.8888888888888888,
+              6.722222222222222
+            ],
+            "paired_sources": 18,
+            "score_ci95_report_only": true,
+            "score_uplift": 0.0,
+            "score_uplift_ci95": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "per_opponent_ci_gate": false,
+        "score_uplift": 0.003968253968253968,
+        "score_uplift_ci95": [
+          0.0,
+          0.011904761904761904
+        ],
+        "worst_opponent_score_ci95_low": 0.0,
+        "worst_opponent_score_uplift": 0.0
+      },
+      "direct_parent": {
+        "mean_margin": 0.7777777777777778,
+        "mean_margin_ci95": [
+          -0.8888888888888888,
+          3.5555555555555554
+        ],
+        "paired_sources": 18,
+        "score_rate": 0.5,
+        "score_rate_ci95": [
+          0.5,
+          0.5
+        ]
+      },
+      "parent": "baseline_v8",
+      "promotion_gates": {
+        "common_opponent_uplift_ci95_low": false,
+        "common_opponent_uplift_point": true,
+        "direct_parent_score_ci95_low": true,
+        "direct_parent_score_point": true,
+        "worst_common_opponent_point": true
+      },
+      "promotion_qualified": false,
+      "screen_formal_gates": {
+        "common_opponent_uplift_point": true,
+        "direct_parent_score_point": true,
+        "worst_common_opponent_point": true
+      },
+      "screen_formal_ready": true
+    }
+  ],
+  "checks": {
+    "all_rows_exact_and_done": true,
+    "each_pair_common_panel_two_seats": true,
+    "exact_29_pair_files": true,
+    "screen_panel_18_sources": true
+  },
+  "config": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/frozen_v4/validation_config.json",
+  "config_file_sha256": "e65f6a447a479757a1d5ccfafb7736ae03a4fc41e5d3720373342d9d80a69c86",
+  "errors": [],
+  "expected_games": 1044,
+  "expected_pairs": 29,
+  "integrity_passed": true,
+  "note": "screen uses only the independent 18-source panel; formal panel remains unopened",
+  "preflight": {
+    "candidate_exposure_files": [
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12a_terminal_branch_guard/package_qa_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12a_terminal_branch_guard/smoke_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12a_terminal_branch_guard/submission_manifest.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/multi_lineage_smoke_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/package_qa_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/package_qa_v2_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/paired_control_smoke_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/screen_v2_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/smoke_report.json",
+      "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12b_market_feedback_router/submission_manifest.json"
+    ],
+    "checks": {
+      "asset:combined_registry.json": true,
+      "asset:formal_panel.json": true,
+      "asset:formal_seed_manifest.jsonl": true,
+      "asset:screen_panel.json": true,
+      "asset:screen_seed_manifest.jsonl": true,
+      "asset:submission_closure.json": true,
+      "asset:validation_config.json": true,
+      "asset_manifest_binds_config": true,
+      "asset_sha_manifest_exists": true,
+      "candidate_entry:v12a_terminal_branch_guard": true,
+      "candidate_entry:v12b_v2_winrisk_feedback_gate": true,
+      "candidate_exposure_inventory_complete": true,
+      "clean_archive:v12a_terminal_branch_guard": true,
+      "clean_archive:v12b_v2_winrisk_feedback_gate": true,
+      "clean_archive_manifest:v12a_terminal_branch_guard": true,
+      "clean_archive_manifest:v12b_v2_winrisk_feedback_gate": true,
+      "clean_archive_members:v12a_terminal_branch_guard": true,
+      "clean_archive_members:v12b_v2_winrisk_feedback_gate": true,
+      "clean_archive_registry_binding:v12a_terminal_branch_guard": true,
+      "clean_archive_registry_binding:v12b_v2_winrisk_feedback_gate": true,
+      "combined_registry_file": true,
+      "combined_registry_runtime": true,
+      "context_artifact:v2_design_report.md:dfa3763c": true,
+      "exclusion_artifact:multi_lineage_smoke_report.json:4f79ae92": true,
+      "exclusion_artifact:package_qa_report.json:aa9a8227": true,
+      "exclusion_artifact:package_qa_report.json:c9319e1f": true,
+      "exclusion_artifact:package_qa_v2_report.json:c9a76ad0": true,
+      "exclusion_artifact:paired_control_smoke_report.json:5421f541": true,
+      "exclusion_artifact:panel.json:22f9c3a7": true,
+      "exclusion_artifact:panel.json:b74b8b77": true,
+      "exclusion_artifact:panel.json:ee40d326": true,
+      "exclusion_artifact:router_fit_source_exclusions.json:1de48ec3": true,
+      "exclusion_artifact:screen_panel.json:45312668": true,
+      "exclusion_artifact:screen_v2_report.json:397ce7c2": true,
+      "exclusion_artifact:smoke_report.json:8eb9ee1c": true,
+      "exclusion_artifact:smoke_report.json:ec39ed96": true,
+      "exclusion_artifact:submission_manifest.json:37b99380": true,
+      "exclusion_artifact:submission_manifest.json:9082ad48": true,
+      "external_parent_registry_file": true,
+      "external_parent_registry_runtime": true,
+      "formal_evaluator_reuses_frozen_source_set": true,
+      "formal_exclusion_disjoint": true,
+      "formal_panel_file": true,
+      "formal_panel_records_hash_locked": true,
+      "formal_screen_disjoint": true,
+      "formal_zero_test": true,
+      "implementation:audit_results.py": true,
+      "implementation:audit_screen.py": true,
+      "implementation:build_validation_assets.py": true,
+      "implementation:protocol.py": true,
+      "implementation:run_validation.sh": true,
+      "implementation:targeted_evaluate.py": true,
+      "screen_evaluator_reuses_frozen_source_set": true,
+      "screen_exclusion_disjoint": true,
+      "screen_panel_file": true,
+      "submission_closure_file": true,
+      "v10_evaluator_implementation": true
+    },
+    "combined_registry_and_code_sha256": "732c09c79a581df6e4e7634d8ed5cf96c8cdb7b8538a365af9013f46c1514762",
+    "config": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/frozen_v4/validation_config.json",
+    "external_parent_registry_and_code_sha256": "a4d63598c95a165add426aaac7b1dbe2cd9ff2e6f91dde71e6e3ec0e54da26a5",
+    "passed": true,
+    "schema": "kaggriculture-v12-preflight-1"
+  },
+  "read_only": true,
+  "result_files": [
+    {
+      "file_sha256": "71a91b1ef4aba8516409a8ea3d250eadbbbca17e158418d0a2515b5e143ab857",
+      "pair": [
+        "baseline_v1",
+        "baseline_v8"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/baseline_v8__vs__baseline_v1/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "f829e454ebe4c1861710d7f1d08ffa7c7de7423ec139796ea33ed0c1859c0567"
+    },
+    {
+      "file_sha256": "ee3ab16186381d8e32fdbaa86143f1b31aad7d861d9e7ffed862b8daa862db53",
+      "pair": [
+        "baseline_v5",
+        "baseline_v8"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/baseline_v8__vs__baseline_v5/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "628431c65c654b797cad804e31e369a7cd73a44e91cbd8f71185ea3cf053e7c3"
+    },
+    {
+      "file_sha256": "f39e554b3537888de2a96579fe8b91a30ec19ee399db06b9853e1cf4cf04b9c9",
+      "pair": [
+        "baseline_v8",
+        "rule_router"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/baseline_v8__vs__rule_router/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "687e3408cdff107821f760c328016d7fa77f8948d5ba8641f5b4e646b6b01aad"
+    },
+    {
+      "file_sha256": "0da188b984ddc8fcc57c9a394e52bdd59dae361a664684e57620e01a874528f0",
+      "pair": [
+        "baseline_v8",
+        "v5_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/baseline_v8__vs__v5_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "3ab91756548a1ad5b11b86c07878737833b368962b9e76445ab5d674ef0d5714"
+    },
+    {
+      "file_sha256": "3c7850a394436ba32e58cf92fdaec254ea59426c6de93a52447014a1cecafe67",
+      "pair": [
+        "baseline_v8",
+        "learned_router"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/learned_router__vs__baseline_v8/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "126cb5539d58c4cbab8653eb6bb3f3d9b3e5b99b8722f3168156a446d7de256c"
+    },
+    {
+      "file_sha256": "55ceea7525d4654519d1c3e76cec2d4ec07f9567e3e9d1c881db3ade200f4547",
+      "pair": [
+        "learned_router",
+        "r002_learned_router_topday_animal_throttle"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/learned_router__vs__r002_learned_router_topday_animal_throttle/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "492e4e3c96018f41e779ef0a00f58792cdaef51ad0ac07f216a4d870b3871ba4"
+    },
+    {
+      "file_sha256": "83a4adb0a6ba0969f0ed3071c74111c92475847a2bed2dae438b03a6fa893ab6",
+      "pair": [
+        "baseline_v1",
+        "r002_learned_router_topday_animal_throttle"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__baseline_v1/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "98790307eec8a5e0a5d0ad2f76ba871e9c3000c2e18e5630f5939327d506d01b"
+    },
+    {
+      "file_sha256": "42a42875becf217032dccd13a40397f6da5fc09e43f958b96523db183ae7b81e",
+      "pair": [
+        "baseline_v5",
+        "r002_learned_router_topday_animal_throttle"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__baseline_v5/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "d517001e241fece2d03c4947e5c528c24001acc780227938b2b180dc9a8bebee"
+    },
+    {
+      "file_sha256": "d22c6df582f2959881579e3f74ee6972c977402136bd6d9c24521877f690acbe",
+      "pair": [
+        "baseline_v8",
+        "r002_learned_router_topday_animal_throttle"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__baseline_v8/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "d711cc6e2d3d200b48d02cb99b40a8a92171b4a8adeb9740c02f89966871eb9b"
+    },
+    {
+      "file_sha256": "f81e2f95527523b72f04aa3ab8a9b5ef26adec1837b4976918d1bbad3bc968f6",
+      "pair": [
+        "r002_learned_router_topday_animal_throttle",
+        "rule_router"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__rule_router/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "1617c76966ac5f04e9950627f1f1df5eb9e9d7feba63228caacd7cd1e2e88d01"
+    },
+    {
+      "file_sha256": "29cfd49fd50395ed71cd56ec3669be9f0b27cb79539223298abcb3da646ee2f7",
+      "pair": [
+        "r002_learned_router_topday_animal_throttle",
+        "v5_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__v5_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "c8fba0714fe26149cbd473458228bedda14fc2c0780bf7c5460965a1930e4d1b"
+    },
+    {
+      "file_sha256": "e9e8c0ee9b8047fcac79875de3ebbb1240e6a238c7b836c2dac82a4611826348",
+      "pair": [
+        "r002_learned_router_topday_animal_throttle",
+        "v8_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/r002_learned_router_topday_animal_throttle__vs__v8_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "35642293c853468ef32198d38c4b8a865d09d81ea0db2722b1388e4af547880e"
+    },
+    {
+      "file_sha256": "a8ce18f22903328789ef885e0a76858cb994be414950f2419b5dcbbae3ced8cb",
+      "pair": [
+        "baseline_v8",
+        "v8_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_control/v8_topdays__vs__baseline_v8/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "f3ce23006df89579f77b744a4477a8de18b5de80978c73aa4e90886d05a04f3a"
+    },
+    {
+      "file_sha256": "8d59e67be1fa764ea75c8a136bfcde8666958392d16cf3fb0e56e182978c3433",
+      "pair": [
+        "r002_learned_router_topday_animal_throttle",
+        "v12a_terminal_branch_guard"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_parent/v12a_terminal_branch_guard__vs__r002_learned_router_topday_animal_throttle/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "32e143497df28de00617fb0a147c37354bf89a0f22bc3b2839d062ee1090b915"
+    },
+    {
+      "file_sha256": "8290c6acbb88606826552a6f8bf22f2b9890a109b6a144d0413a84a2b8211bd8",
+      "pair": [
+        "baseline_v8",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_parent/v12b_v2_winrisk_feedback_gate__vs__baseline_v8/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "f0b21974f6fd8b466c492a8b3026280b78bcd1a35f6944838f431dd073026c6a"
+    },
+    {
+      "file_sha256": "92b41d2d9ca62ac8d2610e640be65668f27773d2fab739eceeb2e2ca3a663203",
+      "pair": [
+        "baseline_v1",
+        "v12a_terminal_branch_guard"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__baseline_v1/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "f9b4dd0e9401018bb811c1c1d8fa5c18364d3b795f2cfb5d03794905189b6911"
+    },
+    {
+      "file_sha256": "f7ef37b7ee07ca5ffecc771eed84bddf0316b866a193b4593d82db6899669086",
+      "pair": [
+        "baseline_v5",
+        "v12a_terminal_branch_guard"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__baseline_v5/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "586165f10acdb8f186eb3ddfcc18504c2033aec5b68ea7cac01c37cfb64790a8"
+    },
+    {
+      "file_sha256": "aa50f1b15e7cada3b5f5859e839faab37ea197644125a9b34b9d2ff40139ebcc",
+      "pair": [
+        "baseline_v8",
+        "v12a_terminal_branch_guard"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__baseline_v8/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "8b7ed8d3084219c4c921de2b5ec301c9b316f3127340e841d5a619aff6925272"
+    },
+    {
+      "file_sha256": "f8e34462baadc67f851e959fecb065711c663fba18abb3aa6b76a2880df730d4",
+      "pair": [
+        "learned_router",
+        "v12a_terminal_branch_guard"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__learned_router/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "37900a1ebf41e5a15b298bbddba1abed416595369402688be8ec8c8db125a2ed"
+    },
+    {
+      "file_sha256": "e389e681ea722ce8bf4718e9764cb28d3b2034a6dfb43daedd0a280db5308110",
+      "pair": [
+        "rule_router",
+        "v12a_terminal_branch_guard"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__rule_router/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "97d8b905f2ac845d176844e8d989e04514e8543cc81b8ea644c2f26be8393d9c"
+    },
+    {
+      "file_sha256": "c7d9271b4064b634389d08b186f65834403027d2967aa517cbe1861c041ee991",
+      "pair": [
+        "v12a_terminal_branch_guard",
+        "v5_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__v5_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "a00ca4adcf06c6ccf9853125791a0a64c3ac11cdd079f7e8c0e4cdb363b2ee86"
+    },
+    {
+      "file_sha256": "b9bb63a91e18c7018185f41eaa485c6a1698cb4314e10c492a9bf517b4b37978",
+      "pair": [
+        "v12a_terminal_branch_guard",
+        "v8_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12a_terminal_branch_guard__vs__v8_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "fc67372effd48616f1144f3564ff54b592cf23bc9cc223c5bac043c7651af66a"
+    },
+    {
+      "file_sha256": "ad8607b0b8564b6cf2e969e3dae8f54c60eea78a3b81b249e9da7bfa64a740f4",
+      "pair": [
+        "baseline_v1",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__baseline_v1/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "99922746f2820200f37f61e7d8f61a1546711854d50efdc477bb937837d5a3fe"
+    },
+    {
+      "file_sha256": "3153ace9b3b173d8406decc83e7dfbad3d3e5d510ce020bf20ef3a65b47ec3f9",
+      "pair": [
+        "baseline_v5",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__baseline_v5/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "1f84fdf243bcf980811d6ae1819a283b81da9826bec3bc760f8b6961c5081a96"
+    },
+    {
+      "file_sha256": "ced08b9cca20c5718d56bb8f07fa9c2ca4147150800e77dfd3bee8172c548e78",
+      "pair": [
+        "learned_router",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__learned_router/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "43ee65a35bed7729c078cf82fe60dfb9b73e73103cab9a1c0e95535221687ded"
+    },
+    {
+      "file_sha256": "b81e81db7d0c15225de0b6212f39d322ef8d0b6f17f49195dc5f153025f66a24",
+      "pair": [
+        "r002_learned_router_topday_animal_throttle",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__r002_learned_router_topday_animal_throttle/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "30c24d4c841c10978b06017f65ca7d209b1b42e5ada4e05efc397751b7ab267c"
+    },
+    {
+      "file_sha256": "70456e384ebe7e7f8e9806d93bcecfad648022d76e9986278a0030d020907542",
+      "pair": [
+        "rule_router",
+        "v12b_v2_winrisk_feedback_gate"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__rule_router/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "dcf1babf8e65d4f3714e0f1c4152fa7d4cd922636742e447f279156741adcb57"
+    },
+    {
+      "file_sha256": "3e4add75bdb56e6852e76070d01a733c083c98762485bbec1ca3d413a3d5fa2d",
+      "pair": [
+        "v12b_v2_winrisk_feedback_gate",
+        "v5_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__v5_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "aa2286533f6e0b648e368749d5a1bf1fe1d00d51fae414ad4a96c6f9f2a8997f"
+    },
+    {
+      "file_sha256": "77fcf5e8dbb3036698e3d7105bf506a24ca130816a46fb85bd80ec2c52c674b6",
+      "pair": [
+        "v12b_v2_winrisk_feedback_gate",
+        "v8_topdays"
+      ],
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v12_validation/runs_v4/screen_pool/v12b_v2_winrisk_feedback_gate__vs__v8_topdays/games.jsonl",
+      "rows": 36,
+      "run_fingerprint": "066253f09dd2549ecab10a64c93a5527302ea448fddee21e36ba9348d35a56f4"
+    }
+  ],
+  "schema": "kaggriculture-v12-screen-triangle-audit-1"
+}

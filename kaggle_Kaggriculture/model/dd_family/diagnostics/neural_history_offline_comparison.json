@@ -1,0 +1,509 @@
+{
+  "scope": "512 fixed validation states. ddby gets teacher past history or all-zero ablation; generated_prefix changes only current-turn choices. Neither is autonomous environmental evaluation.",
+  "rows": [
+    {
+      "version": "ddbv",
+      "history_mode": "none",
+      "weights_sha256": "de57a3b2d02b24de77f203a3c4ac5ca32029143ff7b83d24882222da9044cbce",
+      "frames": 512,
+      "modes": {
+        "teacher_prefix": {
+          "exact_all_known_frames": 43,
+          "categories": {
+            "movement": {
+              "correct": 951,
+              "count": 1980,
+              "accuracy": 0.4803030303030303
+            },
+            "all": {
+              "correct": 3832,
+              "count": 5617,
+              "accuracy": 0.6822147053587324
+            },
+            "DIG": {
+              "correct": 24,
+              "count": 31,
+              "accuracy": 0.7741935483870968
+            },
+            "production": {
+              "correct": 144,
+              "count": 254,
+              "accuracy": 0.5669291338582677
+            },
+            "maintenance": {
+              "correct": 1420,
+              "count": 1591,
+              "accuracy": 0.8925204274041484
+            },
+            "collection": {
+              "correct": 503,
+              "count": 702,
+              "accuracy": 0.7165242165242165
+            },
+            "market_stop": {
+              "correct": 488,
+              "count": 499,
+              "accuracy": 0.9779559118236473
+            },
+            "PASS": {
+              "correct": 154,
+              "count": 186,
+              "accuracy": 0.8279569892473119
+            },
+            "market_BUY_SEED": {
+              "correct": 4,
+              "count": 23,
+              "accuracy": 0.17391304347826086
+            },
+            "PICKUP": {
+              "correct": 26,
+              "count": 117,
+              "accuracy": 0.2222222222222222
+            },
+            "market_SELL": {
+              "correct": 12,
+              "count": 113,
+              "accuracy": 0.10619469026548672
+            },
+            "market_HIRE": {
+              "correct": 103,
+              "count": 111,
+              "accuracy": 0.9279279279279279
+            },
+            "market_BUY_PRODUCT": {
+              "correct": 2,
+              "count": 8,
+              "accuracy": 0.25
+            },
+            "market_BUY_LAND": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "market_BUY_ANIMAL": {
+              "correct": 1,
+              "count": 1,
+              "accuracy": 1.0
+            }
+          }
+        },
+        "generated_prefix": {
+          "exact_all_known_frames": 43,
+          "categories": {
+            "movement": {
+              "correct": 935,
+              "count": 1980,
+              "accuracy": 0.4722222222222222
+            },
+            "all": {
+              "correct": 3742,
+              "count": 5617,
+              "accuracy": 0.6661919173936265
+            },
+            "DIG": {
+              "correct": 24,
+              "count": 31,
+              "accuracy": 0.7741935483870968
+            },
+            "production": {
+              "correct": 143,
+              "count": 254,
+              "accuracy": 0.562992125984252
+            },
+            "maintenance": {
+              "correct": 1414,
+              "count": 1591,
+              "accuracy": 0.8887492143306097
+            },
+            "collection": {
+              "correct": 502,
+              "count": 702,
+              "accuracy": 0.7150997150997151
+            },
+            "market_stop": {
+              "correct": 477,
+              "count": 499,
+              "accuracy": 0.9559118236472945
+            },
+            "PASS": {
+              "correct": 150,
+              "count": 186,
+              "accuracy": 0.8064516129032258
+            },
+            "market_BUY_SEED": {
+              "correct": 4,
+              "count": 23,
+              "accuracy": 0.17391304347826086
+            },
+            "PICKUP": {
+              "correct": 17,
+              "count": 117,
+              "accuracy": 0.1452991452991453
+            },
+            "market_SELL": {
+              "correct": 7,
+              "count": 113,
+              "accuracy": 0.061946902654867256
+            },
+            "market_HIRE": {
+              "correct": 68,
+              "count": 111,
+              "accuracy": 0.6126126126126126
+            },
+            "market_BUY_PRODUCT": {
+              "correct": 1,
+              "count": 8,
+              "accuracy": 0.125
+            },
+            "market_BUY_LAND": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "market_BUY_ANIMAL": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "version": "ddby",
+      "history_mode": "teacher",
+      "weights_sha256": "c74d9241f5d0378e1e425c4ba3b80a9474a198b2688931667c8a66d6b095521e",
+      "frames": 512,
+      "modes": {
+        "teacher_prefix": {
+          "exact_all_known_frames": 44,
+          "categories": {
+            "movement": {
+              "correct": 1046,
+              "count": 1980,
+              "accuracy": 0.5282828282828282
+            },
+            "all": {
+              "correct": 3968,
+              "count": 5617,
+              "accuracy": 0.7064269182837813
+            },
+            "DIG": {
+              "correct": 25,
+              "count": 31,
+              "accuracy": 0.8064516129032258
+            },
+            "production": {
+              "correct": 150,
+              "count": 254,
+              "accuracy": 0.5905511811023622
+            },
+            "maintenance": {
+              "correct": 1422,
+              "count": 1591,
+              "accuracy": 0.8937774984286612
+            },
+            "collection": {
+              "correct": 520,
+              "count": 702,
+              "accuracy": 0.7407407407407407
+            },
+            "market_stop": {
+              "correct": 490,
+              "count": 499,
+              "accuracy": 0.9819639278557114
+            },
+            "PASS": {
+              "correct": 172,
+              "count": 186,
+              "accuracy": 0.9247311827956989
+            },
+            "market_BUY_SEED": {
+              "correct": 3,
+              "count": 23,
+              "accuracy": 0.13043478260869565
+            },
+            "PICKUP": {
+              "correct": 20,
+              "count": 117,
+              "accuracy": 0.17094017094017094
+            },
+            "market_SELL": {
+              "correct": 14,
+              "count": 113,
+              "accuracy": 0.12389380530973451
+            },
+            "market_HIRE": {
+              "correct": 104,
+              "count": 111,
+              "accuracy": 0.9369369369369369
+            },
+            "market_BUY_PRODUCT": {
+              "correct": 1,
+              "count": 8,
+              "accuracy": 0.125
+            },
+            "market_BUY_LAND": {
+              "correct": 1,
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "market_BUY_ANIMAL": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            }
+          }
+        },
+        "generated_prefix": {
+          "exact_all_known_frames": 44,
+          "categories": {
+            "movement": {
+              "correct": 1033,
+              "count": 1980,
+              "accuracy": 0.5217171717171717
+            },
+            "all": {
+              "correct": 3906,
+              "count": 5617,
+              "accuracy": 0.6953889976855973
+            },
+            "DIG": {
+              "correct": 26,
+              "count": 31,
+              "accuracy": 0.8387096774193549
+            },
+            "production": {
+              "correct": 150,
+              "count": 254,
+              "accuracy": 0.5905511811023622
+            },
+            "maintenance": {
+              "correct": 1426,
+              "count": 1591,
+              "accuracy": 0.896291640477687
+            },
+            "collection": {
+              "correct": 519,
+              "count": 702,
+              "accuracy": 0.7393162393162394
+            },
+            "market_stop": {
+              "correct": 483,
+              "count": 499,
+              "accuracy": 0.9679358717434869
+            },
+            "PASS": {
+              "correct": 166,
+              "count": 186,
+              "accuracy": 0.8924731182795699
+            },
+            "market_BUY_SEED": {
+              "correct": 2,
+              "count": 23,
+              "accuracy": 0.08695652173913043
+            },
+            "PICKUP": {
+              "correct": 20,
+              "count": 117,
+              "accuracy": 0.17094017094017094
+            },
+            "market_SELL": {
+              "correct": 10,
+              "count": 113,
+              "accuracy": 0.08849557522123894
+            },
+            "market_HIRE": {
+              "correct": 69,
+              "count": 111,
+              "accuracy": 0.6216216216216216
+            },
+            "market_BUY_PRODUCT": {
+              "correct": 1,
+              "count": 8,
+              "accuracy": 0.125
+            },
+            "market_BUY_LAND": {
+              "correct": 1,
+              "count": 1,
+              "accuracy": 1.0
+            },
+            "market_BUY_ANIMAL": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "version": "ddby",
+      "history_mode": "zero",
+      "weights_sha256": "c74d9241f5d0378e1e425c4ba3b80a9474a198b2688931667c8a66d6b095521e",
+      "frames": 512,
+      "modes": {
+        "teacher_prefix": {
+          "exact_all_known_frames": 2,
+          "categories": {
+            "movement": {
+              "correct": 782,
+              "count": 1980,
+              "accuracy": 0.39494949494949494
+            },
+            "all": {
+              "correct": 2303,
+              "count": 5617,
+              "accuracy": 0.4100053409293217
+            },
+            "DIG": {
+              "correct": 1,
+              "count": 31,
+              "accuracy": 0.03225806451612903
+            },
+            "production": {
+              "correct": 58,
+              "count": 254,
+              "accuracy": 0.2283464566929134
+            },
+            "maintenance": {
+              "correct": 668,
+              "count": 1591,
+              "accuracy": 0.4198617221873036
+            },
+            "collection": {
+              "correct": 58,
+              "count": 702,
+              "accuracy": 0.08262108262108261
+            },
+            "market_stop": {
+              "correct": 457,
+              "count": 499,
+              "accuracy": 0.9158316633266533
+            },
+            "PASS": {
+              "correct": 149,
+              "count": 186,
+              "accuracy": 0.8010752688172043
+            },
+            "market_BUY_SEED": {
+              "correct": 2,
+              "count": 23,
+              "accuracy": 0.08695652173913043
+            },
+            "PICKUP": {
+              "correct": 18,
+              "count": 117,
+              "accuracy": 0.15384615384615385
+            },
+            "market_SELL": {
+              "correct": 4,
+              "count": 113,
+              "accuracy": 0.035398230088495575
+            },
+            "market_HIRE": {
+              "correct": 105,
+              "count": 111,
+              "accuracy": 0.9459459459459459
+            },
+            "market_BUY_PRODUCT": {
+              "correct": 1,
+              "count": 8,
+              "accuracy": 0.125
+            },
+            "market_BUY_LAND": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "market_BUY_ANIMAL": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            }
+          }
+        },
+        "generated_prefix": {
+          "exact_all_known_frames": 2,
+          "categories": {
+            "movement": {
+              "correct": 761,
+              "count": 1980,
+              "accuracy": 0.3843434343434343
+            },
+            "all": {
+              "correct": 2225,
+              "count": 5617,
+              "accuracy": 0.39611892469289656
+            },
+            "DIG": {
+              "correct": 0,
+              "count": 31,
+              "accuracy": 0.0
+            },
+            "production": {
+              "correct": 62,
+              "count": 254,
+              "accuracy": 0.2440944881889764
+            },
+            "maintenance": {
+              "correct": 668,
+              "count": 1591,
+              "accuracy": 0.4198617221873036
+            },
+            "collection": {
+              "correct": 55,
+              "count": 702,
+              "accuracy": 0.07834757834757834
+            },
+            "market_stop": {
+              "correct": 450,
+              "count": 499,
+              "accuracy": 0.9018036072144289
+            },
+            "PASS": {
+              "correct": 141,
+              "count": 186,
+              "accuracy": 0.7580645161290323
+            },
+            "market_BUY_SEED": {
+              "correct": 0,
+              "count": 23,
+              "accuracy": 0.0
+            },
+            "PICKUP": {
+              "correct": 17,
+              "count": 117,
+              "accuracy": 0.1452991452991453
+            },
+            "market_SELL": {
+              "correct": 0,
+              "count": 113,
+              "accuracy": 0.0
+            },
+            "market_HIRE": {
+              "correct": 70,
+              "count": 111,
+              "accuracy": 0.6306306306306306
+            },
+            "market_BUY_PRODUCT": {
+              "correct": 1,
+              "count": 8,
+              "accuracy": 0.125
+            },
+            "market_BUY_LAND": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            },
+            "market_BUY_ANIMAL": {
+              "correct": 0,
+              "count": 1,
+              "accuracy": 0.0
+            }
+          }
+        }
+      }
+    }
+  ]
+}

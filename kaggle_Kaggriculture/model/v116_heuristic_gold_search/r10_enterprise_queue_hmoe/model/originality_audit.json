@@ -1,0 +1,32 @@
+{
+  "schema": "v116-r10-originality-audit-v1",
+  "candidate_source_sha256": "50851e01965be6fd9e192edc2fa6b98c8eea93c83a541f4e57ea6c4b28c65556",
+  "strategy_parent": null,
+  "checks": {
+    "stdlib_only_imports": true,
+    "historical_agent_imports": false,
+    "parent_agent_wrapper": false,
+    "replay_reference": false,
+    "recorded_action_table": false,
+    "player_trajectory_data": false,
+    "step_coordinate_route": false,
+    "aggregate_program_only": true,
+    "current_observation_layout_generation": true
+  },
+  "imports": [
+    "__future__",
+    "collections",
+    "dataclasses",
+    "hashlib",
+    "json",
+    "math",
+    "typing"
+  ],
+  "allowed_fixed_topology": {
+    "name": "SHED_GATES",
+    "reason": "game-rule access cells around the fixed center shed; not a player route"
+  },
+  "conclusion": "PASS_STATIC_ORIGINALITY_PRECHECK_ONLY",
+  "boundary": "Static construction evidence does not establish competitive originality or gold strength."
+}
+

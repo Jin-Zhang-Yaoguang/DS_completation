@@ -1,0 +1,40 @@
+{
+  "role": "PRECONSTRUCTION_MECHANISM_AND_FRESH_DEVELOPMENT_DESIGN_NOT_GOLD",
+  "candidate": "V125-R4",
+  "implementation_parent": "V125-R3",
+  "additional_comparator": "V125-R0",
+  "diagnostic_seed": 1950905001,
+  "fresh_seeds": [
+    1950905401,
+    1950905402,
+    1950905403
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponent": "PASS",
+  "primary_hypothesis": "Short contracts with feasible prefixes, real prerequisites, deadlines and observable receipts reduce avoidable crop/animal losses without weakening whole-game realized production.",
+  "execution_changes_in_scope": [
+    "conditional fertilize prefix",
+    "persistent target and exact receipt confirmation",
+    "target-bound resupply instead of blind pickup",
+    "maintenance deadline tied to actual EOD",
+    "ordinary product return runs only when no contract is assigned"
+  ],
+  "preidentified_risks": [
+    "one-unit feed pickup may increase resupply distance and actions",
+    "persistent work may delay cargo return and increase EOD overflow",
+    "production changes alter natural RNG shop sequences"
+  ],
+  "screen_criteria": {
+    "cash_positive_fraction_vs_each_comparator": 0.6,
+    "mean_cash_delta_by_seat_vs_each_comparator_minimum": 0,
+    "primary_avoidable_loss_count_reduction_vs_R3_minimum": 0.2,
+    "first_water_no_regression": true,
+    "nonprimary_overflow_and_terminal_value_max_relative_increase": 0.1
+  },
+  "workflow": "Freeze candidate manifest first; opened diagnostic is for attribution and not promotion. Then execute all fresh 3x2 pairs against both frozen R0 and R3, retain every game including errors. Any fail retires this candidate; no same-SHA retuning. If screening survives, allocate new G1/G2 blocks per protocol.",
+  "freshness_check": "No current evaluation/games.jsonl uses any 5401..5403 seed; exact run manifests checked again at candidate freeze.",
+  "candidate_sha256": "PENDING_FINAL_IMPLEMENTATION_MICRO"
+}

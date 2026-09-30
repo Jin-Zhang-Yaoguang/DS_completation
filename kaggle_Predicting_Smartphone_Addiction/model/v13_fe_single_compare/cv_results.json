@@ -1,0 +1,177 @@
+{
+  "competition": "playground-series-s6e8",
+  "experiment": "v13 FE single-model comparison",
+  "seed": 42,
+  "n_folds": 5,
+  "train_shape": [
+    691369,
+    13
+  ],
+  "test_shape": [
+    296302,
+    12
+  ],
+  "feature_count_lgbm": 126,
+  "feature_count_catboost": 118,
+  "feature_count_xgb": 126,
+  "ranking": [
+    {
+      "name": "v13_xgboost",
+      "oof_auc": 0.9664281176495029,
+      "fold_auc_mean": 0.966431,
+      "fold_auc_std": 0.0004613931078808827
+    },
+    {
+      "name": "v13_lgbm",
+      "oof_auc": 0.9648407081117854,
+      "fold_auc_mean": 0.9648418,
+      "fold_auc_std": 0.0005309412020176786
+    },
+    {
+      "name": "v13_catboost",
+      "oof_auc": 0.9628393946226694,
+      "fold_auc_mean": 0.9628418,
+      "fold_auc_std": 0.0005783460555757331
+    }
+  ],
+  "models": [
+    {
+      "name": "v13_lgbm",
+      "oof_auc": 0.9648407081117854,
+      "fold_auc": [
+        0.963998,
+        0.964691,
+        0.965154,
+        0.965598,
+        0.964768
+      ],
+      "fold_auc_mean": 0.9648418,
+      "fold_auc_std": 0.0005309412020176786,
+      "best_iterations": [
+        1000,
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "feature_count": 126,
+      "elapsed_seconds": 751.8,
+      "params": {
+        "objective": "binary",
+        "metric": "auc",
+        "n_estimators": 1000,
+        "learning_rate": 0.03,
+        "num_leaves": 40,
+        "max_depth": -1,
+        "min_child_samples": 140,
+        "subsample": 0.9,
+        "subsample_freq": 1,
+        "colsample_bytree": 0.9,
+        "reg_alpha": 0.2,
+        "reg_lambda": 1.6,
+        "random_state": 42,
+        "bagging_seed": 42,
+        "feature_fraction_seed": 42,
+        "data_random_seed": 42,
+        "deterministic": true,
+        "force_col_wise": true,
+        "verbosity": -1,
+        "n_jobs": 16
+      }
+    },
+    {
+      "name": "v13_catboost",
+      "oof_auc": 0.9628393946226694,
+      "fold_auc": [
+        0.962034,
+        0.962664,
+        0.962795,
+        0.963834,
+        0.962882
+      ],
+      "fold_auc_mean": 0.9628418,
+      "fold_auc_std": 0.0005783460555757331,
+      "best_iterations": [
+        1200,
+        1200,
+        1200,
+        1200,
+        1200
+      ],
+      "feature_count": 118,
+      "cat_features": [
+        "key_gender",
+        "key_stress_level",
+        "key_academic_work_impact"
+      ],
+      "elapsed_seconds": 1929.1,
+      "params": {
+        "iterations": 1200,
+        "learning_rate": 0.05,
+        "depth": 8,
+        "l2_leaf_reg": 4.5,
+        "loss_function": "Logloss",
+        "eval_metric": "AUC",
+        "random_seed": 42,
+        "one_hot_max_size": 2,
+        "max_ctr_complexity": 2,
+        "od_type": "Iter",
+        "od_wait": 180,
+        "allow_writing_files": false,
+        "thread_count": 16,
+        "verbose": 200
+      }
+    },
+    {
+      "name": "v13_xgboost",
+      "oof_auc": 0.9664281176495029,
+      "fold_auc": [
+        0.965778,
+        0.966401,
+        0.966533,
+        0.9672,
+        0.966243
+      ],
+      "fold_auc_mean": 0.966431,
+      "fold_auc_std": 0.0004613931078808827,
+      "best_iterations": [
+        1924,
+        1950,
+        1841,
+        2020,
+        2182
+      ],
+      "feature_count": 126,
+      "elapsed_seconds": 410.7,
+      "params": {
+        "objective": "binary:logistic",
+        "eval_metric": "auc",
+        "learning_rate": 0.05,
+        "max_depth": 7,
+        "min_child_weight": 4.0,
+        "subsample": 0.88,
+        "colsample_bytree": 0.88,
+        "colsample_bylevel": 0.88,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "gamma": 0.0,
+        "tree_method": "hist",
+        "max_bin": 256,
+        "n_jobs": -1,
+        "seed": 42
+      }
+    }
+  ],
+  "elapsed_seconds": 3291.6,
+  "submission_refs": {
+    "v13_lgbm": null,
+    "v13_catboost": null,
+    "v13_xgboost": 55585090
+  },
+  "public_lb": {
+    "v13_lgbm": null,
+    "v13_catboost": null,
+    "v13_xgboost": 0.96778
+  },
+  "note": "v13_xgboost 线上提交 ref 55585090 public=0.96778"
+}

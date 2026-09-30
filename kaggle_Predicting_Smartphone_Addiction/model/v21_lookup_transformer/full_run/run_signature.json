@@ -1,0 +1,124 @@
+{
+  "payload": {
+    "config": {
+      "augmentation_rate": 0.1,
+      "batch_size": 2048,
+      "d_model": 128,
+      "dropout": 0.1,
+      "early_stopping_checks": 5,
+      "ema_decay": 0.999,
+      "epochs": 32,
+      "eval_every": 2,
+      "eval_start_epoch": 5,
+      "heads": 8,
+      "layers": 4,
+      "learning_rate": 0.002,
+      "plr_frequencies": 24,
+      "predict_batch_size": 16384
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "train_indices_sha256": "27eb231607757a985cd967649c25bddeba27746ed498b04510f97237891a541d",
+        "train_rows": 553095,
+        "valid_indices_sha256": "e0f8264f70e0b1d8faaf882b3639a0d9a796cfce70d5b1ed73f9d40edf825c36",
+        "valid_rows": 138274
+      },
+      {
+        "fold": 1,
+        "train_indices_sha256": "a32bf78685a59269929585b210bb5f2d9b9c0306f53604ee08bbd7b0b0f2130f",
+        "train_rows": 553095,
+        "valid_indices_sha256": "dcfc2776a17de20d078873e30704fcd418847d5ae37213641d8b23fb25cb32ad",
+        "valid_rows": 138274
+      },
+      {
+        "fold": 2,
+        "train_indices_sha256": "4512fe7d3ca9da89062faf0435e29ba472707e61b1096cd0b9f0d74e197e8060",
+        "train_rows": 553095,
+        "valid_indices_sha256": "967950a1e638657cf7c2a109363edcc651acf440a0f9b8f7c22e1cfff01866e7",
+        "valid_rows": 138274
+      },
+      {
+        "fold": 3,
+        "train_indices_sha256": "f69a46f8cebffb52f48d002bc38af44bd03b51393b8e5c263636f1f1add2d2a8",
+        "train_rows": 553095,
+        "valid_indices_sha256": "1b404c7d59e5648a26779ae58ffc4d7f77f8d7ed652b28dd84c8a9b03566e73c",
+        "valid_rows": 138274
+      },
+      {
+        "fold": 4,
+        "train_indices_sha256": "72e80bac7bb93485e773b16e8054f8f00301a3214d06d2d5fea93c55688d3f54",
+        "train_rows": 553096,
+        "valid_indices_sha256": "e3702487cff321653043f99496b1ad373030803d7540b1f38208d7e1d87130cc",
+        "valid_rows": 138273
+      }
+    ],
+    "input_sha256": {
+      "sample_submission.csv": "206763fe5786fb9c80d4e9289a3b812030d3dbb36450c6eb63348098154ce63e",
+      "test.csv": "8b462dd47fe8165cd0b082bf33b56523c5811453070af48b9f86b2eb928de49e",
+      "train.csv": "f4669147311c76eb03496061a852af283efcf0f12cf5c19274e775def81edd9c"
+    },
+    "loaded_data": {
+      "derived_columns": [
+        "other_screen",
+        "sgw",
+        "other_frac",
+        "wk_minus_sgw",
+        "wk_other",
+        "sgw_frac"
+      ],
+      "features": [
+        "age",
+        "daily_screen_time_hours",
+        "social_media_hours",
+        "gaming_hours",
+        "work_study_hours",
+        "sleep_hours",
+        "notifications_per_day",
+        "app_opens_per_day",
+        "weekend_screen_time",
+        "gender",
+        "stress_level",
+        "academic_work_impact"
+      ],
+      "sample_id_sha256": "e21918e18e73ad88d4fd8dd08592269348d108807f7e2bffd1af520c0f4d4b5c",
+      "target_sha256": "2795d5ea678c87452597890efab2c47ca99e214ae50858dd4be91cdba107b416",
+      "test_id_sha256": "e21918e18e73ad88d4fd8dd08592269348d108807f7e2bffd1af520c0f4d4b5c",
+      "test_rows": 296302,
+      "train_id_sha256": "a0c49502b9d043d854539e0f18a324a28d30608994e5fc98d863cca9486a1182",
+      "train_rows": 691369,
+      "vocab_sizes": [
+        19,
+        1398,
+        730,
+        402,
+        602,
+        452,
+        232,
+        167,
+        1460,
+        4,
+        4,
+        3
+      ]
+    },
+    "mode": "production",
+    "runtime": {
+      "cuda_version": null,
+      "device": "mps",
+      "numpy": "2.3.5",
+      "pandas": "2.3.3",
+      "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+      "python": "3.13.9",
+      "scikit_learn": "1.7.2",
+      "scipy": "1.16.3",
+      "torch": "2.12.1"
+    },
+    "script_sha256": "cc84f2e6ec6a7b8fc511b224847a47e4d3418be113efa1aa956cad17b25db61b",
+    "seed": 42,
+    "signature_version": 1,
+    "source_notebook_sha256": "a3b1d7468389bf9d53a7c49da1ba002636b48dcfcbb5deaa7af60c635b0b5806"
+  },
+  "run_signature": "2b9543455c6231d525893a16584417ebf16045b0370f7c0ec1dfa6c5766a3cca",
+  "signature_version": 1
+}

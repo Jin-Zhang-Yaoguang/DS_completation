@@ -1,0 +1,206 @@
+{
+  "schema": "kaggriculture-v12-r002-requalification-evidence-1",
+  "model_id": "v12_incumbent_r002",
+  "source_model_id": "r002_learned_router_topday_animal_throttle",
+  "evidence_status": "existing V11 Round3 development evidence; packaging requalification only",
+  "policy_changed": false,
+  "formal_or_test_accessed_for_requalification": false,
+  "source_serving_sha256": "38afb12bd5fbc987adf752acb437abe9330bd385233c22782b35353f77be2d74",
+  "round3": {
+    "run_fingerprint": "c314b24ec7c4c863e322778c210ac5c096499198ce65f3d16e34a95dc8ff36db",
+    "models": 16,
+    "sources": 100,
+    "source_date_counts": {
+      "2026-08-18": 33,
+      "2026-08-19": 33,
+      "2026-08-20": 34
+    },
+    "seats_per_source": 2,
+    "unordered_pairs": 120,
+    "scheduled_games": 24000,
+    "valid_games": 24000,
+    "runtime_errors": 0,
+    "candidate_rank": 1,
+    "candidate_games": 3000,
+    "candidate_points": 2376.5,
+    "candidate_wins": 2318,
+    "candidate_draws": 117,
+    "candidate_losses": 565,
+    "candidate_mean_margin": 3832.074666666667,
+    "candidate_worst_opponent": "v8_topdays",
+    "candidate_worst_opponent_score_rate": 0.5775
+  },
+  "direct_parent": {
+    "parent": "learned_router",
+    "games": 200,
+    "paired_sources": 100,
+    "wins": 128,
+    "draws": 0,
+    "losses": 72,
+    "score_rate": 0.64,
+    "mean_margin": 151.155,
+    "date_score_rate": {
+      "2026-08-18": 0.6212121212121212,
+      "2026-08-19": 0.5909090909090909,
+      "2026-08-20": 0.7058823529411764
+    },
+    "date_stratified_source_cluster_bootstrap_ci95": [
+      0.57,
+      0.71
+    ]
+  },
+  "common_opponent_comparison": {
+    "candidate": "r002_learned_router_topday_animal_throttle",
+    "parent": "learned_router",
+    "excluded_models": [
+      "r002_learned_router_topday_animal_throttle",
+      "learned_router",
+      "r001_learned_router_premium_floor_guard"
+    ],
+    "exclusion_reason": "candidate and direct parent are not common opponents; r001 was the already-falsified premium-floor candidate and would dominate the aggregate with a pathological 1.5% score rate",
+    "common_opponents": 13,
+    "paired_games_per_policy": 2600,
+    "paired_sources": 100,
+    "candidate_score_rate": 0.7890384615384616,
+    "parent_score_rate": 0.7590384615384616,
+    "paired_score_uplift": 0.03,
+    "mean_reward_uplift": 27.17,
+    "date_stratified_source_cluster_bootstrap_ci95": [
+      0.016346153846153847,
+      0.043653846153846154
+    ],
+    "by_opponent": [
+      {
+        "opponent": "baseline_v1",
+        "games": 200,
+        "candidate_score_rate": 0.845,
+        "parent_score_rate": 0.85,
+        "paired_score_uplift": -0.005,
+        "mean_reward_uplift": -52.755
+      },
+      {
+        "opponent": "baseline_v2",
+        "games": 200,
+        "candidate_score_rate": 0.845,
+        "parent_score_rate": 0.85,
+        "paired_score_uplift": -0.005,
+        "mean_reward_uplift": -52.995
+      },
+      {
+        "opponent": "baseline_v5",
+        "games": 200,
+        "candidate_score_rate": 0.71,
+        "parent_score_rate": 0.645,
+        "paired_score_uplift": 0.065,
+        "mean_reward_uplift": 4.775
+      },
+      {
+        "opponent": "baseline_v8",
+        "games": 200,
+        "candidate_score_rate": 0.685,
+        "parent_score_rate": 0.5725,
+        "paired_score_uplift": 0.1125,
+        "mean_reward_uplift": 54.195
+      },
+      {
+        "opponent": "rule_router",
+        "games": 200,
+        "candidate_score_rate": 0.75,
+        "parent_score_rate": 0.72,
+        "paired_score_uplift": 0.03,
+        "mean_reward_uplift": -3.245
+      },
+      {
+        "opponent": "v1_topdays",
+        "games": 200,
+        "candidate_score_rate": 0.81,
+        "parent_score_rate": 0.82,
+        "paired_score_uplift": -0.01,
+        "mean_reward_uplift": 41.31
+      },
+      {
+        "opponent": "v2_topdays",
+        "games": 200,
+        "candidate_score_rate": 0.81,
+        "parent_score_rate": 0.82,
+        "paired_score_uplift": -0.01,
+        "mean_reward_uplift": 41.495
+      },
+      {
+        "opponent": "v5_price_slot",
+        "games": 200,
+        "candidate_score_rate": 0.89,
+        "parent_score_rate": 0.87,
+        "paired_score_uplift": 0.02,
+        "mean_reward_uplift": 1.32
+      },
+      {
+        "opponent": "v5_topdays",
+        "games": 200,
+        "candidate_score_rate": 0.625,
+        "parent_score_rate": 0.57,
+        "paired_score_uplift": 0.055,
+        "mean_reward_uplift": 97.235
+      },
+      {
+        "opponent": "v8_conservative",
+        "games": 200,
+        "candidate_score_rate": 0.89,
+        "parent_score_rate": 0.89,
+        "paired_score_uplift": 0.0,
+        "mean_reward_uplift": -6.015
+      },
+      {
+        "opponent": "v8_lead1",
+        "games": 200,
+        "candidate_score_rate": 0.905,
+        "parent_score_rate": 0.9,
+        "paired_score_uplift": 0.005,
+        "mean_reward_uplift": 27.195
+      },
+      {
+        "opponent": "v8_no_preempt",
+        "games": 200,
+        "candidate_score_rate": 0.915,
+        "parent_score_rate": 0.9,
+        "paired_score_uplift": 0.015,
+        "mean_reward_uplift": -13.69
+      },
+      {
+        "opponent": "v8_topdays",
+        "games": 200,
+        "candidate_score_rate": 0.5775,
+        "parent_score_rate": 0.46,
+        "paired_score_uplift": 0.1175,
+        "mean_reward_uplift": 214.385
+      }
+    ]
+  },
+  "bootstrap": {
+    "unit": "official source cluster; both seats and all included opponents remain together",
+    "date_stratification": true,
+    "resamples": 50000,
+    "random_seed": 20260823,
+    "percentiles": [
+      0.025,
+      0.975
+    ]
+  },
+  "source_files": {
+    "games.jsonl": {
+      "sha256": "fce17c11ff163603ecc26b8bb87c8c320f14527dd8fa74ab3a2175adcdff77ae"
+    },
+    "panel.json": {
+      "sha256": "b74b8b77efe510f7b5158dee512bf82982178be302b02fd3d9effcb4e288baaa"
+    },
+    "pairwise_summary.json": {
+      "sha256": "1150822b1f237a895e7b6bbff47fe32989372a40baa978e7d2d3b7c09b1934a9"
+    },
+    "league_summary.json": {
+      "sha256": "12c50c124ae937bfdbc55d7cf8eea30da34a104d7d4fdeab69f23c76d4bcc5d8"
+    },
+    "report.md": {
+      "sha256": "89d67f28e6d1d0bc30e9877e3a08c551b72229aa38b9ab3d23cf14c09f1acad6"
+    }
+  }
+}

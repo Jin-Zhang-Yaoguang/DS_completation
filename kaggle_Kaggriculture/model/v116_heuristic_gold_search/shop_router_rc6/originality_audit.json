@@ -1,0 +1,37 @@
+{
+  "schema": "v116-shop-router-rc6-originality-v1",
+  "source_sha256": "7cc2adc79ffafc31c8057d012dd5f590d604810a827039f2a0f95be4efe6fba1",
+  "baseline": "rc4_ablation/projection_only",
+  "baseline_source_sha256": "fc3419ea3ebba8268b2a2e212699d29cfc8d7efa0a7314b8252316c68f5c82e6",
+  "only_added_mechanism": "bounded first-shop demand-crop replacement",
+  "self_contained": true,
+  "forbidden_imports": [],
+  "contains_actions_table": false,
+  "contains_replay_route": false,
+  "staging_permanently_disabled": true,
+  "projection_enabled": true,
+  "genome_count": 4,
+  "all_final_crop_targets": 59,
+  "limits": {
+    "eligible_expert": "balanced_root",
+    "crop_must_be_non_ongoing": true,
+    "crop_must_match_first_public_shop_demand": true,
+    "max_live": 2,
+    "max_new_per_day": 2,
+    "ttl_steps": 6,
+    "true_on_tile_harvest_only": true,
+    "terminal_obeys_all_limits": true
+  },
+  "mechanism_probe": {
+    "eligible_claim_created": true,
+    "ttl_cleared_at_six_steps": true,
+    "non_demand_crop_rejected": true,
+    "non_balanced_expert_rejected": true,
+    "max_live_and_daily_caps_hold": true,
+    "finishability_gate_rejects_day28_carrot": true,
+    "day29_single_terminal_claim": true,
+    "day29_after18_low_asset_harvest_blocked": true
+  },
+  "runtime_scope_violations": [],
+  "pass": true
+}

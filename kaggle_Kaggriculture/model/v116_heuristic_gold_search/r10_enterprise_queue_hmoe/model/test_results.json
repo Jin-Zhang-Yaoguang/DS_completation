@@ -1,0 +1,70 @@
+{
+  "schema": "v116-r10-p0p1-test-results-v1",
+  "candidate_schema": "v116-r10-enterprise-queue-hmoe-v1",
+  "passed": true,
+  "engine": "kagsim 1.32.7",
+  "formal_episode_count": 0,
+  "py_compile": "PASS",
+  "static_originality_precheck": "PASS",
+  "mechanisms": {
+    "factory_and_action_interface": "PASS",
+    "three_fixed_experts": "PASS",
+    "router_single_commit": "PASS",
+    "mature_crop_harvest_regression": "PASS",
+    "atomic_seed_reservation": "PASS",
+    "harvest_delivery_drop_chain": "PASS",
+    "diagnostics_json": "PASS"
+  },
+  "one_step": [
+    {"mode": "router", "money_after": 2498.0, "schema_errors": 0},
+    {"mode": "fixed_root_exchange", "money_after": 2478.0, "schema_errors": 0},
+    {"mode": "fixed_dairy_berry", "money_after": 2466.0, "schema_errors": 0},
+    {"mode": "fixed_fiber_grain", "money_after": 2390.0, "schema_errors": 0}
+  ],
+  "short_horizon": [
+    {
+      "mode": "router",
+      "seed": 7100,
+      "opponent": "idle",
+      "configured_steps": 96,
+      "agent_calls": 95,
+      "bank": 263.0,
+      "committed_expert": "dairy_berry",
+      "commit_step": 72,
+      "schema_errors": 0,
+      "runtime_errors": 0
+    },
+    {
+      "mode": "fixed_root_exchange",
+      "seed": 7100,
+      "opponent": "idle",
+      "configured_steps": 96,
+      "agent_calls": 95,
+      "bank": 560.0,
+      "schema_errors": 0,
+      "runtime_errors": 0
+    },
+    {
+      "mode": "fixed_dairy_berry",
+      "seed": 7100,
+      "opponent": "idle",
+      "configured_steps": 96,
+      "agent_calls": 95,
+      "bank": 577.0,
+      "schema_errors": 0,
+      "runtime_errors": 0
+    },
+    {
+      "mode": "fixed_fiber_grain",
+      "seed": 7100,
+      "opponent": "idle",
+      "configured_steps": 96,
+      "agent_calls": 95,
+      "bank": 353.0,
+      "schema_errors": 0,
+      "runtime_errors": 0
+    }
+  ],
+  "interpretation": "Legality and mechanism smoke only; truncated banks are not 30-day strength evidence.",
+  "decision": "P0_PASS_P1_PARTIAL_STRENGTH_UNTESTED_NOT_GOLD"
+}

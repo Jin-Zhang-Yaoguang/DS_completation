@@ -1,0 +1,250 @@
+{
+  "source_path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/procurement_receipt_audit/confirmation_microcases_r0/result.json",
+  "source_sha256": "ba4a8b48525cbbca48b38e15a89a9b8cdbc70bab589ee52f5b196af8111a4a75",
+  "scope": "CONSTRUCTED_OFFICIAL_FUNCTION_MICROCASES_NOT_OBSERVED_EPISODES",
+  "rows": [
+    {
+      "case": "accepted_plant_and_failed_seed_purchase_control",
+      "constructed_fixture": true,
+      "official_function_calls": [
+        "_apply_unit_action",
+        "_commit_unit"
+      ],
+      "plant_request": 1,
+      "actual_seed_consumption": 1,
+      "official_committed_units": 0,
+      "externally_reconciled_units": 0,
+      "original_confirmation": {
+        "got": 0,
+        "requested": 1,
+        "original_check": {
+          "issued_step": 0,
+          "observed_step": 1,
+          "order_index": 0,
+          "order": [
+            "BUY_SEED",
+            "WHEAT",
+            1
+          ],
+          "requested_in_original_code": 1,
+          "got_in_original_code": 0,
+          "raw_plant_requests_added_back": {
+            "WHEAT": 1
+          },
+          "previous": {
+            "day": 0,
+            "hour": 0,
+            "money": 0,
+            "land": 1,
+            "hands": 0,
+            "assets": {
+              "GOOSE": 0,
+              "COW": 0,
+              "SHEEP": 0
+            },
+            "seeds": {
+              "WHEAT": 1,
+              "CARROT": 0,
+              "TOMATO": 0,
+              "STRAWBERRY": 0,
+              "MELON": 0
+            }
+          },
+          "now": {
+            "day": 0,
+            "hour": 1,
+            "money": 0,
+            "land": 1,
+            "hands": 0,
+            "assets": {
+              "WHEAT": 1,
+              "GOOSE": 0,
+              "COW": 0,
+              "SHEEP": 0
+            },
+            "seeds": {
+              "WHEAT": 0,
+              "CARROT": 0,
+              "TOMATO": 0,
+              "STRAWBERRY": 0,
+              "MELON": 0
+            }
+          },
+          "source_line": 141,
+          "capture": "原confirm_orders执行到purchase_requested增量前，got已由原代码计算并截断"
+        },
+        "original_misses": [
+          {
+            "step": 0,
+            "order": [
+              "BUY_SEED",
+              "WHEAT",
+              1
+            ],
+            "confirmed": 0,
+            "missing": 1
+          }
+        ]
+      },
+      "finding": "有效播种控制例：原confirm与官方未成交均为0"
+    },
+    {
+      "case": "rejected_plant_and_failed_seed_purchase",
+      "constructed_fixture": true,
+      "official_function_calls": [
+        "_apply_unit_action",
+        "_commit_unit"
+      ],
+      "plant_request": 1,
+      "actual_seed_consumption": 0,
+      "official_committed_units": 0,
+      "externally_reconciled_units": 0,
+      "original_confirmation": {
+        "got": 1,
+        "requested": 1,
+        "original_check": {
+          "issued_step": 0,
+          "observed_step": 1,
+          "order_index": 0,
+          "order": [
+            "BUY_SEED",
+            "WHEAT",
+            1
+          ],
+          "requested_in_original_code": 1,
+          "got_in_original_code": 1,
+          "raw_plant_requests_added_back": {
+            "WHEAT": 1
+          },
+          "previous": {
+            "day": 0,
+            "hour": 0,
+            "money": 0,
+            "land": 1,
+            "hands": 0,
+            "assets": {
+              "GOOSE": 0,
+              "COW": 0,
+              "SHEEP": 0
+            },
+            "seeds": {
+              "WHEAT": 1,
+              "CARROT": 0,
+              "TOMATO": 0,
+              "STRAWBERRY": 0,
+              "MELON": 0
+            }
+          },
+          "now": {
+            "day": 0,
+            "hour": 1,
+            "money": 0,
+            "land": 1,
+            "hands": 0,
+            "assets": {
+              "GOOSE": 0,
+              "COW": 0,
+              "SHEEP": 0
+            },
+            "seeds": {
+              "WHEAT": 1,
+              "CARROT": 0,
+              "TOMATO": 0,
+              "STRAWBERRY": 0,
+              "MELON": 0
+            }
+          },
+          "source_line": 141,
+          "capture": "原confirm_orders执行到purchase_requested增量前，got已由原代码计算并截断"
+        },
+        "original_misses": []
+      },
+      "finding": "原confirm把被拒绝的PLANT请求误当耗种，未成交种子被确认1单位"
+    },
+    {
+      "case": "animal_purchase_and_escape_same_day_boundary",
+      "constructed_fixture": true,
+      "official_function_calls": [
+        "_commit_unit",
+        "_daily_refresh_animals"
+      ],
+      "official_committed_units": 1,
+      "escaped_units": 1,
+      "net_assets_change": 0,
+      "externally_reconciled_units": 1,
+      "original_confirmation": {
+        "got": 0,
+        "requested": 1,
+        "original_check": {
+          "issued_step": 47,
+          "observed_step": 48,
+          "order_index": 0,
+          "order": [
+            "BUY_ANIMAL",
+            "COW",
+            1
+          ],
+          "requested_in_original_code": 1,
+          "got_in_original_code": 0,
+          "raw_plant_requests_added_back": {},
+          "previous": {
+            "day": 1,
+            "hour": 23,
+            "money": 400,
+            "land": 1,
+            "hands": 0,
+            "assets": {
+              "COW": 1,
+              "GOOSE": 0,
+              "SHEEP": 0
+            },
+            "seeds": {
+              "WHEAT": 0,
+              "CARROT": 0,
+              "TOMATO": 0,
+              "STRAWBERRY": 0,
+              "MELON": 0
+            }
+          },
+          "now": {
+            "day": 2,
+            "hour": 0,
+            "money": 0,
+            "land": 1,
+            "hands": 0,
+            "assets": {
+              "GOOSE": 0,
+              "COW": 1,
+              "SHEEP": 0
+            },
+            "seeds": {
+              "WHEAT": 0,
+              "CARROT": 0,
+              "TOMATO": 0,
+              "STRAWBERRY": 0,
+              "MELON": 0
+            }
+          },
+          "source_line": 141,
+          "capture": "原confirm_orders执行到purchase_requested增量前，got已由原代码计算并截断"
+        },
+        "original_misses": [
+          {
+            "step": 47,
+            "order": [
+              "BUY_ANIMAL",
+              "COW",
+              1
+            ],
+            "confirmed": 0,
+            "missing": 1
+          }
+        ]
+      },
+      "finding": "旧牛逃逸抵消新牛真实买入，原confirm把1单位成交误记为0"
+    }
+  ],
+  "this_extraction_candidate_calls": 0,
+  "this_extraction_engine_calls": 0,
+  "new_complete_matches": 0
+}

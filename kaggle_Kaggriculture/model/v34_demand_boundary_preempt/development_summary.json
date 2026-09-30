@@ -1,0 +1,63 @@
+{
+  "schema": "kaggriculture-loop-development-v1",
+  "model_id": "v34_demand_boundary_preempt",
+  "engine": "1.32.7",
+  "candidate_archive_sha256": "98b75a8a93d5efb3f7c907565b89b6788439e8f9b067ef9022e39d724dd05a32",
+  "source_manifest_sha256": "2bb47b360246448bdd3f8449c1459dfd765a6f19bd0576e6b2764c7dc0e63517",
+  "games_sha256": "4a68191d80f372a7785f06d112994d86fbbb458ff13718e247d306a74663e031",
+  "source_count": 64,
+  "gold_lineages": [
+    "v19",
+    "v20",
+    "v21",
+    "v32",
+    "v33"
+  ],
+  "summary": {
+    "task_count": 1280,
+    "done_count": 1280,
+    "error_count": 0,
+    "task_keys_unique": true,
+    "candidate_pool_score": 0.8765625,
+    "parent_pool_score": 0.81953125,
+    "pgu_pp": 5.703124999999998,
+    "positive_zero_negative": [
+      65,
+      575,
+      0
+    ],
+    "by_family_pgu_pp": {
+      "v19": 0.0,
+      "v20": 0.0,
+      "v21": 0.0,
+      "v32": 1.953125,
+      "v33": 26.5625
+    },
+    "candidate_catastrophic_rate": 0.0140625,
+    "parent_catastrophic_rate": 0.0140625,
+    "catastrophic_rate_delta_pp": 0.0,
+    "candidate_mean_margin": 1193.2171875,
+    "parent_mean_margin": 1168.08125,
+    "candidate_preempt_events": 23053,
+    "candidate_preempt_units": 120938,
+    "candidate_action_changed_games": 640,
+    "safety_violations": 0,
+    "pgu_95ci_pp": [
+      4.921874999999999,
+      6.484374999999999
+    ],
+    "pool_score_95ci": [
+      0.853125,
+      0.9
+    ],
+    "gate_checks": {
+      "pgu_positive": true,
+      "pool_score_at_least_50pct": true,
+      "each_family_delta_at_least_minus_3pp": true,
+      "catastrophic_delta_at_most_1pp": true,
+      "zero_errors_integrity_safety": true,
+      "effective_action_change": true
+    },
+    "gate": "PASS"
+  }
+}

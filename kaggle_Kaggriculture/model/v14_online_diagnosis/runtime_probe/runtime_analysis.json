@@ -1,0 +1,706 @@
+{
+  "conclusions": [
+    "The 74.5% local figure is conditional on an exact A2 opponent; the online pool contains zero exact-A2 games.",
+    "The 2026-08-18..20 holdout supplied unseen environment seeds, but closed-loop opponents were still fixed A2/r002; it held out stochastic scenarios, not opponent-policy lineages.",
+    "V14 and A2 did not face any identical opponent submission, so their public ratings are not a paired comparison.",
+    "V14 matched parent A2 on 62543/62553 calls; 20/21 losses are action-for-action parent A2 losses, not Q2b regressions.",
+    "The anti-A2 mechanism activated only 10 times online versus 2600 times in 200 local A2 games, a roughly 113x per-game activation gap.",
+    "Current opponent-score mapping shows V14 received a much weaker schedule and therefore its losses, especially versus low-rated teams, are much more costly under rating updates.",
+    "One loss contains one verified reorder, but the current shadow action was correct and immediate predicted advantage was positive; the replay alone cannot identify its counterfactual terminal effect.",
+    "A hidden/no-public-effect opponent divergence can be detected late: episode 98371925 first differs from exact A2 at step 175 but public conformance faults only at step 255."
+  ],
+  "local_vs_online_mechanism": {
+    "activation_ratio_online_div_local": 0.008841732979664015,
+    "local_activation_multiple_over_online": 113.10000000000001,
+    "local_exact_a2_confirmatory": {
+      "branch_pairs": {
+        "baseline_v5 / baseline_v5": 26,
+        "baseline_v5 / baseline_v8": 15,
+        "baseline_v8 / baseline_v5": 15,
+        "baseline_v8 / baseline_v8": 144
+      },
+      "games": 200,
+      "games_with_reorder": 144,
+      "mean_margin": 715.16,
+      "mean_reordered_steps": 13,
+      "pure_win_rate": 0.745,
+      "shadow_trusted_games": 200,
+      "total_reordered_steps": 2600,
+      "wins_ties_losses": [
+        149,
+        18,
+        33
+      ],
+      "zero_fault_games": 200
+    },
+    "local_reorders_per_game": 13.0,
+    "online_reorders_per_game": 0.11494252873563218
+  },
+  "online_schedule": {
+    "a2": {
+      "by_candidate_seat": {
+        "0": {
+          "games": 29,
+          "mean_margin": 2346.0,
+          "pure_win_rate": 0.6551724137931034,
+          "wins_ties_losses": [
+            19,
+            0,
+            10
+          ]
+        },
+        "1": {
+          "games": 34,
+          "mean_margin": 7048.470588235294,
+          "pure_win_rate": 0.6470588235294118,
+          "wins_ties_losses": [
+            22,
+            0,
+            12
+          ]
+        }
+      },
+      "games": 63,
+      "mean_margin": 4883.841269841269,
+      "opponent_current_score": {
+        "bins": {
+          "0-1000": {
+            "games": 5,
+            "win_rate": 1.0,
+            "wins": 5
+          },
+          "1000-1500": {
+            "games": 3,
+            "win_rate": 1.0,
+            "wins": 3
+          },
+          "1500-2000": {
+            "games": 12,
+            "win_rate": 0.6666666666666666,
+            "wins": 8
+          },
+          "2000-2500": {
+            "games": 39,
+            "win_rate": 0.5897435897435898,
+            "wins": 23
+          },
+          "2500-4000": {
+            "games": 4,
+            "win_rate": 0.5,
+            "wins": 2
+          }
+        },
+        "caveat": "Leaderboard score is the current snapshot, not necessarily the rating at match time.",
+        "mapped_games": 63,
+        "maximum": 2677.1,
+        "mean": 2064.026984126984,
+        "median": 2249.0,
+        "minimum": 649.4
+      },
+      "pure_win_rate": 0.6507936507936508,
+      "unique_opponent_submissions": 57,
+      "unique_opponent_teams": 57,
+      "wins_ties_losses": [
+        41,
+        0,
+        22
+      ]
+    },
+    "common_opponent_submissions": [],
+    "common_opponent_teams": [
+      16633688
+    ],
+    "opponent_current_score_mean_gap_v14_minus_a2": -294.88330596606465,
+    "paired_online_comparison_available": false,
+    "v14": {
+      "by_candidate_seat": {
+        "0": {
+          "games": 51,
+          "mean_margin": 5797.450980392156,
+          "pure_win_rate": 0.7647058823529411,
+          "wins_ties_losses": [
+            39,
+            0,
+            12
+          ]
+        },
+        "1": {
+          "games": 36,
+          "mean_margin": 6266.777777777777,
+          "pure_win_rate": 0.75,
+          "wins_ties_losses": [
+            27,
+            0,
+            9
+          ]
+        }
+      },
+      "games": 87,
+      "mean_margin": 5991.6551724137935,
+      "opponent_current_score": {
+        "bins": {
+          "0-1000": {
+            "games": 5,
+            "win_rate": 1.0,
+            "wins": 5
+          },
+          "1000-1500": {
+            "games": 12,
+            "win_rate": 0.8333333333333334,
+            "wins": 10
+          },
+          "1500-2000": {
+            "games": 47,
+            "win_rate": 0.851063829787234,
+            "wins": 40
+          },
+          "2000-2500": {
+            "games": 21,
+            "win_rate": 0.47619047619047616,
+            "wins": 10
+          },
+          "2500-4000": {
+            "games": 2,
+            "win_rate": 0.5,
+            "wins": 1
+          }
+        },
+        "caveat": "Leaderboard score is the current snapshot, not necessarily the rating at match time.",
+        "mapped_games": 87,
+        "maximum": 2755.4,
+        "mean": 1769.1436781609195,
+        "median": 1807.5,
+        "minimum": 638.7
+      },
+      "pure_win_rate": 0.7586206896551724,
+      "unique_opponent_submissions": 87,
+      "unique_opponent_teams": 87,
+      "wins_ties_losses": [
+        66,
+        0,
+        21
+      ]
+    }
+  },
+  "runtime": {
+    "archive_action_path_exact_games": 87,
+    "calls": 62553,
+    "episodes": 87,
+    "exact_a2_opponent_games": 0,
+    "first_opponent_a2_action_mismatch": {
+      "bins": {
+        "0": 36,
+        "1-71": 4,
+        "144+": 19,
+        "72-95": 16,
+        "96-143": 12
+      },
+      "maximum_step": 408,
+      "median_step": 72
+    },
+    "first_public_shadow_fault": {
+      "bins": {
+        "0": 0,
+        "1-71": 40,
+        "144+": 19,
+        "72-95": 16,
+        "96-143": 12
+      },
+      "maximum_step": 409,
+      "median_step": 73,
+      "trusted_at_end_games": 0,
+      "untrusted_at_end_games": 87
+    },
+    "loss_attribution": {
+      "losses": 21,
+      "losses_exact_parent_a2_all_719_calls": 20,
+      "losses_with_v14_action_difference": 1,
+      "rows": [
+        {
+          "candidate_seat": 1,
+          "episode_id": "97840355",
+          "first_opponent_a2_action_mismatch_step": 257,
+          "first_public_shadow_fault_step": 258,
+          "margin": -5346.0,
+          "opponent_a2_action_matches": 643,
+          "opponent_current_score": 2416.2,
+          "opponent_submission_id": 55722830,
+          "opponent_team": "The Wolf of Wheat Street",
+          "parent_a2_action_differences": 1,
+          "reorder_steps": [
+            255
+          ],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            110076.0,
+            104730.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "97854095",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -3388.0,
+          "opponent_a2_action_matches": 1,
+          "opponent_current_score": 1591.3,
+          "opponent_submission_id": 55717037,
+          "opponent_team": "Bina Salama",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            85532.0,
+            88920.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "97890683",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -1742.0,
+          "opponent_a2_action_matches": 1,
+          "opponent_current_score": 1881.6,
+          "opponent_submission_id": 55712397,
+          "opponent_team": "hassan",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            91126.0,
+            89384.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "97892919",
+          "first_opponent_a2_action_mismatch_step": 149,
+          "first_public_shadow_fault_step": 150,
+          "margin": -44.0,
+          "opponent_a2_action_matches": 684,
+          "opponent_current_score": 2004.8,
+          "opponent_submission_id": 55714409,
+          "opponent_team": "Laplacenvmv",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            88954.0,
+            88910.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "97892998",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -8852.0,
+          "opponent_a2_action_matches": 1,
+          "opponent_current_score": 1775.9,
+          "opponent_submission_id": 55721935,
+          "opponent_team": "yw8837",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            50818.0,
+            59670.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "97897503",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -677.0,
+          "opponent_a2_action_matches": 1,
+          "opponent_current_score": 2319.0,
+          "opponent_submission_id": 55673317,
+          "opponent_team": "ominteam",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            63054.0,
+            62377.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "97945354",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -11823.0,
+          "opponent_a2_action_matches": 1,
+          "opponent_current_score": 2587.7,
+          "opponent_submission_id": 55724050,
+          "opponent_team": "Nat00",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            52762.0,
+            64585.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "97947752",
+          "first_opponent_a2_action_mismatch_step": 149,
+          "first_public_shadow_fault_step": 150,
+          "margin": -6500.0,
+          "opponent_a2_action_matches": 681,
+          "opponent_current_score": 2022.4,
+          "opponent_submission_id": 55721889,
+          "opponent_team": "Ryan Myers",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            63650.0,
+            57150.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "97952303",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -6400.0,
+          "opponent_a2_action_matches": 11,
+          "opponent_current_score": 1513.5,
+          "opponent_submission_id": 55713234,
+          "opponent_team": "Johnson Chishimba",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            74713.0,
+            81113.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "97954676",
+          "first_opponent_a2_action_mismatch_step": 3,
+          "first_public_shadow_fault_step": 4,
+          "margin": -2797.0,
+          "opponent_a2_action_matches": 101,
+          "opponent_current_score": 1907.0,
+          "opponent_submission_id": 55710379,
+          "opponent_team": "Calmracer",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            77518.0,
+            80315.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98004834",
+          "first_opponent_a2_action_mismatch_step": 149,
+          "first_public_shadow_fault_step": 150,
+          "margin": -1945.0,
+          "opponent_a2_action_matches": 655,
+          "opponent_current_score": 2401.9,
+          "opponent_submission_id": 55720464,
+          "opponent_team": "iamlonely",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            96614.0,
+            98559.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98027469",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -477.0,
+          "opponent_a2_action_matches": 648,
+          "opponent_current_score": 2186.8,
+          "opponent_submission_id": 55725765,
+          "opponent_team": "JALKARNA GAUTAM",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            87800.0,
+            88277.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98100376",
+          "first_opponent_a2_action_mismatch_step": 120,
+          "first_public_shadow_fault_step": 121,
+          "margin": -8290.0,
+          "opponent_a2_action_matches": 228,
+          "opponent_current_score": 1224.1,
+          "opponent_submission_id": 55728194,
+          "opponent_team": "YoungCheol Son",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            90595.0,
+            98885.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98105028",
+          "first_opponent_a2_action_mismatch_step": 1,
+          "first_public_shadow_fault_step": 2,
+          "margin": -3947.0,
+          "opponent_a2_action_matches": 416,
+          "opponent_current_score": 1434.1,
+          "opponent_submission_id": 55727997,
+          "opponent_team": "Hello San Francisco",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            106906.0,
+            110853.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98123163",
+          "first_opponent_a2_action_mismatch_step": 145,
+          "first_public_shadow_fault_step": 146,
+          "margin": -758.0,
+          "opponent_a2_action_matches": 174,
+          "opponent_current_score": 2457.5,
+          "opponent_submission_id": 55729790,
+          "opponent_team": "Jingxiang",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            116204.0,
+            116962.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98210008",
+          "first_opponent_a2_action_mismatch_step": 120,
+          "first_public_shadow_fault_step": 121,
+          "margin": -1767.0,
+          "opponent_a2_action_matches": 540,
+          "opponent_current_score": 1927.1,
+          "opponent_submission_id": 55670650,
+          "opponent_team": "Lixrixy",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            123257.0,
+            125024.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "98264829",
+          "first_opponent_a2_action_mismatch_step": 264,
+          "first_public_shadow_fault_step": 265,
+          "margin": -5362.0,
+          "opponent_a2_action_matches": 672,
+          "opponent_current_score": 2406.8,
+          "opponent_submission_id": 55708258,
+          "opponent_team": "Ryo",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            53964.0,
+            48602.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "98285257",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -10544.0,
+          "opponent_a2_action_matches": 1,
+          "opponent_current_score": 2109.4,
+          "opponent_submission_id": 55733821,
+          "opponent_team": "BurntPotato",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            110580.0,
+            100036.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "98296575",
+          "first_opponent_a2_action_mismatch_step": 0,
+          "first_public_shadow_fault_step": 1,
+          "margin": -2650.0,
+          "opponent_a2_action_matches": 517,
+          "opponent_current_score": 2050.5,
+          "opponent_submission_id": 55734976,
+          "opponent_team": "kaguramena",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            77756.0,
+            75106.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 0,
+          "episode_id": "98344655",
+          "first_opponent_a2_action_mismatch_step": 120,
+          "first_public_shadow_fault_step": 121,
+          "margin": -703.0,
+          "opponent_a2_action_matches": 650,
+          "opponent_current_score": 2076.6,
+          "opponent_submission_id": 55695851,
+          "opponent_team": "Games Jadley",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            57956.0,
+            58659.0
+          ],
+          "shadow_trusted_at_end": false
+        },
+        {
+          "candidate_seat": 1,
+          "episode_id": "98371925",
+          "first_opponent_a2_action_mismatch_step": 175,
+          "first_public_shadow_fault_step": 255,
+          "margin": -451.0,
+          "opponent_a2_action_matches": 480,
+          "opponent_current_score": 1840.4,
+          "opponent_submission_id": 55736763,
+          "opponent_team": "xingyun_byto",
+          "parent_a2_action_differences": 0,
+          "reorder_steps": [],
+          "reorder_with_wrong_current_shadow_steps": [],
+          "rewards": [
+            89924.0,
+            89473.0
+          ],
+          "shadow_trusted_at_end": false
+        }
+      ]
+    },
+    "opponent_exact_a2_action_matches": 21617,
+    "opponent_exact_a2_action_rate": 0.34557894905120456,
+    "parent_a2_equivalence": {
+      "different_action_calls": 10,
+      "equal_action_calls": 62543,
+      "equal_action_rate": 0.9998401355650408,
+      "exact_action_games": 79,
+      "games_with_any_difference": 8
+    },
+    "queue_best_response": {
+      "all_intervention_search_checks_exact": true,
+      "games_with_reorder": 8,
+      "intervention_search_checks": 10,
+      "outcomes_in_reorder_games": {
+        "L": 1,
+        "W": 7
+      },
+      "reorder_call_rate": 0.00015986443495915464,
+      "reorder_episode_ids": [
+        "97840355",
+        "97874650",
+        "97904341",
+        "97927172",
+        "97950020",
+        "97972910",
+        "98171304",
+        "98299080"
+      ],
+      "reorder_steps": 10,
+      "reorders_with_wrong_current_shadow": 0,
+      "shadow_update_errors": 0
+    }
+  },
+  "schema": "kaggriculture-v14-online-runtime-analysis-1",
+  "scope": {
+    "all_v14_public_replays_downloaded": true,
+    "new_games_run": false,
+    "strategy_modified": false,
+    "submission_performed": false,
+    "test_access": false,
+    "v14_public_replays": 87
+  },
+  "score_snapshot": {
+    "a2": {
+      "date": "2026-08-23T11:21:28.827000",
+      "description": "v12 A2 fixed: raw-loader verified causal no-shop-gate guard",
+      "is_active_latest_two": false,
+      "publicScore": 2429.0,
+      "status": "SubmissionStatus.COMPLETE",
+      "submission_id": 55713355
+    },
+    "queried_at_taipei": "2026-08-24T21:22:00.715379+08:00",
+    "score_gap_v14_minus_a2": -543.8,
+    "v14": {
+      "date": "2026-08-23T18:33:19.557000",
+      "description": "v14 Q2b stateful A2 shadow queue best-response; pure-win dual-anchor confirmed",
+      "is_active_latest_two": false,
+      "publicScore": 1885.2,
+      "status": "SubmissionStatus.COMPLETE",
+      "submission_id": 55722630
+    }
+  },
+  "sources": {
+    "a2_episodes": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_online_diagnosis/raw/a2/episodes_full.json",
+      "sha256": "0345341fff3e870087daa530835502ad142e854af4e7c293feab7160a349edd9"
+    },
+    "leaderboard": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_online_diagnosis/raw/snapshot/kaggriculture_public_leaderboard.csv",
+      "sha256": "8a95c4c7d133c678e32e39e3785116df4abb4b9117605fd1baa14f6805e6f20e"
+    },
+    "runtime_probe": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_online_diagnosis/runtime_probe/runtime_probe.json",
+      "sha256": "3b6ff68806d434a7521b6ef0072b3f0e23cf430833321865ce24102401ba0142"
+    },
+    "snapshot": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_online_diagnosis/raw/snapshot/current_snapshot.json",
+      "sha256": "5df977b867023db442190bdbdcb25c21ad9819cd5c4dd3c23a06916f4ee5105c"
+    },
+    "v14_episodes": {
+      "path": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v14_online_diagnosis/raw/v14/episodes_full.json",
+      "sha256": "9f39a03b7921f8e341b34751d2e9781b7ae15abdf9e6713ac2c5812cdd38fb4d"
+    }
+  }
+}

@@ -35,7 +35,10 @@ def _load(name: str, path: Path):
 
 
 def load_kagsim():
-    so = CPPSIM / "kagsim.cpython-312-darwin.so"
+    suffix = sysconfig.get_config_var("EXT_SUFFIX") or ".so"
+    so = CPPSIM / f"kagsim{suffix}"
+    if not so.exists():
+        so = CPPSIM / "kagsim.cpython-312-darwin.so"
     if not so.exists():
         cands = sorted((CPPSIM / "build").glob("lib.*/kagsim*.so"))
         so = cands[-1]
@@ -70,15 +73,24 @@ def play(agent0, agent1, seed: int, shops: list | None = None) -> tuple[float, f
 
     shops: 钉住的商店序列，元素为 "NAME" 或 (NAME, step)（step 被忽略——
     解锁时刻由引擎规则固定为 day 2,5,8,...，与线上一致）。"""
+    schedule = None
     if shops:
         k = load_scenario()
         g = k.Game(seed=seed)
-        names = [s[0] if isinstance(s, (list, tuple)) else s for s in shops]
-        g.force_shops(names)
+        # 逐步揭示：force_shops 的语义是"替换当前可见前缀"，必须每步按 visible_from_step 重设。
+        # 元素 "NAME" 视为按引擎默认节奏（day 2,5,8,... 即 step 72,144,...）解锁。
+        schedule = []
+        for i, s in enumerate(shops):
+            if isinstance(s, (list, tuple)):
+                schedule.append((str(s[0]), int(s[1])))
+            else:
+                schedule.append((str(s), 72 * (i + 1)))
+        g.force_shops([n for n, st in schedule if st <= 0])
     else:
         k = load_kagsim()
         g = k.Game(seed=seed)
     fallback0 = {"farmer": ["PASS"], "hands": [], "market": []}
+    step = 0
     while not _val(g.done):
         o0, o1 = g.observe(0), g.observe(1)
         try:
@@ -90,4 +102,7 @@ def play(agent0, agent1, seed: int, shops: list | None = None) -> tuple[float, f
         except Exception:
             a1 = dict(fallback0)
         g.step(a0, a1)
+        step += 1
+        if schedule is not None:
+            g.force_shops([n for n, st in schedule if st <= step])
     return float(g.reward(0)), float(g.reward(1))

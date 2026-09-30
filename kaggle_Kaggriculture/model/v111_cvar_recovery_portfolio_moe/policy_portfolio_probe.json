@@ -1,0 +1,24 @@
+{
+  "schema": "kaggriculture-v111-policy-portfolio-probe-v1",
+  "status": "REJECT_POLICY_PORTFOLIO_SOURCE_QUALIFICATION",
+  "strategy_proof": false,
+  "contexts": 1152,
+  "growth_score": 0.7795138888888888,
+  "recovery_score": 0.8828125,
+  "best_single_expert_score": 0.8828125,
+  "selected_score": 0.8723958333333334,
+  "selected_vs_growth_uplift_pp": 9.288194444444454,
+  "selected_vs_best_expert_uplift_pp": -1.041666666666663,
+  "positive_zero_negative_vs_growth": [
+    107,
+    1045,
+    0
+  ],
+  "growth_catastrophic_rate": 0.0625,
+  "recovery_catastrophic_rate": 0.057291666666666664,
+  "best_single_expert_catastrophic_rate": 0.057291666666666664,
+  "selected_catastrophic_rate": 0.0625,
+  "oof_selected_recovery_rate": 0.6979166666666666,
+  "label_positive_rate": 0.703125,
+  "tree": "|--- shop_YARN_STORE <= 0.50\n|   |--- shop_PIZZA_SHOP <= 0.50\n|   |   |--- own_money <= 184.00\n|   |   |   |--- class: 1\n|   |   |--- own_money >  184.00\n|   |   |   |--- class: 1\n|   |--- shop_PIZZA_SHOP >  0.50\n|   |   |--- shop_BAKERY <= 0.50\n|   |   |   |--- class: 1\n|   |   |--- shop_BAKERY >  0.50\n|   |   |   |--- class: 1\n|--- shop_YARN_STORE >  0.50\n|   |--- shop_PET_CAFE <= 0.50\n|   |   |--- shop_BAKERY <= 0.50\n|   |   |   |--- class: 0\n|   |   |--- shop_BAKERY >  0.50\n|   |   |   |--- class: 0\n|   |--- shop_PET_CAFE >  0.50\n|   |   |--- rival_money <= 180.50\n|   |   |   |--- class: 0\n|   |   |--- rival_money >  180.50\n|   |   |   |--- class: 0\n"
+}

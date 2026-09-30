@@ -1,0 +1,100 @@
+{
+  "decision": "ADVANCE_AS_V17_SUBMISSION_CANDIDATE_WITH_KNOWN_BOUNDARY",
+  "gold_proof": false,
+  "frozen_package": {
+    "main_sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1",
+    "archive_sha256": "0c1b9b3203924f21389f0b39cfaf9fd535708cdc01c1a7d3ec15359fea1e2ba6",
+    "archive_bytes": 54110,
+    "members": [
+      "main.py"
+    ],
+    "evidence_attribution": "Independent red-team evidence applies only to these exact hashes. Any code or route change is a new unvalidated candidate."
+  },
+  "strategy": {
+    "router_step": 72,
+    "decision_feature": "public town.unlocked_shops[0]",
+    "default_route": "tyz123456::99609968",
+    "yarn_route": "Kronki::99596430",
+    "mapping": {
+      "YARN_STORE": "Kronki::99596430",
+      "OTHER": "tyz123456::99609968"
+    },
+    "prefix_actions_exact_steps_0_71": true,
+    "future_or_private_opponent_fields_used": false
+  },
+  "independent_redteam": {
+    "source_dates": [
+      "2026-08-20",
+      "2026-08-21",
+      "2026-08-22",
+      "2026-08-23",
+      "2026-08-24"
+    ],
+    "behavior_unique_proxy_families": 10,
+    "unseen_seed_range": [
+      45000,
+      45023
+    ],
+    "both_seats": true,
+    "games": 480,
+    "wins_ties_losses": [
+      412,
+      0,
+      68
+    ],
+    "absolute_score_rate": 0.8583333333333333,
+    "family_equal_score_rate": 0.8583333333333334,
+    "worst_family_score_rate": 0.5625,
+    "mean_bank": 85765.1875,
+    "mean_margin": 11766.229166666666,
+    "margin_p10": -1902.0,
+    "margin_cvar10": -8484.270833333334,
+    "paired_router_vs_single_default": {
+      "score_uplift_pp": 0.4166666666666667,
+      "positive_zero_negative": [
+        2,
+        478,
+        0
+      ],
+      "mean_margin_delta": 1554.3458333333333,
+      "mean_own_delta": 2334.139583333333
+    }
+  },
+  "hard_gates": {
+    "causal_state_homomorphism": true,
+    "unit_precondition_valid": [
+      207644,
+      207644
+    ],
+    "hand_shape_match_rate": 1.0,
+    "market_order_limit_compliance": 1.0,
+    "land_success": [
+      64,
+      64
+    ],
+    "seed_buy_success": [
+      6352,
+      6352
+    ],
+    "hire_success_non_dayend": [
+      8790,
+      8792
+    ],
+    "known_hire_boundary": "Two second-HIRE requests at step 242 were rejected for insufficient cash; frozen RC1 is not changed after red-team evaluation.",
+    "raw_loader_callable": "agent",
+    "official_games_done": [
+      4,
+      4
+    ],
+    "research_package_exact_cpp_games": [
+      4,
+      4
+    ]
+  },
+  "evidence_files": [
+    "../portfolio_redteam/heldout_historical_results.json",
+    "../portfolio_redteam/causal_audit.json",
+    "../portfolio_redteam/action_audit.json",
+    "../portfolio_redteam/package_qa.json"
+  ]
+}

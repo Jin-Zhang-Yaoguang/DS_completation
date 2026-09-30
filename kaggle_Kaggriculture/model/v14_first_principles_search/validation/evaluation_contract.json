@@ -1,0 +1,89 @@
+{
+  "schema": "kaggriculture-v14-dual-anchor-evaluation-contract-1",
+  "status": "pre_registered_before_candidate_archives_and_games",
+  "dates": ["2026-08-18", "2026-08-19", "2026-08-20"],
+  "allowed_splits": ["train", "validation"],
+  "test_access": false,
+  "anchors": {
+    "r002": "v12_incumbent_r002",
+    "a2": "v12a2_no_shop_gate"
+  },
+  "candidate_slate": {
+    "minimum_candidates": 1,
+    "maximum_candidates": 3,
+    "candidate_archives_must_be_sealed_before_any_screen_game": true,
+    "candidate_addition_or_replacement_after_seal_forbidden": true,
+    "each_candidate_consumes_screen_once": true,
+    "all_candidates_must_complete_before_finalist_selection": true,
+    "maximum_confirmatory_finalists": 1
+  },
+  "task_design": {
+    "targeted_pairs_per_candidate": [
+      ["candidate", "v12_incumbent_r002"],
+      ["candidate", "v12a2_no_shop_gate"]
+    ],
+    "common_source_panel_for_both_anchors": true,
+    "seat_assignments_per_source_per_anchor": 2,
+    "closed_loop": true,
+    "historical_actions_replayed": false,
+    "screen_sources": 36,
+    "screen_sources_by_date": {"2026-08-18": 12, "2026-08-19": 12, "2026-08-20": 12},
+    "screen_games_per_anchor": 72,
+    "screen_total_games_per_candidate": 144,
+    "confirmatory_sources": 100,
+    "confirmatory_sources_by_date": {"2026-08-18": 34, "2026-08-19": 33, "2026-08-20": 33},
+    "confirmatory_games_per_anchor": 200,
+    "confirmatory_total_games_for_finalist": 400
+  },
+  "metric_definitions": {
+    "pure_win_rate": "wins / all games; a tie is not a win and remains in the denominator",
+    "competition_score_rate": "(wins + 0.5 * ties) / all games; reported only and never substituted for the pure-win gate",
+    "mean_margin": "candidate terminal reward minus anchor terminal reward",
+    "source_cluster": "the two opposite-seat games for one source and one anchor",
+    "confidence_interval": "date-stratified source-cluster percentile bootstrap, 10000 resamples, deterministic SHA256-derived RNG seed, 95 percent interval"
+  },
+  "hard_gates": {
+    "screen": {
+      "integrity": "zero errors; every exact task is DONE/DONE; exact source, pair and opposite-seat closure",
+      "a2_pure_win_rate_min_inclusive": 0.65,
+      "r002_pure_win_rate_min_exclusive": 0.5,
+      "confidence_intervals": "diagnostic only"
+    },
+    "confirmatory": {
+      "single_use": true,
+      "explicit_execute_flag_required": true,
+      "finalist_frozen_before_execution": true,
+      "integrity": "zero errors; every exact task is DONE/DONE; exact source, pair and opposite-seat closure",
+      "a2_pure_win_rate_min_inclusive": 0.65,
+      "r002_pure_win_rate_min_exclusive": 0.5,
+      "confidence_intervals": "reported, not silently converted into a different gate"
+    }
+  },
+  "selection_order": [
+    "pass every screen hard gate",
+    "descending A2 pure win rate",
+    "descending r002 pure win rate",
+    "descending A2 mean margin",
+    "ascending immutable candidate selection index"
+  ],
+  "required_outputs": [
+    "per-anchor W/T/L, pure win rate, competition score rate and mean margin",
+    "date-stratified source-cluster CI95 for pure win rate, competition score rate and mean margin",
+    "per-date and per-candidate-seat W/T/L and metrics",
+    "error count, DONE/DONE count and status counts",
+    "panel, package archive, clean serving closure, registry, evaluator, task and run fingerprints"
+  ],
+  "fail_closed": {
+    "missing_or_unsealed_candidate_artifact_blocks_dry_run_and_execution": true,
+    "test_split_or_any_exposure_overlap_is_fatal": true,
+    "exact_current_archive_bytes_and_all_clean_members_are_hash_bound": true,
+    "raw_agent_entrypoint_from_safe_extraction_only": true,
+    "run_fingerprint_binds_contract_panels_packages_registry_evaluator_pairs_seats_and_sources": true,
+    "resume_requires_identical_fingerprint_paths_and_valid_completed_subset": true,
+    "unknown_duplicate_or_missing_task_is_fatal": true,
+    "schema_engine_closed_loop_trace_seat_status_reward_margin_and_score_are_recomputed_exactly": true,
+    "screen_consume_lock_is_one_per_sealed_candidate": true,
+    "confirmatory_has_one_global_atomic_consume_lock": true,
+    "confirmatory_requires_finalist_derived_from_all_sealed_screen_results": true
+  }
+}

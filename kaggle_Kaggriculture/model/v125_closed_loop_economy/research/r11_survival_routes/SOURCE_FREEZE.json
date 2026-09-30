@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-09-05T15:05:02.125338+00:00",
+  "candidate_id": "V125-R11",
+  "status": "FROZEN_PROTOTYPE_NOT_GOLD",
+  "source_sha256": "1d9ce5dc05bcce400787563c69c74a40cc78bc67f2e9ca3511146f8adaaece57",
+  "implementation_parent": "V125-R0",
+  "parent_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+  "changed_top_level_ast": [
+    "CANDIDATE_ID",
+    "make_tasks"
+  ],
+  "single_primary_change": "普通日危险植物且任务恰好仅WATER时，截止从21小时放到真实可执行的23小时；其他任务链、期末、匹配、经营与市场不变。",
+  "root_cause": "已保存6001席0 step382：小麦目标(2,7)，两名工人在相邻格且PASS；任务仅WATER，却被人工deadline21拒绝，step383日终缺水死亡。",
+  "hypothesis": "恢复普通日最后两个浇水时槽，降低真实缺水死亡至少20%，并使R0新配对分差至少60%改善、中位大于零、两席均值不负。",
+  "limits": "不能解决多动作链、任务低价竞争或采购证据缺口；不宣称完整服务保证。",
+  "fresh_seeds_allocated": false,
+  "diagnostic_procedure": "冻结微测先验证精确保存反例的官方两步、双席构造末帧与终局对照；然后一场已开5001席0诊断；不改本SHA。"
+}

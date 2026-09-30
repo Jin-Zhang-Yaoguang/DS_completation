@@ -1,0 +1,56 @@
+{
+  "schema": "v117-r1-five-layer-feedback-v1",
+  "result_layer": {
+    "idle_games": 16,
+    "idle_mean_bank": 74480.625,
+    "idle_minimum_bank": 64493.0,
+    "synthetic_anchor_games": 24,
+    "synthetic_anchor_win_rate": 0,
+    "synthetic_anchor_mean_margin": -111873.91666666667,
+    "evidence_status": "ENGINEERING_AND_SYNTHETIC_EARLY_STOP_ONLY_NOT_FORMAL_STRENGTH"
+  },
+  "mechanism_layer": {
+    "unit_actions": 135550,
+    "move": 69202,
+    "idle": 27546,
+    "productive": 38802,
+    "move_share": 0.5105274806344522,
+    "idle_share": 0.203216525267429,
+    "productive_share": 0.28625599409811875,
+    "overdue_tasks": 921,
+    "mean_target_realization": 0.9003544149219985,
+    "schema_violations": 0,
+    "safety_rewrites": 0,
+    "invariant_events": 0
+  },
+  "expert_layer": {
+    "implemented": [
+      "BALANCED_BASE",
+      "YARN_WOOL",
+      "SCARCITY_VEGETABLE"
+    ],
+    "status": {
+      "BALANCED_BASE": "ENGINEERING_FALLBACK_FOUNDATION_NOT_QUALIFIED",
+      "YARN_WOOL": "QUARANTINED_PENDING_R3_QUALIFICATION",
+      "SCARCITY_VEGETABLE": "QUARANTINED_PENDING_R3_QUALIFICATION"
+    },
+    "best_fixed_expert": "BALANCED_BASE",
+    "specialist_uplift": null
+  },
+  "router_layer": {
+    "routable_experts": [
+      "BALANCED_BASE"
+    ],
+    "oracle_headroom": null,
+    "BEU": null,
+    "MCU": null,
+    "capture_rate": null,
+    "status": "BLOCKED_BY_EXPERT_QUALIFICATION"
+  },
+  "robustness_layer": {
+    "replay_derived_development": "NOT_RUN",
+    "account_source": "NOT_AVAILABLE",
+    "official_source": "NOT_RUN_FOR_R1_STRENGTH",
+    "synthetic_only": true
+  }
+}

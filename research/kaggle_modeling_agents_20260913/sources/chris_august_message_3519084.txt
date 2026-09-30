@@ -1,0 +1,14 @@
+Thank you. Congratulations achieving 21th place solo. You did great. My final two submissions were my stack which is 456 models combined with NVIDIA cuML logisitic regression. It achieved
+CV 0.97098, Public LB 0.97207, Private LB 0.97176
+. The second final submission was my best
+single model
+. It is GPT 5.6's RealMLP with
+CV 0.97070, Public LB 0.97174, Private LB 0.97145
+.
+Did you notice a similar trade-off? If so, did you intentionally structure Phase 2 around these complementary strengths, or did that workflow emerge naturally during the competition?
+Insightful observation, I also observed this as their natural behavior. Fable seemed to make more creative break throughs while Codex did more careful coding (and good feature engineering detective work). If you look at my GPT vs Fable plots, Fable was winning best single model for a while because it made a bunch of break throughs. Then around Aug 28th, I shared lots of Fable's secrets with GPT which allowed GPT to use them and push them into the best RealMLP.
+I usually let my agents run autonomously for 4-12 hours and then review what they were exploring (by asking for a quick summary). I have great data science instincts myself so I would often tell them where to look for more signal and what they should stop wasting time on. For example once when they hit a plateau, I said "have you studied the missing values and found features to deal with them?". Afterward they studied the NANs for hours and found a new source of signal and improved their models.
+Or for example, I would also share tips about how XGB is different from CAT is different from RealMLP is different from ML etc etc. And how they must adjust their features and search techniques for the different models. Or i would point out important "knobs" they should turn. Stuff like that.
+I’d also really appreciate any advice on reasoning budget and context management for long-running agents—especially how you decide when to use more reasoning effort and when to summarize or discard old experiment history.
+Memory is important. After every 4-12 hour campaign, I had them write down all their new discoveries. This is gold. I can show a new model over 50 discovery.md files containing pure brilliance. My team did this in NeuroGolf comp 1st place too.
+I like to use 1M or more token context and never force a context compact. Because I want it to have as much memory as possible. I can also tell agents to reread all the discovery files. Agents do tens of thousands of experiments over days, they need memory so they don't repeat themselves and so they can continue searching from all avenues that have more potential. In general, I use max thinking when i want break throughs or doing important EDA work or feature engineering detective work. For more routine coding, we can reduce the thinking.

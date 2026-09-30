@@ -1,0 +1,82 @@
+[
+  {
+    "dataset": "r9_real_sales",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r9_cash_prefix/opened_trace_audit/comparison/comparison.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"day\"') AS \"day\",\n  json_extract(value, '$.\"version\"') AS \"version\",\n  json_extract(value, '$.\"daily_cash\"') AS \"daily_cash\",\n  json_extract(value, '$.\"cumulative_cash\"') AS \"cumulative_cash\"\nFROM json_each(:reviewed_json, '$.\"r9_real_sales\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "mean_delta",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r1_development_assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"candidate\"') AS \"candidate\",\n  json_extract(value, '$.\"mean_delta\"') AS \"mean_delta\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"pairs\"') AS \"pairs\",\n  json_extract(value, '$.\"decision\"') AS \"decision\"\nFROM json_each(:reviewed_json, '$.\"mean_delta\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r11_opened",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r11_survival_routes/opened_root_review.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"candidate\"') AS \"candidate\",\n  json_extract(value, '$.\"cash\"') AS \"cash\",\n  json_extract(value, '$.\"plants\"') AS \"plants\",\n  json_extract(value, '$.\"deaths\"') AS \"deaths\",\n  json_extract(value, '$.\"animals\"') AS \"animals\",\n  json_extract(value, '$.\"overflow\"') AS \"overflow\",\n  json_extract(value, '$.\"residual\"') AS \"residual\"\nFROM json_each(:reviewed_json, '$.\"r11_opened\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r11_strength",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r11_survival_routes/fresh_strength_assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"mean\"') AS \"mean\",\n  json_extract(value, '$.\"median\"') AS \"median\",\n  json_extract(value, '$.\"passed\"') AS \"passed\"\nFROM json_each(:reviewed_json, '$.\"r11_strength\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r11_mechanism",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r11_survival_routes/fresh_mechanism_assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"parent\"') AS \"parent\",\n  json_extract(value, '$.\"child\"') AS \"child\",\n  json_extract(value, '$.\"reduction\"') AS \"reduction\",\n  json_extract(value, '$.\"primary\"') AS \"primary\",\n  json_extract(value, '$.\"guard\"') AS \"guard\"\nFROM json_each(:reviewed_json, '$.\"r11_mechanism\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r10_paired_strength",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/fresh_strength_assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"reference\"') AS \"reference\",\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"mean_delta\"') AS \"mean_delta\",\n  json_extract(value, '$.\"median_delta\"') AS \"median_delta\",\n  json_extract(value, '$.\"passed\"') AS \"passed\"\nFROM json_each(:reviewed_json, '$.\"r10_paired_strength\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r10_late_sales",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/fresh_mechanism_audit/assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"parent\"') AS \"parent\",\n  json_extract(value, '$.\"candidate\"') AS \"candidate\",\n  json_extract(value, '$.\"change\"') AS \"change\",\n  json_extract(value, '$.\"passed\"') AS \"passed\"\nFROM json_each(:reviewed_json, '$.\"r10_late_sales\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r10_opt3_execution",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/optimization_03/continuous_official_01/root_execution_review.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"target\"') AS \"target\",\n  json_extract(value, '$.\"approved\"') AS \"approved\",\n  json_extract(value, '$.\"actual\"') AS \"actual\",\n  json_extract(value, '$.\"state\"') AS \"state\"\nFROM json_each(:reviewed_json, '$.\"r10_opt3_execution\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r10_engineering_counts",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/integration_validation/prototype_decision_v1.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"scope\"') AS \"scope\",\n  json_extract(value, '$.\"attempts\"') AS \"attempts\",\n  json_extract(value, '$.\"returned\"') AS \"returned\",\n  json_extract(value, '$.\"result\"') AS \"result\"\nFROM json_each(:reviewed_json, '$.\"r10_engineering_counts\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r9_competitive",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r9_cash_prefix/fresh_strength_assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"reference\"') AS \"reference\",\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"mean_delta\"') AS \"mean_delta\",\n  json_extract(value, '$.\"median_delta\"') AS \"median_delta\"\nFROM json_each(:reviewed_json, '$.\"r9_competitive\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r9_early_cash",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r9_cash_prefix/fresh_mechanism_audit/summary.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"parent\"') AS \"parent\",\n  json_extract(value, '$.\"candidate\"') AS \"candidate\",\n  json_extract(value, '$.\"change\"') AS \"change\"\nFROM json_each(:reviewed_json, '$.\"r9_early_cash\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r10_rejections",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/budget_probe/captured_r9_opened_s0/summary.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"kind\"') AS \"kind\",\n  json_extract(value, '$.\"count\"') AS \"count\",\n  json_extract(value, '$.\"share\"') AS \"share\"\nFROM json_each(:reviewed_json, '$.\"r10_rejections\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r8_competitive",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r8_terminal_net_selection/fresh_strength_assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"reference\"') AS \"reference\",\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"mean_delta\"') AS \"mean_delta\",\n  json_extract(value, '$.\"median_delta\"') AS \"median_delta\"\nFROM json_each(:reviewed_json, '$.\"r8_competitive\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "r7_competitive",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r7_horizon_investment/fresh_strength_assessment/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"reference\"') AS \"reference\",\n  json_extract(value, '$.\"opponent\"') AS \"opponent\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"mean_delta\"') AS \"mean_delta\",\n  json_extract(value, '$.\"median_delta\"') AS \"median_delta\"\nFROM json_each(:reviewed_json, '$.\"r7_competitive\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "fixed_results",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r5_economy_ablations/assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"profile\"') AS \"profile\",\n  json_extract(value, '$.\"cash\"') AS \"cash\",\n  json_extract(value, '$.\"opponent_cash\"') AS \"opponent_cash\",\n  json_extract(value, '$.\"margin\"') AS \"margin\"\nFROM json_each(:reviewed_json, '$.\"fixed_results\"')\nORDER BY CAST(key AS INTEGER);"
+  },
+  {
+    "dataset": "results",
+    "source": "kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r1_development_assessment.json",
+    "sql": "SELECT\n  json_extract(value, '$.\"candidate\"') AS \"candidate\",\n  json_extract(value, '$.\"mean_delta\"') AS \"mean_delta\",\n  json_extract(value, '$.\"positive\"') AS \"positive\",\n  json_extract(value, '$.\"pairs\"') AS \"pairs\",\n  json_extract(value, '$.\"decision\"') AS \"decision\"\nFROM json_each(:reviewed_json, '$.\"results\"')\nORDER BY CAST(key AS INTEGER);"
+  }
+]

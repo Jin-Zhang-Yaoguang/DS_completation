@@ -1,0 +1,87 @@
+{
+  "experiment": "v20_v17_negative_v1_corrector",
+  "competition": "playground-series-s6e8",
+  "created_utc": "2026-08-23T15:53:06Z",
+  "formula": "1.075*v17 - 0.075*v1, then percentile-rank test scores",
+  "selection_policy": "fixed conservative corrector; no meta-model and no full-pool weight fit",
+  "deploy_aligned_oof": {
+    "v8_fixed_weights": {
+      "v2": 0.056,
+      "v6": 0.2832,
+      "v7": 0.6608
+    },
+    "v17_formula": "0.87*v8_fixed_rank + 0.13*v13_xgb_probability",
+    "base_auc": 0.9686574531917227,
+    "corrected_auc": 0.9687928474674852,
+    "delta": 0.0001353942757624793,
+    "base_fold_auc": [
+      0.9679200456391817,
+      0.9687397007368022,
+      0.9687872718917672,
+      0.9693901076134017,
+      0.9684598781555156
+    ],
+    "corrected_fold_auc": [
+      0.96805234492969,
+      0.9689096289263303,
+      0.9689139337866534,
+      0.969500577123905,
+      0.9686005348809607
+    ],
+    "fold_delta": [
+      0.00013229929050828648,
+      0.0001699281895281013,
+      0.00012666189488619306,
+      0.00011046951050330822,
+      0.00014065672544505414
+    ],
+    "folds_won": 5
+  },
+  "transfer_validation": {
+    "method": "importance-weighted AUC by 12-bit train/test missing pattern",
+    "laplace_alpha": {
+      "1": {
+        "base_auc": 0.9694462838785831,
+        "corrected_auc": 0.9695753474687897,
+        "delta": 0.00012906359020659064,
+        "effective_sample_size": 641294.5231818146
+      },
+      "10": {
+        "base_auc": 0.9690406561941961,
+        "corrected_auc": 0.9691701710708785,
+        "delta": 0.0001295148766824461,
+        "effective_sample_size": 643526.4846659328
+      },
+      "100": {
+        "base_auc": 0.968001452476221,
+        "corrected_auc": 0.9681318356338052,
+        "delta": 0.00013038315758417962,
+        "effective_sample_size": 634678.4607967591
+      }
+    }
+  },
+  "diversity": {
+    "spearman_v1_vs_fixed_v17": 0.988924317206546
+  },
+  "prediction_diagnostics": {
+    "raw_test_min_before_rank": -5.387616638669415e-05,
+    "raw_test_max_before_rank": 0.9999799611839325,
+    "raw_test_negative_count": 2,
+    "submission_unique_predictions": 296302
+  },
+  "outputs": {
+    "submission": "submission.csv",
+    "oof": "oof_proba.npy",
+    "test": "test_proba.npy"
+  },
+  "source_sha256": {
+    "v1_oof": "9df92bdb46c735b69e532c0fff673ee216549af4361621e7c15ded92f71bae14",
+    "v1_test": "b65b6ee2cc4ceaeccdb55b2517ab33863fbe8f9e4d78333124fab03da4f4d59a",
+    "v2_oof": "6482030c7ca032a39c721ba7cb0c07cde48f7c6010cd9690582de7805392c9c1",
+    "v6_oof": "209bcb26faf04bffbb22b81a148da9a032e84998b220f3acf99897cefb285a75",
+    "v7_oof": "ef3b48ebc976bfaf4a9dd0f4ffa2a751a43601527dbf3db5f4f024b97428b849",
+    "v13_xgb_oof": "15acb6d58138c1dd6a605fcb0851cc9771ddfc92ec703a0a451e58ad380417e1",
+    "v17_submission": "6b66e8590b7cb4ee0e9f56dda245dc554287f169135abb8fead547b430787278"
+  },
+  "runtime_seconds": 2.0487921237945557
+}

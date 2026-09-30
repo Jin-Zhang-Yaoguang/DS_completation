@@ -1,0 +1,53 @@
+{
+  "candidate": "V125-R2",
+  "decision": "RETIRED_DEV_FAILED",
+  "micro_hypothesis_verified": true,
+  "mean_cash_delta": -3268.0,
+  "positive_pairs": 2,
+  "pairs": [
+    {
+      "seed": 1950905201,
+      "seat": 0,
+      "parent_cash": 167212.0,
+      "child_cash": 158929.0,
+      "delta": -8283.0
+    },
+    {
+      "seed": 1950905201,
+      "seat": 1,
+      "parent_cash": 175120.0,
+      "child_cash": 166281.0,
+      "delta": -8839.0
+    },
+    {
+      "seed": 1950905202,
+      "seat": 0,
+      "parent_cash": 150339.0,
+      "child_cash": 163566.0,
+      "delta": 13227.0
+    },
+    {
+      "seed": 1950905202,
+      "seat": 1,
+      "parent_cash": 152295.0,
+      "child_cash": 160138.0,
+      "delta": 7843.0
+    },
+    {
+      "seed": 1950905203,
+      "seat": 0,
+      "parent_cash": 168398.0,
+      "child_cash": 148915.0,
+      "delta": -19483.0
+    },
+    {
+      "seed": 1950905203,
+      "seat": 1,
+      "parent_cash": 168663.0,
+      "child_cash": 164590.0,
+      "delta": -4073.0
+    }
+  ],
+  "interpretation": "消除了人工依赖死锁，但新场景现金增量仅2/6为正；这版全时移除可选施肥依赖未建立经济增益。下一步保留反例，研究有截止约束的局部救火，不将此版晋级。",
+  "mechanism_audit": "IN_PROGRESS_SAME_TRACES"
+}

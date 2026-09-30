@@ -1,0 +1,106 @@
+{
+  "experiment": "v19_clean_id_xgb",
+  "competition": "playground-series-s6e8",
+  "created_utc": "2026-08-23T15:52:52Z",
+  "question": "v13/v17 的互补增益是否依赖错误纳入的 id",
+  "fold_contract": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "row_order": "official train.csv order"
+  },
+  "feature_contract": {
+    "dirty_feature_count": 126,
+    "clean_feature_count": 125,
+    "removed": [
+      "id"
+    ],
+    "all_other_features_and_xgb_params_identical_to_v13": true
+  },
+  "id_diagnostics": {
+    "standalone_auc": 0.500697787865504,
+    "target_rate_by_100_id_bins_min": 0.6961238067688748,
+    "target_rate_by_100_id_bins_max": 0.7218686722591843,
+    "target_rate_by_100_id_bins_std": 0.004982416924395747,
+    "test_id_entirely_outside_train_range": true
+  },
+  "single_model": {
+    "dirty_v13_xgb_oof_auc": 0.9664281176495029,
+    "clean_v13_xgb_oof_auc": 0.9664705097686788,
+    "delta_clean_minus_dirty": 4.239211917589358e-05,
+    "dirty_fold_auc": [
+      0.9657783150865245,
+      0.9664008419857201,
+      0.9665329317038452,
+      0.9672004981439138,
+      0.966242745671243
+    ],
+    "clean_fold_auc": [
+      0.9658910231649905,
+      0.966341263297328,
+      0.9665721892289282,
+      0.9672276210220541,
+      0.9663308579289241
+    ],
+    "fold_delta_clean_minus_dirty": [
+      0.00011270807846608388,
+      -5.9578688392125656e-05,
+      3.925752508293634e-05,
+      2.7122878140217743e-05,
+      8.811225768112774e-05
+    ],
+    "folds_won": 4,
+    "best_iterations": [
+      1974,
+      1965,
+      1847,
+      1927,
+      1743
+    ]
+  },
+  "fixed_v17_weight_comparison": {
+    "formula_dirty": "0.87*v8 + 0.13*v13_xgb_with_id",
+    "formula_clean": "0.87*v8 + 0.13*v13_xgb_without_id",
+    "dirty_oof_auc": 0.9686565466802174,
+    "clean_oof_auc": 0.968658286804366,
+    "delta_clean_minus_dirty": 1.7401241486636465e-06,
+    "dirty_fold_auc": [
+      0.967915927262759,
+      0.9687343599393834,
+      0.9687828693494009,
+      0.9694029747488075,
+      0.9684558772104777
+    ],
+    "clean_fold_auc": [
+      0.9679403787273114,
+      0.9687216790341584,
+      0.9687885455641206,
+      0.9694017008227344,
+      0.9684496904488691
+    ],
+    "fold_delta_clean_minus_dirty": [
+      2.4451464552432967e-05,
+      -1.268090522499321e-05,
+      5.676214719696482e-06,
+      -1.2739260731864377e-06,
+      -6.186761608573121e-06
+    ],
+    "folds_won": 2
+  },
+  "outputs": {
+    "clean_oof": "xgb_clean_oof_proba.npy",
+    "clean_test": "xgb_clean_test_proba.npy",
+    "clean_single_submission": "submission_xgb_clean.csv",
+    "clean_fixed_pair_submission": "submission_v17_weight_clean_id.csv"
+  },
+  "source": {
+    "v13_code": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Predicting_Smartphone_Addiction/model/v13_fe_single_compare/v13_fe_single_compare.py",
+    "v13_code_sha256": "9612d3d78fb31d4781e5fec5ec30774e58477220143a2263ccdbbec38cb3ae29",
+    "dirty_oof_sha256": "15acb6d58138c1dd6a605fcb0851cc9771ddfc92ec703a0a451e58ad380417e1",
+    "dirty_test_sha256": "a3575d9ac795c733c5512ccec049713e50341a385e74b7979039de3ae7fdaaf5",
+    "v8_oof_sha256": "43f804b1f04536f5fe7d20e677767ca11250d86de86f3e515168c94b274cd670",
+    "v8_test_sha256": "1a035cff5ae1f7fd0fbd5d57951f3247b255c6bf7df3fc6d6f1b5f643bebb320"
+  },
+  "runtime_seconds": 382.52711391448975,
+  "xgb_training_seconds": 376.5912489891052
+}

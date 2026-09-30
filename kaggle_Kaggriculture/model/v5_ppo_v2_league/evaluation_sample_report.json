@@ -1,0 +1,103 @@
+{
+  "schema": "kaggriculture-ppo-v2-evaluation-1",
+  "weights": "policy_weights.npz",
+  "paired": {
+    "seeds": 50,
+    "games": 100,
+    "score_rate": 0.37,
+    "bootstrap_95_ci": [
+      0.295,
+      0.445
+    ],
+    "mean_margin": -1223.82
+  },
+  "pool": {
+    "v0": {
+      "v1": {
+        "games": 20,
+        "score_rate": 1.0,
+        "mean_margin": 157530.2
+      },
+      "v3": {
+        "games": 20,
+        "score_rate": 1.0,
+        "mean_margin": 157530.2
+      },
+      "score_delta": 0.0
+    },
+    "v1": {
+      "v1": {
+        "games": 20,
+        "score_rate": 0.4,
+        "mean_margin": -496.6
+      },
+      "v3": {
+        "games": 20,
+        "score_rate": 0.325,
+        "mean_margin": -1677.05
+      },
+      "score_delta": -0.07500000000000001
+    },
+    "starter": {
+      "v1": {
+        "games": 20,
+        "score_rate": 1.0,
+        "mean_margin": 164196.3
+      },
+      "v3": {
+        "games": 20,
+        "score_rate": 1.0,
+        "mean_margin": 164196.3
+      },
+      "score_delta": 0.0
+    },
+    "random": {
+      "v1": {
+        "games": 20,
+        "score_rate": 1.0,
+        "mean_margin": 165004.45
+      },
+      "v3": {
+        "games": 20,
+        "score_rate": 1.0,
+        "mean_margin": 159856.65
+      },
+      "score_delta": 0.0
+    },
+    "forced_low": {
+      "v1": {
+        "games": 20,
+        "score_rate": 0.65,
+        "mean_margin": 3487.45
+      },
+      "v3": {
+        "games": 20,
+        "score_rate": 0.7,
+        "mean_margin": 3221.3
+      },
+      "score_delta": 0.04999999999999993
+    },
+    "forced_high": {
+      "v1": {
+        "games": 20,
+        "score_rate": 0.85,
+        "mean_margin": 11418.65
+      },
+      "v3": {
+        "games": 20,
+        "score_rate": 0.8,
+        "mean_margin": 11314.0
+      },
+      "score_delta": -0.04999999999999993
+    }
+  },
+  "pool_score_delta": -0.012500000000000002,
+  "inference_ms": 0.03411960447556339,
+  "gates": {
+    "direct_score_rate_ge_53pct": false,
+    "bootstrap_lower_gt_50pct": false,
+    "pool_composite_better_than_v1": false,
+    "no_opponent_decline_gt_2pp": false,
+    "inference_lt_5ms": true
+  }
+}

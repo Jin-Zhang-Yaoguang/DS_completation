@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+"""Multi-model paired screen of five top-team routes against V20."""
+
+from __future__ import annotations
+
+import concurrent.futures
+import json
+import os
+import statistics
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[1]
+MODEL = PROJECT / "model"
+V19 = MODEL / "v19_hierarchical_moe"
+CPPSIM = MODEL / "community_research" / "2026-08-26" / "live_cli" / "external_repos" / "kaggriculture-cppsim"
+FACTORY = MODEL / "v10_replay_lolo_router"
+sys.path[:0] = [str(PROJECT.parent), str(HERE), str(V19), str(FACTORY), str(sorted((CPPSIM / "build").glob("lib.*"))[-1])]
+
+import kagsim  # type: ignore
+from agent_factory import Registry, create_agent  # type: ignore
+from hierarchical_policy import make_agent
+from top_route_panel import ROUTES, make_route_agent
+
+
+OPPONENTS = {
+    "v13c_a2": MODEL / "v13c_a2_v8_no_wool_throttle" / "main.py",
+    "v16_town_drain": MODEL / "v16_s2_town_drain_challenger" / "main.py",
+    "v17_portfolio": MODEL / "v16_gold_strategy_research" / "top_complete_portfolio" / "main.py",
+    "v18_shop_moe": MODEL / "v18_shop_demand_moe" / "main.py",
+    "v19_gold": MODEL / "v19_hierarchical_moe" / "main.py",
+}
+SEEDS = tuple(range(97000, 97016))
+MODES = ("v20", *ROUTES)
+
+
+def score(margin: float) -> float:
+    return 1.0 if margin > 0 else 0.5 if margin == 0 else 0.0
+
+
+def play(policy, opponent, seed: int, seat: int) -> tuple[float, float]:
+    agents = [None, None]
+    agents[seat], agents[1 - seat] = policy, opponent
+    game = kagsim.Game(seed)
+    while not game.done:
+        observations = [game.observe(0), game.observe(1)]
+        game.step(agents[0](observations[0]), agents[1](observations[1]))
+    return float(game.reward(seat)), float(game.reward(1 - seat))
+
+
+def run_job(payload: tuple[str, str, int, int]) -> dict:
+    mode, family, seed, seat = payload
+    policy = make_agent("switch_360", seller_mode="demand_delay_25") if mode == "v20" else make_route_agent(mode)
+    registry = Registry(path=Path(__file__).resolve(), models={}, raw={})
+    opponent = create_agent(registry, {
+        "id": f"v21_{mode}_{family}_{seed}_{seat}_{os.getpid()}",
+        "kind": "python", "path": str(OPPONENTS[family]), "entrypoint": "agent",
+    })
+    own, opp = play(policy, opponent, seed, seat)
+    return {"mode": mode, "family": family, "seed": seed, "seat": seat, "own": own, "opp": opp, "margin": own - opp}
+
+
+def summarize(rows: list[dict]) -> dict:
+    return {
+        "games": len(rows),
+        "wins_ties_losses": [sum(r["margin"] > 0 for r in rows), sum(r["margin"] == 0 for r in rows), sum(r["margin"] < 0 for r in rows)],
+        "score_rate": statistics.mean(score(r["margin"]) for r in rows),
+        "mean_bank": statistics.mean(r["own"] for r in rows),
+        "mean_margin": statistics.mean(r["margin"] for r in rows),
+    }
+
+
+def main() -> int:
+    jobs = [(mode, family, seed, seat) for mode in MODES for family in OPPONENTS for seed in SEEDS for seat in (0, 1)]
+    with concurrent.futures.ProcessPoolExecutor(max_workers=max(1, os.cpu_count() or 1)) as pool:
+        rows = list(pool.map(run_job, jobs, chunksize=4))
+    baseline = {(r["family"], r["seed"], r["seat"]): r for r in rows if r["mode"] == "v20"}
+    metrics = {}
+    for mode in MODES:
+        selected = [r for r in rows if r["mode"] == mode]
+        by_family = {family: summarize([r for r in selected if r["family"] == family]) for family in OPPONENTS}
+        result = {**summarize(selected), "family_equal_score_rate": statistics.mean(v["score_rate"] for v in by_family.values()), "worst_family_score_rate": min(v["score_rate"] for v in by_family.values()), "by_family": by_family}
+        if mode != "v20":
+            paired = []
+            for r in selected:
+                base = baseline[(r["family"], r["seed"], r["seat"])]
+                paired.append({"score_delta": score(r["margin"]) - score(base["margin"]), "margin_delta": r["margin"] - base["margin"], "own_delta": r["own"] - base["own"]})
+            result["paired_vs_v20"] = {
+                "score_uplift_pp": 100 * statistics.mean(r["score_delta"] for r in paired),
+                "positive_zero_negative": [sum(r["score_delta"] > 0 for r in paired), sum(r["score_delta"] == 0 for r in paired), sum(r["score_delta"] < 0 for r in paired)],
+                "margin_delta_mean": statistics.mean(r["margin_delta"] for r in paired),
+                "own_delta_mean": statistics.mean(r["own_delta"] for r in paired),
+            }
+        metrics[mode] = result
+    result = {
+        "schema": "kaggriculture-v21-top-route-multimodel-screen-v1",
+        "status": "DEVELOPMENT_SCREEN_NOT_CONFIRMATION",
+        "engine": str(kagsim.ENGINE_VERSION),
+        "seed_range": [SEEDS[0], SEEDS[-1]],
+        "opponent_families": list(OPPONENTS),
+        "double_seat": True,
+        "route_sources": {name: {"team": team, "episode": episode} for name, (team, episode) in ROUTES.items()},
+        "metrics": metrics,
+        "rows": rows,
+    }
+    (HERE / "top_route_screen_results.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({mode: {key: value for key, value in metric.items() if key != "by_family"} for mode, metric in metrics.items()}, ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

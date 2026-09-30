@@ -1,0 +1,48 @@
+{
+  "id": "v14_queue_s1",
+  "kind": "python",
+  "path": "main.py",
+  "factory": "make_agent",
+  "family": "a2-s1-stateful-shadow-queue-best-response",
+  "lineage": [
+    "learned_router",
+    "r002_learned_router_topday_animal_throttle",
+    "v12a_terminal_branch_guard",
+    "v12a2_no_shop_gate",
+    "v14_s1_inventory_neutral_wheat_squeeze",
+    "v14_queue_s1"
+  ],
+  "parent_models": ["v12a2_no_shop_gate"],
+  "change_scope": "完整 S1 父策略负责库存中性 WHEAT squeeze，并叠加独立 A2 对手影子下的 SELL 队列重排；任一一致性门失败即回退父策略",
+  "tags": [
+    "a2-descendant",
+    "inventory-neutral-wheat-squeeze",
+    "stateful-opponent-shadow",
+    "sell-queue-best-response",
+    "fail-closed",
+    "preregistered",
+    "rejected-no-incremental-wins",
+    "provisional-package-only"
+  ],
+  "code_paths": [
+    "main.py",
+    "../v14_first_principles_search/prototype_queue_solver.py",
+    "../v14_first_principles_search/alternatives/s1_wheat_squeeze/main.py",
+    "../v12a2_no_shop_gate/main.py",
+    "../v12a_terminal_branch_guard/main.py",
+    "../v11_iterative_league/runs/round_002/strategy/registry_next.json",
+    "../v11_iterative_league/fast_router.py",
+    "../v10_replay_lolo_router/agent_factory.py",
+    "../v10_replay_lolo_router/expert_registry.py",
+    "../v10_replay_lolo_router/variants.py",
+    "../v10_replay_lolo_router/router.py",
+    "../v10_replay_lolo_router/learned_router_weights.npz",
+    "../v1_adaptive_market/main.py",
+    "../v2_survival_guard/main.py",
+    "../v5_rule_hybrid/main.py",
+    "../v5_rule_hybrid/base_agent.py",
+    "../v5_rule_hybrid/routes.py",
+    "../v5_rule_hybrid/v1_fallback.py",
+    "../v8_kawa_lead2_slot/main.py"
+  ]
+}

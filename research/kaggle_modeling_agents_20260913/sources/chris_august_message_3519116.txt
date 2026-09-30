@@ -1,0 +1,9 @@
+Chris, congratulations. Your missingness answer to Exposed lands on a measurement I published this month that reads like a contradiction of it and is not.
+Section 7 of
+my notebook
+is titled "missingness tells you nothing about the target", and the numbers under it are deliberately narrow: the count of missing columns scores 0.5017 on its own, and the largest gap any single column opens between its missing rows and its present ones is 0.0042 against a base rate of 0.709. That is about the
+pattern
+of which cells are absent, as a direct predictor of the label. It is why I told readers the adversarial alarm, which separates train from test at about 0.566 and sits entirely in the missingness, was safe to ignore.
+Section 5 is much closer to your result. The constraint ryota517 published first — daily screen time never below social + gaming + work/study — is a generator fingerprint, and it means a missing driver is partly recoverable by exact arithmetic from the columns that remain. Section 4b sizes it: 46% of what gaming_hours and work_study_hours add on top of the three screen columns disappears once you keep only the rows where both drivers are observed. Nearly half of what looked like two features' signal was recovery of missing values, by arithmetic the trees already do implicitly, which is also why section 7 still says MICE buys nothing.
+So possibly one lesson from two ends: the pattern of what is missing says nothing about the label, and what is missing is often recoverable from what is not. I would be glad to be wrong about the mechanism if what your agents found is orthogonal to it.
+One number toward Exposed's ceiling, from a different pool: 111 members on the verified seed-42 partition reach CV 0.969816, and 47 more whose fold protocol I could not verify take it to 0.970064. Two independently assembled pools landing on the same ceiling is what makes CV 0.97070 from a single model the number I keep looking at.

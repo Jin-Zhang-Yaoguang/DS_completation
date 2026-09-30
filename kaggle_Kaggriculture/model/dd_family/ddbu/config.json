@@ -1,0 +1,19 @@
+{
+  "version": "ddbu",
+  "method": "Neural autoregressive joint behavior cloning",
+  "architecture": "2531->384 ReLU->192 tanh encoder; 192-hidden GRU over 26 slots, previous joint-request embedding64, slot embedding16, local unit16; shared 725-class raw request vocabulary",
+  "loss": "Masked cross entropy over active units and market requests through first STOP. Unknown validation requests excluded from CE and reported. No execution correction.",
+  "optimizer": "AdamW lr8e-4 wd1e-4 cosine to8e-5, gradient clip1",
+  "epochs_max": 20,
+  "batch": 256,
+  "patience": 5,
+  "selection": "Lowest validation teacher-forced cross entropy, no competitive results used. Validation is research holdout, not untouched competition test.",
+  "seed": 21092026,
+  "device": "mps",
+  "torch": "2.14.0",
+  "parameters": 1399989,
+  "training_data_manifest_sha256": "6e8082505b7f63e063d1b9b52db98bbdb70c3f9deddbc2b99b32c13c40d416e9",
+  "trainer_sha256": "19138f0a9d7f123ace48ebf9a15f37176ee47bfdd8f01b24f2e1782e7a245be5",
+  "architecture_sha256": "c2a1ef9777b5c6c426e6e49fd99258984858ff2d32dc17b28c54819b5a3b7005",
+  "runtime_sha256": "27e26d51c7bad818fa2aaa2f6f46e18bd3ff7d12c11a9d3a5e12c043fca8aaf1"
+}

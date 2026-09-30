@@ -1,0 +1,88 @@
+{
+  "created_at_utc": "2026-09-05T11:50:54.522919+00:00",
+  "status": "SOURCE_AND_TOOLS_FROZEN_BEFORE_ANY_COMPLETE_R9_GAME",
+  "candidate": "V125-R9",
+  "source_sha256": "e7f1fd549fc67ccec74015299af5366812abe43ec78c4142bb019429b6bb22e0",
+  "implementation_parent": "V125-R8",
+  "references": [
+    "V125-R0",
+    "V125-R8"
+  ],
+  "formal_gate_protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+  "hypothesis": "A dated predicted-cash-prefix constraint permits affordable investment before all lifetime care costs are paid, increasing real early production sales under unchanged net-terminal-value selection and execution. Existing observed assets alone may provide delayed conditional forecast credit.",
+  "scope": "Finance feasibility and its necessary pure helpers/diagnostics only. Preserve R8 net_cash_model, net/labor execution scores, net selection, calendars, labor scheduling, action contracts, market and procurement rules. Prefix mode may reprice shared feed cash for funding without silently changing net ranking. full_reserve ablation must take the old R8 budget path.",
+  "opened_diagnostic_seed": 1950905001,
+  "fresh_development_seeds": [
+    1950905901,
+    1950905902,
+    1950905903
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponents": [
+    "PASS",
+    "V120"
+  ],
+  "candidate_count": 3,
+  "expected_fresh_development_games": 36,
+  "required_run_options": {
+    "backend": "official",
+    "parity": true,
+    "trace": true,
+    "audit_actions": true,
+    "daily": true,
+    "diagnostics": true,
+    "workers": 1
+  },
+  "credit_policy": {
+    "assets": "Freeze current own physically planted/placed assets from each observation. Opponent, seeds, unplaced animals, carried/shed goods and new permits receive no credit.",
+    "goods": "Only non-WHEAT and non-FERTILIZER calendar production of qualified assets. Physical WHEAT inventory may offset cash feed demand once but no future WHEAT production or resale credit.",
+    "timing": "Harvest-model day d credits no earlier than d+1. On every day deduct and test all costs first, then add that day credit. Current day credit is zero; day29 production has no permitted day30 credit.",
+    "valuation": "Aggregate qualified same-product same-credit-day units once, multiplied by the single conditional post-batch price at modeled inventory on d+1, which already contains the d production. Do not add those units to inventory again. This is a conservative model endpoint quote, not claimed exact live execution.",
+    "new_project": "New permits and unplaced commitments add dated costs/work and modeled supply only. They get no credit until a later real observation shows them in the field.",
+    "repricing": "Trial views recheck the entire shared expense and credit prefix after additional supply. Each qualified credit batch is capped at min(original baseline batch credit, repriced batch credit). Rejecting a trial restores all shared state and cannot double-apply supply.",
+    "cash": "Real current BUY/HIRE/material/land requests must fit actual observed cash and current commitments; neither same-frame unsold goods nor forecast credits increase actual market cash.",
+    "shortfall": "Never clamp a negative prefix into solvency. Keep existing care. Preserve only old zero-new-cash owned-seed reuse when original q.cash_reserved_model==0 and every trial prefix is no lower than the existing baseline; mark EXISTING_SHORTFALL_ZERO_NEW_CASH_REUSE separately, never as fully financed.",
+    "costs": "Only still-unpaid fixed commitments/new permits/land count principal at current date. Allocate real owned wheat once; cash feed only for required external units and old buffer. Keep opportunity cost in net ranking. Use dated Fibonacci wages/market-slot limits.",
+    "conditional_boundary": "Ideal care, delivery, prices, and storage remain forecasts; next-day delay and origin restrictions do not guarantee real solvency or profitability."
+  },
+  "promotion_rule": {
+    "complete": "All36 prescribed cells retained,719decisions per seat,zero errors,official/v3 full state parity,max callable<=1000ms. Preserve and stop on engine or candidate error. No outcome removal.",
+    "strength": "Against BOTH R0 and R8, for each opponent separately >=4/6 positive two-sided margin deltas, median>0, mean>=0 in each seat.",
+    "primary": "For EACH opponent separately, early self-produced non-WHEAT sales cash summed over6games must be >=1.2 times R8. Each seat3game sum must not decline. Use exact integer5*R9>=6*R8. Parent sum0 or any provenance PENDING does not automatically pass.",
+    "boundary": "Development prescreen only. FormalG1/G2/G3/G4/G5 still required; a local revenue increase does not qualify gold."
+  },
+  "primary_mechanism": {
+    "name": "Real self-produced non-WHEAT gross sales cash during days0..9",
+    "unit": "Actual accepted SELL at decision steps0..239 inclusive, including genuine fertilizer sales even though fertilizer receives no forecast credit.",
+    "provenance": "Use frozen summarize_first_produced_sale_v3.py on frozen official saved-action audits. All qualifying non-WHEAT opening liquid stock and outside purchases must be zero; event flows nonnegative and exactly reconciled. Otherwise entire game is PENDING.",
+    "statistic": "Raw realized early cash sums over fixed6game opponent block; compare candidate and parent totals, then independently3game seat sums. Zero early candidate sales is a legitimate0 when no event with complete evidence.",
+    "companions": [
+      "First sale elapsed/raw step/item/whole-frame quantity and cash",
+      "Early actual seed, animal, land, hire and feed cash expenditure; actual deployed assets",
+      "Daily actual money, conditional credits, cost components and first/minimum projected prefix",
+      "Prediction versus realized eligible produced sales; no forecast is called actual",
+      "Animal purchases/placement/loss/product count, planted crops/first water/drought, escapes, invalid actions, storage overflow and final realization",
+      "Both full-game cash sides and all reference/opponent strength comparisons"
+    ]
+  },
+  "micro_requirements": [
+    "Early deficit not hidden by late income; wages paid before same-day credit",
+    "Current actual cash cannot borrow forecast income or same-frame SELL",
+    "Current observed own-field eligibility only; no new/transit/opponent/FERTILIZER/WHEAT credit",
+    "Day28 collection credit timing and day29 exclusion; no imaginary step719 action",
+    "Shared income and owned wheat not reused by multiple accepted projects",
+    "Paid principal not deducted again; original feed buffer and all dated wages included",
+    "Post-batch valuation no duplicate inventory addition; credit ceiling and whole-prefix repricing",
+    "Rejected trials do not change any shared supply, cost, credit or permit state",
+    "full_reserve mode short official action controls match frozenR8; fixed forbidden functions AST unchanged",
+    "Existing negative prefixes disclosed; narrowly separated zero-new-cash reuse cannot deepen them"
+  ],
+  "seed_exposure_policy": "No5901..5903 candidate/reference execution before candidate, all analysis tools and full dependency bundle freeze.",
+  "training_data": "NONE_RULES_AND_ALREADY_OPENED_OWN_DIAGNOSTICS_ONLY",
+  "frozen_at_utc": "2026-09-05T11:59:57.573545+00:00",
+  "prefreeze_protocol_sha256": "599a00135a3aabba71086714a95b5312ef2d28dc4ac10b593b48dfc7dbb77f2b",
+  "metric_tool_sha256": "346f0f05786e4228135cf6e6840cff302666b1104e18e42643d528db3cc4a5d1"
+}

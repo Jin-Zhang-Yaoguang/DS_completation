@@ -1,0 +1,86 @@
+{
+  "schema": "kaggriculture-v10-pairwise-summary-1",
+  "created_at": "2026-08-21T18:10:17.972747+00:00",
+  "run_fingerprint": "2a58e8d2671a7bafc7d120aca96405e368afe52c4d400784674980c3811475e6",
+  "closed_loop": true,
+  "trace_agent_used": false,
+  "models": [
+    "baseline_v1",
+    "v1_topdays"
+  ],
+  "expected_pairs": 1,
+  "observed_pairs": 1,
+  "games_per_pair": 2,
+  "include_self_play": false,
+  "formal_gate_complete": true,
+  "expected_tasks": 2,
+  "deduplicated_tasks": 2,
+  "incomplete_pairs": [],
+  "pairs": {
+    "baseline_v1__vs__v1_topdays": {
+      "model_a": "baseline_v1",
+      "model_b": "v1_topdays",
+      "scheduled_games": 2,
+      "observed_games": 2,
+      "valid_games": 2,
+      "paired_seeds": 1,
+      "complete": true,
+      "wins_a": 2,
+      "ties": 0,
+      "losses_a": 0,
+      "score_rate_a": 1.0,
+      "paired_score_rate_a": 1.0,
+      "paired_score_ci95": [
+        1.0,
+        1.0
+      ],
+      "mean_margin_a": 6.0,
+      "by_date": {
+        "2026-08-18": {
+          "games": 2,
+          "score_rate_a": 1.0
+        }
+      },
+      "errors": 0,
+      "not_done": 0
+    }
+  },
+  "score_matrix": {
+    "baseline_v1": {
+      "baseline_v1": 0.5,
+      "v1_topdays": 1.0
+    },
+    "v1_topdays": {
+      "baseline_v1": 0.0,
+      "v1_topdays": 0.5
+    }
+  },
+  "provenance": {
+    "registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/fixed_registry.json",
+    "registry_sha256": "55d924e5b80d258de04568bc9ab6c28b29e930fc5b848bf64d3cdb26c7784d1f",
+    "evaluation_implementation_sha256": "b0c21cd1235c428355f28c0600892ad0d113e3067db8071fea42738205064b5d",
+    "seed_manifest": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/evaluation_seed_manifest.jsonl",
+    "dates": [
+      "2026-08-18",
+      "2026-08-19",
+      "2026-08-20"
+    ],
+    "split": "train",
+    "random_seed": 2026082201,
+    "seed_panel": [
+      {
+        "date": "2026-08-18",
+        "seed": 2090473140,
+        "episode_id": "94324446",
+        "split": "train",
+        "source_path": "2026-08-18/94324446.json",
+        "lineage_fold": ""
+      }
+    ],
+    "num_shards": 1,
+    "shard_index": 0,
+    "run_fingerprint": "2a58e8d2671a7bafc7d120aca96405e368afe52c4d400784674980c3811475e6",
+    "jsonl": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/smoke/games.jsonl",
+    "merged_jsonl": []
+  }
+}

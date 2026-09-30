@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["candidate", "archive", "archive_sha256", "main_sha256", "frozen_at", "development_direct_replay_dates", "development_seeds", "confirm_data_accessed_before_freeze"],
+  "properties": {
+    "candidate": {"enum": ["market_mpc", "task_dag_repair", "combined"]},
+    "archive": {"type": "string"},
+    "archive_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "main_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "frozen_at": {"type": "string"},
+    "development_direct_replay_dates": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "development_seeds": {"type": "array", "items": {"type": "integer"}, "uniqueItems": true},
+    "confirm_data_accessed_before_freeze": {"const": false},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}

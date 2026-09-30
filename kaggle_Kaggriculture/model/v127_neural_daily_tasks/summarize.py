@@ -1,0 +1,90 @@
+from pathlib import Path
+import json,hashlib,itertools,collections
+import numpy as np
+B=Path(__file__).resolve().parent
+rows=json.loads((B/'confirmation_games.json').read_text());s=json.loads((B/'confirmation_summary.json').read_text());frozen=json.loads((B/'confirmation_freeze.json').read_text())
+assert len(rows)==48
+assert all(hashlib.sha256((B/f).read_bytes()).hexdigest()==h for f,h in frozen.items())
+assert all(r['statuses']==['DONE','DONE'] for r in rows)
+comparisons={}
+for control in ['v126','time_tasks']:
+ for opponent in ['starter','frozen_local']:
+  a={(r['seed'],r['seat']):r for r in rows if r['candidate']=='neural_tasks' and r['opponent']==opponent};b={(r['seed'],r['seat']):r for r in rows if r['candidate']==control and r['opponent']==opponent};assert a.keys()==b.keys();seeds=sorted({k[0] for k in a});result={}
+  for metric in ['own_cash','margin']:
+   deltas={seed:np.mean([a[(seed,seat)][metric]-b[(seed,seat)][metric] for seat in [0,1]]) for seed in seeds};samples=[np.mean([deltas[seed] for seed in sample]) for sample in itertools.product(seeds,repeat=len(seeds))];result[metric]={'mean_delta':float(np.mean(list(deltas.values()))),'seed_deltas':deltas,'seed_block_bootstrap95':np.quantile(samples,[.025,.975]).tolist()}
+  comparisons[control+':'+opponent]=result
+(B/'paired_comparisons.json').write_text(json.dumps(comparisons,indent=2))
+manifest=json.loads((B/'deployment_manifest.json').read_text());m=json.loads((B/'plan_metrics.json').read_text())
+text='''# V127：神经日任务规划＋状态反馈执行
+
+## 结论
+
+已完成并训练新的日任务策略，替代 V126 的逐步原始动作预测。新种子确认面板包含 4 个 seed、2 个席位、2 个对手、3 个候选，共 48 局。
+
+**任务版自身的 16 局全部正常结束，牲畜逃逸 0 次，缺水损失 0 次。** 同面板 V126 平均每局牲畜逃逸 7.125 次，缺水损失 13.4375 次。此前的生产维护失败在这个样本中得到修复，但这不是所有地图和状态下的形式保证。
+
+对官方 starter，任务版 8 胜 0 负；对冻结本地强策略仍为 0 胜 8 负。策略可用于继续研究，尚未达到强比赛策略的验证标准。
+
+## 具体改动
+
+网络每天运行一次，输出 100 格的目标作物/牲畜类型，以及当日工人数和土地目标。执行器依据当前实际资产将目标转成待办任务：备料、搬运、建造、播种、喂食、浇水、护理、收获、收集肥料和变现。
+
+- 喂食/浇水是维持已有资产的必要任务，优先于新增投资；不是赌网络每一步都猜中 FEED/WATER。
+- 每步从实际状态重建剩余工作，保留未完成任务的工人认领；动作发出不等于任务完成。
+- 同一目标不能同时被多个工人认领；按官方执行顺序投影共享种子、仓库和单位状态。
+- 已有同类资产会抵扣新增目标，避免网络位置预测变化后重复采购。空间目标作为建造偏好，不为追逐目标图而拆除仍在生产的资产。
+- 仓库不足时保留携带物，或只存入能容纳的数量；维护用小麦与牲畜不被无差别 DROP。
+- 必须先执行单位动作，再根据入库、剩余现金和库存生成市场订单。资金不足或当日路程不足的增长任务会延期，不能承诺所有预测增长目标都必然完成。
+
+本轮执行器包含明确的工程决策：按任务优先级和距离分配工人、为已持有资产维护、按成熟条件收获、保留饲料并卖出产品。**这些能力属于执行器，不把它们冒充网络学到的能力。** 网络控制的是生产结构和规模，而不是每一步移动或售价择时。
+
+## 新种子同条件对比
+
+| 候选 | 对手 | 局数 | 胜/负 | 平均终局现金 | 平均现金差 | 每局牲畜逃逸 | 每局缺水损失 |
+|---|---|---:|---:|---:|---:|---:|---:|
+'''
+labels={'neural_tasks':'神经日计划＋执行器','time_tasks':'固定日计划＋同一执行器','v126':'V126 逐步动作网络'}
+for op,ol in [('starter','官方 starter'),('frozen_local','冻结本地 BL-V17-R1-RC2')]:
+ for kind in ['neural_tasks','time_tasks','v126']:
+  r=s[kind+':'+op];text+=f"| {labels[kind]} | {ol} | {r['n']} | {r['wins']}/{r['n']-r['wins']-r['draws']} | {r['mean_cash']:,.2f} | {r['mean_margin']:,.2f} | {r['mean_escapes']:.3f} | {r['mean_drought']:.3f} |\n"
+text+='''
+与 V126 相比，任务版在相同确认条件下的平均现金提高到约 6.75 倍（starter）和 2.17 倍（强对手）。不能拿不同旧面板的数字拼成增益。
+
+固定日计划也实现了零逃逸、零缺水，说明生存维护改进主要来自反馈执行器。网络相对该控制的平均本方现金增加约 6.09%（starter）和 28.59%（强对手），但不能据此宣称比赛优势全面提高：**对强对手的平均现金差反而由 -77,326 变为 -88,430**。共享市场下，换一套生产计划也会改变对方的收入。
+
+每个对手只有 4 个独立 seed、双席位。paired_comparisons.json 按 seed 分块计算差值和探索性区间，未把 8 局视为 8 个独立 seed；该样本不足以建立排行榜或广泛泛化结论。
+
+## 训练及模型预测
+
+沿用 V126 的 seed 隔离：271 局训练、57 局验证选模型、53 局留出测试、193 局新版变化测试。每天仅取起始状态作为输入，以同一天末段实际资产布局作为监督目标：未来信息只存在于标签，不进入运行时输入。
+
+训练集共有 8,130 条日计划。40 轮训练后，按验证损失选中第 26 轮。模型共有 658,905 个参数，部署只依赖 NumPy。
+
+| 留出指标 | 神经日计划 | 训练集固定日计划 |
+|---|---:|---:|
+'''
+test=m['test']
+for key,name in [('active_tile_accuracy','已解锁区域目标格类型准确率'),('changed_tile_accuracy','当天发生变化的目标格准确率'),('hands_accuracy','用工目标准确率'),('land_accuracy','土地目标准确率')]:text+=f"| {name} | {test['neural'][key]*100:.2f}% | {test['time_only'][key]*100:.2f}% |\n"
+text+='''
+大部分格子在一天内不变化，所以变化格的 72.25% 更值得关注，不能只看整体 91.67%。用工和土地本来就高度依赖固定日程，网络在这两项没有明显优势。此前研究已经观察过整套 replay；这里的留出指不参与参数优化，并非整个研究过程完全未见。
+
+## 验证与来源
+
+- 6 项单元回归通过：紧急喂食优先、共享种子预留、唯一任务认领及完成反馈、满仓保留货物、已有资产抵扣新增目标、元数据隔离。
+- 新 seed 与 replay 数据、上一轮评估 seed 均不重合；确认前冻结关键执行代码和权重，确认后哈希复核一致。
+- 两个开发 seed 用于执行器检查。开发期间修复了“已有资产应抵扣新增目标”的语义问题，初版开发结果保存在 initial_development_*，没有混入确认结果。
+- 48 局均使用实际运行的对手；非固定对手 replay 回放。
+'''
+text+=f"- 训练/NumPy 推理最大 logit 差 `{manifest['trained_numpy_jax_max_abs_error']:.8g}`；隔离部署目录的冷导入、加载和首次动作约 `{manifest['cold_import_load_first_action']['seconds']:.3f}` 秒（本机一次测量）。\n"
+text+='''- 确认对局按引擎回合直接调用策略，没有模拟 Kaggle 服务端沙箱计时。模型每天推理一次，执行器每步运行。
+- 仅复用 V126/V113 的无策略观测编码与官方规则原语；新规划网络、新权重、新执行器均在本目录。运行策略不导入旧 agent，旧 V126 和冻结本地 agent 只作为评估对象。
+
+## 当前边界与下一步
+
+本轮完成了用户采纳的架构，并验证了维护稳定性。强对手仍 0/8；任务目标不一定在资源和路程限制下全部完成。下一步应研究共享市场中的生产结构、投资回收和对手需求影响，而不是继续把“不会饿死”当作策略最优。
+
+这批确认 seed 已在本报告中使用，后续若修改策略，它们应转为开发诊断集，再冻结新确认面板。没有向 Kaggle 上传或提交，没有改动金牌候选名单。
+'''
+(B/'RESULTS.md').write_text(text)
+(B/'decision.json').write_text(json.dumps({'status':'TASK_EXECUTOR_VALIDATED_COMPETITIVE_GATE_FAILED','architecture_complete':True,'confirmation_games_total':48,'neural_games':16,'neural_escapes':0,'neural_drought':0,'strong_opponent_wins':0,'strong_opponent_games':8,'runtime_freeze_unchanged':True,'submitted':False},indent=2))
+print(json.dumps(comparisons,indent=2))

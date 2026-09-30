@@ -1,0 +1,83 @@
+{
+  "created_at_utc": "2026-09-05T10:49:07.877527+00:00",
+  "status": "SOURCE_FROZEN_BEFORE_FIRST_CANDIDATE_MATCH",
+  "candidate": "V125-R7",
+  "source_sha256": "ea57c77215d6728e64a3c46c5cf1c2b21f2efa72d12dbb53240b544e27500e7f",
+  "implementation_parent": "V125-R6",
+  "references": [
+    "V125-R0",
+    "V125-R6"
+  ],
+  "hypothesis": "Replace price-label caps with a common finite-horizon investment calculation. Maturity and care/feed costs plus shared cash, labor and placeable-land budgets prevent investments that cannot be supported or monetized; existing assets continue receiving care.",
+  "scope": "Economic plan and necessary investment/plant-admission interfaces only. Frozen execution contracts, supply batching and procurement confirmation unchanged.",
+  "micro_requirements": [
+    "Same visible count but different maturity produces different dated product supply, verified against official daily refresh controls.",
+    "Increasing wheat cost can veto otherwise identical new animal investment; high existing product price alone does not force purchase.",
+    "New purchases respect joint budget after expert switch; existing assets are not removed to meet a cap.",
+    "No new investment when current action capacity is exhausted; before hire cutoff affordable planned labor may be admitted only through an executable hire interface.",
+    "Assets whose first collectible output falls after final return/sell window are excluded from that output revenue.",
+    "All emitted quantities are Python positive integers <=100; any other parsing is explicitly outside local fast-engine parity contract."
+  ],
+  "opened_diagnostic_seed": 1950905001,
+  "fresh_development_seeds": [
+    1950905701,
+    1950905702,
+    1950905703
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "opponents": [
+    "PASS",
+    "references/V120_local_anchor/main.py"
+  ],
+  "candidate_count": 3,
+  "expected_fresh_development_games": 36,
+  "no_qualification_claim": "This is a pre-screen and representation diagnostic, not G1/G2 or gold. Freeze candidate and all dependency SHAs before any fresh block result is opened.",
+  "development_promotion_rule": {
+    "complete": "All 36 planned cases must be completed and retained, 719 calls, zero candidate errors, official/fast per-state parity with frozen v3. A parity error stops and preserves evidence.",
+    "pairwise": "Against BOTH R0 and R6, each opponent separately must have >=4/6 positive margin deltas, positive median delta, and no negative seat mean delta. PASS margin is own cash minus PASS cash; V120 margin includes both strategy responses.",
+    "mechanism": "All frozen micro controls must pass independently. The primary delay metric must pass its predeclared threshold with complete purchase/placement/loss reconciliation; otherwise this representation remains unqualified even if cash rises. Full G1 and later fresh G2 remain required.",
+    "no_outcome_cherrypicking": "All profiles, opponents and seats retained. Cash improvement without actual G1 closure cannot advance to gold qualification."
+  },
+  "formal_gate_protocol_sha256": "1fd7055674a2f79173b4bc8c466350cc57cba4f956206602f71dc8cb1288ebab",
+  "seed_exposure_policy": "Do not run baseline/reference cases before R7 source and development manifest freeze.",
+  "amended_before_candidate_and_any_fresh_run_at_utc": "2026-09-05T10:52:28.739899+00:00",
+  "primary_mechanism": {
+    "name": "Restricted purchase-to-placement waiting time including failure-to-place penalty",
+    "parent": "V125-R6",
+    "purchase_denominator": "Every successful official BUY_ANIMAL unit, including never placed and lost units. Initial stock is excluded and reported separately.",
+    "per_lot_delay": "Official placement decision step minus successful purchase decision step. If not placed by final state, 719 minus purchase decision step, including animals lost before placement. Decision steps are 0..718.",
+    "identity_convention": "Global per-species FIFO for fungible purchased units. Quantity loss removes an available FIFO lot and marks it lost; that lot must not later be assigned to a placement. This is an accounting convention, not a biological ID. Frozen traces do not identify individual animals through every PICKUP; per-lot FIFO is not physical attribution.",
+    "statistic": "D=sum(per_lot_delay)/sum(successful BUY_ANIMAL units) over all planned games in the compared block. Also report raw sum, N, per-game, per-seat and per-species values.",
+    "threshold": "For each opponent separately, 1-D_R7/D_R6 >=0.20 pooled across both seats; neither seat mean D may increase. Zero denominator or zero parent D is PENDING, never an automatic improvement.",
+    "reconciliation": "N purchased = placed purchase lots + terminal unplaced surviving purchase lots + lost-before-placement lots. Match successful official purchase/placement flows and final animal stock. Report unmatched initial-stock attribution or missing evidence as PENDING.",
+    "required_companions": [
+      "Total wait integral and mean; never placed and lost counts retained",
+      "Actual purchase cost, purchased species, placement count, terminal unplaced quantity",
+      "Observed first product harvest per placed identity when supported, separate from predicted first yield",
+      "Whole-game cash and two-sided competitive margin; all paired promotion guards apply",
+      "Plant first-water, drought loss, escapes, invalid actions, terminal realization, and any uncertainty"
+    ],
+    "causal_boundary": "A lower mean with fewer or different animals does not by itself establish logistics causality. Disclose composition/count changes and require unchanged-engine comparisons plus cash guards. A later same-source budget ablation is required for causal mechanism qualification.",
+    "physical_inventory_boundary": "A lost-before-placement lot remains penalized to step719 for the primary measure. This is an investment waiting penalty, not the physical surviving in-transit inventory integral. Report that physical integral separately."
+  },
+  "clock_contract": "The final decision is step 718 (day29 hour22); no step719 agent action. A purchase at a step occurs after that step unit actions. R7 projected cash must reserve harvest, return and sale before the final decision; theoretical field production is not automatically cash.",
+  "analysis_tools_before_candidate_freeze": {
+    "evaluation/run_match_v3.py": "b92392363060f100c53c708dcf716515c39dc243b67526421ae47083a7bc0777",
+    "evaluation/assess_paired_development.py": "02c3041d3c3e34e7d5c9d2cf712e01522e70b563912b72b7d6444ef0e5737f0c",
+    "research/mechanism_analysis/analyze_trace.py": "cc4d5c01a482034b55b93422e90b332e7058d6a73a096250dad39cc8eae74963",
+    "research/r7_horizon_investment/summarize_investment_latency.py": "d67e06b4995a946f05e2baff0d73470a176fca8a696d6ac5b8b9aaad2736cf55"
+  },
+  "required_run_options": {
+    "backend": "official",
+    "parity": true,
+    "trace": true,
+    "audit_actions": true,
+    "daily": true,
+    "diagnostics": true,
+    "workers": 1
+  },
+  "candidate_frozen_at_utc": "2026-09-05T11:15:59.233618+00:00"
+}

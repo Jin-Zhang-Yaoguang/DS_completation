@@ -1,0 +1,33 @@
+{
+  "schema": "kaggriculture-v88-decision-v1",
+  "model_id": "v88_reference_trajectory_state_tube_moe",
+  "strategy_parent": null,
+  "decision": "REJECT_DEVELOPMENT_TAIL_RISK_GATE",
+  "gold_increment": 0,
+  "preconstruction": {
+    "games": 576,
+    "panel_score": 0.90625,
+    "mcu_pp": 6.770833333333333,
+    "direct_v76_score": 0.90625,
+    "decision": "PASS_PRECONSTRUCTION"
+  },
+  "development": {
+    "official_sources": 64,
+    "games": 2048,
+    "main_matrix_games": 1536,
+    "pou_pp": 11.5234375,
+    "pou_95ci_pp": [6.445312500000003, 16.276041666666668],
+    "panel_score": 0.9375,
+    "mcu_pp": 10.9375,
+    "mcu_positive_zero_negative": [28, 228, 0],
+    "candidate_catastrophic_rate": 0.0546875,
+    "comparator_catastrophic_rate": 0.020833333333333332,
+    "catastrophic_rate_delta_pp": 3.385416666666667,
+    "runtime_errors": 0,
+    "safety_violations": 0
+  },
+  "failed_gate": "Development catastrophic-rate delta must be <= +1pp",
+  "confirmation_consumed": false,
+  "conclusion": "The independent state-tube MoE has strong paired uplift and mechanism contribution, but its downside tail is materially worse than V76. It is rejected without threshold patching or Confirmation reuse.",
+  "remote_submission": "NOT_AUTHORIZED"
+}

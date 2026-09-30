@@ -1,0 +1,33 @@
+{
+  "schema": "v116-rc4-two-by-two-decision-v1",
+  "panel": {
+    "seeds": [7100, 7101, 7102, 7103],
+    "both_seats": true,
+    "games_per_mode": 8,
+    "fresh": false,
+    "gold_arena": false
+  },
+  "mode_summary": {
+    "none": {"mean_bank": 69882.125, "mean_realization": 0.8992223652783997, "min_final_assets": 63},
+    "staging_only": {"mean_bank": 77475.0, "mean_realization": 0.8740189767129423, "min_final_assets": 58},
+    "projection_only": {"mean_bank": 75190.5, "mean_realization": 0.8976767365775986, "min_final_assets": 57},
+    "both": {"mean_bank": 74030.625, "mean_realization": 0.8746176357167736, "min_final_assets": 58}
+  },
+  "causal_effects_without_other_mechanism": {
+    "staging": {"mean_bank": 7592.875, "mean_realization": -0.025203388565457507, "mean_final_assets": -2.875},
+    "projection": {"mean_bank": 5308.375, "mean_realization": -0.0015456287008011188, "mean_final_assets": -1.625}
+  },
+  "interaction": {"mean_bank": -8752.75, "mean_realization": 0.0021442877046325415, "mean_final_assets": 2.0},
+  "rc5_mechanism_decision": {
+    "retain": "projection",
+    "drop": "staging",
+    "qualified_for_gold": false,
+    "reason": "projection has concentrated positive PET bank effect with much smaller realization damage; staging systematically reduces realization and interacts negatively with projection"
+  },
+  "all_new_games_719_calls": true,
+  "new_schema_errors": 0,
+  "originality_audit_pass": true,
+  "registered": false,
+  "submitted": false,
+  "decision": "RETAIN_PROJECTION_DROP_STAGING_FOR_RC5_RESEARCH_ONLY"
+}

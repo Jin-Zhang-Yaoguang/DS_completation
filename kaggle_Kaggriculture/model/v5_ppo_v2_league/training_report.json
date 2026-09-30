@@ -1,0 +1,152 @@
+{
+  "schema": "kaggriculture-ppo-v2-pilot-report-1",
+  "iterations": 5,
+  "episodes_per_iteration": 1024,
+  "total_episodes": 5120,
+  "workers": 12,
+  "epochs": 4,
+  "transition_batch": 4096,
+  "elapsed_seconds": 951.780720949173,
+  "resumed_from_iteration": 0,
+  "parity_max_abs_error": 4.76837158203125e-07,
+  "league_snapshots": [
+    "policy_iter_005.npz"
+  ],
+  "snapshot_qualifications": [
+    {
+      "iteration": 5,
+      "seeds": 32,
+      "games": 448,
+      "opponents": [
+        "v1",
+        "v2",
+        "v0",
+        "starter",
+        "forced_low",
+        "forced_high",
+        "random"
+      ],
+      "score_rate_by_opponent": {
+        "v1": 0.5,
+        "v2": 0.5,
+        "v0": 1.0,
+        "starter": 1.0,
+        "forced_low": 0.578125,
+        "forced_high": 0.734375,
+        "random": 1.0
+      },
+      "score_rate": 0.7589285714285714,
+      "mean_margin": 68779.75892857143,
+      "passed": true
+    }
+  ],
+  "history": [
+    {
+      "iteration": 1,
+      "episodes": 1024,
+      "rollout_seconds": 150.74312591552734,
+      "episodes_per_second": 6.79301290709484,
+      "win_rate": 0.779296875,
+      "mean_margin": 68893.484375,
+      "mean_own_reward": 118736.90625,
+      "entropy_coefficient": 0.015,
+      "advantage_mean": -0.031543586403131485,
+      "advantage_std": 0.4222213923931122,
+      "early_stop_kl": false,
+      "update": {
+        "approximate_kl": 0.0009313270948125719,
+        "clip_fraction": 0.018616225956066046,
+        "entropy": 0.46576878894120455,
+        "loss": 0.04163662497740006,
+        "policy_loss": 0.00543474015648826,
+        "value_loss": 0.08637683279812336
+      }
+    },
+    {
+      "iteration": 2,
+      "episodes": 1024,
+      "rollout_seconds": 159.52923583984375,
+      "episodes_per_second": 6.418886134626914,
+      "win_rate": 0.787109375,
+      "mean_margin": 69940.3125,
+      "mean_own_reward": 119814.71875,
+      "entropy_coefficient": 0.01175,
+      "advantage_mean": -0.03275773674249649,
+      "advantage_std": 0.4065765142440796,
+      "early_stop_kl": false,
+      "update": {
+        "approximate_kl": 0.0009333007889340168,
+        "clip_fraction": 0.01031999100541725,
+        "entropy": 0.4903948651626706,
+        "loss": 0.03264379058055056,
+        "policy_loss": -0.0018273843325005146,
+        "value_loss": 0.08046662923879921
+      }
+    },
+    {
+      "iteration": 3,
+      "episodes": 1024,
+      "rollout_seconds": 173.8666467666626,
+      "episodes_per_second": 5.889571226241323,
+      "win_rate": 0.779296875,
+      "mean_margin": 67252.03125,
+      "mean_own_reward": 117290.953125,
+      "entropy_coefficient": 0.0085,
+      "advantage_mean": -0.03601574897766113,
+      "advantage_std": 0.4025973379611969,
+      "early_stop_kl": false,
+      "update": {
+        "approximate_kl": 0.0005602960292831471,
+        "clip_fraction": 0.007148207282625663,
+        "entropy": 0.5030126981437206,
+        "loss": 0.029805598309394554,
+        "policy_loss": -0.005463040875838487,
+        "value_loss": 0.07908849488012493
+      }
+    },
+    {
+      "iteration": 4,
+      "episodes": 1024,
+      "rollout_seconds": 201.90309596061707,
+      "episodes_per_second": 5.071739960836163,
+      "win_rate": 0.7880859375,
+      "mean_margin": 68462.5,
+      "mean_own_reward": 118449.0390625,
+      "entropy_coefficient": 0.0052499999999999995,
+      "advantage_mean": -0.014696035534143448,
+      "advantage_std": 0.3945515751838684,
+      "early_stop_kl": false,
+      "update": {
+        "approximate_kl": 0.0005765299847755936,
+        "clip_fraction": 0.006922626630512241,
+        "entropy": 0.5149994157254696,
+        "loss": 0.026649840485333698,
+        "policy_loss": -0.009005836545838974,
+        "value_loss": 0.07671884819865227
+      }
+    },
+    {
+      "iteration": 5,
+      "episodes": 1024,
+      "rollout_seconds": 186.41699194908142,
+      "episodes_per_second": 5.493061492375646,
+      "win_rate": 0.779296875,
+      "mean_margin": 69060.109375,
+      "mean_own_reward": 119361.5859375,
+      "entropy_coefficient": 0.002,
+      "advantage_mean": -0.02264261618256569,
+      "advantage_std": 0.3940940499305725,
+      "early_stop_kl": false,
+      "update": {
+        "approximate_kl": 0.0003935290528192248,
+        "clip_fraction": 0.0032111218652062234,
+        "entropy": 0.5321932211518288,
+        "loss": 0.03361452124954667,
+        "policy_loss": -0.0037528650238982664,
+        "value_loss": 0.0768635452259332
+      }
+    }
+  ],
+  "final_checkpoint": "ppo_final.msgpack",
+  "final_weights": "policy_weights.npz"
+}

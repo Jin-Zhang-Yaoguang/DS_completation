@@ -1,0 +1,774 @@
+{
+  "queries": 883,
+  "teacher_forced_validation_only": true,
+  "true_counts": {
+    "WATER": 191,
+    "PASS": 141,
+    "FEED": 82,
+    "COLLECT_FERTILIZER": 111,
+    "CARE": 91,
+    "DROP": 39,
+    "PLANT:STRAWBERRY": 12,
+    "HARVEST": 113,
+    "PICKUP:WHEAT": 10,
+    "PLANT:WHEAT": 24,
+    "INSTALL:COW": 3,
+    "FERTILIZE": 43,
+    "PICKUP:FERTILIZER": 3,
+    "PLANT:CARROT": 8,
+    "PLANT:MELON": 3,
+    "PICKUP:COW": 1,
+    "PLACE:FERTILIZER": 4,
+    "PLACE:WHEAT": 1,
+    "INSTALL:GOOSE": 1,
+    "DIG": 2
+  },
+  "predicted_counts": {
+    "WATER": 188,
+    "PASS": 134,
+    "PICKUP:WHEAT": 29,
+    "COLLECT_FERTILIZER": 91,
+    "FEED": 61,
+    "DROP": 57,
+    "CARE": 62,
+    "PLANT:STRAWBERRY": 11,
+    "HARVEST": 124,
+    "PLACE:FERTILIZER": 8,
+    "PLANT:WHEAT": 25,
+    "INSTALL:COW": 3,
+    "FERTILIZE": 54,
+    "PLACE:MILK": 6,
+    "PICKUP:FERTILIZER": 11,
+    "PLANT:MELON": 3,
+    "PLANT:CARROT": 10,
+    "PICKUP:GOOSE": 1,
+    "PICKUP:COW": 1,
+    "PLACE:WHEAT": 1,
+    "INSTALL:GOOSE": 1,
+    "INSTALL:SHEEP": 1,
+    "PLACE:SHEEP": 1
+  },
+  "exact_correct_counts": {
+    "WATER": 144,
+    "PASS": 124,
+    "COLLECT_FERTILIZER": 74,
+    "DROP": 24,
+    "CARE": 55,
+    "PLANT:STRAWBERRY": 8,
+    "FEED": 41,
+    "HARVEST": 64,
+    "PLANT:WHEAT": 16,
+    "PICKUP:WHEAT": 6,
+    "INSTALL:COW": 3,
+    "FERTILIZE": 29,
+    "PICKUP:FERTILIZER": 3,
+    "PLANT:MELON": 3,
+    "PICKUP:COW": 1,
+    "PLANT:CARROT": 5,
+    "INSTALL:GOOSE": 1
+  },
+  "confusion": [
+    {
+      "truth": "WATER",
+      "predicted": "WATER",
+      "exact_position": true,
+      "count": 144
+    },
+    {
+      "truth": "PASS",
+      "predicted": "PASS",
+      "exact_position": true,
+      "count": 124
+    },
+    {
+      "truth": "FEED",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 10
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": true,
+      "count": 74
+    },
+    {
+      "truth": "CARE",
+      "predicted": "FEED",
+      "exact_position": false,
+      "count": 9
+    },
+    {
+      "truth": "DROP",
+      "predicted": "DROP",
+      "exact_position": true,
+      "count": 24
+    },
+    {
+      "truth": "CARE",
+      "predicted": "CARE",
+      "exact_position": true,
+      "count": 55
+    },
+    {
+      "truth": "PLANT:STRAWBERRY",
+      "predicted": "PLANT:STRAWBERRY",
+      "exact_position": true,
+      "count": 8
+    },
+    {
+      "truth": "FEED",
+      "predicted": "FEED",
+      "exact_position": true,
+      "count": 41
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "HARVEST",
+      "exact_position": true,
+      "count": 64
+    },
+    {
+      "truth": "FEED",
+      "predicted": "PLACE:FERTILIZER",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "PICKUP:WHEAT",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:WHEAT",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": true,
+      "count": 16
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 10
+    },
+    {
+      "truth": "WATER",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PICKUP:WHEAT",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": true,
+      "count": 6
+    },
+    {
+      "truth": "INSTALL:COW",
+      "predicted": "INSTALL:COW",
+      "exact_position": true,
+      "count": 3
+    },
+    {
+      "truth": "CARE",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "WATER",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "WATER",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 6
+    },
+    {
+      "truth": "WATER",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 8
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 6
+    },
+    {
+      "truth": "FEED",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 7
+    },
+    {
+      "truth": "PASS",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "FEED",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "FERTILIZE",
+      "exact_position": true,
+      "count": 29
+    },
+    {
+      "truth": "CARE",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "PLACE:MILK",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "PLACE:MILK",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "DROP",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "CARE",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "PASS",
+      "predicted": "FEED",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "PICKUP:FERTILIZER",
+      "predicted": "PICKUP:FERTILIZER",
+      "exact_position": true,
+      "count": 3
+    },
+    {
+      "truth": "FEED",
+      "predicted": "FEED",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "FEED",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 5
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "FEED",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "PLANT:CARROT",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:MELON",
+      "predicted": "PLANT:MELON",
+      "exact_position": true,
+      "count": 3
+    },
+    {
+      "truth": "PLANT:STRAWBERRY",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:STRAWBERRY",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "WATER",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 16
+    },
+    {
+      "truth": "FEED",
+      "predicted": "CARE",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "CARE",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "PASS",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 9
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "CARE",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 5
+    },
+    {
+      "truth": "PLANT:CARROT",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "CARE",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 13
+    },
+    {
+      "truth": "PLANT:WHEAT",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "FEED",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "CARE",
+      "predicted": "CARE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "FEED",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "PLANT:CARROT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 6
+    },
+    {
+      "truth": "PASS",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "CARE",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PICKUP:GOOSE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:WHEAT",
+      "predicted": "PLANT:STRAWBERRY",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PICKUP:COW",
+      "predicted": "PICKUP:COW",
+      "exact_position": true,
+      "count": 1
+    },
+    {
+      "truth": "FEED",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 5
+    },
+    {
+      "truth": "PLACE:FERTILIZER",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "CARE",
+      "predicted": "PLACE:FERTILIZER",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "PLACE:FERTILIZER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "PICKUP:FERTILIZER",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PICKUP:FERTILIZER",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "PASS",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "HARVEST",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "HARVEST",
+      "exact_position": false,
+      "count": 5
+    },
+    {
+      "truth": "DROP",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLACE:WHEAT",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PICKUP:WHEAT",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "WATER",
+      "predicted": "CARE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:WHEAT",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 3
+    },
+    {
+      "truth": "PLANT:CARROT",
+      "predicted": "PLANT:CARROT",
+      "exact_position": true,
+      "count": 5
+    },
+    {
+      "truth": "CARE",
+      "predicted": "PLACE:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "PICKUP:FERTILIZER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:WHEAT",
+      "predicted": "PLANT:CARROT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:CARROT",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PASS",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "DROP",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 4
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PLANT:CARROT",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "CARE",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "INSTALL:GOOSE",
+      "predicted": "INSTALL:GOOSE",
+      "exact_position": true,
+      "count": 1
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PLANT:STRAWBERRY",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:STRAWBERRY",
+      "predicted": "PLANT:STRAWBERRY",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PLANT:STRAWBERRY",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PASS",
+      "predicted": "CARE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "DIG",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "CARE",
+      "predicted": "PLACE:MILK",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PASS",
+      "predicted": "PLANT:CARROT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "DROP",
+      "predicted": "PLACE:MILK",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "COLLECT_FERTILIZER",
+      "predicted": "PICKUP:FERTILIZER",
+      "exact_position": false,
+      "count": 2
+    },
+    {
+      "truth": "PLANT:WHEAT",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PICKUP:WHEAT",
+      "predicted": "WATER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PICKUP:WHEAT",
+      "predicted": "COLLECT_FERTILIZER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "DROP",
+      "predicted": "DROP",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "PICKUP:WHEAT",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "FERTILIZE",
+      "predicted": "FERTILIZE",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "DROP",
+      "predicted": "PLACE:FERTILIZER",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "CARE",
+      "predicted": "INSTALL:SHEEP",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "FEED",
+      "predicted": "PLACE:SHEEP",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "DROP",
+      "predicted": "PASS",
+      "exact_position": false,
+      "count": 1
+    },
+    {
+      "truth": "WATER",
+      "predicted": "PLANT:WHEAT",
+      "exact_position": false,
+      "count": 1
+    }
+  ]
+}

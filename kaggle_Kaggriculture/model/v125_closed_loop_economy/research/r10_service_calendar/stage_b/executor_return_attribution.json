@@ -1,0 +1,62 @@
+{
+  "created_at_utc": "2026-09-05T13:43:20.831101+00:00",
+  "scope": "Read-only saved-event attribution and explicit arithmetic from source, no strategy or engine calls",
+  "source_files": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/integration_validation/controls_v1/r9_executor_48_strawberries_day10_s0.json.gz": "23246f5c896844f98f6692e0e142ac282fd6f92e8b3c350fe044da5f41bc9bf7",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r10_service_calendar/stage_b/integration_validation/controls_v1/r9_executor_48_strawberries_day10_s1.json.gz": "c5664efabd2ef930800d54c8c12d05a66b0aaa5ba9b5f9386ee5e04f4e3494f6"
+  },
+  "source_rule": {
+    "file": "candidates/V125-R9/main.py",
+    "forecast_assignment_line": 630,
+    "current_price_model_line": 264,
+    "price_function_line": 73,
+    "ordinary_return_line": 1583,
+    "condition": "carry_value>1800 AND depot distance<=3 AND hour<19; cargo at depot may PLACE without value threshold"
+  },
+  "rows": [
+    {
+      "seat": 0,
+      "stock_range": [
+        9999,
+        10000
+      ],
+      "model_price_equals_observed_price_all24": true,
+      "price_range": [
+        120,
+        128
+      ],
+      "maximum_carried_units": 4,
+      "maximum_carry_value": 512,
+      "ordinary_return_requires_value_gt": 1800,
+      "positive_cargo_atomic_decisions": 267,
+      "positive_cargo_at_depot": 2,
+      "can_value_threshold_be_met": false,
+      "terminal_day29_override": false
+    },
+    {
+      "seat": 1,
+      "stock_range": [
+        9999,
+        10000
+      ],
+      "model_price_equals_observed_price_all24": true,
+      "price_range": [
+        120,
+        128
+      ],
+      "maximum_carried_units": 4,
+      "maximum_carry_value": 512,
+      "ordinary_return_requires_value_gt": 1800,
+      "positive_cargo_atomic_decisions": 267,
+      "positive_cargo_at_depot": 2,
+      "can_value_threshold_be_met": false,
+      "terminal_day29_override": false
+    }
+  ],
+  "finding": "Every recorded positive cargo value is <=512, so the ordinary return movement branch requiring>1800 cannot fire. This explains why spare action slots alone do not result in active delivery in this artificial case.",
+  "limits": [
+    "Did not change thresholds or test alternative delivery policy.",
+    "Did not run day11 or establish full-match gains.",
+    "Initial assumption that market inventory stays10000 was rejected by saved observations: after first step it is9999. Calculation above uses the actual24 states."
+  ]
+}

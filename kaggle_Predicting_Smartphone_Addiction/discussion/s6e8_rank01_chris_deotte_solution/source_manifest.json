@@ -1,0 +1,134 @@
+{
+  "archive_version": 1,
+  "competition": {
+    "slug": "playground-series-s6e8",
+    "title": "Predicting Smartphone Addiction",
+    "metric": "ROC AUC"
+  },
+  "solution": {
+    "title": "1st Place - Distributed Intelligence - NVIDIA Inference Hub",
+    "author": "Chris Deotte",
+    "author_slug": "cdeotte",
+    "topic_id": 738592,
+    "root_message_id": 3518992,
+    "post_date_utc": "2026-08-31T23:59:39.755000Z",
+    "discussion_url": "https://www.kaggle.com/competitions/playground-series-s6e8/discussion/738592",
+    "writeup_url": "https://www.kaggle.com/c/playground-series-s6e8/writeups/1st-place-distributed-intelligence-nvidia-inference-hub",
+    "captured_votes": 102,
+    "captured_comment_count": 48
+  },
+  "final_leaderboard_verification": {
+    "rank": 1,
+    "team_id": 16724329,
+    "team_name": "Chris Deotte",
+    "private_score": 0.97176,
+    "source_file": "source/leaderboard_top20.json"
+  },
+  "retrieval": {
+    "fetched_utc": "2026-09-02T11:18:19Z",
+    "fetched_asia_taipei": "2026-09-02T19:18:19+08:00",
+    "client": "Kaggle CLI 2.2.3 and its authenticated official API client",
+    "browser_used": false,
+    "commands": [
+      "kaggle competitions topics list playground-series-s6e8 -s top --format json",
+      "kaggle competitions topic-messages playground-series-s6e8 738592 -s old -n -1 -q --format json",
+      "kaggle competitions topics show playground-series-s6e8/738592 --page-size 200 -q --format json",
+      "kaggle competitions leaderboard playground-series-s6e8 --show --page-size 20 -q --format json",
+      "kaggle kernels list --competition playground-series-s6e8 --user cdeotte --page-size 200 --format json"
+    ],
+    "notes": [
+      "topic-messages contains the complete root post but omits author names in this CLI version",
+      "topics show supplies the topic and comment author names used to resolve that omission",
+      "the leaderboard command prefixes JSON with a next-page-token line; the archive stores the validated JSON body only"
+    ]
+  },
+  "publication_boundary": {
+    "final_code_released": false,
+    "final_notebook_released": false,
+    "final_model_files_released": false,
+    "final_oof_or_weights_released": false,
+    "specific_winning_feature_formulas_released": false,
+    "main_post_images": 4,
+    "technical_reply_images": 1
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3374,
+      "sha256": "66905cf47b8005c6cd72264b346f0ad289d388b4a814961cf8209e0c3d930de8",
+      "role": "archive guide"
+    },
+    {
+      "path": "solution_original.md",
+      "bytes": 5607,
+      "sha256": "ad7f0a8ef83d68b9be1d5020539b94edef85abeb7ee10eb9af55cf9e40f4d456",
+      "role": "English source converted to Markdown with local image paths"
+    },
+    {
+      "path": "solution_zh-CN.md",
+      "bytes": 9698,
+      "sha256": "201e0c1becf502e987a482c718a94ba285f71a0da1acac70dba265b2d2d372ac",
+      "role": "Chinese translation and translated technical clarifications"
+    },
+    {
+      "path": "source/solution_original.html",
+      "bytes": 5684,
+      "sha256": "3e82972c2e196f51c765abdc7f85867185cd508b1a74bb724cc0f1b102c93821",
+      "role": "byte-preserved root-message HTML from Kaggle API"
+    },
+    {
+      "path": "source/thread.json",
+      "bytes": 32627,
+      "sha256": "64333f78436459f993b7e0c5ba9d686d6485812a9d5b64927e45404cf62cd419",
+      "role": "complete root message plus 48 comments and replies"
+    },
+    {
+      "path": "source/topic_metadata.json",
+      "bytes": 27612,
+      "sha256": "dceaebc3b74b0a19a456b015ae2001a64fa267530617f7778902fc07bf03543c",
+      "role": "topic metadata and named comment tree"
+    },
+    {
+      "path": "source/leaderboard_top20.json",
+      "bytes": 2771,
+      "sha256": "ea27a447665d08169b078d2036952873c432dff08b41239ff299c8406e875c1f",
+      "role": "official final leaderboard top-20 snapshot"
+    },
+    {
+      "path": "source/cdeotte_s6e8_kernels.json",
+      "bytes": 767,
+      "sha256": "6828888e2333233f06f4a22390d1dd2d9198b5b1205b8b5428aaddb6afc855b6",
+      "role": "official list of the author's public S6E8 starter notebooks"
+    },
+    {
+      "path": "assets/agents.png",
+      "bytes": 269208,
+      "sha256": "a9261fd52fff807258803d3e7650e75a39362a729fd735ea8259e182f587f972",
+      "source_url": "https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/agents.png"
+    },
+    {
+      "path": "assets/phases.png",
+      "bytes": 422876,
+      "sha256": "717edbabd05d2419f1e373f461b2c890ff2b284e7488087db330bc88a8b780cc",
+      "source_url": "https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/phases.png"
+    },
+    {
+      "path": "assets/top1s.png",
+      "bytes": 414425,
+      "sha256": "b698b2d36662fbd88d9a1ddff213d8492f8b35915f605911deb9e7f6cf177cf9",
+      "source_url": "https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/top1s.png"
+    },
+    {
+      "path": "assets/single_model.png",
+      "bytes": 196463,
+      "sha256": "520d871e4e41fdba9ba69b089d53d1a839a810ce6ed9d5fa1ee70bc5e015f659",
+      "source_url": "https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/single_model.png"
+    },
+    {
+      "path": "assets/final_subs.png",
+      "bytes": 117867,
+      "sha256": "742b4774825fe3a803ad7e58ab3565ee4494e214606f1f5c188a05662072c1b2",
+      "source_url": "https://raw.githubusercontent.com/cdeotte/Kaggle_Images/refs/heads/main/Aug-2026/final_subs.png"
+    }
+  ]
+}

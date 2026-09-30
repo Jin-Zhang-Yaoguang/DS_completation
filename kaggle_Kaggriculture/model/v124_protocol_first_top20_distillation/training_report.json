@@ -1,0 +1,818 @@
+{
+  "active_target_count": 76,
+  "configs": [
+    {
+      "expert_depth": 14,
+      "expert_estimators": 48,
+      "expert_leaf": 8,
+      "name": "regularized_6expert",
+      "pooled_blend": 0.2,
+      "router_depth": 10,
+      "router_estimators": 64,
+      "router_leaf": 18
+    },
+    {
+      "expert_depth": 18,
+      "expert_estimators": 56,
+      "expert_leaf": 4,
+      "name": "adaptive_6expert",
+      "pooled_blend": 0.15,
+      "router_depth": 14,
+      "router_estimators": 72,
+      "router_leaf": 10
+    }
+  ],
+  "feature_count": 97,
+  "full_inner_selection": {
+    "reports": [
+      {
+        "config": "regularized_6expert",
+        "folds": [
+          {
+            "best_fixed_normalized_mae": 0.22805970877984671,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.2218219359565399,
+                "hmoe_normalized_mae": 0.13128162545380692,
+                "skill_vs_best_fixed": 0.40816662298210193,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.1819607854586704,
+                "hmoe_normalized_mae": 0.11599080270818599,
+                "skill_vs_best_fixed": 0.3625505494724768,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.21391001908525187,
+                "hmoe_normalized_mae": 0.11151151048460942,
+                "skill_vs_best_fixed": 0.47869898305152536,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.24578766559870158,
+                "hmoe_normalized_mae": 0.21102777716560808,
+                "skill_vs_best_fixed": 0.14142242796612137,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.21203242580971474,
+                "hmoe_normalized_mae": 0.15164872159750217,
+                "skill_vs_best_fixed": 0.2847852350017587,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.28597953554692246,
+                "hmoe_normalized_mae": 0.20235149259047444,
+                "skill_vs_best_fixed": 0.2924266689101138,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.1578106260074446,
+            "opponent_family": "opponent_family_00",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 331,
+              "land_labor_capacity": 339,
+              "livestock_cycle": 587,
+              "market_liquidity": 76,
+              "recovery": 88,
+              "terminal_liquidation": 379
+            },
+            "skill_vs_best_fixed": 0.3080293452457916,
+            "test_episodes": 60,
+            "test_rows": 1800,
+            "train_episodes": 195,
+            "train_rows": 7110
+          },
+          {
+            "best_fixed_normalized_mae": 0.22207728456807527,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.20906699219638197,
+                "hmoe_normalized_mae": 0.1330615373088028,
+                "skill_vs_best_fixed": 0.3635459337176732,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.181523629769622,
+                "hmoe_normalized_mae": 0.120083456373346,
+                "skill_vs_best_fixed": 0.33846928619845185,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.18555205947702214,
+                "hmoe_normalized_mae": 0.1143270067093578,
+                "skill_vs_best_fixed": 0.3838548220289869,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.27366213356129654,
+                "hmoe_normalized_mae": 0.25546151691638574,
+                "skill_vs_best_fixed": 0.06650761801809202,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.2001151830726276,
+                "hmoe_normalized_mae": 0.1517799882441338,
+                "skill_vs_best_fixed": 0.24153686934864682,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.2589699655775964,
+                "hmoe_normalized_mae": 0.18791036331019037,
+                "skill_vs_best_fixed": 0.2743932181823382,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.16710361878280094,
+            "opponent_family": "opponent_family_01",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 243,
+              "land_labor_capacity": 284,
+              "livestock_cycle": 407,
+              "market_liquidity": 51,
+              "recovery": 49,
+              "terminal_liquidation": 256
+            },
+            "skill_vs_best_fixed": 0.24754294835779467,
+            "test_episodes": 43,
+            "test_rows": 1290,
+            "train_episodes": 212,
+            "train_rows": 7830
+          },
+          {
+            "best_fixed_normalized_mae": 0.20570194741506387,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.18502935396800135,
+                "hmoe_normalized_mae": 0.13793225808832238,
+                "skill_vs_best_fixed": 0.2545385089969231,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.1663276926666826,
+                "hmoe_normalized_mae": 0.12254797049929504,
+                "skill_vs_best_fixed": 0.263213668544788,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.18503906380519375,
+                "hmoe_normalized_mae": 0.12711223163893678,
+                "skill_vs_best_fixed": 0.3130519090133391,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.25543128751662536,
+                "hmoe_normalized_mae": 0.2440660495474153,
+                "skill_vs_best_fixed": 0.044494306393340066,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.17892724129790263,
+                "hmoe_normalized_mae": 0.14396281706396025,
+                "skill_vs_best_fixed": 0.19541140846031835,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.2478225202051482,
+                "hmoe_normalized_mae": 0.19942237900283838,
+                "skill_vs_best_fixed": 0.19530162618895186,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.16762889804639566,
+            "opponent_family": "opponent_family_02",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 374,
+              "land_labor_capacity": 372,
+              "livestock_cycle": 725,
+              "market_liquidity": 78,
+              "recovery": 163,
+              "terminal_liquidation": 418
+            },
+            "skill_vs_best_fixed": 0.1850884245244635,
+            "test_episodes": 69,
+            "test_rows": 2130,
+            "train_episodes": 186,
+            "train_rows": 6750
+          },
+          {
+            "best_fixed_normalized_mae": 0.2359967370228732,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.22676992981516486,
+                "hmoe_normalized_mae": 0.16083905109667657,
+                "skill_vs_best_fixed": 0.2907390709704196,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.18439165327776136,
+                "hmoe_normalized_mae": 0.13574145089476797,
+                "skill_vs_best_fixed": 0.26384167351495225,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.20848695255097063,
+                "hmoe_normalized_mae": 0.13557329378873956,
+                "skill_vs_best_fixed": 0.3497276825723914,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.2717833621812604,
+                "hmoe_normalized_mae": 0.24691137624053314,
+                "skill_vs_best_fixed": 0.09151401226738598,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.22597069566370778,
+                "hmoe_normalized_mae": 0.18372518827104697,
+                "skill_vs_best_fixed": 0.1869512649353926,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.27791318353128314,
+                "hmoe_normalized_mae": 0.22384739851546542,
+                "skill_vs_best_fixed": 0.19454199447768128,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.1863019846121777,
+            "opponent_family": "opponent_family_03",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 769,
+              "land_labor_capacity": 764,
+              "livestock_cycle": 1489,
+              "market_liquidity": 165,
+              "recovery": 250,
+              "terminal_liquidation": 943
+            },
+            "skill_vs_best_fixed": 0.2105738962224677,
+            "test_episodes": 128,
+            "test_rows": 4380,
+            "train_episodes": 127,
+            "train_rows": 4410
+          }
+        ],
+        "mean_skill_vs_best_fixed": 0.23780865358762937,
+        "worst_skill_vs_best_fixed": 0.1850884245244635
+      },
+      {
+        "config": "adaptive_6expert",
+        "folds": [
+          {
+            "best_fixed_normalized_mae": 0.22805970877984671,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.2218219359565399,
+                "hmoe_normalized_mae": 0.10420774818067469,
+                "skill_vs_best_fixed": 0.5302189220767985,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.1819607854586704,
+                "hmoe_normalized_mae": 0.10158661668668742,
+                "skill_vs_best_fixed": 0.4417114850839041,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.21391001908525187,
+                "hmoe_normalized_mae": 0.09383343032958023,
+                "skill_vs_best_fixed": 0.5613415831065689,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.24578766559870158,
+                "hmoe_normalized_mae": 0.1985895427315689,
+                "skill_vs_best_fixed": 0.19202803668835533,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.21203242580971474,
+                "hmoe_normalized_mae": 0.12972472127743898,
+                "skill_vs_best_fixed": 0.38818451573129453,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.28597953554692246,
+                "hmoe_normalized_mae": 0.17223966375669722,
+                "skill_vs_best_fixed": 0.3977203178986324,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 195,
+                "rows": 7110,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.13729608929282333,
+            "opponent_family": "opponent_family_00",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 401,
+              "land_labor_capacity": 343,
+              "livestock_cycle": 553,
+              "market_liquidity": 88,
+              "recovery": 114,
+              "terminal_liquidation": 301
+            },
+            "skill_vs_best_fixed": 0.39798182665680937,
+            "test_episodes": 60,
+            "test_rows": 1800,
+            "train_episodes": 195,
+            "train_rows": 7110
+          },
+          {
+            "best_fixed_normalized_mae": 0.22207728456807527,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.20906699219638197,
+                "hmoe_normalized_mae": 0.10965683173175078,
+                "skill_vs_best_fixed": 0.4754942873586314,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.181523629769622,
+                "hmoe_normalized_mae": 0.10747781181508331,
+                "skill_vs_best_fixed": 0.4079128323321478,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.18555205947702214,
+                "hmoe_normalized_mae": 0.10170375368222892,
+                "skill_vs_best_fixed": 0.4518856111385634,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.27366213356129654,
+                "hmoe_normalized_mae": 0.2466415457259929,
+                "skill_vs_best_fixed": 0.09873703564198588,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.2001151830726276,
+                "hmoe_normalized_mae": 0.13443570902585966,
+                "skill_vs_best_fixed": 0.32820835000276294,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.2589699655775964,
+                "hmoe_normalized_mae": 0.15844215348202306,
+                "skill_vs_best_fixed": 0.3881832855457198,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 212,
+                "rows": 7830,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.1499773011761868,
+            "opponent_family": "opponent_family_01",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 264,
+              "land_labor_capacity": 260,
+              "livestock_cycle": 401,
+              "market_liquidity": 74,
+              "recovery": 66,
+              "terminal_liquidation": 225
+            },
+            "skill_vs_best_fixed": 0.3246616759211456,
+            "test_episodes": 43,
+            "test_rows": 1290,
+            "train_episodes": 212,
+            "train_rows": 7830
+          },
+          {
+            "best_fixed_normalized_mae": 0.20570194741506387,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.18502935396800135,
+                "hmoe_normalized_mae": 0.11805690670310488,
+                "skill_vs_best_fixed": 0.3619557968973862,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.1663276926666826,
+                "hmoe_normalized_mae": 0.11287743110884646,
+                "skill_vs_best_fixed": 0.3213551556020765,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.18503906380519375,
+                "hmoe_normalized_mae": 0.11811358193302093,
+                "skill_vs_best_fixed": 0.3616829900449071,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.25543128751662536,
+                "hmoe_normalized_mae": 0.23528975342570774,
+                "skill_vs_best_fixed": 0.07885304218891609,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.17892724129790263,
+                "hmoe_normalized_mae": 0.13154236063793265,
+                "skill_vs_best_fixed": 0.26482764902789246,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.2478225202051482,
+                "hmoe_normalized_mae": 0.1760332761614157,
+                "skill_vs_best_fixed": 0.289680066138885,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 186,
+                "rows": 6750,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.1537867740176546,
+            "opponent_family": "opponent_family_02",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 429,
+              "land_labor_capacity": 327,
+              "livestock_cycle": 718,
+              "market_liquidity": 109,
+              "recovery": 166,
+              "terminal_liquidation": 381
+            },
+            "skill_vs_best_fixed": 0.2523805634793298,
+            "test_episodes": 69,
+            "test_rows": 2130,
+            "train_episodes": 186,
+            "train_rows": 6750
+          },
+          {
+            "best_fixed_normalized_mae": 0.2359967370228732,
+            "domains": {
+              "crop_flow": {
+                "best_fixed_normalized_mae": 0.22676992981516486,
+                "hmoe_normalized_mae": 0.13605791570008194,
+                "skill_vs_best_fixed": 0.40001782506622585,
+                "target_count": 16
+              },
+              "land_labor_capacity": {
+                "best_fixed_normalized_mae": 0.18439165327776136,
+                "hmoe_normalized_mae": 0.12123322179268525,
+                "skill_vs_best_fixed": 0.34252326698289526,
+                "target_count": 9
+              },
+              "livestock_cycle": {
+                "best_fixed_normalized_mae": 0.20848695255097063,
+                "hmoe_normalized_mae": 0.12407162545146191,
+                "skill_vs_best_fixed": 0.40489501173398834,
+                "target_count": 10
+              },
+              "market_liquidity": {
+                "best_fixed_normalized_mae": 0.2717833621812604,
+                "hmoe_normalized_mae": 0.2360978203333627,
+                "skill_vs_best_fixed": 0.13130142169665981,
+                "target_count": 17
+              },
+              "recovery": {
+                "best_fixed_normalized_mae": 0.22597069566370778,
+                "hmoe_normalized_mae": 0.1653819283402329,
+                "skill_vs_best_fixed": 0.2681266575098029,
+                "target_count": 14
+              },
+              "terminal_liquidation": {
+                "best_fixed_normalized_mae": 0.27791318353128314,
+                "hmoe_normalized_mae": 0.19961593484375192,
+                "skill_vs_best_fixed": 0.2817327616223637,
+                "target_count": 10
+              }
+            },
+            "episode_overlap": 0,
+            "expert_support": {
+              "crop_flow": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 16,
+                "teachers": 20
+              },
+              "land_labor_capacity": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 9,
+                "teachers": 20
+              },
+              "livestock_cycle": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 10,
+                "teachers": 20
+              },
+              "market_liquidity": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 17,
+                "teachers": 20
+              },
+              "recovery": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 14,
+                "teachers": 20
+              },
+              "terminal_liquidation": {
+                "episodes": 127,
+                "rows": 4410,
+                "target_count": 10,
+                "teachers": 20
+              }
+            },
+            "hmoe_normalized_mae": 0.1688672525357637,
+            "opponent_family": "opponent_family_03",
+            "router_experts_used": 6,
+            "router_primary_use": {
+              "crop_flow": 946,
+              "land_labor_capacity": 817,
+              "livestock_cycle": 1373,
+              "market_liquidity": 193,
+              "recovery": 271,
+              "terminal_liquidation": 780
+            },
+            "skill_vs_best_fixed": 0.28445090103344595,
+            "test_episodes": 128,
+            "test_rows": 4380,
+            "train_episodes": 127,
+            "train_rows": 4410
+          }
+        ],
+        "mean_skill_vs_best_fixed": 0.31486874177268265,
+        "worst_skill_vs_best_fixed": 0.2523805634793298
+      }
+    ],
+    "selected_config": "adaptive_6expert"
+  },
+  "model_sha256": "c9928afc8a1833194484a22140a91bad2b74d83662c8d59d15c384e932691a6a",
+  "promotion_effect": "NONE",
+  "schema": "kaggriculture-v124-training-report-v1",
+  "status": "GATE1_PASS_TIME_BLIND_DEFERRED",
+  "training_rows": 9600
+}

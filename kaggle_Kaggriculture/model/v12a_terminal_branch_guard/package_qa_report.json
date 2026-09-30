@@ -1,0 +1,76 @@
+{
+  "schema": "v12-independent-package-qa-1",
+  "candidate": "v12a_terminal_branch_guard",
+  "generated_at_utc": "2026-08-23T08:59:54Z",
+  "verdict": "PASS",
+  "archive": {
+    "path": "submission.tar.gz",
+    "size_bytes": 292101,
+    "sha256": "88749064c1c87c26d3c13926f7d6d5c0d8681adc94c02b616db02d5cad53c6e2",
+    "manifest_size_match": true,
+    "manifest_sha256_match": true,
+    "manifest_file_records_match": true,
+    "source_main_matches_packaged_main": true,
+    "safe_relative_regular_members_only": true,
+    "duplicate_members": [],
+    "extra_or_missing_members": [],
+    "pycache_or_pyc_members": [],
+    "embedded_absolute_path_literals": []
+  },
+  "files": [
+    {"path": "main.py", "size_bytes": 15766, "sha256": "fe9ee6cd50db010d88b3f11c1e5080c864b1ba288db44b7144eedaa4278f0aa4"},
+    {"path": "runtime/__init__.py", "size_bytes": 1, "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"},
+    {"path": "runtime/agent_factory.py", "size_bytes": 10574, "sha256": "f1e99c76a6093e03492063990bcc8516bcfa4a483a0330e69fe60bf873c155ce"},
+    {"path": "runtime/expert_registry.py", "size_bytes": 11980, "sha256": "c87159db94965da7115b8af2564eea5442bb1f0b4f7b5e3600250373e011570b"},
+    {"path": "runtime/fast_router.py", "size_bytes": 3820, "sha256": "2e3a943e547455c2c814511de5fd2ae3ff9f20531a0ecd29b7bff4895d173619"},
+    {"path": "runtime/learned_router_weights.npz", "size_bytes": 2681, "sha256": "3e948fe62092b2a9da655ccdae2647e509c626b29760f0e77edc299dab222b77"},
+    {"path": "runtime/policy.json", "size_bytes": 2771, "sha256": "b94bdebd644271b725e803128ed21b03971dde8804e95dedc4b30800c37dc220"},
+    {"path": "runtime/router.py", "size_bytes": 19271, "sha256": "a5dc4c438ac91984ef0b94091f2831e59df862b05dd36eafc514cb3b9d5c49cb"},
+    {"path": "runtime/variants.py", "size_bytes": 4128, "sha256": "cec11a134636dd6a81360c73be342f741e1268edac4b772c70c05731069029c1"},
+    {"path": "v1_adaptive_market/main.py", "size_bytes": 75428, "sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb"},
+    {"path": "v2_survival_guard/main.py", "size_bytes": 75798, "sha256": "dadc0b09eb16a0528553fbf00dd826fff8efbc826d3ef5864b1cbf6dea5d2a70"},
+    {"path": "v5_rule_hybrid/base_agent.py", "size_bytes": 75799, "sha256": "4fbfee659c8a0d2bcba4940152ea4c7920d3b13bec4afbddf7b069810ef0f294"},
+    {"path": "v5_rule_hybrid/main.py", "size_bytes": 4792, "sha256": "4c36dcd8edd326cd832c12f9cad94d300e95e46a911b75af378e8f3d0e2d5071"},
+    {"path": "v5_rule_hybrid/routes.py", "size_bytes": 54442, "sha256": "02d4427e667bd5d8d661dc4b87c0df5e7fb90dedca020829f9e49c34e053eec7"},
+    {"path": "v5_rule_hybrid/v1_fallback.py", "size_bytes": 75428, "sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb"},
+    {"path": "v8_kawa_lead2_slot/main.py", "size_bytes": 150041, "sha256": "ed2e443f6ae3683da9f34c55920bc8aa06a81e22e3b905df92389597e8adc327"}
+  ],
+  "isolated_runtime": {
+    "project_source_importable_before_package_load": false,
+    "source_tree_modules_loaded": [],
+    "bundled_modules_loaded": [
+      "main.py",
+      "runtime/agent_factory.py",
+      "runtime/fast_router.py",
+      "runtime/router.py"
+    ],
+    "bundled_dynamic_expert_files_loaded": [
+      "runtime/expert_registry.py",
+      "v1_adaptive_market/main.py",
+      "v2_survival_guard/main.py",
+      "v5_rule_hybrid/base_agent.py",
+      "v5_rule_hybrid/v1_fallback.py",
+      "v5_rule_hybrid/routes.py",
+      "v5_rule_hybrid/main.py",
+      "v8_kawa_lead2_slot/main.py"
+    ],
+    "standard_agent_accepts_obs_and_optional_configuration": true
+  },
+  "games": [
+    {"seed": 93451031, "seat": 0, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [154638.0, 3504.0], "action_sha256": "f9cb32a79ecf5108ff3a44c8cf7815346acb53d5520f455267d0a1bf80649e91", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "residual_fallbacks": 0},
+    {"seed": 93451031, "seat": 1, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [3421.0, 164332.0], "action_sha256": "94f8a47b915a27b88c04b21b2840f0cb80ebc9f897ff9160002bcf5424add378", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "residual_fallbacks": 0},
+    {"seed": 93451032, "seat": 0, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [81766.0, 3612.0], "action_sha256": "7e668f712db1b78be2020ac96a381a80ebb88a578018a5210929d9f5edad3e82", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "residual_fallbacks": 0},
+    {"seed": 93451032, "seat": 1, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [3612.0, 81766.0], "action_sha256": "7e668f712db1b78be2020ac96a381a80ebb88a578018a5210929d9f5edad3e82", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "residual_fallbacks": 0},
+    {"seed": 93451033, "seat": 0, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [149443.0, 3718.0], "action_sha256": "fde7da49437eac131f44c0880cb838e5f5d08838ae803a73727ea86c86e98877", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "residual_fallbacks": 0},
+    {"seed": 93451033, "seat": 1, "steps": 720, "calls": 719, "statuses": ["DONE", "DONE"], "rewards": [3718.0, 152844.0], "action_sha256": "cc888f9eb0ebbdf2b73faa398653c271d0aa58d20be6702fa04929314932eaed", "registry_action_equal": true, "registry_reward_equal": true, "stderr": "", "residual_fallbacks": 0}
+  ],
+  "checks": {
+    "archive_integrity": true,
+    "clean_structure": true,
+    "isolated_bundled_runtime": true,
+    "three_fresh_seeds_both_seats": true,
+    "all_720_steps_719_calls_done_done": true,
+    "zero_stderr_and_runtime_errors": true,
+    "package_registry_stepwise_action_and_reward_equivalence": true
+  }
+}

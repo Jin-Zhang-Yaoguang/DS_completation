@@ -1,0 +1,60 @@
+{
+  "decision": "FAIL_DO_NOT_FREEZE_DO_NOT_CONFIRM_DO_NOT_SUBMIT",
+  "reason": "The strict market-only MPC produced zero score flips and zero score uplift; it missed the +2pp development gate and slightly worsened CVaR10.",
+  "parent": {
+    "artifact": "../../top_complete_portfolio/main.py",
+    "sha256": "b52e62545fb6bdc93f9e947f9a829e348dd6119ee9daf7d8eba7df9aec29a4b1",
+    "identity_verified": true
+  },
+  "development_contract": {
+    "source_date": "2026-08-25",
+    "seed_range": [50008, 50027],
+    "opponent_families": 6,
+    "both_seats": true,
+    "blind_dates_read": false,
+    "blind_seeds_read": false,
+    "confirm_consumed": false
+  },
+  "strict_final_screen": {
+    "games": 240,
+    "baseline_score_rate": 0.7666666666666667,
+    "candidate_score_rate": 0.7666666666666667,
+    "score_uplift_pp": 0.0,
+    "seed_cluster_ci95_pp": [0.0, 0.0],
+    "l_to_w": 0,
+    "w_to_l": 0,
+    "mean_margin_delta": 4.8,
+    "baseline_margin_p10": -7799.0,
+    "candidate_margin_p10": -7797.7,
+    "baseline_margin_cvar10": -13110.416666666666,
+    "candidate_margin_cvar10": -13121.875,
+    "worst_family_uplift_pp": 0.0,
+    "changed_games": 179,
+    "changed_turns": 497,
+    "deferred_units": 613,
+    "expired_due_units": 2,
+    "unit_command_exact_games": 240,
+    "non_sell_market_exact_games": 240,
+    "terminal_resource_exact_games": 240
+  },
+  "gates": {
+    "score_uplift_at_least_2pp": false,
+    "ci_lower_bound_above_zero": false,
+    "no_family_decline": true,
+    "p10_not_worse": true,
+    "cvar10_not_worse": false,
+    "unit_commands_absolute_zero_difference": true,
+    "non_target_market_absolute_zero_difference": true,
+    "terminal_resources_absolute_zero_difference": true,
+    "deferred_order_expiry_absolute_zero": false
+  },
+  "evidence": [
+    "dev_screen_stage1.json",
+    "dev_screen_stage2.json",
+    "dev_screen_stage3.json",
+    "market_mpc.py",
+    "evaluate.py"
+  ],
+  "candidate_manifest_created": false
+}
+

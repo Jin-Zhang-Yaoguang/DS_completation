@@ -1,0 +1,47 @@
+{
+  "decision": "KEEP_DAY3_TWO_ROUTE_MACRO_AND_BUILD_WITHIN_ROUTE_ONLINE_RECOURSE",
+  "reject_now": [
+    "expand_static_portfolio_to_3_or_5_routes",
+    "delay_whole_route_choice_to_day6",
+    "use_higher_capacity early-public-state classifier"
+  ],
+  "heldout_two_route_information_value": {
+    "best_single_score_rate": 0.80625,
+    "current_first_shop_score_rate": 0.815625,
+    "unattainable_per_game_oracle_score_rate": 0.8859375,
+    "current_score_uplift_pp": 0.9375,
+    "current_score_uplift_cluster95_pp": [0.234375, 1.640625],
+    "oracle_score_gap_pp": 7.96875,
+    "oracle_score_gap_recovered": 0.11764705882352966,
+    "oracle_margin_gap_recovered": 0.5108126447998927
+  },
+  "static_portfolio_failure": {
+    "three_route_oracle_score_rate": 0.89765625,
+    "three_route_first_shop_score_rate": 0.765625,
+    "five_route_oracle_score_rate": 0.9140625,
+    "five_route_first_shop_score_rate": 0.765625,
+    "diagnosis": "more hindsight diversity without more causal information increases hidden-state overfit"
+  },
+  "day6_failure": {
+    "score_delta_vs_current_day3_pp": -0.625,
+    "score_delta_cluster95_pp": [-1.40625, 0.15625],
+    "margin_delta": -329.57890625,
+    "margin_delta_cluster95": [-786.42890625, 136.9265625]
+  },
+  "next_candidate": {
+    "architecture": "day3 observable macro choice plus event-driven within-route receding-horizon recourse",
+    "promotion_gate": {
+      "score_uplift_vs_v17_pp": 1.0,
+      "paired_cluster95_score_lower_gt": 0.0,
+      "worst_family_non_degradation": true,
+      "cvar10_non_degradation": true,
+      "unseen_dates_and_seeds_both_seats": true
+    }
+  },
+  "evidence": [
+    "results.json",
+    "paired_certification.json",
+    "analyze_information_value.py",
+    "paired_certification.py"
+  ]
+}

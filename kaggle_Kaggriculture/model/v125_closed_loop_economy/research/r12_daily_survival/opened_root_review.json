@@ -1,0 +1,1098 @@
+{
+  "created_at_utc": "2026-09-05T15:22:53.249385+00:00",
+  "status": "ENGINEERING_PASS_READY_FOR_FRESH_DEVELOPMENT",
+  "source_sha256": "03ef0bcac134024dd0d7e697e0b1ee9f083195900618d5db1cdab61be69ca8ce",
+  "narrative": "同一已开5001席0PASS中，R12现金143874，比当前引擎R0的141117多2757（约1.95%）；缺水9→0，112/112首水、18只动物投放、零逃逸。溢出报价4829→4360，成熟残留726→650。719步与1440状态核对完成，零异常，最大入口0.03283秒。单场机制改善不能代替新种子强度；G1采购逐笔目标证据仍PENDING。",
+  "denominators": {
+    "plantings_all": 112,
+    "planting_day_eod_observed": 112,
+    "planting_day_watered": 112,
+    "planting_day_not_watered": 0,
+    "planting_day_eod_not_observed": 0,
+    "plant_eod_exposures": 1003,
+    "plant_unwatered_eod_exposures": 383,
+    "plant_eod_drought_deaths": 0,
+    "plant_drought_death_per_plant_eod": 0.0,
+    "plant_drought_death_per_successful_planting": 0.0,
+    "animal_placed": 18,
+    "animal_eod_exposures": 314,
+    "animal_unfed_eod_exposures": 2,
+    "animal_eod_escapes": 0,
+    "animal_escape_per_animal_eod": 0.0
+  },
+  "cash": 143874.0,
+  "overflow_quote": 4360,
+  "terminal_mature_quote": 650,
+  "G1_numeric_companions": {
+    "engineering": {
+      "status": "PASS",
+      "reason": "来源完整调用与异常记录满足工程观测要求",
+      "environment_calls": 719,
+      "agent_calls": [
+        719,
+        719
+      ],
+      "errors": [],
+      "candidate_latency_ms": {
+        "max": 32.82933298032731,
+        "mean": 1.2729379326760542,
+        "p50": 1.121666980907321,
+        "p95": 2.4187499657273293,
+        "p99": 2.900417079217732,
+        "total": 915.2423735940829
+      },
+      "parity_pass": true
+    },
+    "action_validity": {
+      "status": "PASS",
+      "reason": "剔除PASS与四个移动指令；原子播种阻断计无效，不确定请求仍留分母且不当成功",
+      "numerator_confirmed_invalid": 0,
+      "denominator": 2608,
+      "uncertain_count": 0,
+      "confirmed_invalid_rate": 0.0,
+      "invalid_or_uncertain_rate": 0.0,
+      "threshold": 0.01,
+      "per_operation": {
+        "PICKUP": {
+          "raw_requested": 316,
+          "observed_after_atomic_filter": 316,
+          "state_changed": 316,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "BUILD_PASTURE": {
+          "raw_requested": 18,
+          "observed_after_atomic_filter": 18,
+          "state_changed": 18,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "PLACE": {
+          "raw_requested": 121,
+          "observed_after_atomic_filter": 121,
+          "state_changed": 121,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "FEED": {
+          "raw_requested": 312,
+          "observed_after_atomic_filter": 312,
+          "state_changed": 312,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "CARE": {
+          "raw_requested": 293,
+          "observed_after_atomic_filter": 293,
+          "state_changed": 293,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "PLANT": {
+          "raw_requested": 112,
+          "observed_after_atomic_filter": 112,
+          "state_changed": 112,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "WATER": {
+          "raw_requested": 690,
+          "observed_after_atomic_filter": 690,
+          "state_changed": 690,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "COLLECT_FERTILIZER": {
+          "raw_requested": 306,
+          "observed_after_atomic_filter": 306,
+          "state_changed": 306,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "FERTILIZE": {
+          "raw_requested": 106,
+          "observed_after_atomic_filter": 106,
+          "state_changed": 106,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "HARVEST": {
+          "raw_requested": 312,
+          "observed_after_atomic_filter": 312,
+          "state_changed": 312,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        },
+        "DIG": {
+          "raw_requested": 22,
+          "observed_after_atomic_filter": 22,
+          "state_changed": 22,
+          "confirmed_no_change_or_atomic_block": 0,
+          "unattributed": 0
+        }
+      }
+    },
+    "planting_first_day_water": {
+      "status": "PASS",
+      "reason": "分母为官方引擎实际接受并耗种成功的全部PLANT；未耗种的任务分派/取消不创造植物暴露",
+      "actual_accepted_plantings": 112,
+      "first_day_watered": 112,
+      "first_day_not_watered": 0,
+      "unknown_count": 0,
+      "unknown_events": [],
+      "numerator": 112,
+      "denominator": 112,
+      "ratio": 1.0,
+      "threshold": 0.99,
+      "external_terminal_checks": [],
+      "prospective_task_assignments_or_cancellations": "UNAVAILABLE_SEPARATE_DIAGNOSTIC_NOT_PLANT_DENOMINATOR"
+    },
+    "care_losses": {
+      "status": "PASS",
+      "reason": "两种分母都须≤1%；规则自然寿命衰败另列，未取得事前退出日志，因此所有缺水消失/逃逸均计入",
+      "plant_loss": 0,
+      "plant_eod_denominator": 1003,
+      "planting_denominator": 112,
+      "plant_loss_per_eod": 0.0,
+      "plant_loss_per_planting": 0.0,
+      "animal_loss": 0,
+      "animal_eod_denominator": 314,
+      "placed_animal_denominator": 18,
+      "animal_loss_per_eod": 0.0,
+      "animal_loss_per_placed": 0.0,
+      "predeclared_exit_exclusions": 0,
+      "exit_evidence_status": "NO_PREDECLARED_OBJECT_LOG_SUPPLIED",
+      "threshold": 0.01,
+      "natural_standing_yield_decay": {
+        "TOMATO": 1,
+        "WHEAT": 3
+      }
+    },
+    "procurement_confirmation_and_targets": {
+      "status": "PENDING",
+      "reason": "现有累计requested/confirmed及实际成交账本不能证明逐笔净目标、下一帧确认与超目标审计；不得推断缺失次数为0",
+      "issued_orders": 92,
+      "issued_quantity": 138,
+      "issued_order_records": [
+        {
+          "decision_step": 0,
+          "order_index": 5,
+          "op": "BUY_ANIMAL",
+          "item": "SHEEP",
+          "quantity": 1
+        },
+        {
+          "decision_step": 0,
+          "order_index": 6,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 0,
+          "order_index": 7,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 2
+        },
+        {
+          "decision_step": 1,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "SHEEP",
+          "quantity": 1
+        },
+        {
+          "decision_step": 1,
+          "order_index": 2,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 1,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 4
+        },
+        {
+          "decision_step": 6,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 11,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 12,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 49,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 73,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 2
+        },
+        {
+          "decision_step": 74,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 97,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 98,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 121,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 161,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "SHEEP",
+          "quantity": 1
+        },
+        {
+          "decision_step": 161,
+          "order_index": 2,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 161,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 169,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "SHEEP",
+          "quantity": 1
+        },
+        {
+          "decision_step": 169,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 170,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 216,
+          "order_index": 9,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 217,
+          "order_index": 1,
+          "op": "BUY_LAND",
+          "item": "land",
+          "quantity": 1
+        },
+        {
+          "decision_step": 218,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 4
+        },
+        {
+          "decision_step": 224,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 225,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 227,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 240,
+          "order_index": 9,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 241,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 241,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 242,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 1
+        },
+        {
+          "decision_step": 245,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 246,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 247,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 2
+        },
+        {
+          "decision_step": 249,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 250,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 256,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 265,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 276,
+          "order_index": 2,
+          "op": "BUY_LAND",
+          "item": "land",
+          "quantity": 1
+        },
+        {
+          "decision_step": 278,
+          "order_index": 2,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 278,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 279,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 4
+        },
+        {
+          "decision_step": 281,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 282,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 289,
+          "order_index": 0,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 289,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 290,
+          "order_index": 4,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 291,
+          "order_index": 1,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 292,
+          "order_index": 2,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 294,
+          "order_index": 2,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 297,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 305,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 1
+        },
+        {
+          "decision_step": 306,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 307,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 313,
+          "order_index": 4,
+          "op": "BUY_SEED",
+          "item": "STRAWBERRY",
+          "quantity": 2
+        },
+        {
+          "decision_step": 320,
+          "order_index": 2,
+          "op": "BUY_ANIMAL",
+          "item": "COW",
+          "quantity": 1
+        },
+        {
+          "decision_step": 320,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 2
+        },
+        {
+          "decision_step": 321,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "MELON",
+          "quantity": 1
+        },
+        {
+          "decision_step": 323,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 324,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 4
+        },
+        {
+          "decision_step": 330,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 345,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "TOMATO",
+          "quantity": 2
+        },
+        {
+          "decision_step": 353,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 354,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 361,
+          "order_index": 4,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 3
+        },
+        {
+          "decision_step": 427,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 451,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 517,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 520,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 521,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 522,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 529,
+          "order_index": 8,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 545,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 546,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 553,
+          "order_index": 8,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 4
+        },
+        {
+          "decision_step": 562,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 570,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 577,
+          "order_index": 8,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 3
+        },
+        {
+          "decision_step": 601,
+          "order_index": 7,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 4
+        },
+        {
+          "decision_step": 613,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 614,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 615,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 616,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 618,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 619,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 625,
+          "order_index": 9,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 637,
+          "order_index": 3,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 639,
+          "order_index": 2,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 640,
+          "order_index": 1,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 641,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        },
+        {
+          "decision_step": 642,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 2
+        },
+        {
+          "decision_step": 643,
+          "order_index": 0,
+          "op": "BUY_SEED",
+          "item": "WHEAT",
+          "quantity": 1
+        }
+      ],
+      "last_decision_orders": [],
+      "actual_engine_ledger": {
+        "BUY_ANIMAL_cash": {
+          "COW": 5600,
+          "SHEEP": 2000
+        },
+        "BUY_ANIMAL_qty": {
+          "COW": 14,
+          "SHEEP": 4
+        },
+        "BUY_LAND_cash": {
+          "unlocked_quadrants": 3000.0
+        },
+        "BUY_LAND_qty": {
+          "unlocked_quadrants": 2
+        },
+        "BUY_PRODUCT_cash": {
+          "WHEAT": 82190
+        },
+        "BUY_PRODUCT_qty": {
+          "WHEAT": 2010
+        },
+        "BUY_SEED_cash": {
+          "MELON": 1600,
+          "STRAWBERRY": 2400,
+          "TOMATO": 1100,
+          "WHEAT": 520
+        },
+        "BUY_SEED_qty": {
+          "MELON": 20,
+          "STRAWBERRY": 24,
+          "TOMATO": 22,
+          "WHEAT": 52
+        },
+        "HIRE_cash": {
+          "hands": 5314.0
+        },
+        "HIRE_qty": {
+          "hands": 262
+        },
+        "SELL_cash": {
+          "FERTILIZER": 15839,
+          "MELON": 26941,
+          "MILK": 62005,
+          "STRAWBERRY": 44390,
+          "TOMATO": 6210,
+          "WHEAT": 77013,
+          "WOOL": 12200
+        },
+        "SELL_qty": {
+          "FERTILIZER": 197,
+          "MELON": 120,
+          "MILK": 243,
+          "STRAWBERRY": 180,
+          "TOMATO": 103,
+          "WHEAT": 1854,
+          "WOOL": 108
+        }
+      },
+      "self_reported_cumulative_metrics": {
+        "ECONOMIC_ACTION_PRESERVES_WATER_CERTIFICATE": 656,
+        "EXECUTE_CHECKED_WATER_CERTIFICATE_PREFIX": 19,
+        "NO_COMPLETE_WATER_CERTIFICATE_R0_ACTION_RETAINED": 21,
+        "TERMINAL_R0_UNCHANGED": 23,
+        "expert_balanced": 72,
+        "expert_dairy": 404,
+        "expert_fiber": 100,
+        "expert_horticulture": 143,
+        "hire_confirmed": 262,
+        "hire_requested": 262,
+        "pass": 1434,
+        "purchase_confirmed": 138,
+        "purchase_requested": 138,
+        "task_animal": 1720,
+        "task_build": 55,
+        "task_crop": 2610,
+        "task_place_animal": 52,
+        "task_plant": 330,
+        "unit_commands": 6624
+      },
+      "self_reported_purchase_misses": [],
+      "per_order_confirmation_coverage": null,
+      "duplicate_over_target_count": null,
+      "required_evidence": [
+        "逐笔step+order_index身份",
+        "发出前真实资产/净目标缺口",
+        "真实成交量",
+        "下一可见step核对",
+        "末帧外部终态核对",
+        "未成交不减少目标缺口",
+        "重复超目标审计"
+      ]
+    },
+    "terminal_liquidation": {
+      "status": "PASS",
+      "reason": "末日真实卖出与残留/已可售销毁按同一终局价格加权",
+      "day": 29,
+      "decision_window": [
+        696,
+        718
+      ],
+      "numerator": 13691,
+      "denominator": 14341,
+      "ratio": 0.9546754061780908,
+      "threshold": 0.95,
+      "real_sale_qty": {
+        "WHEAT": 82,
+        "STRAWBERRY": 8,
+        "FERTILIZER": 31,
+        "MILK": 18,
+        "WOOL": 4
+      },
+      "real_sale_cash": {
+        "WHEAT": 4163,
+        "STRAWBERRY": 2200,
+        "FERTILIZER": 1978,
+        "MILK": 5438,
+        "WOOL": 18
+      },
+      "real_sale_cash_total": 13797,
+      "final_quote_prices": {
+        "WHEAT": 50,
+        "CARROT": 60,
+        "TOMATO": 69,
+        "STRAWBERRY": 278,
+        "MELON": 169,
+        "EGG": 62,
+        "MILK": 304,
+        "WOOL": 1,
+        "FERTILIZER": 61
+      },
+      "sold_at_final_quote": 13691,
+      "terminal_remaining_at_final_quote": 650,
+      "ready_destroyed_at_final_quote": 0,
+      "terminal_inventory_qty": {},
+      "terminal_mature_field_and_fertilizer_qty": {
+        "WHEAT": 13
+      },
+      "final_day_bought": {},
+      "final_day_consumed": {},
+      "ready_destroyed_qty": {},
+      "ready_destroyed_events": [],
+      "independent_material_balance": {
+        "CARROT": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 0,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "EGG": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 0,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "FERTILIZER": {
+          "opening_inventory": 14,
+          "opening_mature_field_and_fertilizer": 17,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 31,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "MELON": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 0,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "MILK": {
+          "opening_inventory": 3,
+          "opening_mature_field_and_fertilizer": 15,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 18,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "STRAWBERRY": {
+          "opening_inventory": 4,
+          "opening_mature_field_and_fertilizer": 4,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 8,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "TOMATO": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 0,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 0,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        },
+        "WHEAT": {
+          "opening_inventory": 27,
+          "opening_mature_field_and_fertilizer": 48,
+          "new_ready_production": 20,
+          "buy_product": 0,
+          "real_sell_quantity": 82,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 13,
+          "residual": 0
+        },
+        "WOOL": {
+          "opening_inventory": 0,
+          "opening_mature_field_and_fertilizer": 4,
+          "new_ready_production": 0,
+          "buy_product": 0,
+          "real_sell_quantity": 4,
+          "feed_or_fertilize_consumption": 0,
+          "ready_destroyed": 0,
+          "terminal_inventory": 0,
+          "terminal_mature_field_and_fertilizer": 0,
+          "residual": 0
+        }
+      },
+      "material_closed": true,
+      "material_errors": [],
+      "formula": "Σ(p_end*q_real_SELL_lastday) / Σ[p_end*(q_real_SELL_lastday+q_remaining_end+q_ready_destroyed_lastday)]",
+      "no_full_season_cash_or_sales_in_denominator": true
+    }
+  },
+  "certificate_status_counts": {
+    "ECONOMIC_ACTION_PRESERVES_WATER_CERTIFICATE": 656,
+    "EXECUTE_CHECKED_WATER_CERTIFICATE_PREFIX": 19,
+    "NO_COMPLETE_WATER_CERTIFICATE_R0_ACTION_RETAINED": 21
+  },
+  "tail_check_failed": 0,
+  "source_files": {
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r12_opened_natural_01/run_manifest.json": "23e8b6315b872bb8f8ef75851cf58bd07f1302a88e15f242ecb7142500f0606f",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r12_opened_natural_01/games.jsonl": "e59a13d0dacfdbc91ce40cf61bf1f9211edc5b4766d282ac275513de270ad7ad",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/r12_opened_natural_01/summary.json": "d109ba635d57f58233126d2ef39bfefa5e41a26fee1d380ce8a830cbdaa696fd",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r12_daily_survival/opened_mechanism_audit/analysis.json": "00654f66b3d3707083272c822976be6ac3f7ddaa70d8b0d097cfd2cc252eecbd",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r12_daily_survival/opened_mechanism_audit/validation.json": "73d95e1b49d11866da4a100f273b5bb803bd45cd03bce77559adfdb2f9003007",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r12_daily_survival/SOURCE_FREEZE.json": "7244dcbd3abbc67dc1342af5de6fdf4d5b74dcbc3b590e7886ff3a35446f7c17",
+    "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/research/r12_daily_survival/engineering_root_review.json": "19d38891fc5d5e0fb81debffebffeac376373a8fbc73a622b8bad3164d8beb1c"
+  },
+  "new_complete_games": 1,
+  "saved_mechanism_replay_steps": 719,
+  "formal_G0_G5": "NOT_PASSED"
+}

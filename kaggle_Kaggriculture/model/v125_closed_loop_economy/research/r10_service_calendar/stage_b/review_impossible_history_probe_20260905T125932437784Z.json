@@ -1,0 +1,212 @@
+{
+  "scope": "PURE_COMPILER_COUNTEREXAMPLE_NOT_OFFICIAL_OR_CANDIDATE_EXECUTION",
+  "counts": {
+    "project_calendar": 1,
+    "pure_model_next_day": 1,
+    "compile_day_problem": 2,
+    "candidate_calls": 0,
+    "official_calls": 0,
+    "matches": 0
+  },
+  "compiler_sha256": "c908e47fed9236d9c74359e27758a0af237ece2a9da6993aed5e72c69764b402",
+  "probe_sha256": "2775c4f3d0e8abae6dc001705faaeab00850d62d151d127fe301cbcb5956c8d2",
+  "input": {
+    "tile": {
+      "kind": "PLANT",
+      "crop": "WHEAT",
+      "planted_day": 0,
+      "yield_units": 1,
+      "watered_today": false,
+      "consecutive_unwatered": 1,
+      "fertilized_until_day": -1,
+      "max_lifespan_step": 120
+    },
+    "day": 0,
+    "hour": 24,
+    "pos": [
+      4,
+      4
+    ]
+  },
+  "day0_services": [
+    {
+      "service_id": "plant:WHEAT:0:4,4/d0/WATER",
+      "asset_id": "plant:WHEAT:0:4,4",
+      "pos": [
+        4,
+        4
+      ],
+      "op": "WATER",
+      "item": null,
+      "qty": 1,
+      "release": 24,
+      "deadline": 23,
+      "requires": {},
+      "gives": {},
+      "dependencies": [],
+      "splittable": false
+    }
+  ],
+  "unsupported_by_day": {
+    "0": [
+      "SERVICE_WINDOW_OR_LIFESPAN_UNSUPPORTED"
+    ]
+  },
+  "predicted_day1_state": {
+    "kind": "PLANT",
+    "crop": "WHEAT",
+    "planted_day": 0,
+    "yield_units": 1,
+    "watered_today": false,
+    "consecutive_unwatered": 0,
+    "fertilized_until_day": -1,
+    "max_lifespan_step": 120
+  },
+  "same_model_next_day_without_impossible_water": {
+    "kind": "WEED"
+  },
+  "future_problems": {
+    "1": {
+      "schema": "r10-future-day-problem-v1",
+      "status": "SUPPORTED",
+      "unsupported_reasons": [],
+      "day": 1,
+      "current_day": 0,
+      "end_hour": 23,
+      "board_size": 10,
+      "start_farm_tiles": [
+        {
+          "asset_id": "plant:WHEAT:0:4,4",
+          "pos": [
+            4,
+            4
+          ],
+          "tile": {
+            "kind": "PLANT",
+            "crop": "WHEAT",
+            "planted_day": 0,
+            "yield_units": 1,
+            "watered_today": false,
+            "consecutive_unwatered": 0,
+            "fertilized_until_day": -1,
+            "max_lifespan_step": 120
+          }
+        }
+      ],
+      "start_shed": {},
+      "reserved_shed": {},
+      "planned_wheat_buy": {
+        "qty": 0,
+        "estimated_cash": 0,
+        "order_hour": 0,
+        "available_from_hour": 1
+      },
+      "services": [],
+      "expected_goods": {},
+      "feed_units": 0,
+      "legacy_work": 0,
+      "legacy_hire_cost": 0,
+      "conditional": [
+        {
+          "kind": "artificial_known_impossible_first_water_window"
+        },
+        {
+          "kind": "legacy_timely_care_and_delivery",
+          "detail": "Future tiles assume each original calendar service completes; not an execution receipt."
+        },
+        {
+          "kind": "conditional_bridge_from_legacy_day",
+          "detail": "Only this requested day is certified; prior days retain original R9 gate and timely-care assumptions."
+        }
+      ],
+      "hire_protocol": {
+        "max_hands": 12,
+        "farmer_h0_pass": true,
+        "h0_max_hires": 9,
+        "h1_remaining_hires": true
+      },
+      "capacity": 100
+    },
+    "2": {
+      "schema": "r10-future-day-problem-v1",
+      "status": "SUPPORTED",
+      "unsupported_reasons": [],
+      "day": 2,
+      "current_day": 0,
+      "end_hour": 23,
+      "board_size": 10,
+      "start_farm_tiles": [
+        {
+          "asset_id": "plant:WHEAT:0:4,4",
+          "pos": [
+            4,
+            4
+          ],
+          "tile": {
+            "kind": "PLANT",
+            "crop": "WHEAT",
+            "planted_day": 0,
+            "yield_units": 1,
+            "watered_today": false,
+            "consecutive_unwatered": 1,
+            "fertilized_until_day": -1,
+            "max_lifespan_step": 120
+          }
+        }
+      ],
+      "start_shed": {},
+      "reserved_shed": {},
+      "planned_wheat_buy": {
+        "qty": 0,
+        "estimated_cash": 0,
+        "order_hour": 0,
+        "available_from_hour": 1
+      },
+      "services": [
+        {
+          "service_id": "plant:WHEAT:0:4,4/d2/WATER",
+          "asset_id": "plant:WHEAT:0:4,4",
+          "pos": [
+            4,
+            4
+          ],
+          "op": "WATER",
+          "item": null,
+          "qty": 1,
+          "release": 0,
+          "deadline": 23,
+          "requires": {},
+          "gives": {},
+          "dependencies": [],
+          "splittable": false
+        }
+      ],
+      "expected_goods": {},
+      "feed_units": 0,
+      "legacy_work": 2,
+      "legacy_hire_cost": 0,
+      "conditional": [
+        {
+          "kind": "artificial_known_impossible_first_water_window"
+        },
+        {
+          "kind": "legacy_timely_care_and_delivery",
+          "detail": "Future tiles assume each original calendar service completes; not an execution receipt."
+        },
+        {
+          "kind": "conditional_bridge_from_legacy_day",
+          "detail": "Only this requested day is certified; prior days retain original R9 gate and timely-care assumptions."
+        }
+      ],
+      "hire_protocol": {
+        "max_hands": 12,
+        "farmer_h0_pass": true,
+        "h0_max_hires": 9,
+        "h1_remaining_hires": true
+      },
+      "capacity": 100
+    }
+  },
+  "finding": "Known-impossible day0 WATER is nevertheless applied to future state; later day compiles SUPPORTED despite startup fallback day0.",
+  "source_unchanged": true
+}

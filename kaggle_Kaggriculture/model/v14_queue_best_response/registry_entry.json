@@ -1,0 +1,47 @@
+{
+  "id": "v14_queue_stateful_no_mirror",
+  "kind": "python",
+  "path": "main.py",
+  "factory": "make_agent",
+  "family": "a2-stateful-shadow-no-public-equality-queue-best-response",
+  "lineage": [
+    "learned_router",
+    "r002_learned_router_topday_animal_throttle",
+    "v12a_terminal_branch_guard",
+    "v12a2_no_shop_gate",
+    "v14_queue_best_response",
+    "v14_queue_stateful_no_mirror"
+  ],
+  "parent_models": ["v12a2_no_shop_gate"],
+  "change_scope": "独立推进并逐步核验对手 A2 隐状态；仅删除冗余的完整 public-production equality，保留 clone_distance<=4；只在72步完整公开一致、双方均为 V8 且 SELL-only 时重排既有卖单，不改生产动作、商品与数量",
+  "tags": [
+    "a2-descendant",
+    "stateful-opponent-shadow",
+    "no-full-public-equality-gate",
+    "retains-clone-distance-4",
+    "sell-queue-best-response",
+    "fail-closed",
+    "preregistered"
+  ],
+  "code_paths": [
+    "main.py",
+    "../v14_first_principles_search/prototype_queue_solver_no_mirror.py",
+    "../v14_first_principles_search/prototype_queue_solver.py",
+    "../v12a2_no_shop_gate/main.py",
+    "../v12a_terminal_branch_guard/main.py",
+    "../v11_iterative_league/runs/round_002/strategy/registry_next.json",
+    "../v11_iterative_league/fast_router.py",
+    "../v10_replay_lolo_router/agent_factory.py",
+    "../v10_replay_lolo_router/expert_registry.py",
+    "../v10_replay_lolo_router/variants.py",
+    "../v10_replay_lolo_router/router.py",
+    "../v10_replay_lolo_router/learned_router_weights.npz",
+    "../v1_adaptive_market/main.py",
+    "../v2_survival_guard/main.py",
+    "../v5_rule_hybrid/main.py",
+    "../v5_rule_hybrid/base_agent.py",
+    "../v5_rule_hybrid/routes.py",
+    "../v5_rule_hybrid/v1_fallback.py",
+    "../v8_kawa_lead2_slot/main.py"
+  ]
+}

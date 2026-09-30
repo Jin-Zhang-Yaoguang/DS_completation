@@ -1,0 +1,17 @@
+{
+  "id": "v13d_a2_public_winrisk_gate",
+  "kind": "python",
+  "path": "main.py",
+  "factory": "make_agent",
+  "family": "a2-no-shop-gate+public-winrisk",
+  "lineage": [
+    "learned_router",
+    "r002_learned_router_topday_animal_throttle",
+    "v12a_terminal_branch_guard",
+    "v12a2_no_shop_gate",
+    "v13d_a2_public_winrisk_gate"
+  ],
+  "parent_models": ["v12a2_no_shop_gate"],
+  "change_scope": "top-day A2触发后，自己公开money严格领先则跳过节流；缺字段、平局、落后保持A2",
+  "tags": ["a2-descendant", "market-residual", "public-winrisk-gate", "preregistered"]
+}

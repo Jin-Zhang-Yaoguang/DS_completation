@@ -1,0 +1,140 @@
+{
+  "observation_step": 425,
+  "action_step": 424,
+  "source_failure": [
+    {
+      "message": "ENGINE_PARITY step=425 seat=0: farms[0].money: 10651.0 != 10650.0",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v125_closed_loop_economy/evaluation/run_match_v2.py\", line 264, in play\n    if difference:raise RuntimeError(f'ENGINE_PARITY step={result[\"calls\"]} seat={s}: {difference}')\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: ENGINE_PARITY step=425 seat=0: farms[0].money: 10651.0 != 10650.0\n",
+      "type": "RuntimeError"
+    }
+  ],
+  "differences": [
+    {
+      "seat": 0,
+      "difference": "farms[0].money: 10651.0 != 10650.0"
+    },
+    {
+      "seat": 1,
+      "difference": "farms[0].money: 10651.0 != 10650.0"
+    }
+  ],
+  "actions": [
+    {
+      "farmer": [
+        "WEST"
+      ],
+      "hands": [
+        [
+          "NORTH"
+        ],
+        [
+          "EAST"
+        ],
+        [
+          "WEST"
+        ],
+        [
+          "HARVEST"
+        ],
+        [
+          "WEST"
+        ],
+        [
+          "PLANT",
+          "WHEAT"
+        ],
+        [
+          "WATER"
+        ],
+        [
+          "HARVEST"
+        ],
+        [
+          "WEST"
+        ]
+      ],
+      "market": [
+        [
+          "SELL",
+          "WHEAT",
+          4
+        ],
+        [
+          "SELL",
+          "FERTILIZER",
+          1
+        ],
+        [
+          "BUY_SEED",
+          "WHEAT",
+          1
+        ]
+      ]
+    },
+    {
+      "farmer": [
+        "EAST"
+      ],
+      "hands": [
+        [
+          "SOUTH"
+        ],
+        [
+          "CARE"
+        ],
+        [
+          "CARE"
+        ],
+        [
+          "WEST"
+        ],
+        [
+          "FERTILIZE"
+        ],
+        [
+          "EAST"
+        ],
+        [
+          "WATER"
+        ],
+        [
+          "CARE"
+        ],
+        [
+          "SOUTH"
+        ],
+        [
+          "EAST"
+        ],
+        [
+          "PASS"
+        ],
+        [
+          "WEST"
+        ]
+      ],
+      "market": [
+        [
+          "PASS"
+        ],
+        [
+          "SELL",
+          "FERTILIZER",
+          7
+        ]
+      ]
+    }
+  ],
+  "official_cash_before": [
+    10418.0,
+    38358.0
+  ],
+  "official_cash_after": [
+    10651.0,
+    38768.0
+  ],
+  "fast_cash_after": [
+    10650.0,
+    38769.0
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "STATIC_AST_REVIEW_AND_SYNTHETIC_INLINER_COUNTEREXAMPLE_ONLY",
+  "candidate_calls": 0,
+  "official_calls": 0,
+  "route_calls": 0,
+  "source_sha256": {
+    "inline_modules.py": "215ed23e53e36f886e59b969c51adf74878e9e5a74c53ea2d8807ea8e3ff08e6",
+    "integration_helpers.py": "d5342e470e76afcec2feed78e3e48f3d15afeccf2784710acb67c662d41ccca9",
+    "build_candidate.py": "f4d7f047984bd5cb388023712cb808b096e64cb92f0f71cc51f5a8cf5437ba46",
+    "integration_prototype.py": "c33dab3067ce08603338b80c403196e1a98c7c62b0ccd6c3e0eb9a1783857d45"
+  },
+  "current_module_lexical_scan": {
+    "calendar_compiler": {
+      "class_method_global_collisions": [],
+      "except_name_global_collisions": [],
+      "nested_function_global_collisions": []
+    },
+    "scheduler": {
+      "class_method_global_collisions": [],
+      "except_name_global_collisions": [],
+      "nested_function_global_collisions": []
+    },
+    "checker": {
+      "class_method_global_collisions": [],
+      "except_name_global_collisions": [],
+      "nested_function_global_collisions": []
+    },
+    "route_admission": {
+      "class_method_global_collisions": [],
+      "except_name_global_collisions": [],
+      "nested_function_global_collisions": []
+    }
+  },
+  "changed_original_functions": [
+    "economic_plan_prefix"
+  ],
+  "legacy_prefix_ast_identical": true,
+  "last_static_function": "agent",
+  "counterexample": {
+    "source": "def worker():\n    return 9\nclass Box:\n    def worker(self):\n        return 3\n    def call(self):\n        return self.worker()\n",
+    "transformed_source": "def _r10_synthetic_worker():\n    return 9\n\nclass _r10_synthetic_Box:\n\n    def _r10_synthetic_worker(self):\n        return 3\n\n    def call(self):\n        return self.worker()",
+    "original": 3,
+    "transformed": null,
+    "error": "AttributeError: '_r10_synthetic_Box' object has no attribute 'worker'",
+    "affects_current_frozen_modules": false,
+    "synthetic_definition_execs": 2,
+    "synthetic_call_attempts": 2
+  },
+  "boundary": "Inliner safe claim must remain bounded to checked frozen modules; not a general semantics-preserving Python inliner."
+}

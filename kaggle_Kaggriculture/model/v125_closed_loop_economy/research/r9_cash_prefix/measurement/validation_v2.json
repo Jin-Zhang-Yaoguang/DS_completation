@@ -1,0 +1,161 @@
+{
+  "all_pass": true,
+  "checks": [
+    "exact_20percent_integer_boundary",
+    "below_20percent_fails",
+    "complete_zero_sale_game_retained",
+    "candidate_zero_is_numeric_failure",
+    "parent_zero_is_pending_not_auto_pass",
+    "seat_decline_cannot_be_pooled_away",
+    "missing_cell_failclosed",
+    "duplicate_cell_failclosed",
+    "wrong_seed_failclosed",
+    "provenance_pending_blocks",
+    "invalid_cash_True",
+    "invalid_cash_-1",
+    "invalid_cash_0.5",
+    "invalid_cash_nan",
+    "invalid_cash_None",
+    "hour23_paid_hire_survives_eod_reset_in_cash_accounting",
+    "hour23_hire_only_cost_one",
+    "inconsistent_hire_cash_is_pending",
+    "missing_endpoint_is_pending",
+    "unrequested_cash_cost_cannot_be_assigned_to_hire",
+    "boundary_sale_and_purchase_cash_closed",
+    "existing_R8_36_schema_integrity_passes",
+    "frozen_integrity_rejects_not_DONE",
+    "frozen_integrity_rejects_calls718",
+    "frozen_integrity_rejects_wrong_entry_SHA",
+    "frozen_integrity_rejects_missing_game",
+    "frozen_integrity_rejects_duplicate_game",
+    "frozen_integrity_rejects_parity_null",
+    "frozen_integrity_rejects_slow_call",
+    "opened_R8_cost_schema_full_window",
+    "all_24_real_v3_json_forms_strictly_equal",
+    "changed_daily_cash_still_rejected",
+    "changed_first_basket_still_rejected",
+    "primary_complete_result_unchanged_vs_v1"
+  ],
+  "check_count": 34,
+  "aggregator_sha256": "556a00b14d842e85609d7a75fc97209474182b32d0b232931abc70a5bc718797",
+  "candidate_calls": 0,
+  "engine_steps": 0,
+  "new_independent_matches": 0,
+  "synthetic_only_mutations": true,
+  "readonly_schema_sources": "旧R8已打开诊断与已完成36开发块；没有R9轨迹存在。",
+  "opened_R8_early_cost_schema": {
+    "window_decisions": [
+      0,
+      239
+    ],
+    "unit_market_cash": {
+      "BUY_ANIMAL:SHEEP": 500,
+      "BUY_PRODUCT:WHEAT": 409,
+      "BUY_SEED:MELON": 1520,
+      "BUY_SEED:STRAWBERRY": 500
+    },
+    "unit_market_quantities": {
+      "BUY_ANIMAL:SHEEP": 1,
+      "BUY_PRODUCT:WHEAT": 14,
+      "BUY_SEED:MELON": 19,
+      "BUY_SEED:STRAWBERRY": 5
+    },
+    "daily_unit_market_cash": {
+      "0": {
+        "BUY_ANIMAL:SHEEP": 500,
+        "BUY_PRODUCT:WHEAT": 134,
+        "BUY_SEED:MELON": 1440
+      },
+      "1": {
+        "BUY_PRODUCT:WHEAT": 28
+      },
+      "2": {
+        "BUY_PRODUCT:WHEAT": 28
+      },
+      "3": {
+        "BUY_PRODUCT:WHEAT": 29
+      },
+      "4": {
+        "BUY_PRODUCT:WHEAT": 30
+      },
+      "5": {
+        "BUY_SEED:MELON": 80,
+        "BUY_PRODUCT:WHEAT": 30
+      },
+      "6": {
+        "BUY_PRODUCT:WHEAT": 31
+      },
+      "7": {
+        "BUY_SEED:STRAWBERRY": 500,
+        "BUY_PRODUCT:WHEAT": 32
+      },
+      "8": {
+        "BUY_PRODUCT:WHEAT": 33
+      },
+      "9": {
+        "BUY_PRODUCT:WHEAT": 34
+      }
+    },
+    "land_and_hire_cash": {
+      "BUY_LAND": {
+        "status": "NUMERIC_COMPLETE",
+        "cash": 0,
+        "source_snapshot_step": 239,
+        "executed_decisions_in_snapshot": [
+          0,
+          238
+        ],
+        "through238_cash": 0,
+        "decision239_actual_cash": 0,
+        "boundary_evidence": {
+          "BUY_LAND": 0,
+          "HIRE": 0,
+          "status": "NUMERIC_COMPLETE",
+          "cash_before": 1454.0,
+          "cash_after": 1454.0,
+          "unit_sale_cash": 0,
+          "unit_buy_cash": 0,
+          "atomic_cash_residual": 0.0,
+          "land_quadrants_added": 0,
+          "hire_requested": 0,
+          "post_eod_hand_count": 0,
+          "note": "hour23 HIRE可付费后日终清空；费用由现金恒等式与土地增量核实，不按终态人数置0。"
+        }
+      },
+      "HIRE": {
+        "status": "NUMERIC_COMPLETE",
+        "cash": 102,
+        "source_snapshot_step": 239,
+        "executed_decisions_in_snapshot": [
+          0,
+          238
+        ],
+        "through238_cash": 102,
+        "decision239_actual_cash": 0,
+        "boundary_evidence": {
+          "BUY_LAND": 0,
+          "HIRE": 0,
+          "status": "NUMERIC_COMPLETE",
+          "cash_before": 1454.0,
+          "cash_after": 1454.0,
+          "unit_sale_cash": 0,
+          "unit_buy_cash": 0,
+          "atomic_cash_residual": 0.0,
+          "land_quadrants_added": 0,
+          "hire_requested": 0,
+          "post_eod_hand_count": 0,
+          "note": "hour23 HIRE可付费后日终清空；费用由现金恒等式与土地增量核实，不按终态人数置0。"
+        }
+      }
+    },
+    "actual_early_feed_units": 10,
+    "actual_early_placed_animals": {
+      "SHEEP": 1
+    },
+    "actual_early_plantings": {
+      "MELON": 19,
+      "STRAWBERRY": 5
+    },
+    "feed_cash_scope": "BUY_PRODUCT:WHEAT为实际小麦采购现金，可能用于喂养或再售；actual_feed_units为实际喂养量，不将库存耗用估值冒充当期现金。"
+  }
+}

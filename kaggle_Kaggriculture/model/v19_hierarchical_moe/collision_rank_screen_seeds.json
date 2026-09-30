@@ -1,0 +1,21 @@
+{
+  "schema": "kaggriculture-v20-collision-rank-screen-v1",
+  "phase": "collision_rank_screen",
+  "comparison": "opponent_supply_collision_rank_vs_v19",
+  "development_only": true,
+  "frozen_before_outcomes": true,
+  "seed_range": [93000, 93015],
+  "opponent_families": ["adaptive_market", "anti_mirror", "incumbent_r002", "kawa_lead2"],
+  "double_seat": true,
+  "candidate_games_per_mode": 128,
+  "baseline_games_per_mode": 128,
+  "modes": ["collision_rank_50", "collision_rank_100", "collision_rank_200"],
+  "controller_contract": {
+    "production_unchanged": true,
+    "sell_quantities_unchanged": true,
+    "buy_orders_unchanged": true,
+    "sell_slots_only": true,
+    "opponent_pressure_source": "public market inventory delta minus deterministic town demand and own previous submitted net supply",
+    "pressure_decay": 0.5
+  }
+}

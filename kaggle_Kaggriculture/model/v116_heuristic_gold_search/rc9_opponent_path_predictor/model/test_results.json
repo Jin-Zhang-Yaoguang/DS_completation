@@ -1,0 +1,483 @@
+{
+  "schema": "v116-rc9-model-test-v1",
+  "py_compile": {
+    "overlay.py": true,
+    "packager.py": true,
+    "main.py": true
+  },
+  "mechanism_checks": {
+    "p0064_auction_frozen": true,
+    "p0064_market_frozen": true,
+    "all_required_modes": true,
+    "prev_step_prev_shop_demand_exact": true,
+    "own_product_trade_contaminates_residual": true,
+    "cross_day_continuity_preserved": true,
+    "non_contiguous_step_resets": true,
+    "actual_shop_not_seed_label": true,
+    "router_depth_two_and_fixed_leaf": true,
+    "future_aggregate_target_overlay_only": true,
+    "clean_collision_market_withhold": true,
+    "contamination_blocks_strong_trigger": true,
+    "same_turn_financing_passthrough": true,
+    "diagnostics_json_serializable": true
+  },
+  "engine_one_step": {
+    "available": true,
+    "modes": {
+      "base": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "base",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "liquidator",
+          "path_candidate": "liquidator",
+          "path_streak": 1,
+          "path_reason": "neutral_or_liquidator:breadth=0",
+          "path_counts": {
+            "liquidator": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {},
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "router_log_only": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "router_log_only",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "liquidator",
+          "path_candidate": "liquidator",
+          "path_streak": 1,
+          "path_reason": "neutral_or_liquidator:breadth=0",
+          "path_counts": {
+            "liquidator": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {},
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "target_only": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "target_only",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "liquidator",
+          "path_candidate": "liquidator",
+          "path_streak": 1,
+          "path_reason": "neutral_or_liquidator:breadth=0",
+          "path_counts": {
+            "liquidator": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {},
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "market_only": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "market_only",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "liquidator",
+          "path_candidate": "liquidator",
+          "path_streak": 1,
+          "path_reason": "neutral_or_liquidator:breadth=0",
+          "path_counts": {
+            "liquidator": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {
+            "financing_passthrough": 1
+          },
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "full": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "full",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "liquidator",
+          "path_candidate": "liquidator",
+          "path_streak": 1,
+          "path_reason": "neutral_or_liquidator:breadth=0",
+          "path_counts": {
+            "liquidator": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {
+            "financing_passthrough": 1
+          },
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "fixed_collision": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "fixed_collision",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "collision",
+          "path_candidate": "collision",
+          "path_streak": 1,
+          "path_reason": "forced",
+          "path_counts": {
+            "collision": 1
+          },
+          "collision_product": "WHEAT",
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {
+            "financing_passthrough": 1
+          },
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "fixed_scarcity": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "fixed_scarcity",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "scarcity",
+          "path_candidate": "scarcity",
+          "path_streak": 1,
+          "path_reason": "forced",
+          "path_counts": {
+            "scarcity": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {
+            "financing_passthrough": 1
+          },
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      },
+      "fixed_liquidator": {
+        "pass": true,
+        "diagnostics": {
+          "schema": "v116-rc9-opponent-path-v1",
+          "mode": "fixed_liquidator",
+          "router_depth": 2,
+          "first_shop_observed": null,
+          "shop_is_exogenous": false,
+          "base_expert": "grain_egg",
+          "path_leaf": "liquidator",
+          "path_candidate": "liquidator",
+          "path_streak": 1,
+          "path_reason": "forced",
+          "path_counts": {
+            "liquidator": 1
+          },
+          "collision_product": null,
+          "scarcity_product": null,
+          "prev_step": 0,
+          "market_resets": 0,
+          "current_contaminated": [],
+          "clean_observations": {},
+          "latest_rival_flow": {},
+          "flow_ema": {},
+          "self_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "opponent_capacity": {
+            "WHEAT": 0,
+            "CARROT": 0,
+            "TOMATO": 0,
+            "STRAWBERRY": 0,
+            "MELON": 0,
+            "EGG": 0,
+            "MILK": 0,
+            "WOOL": 0
+          },
+          "stage_commits": {},
+          "crop_overlays": {},
+          "animal_overlays": {},
+          "market_policy_counts": {
+            "financing_passthrough": 1
+          },
+          "base_audit": {
+            "action_build_pasture": 1,
+            "calls": 1,
+            "jobs_generated": 4
+          }
+        }
+      }
+    },
+    "base_router_log_action_identical": true,
+    "pass": true
+  },
+  "battle_evaluation_run": false,
+  "pass": true
+}

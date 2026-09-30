@@ -1,0 +1,512 @@
+"""V15 闭环调度器 v2：每步由观测现算动作（原创，不回放任何 tape）。
+
+- 布局：动物压在棚接入格与其邻环；作物由近到远。
+- 任务捆绑：一次到访完成 浇水→收获→补种→浇水 / 喂→照料→收肥→收产品，减少走动。
+- 喂养前校验单位随身小麦；饲料按已有动物两天量采购。
+- 市场：10 槽预算；SELL 前置；购买计划为跨小时/跨天待办。
+"""
+import os, json
+
+BS = 10
+ACCESS = [(4, 4), (5, 4), (4, 5), (5, 5)]
+QUAD_OF = lambda x, y: ("N" if y < 5 else "S") + ("W" if x < 5 else "E")
+CROPS = {
+    "WHEAT": dict(seed=10, first=2, maxday=4, interval=0, maxy=6, ongoing=False),
+    "CARROT": dict(seed=20, first=2, maxday=3, interval=0, maxy=4, ongoing=False),
+    "TOMATO": dict(seed=50, first=8, maxday=8, interval=1, maxy=4, ongoing=True),
+    "STRAWBERRY": dict(seed=100, first=10, maxday=10, interval=2, maxy=4, ongoing=True),
+    "MELON": dict(seed=80, first=10, maxday=12, interval=0, maxy=6, ongoing=False),
+}
+ANIMALS = {"GOOSE": dict(cost=300, struct="COOP", first=4, interval=1, held=4, product="EGG"),
+           "COW": dict(cost=400, struct="PASTURE", first=8, interval=2, held=6, product="MILK"),
+           "SHEEP": dict(cost=500, struct="PASTURE", first=6, interval=3, held=6, product="WOOL")}
+PRODUCTS = ["WHEAT", "CARROT", "TOMATO", "STRAWBERRY", "MELON", "EGG", "MILK", "WOOL", "FERTILIZER"]
+BASE = {"WHEAT": 25, "CARROT": 35, "TOMATO": 60, "STRAWBERRY": 120, "MELON": 250, "EGG": 50, "MILK": 160, "WOOL": 200, "FERTILIZER": 100}
+LAND_PRICES = [1000, 2000, 4000]
+FIB = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
+
+DEFAULT_PLAN = {
+    # 雇工数按 V120 路线（fib 累计费用：9 人 88 / 10 人 143 / 11 人 232 / 12 人 376）
+    "hands": {0: 5, 1: 4, 2: 4, 3: 5, 4: 4, 5: 5, 6: 8, 7: 8, 8: 10, 9: 9, 10: 11, 11: 11, 12: 9, 13: 10, 14: 10, 15: 11},
+    "hands_default": 12,
+    # 动物：V120 路线 10 牛 8 羊
+    "animals": {0: [["COW", 2], ["SHEEP", 2]], 2: [["COW", 1]], 3: [["COW", 1]], 6: [["COW", 2]], 7: [["COW", 2]],
+                8: [["COW", 1], ["SHEEP", 2]], 9: [["COW", 1], ["SHEEP", 1]], 10: [["SHEEP", 2]], 11: [["SHEEP", 1]]},
+    "animal_last_day": 16,
+    "land": {6: 1, 11: 1},
+    "melon_tiles": 12,
+    "straw": {5: 4, 6: 8, 7: 4, 8: 4, 9: 4, 11: 9},
+    "wheat_tiles": 7, "wheat_tiles_mid": 14, "wheat_tiles_late": 40,
+    "animal_cash_reserve": 40,
+    "feed_days": 3, "wheat_buy_cap": 80,
+    "fert_reserve": 6, "fertilize_crops": ["STRAWBERRY"],
+    "harvest_wheat_age": 4,
+    "deposit_min": 10,
+    "pasture_radius": 3.0, "pasture_reserve": 18,
+    "last_plant_day": {"WHEAT": 27, "CARROT": 26, "STRAWBERRY": 16, "MELON": 15, "TOMATO": 18},
+}
+_raw = os.environ.get("V15_PARAMS", "")
+PLAN = json.loads(json.dumps(DEFAULT_PLAN))
+if _raw:
+    _ov = json.load(open(_raw)) if os.path.exists(_raw) else json.loads(_raw)
+    for k, v in _ov.items():
+        if isinstance(v, dict) and isinstance(PLAN.get(k), dict):
+            d = dict(PLAN[k]); d.update({(int(kk) if str(kk).lstrip("-").isdigit() else kk): vv for kk, vv in v.items()}); PLAN[k] = d
+        else:
+            PLAN[k] = v
+# json 往返把 int 键变成 str，统一回 int
+for k in ("hands", "animals", "land", "straw"):
+    PLAN[k] = {(int(kk) if str(kk).lstrip("-").isdigit() else kk): vv for kk, vv in PLAN[k].items()}
+
+_S = {}
+
+
+def _dist(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+
+def _step_toward(src, dst):
+    dx, dy = dst[0] - src[0], dst[1] - src[1]
+    if abs(dx) >= abs(dy) and dx != 0:
+        return ["EAST"] if dx > 0 else ["WEST"]
+    if dy != 0:
+        return ["SOUTH"] if dy > 0 else ["NORTH"]
+    if dx != 0:
+        return ["EAST"] if dx > 0 else ["WEST"]
+    return ["PASS"]
+
+
+def _nearest_access(pos):
+    return min(ACCESS, key=lambda a: _dist(pos, a))
+
+
+def _layout(unlocked):
+    tiles = [(x, y) for y in range(BS) for x in range(BS) if QUAD_OF(x, y) in unlocked]
+    key = lambda t: (abs(t[0] - 4.5) + abs(t[1] - 4.5), t[1], t[0])
+    tiles.sort(key=key)
+    return tiles
+
+
+def _state(seat, turn):
+    st = _S.get(seat)
+    if st is None or turn <= st["last"]:
+        st = {"last": -1, "day_plan": {}, "pending": None, "units": {}, "roles": None}
+        _S[seat] = st
+    st["last"] = turn
+    return st
+
+
+_TAPE_UNTIL = PLAN.get("tape_until_day")
+_TAPE_AGENT = None
+if _TAPE_UNTIL is not None:
+    _here = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else \
+        "/Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/kaggriculture-setup-8e6892/kaggle_Kaggriculture/model/v15_closed_loop"
+    _src = open(os.path.join(_here, "..", "v10_rule_distill", "dist", "main.py")).read()
+    _ns = {"__name__": "v15_tape_base"}
+    exec(compile(_src, "v10_dist_main.py", "exec"), _ns)
+    _TAPE_AGENT = _ns["agent"]
+
+
+def agent(obs, configuration=None):
+    try:
+        if _TAPE_AGENT is not None:
+            d = int(obs.get("day", 0) or 0)
+            if d < int(_TAPE_UNTIL):
+                return _TAPE_AGENT(obs, configuration)
+        return _agent(obs)
+    except Exception:
+        farms = obs.get("farms") or []
+        p = int(obs.get("player", 0) or 0)
+        n = len(farms[p].get("hands") or []) if farms and p < len(farms) else 0
+        return {"farmer": ["PASS"], "hands": [["PASS"]] * n, "market": []}
+
+
+def _snake_key(t):
+    return (t[1], t[0] if t[1] % 2 == 0 else -t[0])
+
+
+def _agent(obs):
+    seat = int(obs.get("player", 0) or 0)
+    day = int(obs.get("day", 0) or 0); hour = int(obs.get("hour", 0) or 0); turn = day * 24 + hour
+    farm = obs["farms"][seat]; private = obs.get("private") or {}
+    tiles = farm["tiles"]; money = float(farm.get("money") or 0)
+    unlocked = list(farm.get("unlocked_quadrants") or ["NW"])
+    shed = dict(private.get("shed") or {}); seeds = dict(private.get("seeds") or {})
+    invs = [dict(i or {}) for i in (private.get("inventories") or [{}])]
+    positions = [tuple(farm["farmer"])] + [tuple(h) for h in (farm.get("hands") or [])]
+    n_units = len(positions)
+    while len(invs) < n_units: invs.append({})
+    prices = dict((obs.get("market") or {}).get("prices") or {})
+    st = _state(seat, turn)
+    LAST = 29
+    ENDGAME = turn >= 24 * 29 + 16
+
+    def T(x, y): return tiles[y][x]
+    animal_tiles, plant_tiles, weed_tiles, empty_tiles, struct_empty = [], [], [], [], []
+    for y in range(BS):
+        for x in range(BS):
+            tt = tiles[y][x]
+            if tt == "LOCKED": continue
+            if tt is None: empty_tiles.append((x, y))
+            elif isinstance(tt, dict):
+                if "animal" in tt: animal_tiles.append((x, y))
+                elif tt.get("kind") == "PLANT": plant_tiles.append((x, y))
+                elif tt.get("kind") == "WEED": weed_tiles.append((x, y))
+                elif tt.get("kind") in ("PASTURE", "COOP"): struct_empty.append((x, y))
+    n_animals = len(animal_tiles)
+    shed_animals = [(a, int(shed.get(a, 0))) for a in ANIMALS if int(shed.get(a, 0)) > 0]
+    carried = sum(int(i.get(a, 0)) for i in invs for a in ANIMALS)
+    order = _layout(unlocked)
+    empty_set = set(empty_tiles)
+
+    # 牧场环
+    pasture_set = set(animal_tiles) | set(struct_empty)
+    for (x, y) in order:
+        if abs(x - 4.5) + abs(y - 4.5) <= PLAN.get("pasture_radius", 3.0) and len(pasture_set) < PLAN.get("pasture_reserve", 18):
+            pasture_set.add((x, y))
+    want_past = max(0, sum(n for _, n in shed_animals) + carried - len(struct_empty))
+    build_tiles = []
+    for tt in order:
+        if want_past <= 0: break
+        if tt in pasture_set and tt in empty_set:
+            build_tiles.append(tt); want_past -= 1
+    build_set = set(build_tiles)
+
+    # 种子预算与作物配额
+    seed_budget = {c: int(seeds.get(c, 0)) for c in CROPS}
+    lp = PLAN["last_plant_day"]
+    crop_count = {c: 0 for c in CROPS}
+    for (x, y) in plant_tiles: crop_count[T(x, y)["crop"]] += 1
+    straw_cap = sum(int(v) for d, v in PLAN["straw"].items() if int(d) <= day)
+    caps = {"MELON": PLAN["melon_tiles"], "STRAWBERRY": straw_cap, "TOMATO": PLAN.get("tomato_cap", 0), "CARROT": PLAN.get("carrot_cap", 0), "WHEAT": 10 ** 6}
+    plant_reserved = {c: 0 for c in CROPS}   # 本步已下达的 PLANT 数（原子校验）
+
+    def pick_crop(commit=True):
+        for c in ("MELON", "STRAWBERRY", "TOMATO", "CARROT", "WHEAT"):
+            if seed_budget.get(c, 0) > 0 and day <= lp[c] and crop_count[c] < caps[c]:
+                if commit:
+                    seed_budget[c] -= 1; crop_count[c] += 1
+                return c
+        return None
+
+    # ---------- 每块地"需要做什么" ----------
+    def animal_ops(x, y):
+        tt = T(x, y); ops = []
+        if not (isinstance(tt, dict) and "animal" in tt): return ops
+        if not tt.get("fed_today") and day < LAST: ops.append(["FEED"])
+        if not tt.get("cared_today") and day < LAST: ops.append(["CARE"])
+        if tt.get("fertilizer_available"): ops.append(["COLLECT_FERTILIZER"])
+        yu = int(tt.get("yield_units", 0) or 0); held = ANIMALS[tt["animal"]]["held"]
+        if yu > 0 and (yu >= PLAN.get("animal_harvest_min", 2) or yu >= held - 1 or day >= 27): ops.append(["HARVEST"])
+        return ops
+
+    def plant_ops(x, y, unit_has_fert):
+        tt = T(x, y)
+        if tt is None:
+            if ENDGAME or (x, y) in pasture_set: return []
+            c = pick_crop(commit=False)
+            return [["PLANT", c], ["WATER"]] if c else []
+        if not isinstance(tt, dict): return []
+        if tt.get("kind") == "WEED":
+            if ENDGAME: return []
+            if (x, y) in pasture_set: return [["DIG"]]
+            c = pick_crop(commit=False)
+            return [["DIG"], ["PLANT", c], ["WATER"]] if c else [["DIG"]]
+        if tt.get("kind") != "PLANT": return []
+        cd = CROPS[tt["crop"]]; age = day - int(tt.get("planted_day", day)); ops = []
+        yu = int(tt.get("yield_units", 0) or 0)
+        need_water = (not tt.get("watered_today")) and (cd["ongoing"] or age <= cd["maxday"]) and day <= LAST
+        if cd["ongoing"]:
+            hi = prices.get(tt["crop"], BASE[tt["crop"]]) >= PLAN.get("eager_price_frac", 0.6) * BASE[tt["crop"]]
+            last_prod = int(tt.get("max_lifespan_step", -1) or -1) > 0   # 已完成最后一次产出，随后腐烂
+            ripe = yu >= 2 or (yu >= 1 and (hi or last_prod or hour >= 18 or day >= LAST - 1))
+        else:
+            yu_after = yu + (1 if (need_water and (cd["maxday"] + 1) // 2 <= age <= cd["maxday"]) else 0)
+            hw = int(PLAN.get("harvest_wheat_age", 4)) if tt["crop"] == "WHEAT" else cd["maxday"]
+            ripe = yu > 0 and (yu_after >= cd["maxy"] or age >= hw or day >= LAST or (age >= cd["maxday"] - 1 and hour >= 21))
+            if tt["crop"] == "MELON" and age < cd["first"]: ripe = False
+            meh = PLAN.get("melon_early_hour")
+            if tt["crop"] == "MELON" and meh is not None and age == cd["first"] - 1 and hour >= int(meh) and yu >= 4: ripe = True
+        if need_water: ops.append(["WATER"])
+        if (cd["ongoing"] and age >= cd["first"] - 2 and int(tt.get("fertilized_until_day", -1)) < day and day <= LAST - 2
+                and tt["crop"] in PLAN.get("fertilize_crops", ["STRAWBERRY"]) and unit_has_fert):
+            ops.append(["FERTILIZE"])
+        if ripe:
+            ops.append(["HARVEST"])
+            if not cd["ongoing"] and day <= lp["WHEAT"] and not ENDGAME:
+                c = pick_crop(commit=False)
+                if c: ops += [["PLANT", c], ["WATER"]]
+        return ops
+
+    # ---------- 角色与分区（每天一次；手数变化时重算） ----------
+    roles = st.get("roles")
+    n_anim_all = n_animals + sum(n for _, n in shed_animals) + carried
+    if roles is None or roles.get("day") != day or roles.get("n") != n_units:
+        n_ranch = min(n_units, max(1, -(-n_anim_all // PLAN.get("animals_per_ranch", 4)))) if n_anim_all > 0 else 0
+        if n_units <= 2: n_ranch = min(n_ranch, 1)
+        by_near = sorted(range(n_units), key=lambda u: (_dist(positions[u], _nearest_access(positions[u])), u))
+        ranch_units = by_near[:n_ranch]
+        field_units = [u for u in range(n_units) if u not in ranch_units]
+        ring = sorted(list(pasture_set), key=_snake_key)
+        groups = {}
+        if ranch_units:
+            k = len(ranch_units); n = len(ring)
+            for i, u in enumerate(ranch_units):
+                groups[u] = ring[(i * n) // k:((i + 1) * n) // k]
+        crop_all = sorted([tt for tt in order if tt not in pasture_set], key=_snake_key)
+        if field_units:
+            k = len(field_units); n = len(crop_all)
+            for i, u in enumerate(field_units):
+                groups[u] = crop_all[(i * n) // k:((i + 1) * n) // k]
+        new_day = (st.get("roles") is None) or (st["roles"].get("day") != day)
+        roles = {"day": day, "n": n_units, "ranch": set(ranch_units), "groups": groups}
+        st["roles"] = roles
+        if new_day: st["units"] = {}
+    ranch = roles["ranch"]; groups = roles["groups"]
+    US = st["units"]   # u -> {"target": (x,y) or None, "ops": [...], "phase": ...}
+
+    unit_actions = [["PASS"] for _ in range(n_units)]
+    unfed_total = sum(1 for (x, y) in animal_tiles if not T(x, y).get("fed_today"))
+    # 待放置的动物：分给牧场手（棚内动物数）
+    place_queue = []
+    for a, n in shed_animals:
+        place_queue += [a] * n
+    free_structs = sorted(list(struct_empty), key=lambda tt: _dist(tt, ACCESS[0]))
+    for tt in build_tiles: free_structs.append(tt)   # 需先建
+
+    def unit_value(inv):
+        return sum(v * BASE.get(k, 0) for k, v in inv.items() if k in PRODUCTS and k not in ("WHEAT", "FERTILIZER"))
+
+    def unit_nprod(inv):
+        return sum(v for k, v in inv.items() if k in PRODUCTS and k not in ("WHEAT", "FERTILIZER"))
+
+    claimed_tiles = set()
+    for u in range(n_units):
+        s = US.get(u)
+        if s and s.get("target") and s.get("ops"): claimed_tiles.add(s["target"])
+
+    def needs_work(tt, u):
+        if tt in claimed_tiles: return False
+        if tt in animal_tiles: return bool(animal_ops(*tt))
+        if tt in build_set: return True
+        return bool(plant_ops(tt[0], tt[1], int(invs[u].get("FERTILIZER", 0)) > 0))
+
+    for u in range(n_units):
+        pos = positions[u]; inv = invs[u]
+        s = US.setdefault(u, {"target": None, "ops": [], "did_pickup": 0})
+        # 1) 若有进行中的 op 队列且在目标上：执行
+        if s.get("ops") and s.get("target") == pos:
+            op = s["ops"].pop(0)
+            # 校验：FEED 无麦 / FERTILIZE 无肥 / PLANT 无种子 → 跳过
+            if op[0] == "FEED" and int(inv.get("WHEAT", 0)) <= 0: op = None
+            elif op[0] == "FERTILIZE" and int(inv.get("FERTILIZER", 0)) <= 0: op = None
+            elif op[0] == "PLANT":
+                c = op[1]
+                if seed_budget.get(c, 0) - plant_reserved[c] <= 0: op = None
+                else: plant_reserved[c] += 1
+            if op is None:
+                if s["ops"]:
+                    op = s["ops"].pop(0)
+                    if op[0] == "WATER" and not (isinstance(T(*pos), dict) and T(*pos).get("kind") == "PLANT"): op = None
+            if op is not None:
+                unit_actions[u] = list(op)
+                if op[0] == "FEED": inv["WHEAT"] = int(inv.get("WHEAT", 0)) - 1
+                if op[0] == "FERTILIZE": inv["FERTILIZER"] = int(inv.get("FERTILIZER", 0)) - 1
+                if op[0] == "DROP": inv.clear()
+                if op[0] == "PICKUP" and op[1] in ("WHEAT", "FERTILIZER"): inv[op[1]] = int(inv.get(op[1], 0)) + int(op[2])
+                continue
+        # 2) 在途：继续走
+        if s.get("target") and s.get("target") != pos and s.get("ops"):
+            unit_actions[u] = _step_toward(pos, s["target"]); continue
+        # 3) 选下一个目标
+        s["ops"] = []; s["target"] = None
+        grp = groups.get(u, [])
+        is_ranch = u in ranch
+        # 3a) 牧场手：先取麦（有未喂动物且身上无麦）
+        if is_ranch and unfed_total > 0 and int(inv.get("WHEAT", 0)) <= 0 and int(shed.get("WHEAT", 0)) > 0 and day < LAST:
+            k = min(int(shed.get("WHEAT", 0)), max(1, sum(1 for tt in grp if tt in animal_tiles and not T(*tt).get("fed_today"))), 8)
+            acc = _nearest_access(pos)
+            s["target"] = acc; s["ops"] = [["PICKUP", "WHEAT", k]]
+            shed["WHEAT"] = int(shed.get("WHEAT", 0)) - k
+            if pos == acc:
+                unit_actions[u] = s["ops"].pop(0); inv["WHEAT"] = int(inv.get("WHEAT", 0)) + k
+            else:
+                unit_actions[u] = _step_toward(pos, acc)
+            continue
+        # 3b) 田间手：日初取肥（有需要施肥的草莓且身上无肥）
+        if (not is_ranch) and int(inv.get("FERTILIZER", 0)) <= 0 and int(shed.get("FERTILIZER", 0)) > 0 and s.get("did_pickup", 0) < 2:
+            need_f = sum(1 for tt in grp if tt in plant_tiles and CROPS[T(*tt)["crop"]]["ongoing"] and T(*tt)["crop"] in PLAN.get("fertilize_crops", ["STRAWBERRY"])
+                         and int(T(*tt).get("fertilized_until_day", -1)) < day and day - int(T(*tt).get("planted_day", day)) >= CROPS[T(*tt)["crop"]]["first"] - 2)
+            if (need_f >= 2 and (not s.get("ops"))) or (need_f > 0 and _dist(pos, _nearest_access(pos)) <= 2):
+                k = min(int(shed.get("FERTILIZER", 0)), need_f, 6); acc = _nearest_access(pos)
+                s["did_pickup"] = s.get("did_pickup", 0) + 1; s["target"] = acc; s["ops"] = [["PICKUP", "FERTILIZER", k]]
+                shed["FERTILIZER"] = int(shed.get("FERTILIZER", 0)) - k
+                if pos == acc:
+                    unit_actions[u] = s["ops"].pop(0); inv["FERTILIZER"] = int(inv.get("FERTILIZER", 0)) + k
+                else:
+                    unit_actions[u] = _step_toward(pos, acc)
+                continue
+        # 3c) 放动物（牧场手，棚内有动物且有空结构）
+        if place_queue and free_structs and (is_ranch or not grp or not any(needs_work(tt, u) for tt in grp)) and (pos in ACCESS or _dist(pos, _nearest_access(pos)) <= 2):
+            a = place_queue.pop(0); tgt = free_structs.pop(0); acc = _nearest_access(pos)
+            s["target"] = acc; s["ops"] = [["PICKUP", a, 1]]; s["place_to"] = tgt; s["place_a"] = a
+            if pos == acc:
+                unit_actions[u] = s["ops"].pop(0); s["target"] = tgt
+                s["ops"] = ([["BUILD_PASTURE"]] if tgt in build_set else []) + [["PLACE", a]]
+                inv[a] = int(inv.get(a, 0)) + 1
+            else:
+                unit_actions[u] = _step_toward(pos, acc)
+            claimed_tiles.add(tgt); continue
+        if s.get("place_to") and int(inv.get(s.get("place_a", ""), 0)) > 0:
+            tgt = s["place_to"]; s["target"] = tgt
+            s["ops"] = ([["BUILD_PASTURE"]] if tgt in build_set else []) + [["PLACE", s["place_a"]]]
+            s.pop("place_to", None)
+            if pos == tgt: unit_actions[u] = s["ops"].pop(0)
+            else: unit_actions[u] = _step_toward(pos, tgt)
+            claimed_tiles.add(tgt); continue
+        # 3d) 入库判断
+        val = unit_value(inv); npd = unit_nprod(inv)
+        acc = _nearest_access(pos); dd = _dist(pos, acc)
+        want_dep = npd > 0 and (val >= PLAN.get("deposit_value", 600) or npd >= PLAN.get("deposit_min", 10) or hour >= 21 or ENDGAME or (dd <= 1 and val >= 150) or (is_ranch and dd <= 2 and val >= 250))
+        # 3e) 本组内最近的需要工作的地块（按巡回顺序：从当前位置起最近）
+        cand = [tt for tt in grp if needs_work(tt, u)]
+        if not cand and not want_dep:
+            # 帮工：全场最近需要工作的地块（牧场手只在动物全喂完后才去田间；田间手若牧场有未喂动物则不去）
+            pool = []
+            if is_ranch or unfed_total == 0:
+                pool += [tt for tt in order if tt not in pasture_set and needs_work(tt, u)]
+            pool += [tt for tt in build_tiles if needs_work(tt, u)]
+            pool += [tt for tt in animal_tiles if needs_work(tt, u) and (int(inv.get("WHEAT", 0)) > 0 or not any(o[0] == "FEED" for o in animal_ops(*tt)))]
+            cand = pool
+        if want_dep and (not cand or dd <= 1 or val >= PLAN.get("deposit_value", 600) or hour >= 21):
+            s["target"] = acc; s["ops"] = [["DROP"]]
+            if pos == acc: unit_actions[u] = s["ops"].pop(0); inv.clear()
+            else: unit_actions[u] = _step_toward(pos, acc)
+            continue
+        if not cand:
+            continue
+        tgt = min(cand, key=lambda tt: (_dist(pos, tt), _snake_key(tt)))
+        if tgt in animal_tiles: ops = animal_ops(*tgt)
+        elif tgt in build_set: ops = [["BUILD_PASTURE"]]
+        else: ops = plant_ops(tgt[0], tgt[1], int(inv.get("FERTILIZER", 0)) > 0)
+        # 若含 FEED 但无麦：去掉 FEED
+        if int(inv.get("WHEAT", 0)) <= 0: ops = [o for o in ops if o[0] != "FEED"]
+        if not ops: continue
+        # 提交种子预算
+        for o in ops:
+            if o[0] == "PLANT": pick_crop(commit=True)
+        s["target"] = tgt; s["ops"] = ops; claimed_tiles.add(tgt)
+        if pos == tgt:
+            op = s["ops"].pop(0)
+            if op[0] == "PLANT":
+                if seed_budget.get(op[1], 0) - plant_reserved[op[1]] < 0: op = ["PASS"]
+                else: plant_reserved[op[1]] += 1
+            unit_actions[u] = list(op)
+            if op[0] == "FEED": inv["WHEAT"] = int(inv.get("WHEAT", 0)) - 1
+            if op[0] == "FERTILIZE": inv["FERTILIZER"] = int(inv.get("FERTILIZER", 0)) - 1
+        else:
+            unit_actions[u] = _step_toward(pos, tgt)
+
+    market = _market(farm, shed, seeds, invs, money, day, hour, turn, n_animals, shed_animals, carried, plant_tiles, empty_tiles, prices, st, unlocked)
+    return {"farmer": unit_actions[0], "hands": unit_actions[1:], "market": market[:10]}
+
+
+def _market(farm, shed, seeds, invs, money, day, hour, turn, n_animals, shed_animals, carried, plant_tiles, empty_tiles, prices, st, unlocked):
+    orders = []
+    n_anim_now = n_animals + sum(n for _, n in shed_animals) + carried
+    n_anim_soon = n_anim_now + sum(int(n) for _, n in PLAN["animals"].get(day, []))
+    pend = st.get("pending")
+    if pend is None:
+        pend = st["pending"] = {"animals": [], "straw": 0, "land": 0, "melon": PLAN["melon_tiles"] if day == 0 else 0}
+        if day > 0:
+            for d0 in range(0, day): st["day_plan"][("plan_added", d0)] = True
+    dk = ("plan_added", day)
+    if not st["day_plan"].get(dk):
+        st["day_plan"][dk] = True
+        for a, n in PLAN["animals"].get(day, []): pend["animals"].append([a, int(n)])
+        pend["straw"] += int(PLAN["straw"].get(day, 0))
+        pend["land"] += int(PLAN["land"].get(day, 0))
+    fd = 1 if day < PLAN.get("feed_days_from", 8) else PLAN["feed_days"]
+    feed_reserve = n_anim_now * fd + (2 if day < 8 else 4) if turn < 24 * 29 else 0
+    has_straw = any(farm["tiles"][y][x].get("crop") == "STRAWBERRY" for (x, y) in plant_tiles)
+    fert_reserve = PLAN["fert_reserve"] if (turn < 24 * 27 and has_straw and day >= 6) else 0
+    sells = []
+    for item in PRODUCTS:
+        q = int(shed.get(item, 0))
+        if item == "WHEAT": q -= feed_reserve
+        if item == "FERTILIZER": q -= fert_reserve
+        if q > 0: sells.append((q * prices.get(item, BASE[item]), ["SELL", item, q]))
+    sells.sort(key=lambda s: -s[0])
+    max_sell = 10 if turn >= 24 * 29 + 16 else 6
+    orders += [o for _, o in sells[:max_sell]]
+    cash = money + sum(v * 0.7 for v, _ in sells[:max_sell])
+    if turn >= 24 * 29 + 20:
+        return orders
+    # 饲料
+    wheat_have = int(shed.get("WHEAT", 0)) + sum(int(i.get("WHEAT", 0)) for i in invs)
+    need_feed = n_anim_soon * fd + 2
+    wp = prices.get("WHEAT", 25)
+    if n_anim_soon and day <= 27 and wheat_have < n_anim_soon + 1 and wp <= PLAN["wheat_buy_cap"] and len(orders) < 10:
+        q = min(need_feed - wheat_have, 24)
+        if day < 8: q = max(1, min(q, n_anim_soon + 2 - wheat_have))
+        if day == 0: q = max(q, 8)
+        if cash >= q * wp:
+            orders.insert(0, ["BUY_PRODUCT", "WHEAT", q]); cash -= q * wp
+        elif cash >= wp:
+            q = int(cash // wp); orders.insert(0, ["BUY_PRODUCT", "WHEAT", q]); cash -= q * wp
+    # 雇工
+    want_hands = PLAN["hands"].get(day, PLAN["hands_default"])
+    if day == 29: want_hands = min(want_hands, 8)
+    hired = int(farm.get("hires_today", 0) or 0)
+    if hour <= 2 and hired < want_hands:
+        n = want_hands - hired; cost = 0; k = 0
+        for i in range(n):
+            c = FIB[hired + i]
+            if cost + c > cash - 3 or len(orders) + k >= 10: break
+            cost += c; k += 1
+        orders += [["HIRE"]] * k; cash -= cost
+    # 土地
+    n_extra = len(unlocked) - 1
+    if pend["land"] > 0 and n_extra < 3 and len(orders) < 10:
+        price = LAND_PRICES[n_extra]
+        if cash >= price + 60:
+            orders.append(["BUY_LAND"]); cash -= price; pend["land"] -= 1
+    # 动物
+    if day <= PLAN["animal_last_day"]:
+        rest = []
+        for a, n in pend["animals"]:
+            cost = ANIMALS[a]["cost"] * n
+            if cash >= cost + PLAN["animal_cash_reserve"] and len(orders) < 10 and sum(shed.values()) + n < 95:
+                orders.append(["BUY_ANIMAL", a, n]); cash -= cost
+            else:
+                rest.append([a, n])
+        pend["animals"] = rest
+    else:
+        pend["animals"] = []
+    # 种子
+    lp = PLAN["last_plant_day"]
+    if pend["melon"] > 0 and day <= lp["MELON"] and len(orders) < 10:
+        n = pend["melon"]; c = 80 * n
+        if cash >= c + 10:
+            orders.append(["BUY_SEED", "MELON", n]); cash -= c; pend["melon"] = 0
+        elif cash >= 170:
+            n = int((cash - 10) // 80); orders.append(["BUY_SEED", "MELON", n]); cash -= n * 80; pend["melon"] -= n
+    if pend["straw"] > 0 and day <= lp["STRAWBERRY"] and len(orders) < 10:
+        n = pend["straw"]; c = 100 * n
+        if cash >= c + 10:
+            orders.append(["BUY_SEED", "STRAWBERRY", n]); cash -= c; pend["straw"] = 0
+        elif cash >= 110:
+            n = int((cash - 10) // 100); orders.append(["BUY_SEED", "STRAWBERRY", n]); cash -= n * 100; pend["straw"] -= n
+    if day <= lp["WHEAT"] and len(orders) < 10:
+        target_wheat = PLAN["wheat_tiles"] if day < 6 else (PLAN["wheat_tiles_mid"] if day < 11 else PLAN["wheat_tiles_late"])
+        have_wheat_plants = sum(1 for (x, y) in plant_tiles if farm["tiles"][y][x].get("crop") == "WHEAT")
+        n_empty = len(empty_tiles)
+        buf = 0 if day < 3 else 6
+        want = max(0, min(target_wheat - have_wheat_plants + buf, n_empty + buf) - int(seeds.get("WHEAT", 0)))
+        if want >= (1 if day < 3 else 3) and day <= 27:
+            c = 10 * want
+            if cash >= c + 5:
+                orders.append(["BUY_SEED", "WHEAT", want]); cash -= c
+            elif cash >= 35:
+                n = int((cash - 5) // 10); orders.append(["BUY_SEED", "WHEAT", n]); cash -= n * 10
+    return orders

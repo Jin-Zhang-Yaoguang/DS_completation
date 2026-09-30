@@ -1,0 +1,121 @@
+{
+  "schema": "kaggriculture-v11-league-round-1",
+  "round": 3,
+  "cycle": 1,
+  "cycle_round": 3,
+  "status": "complete",
+  "model_ids": [
+    "baseline_v1",
+    "baseline_v2",
+    "baseline_v5",
+    "baseline_v8",
+    "v1_topdays",
+    "v2_topdays",
+    "v5_topdays",
+    "v8_topdays",
+    "v5_price_slot",
+    "v8_lead1",
+    "v8_no_preempt",
+    "v8_conservative",
+    "rule_router",
+    "learned_router",
+    "r001_learned_router_premium_floor_guard",
+    "r002_learned_router_topday_animal_throttle"
+  ],
+  "model_fingerprints": {
+    "baseline_v1": "6fc2c6efad4b43b8a9e719a8055b82894d8d3bae6bb7f526ff70888bedd4b7a6",
+    "baseline_v2": "73e20dbc43b20927fb933715fbdea8fedda14dd4e22e86a56da5c28a3d820f97",
+    "baseline_v5": "e86953210f9d18ad009d746892c1a83b1009e3b444078d5e9e74fb5de8ffff40",
+    "baseline_v8": "63c8074aec824e4c29532f1b19fedb6cbd2a5b260c1a52df6fdd505f2c76f421",
+    "v1_topdays": "52a8427582d3bcf78cfbebf4653bf0e7fa173ef20088ba15aa5d54f7405f1f05",
+    "v2_topdays": "602c0e580873cc3cf8a933c0304c18bb4ebff5bd3f4120b6d7a3018a63fbb44b",
+    "v5_topdays": "fa5d8a24e2e64121db3a5c630f908d6c37729e1900fe04a6fc2b307ae94a0772",
+    "v8_topdays": "83b5b020848151029c78dc7aa7d6b905c33fad80a6da3363da3c7fff3a9064de",
+    "v5_price_slot": "302dae280bcb251b3fbcf659ff385e65b012f70a1f3dae2b2e527eaa4944f91a",
+    "v8_lead1": "456daf0b3324f126b22566705338003e97dc45f0a99e95958f635c774361befc",
+    "v8_no_preempt": "f5f9306dc00de40a6be78b822b0a8a93632833eda8283fd0cc6ed31740672dcb",
+    "v8_conservative": "aee2673257ed6d2f27ea1dd2aec81e004c0e95c2f35e54cb00c230d351ec8102",
+    "rule_router": "c0e9643dcc59c1bee8f4200a4a5e84b877f63830bf16e5b13fd08f2bc41133cd",
+    "learned_router": "9813b175856c8e702613bb27b4e0a4b95403cae65093615d9611f12cdb184ed6",
+    "r001_learned_router_premium_floor_guard": "b6b89c9152e86880b2cb76f77ceba3bccdfcc0cddfbc3ed41544de16f3b873a0",
+    "r002_learned_router_topday_animal_throttle": "38afb12bd5fbc987adf752acb437abe9330bd385233c22782b35353f77be2d74"
+  },
+  "router_ancestry": {
+    "baseline_v1": null,
+    "baseline_v2": null,
+    "baseline_v5": null,
+    "baseline_v8": null,
+    "v1_topdays": null,
+    "v2_topdays": null,
+    "v5_topdays": null,
+    "v8_topdays": null,
+    "v5_price_slot": null,
+    "v8_lead1": null,
+    "v8_no_preempt": null,
+    "v8_conservative": null,
+    "rule_router": {
+      "router_model_id": "rule_router",
+      "experts": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8"
+      ],
+      "fast_shadow_required": true
+    },
+    "learned_router": {
+      "router_model_id": "learned_router",
+      "experts": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8"
+      ],
+      "fast_shadow_required": true
+    },
+    "r001_learned_router_premium_floor_guard": {
+      "router_model_id": "learned_router",
+      "experts": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8"
+      ],
+      "fast_shadow_required": true
+    },
+    "r002_learned_router_topday_animal_throttle": {
+      "router_model_id": "learned_router",
+      "experts": [
+        "baseline_v1",
+        "baseline_v2",
+        "baseline_v5",
+        "baseline_v8"
+      ],
+      "fast_shadow_required": true
+    }
+  },
+  "registry": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v11_iterative_league/runs/round_002/strategy/registry_next.json",
+  "registry_and_code_sha256": "a4d63598c95a165add426aaac7b1dbe2cd9ff2e6f91dde71e6e3ec0e54da26a5",
+  "evaluation_implementation_sha256": "c25e77330b7451849dea8ac2387caf43b4a7400675a87143790153524cecbc75",
+  "orchestration_implementation": {
+    "league_sha256": "28b30a989fede3409ebe16710c2e1a993d613f22e6bc5707d0deb06d3c0647d1",
+    "admission_verifier_sha256": "3772a8218682b208484e52740967ad67044fca1b9a95cec61105b13b30f9e2a0"
+  },
+  "manifest": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Kaggriculture/model/v10_replay_lolo_router/evaluation_seed_manifest.jsonl",
+  "manifest_sha256": "8642c6d61888784f4dc97d7348bc1b7f7fa6be1896d337175763798cffdfa216",
+  "round_salt_sha256": "d3e49e511ad01ecbfcd9d4b0bc3c353862b7ebcec2b59486f3c2322d77bcdb61",
+  "random_seed": 1117346672,
+  "panel_sha256": "0229443ea19eb1a6d1e62e353401ca4c2a77da37a374477056bdc894114dc26c",
+  "panel_reused_seed_count": 0,
+  "router_fit_exclusion_records_sha256": "7bbed6cb6a2ef81a1c3a759a5c8b1a54e2b58e108c11934ed5a46c15398adcf4",
+  "router_fit_exclusion_count": 200,
+  "games_per_pair": 200,
+  "expected_pairs": 120,
+  "expected_tasks": 24000,
+  "run_fingerprint": "c314b24ec7c4c863e322778c210ac5c096499198ce65f3d16e34a95dc8ff36db",
+  "activated_model": "r002_learned_router_topday_animal_throttle",
+  "activated_candidate_source_round": 2,
+  "activated_candidate_design_panel_sha256": "c56cceb62727670dc331e82bcb22bd63b027f31385fa9e1ed4f2b58b57ddcda9",
+  "activated_candidate_design_panel_overlap": 0,
+  "completed_at": "2026-08-23T04:50:54.547199+00:00"
+}

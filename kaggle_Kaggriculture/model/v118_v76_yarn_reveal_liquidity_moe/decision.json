@@ -1,0 +1,52 @@
+{
+  "schema": "kaggriculture-v118-decision-v1",
+  "model_id": "v118_v76_yarn_reveal_liquidity_moe",
+  "parent": "v76_adjacent_safe_buy_lead",
+  "decision": "PROMOTE_REPLAY_ADMITTED_LOCAL_GOLD",
+  "gate_metric": "pure_win_rate; ties are not wins",
+  "target_yarn_2_or_3": {
+    "sources": 64,
+    "games": 128,
+    "wins_ties_losses": [117, 0, 11],
+    "pure_win_rate": 0.9140625,
+    "threshold": 0.8,
+    "pass": true
+  },
+  "random": {
+    "sources": 64,
+    "games": 128,
+    "wins_ties_losses": [103, 6, 19],
+    "pure_win_rate": 0.8046875,
+    "threshold": 0.55,
+    "pass": true
+  },
+  "target_rc1_rc2_exact_row_parity": "128/128",
+  "main_sha256": "4cbfa37aa19463979b7e3a23ccb8d6db0664285b1afb32df27b971f1ccfea71d",
+  "archive_sha256": "d44ba7be33d17c572a0618417664a39f20855bca5b63e5023a96613835e84b88",
+  "package_qa": "PASS",
+  "gold_registration": {
+    "registered": true,
+    "standard": "account and official pure win rate both >= 0.75; ties are not wins",
+    "account_online": {
+      "games": 4608,
+      "wins_ties_losses": [4104, 84, 420],
+      "pure_win_rate": 0.890625
+    },
+    "official_daily": {
+      "games": 4608,
+      "wins_ties_losses": [4095, 118, 395],
+      "pure_win_rate": 0.888671875
+    },
+    "validation": "PASS"
+  },
+  "remote_submission": {
+    "submission_id": 55917074,
+    "submitted_at": "2026-08-31T13:57:02.840000",
+    "description": "V118 RC2 V76 YARN reveal liquidity MoE; strict pure gates 91.41/80.47; QA pass",
+    "initial_status": "SubmissionStatus.PENDING",
+    "initial_public_score": "",
+    "current_status": "SubmissionStatus.COMPLETE",
+    "current_public_score": 1287.7,
+    "online_gold_proof": false
+  }
+}

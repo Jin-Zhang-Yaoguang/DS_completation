@@ -1,0 +1,113 @@
+{
+  "schema": "r10-performance-940-static-checks-v1",
+  "created_at_utc": "2026-09-05T13:30:28.399247+00:00",
+  "checks": {
+    "harness_syntax_compile_without_execution": true,
+    "only_new_state_and_internal_economic_ns_call_sites": true,
+    "one_new_state_call_site": true,
+    "one_economic_call_site": true,
+    "snapshot_exact940": true,
+    "full_fixture_original_exact": true,
+    "selected_case_complete_equality": true,
+    "run_once_not_created": true,
+    "owner_ranges_match_source_ast": true,
+    "owner_ranges_disjoint": true,
+    "known_nested_functions_have_unique_module_owner": true
+  },
+  "passed": 11,
+  "total": 11,
+  "ns_call_sites": [
+    {
+      "name": "new_state",
+      "line": 140
+    },
+    {
+      "name": "economic_plan_prefix",
+      "line": 148
+    }
+  ],
+  "nested_owner_examples": [
+    {
+      "name": "remaining",
+      "line": 464,
+      "owners": [
+        {
+          "name": "_r10_scheduler_schedule_day",
+          "line": 406,
+          "end_line": 627,
+          "category": "scheduler"
+        }
+      ]
+    },
+    {
+      "name": "ready",
+      "line": 467,
+      "owners": [
+        {
+          "name": "_r10_scheduler_schedule_day",
+          "line": 406,
+          "end_line": 627,
+          "category": "scheduler"
+        }
+      ]
+    },
+    {
+      "name": "projected_group_cost",
+      "line": 477,
+      "owners": [
+        {
+          "name": "_r10_scheduler_schedule_day",
+          "line": 406,
+          "end_line": 627,
+          "category": "scheduler"
+        }
+      ]
+    },
+    {
+      "name": "free_assignment",
+      "line": 488,
+      "owners": [
+        {
+          "name": "_r10_scheduler_schedule_day",
+          "line": 406,
+          "end_line": 627,
+          "category": "scheduler"
+        }
+      ]
+    },
+    {
+      "name": "visit",
+      "line": 775,
+      "owners": [
+        {
+          "name": "_r10_checker__validate_problem",
+          "line": 681,
+          "end_line": 786,
+          "category": "checker"
+        }
+      ]
+    },
+    {
+      "name": "take",
+      "line": 818,
+      "owners": [
+        {
+          "name": "_r10_checker__run",
+          "line": 788,
+          "end_line": 1014,
+          "category": "checker"
+        }
+      ]
+    }
+  ],
+  "harness_sha256": "d72852a29c8f6bcae9505c3b48d514089483936ba3398820830defa2e98e949c",
+  "counts": {
+    "source_definition_loads": 0,
+    "new_state": 0,
+    "internal_economic_plan_prefix": 0,
+    "whole_agent": 0,
+    "engine": 0,
+    "solver": 0,
+    "checker": 0
+  }
+}

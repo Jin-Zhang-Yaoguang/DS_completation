@@ -1,0 +1,25 @@
+{
+  "schema": "kaggriculture-v90-decision-v1",
+  "model_id": "v90_factorized_shallow_tree_moe",
+  "strategy_parent": null,
+  "decision": "REJECT_PRECONSTRUCTION_COMPOUNDING_IMITATION_ERROR",
+  "gold_increment": 0,
+  "training": {
+    "episodes": 50,
+    "unit_samples": 354276,
+    "unit_oof_accuracy": 0.9132766543598776,
+    "market_slot_samples": 359500,
+    "market_slot_oof_accuracy": 0.9463226703755215,
+    "market_nonempty_oof_accuracy": 0.6498197079860495
+  },
+  "synthetic_games": 576,
+  "official_replay_sources_consumed": 0,
+  "panel_score": 0.0,
+  "ablation_score": 0.0,
+  "direct_v76_score": 0.0,
+  "catastrophic_rate": 1.0,
+  "unit_orders_dropped": 162002,
+  "runtime_errors": 0,
+  "conclusion": "High episode-isolated action accuracy does not survive closed-loop compounding. Independent unit and market classifiers drift off the training manifold and collapse.",
+  "remote_submission": "NOT_AUTHORIZED"
+}

@@ -1,0 +1,20 @@
+{
+  "version": "ddbv",
+  "method": "Neural autoregressive joint behavior cloning",
+  "architecture": "2531->384 ReLU->192 tanh encoder; 192-hidden GRU over 26 slots, previous joint-request embedding64, slot embedding16, local unit16 plus explicit neighborhood105; shared 725-class raw request vocabulary",
+  "loss": "Masked cross entropy over active units and market requests through first STOP. Unknown validation requests excluded from CE and reported. No execution correction.",
+  "optimizer": "AdamW lr8e-4 wd1e-4 cosine to8e-5, gradient clip1",
+  "epochs_max": 20,
+  "batch": 256,
+  "patience": 5,
+  "selection": "Lowest validation teacher-forced cross entropy, no competitive results used. Validation is research holdout, not untouched competition test.",
+  "seed": 21092026,
+  "device": "mps",
+  "torch": "2.14.0",
+  "parameters": 1460469,
+  "training_data_manifest_sha256": "6e8082505b7f63e063d1b9b52db98bbdb70c3f9deddbc2b99b32c13c40d416e9",
+  "trainer_sha256": "fdd0eb26b31b9a4a3d11ac34f06db1297c1bfa41b241f89bf38e4dfee251d346",
+  "architecture_sha256": "bc3a4b8cbffd96b39fd786964827e889227c7c29c335a93e435b1193f7670f6b",
+  "runtime_sha256": "97a3b9496d662105fe29b61534eb77275451c93b2f26b16e287be4aef9f152d9",
+  "local_data_manifest_sha256": "cf9f394c8d5e75e73f6765a4fe41ae5fb295a039ae983f3c79e53b24ba5477c0"
+}

@@ -1,0 +1,5 @@
+{
+ "name": "land_use",
+ "knife": "K2",
+ "note": "用地率:逐日追踪发现第 12 天起我方 75 块地只用 37 块(27 草莓+4 麦+6 栏),榜首用 71 块(33 草莓+20 麦+18 栏)。根因:各作物份额填满后 pick_crop 返回 None,草莓窗口(d<=16)关闭时现金才到。改动:share_straw 上界 45->60;新旋钮 fill_idle(0-3,份额满后空地仍种麦/草莓/番茄)、seed_cap(非麦种子日限购,顺带接通死旋钮 seed_money 作为买种现金门槛)、land_mode/land2_from/land3_from(凑够地价即买地)。knob_check:fill_idle=1+share_straw=45 -62.2k(基线 -65.4k,+3.2k);share_straw=45 单独 +1.5k;60 -1.1k;fill 2/3 -4k;land4/land_save/straw_from/seed_cap 单独均有害或中性,前三者固定旧值不进空间。冒烟 PASS。"
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "kaggriculture-labor-planner-decision-v1",
+  "decision": "P0_ENABLING_INFRASTRUCTURE_NOT_STANDALONE_GOLD_CANDIDATE",
+  "production_solver": "value-aware beam/MPC with min-cost matching kernel",
+  "offline_oracle": "CP-SAT on small deterministic day slices",
+  "reject_as_online_primary": [
+    "full CP-SAT",
+    "single-commodity time-expanded min-cost flow"
+  ],
+  "fixed_blueprint_idle_pairing": {
+    "episodes": 24,
+    "stock_mean_bank": 33756.25,
+    "joint_mpc_mean_bank": 57129.041666666664,
+    "paired_bank_delta_mean": 23372.791666666668,
+    "paired_bank_delta_positive": "24/24",
+    "stock_mean_daily_static_target_occupancy": 0.6126670178984154,
+    "joint_mpc_mean_daily_static_target_occupancy": 0.7001679029027033,
+    "stock_runtime_us_per_call": 78.8634819193324,
+    "joint_mpc_runtime_us_per_call": 276.9752058993973
+  },
+  "frozen_strong_route_market_pairing": {
+    "episodes": 32,
+    "families": 4,
+    "mean_bank_delta": 7205.25,
+    "median_bank_delta": 4897.5,
+    "positive": "24/32",
+    "stock_score_rate": 0.0,
+    "joint_mpc_score_rate": 0.0
+  },
+  "upper_capture": {
+    "relaxed_upper_mean_bank": 229450,
+    "stock": 0.1471181085203748,
+    "joint_mpc": 0.2489826396448017,
+    "top_route_reference": 0.658
+  },
+  "metric_correction": {
+    "reject_gate": "static target occupancy >=95%",
+    "reason": "successful harvest clears non-ongoing crop tiles, so hour-23 occupancy counts some completed production as unrealized",
+    "replacement": [
+      "job deadline completion",
+      "lifecycle yield capture",
+      "sale availability",
+      "travel/pass/silent-noop/overflow",
+      "terminal bank and family-equal score"
+    ]
+  },
+  "next_gate": "Implement M0 lifecycle certificate and M1 dependency DAG before expanding genome search"
+}

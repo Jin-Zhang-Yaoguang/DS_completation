@@ -1,0 +1,24 @@
+{
+  "candidate_id": "V125-R2",
+  "strategy_parent": null,
+  "implementation_parent": "V125-R0",
+  "parent_candidate_sha256": "9898f724bd71abc91520c7ea29ac90734507236c2fa4237af76a5d87dad404fe",
+  "created_at_utc": "2026-09-05T09:58:24.679730+00:00",
+  "candidate_sha256": "f9f9af10ad11c0ba63e9e4541a642b3c41a9591c7434e8317ac4d5d07f6044c4",
+  "protocol_sha256": "ae3bee95da7659da9ed08b081bbdff2980d61a91fdbc6bbf52c9dea2a5c15a72",
+  "status": "FROZEN_FOR_MICRO",
+  "primary_hypothesis": "任务的可选施肥依赖会让缺料近端工人连保活/收获也被拒。按工人持料生成可完成子链，去掉不可执行肥料的价值，不拒绝整条链，可消除实证反例且改善真实闭环。",
+  "single_primary_change": "按单位拆分可选施肥依赖与对应价值，采购/路由/日期计划保持R0",
+  "mechanism_metric": "相同初始状态远端肥料反例中两席作物存活且待采入仓；有料控制动作不变；全局作物缺水损失率与产出并报",
+  "falsification": "反例未修复、有料控制退化、非法/无效增加或新配对生产低于R0，则不晋级",
+  "diagnostic_seeds": [
+    1950905001
+  ],
+  "fresh_development_seeds": [
+    1950905201,
+    1950905202,
+    1950905203
+  ],
+  "training_data": "NONE_RULES_ONLY",
+  "rejected_predecessor_not_parent": "V125-R1"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "kaggriculture-v10-router-training-registry-1",
+  "models": [
+    {
+      "id": "baseline_v1",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v1"],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v1_adaptive_market/main.py"
+      ],
+      "family": "v1_adaptive_market",
+      "lineage": ["baseline_v1"],
+      "root_lineage": "baseline_v1",
+      "tags": ["adaptive"]
+    },
+    {
+      "id": "baseline_v2",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v2"],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v2_survival_guard/main.py"
+      ],
+      "family": "v2_survival_guard",
+      "lineage": ["baseline_v2"],
+      "root_lineage": "baseline_v2",
+      "tags": ["survival"]
+    },
+    {
+      "id": "baseline_v5",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v5"],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v5_rule_hybrid/main.py",
+        "../v5_rule_hybrid/base_agent.py",
+        "../v5_rule_hybrid/routes.py",
+        "../v5_rule_hybrid/v1_fallback.py"
+      ],
+      "family": "v5_rule_hybrid",
+      "lineage": ["baseline_v5"],
+      "root_lineage": "baseline_v5",
+      "tags": ["champion_route"]
+    },
+    {
+      "id": "baseline_v8",
+      "kind": "python",
+      "path": "expert_registry.py",
+      "factory": "create_agent",
+      "factory_args": ["baseline_v8"],
+      "code_paths": [
+        "expert_registry.py",
+        "variants.py",
+        "../v8_kawa_lead2_slot/main.py"
+      ],
+      "family": "v8_kawa_lead2_slot",
+      "lineage": ["baseline_v8"],
+      "root_lineage": "baseline_v8",
+      "tags": ["kawa"]
+    }
+  ]
+}

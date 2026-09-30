@@ -1,0 +1,65 @@
+{
+  "requested_by_user": "暂停现在所有任务。",
+  "scope": "Four Kaggle tasks controlled by this thread",
+  "paused_at_utc": "2026-09-26T14:46:22.192561+00:00",
+  "paused_at_monotonic": 377124.939362041,
+  "signal": "SIGSTOP",
+  "paused_process_groups": [
+    2725,
+    71095
+  ],
+  "process_identity_before_pause": {
+    "2725": "2725  2725 /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/continue.py",
+    "71095": "71095 71095 /opt/anaconda3/bin/python3 /Users/a1-6/.codex/worktrees/kaggle-gemma-fullaccess/DS_completation/kaggle_Gemma4_Developer_Agent/track_result.py --poll --interval 120"
+  },
+  "process_snapshot_after_pause": "  PID  PPID  PGID STAT      TIME COMMAND\n 2725     1  2725 Ts     0:00.02 /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/continue.py\n 2726  2725  2725 T    418:45.61 /opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/run.py\n71095     1 71095 Ts     0:00.56 /opt/anaconda3/bin/python3 /Users/a1-6/.codex/worktrees/kaggle-gemma-fullaccess/DS_completation/kaggle_Gemma4_Developer_Agent/track_result.py --poll --interval 120\n",
+  "ev_progress": {
+    "completed_atoms": 132,
+    "total_atoms": 600,
+    "outer": 2,
+    "family": "v80",
+    "atom": 12,
+    "spent_seconds": 8750.751803249994,
+    "contract_sha256": "4d254f2215f566fc8cefb11575645b177dfa8f9f4c4c3e9345ab3cf2f4f52466",
+    "updated_at_utc": "2026-09-26T14:44:56.298312+00:00"
+  },
+  "ev_budget_at_pause": {
+    "spent_seconds": 8750.763256457984,
+    "peak_rss_bytes": 10639802368,
+    "pid": 2726,
+    "updated_at_utc": "2026-09-26T14:44:56.309003+00:00"
+  },
+  "resume_requires_explicit_user_instruction": true,
+  "resume_budget_note": "Do not blindly SIGCONT after a long pause: run.py cumulative budget includes time.monotonic elapsed. On explicit resume account for user-authorized pause without changing model/gate contract, or checkpoint-restart after preserving the partial atom and original budget. Do not reset spent training time.",
+  "remote_submission_note": "Already submitted Kaggle evaluation may continue remotely; no new submissions or local monitoring while paused.",
+  "status": "PAUSED_BY_USER",
+  "active": true,
+  "automation_status": "PAUSED",
+  "verified_at_utc": "2026-09-26T14:47:13.749892+00:00",
+  "verified_suspended_processes": [
+    {
+      "pid": 2725,
+      "ppid": 1,
+      "pgid": 2725,
+      "state": "Ts",
+      "cpu_time": "0:00.02",
+      "command": "/opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/continue.py"
+    },
+    {
+      "pid": 2726,
+      "ppid": 2725,
+      "pgid": 2725,
+      "state": "T",
+      "cpu_time": "418:45.61",
+      "command": "/opt/anaconda3/bin/python3.13 /Users/a1-6/Desktop/PycharmProjects/DS_completation/.claude/worktrees/strange-gates-ca18fe/kaggle_Predicting_Electric_Vehicle_Purchases/model/takeover_20260926/p3_e2e_outer5/run.py"
+    },
+    {
+      "pid": 71095,
+      "ppid": 1,
+      "pgid": 71095,
+      "state": "Ts",
+      "cpu_time": "0:00.56",
+      "command": "/opt/anaconda3/bin/python3 /Users/a1-6/.codex/worktrees/kaggle-gemma-fullaccess/DS_completation/kaggle_Gemma4_Developer_Agent/track_result.py --poll --interval 120"
+    }
+  ]
+}

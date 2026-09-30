@@ -1,0 +1,303 @@
+{
+  "experiment": "v21_xgb_lattice_candidate",
+  "mode": "full",
+  "created_utc": "2026-08-23T16:24:01Z",
+  "train_rows": 691369,
+  "test_rows": 296302,
+  "target_mean": 0.7094243450313797,
+  "outer_folds": 5,
+  "inner_folds": 5,
+  "seed": 42,
+  "fixed_num_boost_round": 1900,
+  "early_stopping": false,
+  "oof_auc": 0.968042225032914,
+  "fold_auc": [
+    0.9674148615142457,
+    0.9682450157823166,
+    0.9682583731039744,
+    0.9685533192122903,
+    0.9677448052003901
+  ],
+  "feature_count": 118,
+  "base_feature_count": 43,
+  "global_frequency_feature_count": 25,
+  "fold_encoding_feature_count": 50,
+  "key_specs": [
+    {
+      "name": "r05_daily_screen_time_hours",
+      "kind": "round_0.5",
+      "alpha": 30.0,
+      "parent": null
+    },
+    {
+      "name": "r05_social_media_hours",
+      "kind": "round_0.5",
+      "alpha": 30.0,
+      "parent": null
+    },
+    {
+      "name": "r05_weekend_screen_time",
+      "kind": "round_0.5",
+      "alpha": 30.0,
+      "parent": null
+    },
+    {
+      "name": "r01_daily_screen_time_hours",
+      "kind": "round_0.1",
+      "alpha": 15.0,
+      "parent": "r05_daily_screen_time_hours"
+    },
+    {
+      "name": "r01_social_media_hours",
+      "kind": "round_0.1",
+      "alpha": 15.0,
+      "parent": "r05_social_media_hours"
+    },
+    {
+      "name": "r01_gaming_hours",
+      "kind": "round_0.1",
+      "alpha": 15.0,
+      "parent": null
+    },
+    {
+      "name": "r01_work_study_hours",
+      "kind": "round_0.1",
+      "alpha": 15.0,
+      "parent": null
+    },
+    {
+      "name": "r01_sleep_hours",
+      "kind": "round_0.1",
+      "alpha": 15.0,
+      "parent": null
+    },
+    {
+      "name": "r01_weekend_screen_time",
+      "kind": "round_0.1",
+      "alpha": 15.0,
+      "parent": "r05_weekend_screen_time"
+    },
+    {
+      "name": "exact_age",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": null
+    },
+    {
+      "name": "exact_daily_screen_time_hours",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": "r01_daily_screen_time_hours"
+    },
+    {
+      "name": "exact_social_media_hours",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": "r01_social_media_hours"
+    },
+    {
+      "name": "exact_gaming_hours",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": "r01_gaming_hours"
+    },
+    {
+      "name": "exact_work_study_hours",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": "r01_work_study_hours"
+    },
+    {
+      "name": "exact_sleep_hours",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": "r01_sleep_hours"
+    },
+    {
+      "name": "exact_notifications_per_day",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": null
+    },
+    {
+      "name": "exact_app_opens_per_day",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": null
+    },
+    {
+      "name": "exact_weekend_screen_time",
+      "kind": "exact_numeric",
+      "alpha": 10.0,
+      "parent": "r01_weekend_screen_time"
+    },
+    {
+      "name": "exact_gender",
+      "kind": "exact_categorical",
+      "alpha": 30.0,
+      "parent": null
+    },
+    {
+      "name": "exact_stress_level",
+      "kind": "exact_categorical",
+      "alpha": 30.0,
+      "parent": null
+    },
+    {
+      "name": "exact_academic_work_impact",
+      "kind": "exact_categorical",
+      "alpha": 30.0,
+      "parent": null
+    },
+    {
+      "name": "pair01_daily_screen_time_hours__social_media_hours",
+      "kind": "pair_round_0.1",
+      "alpha": 10.0,
+      "parent": null
+    },
+    {
+      "name": "pair01_social_media_hours__weekend_screen_time",
+      "kind": "pair_round_0.1",
+      "alpha": 10.0,
+      "parent": null
+    },
+    {
+      "name": "pair01_daily_screen_time_hours__weekend_screen_time",
+      "kind": "pair_round_0.1",
+      "alpha": 10.0,
+      "parent": null
+    },
+    {
+      "name": "r01_other_screen_complete",
+      "kind": "structural_round_0.1",
+      "alpha": 15.0,
+      "parent": null
+    }
+  ],
+  "fold_audits": [
+    {
+      "outer_fit_rows": 553095,
+      "outer_valid_rows": 138274,
+      "outer_prior": 0.7094242399587775,
+      "inner_folds": 5,
+      "inner_prior_min": 0.7094237879568609,
+      "inner_prior_max": 0.7094260479664434,
+      "inner_assignment_min": 1,
+      "inner_assignment_max": 1,
+      "fold": 1,
+      "auc": 0.9674148615142457,
+      "encoding_seconds": 0.7190372943878174,
+      "training_seconds": 63.92205095291138
+    },
+    {
+      "outer_fit_rows": 553095,
+      "outer_valid_rows": 138274,
+      "outer_prior": 0.7094242399587775,
+      "inner_folds": 5,
+      "inner_prior_min": 0.7094237879568609,
+      "inner_prior_max": 0.7094260479664434,
+      "inner_assignment_min": 1,
+      "inner_assignment_max": 1,
+      "fold": 2,
+      "auc": 0.9682450157823166,
+      "encoding_seconds": 0.7313191890716553,
+      "training_seconds": 64.50686812400818
+    },
+    {
+      "outer_fit_rows": 553095,
+      "outer_valid_rows": 138274,
+      "outer_prior": 0.7094242399587775,
+      "inner_folds": 5,
+      "inner_prior_min": 0.7094237879568609,
+      "inner_prior_max": 0.7094260479664434,
+      "inner_assignment_min": 1,
+      "inner_assignment_max": 1,
+      "fold": 3,
+      "auc": 0.9682583731039744,
+      "encoding_seconds": 0.7351300716400146,
+      "training_seconds": 66.05576610565186
+    },
+    {
+      "outer_fit_rows": 553095,
+      "outer_valid_rows": 138274,
+      "outer_prior": 0.7094242399587775,
+      "inner_folds": 5,
+      "inner_prior_min": 0.7094237879568609,
+      "inner_prior_max": 0.7094260479664434,
+      "inner_assignment_min": 1,
+      "inner_assignment_max": 1,
+      "fold": 4,
+      "auc": 0.9685533192122903,
+      "encoding_seconds": 0.726525068283081,
+      "training_seconds": 67.5657639503479
+    },
+    {
+      "outer_fit_rows": 553096,
+      "outer_valid_rows": 138273,
+      "outer_prior": 0.7094247653210293,
+      "inner_folds": 5,
+      "inner_prior_min": 0.7094244446604004,
+      "inner_prior_max": 0.7094260479664434,
+      "inner_assignment_min": 1,
+      "inner_assignment_max": 1,
+      "fold": 5,
+      "auc": 0.9677448052003901,
+      "encoding_seconds": 0.7396528720855713,
+      "training_seconds": 87.91636300086975
+    }
+  ],
+  "leakage_contract": {
+    "id_removed_before_all_feature_builders": true,
+    "outer_train_encoding": "inner OOF; inner-train labels only",
+    "outer_valid_and_test_encoding": "outer-train labels only",
+    "combined_train_test_frequency": "feature keys only; no target argument",
+    "fixed_rounds_no_outer_checkpoint_selection": true,
+    "mutation_audit": null
+  },
+  "params": {
+    "objective": "binary:logistic",
+    "eval_metric": "auc",
+    "eta": 0.05,
+    "max_depth": 7,
+    "min_child_weight": 8.0,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "colsample_bylevel": 0.9,
+    "reg_alpha": 0.1,
+    "reg_lambda": 3.0,
+    "gamma": 0.0,
+    "tree_method": "hist",
+    "max_bin": 512,
+    "seed": 42,
+    "nthread": 16
+  },
+  "timing_seconds": {
+    "static_feature_build": 1.6461710929870605,
+    "fold_encoding": [
+      0.7190372943878174,
+      0.7313191890716553,
+      0.7351300716400146,
+      0.726525068283081,
+      0.7396528720855713
+    ],
+    "xgb_training": [
+      63.92205095291138,
+      64.50686812400818,
+      66.05576610565186,
+      67.5657639503479,
+      87.91636300086975
+    ],
+    "total": 364.927533864975
+  },
+  "prediction": {
+    "oof_min": 1.633247302379459e-05,
+    "oof_max": 1.0,
+    "test_min": 5.951406001258874e-05,
+    "test_max": 1.0000000149011612,
+    "test_mean": 0.7098038858656048
+  },
+  "source": {
+    "script": "/Users/a1-6/Desktop/PycharmProjects/DS_completation/kaggle_Predicting_Smartphone_Addiction/model/_v21_candidates/xgb_lattice/v21_xgb_lattice.py",
+    "script_sha256": "9ae9ca16d145bf2a04fef914591fa95dd5e64d02af5764aee0d671931b3ca18d"
+  }
+}

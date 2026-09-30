@@ -1,0 +1,133 @@
+{
+  "source_game_sha256": "62fafb06d9d6e413a0fc903305d126d46a8c4aa58f9ebb5f14e2c11813243d88",
+  "events_sha256": "2aa517e852f35f7fee71eb1a31bfb4278704d7082f81a4d2d51edb2817fbe248",
+  "comparison_sha256": "886297142a6d481b3676d4c35c4bd53e57b6fd33d5a14f26bd8d10477b1821f2",
+  "candidate_calls": 0,
+  "engine_replays": 0,
+  "fixed_step4_wool_forecast": {
+    "forecast_decision_step": 4,
+    "asset": {
+      "position": [
+        4,
+        4
+      ],
+      "animal": "SHEEP",
+      "placed_day": 0
+    },
+    "status": "NUMERIC_COMPLETE_SINGLE_UNMIXED_ASSET_COHORT",
+    "predicted_total_cash": 6866.0,
+    "actual_total_cash": 7838,
+    "same_product_quantity_by_credit_day": true,
+    "table": [
+      {
+        "credit_day": 7,
+        "forecast_quantity": 6,
+        "actual_sold_quantity": 6,
+        "forecast_cash": 1254.0,
+        "actual_cash": 1285,
+        "cash_error_actual_minus_forecast": 31.0
+      },
+      {
+        "credit_day": 10,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 824.0,
+        "actual_cash": 850,
+        "cash_error_actual_minus_forecast": 26.0
+      },
+      {
+        "credit_day": 13,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 800.0,
+        "actual_cash": 898,
+        "cash_error_actual_minus_forecast": 98.0
+      },
+      {
+        "credit_day": 16,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 800.0,
+        "actual_cash": 936,
+        "cash_error_actual_minus_forecast": 136.0
+      },
+      {
+        "credit_day": 19,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 800.0,
+        "actual_cash": 953,
+        "cash_error_actual_minus_forecast": 153.0
+      },
+      {
+        "credit_day": 22,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 796.0,
+        "actual_cash": 964,
+        "cash_error_actual_minus_forecast": 168.0
+      },
+      {
+        "credit_day": 25,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 796.0,
+        "actual_cash": 972,
+        "cash_error_actual_minus_forecast": 176.0
+      },
+      {
+        "credit_day": 28,
+        "forecast_quantity": 4,
+        "actual_sold_quantity": 4,
+        "forecast_cash": 796.0,
+        "actual_cash": 980,
+        "cash_error_actual_minus_forecast": 184.0
+      }
+    ],
+    "scope": "不外推其它资产；仅固定step4的旧羊预测，不累加后续逐帧预测。"
+  },
+  "early_cash_bridge": {
+    "R8": {
+      "actual_costs": {
+        "BUY_ANIMAL": 500,
+        "BUY_SEED": 2020,
+        "BUY_PRODUCT": 409,
+        "BUY_LAND": 0,
+        "HIRE": 102
+      },
+      "actual_total_spend": 3031,
+      "actual_nonwheat_sales": 1485,
+      "cash_after_day9_model_bridge": 1454,
+      "actual_early_plantings": {
+        "MELON": 19,
+        "STRAWBERRY": 5
+      },
+      "actual_early_animals_placed": {
+        "SHEEP": 1
+      }
+    },
+    "R9": {
+      "actual_costs": {
+        "BUY_ANIMAL": 1700,
+        "BUY_SEED": 2270,
+        "BUY_PRODUCT": 747,
+        "BUY_LAND": 1000,
+        "HIRE": 195
+      },
+      "actual_total_spend": 5912,
+      "actual_nonwheat_sales": 3243,
+      "cash_after_day9_model_bridge": 331,
+      "actual_early_plantings": {
+        "MELON": 22,
+        "TOMATO": 2,
+        "WHEAT": 1,
+        "STRAWBERRY": 4
+      },
+      "actual_early_animals_placed": {
+        "SHEEP": 1,
+        "COW": 3
+      }
+    }
+  },
+  "general_forecast_realization": "PENDING:其它多资产预测缺逐批出生身份与中间库存销售来源分配；不将总未来信用误作实赚。"
+}

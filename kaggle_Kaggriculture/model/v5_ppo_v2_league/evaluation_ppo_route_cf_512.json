@@ -1,0 +1,103 @@
+{
+  "schema": "kaggriculture-ppo-v2-evaluation-1",
+  "weights": "checkpoints/ppo_route_cf_512/policy_weights.npz",
+  "paired": {
+    "seeds": 64,
+    "games": 128,
+    "score_rate": 0.52734375,
+    "bootstrap_95_ci": [
+      0.42578125,
+      0.62890625
+    ],
+    "mean_margin": -4333.2578125
+  },
+  "pool": {
+    "v0": {
+      "v1": {
+        "games": 8,
+        "score_rate": 1.0,
+        "mean_margin": 156061.75
+      },
+      "v3": {
+        "games": 8,
+        "score_rate": 1.0,
+        "mean_margin": 156061.75
+      },
+      "score_delta": 0.0
+    },
+    "v1": {
+      "v1": {
+        "games": 8,
+        "score_rate": 0.25,
+        "mean_margin": -632.375
+      },
+      "v3": {
+        "games": 8,
+        "score_rate": 0.3125,
+        "mean_margin": -6509.875
+      },
+      "score_delta": 0.0625
+    },
+    "starter": {
+      "v1": {
+        "games": 8,
+        "score_rate": 1.0,
+        "mean_margin": 159982.375
+      },
+      "v3": {
+        "games": 8,
+        "score_rate": 1.0,
+        "mean_margin": 159982.375
+      },
+      "score_delta": 0.0
+    },
+    "random": {
+      "v1": {
+        "games": 8,
+        "score_rate": 1.0,
+        "mean_margin": 160069.0
+      },
+      "v3": {
+        "games": 8,
+        "score_rate": 1.0,
+        "mean_margin": 161696.125
+      },
+      "score_delta": 0.0
+    },
+    "forced_low": {
+      "v1": {
+        "games": 8,
+        "score_rate": 0.5625,
+        "mean_margin": 102.125
+      },
+      "v3": {
+        "games": 8,
+        "score_rate": 0.75,
+        "mean_margin": 129.25
+      },
+      "score_delta": 0.1875
+    },
+    "forced_high": {
+      "v1": {
+        "games": 8,
+        "score_rate": 0.875,
+        "mean_margin": 17769.125
+      },
+      "v3": {
+        "games": 8,
+        "score_rate": 0.875,
+        "mean_margin": 17755.875
+      },
+      "score_delta": 0.0
+    }
+  },
+  "pool_score_delta": 0.041666666666666664,
+  "inference_ms": 0.03210195852443576,
+  "gates": {
+    "direct_score_rate_ge_53pct": false,
+    "bootstrap_lower_gt_50pct": false,
+    "pool_composite_better_than_v1": true,
+    "no_opponent_decline_gt_2pp": true,
+    "inference_lt_5ms": true
+  }
+}
