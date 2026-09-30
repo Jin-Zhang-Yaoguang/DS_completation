@@ -1,0 +1,57 @@
+[1/4] 搜索 A: OWN_W=0.5 Tue Sep 15 09:14:18 CST 2026
+[2/4] 搜索 B: OWN_W=1.0 Tue Sep 15 09:16:42 CST 2026
+[3/4] 按 holdout 分差择优装池 Tue Sep 15 09:19:02 CST 2026
+_w05: holdout 最优分差 -71407 own 52012 | kernel_majkel=0.75 same_tile=1.00 fert_carry_only=1.00 preposition=0.98 kit=2.7
+_w10: holdout 最优分差 -67466 own 56221 | kernel_majkel=0.88 same_tile=1.00 fert_carry_only=1.00 preposition=0.99 kit=2.8
+选中 _w10：装池 2 条，分差 [-67466, -73690]
+[4/4] 三项验收并行 Tue Sep 15 09:19:02 CST 2026
+===== EVAL =====
+y68g   | 0/16      |    -72123/   -69402 |    47837 | 0.067
+y68c   | 0/16      |    -70856/   -67122 |    47121 | 0.070
+y68f   | 0/16      |    -68858/   -67830 |    47611 | 0.065
+y68a   | 0/16      |    -68248/   -63312 |    52166 | 0.066
+同 seed 对(224): 中位 0.070 ≥0.9 占比 0.0%
+异 seed 对(抽400): 中位 0.067 p90 0.095 max 0.281
+
+合计胜率 0/64 = 0.0%
+总体轨迹重合(64 局抽样 300 对): 中位 0.067 均值 0.073 范围 0.045-0.281
+===== GATE =====
+  vs y68g: 胜率 0/8  margin 均值 -72281 中位 -70210
+  vs y68c: 胜率 0/8  margin 均值 -74558 中位 -76232
+  vs y68f: 胜率 0/8  margin 均值 -73147 中位 -70732
+  vs y67: 胜率 0/8  margin 均值 -75733 中位 -77676
+  合计胜率 0/32 = 0.0%
+
+== 门控 2（自适应：跨局重合中位 < 0.1）==
+  重合中位 0.066  范围 0.051-0.120
+
+门控 1 FAIL（胜率 0.0%，线 50%）  门控 2 PASS（0.066，线 0.1）
+总判定: FAIL
+===== AUDIT(K1) =====
+==================== K1（6 局）====================
+A 各小时 工作/移动/PASS：
+   h00: WORK 88%  MOVE 9%  PASS 3%
+   h02: WORK 24%  MOVE 76%  PASS 0%
+   h04: WORK 30%  MOVE 70%  PASS 0%
+   h06: WORK 45%  MOVE 55%  PASS 0%
+   h08: WORK 46%  MOVE 54%  PASS 0%
+   h12: WORK 41%  MOVE 59%  PASS 0%
+   h16: WORK 24%  MOVE 75%  PASS 2%
+   h20: WORK 9%  MOVE 76%  PASS 15%
+   h22: WORK 9%  MOVE 83%  PASS 9%
+   h23: WORK 10%  MOVE 79%  PASS 11%
+   全天: WORK 31.8% MOVE 65.0% PASS 3.2% | 移动/工作 2.04
+B 离仓单位持麦 63%（均 2.7） 持肥 32%（均 1.4）
+   PICKUP WHEAT: 208 次/局，每次均 2.9
+   PICKUP FERTILIZER: 0 次/局，每次均 0.0
+C 工作类型（按天段）：
+   d00: WATER:44% PLANT:11% CARE:11% FEED:10% COLLECT_FERTILIZER:9% PICKUP:8% HARVEST:3% BUILD_PASTURE:3% PLACE:2% DIG:0%
+   d06: WATER:44% PICKUP:10% FEED:10% CARE:10% COLLECT_FERTILIZER:9% PLANT:7% HARVEST:6% BUILD_PASTURE:2% PLACE:1% FERTILIZE:1% BUILD_COOP:1% DIG:0%
+   d12: WATER:45% HARVEST:9% FEED:9% CARE:9% COLLECT_FERTILIZER:9% PICKUP:9% PLANT:6% FERTILIZE:5% PLACE:0%
+   d18: WATER:41% HARVEST:18% PICKUP:10% FEED:7% COLLECT_FERTILIZER:7% CARE:7% PLANT:4% FERTILIZE:3% DIG:1% BUILD_PASTURE:0%
+   d24: WATER:28% HARVEST:23% PICKUP:11% COLLECT_FERTILIZER:10% CARE:10% FEED:8% DIG:4% FERTILIZE:3% PLANT:2% DROP:1%
+D 移动目标距离排名: 0:71% 1:7% 2:7% 3+:10% none:6%
+   目标类型: HARVEST:61% WATER:18% CARE:12% A_HARVEST:5% FEED:3% DIG:2%
+E 连续工作格距: 0:26% 1:49% 2:15% 3:6% 4+:5%
+F 动物格首动作: FEED:42% COLLECT_FERTILIZER:32% CARE:17% HARVEST:9%
+完成 Tue Sep 15 09:19:08 CST 2026
