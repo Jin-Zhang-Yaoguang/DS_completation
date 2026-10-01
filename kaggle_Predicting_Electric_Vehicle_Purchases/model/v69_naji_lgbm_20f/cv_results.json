@@ -1,0 +1,174 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "20-fold accelerated Naji independent-feature LightGBM",
+  "seed": 42,
+  "n_folds": 20,
+  "oof_auc": 0.946068339280768,
+  "fold_auc_mean": 0.9460760853404038,
+  "fold_auc_std": 0.0011971003481875374,
+  "fold_rows": [
+    {
+      "fold": 1,
+      "auc": 0.9455709046774564,
+      "best_iteration": 1405,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 2,
+      "auc": 0.9443297300415532,
+      "best_iteration": 1186,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 3,
+      "auc": 0.9441516223160452,
+      "best_iteration": 2205,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 4,
+      "auc": 0.9465975469505601,
+      "best_iteration": 1550,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 5,
+      "auc": 0.9441321035761776,
+      "best_iteration": 2032,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 6,
+      "auc": 0.9468744772256122,
+      "best_iteration": 1789,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 7,
+      "auc": 0.945752017767774,
+      "best_iteration": 1404,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 8,
+      "auc": 0.9462729666778023,
+      "best_iteration": 2287,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 9,
+      "auc": 0.9474227086679493,
+      "best_iteration": 1754,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 10,
+      "auc": 0.9462953535287182,
+      "best_iteration": 2184,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 11,
+      "auc": 0.9466862824387922,
+      "best_iteration": 1603,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 12,
+      "auc": 0.9475800310680087,
+      "best_iteration": 1616,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 13,
+      "auc": 0.9458179432267227,
+      "best_iteration": 589,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 14,
+      "auc": 0.9457900698284795,
+      "best_iteration": 973,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 15,
+      "auc": 0.9481261721676317,
+      "best_iteration": 1614,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 16,
+      "auc": 0.9457366442635547,
+      "best_iteration": 2715,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 17,
+      "auc": 0.9458209223474434,
+      "best_iteration": 1525,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 18,
+      "auc": 0.9482387332788627,
+      "best_iteration": 2082,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 19,
+      "auc": 0.9460134790565268,
+      "best_iteration": 1288,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 20,
+      "auc": 0.9443119977024027,
+      "best_iteration": 1880,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    }
+  ],
+  "feature_count": 142,
+  "target_encode_column_count": 37,
+  "params": {
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 32,
+    "min_child_samples": 10,
+    "subsample": 0.8,
+    "colsample_bytree": 0.3,
+    "reg_alpha": 0.071,
+    "reg_lambda": 2.0,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "metric": "auc",
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "hypothesis": "raising outer-fold training coverage from 80% to 95% should improve the lower-correlation Naji member while 4x learning rate preserves its ranking",
+  "prediction_min": 7.181693754473733e-06,
+  "prediction_max": 0.9996430838995352,
+  "prediction_mean": 0.1747174888901899,
+  "elapsed_seconds": 783.0253629684448
+}

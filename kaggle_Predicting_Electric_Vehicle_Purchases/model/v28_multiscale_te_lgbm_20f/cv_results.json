@@ -1,0 +1,146 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "multiscale nested TE LightGBM with 20 outer folds",
+  "seed": 42,
+  "n_folds": 20,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ]
+  },
+  "static_feature_count": 61,
+  "te_feature_count": 48,
+  "feature_count": 109,
+  "fold_auc": [
+    0.9456341838735426,
+    0.944511573945567,
+    0.9437683474991079,
+    0.9468797401407167,
+    0.9442544044626107,
+    0.946707890850884,
+    0.945919444352278,
+    0.9463900399156249,
+    0.9473070256864632,
+    0.9463514540957901,
+    0.9467399128182665,
+    0.9476724148428584,
+    0.9460102578822476,
+    0.9460732166334787,
+    0.9481008992935178,
+    0.9458167950239449,
+    0.9458454566478786,
+    0.9484905806967896,
+    0.9460067636219024,
+    0.9443442901297151
+  ],
+  "fold_auc_mean": 0.9461412346206591,
+  "fold_auc_std": 0.0012249228847886627,
+  "best_iterations": [
+    1448,
+    1366,
+    2218,
+    1388,
+    2174,
+    1456,
+    2476,
+    2037,
+    1425,
+    1977,
+    1657,
+    1593,
+    947,
+    1151,
+    1922,
+    1354,
+    1184,
+    1799,
+    1323,
+    987
+  ],
+  "oof_auc": 0.9461333163138547,
+  "prediction_min": 5.525793230066483e-06,
+  "prediction_max": 0.9996749057493168,
+  "prediction_mean": 0.1750183148322416,
+  "elapsed_seconds": 721.7595210075378,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 31,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "raise each model's labeled training coverage from 90 to 95 percent; the prior 5-to-10-fold change improved OOF by about 0.00015"
+}

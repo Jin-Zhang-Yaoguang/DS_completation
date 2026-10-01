@@ -1,0 +1,27 @@
+{
+  "id": "online_prior_smoothing_20260906",
+  "created_at_utc": "2026-09-05T16:54:54.587092+00:00",
+  "authorization": "用户明确要求：提交上线尝试一下。解释为最近完成的原始收入先验平滑模型一次探索性提交，覆盖该候选原提交门槛。",
+  "purpose": "Exploratory online calibration of latest failed diagnostic; not promotion or proof of superiority to V100",
+  "recipe": "Exact diagnostic B: V85 five folds seed42, source income prior mass2, same 350 early stop and seeds. Predict actual test with each fold and arithmetic mean; no V100 blend.",
+  "reference_oof_auc": 0.9460523455977788,
+  "reference_delta": -1.0406735124424138e-05,
+  "reference_positive_folds": 0,
+  "require_reference_reproduction_max_abs": 1e-12,
+  "budget_seconds": 1800,
+  "rss_gib": 16,
+  "threads": 8,
+  "submission_budget": 1,
+  "counts_toward_cycle": false,
+  "stop": "Any recipe/source mismatch, prediction mismatch, resource violation or existing same-hash submission stops. No retries changing model.",
+  "source_hashes": {
+    "model/validation/e2e_v100_20260905/feature_backends.py": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+    "model/v85_naji_v74_40f/frozen_config.json": "0ed289568d8718b4548442aa843284d31b2282c7ed37a129343cd82a3efcdd8f",
+    "model/diagnostics/original_prior_reliability_20260905/diagnostic_oof.npz": "077a974c8f0a51795ca56efd167d6238a487c23d858c9982121da496b9eaa4e3",
+    "model/diagnostics/original_prior_reliability_20260905/result.json": "a200ac21911754c54747384faaee47a6c801a494b6b10ca5856cb98ccb2950c2",
+    "data/train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "data/test.csv": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+    "data/original_dataset/EV_Adoption_and_Range_Anxiety_Dataset.csv": "c271a380df51b18177d0a039d54525ca7c3d71500701dc7496714a091df16fae",
+    "data/sample_submission.csv": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5"
+  }
+}

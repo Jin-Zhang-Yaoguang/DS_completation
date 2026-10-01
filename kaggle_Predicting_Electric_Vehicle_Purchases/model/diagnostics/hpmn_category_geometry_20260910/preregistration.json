@@ -1,0 +1,88 @@
+{
+  "experiment_id": "hpmn_category_geometry_20260910",
+  "created_at_utc": "2026-09-10T15:06:01.131941+00:00",
+  "hypothesis": "HPMN原型距离对类别的数值几何敏感。V85表示只保留类别目标均值，可能把条件行为不同但边际概率接近的类别拉近；附加等距one-hot提供显式类别身份。",
+  "unique_variable": "仅在相同标准化V85 148列后追加6个原始分类字段的fit-only one-hot，保持0/1不缩放。架构、优化器、种子、轮次、早停和固定混合权重全部保持。",
+  "not_exact_public_reproduction": "同架构的类别几何消融，未使用公开204列配方，未声称逐字复现。",
+  "baseline": "配对主对照为hpmn_v85_features_20260910；同时保留匹配V85和完全相同固定10%混合诊断。",
+  "folds": 5,
+  "outer_seed": 42,
+  "model_and_encoder_seed": "42+fold",
+  "architecture_source": "hpmn_source_audit_20260910/public_components.py",
+  "model": {
+    "N_MATCH1": 256,
+    "N_MATCH2": 128,
+    "PATTERN_HIDDEN": 8,
+    "ROUTING_RANK": 12,
+    "N_FIRE_KNOTS": 8,
+    "MAX_EPOCHS": 40,
+    "PATIENCE": 9,
+    "BATCH_SIZE": 2048,
+    "PRED_BATCH_SIZE": 8192,
+    "LR": 0.0015,
+    "WEIGHT_DECAY": 2e-05,
+    "GRAD_CLIP": 5,
+    "all_other_architecture_and_regularization": "冻结抽取source默认值"
+  },
+  "preprocess": "V85 148列处理与父诊断逐元素一致；仅追加未缩放的0/1类别列。",
+  "diagnostic_epoch_selection": "与公开配置一致，外validation AUC patience9选epoch；仅开发诊断，正式e2e必须改为fit内部选轮次。",
+  "diversity_screen": {
+    "fixed_candidate_weight": 0.1,
+    "equal_weight_control": 0.5,
+    "transform": "复用V100 fit-only mid-ECDF，5个seed42验证块逐块只用其余OOF拟合分布",
+    "weight_search": false,
+    "baseline": "同样fit-only mid-ECDF的V85",
+    "scope": "开发互补诊断，非整流程无偏，不生成test融合"
+  },
+  "followup_gate": {
+    "candidate_auc_min": 0.9452,
+    "fixed_10pct_blend_delta_gt": 0,
+    "positive_blocks": 5,
+    "meaning": "只允许另立正式40折及当前V100同口径端到端比较；不是提交许可"
+  },
+  "research_promotion_gate": {
+    "delta_min": 0.0001,
+    "positive_blocks": 5,
+    "scope": "相对匹配V85，仅诊断字段，不声称超过V100"
+  },
+  "budget": {
+    "wall_seconds": 5400,
+    "memory_gib": 16,
+    "device": "mps",
+    "cpu_threads": 4,
+    "submission": 0
+  },
+  "precondition": "父HPMN五折完成且独立验证PASS、followup_gate_passed=false；若父模型通过则优先正式验证，不启动此项。",
+  "stop": "预算/身份失败留证停止；未过跟进门槛关闭HPMN分支，不继续相近变体。",
+  "counts_toward_cycle": false,
+  "source_hashes": {
+    "data/train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "model/validation/e2e_v100_20260905/feature_backends.py": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+    "model/diagnostics/income_context_lowrank_20260906_retry1/diagnostic_oof.npz": "66a16a1b7c55354763a5541afa96c43df632a18a75d321600b1ce54a9613ff80",
+    "model/diagnostics/hpmn_source_audit_20260910/public_components.py": "90e2072302182aaca8a834c30af1dff1521e5b8cc34f818efd5c42ff32bb2aaa",
+    "model/v100_v90_ctboost_nested_cv_blend/v100_v90_ctboost_nested_cv_blend.py": "ad5cd07b64bf69fd08b9636c0a72138463b2506987155d3939395b5ce246a817",
+    "model/diagnostics/hpmn_v85_features_20260910/preregistration.json": "58996ca14ccdf1c35254ece0d5f33f9545ecf259f79a15055ae9eaafd9fd2560",
+    "model/diagnostics/hpmn_v85_features_20260910/run.py": "10734e64012759ec42f6c1b93d9a97f59d9e4bc7b1028f4942ba3711282bda8b",
+    "model/diagnostics/hpmn_v85_features_20260910/contract.json": "1091713a8cced07a194e709e70e4808e894edab97c70d9290fc90fa63c01bc34",
+    "model/diagnostics/hpmn_v85_features_20260910/fold_1/input.json": "be1ec32f0771b2d9593d846e9f8d53cbbf61ea248a5e9c7074c25368a372765b"
+  },
+  "mechanism_evidence": [
+    "当前HPMN输入清单没有原始分类ID；公开HPMN源码明确在目标编码外保留6个原始分类ID",
+    "目标编码是边际概率表示，one-hot提供不同距离结构；此为可证伪的表示假设，不是已证明增益"
+  ],
+  "categoricals": [
+    "Gender",
+    "City_Type",
+    "Current_Car_Type",
+    "Home_Charging_Possible",
+    "Subsidy_Available",
+    "Range_Anxiety_Level"
+  ],
+  "categorical_adapter": "每个外fit的字符串类别排序建词表，每类一列0/1；未知类别全0。词表无标签，仅fit外训练。原148列标准化不变。",
+  "branch_limit": "HPMN第二且最后一个连续诊断版本；失败不继续尝试类别编码、宽度、epoch、种子或权重。",
+  "paired_representation_gate": {
+    "delta_min": 0.0001,
+    "positive_folds": 5,
+    "scope": "相对父HPMN记录机制晋级；正式跟进仍要求对V85固定10%混合正增量且5/5"
+  }
+}

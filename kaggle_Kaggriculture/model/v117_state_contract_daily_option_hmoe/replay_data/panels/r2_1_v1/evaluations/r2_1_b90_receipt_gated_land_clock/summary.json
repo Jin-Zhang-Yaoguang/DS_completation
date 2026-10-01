@@ -1,0 +1,1614 @@
+{
+  "schema": "v117-r2.1-b15-joint-screen-v1",
+  "strength_status": "DEVELOPMENT_SCREEN_ONLY",
+  "split": "development",
+  "blind_content_accessed": false,
+  "selection_rule": "integrity, pure_win_rate, mean_margin, candidate_reward, variant_id",
+  "scenarios_per_source": 16,
+  "scenario_ids": {
+    "ACCOUNT_ONLINE": [
+      102062746,
+      102064990,
+      102067230,
+      102069463,
+      102071691,
+      102073925,
+      102076185,
+      102076431,
+      102078420,
+      102078658,
+      102080655,
+      102082908,
+      102085146,
+      102087380,
+      102089627,
+      102091862
+    ],
+    "OFFICIAL_DAILY": [
+      101306166,
+      101453408,
+      101457842,
+      101502608,
+      101551832,
+      101567407,
+      101569659,
+      101591870,
+      101596481,
+      101618780,
+      101623289,
+      101685625,
+      101725887,
+      101732614,
+      101741577,
+      101746044
+    ]
+  },
+  "manifest_sha256": "94210b0dff9674f3be7880bfb10ecb7b934ea55b024856738adc80af5764c91d",
+  "games_sha256": "5457cfa89e49ce32383cb2882c4adbc610bb90584496a416a6974cc8be045360",
+  "ranking": [
+    "a_b86_default_d5_9",
+    "c_land_d6_10",
+    "b_land_d5_10",
+    "f_land_d7_12",
+    "g_land_d5_11",
+    "h_land_d5_12",
+    "i_hands5_d5_9",
+    "e_land_d7_11",
+    "d_land_d6_11",
+    "j_hands5_land_d6_11"
+  ],
+  "selected_variant": "a_b86_default_d5_9",
+  "selected_configuration_sha256": "1a0f1e9ee82748dc687f3df04cf5e1a7806791720d09d2e36143b3d5cdcf9fc2",
+  "variants": {
+    "a_b86_default_d5_9": {
+      "genome": "R2.1_B_CURRENT_DEFAULT",
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "1a0f1e9ee82748dc687f3df04cf5e1a7806791720d09d2e36143b3d5cdcf9fc2",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 75705.6875,
+          "mean_v1_reward": 116576.125,
+          "mean_margin": -40870.4375,
+          "median_margin": -38580.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.5,
+          "mean_final_animals": 10,
+          "mean_productive_actions": 2335.8125,
+          "mean_moves": 4149.90625,
+          "mean_idle_actions": 842.96875,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 6737.25,
+            "INVENTORY_OVERHANG": 2485.53125,
+            "MISSED_HIGH_PRICE_SALE": 2378.125,
+            "OVERDUE_TASK": 3516.40625,
+            "TERMINAL_UNREALIZED": 101.625,
+            "UNPRODUCTIVE_MOVE": 1540.625
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 6737.25
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3516.40625
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2485.53125
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 69988.21875,
+          "mean_v1_reward": 110367.28125,
+          "mean_margin": -40379.0625,
+          "median_margin": -38764.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.59375,
+          "mean_final_animals": 10,
+          "mean_productive_actions": 2342.3125,
+          "mean_moves": 4162.78125,
+          "mean_idle_actions": 827.8125,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 6731.875,
+            "INVENTORY_OVERHANG": 2438.3828125,
+            "MISSED_HIGH_PRICE_SALE": 2543.03125,
+            "OVERDUE_TASK": 3425.0,
+            "TERMINAL_UNREALIZED": 58.0,
+            "UNPRODUCTIVE_MOVE": 1526.5625
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 6731.875
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3425.0
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2543.03125
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 72846.953125,
+        "mean_v1_reward": 113471.703125,
+        "mean_margin": -40624.75,
+        "median_margin": -38580.5,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.546875,
+        "mean_final_animals": 10,
+        "mean_productive_actions": 2339.0625,
+        "mean_moves": 4156.34375,
+        "mean_idle_actions": 835.390625,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 6734.5625,
+          "INVENTORY_OVERHANG": 2461.95703125,
+          "MISSED_HIGH_PRICE_SALE": 2460.578125,
+          "OVERDUE_TASK": 3470.703125,
+          "TERMINAL_UNREALIZED": 79.8125,
+          "UNPRODUCTIVE_MOVE": 1533.59375
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 6734.5625
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3470.703125
+          },
+          {
+            "category": "INVENTORY_OVERHANG",
+            "mean_proxy_per_game": 2461.95703125
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "b_land_d5_10": {
+      "genome": {
+        "second_land_day": 5,
+        "third_land_day": 10
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "efe070e81a68ee58d4cafa07d3d36c1cf66805d170e828189df491bef1a50a5d",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 76008.25,
+          "mean_v1_reward": 117132.40625,
+          "mean_margin": -41124.15625,
+          "median_margin": -37927.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.4375,
+          "mean_final_animals": 9.9375,
+          "mean_productive_actions": 2339.15625,
+          "mean_moves": 4165.9375,
+          "mean_idle_actions": 834.59375,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5144.75,
+            "INVENTORY_OVERHANG": 2394.671875,
+            "MISSED_HIGH_PRICE_SALE": 2465.03125,
+            "OVERDUE_TASK": 3423.4375,
+            "TERMINAL_UNREALIZED": 61.40625,
+            "UNPRODUCTIVE_MOVE": 1502.34375
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5144.75
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3423.4375
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2465.03125
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 68976.0625,
+          "mean_v1_reward": 111067.3125,
+          "mean_margin": -42091.25,
+          "median_margin": -40674.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.34375,
+          "mean_final_animals": 9.8125,
+          "mean_productive_actions": 2339.75,
+          "mean_moves": 4174.78125,
+          "mean_idle_actions": 828.5,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5187.5,
+            "INVENTORY_OVERHANG": 2325.09375,
+            "MISSED_HIGH_PRICE_SALE": 2541.125,
+            "OVERDUE_TASK": 3614.84375,
+            "TERMINAL_UNREALIZED": 15.0625,
+            "UNPRODUCTIVE_MOVE": 1514.0625
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5187.5
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3614.84375
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2541.125
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 72492.15625,
+        "mean_v1_reward": 114099.859375,
+        "mean_margin": -41607.703125,
+        "median_margin": -39275.0,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.390625,
+        "mean_final_animals": 9.875,
+        "mean_productive_actions": 2339.453125,
+        "mean_moves": 4170.359375,
+        "mean_idle_actions": 831.546875,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 5166.125,
+          "INVENTORY_OVERHANG": 2359.8828125,
+          "MISSED_HIGH_PRICE_SALE": 2503.078125,
+          "OVERDUE_TASK": 3519.140625,
+          "TERMINAL_UNREALIZED": 38.234375,
+          "UNPRODUCTIVE_MOVE": 1508.203125
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 5166.125
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3519.140625
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2503.078125
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "c_land_d6_10": {
+      "genome": {
+        "second_land_day": 6,
+        "third_land_day": 10
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "62af560440630db72773bd1887ff18d36fa7523af582065650bcf4ab67b74f15",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 74892.625,
+          "mean_v1_reward": 116481.21875,
+          "mean_margin": -41588.59375,
+          "median_margin": -37321.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.5625,
+          "mean_final_animals": 10,
+          "mean_productive_actions": 2342.09375,
+          "mean_moves": 4161.90625,
+          "mean_idle_actions": 844.03125,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5230.125,
+            "INVENTORY_OVERHANG": 2429.453125,
+            "MISSED_HIGH_PRICE_SALE": 2408.125,
+            "OVERDUE_TASK": 3775.0,
+            "TERMINAL_UNREALIZED": 92.3125,
+            "UNPRODUCTIVE_MOVE": 1519.53125
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5230.125
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3775.0
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2429.453125
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 68828.53125,
+          "mean_v1_reward": 110387.625,
+          "mean_margin": -41559.09375,
+          "median_margin": -40692.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.34375,
+          "mean_final_animals": 9.9375,
+          "mean_productive_actions": 2342.59375,
+          "mean_moves": 4179.53125,
+          "mean_idle_actions": 825.15625,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5623.9375,
+            "INVENTORY_OVERHANG": 2445.3671875,
+            "MISSED_HIGH_PRICE_SALE": 2575.5625,
+            "OVERDUE_TASK": 3440.625,
+            "TERMINAL_UNREALIZED": 14.65625,
+            "UNPRODUCTIVE_MOVE": 1508.59375
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5623.9375
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3440.625
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2575.5625
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 71860.578125,
+        "mean_v1_reward": 113434.421875,
+        "mean_margin": -41573.84375,
+        "median_margin": -39405.0,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.453125,
+        "mean_final_animals": 9.96875,
+        "mean_productive_actions": 2342.34375,
+        "mean_moves": 4170.71875,
+        "mean_idle_actions": 834.59375,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 5427.03125,
+          "INVENTORY_OVERHANG": 2437.41015625,
+          "MISSED_HIGH_PRICE_SALE": 2491.84375,
+          "OVERDUE_TASK": 3607.8125,
+          "TERMINAL_UNREALIZED": 53.484375,
+          "UNPRODUCTIVE_MOVE": 1514.0625
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 5427.03125
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3607.8125
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2491.84375
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "d_land_d6_11": {
+      "genome": {
+        "second_land_day": 6,
+        "third_land_day": 11
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "deb7dd1363ee799f4aa57ce70ef1c6fb6f3f56c0fc64d9efb47facc94cafc513",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 74066.15625,
+          "mean_v1_reward": 117962.53125,
+          "mean_margin": -43896.375,
+          "median_margin": -40622.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.4375,
+          "mean_final_animals": 9.96875,
+          "mean_productive_actions": 2341.75,
+          "mean_moves": 4149.0625,
+          "mean_idle_actions": 855.75,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5014.875,
+            "INVENTORY_OVERHANG": 2398.09375,
+            "MISSED_HIGH_PRICE_SALE": 2287.28125,
+            "OVERDUE_TASK": 3749.21875,
+            "TERMINAL_UNREALIZED": 124.3125,
+            "UNPRODUCTIVE_MOVE": 1557.8125
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5014.875
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3749.21875
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2398.09375
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 67492.59375,
+          "mean_v1_reward": 111696.0,
+          "mean_margin": -44203.40625,
+          "median_margin": -42780.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.4375,
+          "mean_final_animals": 10,
+          "mean_productive_actions": 2336.34375,
+          "mean_moves": 4174.625,
+          "mean_idle_actions": 833.875,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5139.75,
+            "INVENTORY_OVERHANG": 2401.578125,
+            "MISSED_HIGH_PRICE_SALE": 2688.125,
+            "OVERDUE_TASK": 3504.6875,
+            "TERMINAL_UNREALIZED": 13.625,
+            "UNPRODUCTIVE_MOVE": 1478.125
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5139.75
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3504.6875
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2688.125
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 70779.375,
+        "mean_v1_reward": 114829.265625,
+        "mean_margin": -44049.890625,
+        "median_margin": -40990.0,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.4375,
+        "mean_final_animals": 9.984375,
+        "mean_productive_actions": 2339.046875,
+        "mean_moves": 4161.84375,
+        "mean_idle_actions": 844.8125,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 5077.3125,
+          "INVENTORY_OVERHANG": 2399.8359375,
+          "MISSED_HIGH_PRICE_SALE": 2487.703125,
+          "OVERDUE_TASK": 3626.953125,
+          "TERMINAL_UNREALIZED": 68.96875,
+          "UNPRODUCTIVE_MOVE": 1517.96875
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 5077.3125
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3626.953125
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2487.703125
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "e_land_d7_11": {
+      "genome": {
+        "second_land_day": 7,
+        "third_land_day": 11
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "f9a143be784c3f2f72cdf74e8c7d915bc9b4fab201956ac8052628501ddd2a11",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 74133.3125,
+          "mean_v1_reward": 117980.6875,
+          "mean_margin": -43847.375,
+          "median_margin": -41757.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.1875,
+          "mean_final_animals": 9.96875,
+          "mean_productive_actions": 2336.78125,
+          "mean_moves": 4136.4375,
+          "mean_idle_actions": 849.59375,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 4905.75,
+            "INVENTORY_OVERHANG": 2485.7734375,
+            "MISSED_HIGH_PRICE_SALE": 2468.0,
+            "OVERDUE_TASK": 3692.96875,
+            "TERMINAL_UNREALIZED": 101.0,
+            "UNPRODUCTIVE_MOVE": 1542.96875
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 4905.75
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3692.96875
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2485.7734375
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 67696.0625,
+          "mean_v1_reward": 111895.625,
+          "mean_margin": -44199.5625,
+          "median_margin": -45082.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.625,
+          "mean_final_animals": 9.96875,
+          "mean_productive_actions": 2338.46875,
+          "mean_moves": 4162.71875,
+          "mean_idle_actions": 821.21875,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 4913.1875,
+            "INVENTORY_OVERHANG": 2522.390625,
+            "MISSED_HIGH_PRICE_SALE": 2763.25,
+            "OVERDUE_TASK": 3492.96875,
+            "TERMINAL_UNREALIZED": 15.625,
+            "UNPRODUCTIVE_MOVE": 1471.875
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 4913.1875
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3492.96875
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2763.25
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 70914.6875,
+        "mean_v1_reward": 114938.15625,
+        "mean_margin": -44023.46875,
+        "median_margin": -42415.5,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.40625,
+        "mean_final_animals": 9.96875,
+        "mean_productive_actions": 2337.625,
+        "mean_moves": 4149.578125,
+        "mean_idle_actions": 835.40625,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 4909.46875,
+          "INVENTORY_OVERHANG": 2504.08203125,
+          "MISSED_HIGH_PRICE_SALE": 2615.625,
+          "OVERDUE_TASK": 3592.96875,
+          "TERMINAL_UNREALIZED": 58.3125,
+          "UNPRODUCTIVE_MOVE": 1507.421875
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 4909.46875
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3592.96875
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2615.625
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "f_land_d7_12": {
+      "genome": {
+        "second_land_day": 7,
+        "third_land_day": 12
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "52cd5fff26a1932bd7f501e5aeaeeb62a689c14be0b867cbe31786b0ddcccfb9",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 74900.21875,
+          "mean_v1_reward": 117876.21875,
+          "mean_margin": -42976.0,
+          "median_margin": -40249.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 7.28125,
+          "mean_final_animals": 9.96875,
+          "mean_productive_actions": 2315.78125,
+          "mean_moves": 4115.875,
+          "mean_idle_actions": 891.4375,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 4905.75,
+            "INVENTORY_OVERHANG": 2406.609375,
+            "MISSED_HIGH_PRICE_SALE": 2404.8125,
+            "OVERDUE_TASK": 3721.09375,
+            "TERMINAL_UNREALIZED": 145.5,
+            "UNPRODUCTIVE_MOVE": 1721.09375
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 4905.75
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3721.09375
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2406.609375
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 68259.5,
+          "mean_v1_reward": 112239.375,
+          "mean_margin": -43979.875,
+          "median_margin": -42891.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 6.71875,
+          "mean_final_animals": 9.9375,
+          "mean_productive_actions": 2323.59375,
+          "mean_moves": 4136.375,
+          "mean_idle_actions": 862.125,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 4913.1875,
+            "INVENTORY_OVERHANG": 2400.78125,
+            "MISSED_HIGH_PRICE_SALE": 2757.875,
+            "OVERDUE_TASK": 3828.125,
+            "TERMINAL_UNREALIZED": 65.75,
+            "UNPRODUCTIVE_MOVE": 1749.21875
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 4913.1875
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3828.125
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2757.875
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 71579.859375,
+        "mean_v1_reward": 115057.796875,
+        "mean_margin": -43477.9375,
+        "median_margin": -40249.5,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 7,
+        "mean_final_animals": 9.953125,
+        "mean_productive_actions": 2319.6875,
+        "mean_moves": 4126.125,
+        "mean_idle_actions": 876.78125,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 4909.46875,
+          "INVENTORY_OVERHANG": 2403.6953125,
+          "MISSED_HIGH_PRICE_SALE": 2581.34375,
+          "OVERDUE_TASK": 3774.609375,
+          "TERMINAL_UNREALIZED": 105.625,
+          "UNPRODUCTIVE_MOVE": 1735.15625
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 4909.46875
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3774.609375
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2581.34375
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "g_land_d5_11": {
+      "genome": {
+        "second_land_day": 5,
+        "third_land_day": 11
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "4e3de8bde96384e9ff0ec14f3fd72f9545772d772a23c4291a4780d2ddd96207",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 75473.25,
+          "mean_v1_reward": 118346.90625,
+          "mean_margin": -42873.65625,
+          "median_margin": -39487.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.09375,
+          "mean_final_animals": 9.90625,
+          "mean_productive_actions": 2336.25,
+          "mean_moves": 4133.53125,
+          "mean_idle_actions": 868.9375,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5018.0,
+            "INVENTORY_OVERHANG": 2442.265625,
+            "MISSED_HIGH_PRICE_SALE": 2427.8125,
+            "OVERDUE_TASK": 3393.75,
+            "TERMINAL_UNREALIZED": 63.25,
+            "UNPRODUCTIVE_MOVE": 1453.125
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5018.0
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3393.75
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2442.265625
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 68113.25,
+          "mean_v1_reward": 112428.5625,
+          "mean_margin": -44315.3125,
+          "median_margin": -42385.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.40625,
+          "mean_final_animals": 10,
+          "mean_productive_actions": 2333.46875,
+          "mean_moves": 4176.15625,
+          "mean_idle_actions": 833.1875,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 4996.6875,
+            "INVENTORY_OVERHANG": 2455.0078125,
+            "MISSED_HIGH_PRICE_SALE": 2735.03125,
+            "OVERDUE_TASK": 3445.3125,
+            "TERMINAL_UNREALIZED": 6.5625,
+            "UNPRODUCTIVE_MOVE": 1492.1875
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 4996.6875
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3445.3125
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2735.03125
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 71793.25,
+        "mean_v1_reward": 115387.734375,
+        "mean_margin": -43594.484375,
+        "median_margin": -40185.5,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.25,
+        "mean_final_animals": 9.953125,
+        "mean_productive_actions": 2334.859375,
+        "mean_moves": 4154.84375,
+        "mean_idle_actions": 851.0625,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 5007.34375,
+          "INVENTORY_OVERHANG": 2448.63671875,
+          "MISSED_HIGH_PRICE_SALE": 2581.421875,
+          "OVERDUE_TASK": 3419.53125,
+          "TERMINAL_UNREALIZED": 34.90625,
+          "UNPRODUCTIVE_MOVE": 1472.65625
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 5007.34375
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3419.53125
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2581.421875
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "h_land_d5_12": {
+      "genome": {
+        "second_land_day": 5,
+        "third_land_day": 12
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "e148797fc9e3b83e638d3008c6a1dd03c8850ce7c1f352bc8ea4e00970d0be57",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 75238.59375,
+          "mean_v1_reward": 118478.4375,
+          "mean_margin": -43239.84375,
+          "median_margin": -38491.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 8.84375,
+          "mean_final_animals": 10,
+          "mean_productive_actions": 2304.75,
+          "mean_moves": 4106.4375,
+          "mean_idle_actions": 927.28125,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5018.0,
+            "INVENTORY_OVERHANG": 2276.125,
+            "MISSED_HIGH_PRICE_SALE": 2304.78125,
+            "OVERDUE_TASK": 3578.125,
+            "TERMINAL_UNREALIZED": 157.78125,
+            "UNPRODUCTIVE_MOVE": 1714.84375
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5018.0
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3578.125
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2304.78125
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 68769.25,
+          "mean_v1_reward": 113029.65625,
+          "mean_margin": -44260.40625,
+          "median_margin": -43875.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 7.53125,
+          "mean_final_animals": 9.9375,
+          "mean_productive_actions": 2310.84375,
+          "mean_moves": 4133.9375,
+          "mean_idle_actions": 897.0625,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 4996.6875,
+            "INVENTORY_OVERHANG": 2263.0859375,
+            "MISSED_HIGH_PRICE_SALE": 2695.65625,
+            "OVERDUE_TASK": 3508.59375,
+            "TERMINAL_UNREALIZED": 39.5,
+            "UNPRODUCTIVE_MOVE": 1791.40625
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 4996.6875
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3508.59375
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2695.65625
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 72003.921875,
+        "mean_v1_reward": 115754.046875,
+        "mean_margin": -43750.125,
+        "median_margin": -40651.5,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 8.1875,
+        "mean_final_animals": 9.96875,
+        "mean_productive_actions": 2307.796875,
+        "mean_moves": 4120.1875,
+        "mean_idle_actions": 912.171875,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 5007.34375,
+          "INVENTORY_OVERHANG": 2269.60546875,
+          "MISSED_HIGH_PRICE_SALE": 2500.21875,
+          "OVERDUE_TASK": 3543.359375,
+          "TERMINAL_UNREALIZED": 98.640625,
+          "UNPRODUCTIVE_MOVE": 1753.125
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 5007.34375
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3543.359375
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2500.21875
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "i_hands5_d5_9": {
+      "genome": {
+        "hands_floor": 5,
+        "hands_ramp_additional": 7
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "809eb43847672b8b126e048231c49639f05bf312d8be814d5e5d28569dc02bc4",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 74159.53125,
+          "mean_v1_reward": 117389.28125,
+          "mean_margin": -43229.75,
+          "median_margin": -41437.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 3.6875,
+          "mean_final_animals": 9.71875,
+          "mean_productive_actions": 2323.5,
+          "mean_moves": 4194.90625,
+          "mean_idle_actions": 912.125,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 7391.75,
+            "INVENTORY_OVERHANG": 2597.015625,
+            "MISSED_HIGH_PRICE_SALE": 2443.96875,
+            "OVERDUE_TASK": 3751.5625,
+            "TERMINAL_UNREALIZED": 81.3125,
+            "UNPRODUCTIVE_MOVE": 1523.4375
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 7391.75
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3751.5625
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2597.015625
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 67592.46875,
+          "mean_v1_reward": 112247.53125,
+          "mean_margin": -44655.0625,
+          "median_margin": -43124.0,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 1.78125,
+          "mean_final_animals": 9.75,
+          "mean_productive_actions": 2315.53125,
+          "mean_moves": 4170.5625,
+          "mean_idle_actions": 938.5,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 7621.3125,
+            "INVENTORY_OVERHANG": 2609.7421875,
+            "MISSED_HIGH_PRICE_SALE": 2701.28125,
+            "OVERDUE_TASK": 3522.65625,
+            "TERMINAL_UNREALIZED": 19.3125,
+            "UNPRODUCTIVE_MOVE": 1469.53125
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 7621.3125
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3522.65625
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2701.28125
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 70876.0,
+        "mean_v1_reward": 114818.40625,
+        "mean_margin": -43942.40625,
+        "median_margin": -41437.0,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 2.734375,
+        "mean_final_animals": 9.734375,
+        "mean_productive_actions": 2319.515625,
+        "mean_moves": 4182.734375,
+        "mean_idle_actions": 925.3125,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 7506.53125,
+          "INVENTORY_OVERHANG": 2603.37890625,
+          "MISSED_HIGH_PRICE_SALE": 2572.625,
+          "OVERDUE_TASK": 3637.109375,
+          "TERMINAL_UNREALIZED": 50.3125,
+          "UNPRODUCTIVE_MOVE": 1496.484375
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 7506.53125
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3637.109375
+          },
+          {
+            "category": "INVENTORY_OVERHANG",
+            "mean_proxy_per_game": 2603.37890625
+          }
+        ]
+      },
+      "integrity_pass": true
+    },
+    "j_hands5_land_d6_11": {
+      "genome": {
+        "hands_floor": 5,
+        "hands_ramp_additional": 7,
+        "second_land_day": 6,
+        "third_land_day": 11
+      },
+      "executor_tuning": "R2.1_B_CURRENT_DEFAULT",
+      "configuration_sha256": "cd1f6f6a6b75749937c8363b721b44640ba3af1c7370e77c6bab353b8205debc",
+      "source_metrics": {
+        "ACCOUNT_ONLINE": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 73445.46875,
+          "mean_v1_reward": 118813.625,
+          "mean_margin": -45368.15625,
+          "median_margin": -41841.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 2.9375,
+          "mean_final_animals": 9.625,
+          "mean_productive_actions": 2325.34375,
+          "mean_moves": 4147.96875,
+          "mean_idle_actions": 937.3125,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5473.5625,
+            "INVENTORY_OVERHANG": 2404.171875,
+            "MISSED_HIGH_PRICE_SALE": 2301.34375,
+            "OVERDUE_TASK": 3567.1875,
+            "TERMINAL_UNREALIZED": 102.4375,
+            "UNPRODUCTIVE_MOVE": 1487.5
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5473.5625
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3567.1875
+            },
+            {
+              "category": "INVENTORY_OVERHANG",
+              "mean_proxy_per_game": 2404.171875
+            }
+          ]
+        },
+        "OFFICIAL_DAILY": {
+          "games": 32,
+          "scenario_blocks": 16,
+          "wins": 0,
+          "ties": 0,
+          "pure_win_rate": 0.0,
+          "seed_block_95ci": [
+            0.0,
+            0.0
+          ],
+          "mean_candidate_reward": 66664.09375,
+          "mean_v1_reward": 112875.625,
+          "mean_margin": -46211.53125,
+          "median_margin": -46514.5,
+          "catastrophe_rate": 1,
+          "mean_final_crops": 0.9375,
+          "mean_final_animals": 9.75,
+          "mean_productive_actions": 2328.15625,
+          "mean_moves": 4171.75,
+          "mean_idle_actions": 912.625,
+          "error_count": 0,
+          "action_violations": 0,
+          "trajectory_mismatches": 0,
+          "contract_invariant_events": 0,
+          "mean_loss_proxy_per_game": {
+            "FEED_SHORTAGE": 0.0,
+            "FINANCING_SHORTFALL": 5353.125,
+            "INVENTORY_OVERHANG": 2446.984375,
+            "MISSED_HIGH_PRICE_SALE": 2755.15625,
+            "OVERDUE_TASK": 3396.09375,
+            "TERMINAL_UNREALIZED": 40.4375,
+            "UNPRODUCTIVE_MOVE": 1486.71875
+          },
+          "top_loss_proxies": [
+            {
+              "category": "FINANCING_SHORTFALL",
+              "mean_proxy_per_game": 5353.125
+            },
+            {
+              "category": "OVERDUE_TASK",
+              "mean_proxy_per_game": 3396.09375
+            },
+            {
+              "category": "MISSED_HIGH_PRICE_SALE",
+              "mean_proxy_per_game": 2755.15625
+            }
+          ]
+        }
+      },
+      "overall": {
+        "games": 64,
+        "scenario_blocks": 32,
+        "wins": 0,
+        "ties": 0,
+        "pure_win_rate": 0.0,
+        "seed_block_95ci": [
+          0.0,
+          0.0
+        ],
+        "mean_candidate_reward": 70054.78125,
+        "mean_v1_reward": 115844.625,
+        "mean_margin": -45789.84375,
+        "median_margin": -42812.0,
+        "catastrophe_rate": 1,
+        "mean_final_crops": 1.9375,
+        "mean_final_animals": 9.6875,
+        "mean_productive_actions": 2326.75,
+        "mean_moves": 4159.859375,
+        "mean_idle_actions": 924.96875,
+        "error_count": 0,
+        "action_violations": 0,
+        "trajectory_mismatches": 0,
+        "contract_invariant_events": 0,
+        "mean_loss_proxy_per_game": {
+          "FEED_SHORTAGE": 0.0,
+          "FINANCING_SHORTFALL": 5413.34375,
+          "INVENTORY_OVERHANG": 2425.578125,
+          "MISSED_HIGH_PRICE_SALE": 2528.25,
+          "OVERDUE_TASK": 3481.640625,
+          "TERMINAL_UNREALIZED": 71.4375,
+          "UNPRODUCTIVE_MOVE": 1487.109375
+        },
+        "top_loss_proxies": [
+          {
+            "category": "FINANCING_SHORTFALL",
+            "mean_proxy_per_game": 5413.34375
+          },
+          {
+            "category": "OVERDUE_TASK",
+            "mean_proxy_per_game": 3481.640625
+          },
+          {
+            "category": "MISSED_HIGH_PRICE_SALE",
+            "mean_proxy_per_game": 2528.25
+          }
+        ]
+      },
+      "integrity_pass": true
+    }
+  },
+  "next_step": "只有利润与机制指标同向改善的候选才进入完整 Development"
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "experiment_id": "v93_strict_v80_income_exact_hierarchical_fallback_40f",
+  "created_at_utc": "2026-09-03T20:54:06.359358+00:00",
+  "frozen_config_sha256": "cf0b0303bda46d22c6a4f1d14e73f428dc229f329830bd24ad0d2e572a2fae22",
+  "run_contract_sha256": "6879b89bb3b0e61f1f3c88f8a163ade84b2d116033e5e07ba1dc23b9723c16e2",
+  "runtime": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit_learn": "1.7.2",
+    "lightgbm": "4.6.0"
+  },
+  "prediction_artifact_access": {
+    "strict_v80_oof": "HASH_ONLY_BYTES_NOT_PARSED",
+    "strict_v80_test": "HASH_ONLY_BYTES_NOT_PARSED",
+    "non_formal_modes": [
+      "audit",
+      "smoke"
+    ]
+  },
+  "code_and_inputs": {
+    "candidate_runner": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/v93_strict_v80_income_exact_hierarchical_fallback_40f.py",
+      "sha256": "139c1202c86aff90c07d92dbda88af11df22dfff931e007b4a5288f317dd4624",
+      "bytes": 163609
+    },
+    "frozen_config": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/frozen_config.json",
+      "sha256": "cf0b0303bda46d22c6a4f1d14e73f428dc229f329830bd24ad0d2e572a2fae22",
+      "bytes": 7008
+    },
+    "history_fallback_manifest": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/history_fallback_manifest.json",
+      "sha256": "9b2d6b8e321ae0e94df40f9d7eecde4c987a5c4d2165c6600ef666c54a018a3c",
+      "bytes": 34082
+    },
+    "v61_wrapper": {
+      "path": "model/v61_income_bin10_te_lgbm_40f_depth4_seed104395303/v61_income_bin10_te_lgbm_40f_depth4_seed104395303.py",
+      "sha256": "78746e874e8a4715b29244ffb948cfe545fa6ce06c48a4379acea8c50924ab1c",
+      "bytes": 1663
+    },
+    "v29_recipe": {
+      "path": "model/v29_income_bin10_te_lgbm/v29_income_bin10_te_lgbm.py",
+      "sha256": "3d25e572c807e0218a466feeea931fb02104e30c201c7f6298404d09a57add40",
+      "bytes": 1912
+    },
+    "v6_recipe": {
+      "path": "model/v6_multiscale_te_lgbm/v6_multiscale_te_lgbm.py",
+      "sha256": "655f1950d7069ad93e21e8224a11b09ee6ce754f229c188a17ba38f946e79e26",
+      "bytes": 13596
+    },
+    "strict_v80_runner": {
+      "path": "model/v80_strict_v61_outer104395303_40f/v80_strict_v61_outer104395303_40f.py",
+      "sha256": "808e4fe41ef033da6b6df14edcce3e9f67ced418f9958fddbd0788045af8204a",
+      "bytes": 80862
+    },
+    "strict_v80_config": {
+      "path": "model/v80_strict_v61_outer104395303_40f/frozen_config.json",
+      "sha256": "79fc1e5451fb823cbde5a59e32b078e8e85cc0ebcef4c500694affab9195e5ab",
+      "bytes": 3650
+    },
+    "train_csv": {
+      "path": "data/train.csv",
+      "sha256": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+      "bytes": 44707646
+    },
+    "test_csv": {
+      "path": "data/test.csv",
+      "sha256": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+      "bytes": 18298347
+    },
+    "sample_submission_csv": {
+      "path": "data/sample_submission.csv",
+      "sha256": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5",
+      "bytes": 7737432
+    },
+    "strict_v80_cv_results": {
+      "path": "model/v80_strict_v61_outer104395303_40f/cv_results.json",
+      "sha256": "52bd098b6b765bffac5efd9f3faa18c4f1773229241fc18f7b2ebfafb41a57e2",
+      "bytes": 116748
+    },
+    "strict_v80_sources": {
+      "path": "model/v80_strict_v61_outer104395303_40f/sources.json",
+      "sha256": "d1fa6c3203b3e5bf69c673f89e443ed4b94053dd4143e502662d8fffcc9ae1c3",
+      "bytes": 3949
+    },
+    "strict_v80_oof": {
+      "path": "model/v80_strict_v61_outer104395303_40f/oof_proba.npy",
+      "sha256": "403d712897a775fd0869c9b8b89595dd8433ca909202a3313649b6ae77b29ae2",
+      "bytes": 5349448
+    },
+    "strict_v80_test": {
+      "path": "model/v80_strict_v61_outer104395303_40f/test_proba.npy",
+      "sha256": "3dfd38c810276920929e2849ceafdf50de7c3f6f0543636e7efcd96a0ef499cb",
+      "bytes": 2292696
+    }
+  },
+  "row_identity": {
+    "train_rows": 668665,
+    "test_rows": 286571,
+    "train_id_sha256": "a79741ce666add0e6931e07b0facd43e0ecfe75f2dc0c590101895dd1dac3edf",
+    "test_id_sha256": "c414f5a13bb7853a288e8c7951737caace5abcac135455791d93bb57ed3ef718"
+  },
+  "outputs": {
+    "oof_proba": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/oof_proba.npy",
+      "sha256": "8732fd717269e3b6c322a8b3c9bdde78249ba514708d367fd2938a26143e7042",
+      "bytes": 5349448
+    },
+    "test_proba": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/test_proba.npy",
+      "sha256": "836793f3e0c0362ad3e602552692d6dcad955c2c3a42cb2b3fc4d3205b5d0a19",
+      "bytes": 2292696
+    },
+    "submission": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/submission.csv",
+      "sha256": "ed72d6e845a55ed5e692b02a10c7520e14940e63c5409fdfd9289f5182f3155e",
+      "bytes": 7908735
+    },
+    "feature_importance": {
+      "path": "model/v93_strict_v80_income_exact_hierarchical_fallback_40f/feature_importance.csv",
+      "sha256": "b63a3f3ed375117cea80fb2afbc302ec3e5e06d7f0741bee2b77b8e1f2e94ae3",
+      "bytes": 9726
+    }
+  }
+}

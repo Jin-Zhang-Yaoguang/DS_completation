@@ -1,0 +1,171 @@
+{
+  "allowed_for_fusion": false,
+  "allowed_for_submission": true,
+  "artifact_sha256": {
+    "oof_proba.npy": "8ad4a6a026eb579036911aa7010a39cbfa7ceefb4976b39d95bc60a87cb41fda",
+    "sources.json": "3dfba7b794c160bcde2403651811e2d67418ad49c2768a0894c9db37dbd39420",
+    "submission.csv": "73e2babee047d117515d2a780960714b97e7748c781654c561b3bdb58ab7e212",
+    "test_proba.npy": "5e6d86808c721bdfb89669ea963acc3f6950afb554d73d9c970ba241751ef3ac"
+  },
+  "base": "v90_v89_member_verify_budget_retry",
+  "base_oof_auc": 0.9463709867655821,
+  "counts_toward_cycle": true,
+  "cycle_position": 17,
+  "decision": "REJECT_RESEARCH_PROMOTION_SUBMISSION_AUTHORIZED_BY_USER_THRESHOLD",
+  "elapsed_seconds": 52.33814050001092,
+  "eligible_for_separate_preregistration": false,
+  "evaluation": {
+    "base_oof_auc": 0.9463709867655821,
+    "ctboost_oof_auc": 0.9459617209236499,
+    "decision": "REJECT_RESEARCH_PROMOTION_SUBMISSION_AUTHORIZED_BY_USER_THRESHOLD",
+    "delta_vs_v95_reference": 1.4256378616295251e-05,
+    "final_ctboost_weight": 0.2,
+    "full_fit_apparent_auc_diagnostic_only": 0.9464005040272467,
+    "oof_auc": 0.9463981465241269,
+    "oof_delta_vs_base": 2.7159758544836876e-05,
+    "positive_meta_folds": 5,
+    "research_promotion_gate_passed": false,
+    "spearman_oof_vs_v90": 0.9948849084558057,
+    "spearman_test_vs_v90": 0.9962973709151933,
+    "user_submission_threshold_passed": true,
+    "v95_reference_oof_auc": 0.9463838901455106
+  },
+  "experiment_id": "v100_v90_ctboost_nested_cv_blend",
+  "experiment_type": "SMALL_BLEND_2_MEMBER",
+  "fold_auc": [
+    0.9454581651509297,
+    0.9461158727614359,
+    0.947243062137954,
+    0.946714844963548,
+    0.946473524988746
+  ],
+  "meta_fold_rows": [
+    {
+      "fold": 1,
+      "holdout_baseline_auc": 0.9454470701736297,
+      "holdout_blend_auc": 0.9454581651509297,
+      "holdout_delta": 1.1094977300007969e-05,
+      "meta_train_auc": 0.9466345408470352,
+      "selected_ctboost_weight": 0.225
+    },
+    {
+      "fold": 2,
+      "holdout_baseline_auc": 0.9460683872486638,
+      "holdout_blend_auc": 0.9461158727614359,
+      "holdout_delta": 4.748551277211632e-05,
+      "meta_train_auc": 0.946474831922884,
+      "selected_ctboost_weight": 0.2
+    },
+    {
+      "fold": 3,
+      "holdout_baseline_auc": 0.9471970143870195,
+      "holdout_blend_auc": 0.947243062137954,
+      "holdout_delta": 4.604775093441926e-05,
+      "meta_train_auc": 0.9461906116423346,
+      "selected_ctboost_weight": 0.2
+    },
+    {
+      "fold": 4,
+      "holdout_baseline_auc": 0.9467095601753992,
+      "holdout_blend_auc": 0.946714844963548,
+      "holdout_delta": 5.284788148762765e-06,
+      "meta_train_auc": 0.9463212861046182,
+      "selected_ctboost_weight": 0.225
+    },
+    {
+      "fold": 5,
+      "holdout_baseline_auc": 0.946442138413154,
+      "holdout_blend_auc": 0.946473524988746,
+      "holdout_delta": 3.13865755919851e-05,
+      "meta_train_auc": 0.9463825439575941,
+      "selected_ctboost_weight": 0.2
+    }
+  ],
+  "model": "v90 plus CTBoost fit-only mid-ECDF nested meta blend",
+  "n_folds": 5,
+  "online_result_may_change_research_decision": false,
+  "oof_auc": 0.9463981465241269,
+  "oof_delta_vs_base": 2.7159758544836876e-05,
+  "params": {
+    "ctboost_weight_grid": [
+      0.0,
+      0.025,
+      0.05,
+      0.07500000000000001,
+      0.1,
+      0.125,
+      0.15000000000000002,
+      0.17500000000000002,
+      0.2,
+      0.225,
+      0.25,
+      0.275,
+      0.30000000000000004,
+      0.325,
+      0.35000000000000003,
+      0.375,
+      0.4,
+      0.42500000000000004,
+      0.45,
+      0.47500000000000003,
+      0.5
+    ],
+    "meta_folds": "StratifiedKFold(5, shuffle=True, random_state=42)",
+    "tie_break": "smallest CTBoost weight",
+    "transform": "fit-only mid-ECDF per member"
+  },
+  "peak_rss_bytes": 6966132736,
+  "research_cycle": "C01",
+  "resource_checks": [
+    {
+      "elapsed_seconds": 3.7509016692638397e-07,
+      "memory_ok": true,
+      "peak_rss_bytes": 185778176,
+      "phase": "START",
+      "wall_ok": true
+    },
+    {
+      "elapsed_seconds": 39.288703500060365,
+      "memory_ok": true,
+      "peak_rss_bytes": 6966132736,
+      "phase": "AFTER_SOURCE_VERIFY",
+      "wall_ok": true
+    },
+    {
+      "elapsed_seconds": 52.1352149581071,
+      "memory_ok": true,
+      "peak_rss_bytes": 6966132736,
+      "phase": "AFTER_META_CV",
+      "wall_ok": true
+    },
+    {
+      "elapsed_seconds": 52.33814050001092,
+      "memory_ok": true,
+      "peak_rss_bytes": 6966132736,
+      "phase": "AFTER_OUTPUTS",
+      "wall_ok": true
+    }
+  ],
+  "schema_version": 1,
+  "source_sha256": {
+    "ct_evidence": "045025074dd0ec8cde6bdf5dfcb527c11e23b5299893e2f8ecda278a5133b366",
+    "ct_kernel_metadata": "877433d11c8186a6299eacf262a093baefa449a0234258af0e8d464586267c7e",
+    "ct_log": "d3a3e5310f818970f19c652d50905edc5933411da9f93cbf39d43f6138709948",
+    "ct_notebook": "a78ce26d2f8f6c23bf15edb317f457d3e568823a7a92769f397b270bfb608209",
+    "ct_oof": "01f46f9868a22fe5563cdc71aada5c91105bc8b9f4d56e96c29475228610f4a3",
+    "ct_run_summary": "4e824e0ceec4e57925c58b78097e61db0acac0f052a9cb5ee6df2fa0f769d741",
+    "ct_submission": "f8997e33d70a909504a384ffe0c85b9d9cd43dae97ab3c1d86de8734cee84972",
+    "sample_submission.csv": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5",
+    "test.csv": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+    "train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "v90_config": "ec255f79707963c37909618fdfb20e2bdedcd9599b7fdd13ac03e34503b0536e",
+    "v90_cv": "50c22769b7e9d3327ab5af98c571bbf961e7f8705e1e6837d9378cd01004bb02",
+    "v90_oof": "c0057fc23fb130cd0bbbc05c6849893d5b79ff3a7ad786715d68fc1a6de4628f",
+    "v90_runner": "71618b688ba314510c55efee08d8f848d1658e67e195908792e35c0f8328a013",
+    "v90_sources": "57e7a7713386b1a1e8f6429f54ed88fcddba1c802811d72f628fdb8c7a775b70",
+    "v90_test": "6fa740955ac5997455e8e4b18aa181adbd9dd6da719e0cc80d858963e002f363",
+    "v95_oof": "2abad8382d1585e1e1956bf0b190f4f78d670f380fa1e528257dd8132914f47f"
+  },
+  "status": "COMPLETE",
+  "submission_budget": 1
+}

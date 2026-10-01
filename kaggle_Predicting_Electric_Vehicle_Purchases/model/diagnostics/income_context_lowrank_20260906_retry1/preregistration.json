@@ -1,0 +1,52 @@
+{
+  "experiment_id": "INCOME_CONTEXT_LOWRANK_20260906",
+  "created_at": "2026-09-05T16:10:35.427434+00:00",
+  "hypothesis": "收入精确值与环保等级、补贴、续航焦虑的条件效应可由低秩共享参数估计；相较独立加性项，为强V85提供新增排序信息。",
+  "scope": "五折机制诊断，不是正式40折或V100端到端验证",
+  "old_boundary": "区别于独立交叉TE、全局加性logistic、固定生成器init_score和局部专家；不复用其失败预测。",
+  "arms": [
+    "V85 matched 5fold",
+    "V85 + rank0 logit",
+    "V85 + rank4 logit"
+  ],
+  "primary": "arm2-arm0",
+  "mechanism": "arm2-arm1",
+  "folds": 5,
+  "outer_seed": 42,
+  "inner_folds": 5,
+  "rank": 4,
+  "steps": 250,
+  "lr": 0.03,
+  "prior_mass": 5.0,
+  "initial_scale": 0.05,
+  "context": [
+    "Environmental_Concern_Level",
+    "Subsidy_Available",
+    "Range_Anxiety_Level"
+  ],
+  "income": "Annual_Income_USD",
+  "model_seed": 516,
+  "score_clip": 12.0,
+  "budget_seconds": 1800,
+  "memory_gib": 16,
+  "threads": 8,
+  "torch_threads": 4,
+  "gate": {
+    "primary_delta": 0.0001,
+    "primary_wins": 5,
+    "mechanism_delta": 0.0,
+    "mechanism_wins": 5
+  },
+  "early_stopping": "GBDT outer-valid AUC 350轮早停；开发诊断存在早停选择偏差，最终确认必须训练块内早停。MF固定250步不看验证标签。",
+  "resume": "逐折原子checkpoint，恢复校验代码、配置和来源哈希，累计预算不重置。",
+  "submission_allowed": false,
+  "test_prediction_allowed": false,
+  "counts_toward_cycle": false,
+  "source_hashes": {
+    "data/train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "data/test.csv": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+    "data/original_dataset/EV_Adoption_and_Range_Anxiety_Dataset.csv": "c271a380df51b18177d0a039d54525ca7c3d71500701dc7496714a091df16fae",
+    "model/validation/e2e_v100_20260905/feature_backends.py": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+    "model/v85_naji_v74_40f/frozen_config.json": "0ed289568d8718b4548442aa843284d31b2282c7ed37a129343cd82a3efcdd8f"
+  }
+}

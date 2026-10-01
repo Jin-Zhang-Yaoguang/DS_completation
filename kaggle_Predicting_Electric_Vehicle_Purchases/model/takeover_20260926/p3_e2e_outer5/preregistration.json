@@ -1,0 +1,57 @@
+{
+  "experiment_id": "P3_INTERNAL_V85_FAMILY_REPLACE_ONLINE_RECIPE_OUTER5_20260926",
+  "status": "FROZEN_BEFORE_OUTER_CPU_TRAINING",
+  "registered_at_utc": "2026-09-26T12:07:34.138910+00:00",
+  "development_result_sha256": "5a64526a1ad48e30e68ad7e1acc57b23617e07597e1e7aeff0be824db123aded",
+  "development_verification_sha256": "0b74df18d3d78452fd66d8d17a64f8adac61d1f01c145d433f6335f16c55e8bd",
+  "source_freeze_sha256": "6ed939dcdfbd519f8ecbb524134d4672bdc47ff22b004f2999870c589b094606",
+  "outer": {
+    "seed": 42437,
+    "folds": 5,
+    "T_fraction": 0.8,
+    "U_labels_used_for_training_or_selection": false,
+    "split_source": "model/validation/e2e_v100_20260905/splits.npz",
+    "historically_exposed": true
+  },
+  "CPU": {
+    "recipe": "original online F/H single fit no refit",
+    "families": [
+      "v80",
+      "v85",
+      "grouped_v85"
+    ],
+    "atoms_per_family_outer": 40,
+    "total_atoms": 600,
+    "V80_seed": 104395303,
+    "V85_seed": 42,
+    "grouped_only_change": "12-source interaction_constraints; otherwise V85 identical"
+  },
+  "CT": {
+    "reuse": "five existing audited same-T/U CT caches, full-T U predictions",
+    "model_state_bytes_archived": false,
+    "historical_AB_gate_inherited": false
+  },
+  "baseline_graph": "V80 + original V85 -> original V90 -> original V100 with same-T/U CT",
+  "candidate_graph": "V80 + C where C=0.5*(original V85+grouped V85) -> original V90 -> original V100 with same-T/U CT",
+  "meta": {
+    "V90": "fit-only five seed42 meta folds, grid 0..1 step .05, same tie-break, U five-prediction mean",
+    "V100": "fit-only five seed42 meta folds OOF, full T mid-ECDF and CT grid 0..0.5 step .025 for U, lower-weight tie-break"
+  },
+  "cache_gate": "600 complete source/model/row audited CPU atoms and five directly audited CT caches before any outer U scoring",
+  "score_gate": "paired outer pooled candidate AUC > faithful baseline and positive in all 5 U blocks",
+  "research_delta_field": 0.0001,
+  "submission_gate": "score_gate + independent verification + full-data frozen prediction and CSV integrity + CLI one-time COMPLETE",
+  "budget": {
+    "seconds": 43200,
+    "cpu_threads": 8,
+    "peak_rss_gib": 24,
+    "checkpoint_each_atom": true
+  },
+  "forbidden": [
+    "old A_NEW_CPU baseline",
+    "old P1 outer mix",
+    "old P1 qualification",
+    "old C/D outputs",
+    "U/Public tuning"
+  ]
+}

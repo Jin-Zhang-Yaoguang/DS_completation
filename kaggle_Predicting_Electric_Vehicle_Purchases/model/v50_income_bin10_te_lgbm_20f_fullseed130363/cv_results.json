@@ -1,0 +1,150 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "20-fold income-bin10 multiscale TE LightGBM, full seed 130363",
+  "seed": 130363,
+  "n_folds": 20,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "income_bin10": [
+      "_income_bin10"
+    ]
+  },
+  "static_feature_count": 62,
+  "te_feature_count": 51,
+  "feature_count": 113,
+  "fold_auc": [
+    0.9478123945611793,
+    0.9470571589695236,
+    0.9458530730425071,
+    0.9437224893214028,
+    0.9436458790432068,
+    0.9461022469266064,
+    0.9435276883141618,
+    0.9472000628395864,
+    0.9465496897537475,
+    0.9476853740179934,
+    0.9471992684073942,
+    0.9475761830370779,
+    0.9467409989560295,
+    0.9479772657836081,
+    0.9436197865899424,
+    0.9451821616259138,
+    0.9449791655813047,
+    0.9449602978167402,
+    0.9481668868174814,
+    0.9472776689343608
+  ],
+  "fold_auc_mean": 0.9461417870169886,
+  "fold_auc_std": 0.0015592120304997433,
+  "best_iterations": [
+    1307,
+    1008,
+    1949,
+    1645,
+    1279,
+    1662,
+    1553,
+    1777,
+    2072,
+    1849,
+    1151,
+    1501,
+    1243,
+    1535,
+    1001,
+    1465,
+    1351,
+    934,
+    1871,
+    1330
+  ],
+  "oof_auc": 0.9461326803040816,
+  "prediction_min": 7.344270754191747e-06,
+  "prediction_max": 0.9996394366044213,
+  "prediction_mean": 0.17492591475309202,
+  "elapsed_seconds": 658.2301149368286,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 31,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 130363,
+    "bagging_seed": 130363,
+    "feature_fraction_seed": 130363,
+    "data_random_seed": 130363,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "replicate v48 under a second independent outer/inner/model path so any 20-fold gain must survive both training coverage and partition variance",
+  "full_seed": 130363
+}

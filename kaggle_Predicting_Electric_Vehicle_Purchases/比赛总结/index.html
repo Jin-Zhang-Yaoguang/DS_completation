@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>从收入编码到生成器残差：S6E9 参赛复盘</title><style>
+:root{color-scheme:light dark;--bg:#f4f7f3;--panel:#fff;--ink:#15211b;--muted:#5d6b63;--line:#d9e1da;--accent:#0e6b52;--secondary:#b97d10}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1512;--panel:#171f1b;--ink:#e6eee9;--muted:#a6b5ac;--line:#35413a;--accent:#6cd8b6;--secondary:#e0ac45}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 "PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+a{color:var(--accent);overflow-wrap:anywhere}a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--secondary);outline-offset:3px}
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}nav{position:sticky;top:0;height:100vh;overflow:auto;align-self:start;background:var(--panel);border-right:1px solid var(--line);padding:24px 18px}
+.brand{font-size:18px;font-weight:600;line-height:1.4}.brand small{display:block;color:var(--muted);font-size:13px;font-weight:400;margin-top:6px}
+.tabs{display:grid;gap:8px;margin:24px 0}.tabs a{padding:8px 12px;text-decoration:none;border-radius:6px}.tabs a[aria-current=page]{background:var(--accent);color:var(--bg)}
+.chapters{display:grid;gap:8px}.chapters a{font-size:14px;text-decoration:none;color:var(--muted)}main{padding:36px clamp(18px,4vw,56px) 80px;max-width:1150px;min-width:0}
+h1{font-size:clamp(26px,3vw,36px);line-height:1.35;margin:0 0 22px;font-weight:600}h2{font-size:24px;margin:54px 0 20px;scroll-margin-top:20px;font-weight:600}h3{font-size:19px;margin:28px 0 10px;font-weight:600}p{margin:14px 0}li{margin:8px 0}code{font-size:.9em;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel);padding:18px}strong{font-weight:600}
+.table-scroll{overflow-x:auto;background:var(--panel);margin:20px 0}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{font-weight:600;color:var(--muted)}
+.chart{background:var(--panel);padding:20px;margin:24px 0}.chart p,.asof{color:var(--muted);font-size:13px}.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.controls label{display:flex;align-items:center;gap:6px}input[type=search]{font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 10px;width:min(100%,340px)}input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+svg{display:block;width:100%;overflow:visible;margin-top:12px}svg text{fill:var(--muted);font:12px system-ui,sans-serif}.public{stroke:var(--accent)}.private{stroke:var(--secondary)}.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}.legend b{font-weight:500}.legend .pub{color:var(--accent)}.legend .pri{color:var(--secondary)}
+.tooltip{min-height:28px;font-size:13px;color:var(--muted);overflow-wrap:anywhere}.note{border-left:3px solid var(--accent);padding:6px 14px;font-size:14px}.asof{margin-top:30px}footer{margin-top:50px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--muted)}
+@media(max-width:820px){.shell{grid-template-columns:minmax(0,1fr)}nav{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:16px}.tabs{display:flex;flex-wrap:wrap;margin:12px 0}.chapters{display:flex;flex-wrap:wrap;gap:8px 18px}.asof{margin-top:12px}main{padding-top:24px}h2{margin-top:38px}.chart{padding:12px}}
+@media(max-width:600px){.table-scroll table{min-width:640px}}
+@media print{nav,.controls{display:none}.shell{display:block}main{max-width:none;padding:0}.chart,.table-scroll{break-inside:avoid}a{color:inherit}}
+</style></head><body><div class="shell"><nav aria-label="比赛总结导航"><div class="brand">S6E9 电动车购买<small>比赛总结</small></div><div class="tabs"><a href="index.html" aria-current="page">参赛复盘</a><a href="solutions.html" >优胜方案总结</a></div><div class="chapters"><a href="#section-1">参赛过程</a><a href="#section-2">比赛理解</a><a href="#section-3">经验总结</a><a href="#section-4">心得迁移</a><a href="#section-5">来源与边界</a></div><p class="asof">资料截至 2026-10-01</p><a href="../../README.md">比赛总览</a></nav><main><h1>从收入编码到生成器残差：S6E9 参赛复盘</h1>
+<p>本次参赛最终取得 Private ROC AUC <strong>0.94568</strong>、当前私榜 <strong>第 34 名</strong>。最有效的变化发生在截止日：将生成器感知的线性模型作为树模型的起点，再与原有模型融合。此前 V100 的 Private 为 0.94531，最终提升 0.00037。</p>
+<h2 id="section-1">参赛过程</h2>
+<p>参赛提交从 2026-09-02 持续到 09-30，共 <strong>26 次，全部 COMPLETE</strong>。两处实际工作目录合计保留 <strong>114 个模型目录、112 个不同版本编号</strong>；最大编号是 V115。重试目录、融合和单模型都在其中，这不等于 112 个独立模型家族。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>版本范围</th>
+<th style="text-align: right;">累计不同编号</th>
+<th>方法与结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月 2–3 日：跑通并找到收入信号</td>
+<td>V1–V12</td>
+<td style="text-align: right;">12</td>
+<td>原始 LightGBM Public 0.94170；收入精确值 TE 后 0.94578；树与 MLP 融合到 0.94604</td>
+</tr>
+<tr>
+<td>9 月 3 日：多尺度编码与融合探索</td>
+<td>V13–V76 中的 62 个编号</td>
+<td style="text-align: right;">74</td>
+<td>多尺度收入键、浅树、bagging、公共 OOF；存在仅 Public 预测的探测候选，不能追认成可信 CV</td>
+</tr>
+<tr>
+<td>9 月 3–5 日及后续审计：严格验证线</td>
+<td>V77–V100 中的 23 个编号</td>
+<td style="text-align: right;">97</td>
+<td>嵌套 TE、固定切分、成员血缘和嵌套调权；V100 OOF 0.946398，Public 0.94635，Private 0.94531</td>
+</tr>
+<tr>
+<td>9 月 30 日：更换模型表示</td>
+<td>V101–V115</td>
+<td style="text-align: right;">112</td>
+<td>token 层级、生成器感知 ridge GLM、以 GLM logit 起步的残差树；20 折、种子平均、紧凑融合；最终 Public 0.94677 / Private 0.94568</td>
+</tr>
+</tbody>
+</table></div>
+<p>上表按版本编号归并；“累计不同编号”来自目录清点，不是按文件修改时间推算的每日训练数量。中间阶段还有诊断、失败、恢复与社区调研，不能用版本数代表有效进展。</p>
+<h3>截止日的五次提交</h3>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>方案</th>
+<th style="text-align: right;">ID</th>
+<th style="text-align: right;">本地 OOF</th>
+<th style="text-align: right;">Public</th>
+<th style="text-align: right;">Private</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V101：GLM + 残差 GBDT</td>
+<td style="text-align: right;">56712547</td>
+<td style="text-align: right;">0.946560</td>
+<td style="text-align: right;">0.94671</td>
+<td style="text-align: right;">0.94560</td>
+</tr>
+<tr>
+<td>V102：加入旧严格家族</td>
+<td style="text-align: right;">56712542</td>
+<td style="text-align: right;">0.946660</td>
+<td style="text-align: right;">0.94669</td>
+<td style="text-align: right;">0.94562</td>
+</tr>
+<tr>
+<td>V104：加入公开 OOF</td>
+<td style="text-align: right;">56713265</td>
+<td style="text-align: right;">0.946673</td>
+<td style="text-align: right;">0.94671</td>
+<td style="text-align: right;">0.94564</td>
+</tr>
+<tr>
+<td>V110：紧凑秩融合</td>
+<td style="text-align: right;">56714920</td>
+<td style="text-align: right;">0.946708</td>
+<td style="text-align: right;">0.94674</td>
+<td style="text-align: right;">0.94567</td>
+</tr>
+<tr>
+<td>V110 bag / probit：最终版</td>
+<td style="text-align: right;">56716031</td>
+<td style="text-align: right;">0.946716</td>
+<td style="text-align: right;">0.94677</td>
+<td style="text-align: right;">0.94568</td>
+</tr>
+</tbody>
+</table></div>
+<p>最后两份提交只差 Private 0.00001。最终版相对上一份的嵌套元验证平均增量只有 +0.000003、3/5 折为正；它是明确接受的候选选择例外，不能写成通过原先 5/5、+0.0001 的研究晋级门槛。</p>
+<section class="chart" aria-labelledby="chart-title"><h2 id="chart-title">线上成绩与累计提交时间轴</h2><div class="controls"><label><input id="show-public" type="checkbox" checked>Public</label><label><input id="show-private" type="checkbox" checked>Private</label></div><div class="legend"><b class="pub">绿色实线：Public</b><b class="pri">金色实线：Private</b></div><svg id="score-chart" role="img" aria-label="按实际提交顺序排列的 Public 与 Private AUC"></svg><div id="chart-detail" class="tooltip" aria-live="polite">悬停、点击或按 Tab 查看提交；横轴为累计提交次数。</div><p>AUC 纵轴截取实际分数范围，用于观察小幅变化；Private 为赛后公布，不能理解为当时可见。版本累计数见正文阶段表。</p><h3>全部提交记录</h3><label for="submission-search">搜索版本或提交 ID</label><br><input id="submission-search" type="search" placeholder="例如 v110、56716031"><div class="table-scroll"><table id="submission-table"><thead><tr><th>累计次数</th><th>UTC 时间</th><th>ID</th><th>方案</th><th>Public</th><th>Private</th></tr></thead><tbody></tbody></table></div></section><h2 id="section-2">比赛理解</h2>
+<p>任务是根据 13 个消费者特征，预测 <code>Will_Buy_EV=Yes</code> 的概率。训练集 668,665 行、测试集 286,571 行，无缺失，正类占约 17.46%。评估采用 ROC AUC，关注正负样本的排序。</p>
+<h3>收入是数值，也是离散结构</h3>
+<p>收入的精确值、粗细分箱、频次和上下文购买率带来很大增量。V2 相对原始 V1 的 OOF 增加约 0.003758；这比后续许多调参和融合变化都大。合成数据的这些关联不应解读为现实消费者的因果规律。</p>
+<h3>表示变化比同家族补丁更有价值</h3>
+<p>V101 的生成器感知线性模型 OOF 0.946420，已经超过此前 V100 的融合值 0.946398。它与 V100 的秩相关约 0.993，而旧强树之间接近 0.999。新模型提供了不同的排序视角，残差树再补上非线性。</p>
+<p>生成器机制属于研究假设。GPT-2 token 特征有效，不等于已确认比赛实际采用 GPT-2 生成；报告应保留这个区别。</p>
+<h3>验证不是一个分数</h3>
+<p>嵌套 TE 只解决编码泄漏的一部分。外层验证折参与早停，仍会影响模型选择；全量 OOF 上拟合融合权重得到的是开发分数。截止日模型确实做了嵌套元层比较，但不应把整个流程称为完全独立的 outer 验证。</p>
+<p>Public 与 Private 的样本、类别比例和排序对不同方法的敏感度不同。最终版 Public 比 Private 高 0.00109，不能仅凭这个差值认定过拟合；应看同一对候选在两块测试集的增量。</p>
+<h2 id="section-3">经验总结</h2>
+<h3>做得好的</h3>
+<ul>
+<li>较早建立数据、ID、提交格式和 OOF 产物的对应关系，确保每次提交可追溯。</li>
+<li>先验证精确收入编码，再扩展模型，而不是只做参数搜索。</li>
+<li>保存失败和禁用产物；不把恢复运行或包装修复重新算成科学进展。</li>
+<li>截止日从社区机制出发，复现线性起点、donor 基底和残差模型，得到可检验的变化。</li>
+<li>以逐折增量和边际贡献决定融合成员。V103 与已有残差树秩相关 0.9996，几乎无融合增量；最强单模也不自动成为最好成员。</li>
+</ul>
+<h3>做得不好的</h3>
+<ul>
+<li>很早的计划已经写了 Logistic Regression sanity check，却到截止日才真正把强线性模型放进主线。</li>
+<li>不同工作目录的实验记录分散，V101 之后的源码和台账未及时归档到主线；本次补充了最后阶段台账与精简结果，不声称补齐了全部源码。</li>
+<li>部分最终候选低于原先晋级门槛后仍因授权提交。授权例外应单独记录，不能反过来更改历史门槛。</li>
+<li>严格协议和元数据检查曾占用大量时间。探索阶段应允许明确标注的廉价筛查，最终候选再完成全量确认；筛查不能直接晋级。</li>
+<li>macOS 上 torch 与 LightGBM 的 OpenMP 冲突需要进程隔离。训练停滞应先核对进程、日志与 checkpoint，再判断方法失败。</li>
+</ul>
+<h2 id="section-4">心得迁移</h2>
+<h3>写作模式</h3>
+<p>每个实验只回答一个问题，写清“假设、唯一改动、同口径对照、逐折增量、结论”。过程日志留在实验台账；复盘正文只讲能改变下一次决策的证据。</p>
+<h3>内容管理</h3>
+<p>使用一个版本注册表，记录代码哈希、数据与切分哈希、OOF / test 对应关系、父成员、研究状态与线上提交 ID。知识、当前执行状态和候选结果分别维护，避免旧结论被复制成当前状态。</p>
+<h3>Agent 设计</h3>
+<p>研究、执行和审计的职责要清楚。研究负责提出可证伪机制，执行负责产物完整和恢复，审计负责泄漏、选择偏差与身份对应。每项长任务只有一个运行实例；队列和日志应能够证明它确实在运行。</p>
+<p>先以便宜筛查找方向，再用冻结全折和嵌套选择确认。预算包括 CPU / GPU、时间、提交次数；到预算或停止条件就关闭该分支。AI 给出的“这条路不通”只有在具体实验边界内有效，不能代替新的反例检验。</p>
+<h3>文件形式</h3>
+<p>Markdown 是可编辑、可比较的正文，HTML 是阅读页面。图表绑定同一份 JSON；二者一起归档，避免页面漂亮但数字无法核查。HTML 单文件离线可读，左侧导航保留四个模块。</p>
+<h2 id="section-5">来源与边界</h2>
+<ul>
+<li><a href="https://www.kaggle.com/competitions/playground-series-s6e9">官方比赛</a>与<a href="https://www.kaggle.com/competitions/playground-series-s6e9/leaderboard">排行榜</a>：2026-10-01 CLI / SDK 查询；提交 ID 与团队身份对应。</li>
+<li><a href="../model/experiments.md">前期实验台账</a>：V1–V100 的仓库记录，其中当前状态段是历史状态。</li>
+<li><a href="evidence/final_day_experiments.md">截止日实验台账</a>：V101–V115 的原始记录摘存，早停与选择例外按实际记录保留。</li>
+<li><a href="assets/review_data.json">成绩与规模快照</a>：26 次提交、版本统计口径、检索时间和来源。</li>
+<li><a href="solutions.html">社区优胜方案总结</a>：作者分享和我方结果分别呈现；本轮只总结，没有重跑公开方案。</li>
+</ul><footer>正文维护于 Markdown；图表来自已审阅 JSON。可离线阅读，也可打印。<a href="参赛复盘.md">查看 Markdown 正文</a></footer></main></div>
+<script type="application/json" id="report-data">{"as_of": "2026-10-01", "captured_at_utc": "2026-10-01T12:43:05.718258+00:00", "subs": [{"ref": "56716031", "date": "2026-09-30 18:38:09.640000", "description": "v110(v109_bag, probit space): v113+v114 seed-bagged merged-basis 20f LGBM w/ GLM margin + v109 + strict family + public OOF; OOF 0.946716 (+0.000008 vs submitted v110 full-OOF, nested +0.000003 3/5)", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94677", "private_score": "0.94568", "team_name": "datatuu"}, {"ref": "56714920", "date": "2026-09-30 17:46:32.450000", "description": "v110(v109): compact nested rank blend; v109 donor-basis XGB w/ 20f GLM margin (OOF .946613) + v105 20f + strict v80 family avg + public OOF; OOF 0.946708, +0.000030 vs v104, 5/5 nested", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94674", "private_score": "0.94567", "team_name": "datatuu"}, {"ref": "56713265", "date": "2026-09-30 16:30:27.740000", "description": "v104: v102 members + v103 (V85 feats w/ GLM margin) + public OOF (heuljax LR/XGB, BlamerX, megayak views, RealMLP) nested rank blend; OOF 0.946673, +0.000009 vs v102, 4/5 nested; own weight 0.78", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94671", "private_score": "0.94564", "team_name": "datatuu"}, {"ref": "56712547", "date": "2026-09-30 16:01:37.867000", "description": "v101: generator-aware ridge GLM + GLM-margin residual LGBM/XGB 10f, nested rank blend; OOF 0.946560", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94671", "private_score": "0.94560", "team_name": "datatuu"}, {"ref": "56712542", "date": "2026-09-30 16:01:25.697000", "description": "v102: nested rank blend of v101 (generator-aware ridge GLM + GLM-margin residual LGBM/XGB, 10f) with strict v100/v85/v80; OOF 0.946660, +0.000261 vs v100, 5/5 nested", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94669", "private_score": "0.94562", "team_name": "datatuu"}, {"ref": "56037384", "date": "2026-09-05 17:00:05.483000", "description": "Exploratory original-income prior smoothing mass2, V85 5fold mean; OOF 0.946052346; 0/5 vs control; explicitly user requested online test", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94630", "private_score": "0.94524", "team_name": "datatuu"}, {"ref": "56023943", "date": "2026-09-05 03:24:40.483000", "description": "v100 v90+private CTBoost nested mid-ECDF; OOF .946398147; user threshold calibration only", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94635", "private_score": "0.94531", "team_name": "datatuu"}, {"ref": "56012677", "date": "2026-09-04 12:44:58.040000", "description": "v92 strict v80 ratio-feature LightGBM 40f OOF 0.946247976; user-authorized calibration", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94618", "private_score": "0.94522", "team_name": "datatuu"}, {"ref": "56012673", "date": "2026-09-04 12:44:44.913000", "description": "v85 strict Naji LightGBM 40f single OOF 0.946270227; user-authorized calibration", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94634", "private_score": "0.94524", "team_name": "datatuu"}, {"ref": "56012670", "date": "2026-09-04 12:44:26.737000", "description": "v83 strict 3-split equal bag OOF 0.946322196; user-authorized calibration below +0.0001 gate", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94618", "private_score": "0.94521", "team_name": "datatuu"}, {"ref": "56012663", "date": "2026-09-04 12:44:07.447000", "description": "v90 PROMOTE strict v80+v85 fit-only mid-ECDF blend OOF 0.946372075; 5/5 meta folds", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94632", "private_score": "0.94528", "team_name": "datatuu"}, {"ref": "56012658", "date": "2026-09-04 12:43:45.393000", "description": "v95 strict 3-model small blend OOF 0.946383890; user-authorized calibration despite prereg REJECT", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94631", "private_score": "0.94529", "team_name": "datatuu"}, {"ref": "55978406", "date": "2026-09-03 09:09:07.850000", "description": "v64 robust 3-seed 40f depth4 + Naji + source priors + generator rules; OOF .9463847; 50/50 positive", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94625", "private_score": "0.94529", "team_name": "datatuu"}, {"ref": "55974295", "date": "2026-09-03 04:24:48.127000", "description": "v38 PB probe: Smart 0.55 + low-correlation 20f v28 0.45 rank blend; rho 0.99642", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94625", "private_score": "0.94529", "team_name": "datatuu"}, {"ref": "55974104", "date": "2026-09-03 04:12:13.467000", "description": "v35 PB probe: 50/50 rank blend validated v34 LB 0.94622 with Smart LB 0.94621; rho 0.99821", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94627", "private_score": "0.94530", "team_name": "datatuu"}, {"ref": "55974087", "date": "2026-09-03 04:11:03.167000", "description": "v34: 2-seed 10f income-bin10 bag + public V3/V4 + MLP + 20f v28; crossfit OOF 0.946285, 5/5 folds improve", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94622", "private_score": "0.94529", "team_name": "datatuu"}, {"ref": "55973820", "date": "2026-09-03 03:51:23.663000", "description": "v30: v16 validated rank ensemble + 20-fold multiscale TE v28; crossfit OOF 0.946262, 5/5 folds improve", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94619", "private_score": "0.94527", "team_name": "datatuu"}, {"ref": "55972845", "date": "2026-09-03 02:37:44.500000", "description": "v17 fullfit v14 public V3 V4 MLP rank blend; CV 0.946224", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94622", "private_score": "0.94527", "team_name": "datatuu"}, {"ref": "55972299", "date": "2026-09-03 02:01:18.403000", "description": "v13_pb_v7_smart: 50/50 rank blend of v7 LB 0.94620 and public Smart LB 0.94621, PB-only", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94625", "private_score": "0.94528", "team_name": "datatuu"}, {"ref": "55972272", "date": "2026-09-03 01:59:44.250000", "description": "v7_cv_public_blend: v6 multiscale TE + public Unified/Kirill OOF rank blend, honest OOF 0.946142", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94620", "private_score": "0.94527", "team_name": "datatuu"}, {"ref": "55972180", "date": "2026-09-03 01:54:53.173000", "description": "v8_blend_v5_v7_v6: rank blend LGBM-TE-bag + CatBoost-bag + MLP-TE, cross-fitted weights, OOF AUC 0.945918", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94604", "private_score": "0.94512", "team_name": "datatuu"}, {"ref": "55971579", "date": "2026-09-03 01:16:34.780000", "description": "v5_lgbm_te_bag: v2 + commute/age exact-value TE + 3-seed bagging, OOF AUC 0.945796", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94599", "private_score": "0.94506", "team_name": "datatuu"}, {"ref": "55966410", "date": "2026-09-02 18:14:36.050000", "description": "v4_blend_v2_v3: percentile-rank blend v2 LGBM + v3 CatBoost, cross-fitted w_v2~0.58, OOF AUC 0.945828", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94595", "private_score": "0.94509", "team_name": "datatuu"}, {"ref": "55966375", "date": "2026-09-02 18:12:34.803000", "description": "v3_dual_catboost: CatBoost depth8 continuous+exact-value keys for 7 numeric cols + 6 raw cats, OOF AUC 0.945339", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94559", "private_score": "0.94469", "team_name": "datatuu"}, {"ref": "55966350", "date": "2026-09-02 18:10:04.057000", "description": "v2_income_artifact_lgbm: v1 + fold-wise income TE (exact/bin100/xSubsidy/xEnv) + freq/orig/mod feats, OOF AUC 0.945601", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94578", "private_score": "0.94496", "team_name": "datatuu"}, {"ref": "55966152", "date": "2026-09-02 17:55:09.373000", "description": "v1_baseline_lgbm: raw 13 feats, native cat, 5-fold SKF, OOF AUC 0.941844", "status": "SubmissionStatus.COMPLETE", "public_score": "0.94170", "private_score": "0.94114", "team_name": "datatuu"}], "leaderboard": {"position": 34, "team_id": 16810341, "team_name": "datatuu", "score": "0.94568", "submission_date": "2026-09-30 18:38:09.640000"}, "versions": {"directories": 114, "unique_version_numbers": 112, "directory_names": ["v100_v90_ctboost_nested_cv_blend", "v101_glm_margin_gbdt_10f", "v102_blend_v101_v100", "v103_v85_features_glm_margin_10f", "v104_blend_with_public_oof", "v105_glm_margin_gbdt_20f", "v106_inner_model_features_10f", "v107_donor_basis_xgb_glm_margin_10f", "v108_blend_v105_v107", "v109_donor_basis_xgb_glm_margin_20f", "v10_catboost_bag_10f", "v110_blend_compact", "v111_glm_donor_basis_10f", "v112_merged_basis_lgbm_glm_margin_10f", "v113_merged_basis_lgbm_glm_margin_20f", "v114_merged_basis_lgbm_20f_seed2", "v115_merged_basis_lgbm_no_margin_20f", "v11_mlp_te_10f", "v12_blend_10f", "v13_pb_v7_smart", "v14_multiscale_te_lgbm_10f", "v15_multiscale_te_fullfit", "v16_blend_v14_public_mlp", "v17_fullfit_public_blend", "v18_realmlp_td", "v19_loo_te_lgbm", "v1_baseline_lgbm", "v20_inner10_te_lgbm", "v21_focused_te_lgbm", "v22_lgbm_param_screen", "v23_income_env_subsidy_te", "v24_income_bin100_env_te", "v25_smooth2_te_lgbm", "v26_low_smooth_te_lgbm", "v27_repeated_inner_te_lgbm", "v28_multiscale_te_lgbm_20f", "v29_income_bin10_te_lgbm", "v2_income_artifact_lgbm", "v30_blend_v16_v28", "v31_income_bin10_te_lgbm_10f_seed2026", "v32_income_bin10_te_lgbm_10f_seed3407", "v33_maxbin16384_te_lgbm", "v34_blend_bin10_bag_v28", "v35_pb_v34_smart", "v36_income_bin10_te_lgbm_10f_fullseed2718", "v37_blend_crossfold_bin10_bag_v28", "v38_pb_smart_v28", "v39_tabm_probe", "v3_dual_catboost", "v40_commute_bin1_te_lgbm", "v41_xgb_te_probe", "v42_income_bin2_shift_te_lgbm", "v43_shallow_prediction_stack", "v45_income_env_radius50_te_lgbm", "v46_replace_income_env_radius50", "v47_income_bin10_te_lgbm_10f_fullseed8119", "v48_income_bin10_te_lgbm_20f_fullseed104729", "v4_blend_v2_v3", "v50_income_bin10_te_lgbm_20f_fullseed130363", "v51_income_bin10_te_lgbm_20f_depth4", "v52_robust_rank_ensemble_v51", "v53_income_bin2_range_probe", "v54_sparse_additive_probe", "v55_sparse_additive_5f", "v56_histgb_te_probe", "v57_income_bin10_te_lgbm_20f_depth4_seed32452843", "v58_monotone_te_probe", "v59_income_bin10_te_lgbm_40f_depth4", "v5_lgbm_te_bag", "v60_income_bin10_te_lgbm_40f_depth4_seed86028121", "v61_income_bin10_te_lgbm_40f_depth4_seed104395303", "v62_original_target_prior_feature_probe", "v63_original_target_prior_lgbm_40f_depth4", "v64_robust_40f_generator_ensemble", "v65_targeted_feature_duplication_probe", "v66_xgb_pairwise_rank_probe", "v67_auc_class_weight_probe", "v68_naji_accelerated_probe", "v69_naji_lgbm_20f", "v6_mlp_te", "v6_multiscale_te_lgbm", "v70_naji_income_bin10_probe", "v71_naji_income_bin10_lgbm_20f", "v72_naji_income_bin10_robust_ensemble", "v73_naji_income_neighborhood_probe", "v74_naji_income_bin10_100_lgbm_20f", "v75_naji_joint_te_probe", "v76_naji_income_env_lgbm_20f", "v77_catboost_dual_40f", "v78_mlp_te_40f", "v79_v61_split7_40f", "v7_catboost_bag", "v7_cv_public_blend", "v80_strict_v61_outer104395303_40f", "v81_strict_v61_split7_40f", "v82_strict_v61_split2026_40f", "v83_strict_three_split_equal_bag", "v84_strict_v80_original_supervision_40f", "v85_naji_v74_40f", "v86_catboost_dual_strict_te_40f", "v87_strict_v80_commute_charging_burden_40f", "v88_strict_v80_v85_cv_blend", "v89_v88_row_identity_fix_retry", "v8_blend_v5_v7_v6", "v90_v89_member_verify_budget_retry", "v92_strict_v80_vehicle_demand_affordability_40f", "v93_strict_v80_income_exact_hierarchical_fallback_40f", "v94_strict_v80_v85_v87_cv_blend", "v95_v94_source_verifier_adapter_retry", "v96_strict_v80_outer42_matched_control_40f", "v97_lgbm_fixed_generator_init_score_40f", "v98_supervised_gam_init_score_40f", "v99_strict_v80_v85_v92_fixed5_cv_blend", "v9_lgbm_te_bag_10f"], "definition": "两个实际开发目录内 v数字_ 开头的一级模型目录；相同编号的重试目录只计一个编号。"}, "metrics": {"public_private": "不同测试子集 ROC AUC；Private 在赛后取得。", "oof": "截止日记录包含外层早停；不是完全独立 outer 验证。"}, "sources": [{"provider": "Kaggle CLI/SDK", "operation": "competition_submissions", "arguments": {"competition": "playground-series-s6e9", "page_size": 200}, "rows": 26}, {"provider": "Kaggle SDK", "operation": "get_leaderboard", "arguments": {"competition_name": "playground-series-s6e9", "page_size": 200}, "match": "team_name=datatuu; submission_date=2026-09-30 18:38:09.640000"}, {"file": "evidence/final_day_experiments.md", "sha256": "af4d106bcd422238ec1b508e5c18fc06f18e92a5b17580d113fc25582f012ef6"}]}</script>
+<script>
+const data=JSON.parse(document.getElementById('report-data').textContent);
+const chart=document.getElementById('score-chart');
+if(chart){
+ const rows=data.subs.slice().sort((a,b)=>a.date.localeCompare(b.date));
+ const all=rows.flatMap(r=>['public_score','private_score'].filter(k=>rHas(r,k)).map(k=>Number(r[k]))).filter(Number.isFinite);
+ const noScores=all.length===0;
+ const lo=noScores?0:Math.floor((Math.min(...all)-0.0002)*10000)/10000,hi=noScores?1:Math.ceil((Math.max(...all)+0.0002)*10000)/10000;
+ const NS='http://www.w3.org/2000/svg';
+ function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;chart.appendChild(e);return e}
+ function draw(){
+  if(noScores){chart.replaceChildren();chart.hidden=true;document.getElementById('chart-detail').textContent='尚无可比较的线上分数。';return;}
+  chart.replaceChildren();const width=Math.max(chart.clientWidth,260),height=300,left=62,right=15,top=15,bottom=35;
+  chart.setAttribute('viewBox',`0 0 ${width} ${height}`);chart.setAttribute('height',height);
+  const x=i=>left+i*(width-left-right)/Math.max(1,rows.length-1),y=v=>height-bottom-(v-lo)*(height-top-bottom)/(hi-lo);
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4;el('line',{x1:left,x2:width-right,y1:y(v),y2:y(v),stroke:'var(--line)'});el('text',{x:left-7,y:y(v)+4,'text-anchor':'end'},v.toFixed(4));}
+  for(const [key,cls,check] of [['public_score','public','show-public'],['private_score','private','show-private']]){
+   if(!document.getElementById(check).checked)continue;
+   const valid=rows.map((r,i)=>({r,i,v:Number(r[key])})).filter(o=>rHas(o.r,key)&&Number.isFinite(o.v));
+   el('polyline',{points:valid.map(o=>`${x(o.i)},${y(o.v)}`).join(' '),fill:'none',class:cls,'stroke-width':2});
+   valid.forEach(({r,i,v})=>{const e=el('circle',{cx:x(i),cy:y(v),r:4,fill:'var(--panel)',class:cls,'stroke-width':2,tabindex:0,role:'img','aria-label':`${r.ref} ${key} ${v}`});elTitle(e,`${r.date} UTC · ${r.ref} · ${key}: ${v}`);const tell=()=>document.getElementById('chart-detail').textContent=`第 ${i+1} 次提交 · ${r.date} UTC · ID ${r.ref} · Public ${r.public_score} / Private ${r.private_score}`;e.addEventListener('pointerenter',tell);e.addEventListener('focus',tell);e.addEventListener('click',tell);});
+  }
+  for(const i of [0,Math.floor((rows.length-1)/2),rows.length-1])el('text',{x:x(i),y:height-10,'text-anchor':i===0?'start':i===rows.length-1?'end':'middle'},`${i+1}次 / ${rows[i].date.slice(5,10)}`);
+ }
+ function rHas(r,key){return r[key]!==''&&r[key]!==null&&r[key]!==undefined}function elTitle(e,text){const t=document.createElementNS(NS,'title');t.textContent=text;e.appendChild(t)}
+ document.getElementById('show-public').addEventListener('change',draw);document.getElementById('show-private').addEventListener('change',draw);new ResizeObserver(draw).observe(chart);draw();
+ const body=document.querySelector('#submission-table tbody');
+ rows.forEach((r,i)=>{const tr=document.createElement('tr');[i+1,r.date,r.ref,r.description,r.public_score,r.private_score].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td)});body.appendChild(tr)});
+ document.getElementById('submission-search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();for(const row of body.rows)row.hidden=!row.textContent.toLowerCase().includes(q)});
+}
+</script></body></html>

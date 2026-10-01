@@ -1,0 +1,16 @@
+{
+  "id": "ORIGINAL_PRIOR_RELIABILITY_SOURCE_AUDIT",
+  "created_at_utc": "2026-09-05T15:55:38.547621+00:00",
+  "hypothesis": "V85 unshrunk external-original target means assign equal numeric confidence to singleton and well-supported source groups. Source-support uncertainty is absent from current feature mapping.",
+  "distinct_from_previous": "Not synthetic TE smoothing, not the closed income original-frequency/lift/novelty append experiment; examines original-label prior reliability in V85 across retained source-mean columns.",
+  "scope": "Read competition features without labels. Rebuild frozen V85 static schema with original labels only in its existing source prior mapping; compute support profile using original feature counts alone. No competition labels, AUC, or predictions.",
+  "gate_for_design": "At least one surviving source-mean feature has >1% competition TRAIN rows mapped to source groups of size 1 or 2. This permits designing a paired diagnostic, not training or submission.",
+  "budget": {
+    "seconds": 120,
+    "threads": 2,
+    "rss_gib": 8,
+    "submission": 0
+  },
+  "source_sha256": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+  "counts_toward_cycle": false
+}

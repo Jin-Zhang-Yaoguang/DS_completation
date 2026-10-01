@@ -1,0 +1,115 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "multiscale nested TE + digit/frequency fingerprints + shallow LightGBM",
+  "seed": 42,
+  "n_folds": 5,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ]
+  },
+  "static_feature_count": 61,
+  "te_feature_count": 48,
+  "feature_count": 109,
+  "fold_auc": [
+    0.9449808666095275,
+    0.945584379359732,
+    0.9468023058024104,
+    0.9462717947646222,
+    0.946029671249109
+  ],
+  "fold_auc_mean": 0.9459338035570802,
+  "fold_auc_std": 0.000617723387382685,
+  "best_iterations": [
+    1219,
+    1669,
+    1496,
+    1329,
+    1338
+  ],
+  "oof_auc": 0.945926937302457,
+  "prediction_min": 6.0562276722337685e-06,
+  "prediction_max": 0.999670191557906,
+  "prediction_mean": 0.17497209909998637,
+  "elapsed_seconds": 688.673182964325,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 31,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels"
+}

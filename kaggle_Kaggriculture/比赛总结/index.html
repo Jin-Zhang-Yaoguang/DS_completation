@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaggriculture 比赛总结</title>
+<style>
+/* 布局：左侧固定导航（页签 + 本页章节），右侧单栏正文；窄屏时导航收到顶部横排 */
+:root{
+  --bg:#f4f7f3; --panel:#ffffff; --ink:#15211b; --muted:#5d6b63; --line:#d9e1da;
+  --accent:#0e6b52; --accent-soft:#dcefe7; --wheat:#b97d10; --wheat-soft:#f6ead0;
+  --bad:#b0412c; --bad-soft:#f7e2dc; --good:#0e6b52; --good-soft:#dcefe7;
+  --p1:#5b7fa6; --p2:#8a6bb0; --p3:#b97d10; --p4:#0e6b52; --p5:#b0412c; --p6:#1f8f9c;
+  --font-body:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --font-num:"SF Mono","JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1512; --panel:#171f1b; --ink:#e6eee9; --muted:#97a69d; --line:#2a352f;
+  --accent:#4fc3a1; --accent-soft:#153228; --wheat:#e0ac45; --wheat-soft:#33290f;
+  --bad:#e5826c; --bad-soft:#3a1d16; --good:#4fc3a1; --good-soft:#153228;
+  --p1:#8fb2d9; --p2:#b79be0; --p3:#e0ac45; --p4:#4fc3a1; --p5:#e5826c; --p6:#5cc7d3;
+  color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0f1512; --panel:#171f1b; --ink:#e6eee9; --muted:#97a69d; --line:#2a352f;
+  --accent:#4fc3a1; --accent-soft:#153228; --wheat:#e0ac45; --wheat-soft:#33290f;
+  --bad:#e5826c; --bad-soft:#3a1d16; --good:#4fc3a1; --good-soft:#153228;
+  --p1:#8fb2d9; --p2:#b79be0; --p3:#e0ac45; --p4:#4fc3a1; --p5:#e5826c; --p6:#5cc7d3;
+  color-scheme:dark; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.75}
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+nav.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;border-right:1px solid var(--line);background:var(--panel);padding:24px 16px;display:flex;flex-direction:column;gap:20px}
+.brand{font-size:17px;font-weight:700;letter-spacing:.02em}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}
+.navlabel{font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.tabs,.secs{display:flex;flex-direction:column;gap:4px}
+.tabs button{all:unset;cursor:pointer;padding:8px 12px;border-radius:6px;font-weight:600}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--panel)}
+.tabs button:focus-visible,.secs a:focus-visible,.chip:focus-visible,button.tog:focus-visible,input:focus-visible{outline:2px solid var(--wheat);outline-offset:2px}
+.secs a{color:var(--muted);text-decoration:none;padding:5px 12px;border-left:2px solid var(--line);font-size:14px}
+.secs a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+.side .foot{margin-top:auto;font-size:12px;color:var(--muted)}
+main{padding-inline:clamp(16px,4vw,48px);padding-block:32px 80px;min-width:0}
+.wrap{max-width:1000px;display:flex;flex-direction:column;gap:56px}
+header.top h1{font-size:clamp(24px,3.2vw,34px);line-height:1.25;margin:0 0 8px;text-wrap:balance}
+header.top p{margin:0;color:var(--muted);max-width:46em}
+section{display:flex;flex-direction:column;gap:20px;scroll-margin-top:16px}
+h2{font-size:22px;margin:0;display:flex;align-items:baseline;gap:12px;text-wrap:balance}
+h2 .no{font-family:var(--font-num);font-size:13px;color:var(--accent);letter-spacing:.08em}
+h3{font-size:16px;margin:0}
+p{margin:0}
+.lead{color:var(--muted);max-width:46em}
+.num{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:10px}
+.kpi{background:var(--panel);padding:14px 16px;border:1px solid var(--line);border-radius:8px}
+.kpi b{display:block;font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:22px;line-height:1.25;white-space:nowrap}
+.kpi span{font-size:12.5px;color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip,button.tog{font:inherit;font-size:13px;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:4px 11px;border-radius:999px;display:inline-flex;gap:6px;align-items:center}
+.chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.chip[aria-pressed="true"],button.tog[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.chartbox{overflow-x:auto}
+svg text{font-family:var(--font-num);font-size:11px;fill:var(--muted)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:8px 10px;border-radius:6px;font-size:12.5px;max-width:320px;line-height:1.5;z-index:9}
+.note{font-size:13px;color:var(--muted)}
+.phases{display:grid;gap:12px}
+.phase{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:6px}
+.phase.dim{opacity:.4}
+.phase .when{font-family:var(--font-num);font-size:12.5px;color:var(--muted)}
+.phase .when b{display:block;font-family:var(--font-body);font-size:15px;color:var(--ink)}
+.phase .stats{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted);margin-top:8px}
+.phase .stats b{font-family:var(--font-num);color:var(--ink)}
+.phase ul,.card ul,.col ul{margin:6px 0 0;padding-left:1.2em}
+.verdict{margin-top:8px;font-size:14px}
+.verdict b{color:var(--c)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.04em;white-space:nowrap}
+td.r,th.r{text-align:right;font-family:var(--font-num);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tablebox{overflow-x:auto;max-height:420px;overflow-y:auto;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+.tablebox th{position:sticky;top:0;background:var(--panel)}
+input[type=search]{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);min-width:0;flex:1 1 220px;max-width:340px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px;min-width:0}
+.card .k{font-family:var(--font-num);font-size:12px;color:var(--accent);letter-spacing:.06em}
+.card p{margin-top:6px;font-size:14.5px}
+.so{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13.5px}
+.so b{color:var(--wheat)}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:110px minmax(0,1fr) 92px;gap:10px;align-items:center;font-size:13.5px}
+.bar .t{height:16px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--accent)}
+.bar .v{font-family:var(--font-num);text-align:right;font-variant-numeric:tabular-nums}
+.ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.ladder div{border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:var(--panel);font-size:12.5px;color:var(--muted)}
+.ladder b{display:block;font-family:var(--font-num);font-size:18px;color:var(--ink)}
+.ladder .me{border-color:var(--wheat);background:var(--wheat-soft)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.col{min-width:0;display:flex;flex-direction:column;gap:10px}
+.col>h3{display:flex;gap:8px;align-items:center}
+.tag{font-size:11.5px;padding:1px 8px;border-radius:999px;font-weight:600;white-space:nowrap}
+.tag.ok{background:var(--good-soft);color:var(--good)}
+.tag.pit{background:var(--bad-soft);color:var(--bad)}
+.item{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:14.5px}
+.item h4{margin:0 0 4px;font-size:15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.item .ev{font-size:13px;color:var(--muted);margin-top:4px}
+.group{display:flex;flex-direction:column;gap:10px}
+.group>h3{padding-bottom:6px;border-bottom:1px solid var(--line)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;counter-reset:s}
+.flow div{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:6px;padding:12px 14px;font-size:13.5px}
+.flow div b{display:block;font-size:14.5px}
+.flow div b::before{content:counter(s) " · ";font-family:var(--font-num);color:var(--accent)}
+.check{columns:2 300px;column-gap:28px;padding-left:1.2em;margin:0;font-size:14.5px}
+.check li{break-inside:avoid;margin-bottom:6px}
+[hidden]{display:none!important}
+@media (max-width:820px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  nav.side{position:sticky;top:0;height:auto;z-index:5;flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 16px;border-right:0;border-bottom:1px solid var(--line)}
+  .navlabel,.side .foot,.brand small{display:none}
+  .tabs,.secs{flex-direction:row;flex-wrap:wrap}
+  .secs a{border-left:0;border-bottom:2px solid transparent;padding:2px 6px}
+  .secs a.on{border-bottom-color:var(--accent)}
+  .phase{grid-template-columns:minmax(0,1fr)}
+  .bar{grid-template-columns:84px minmax(0,1fr) 78px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="side" aria-label="导航">
+  <div class="brand">Kaggriculture<small>比赛总结</small></div>
+  <div class="navlabel">页签</div>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="review">参赛复盘</button>
+    <a href="solutions.html" style="padding:8px 12px;color:var(--accent);text-decoration:none">优胜方案总结</a>
+  </div>
+  <div class="navlabel">本页章节</div>
+  <div class="secs" id="secs">
+    <a href="#process">参赛过程</a>
+    <a href="#understanding">比赛理解</a>
+    <a href="#lessons">经验总结</a>
+    <a href="#transfer">心得迁移</a>
+  </div>
+  <div class="foot">数据快照<br><span class="num">2026-09-30 16:30 UTC</span><br>最终名次待两周锦标赛后确定<br><a href="参赛复盘.md">Markdown 正文</a><br><a href="../../README.md">比赛总览</a></div>
+</nav>
+
+<main>
+<div class="wrap" id="tab-review">
+
+<header class="top">
+  <h1>45 天、130 次提交：一次用 AI 协作打仿真对战赛的完整复盘</h1>
+  <p>Kaggriculture 是 Kaggle 的双人农场经营对战赛。这份复盘基于本地仓库的方案目录、提交记录和线上对局数据，讲四件事：我们怎么走过来的、这个比赛到底在比什么、哪些做对了哪些做错了、下次再用 AI 打比赛该怎么做。</p>
+</header>
+
+<!-- ============ 1 参赛过程 ============ -->
+<section id="process">
+  <h2><span class="no">01</span>参赛过程</h2>
+  <div class="kpis">
+    <div class="kpi"><b>45 天</b><span>08-17 首次提交 → 09-30 截止</span></div>
+    <div class="kpi"><b id="k-sub">130</b><span>次线上提交</span></div>
+    <div class="kpi"><b id="k-ver">316</b><span>个版本（方案目录 206 + 变体 110）</span></div>
+    <div class="kpi"><b>2778.8</b><span>单次提交最高分（y68r2，09-14）</span></div>
+    <div class="kpi"><b>299 / 10,217</b><span>快照名次，前 2.9%，2277.4 分</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="row" style="justify-content:space-between;margin-bottom:10px">
+      <h3>提交分数与累计版本数</h3>
+      <div class="row">
+        <button class="tog" id="t-ver" aria-pressed="true">累计版本数</button>
+        <button class="tog" id="t-sub" aria-pressed="false">累计提交数</button>
+        <button class="tog" id="t-best" aria-pressed="true">历史最高分线</button>
+      </div>
+    </div>
+    <div class="row" id="chips" style="margin-bottom:8px"></div>
+    <div class="chartbox"><svg id="chart" viewBox="0 0 960 400" width="100%" style="min-width:680px" role="img" aria-label="提交分数时间轴"></svg></div>
+    <p class="note">每个圆点是一次提交，纵轴是它停止参评时的评级分。点击上方阶段可高亮；悬停圆点看详情。注意：天梯整体分数会漂移（截止前三天银牌线从 2348 降到 2191），不同日期的分数只能粗略比较。</p>
+  </div>
+
+  <h3>六个阶段</h3>
+  <div class="phases" id="phases"></div>
+
+  <div class="row" style="justify-content:space-between">
+    <h3>全部提交记录</h3>
+    <input type="search" id="q" placeholder="搜索版本名或说明，例如 y68、MoE、v55" aria-label="搜索提交">
+  </div>
+  <div class="tablebox"><table id="tbl"><thead><tr><th>时间（UTC）</th><th>版本</th><th>说明</th><th class="r">分数</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- ============ 2 比赛理解 ============ -->
+<section id="understanding">
+  <h2><span class="no">02</span>比赛理解</h2>
+  <p class="lead">两个 Agent 各经营一座农场，共用一个市场和一座城镇，打 720 回合（30 天 × 24 回合），赛季结束时银行存款多的一方获胜。表面是经营模拟，实际比的是下面六件事。</p>
+
+  <div class="grid2">
+    <div class="card"><div class="k">规则 1</div><h3>评级只看胜负，不看赢多少</h3>
+      <p>赢 1 金币和赢 10 万金币涨的分一样。排行榜只取最新两个提交里评级高的那个，截止后再打两周锦标赛定榜。</p>
+      <div class="so"><b>含义：</b>要的是对大多数对手稳定小胜，不是平均分差最大。旧的高分版本一旦被新提交挤出就不再算数，我们 2778.8 分的 y68r2 就是这样失效的。</div></div>
+    <div class="card"><div class="k">规则 2</div><h3>市场是双方共用的</h3>
+      <p>每卖一件货，市场库存增加、价格下跌，对手下一刻卖到的就是更低的价格。城镇商店按固定节拍消耗库存，把价格拉回来。</p>
+      <div class="so"><b>含义：</b>卖货时机本身就是对抗。把计划中 8 步内要卖的货提前卖掉，在样本外种子上连续三组显著更好（+13/−8、+12/−2、+11/−2）。</div></div>
+    <div class="card"><div class="k">规则 3</div><h3>商店决定种什么</h3>
+      <p>每 72 步解锁一家商店，全局共 8 家。毛线店拉高羊毛需求，宠物咖啡馆拉高胡萝卜需求，以此类推。</p>
+      <div class="so"><b>含义：</b>没有一条通吃的路线，必须按商店组合分支。我们做到按前两家商店查表；Arjun 的路线表还会按第 3 家继续分（第 3 家相同时动作一致到 289 步，不同则在 221 步分叉）。</div></div>
+    <div class="card"><div class="k">规则 4</div><h3>随机性很小，对局可以精确复现</h3>
+      <p>除了杂草和商店顺序，几乎没有随机。我们把引擎移植成 C++，重放线上对局的结果与线上逐位一致。</p>
+      <div class="so"><b>含义：</b>一条预先录好的固定动作带就能打完整局；固定对手录像适合检查执行一致性；对自适应对手的反事实胜率可能偏乐观，单局只要 0.18 秒。</div></div>
+    <div class="card"><div class="k">格局 5</div><h3>对手是一群人，不是一个人</h3>
+      <p>公开 notebook 被大量复制，形成一片“公开底盘云”。我们最后两个版本的 162 局线上对手构成如下。</p>
+      <div class="bars" style="margin-top:10px">
+        <div class="bar"><span>公开底盘</span><div class="t"><i style="width:71%"></i></div><span class="v">115 局 71%</span></div>
+        <div class="bar"><span>动物流头部队</span><div class="t"><i style="width:12%"></i></div><span class="v">19 局 12%</span></div>
+        <div class="bar"><span>低现金开局</span><div class="t"><i style="width:12%"></i></div><span class="v">19 局 12%</span></div>
+        <div class="bar"><span>其他</span><div class="t"><i style="width:5.5%"></i></div><span class="v">9 局 6%</span></div>
+      </div>
+      <div class="so"><b>含义：</b>先打赢占 71% 的那群人，再谈针对个别强队。每个改动都要回答“对哪类人群、占比多少、提升多少”。</div></div>
+    <div class="card"><div class="k">格局 6</div><h3>头部靠闭环自适应，中段靠抄带</h3>
+      <p>前 10 名都是实时决策的闭环策略，还会按对手类型换打法；2100–2400 分段大多是公开底盘的改版，以及像 Arjun 这样“动物优先开局 + 按商店查表”的固定路线。</p>
+      <div class="so"><b>含义：</b>对我们这种资源，最有效的路径是找到当前最强的固定路线并复刻，再在上面加执行层和人群分表。自己从零写闭环策略只拿到 680 分。</div></div>
+  </div>
+
+  <h3>快照时的分数线</h3>
+  <div class="ladder">
+    <div><b>3044</b>第 1 名</div>
+    <div><b>2827</b>第 10 名</div>
+    <div><b>2651</b>第 50 名</div>
+    <div><b>2527</b>第 100 名</div>
+    <div><b>2399</b>第 200 名</div>
+    <div class="me"><b>2277</b>我方，第 299 名</div>
+    <div><b>1861</b>第 1022 名（前 10%）</div>
+  </div>
+  <p class="note">共 10,217 支队伍。以上是 09-30 16:30 UTC 的公开榜，最终名次要等截止后两周的锦标赛。</p>
+</section>
+
+<!-- ============ 3 经验总结 ============ -->
+<section id="lessons">
+  <h2><span class="no">03</span>经验总结</h2>
+  <p class="lead">按“做得好”和“做得不好”两栏列出，每条都带上当时的数据。</p>
+  <div class="cols">
+    <div class="col">
+      <h3><span class="tag ok">做得好</span>值得保留的做法</h3>
+      <div class="item"><h4>先把评估器做准</h4>C++ 引擎与线上逐位一致，实际参赛版本开环复现线上胜负 322/322。之后所有结论都建立在这个基础上。</div>
+      <div class="item"><h4>用四轴框架组织改动</h4>底盘、识别、保真、针对四个轴，加“人群占比 × 胜差 × 代表保真度”三个指标。它让讨论从“又加了一个补丁”变成“这个改动对哪类人群值多少”。</div>
+      <div class="item"><h4>门控写成硬规则</h4>新版本必须同时超过线上两个版本和基准带，并在没参与选择的种子上复核。终局切换 624 步这个候选在首轮是 +9/−0，复核时变成 +23/−20，被挡在了线上之外。</div>
+      <div class="item"><h4>敢于整体换底盘</h4>最后一天把底盘换成 Arjun 的动物流固定带，线上对公开底盘的胜率从 59% 升到 83%，再经两轮选分支到 89%。</div>
+      <div class="item"><h4>用真实对手的录像做评估集</h4>按对手人群分组、分半做选择和验证，选出的 v55g 在新增的 122 局线上对局上是 91.0%，v55d 是 86.9%，v55b 是 82.0%。</div>
+      <div class="item"><h4>线上复盘驱动下一步</h4>v55b 上线 28 局后逐局重放 5 场负局，定位到两个商店组合和最后 200 步被翻盘的共同形态，当天就修掉了。</div>
+      <div class="item"><h4>提交有锁、有日志、有证据</h4>提交前抢锁、提交后留日志，提交说明里直接写验证数据。多个会话并行时没有再出现重复提交。</div>
+    </div>
+    <div class="col">
+      <h3><span class="tag pit">做得不好</span>付出代价的地方</h3>
+      <div class="item"><h4>底盘过期发现得太晚</h4>在 v54 底盘上迭代了 57 个变体、提交约 25 次，对公开底盘胜率长期在 59–70%。09-14 的 y68r2 到过 2778.8，之后两周分数一路走低。</div>
+      <div class="item"><h4>铺量不等于进展</h4>08-29 一天生成了 78 个方案目录，多专家路由做了 v77–v127 共五十来个，没有一个进入后期主线。版本数的增长和分数的增长几乎没有关系。</div>
+      <div class="item"><h4>学习类方法投入大、产出为零</h4>行为克隆、PPO、MuZero + NFSP、评分模型 + 搜索都没通过门控。在一个近乎确定性的游戏里，抄高分录像比训练模型快得多。</div>
+      <div class="item"><h4>只验证补丁就上线</h4>r36–r38 只验了补丁覆盖的那部分对局就提交，分数从 2282 掉到 1251。之后才定下“全人群回归门控”。</div>
+      <div class="item"><h4>指纹针对的收益被高估</h4>花大量精力做对手指纹树，线上复盘显示命中与不命中的胜率相差不大，真正的差距在底盘产出。</div>
+      <div class="item"><h4>本地代表太单一</h4>三个“公开底盘代表”结果完全相同，其实是同一个 agent。本地 91% 对线上 82% 的落差就来自这里。</div>
+      <div class="item"><h4>成果没有及时入库</h4>25 个分支、15 个工作树只有 9 个不同提交，最终主线一直是未提交文件。C 线、Majkel 复刻、MuZero 的源码在清理工作区后丢失。</div>
+      <div class="item"><h4>小样本和样本内的结论多次翻车</h4>小种子上的结论迁移不到大种子；多候选筛选后的显著结果在新种子上消失。这类假阳性至少出现过四次。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 心得迁移 ============ -->
+<section id="transfer">
+  <h2><span class="no">04</span>心得迁移</h2>
+  <p class="lead">如果以后继续用“人定方向、AI 执行”的方式打比赛，或者要搭一个竞赛 Agent，下面是可以直接复用的做法和踩过的坑。</p>
+  <div class="row" id="filter">
+    <button class="tog" data-f="all" aria-pressed="true">全部</button>
+    <button class="tog" data-f="ok" aria-pressed="false">只看可复用</button>
+    <button class="tog" data-f="pit" aria-pressed="false">只看踩过的坑</button>
+  </div>
+
+  <div class="group"><h3>协作模式</h3>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>人定方向和放行，AI 负责执行和汇报</h4>每次提交都要人明确说“提交”才执行。AI 给出门控数据和建议，决定权在人。<div class="ev">效果：130 次提交里没有一次是 AI 自作主张交的。</div></div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>固定的汇报格式</h4>结论先行，再给数据表，最后列“需要你决定的事”。提问时按“事实 → 原因 → 怎么达标”回答。<div class="ev">人可以在一分钟内判断要不要放行。</div></div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>把人的纠正写进长期记忆</h4>“不要拿时间当理由缩减工作”“评测只用大种子”“只用最近 5 天的回放”这类纠正写成一条一个文件的记忆，新会话自动带上。<div class="ev">同一个错误基本不会在下一个会话重犯。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>AI 默认会做局部微调</h4>不加约束时，AI 倾向在现有版本上加一个补丁、跑一个小实验、报告一个小提升。是人多次追问“有没有更深的方案”“底盘是不是过期了”才触发了换底盘。<div class="ev">对策：定期强制做一次“推翻重来”式的对照，比如拿榜首的公开录像整带替换试一次。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>AI 会替人做取舍</h4>临近截止时 AI 以时间不够为由主动砍掉工作，或只上线一部分。<div class="ev">对策：明确写下“时间由人操心，AI 不得以此缩减范围”。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>多个会话并行互不知情</h4>同时开多个 AI 会话研究不同方向时，出现过重复提交同一版本、各自占满 CPU。<div class="ev">对策：提交锁文件、CPU 进程上限（8 个）、停后台任务先停本会话的。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>无人值守的定时提交不可靠</h4>两个定时提交任务都卡在首次权限确认上，没有人点就一直挂着。<div class="ev">对策：关键操作在有人在场的主会话里做，或者事先把权限批准好。</div></div>
+  </div>
+
+  <div class="group"><h3>内容管理</h3>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>一个方案一个目录，代码和结果放在一起</h4>方案代码、提交文件、过程产物同目录，方便回溯某个分数对应哪份代码。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>实验日志加记忆索引</h4>一份按时间追加的运行日志记录每个实验的数字和结论，另有一页索引指向各条专题记忆。会话上下文用完后靠它们无缝接续。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>提交说明里写验证证据</h4>每次提交的描述都包含对打结果和对手池胜率，事后翻提交列表就能看到当时的依据。</div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>工作区当仓库用</h4>成果长期留在未提交的工作区里，分支很多但提交很少，最后有三条研究线的源码找不回来。<div class="ev">对策：每个阶段结束就提交并合并；工作区清理前先检查有没有未入库的源码。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>数据没有生命周期</h4>本地积累到 1.6 TB，其中官方回放索引一项 1.2 TB，大部分只用过一次。<div class="ev">对策：回放按“最近 N 天”滚动保留，下载前先估算体积。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>版本命名失控</h4>v54、v55 这些编号在早期和后期指的是完全不同的东西；同一系列里夹着 r38c、r38e、r38m、r38n 这类临时后缀。<div class="ev">对策：编号全局唯一，研究线用前缀区分，探针版本单独命名空间。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>运行日志越写越长</h4>单个记忆文件变成上万字流水账，真正要用的结论埋在里面。<div class="ev">对策：日志只记事实，结论和规则抽成独立的短条目。</div></div>
+  </div>
+
+  <div class="group"><h3>Agent 设计</h3>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>评估器先行</h4>先保证本地模拟与线上一致，再谈策略。没有可信的评估器，后面所有实验都是噪声。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>三份数据：选择、验证、测试</h4>选分支用一份种子，确认用另一份，最后对外报告用第三份从没用过的。再加上事后新产生的线上对局作为真正的样本外。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>探针版本加环境变量做批量搜索</h4>做一个能被环境变量覆盖某个决策的探针 agent，再写脚本批量枚举候选。三个人群、64 个商店组合、每个十几个候选的搜索，几小时跑完。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>按人群分层报告</h4>任何结果都分人群给出胜数和平均分差，避免总体数字掩盖某一类对手上的退步。</div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>在确定性游戏里上强化学习</h4>训练成本高、调参周期长，最后不如一条抄来的固定带。<div class="ev">对策：先判断环境的随机性和可复现程度，确定性高就优先“模仿 + 查表 + 搜索”。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>从零手写闭环策略</h4>C 线按第一性原理写了 18 版启发式，线上 680 分。<div class="ev">对策：没有强基线做对照之前，不要投入整条线去自研。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>开环评估对会应变的对手偏乐观</h4>对手录像不会对我方的新动作做出反应，所以对自适应强队的胜率被高估。<div class="ev">对策：这类人群的数字只看方向，不看幅度，并单独标注。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>异常被静默吞掉</h4>伪装开局层缺一个 import，异常被 try/except 吞掉，整层失效却没有任何报错。<div class="ev">对策：关键层不吞异常，或者吞掉时至少计数并在测试里断言为零。</div></div>
+  </div>
+
+  <div class="group"><h3>工程与算力</h3>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>快的模拟器换来搜索空间</h4>开环单局 0.18 秒，让“每个组合试十几个候选”的穷举变得可行，这比任何聪明的算法都管用。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>结果缓存加配对检验</h4>同一批对局上比较两个版本，只统计翻转的局，用符号检验判断显著性，达到显著就提前停。</div>
+    <div class="item" data-k="ok"><h4><span class="tag ok">可复用</span>打包后做静态核对</h4>提交包解码出的数据与源文件逐项比对，代码只允许有加载方式的差异。v55d 和 v55g 都是一次通过验证。</div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>等待循环把自己匹配上</h4>按脚本名查进程的等待命令匹配到了自己，11 个后台任务挂了五个多小时。<div class="ev">对策：按进程号等待。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>进程池里环境变量残留</h4>上一局设置的覆盖变量留在工作进程里，污染了下一局的基线。<div class="ev">对策：每局开始先清掉所有实验用的环境变量。</div></div>
+    <div class="item" data-k="pit"><h4><span class="tag pit">踩过坑</span>批量拉接口被限流</h4>高频调用对局列表接口触发 429。<div class="ev">对策：用带认证的官方 SDK，批量拉取前先问人。</div></div>
+  </div>
+
+  <h3>如果搭一个竞赛 Agent，建议的流水线</h3>
+  <div class="flow">
+    <div><b>情报</b>每天扫公开 notebook、榜首录像和我方线上负局，回答“人群变了没有、有没有更强的公开底盘”。</div>
+    <div><b>评估器</b>维护与线上一致的模拟器，和按人群分层的对手池。先验证自己，再评估别人。</div>
+    <div><b>候选生成</b>优先级：整体替换底盘 &gt; 查表选分支 &gt; 执行层调参 &gt; 训练模型。</div>
+    <div><b>门控</b>超过线上版本和基准，样本外复核，分人群报告。不过不上线。</div>
+    <div><b>提交与复盘</b>人放行，抢锁，留日志。上线后按人群核对线上表现是否与本地一致。</div>
+  </div>
+
+  <h3>上线前检查清单</h3>
+  <ul class="check">
+    <li>评估器今天还和线上一致吗？</li>
+    <li>对手池是最近 5 天的真实对局吗？</li>
+    <li>这个改动针对哪类人群，占比多少？</li>
+    <li>选择、验证、测试用的是三份不同的数据吗？</li>
+    <li>对每个线上版本直接对打都赢吗？</li>
+    <li>每个人群都没有退步吗？</li>
+    <li>提交包和评估用的代码是同一份吗？</li>
+    <li>有人明确说了“提交”吗？</li>
+    <li>这一阶段的代码和结论入库了吗？</li>
+    <li>上一次问“底盘是不是过期了”是什么时候？</li>
+  </ul>
+</section>
+
+</div>
+</main>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const DATA = {"subs":[{"t":"2026-08-17 08:52","l":"v0_api_smoke","d":"v0_api_smoke: 3-plot wheat loop; 720-step local validation","s":304.9},{"t":"2026-08-17 09:57","l":"v1 adaptive market routes + ","d":"v1 adaptive market routes + KE 1.32.7 hinge pricing","s":2727.5},{"t":"2026-08-17 12:56","l":"v2 survival guard + safe see","d":"v2 survival guard + safe seed pruning","s":2576.9},{"t":"2026-08-17 20:26","l":"v3 BC+PPO hybrid","d":"v3 BC+PPO hybrid: round-40 policy + v2 safety executor","s":2261.1},{"t":"2026-08-18 04:22","l":"v4 rule hybrid","d":"v4 rule hybrid: champion route layers + V2 safe gate","s":2295.3},{"t":"2026-08-18 05:40","l":"v5 rule hybrid","d":"v5 rule hybrid: champion layers with V1 R4 fallback","s":2368.6},{"t":"2026-08-19 01:40","l":"PPO v2 top-days residual cha","d":"PPO v2 top-days residual challenger: audited animal-sale schedule","s":2219.4},{"t":"2026-08-19 01:43","l":"V1 adaptive market baseline","d":"V1 adaptive market baseline: preserve silver medal candidate","s":2488.0},{"t":"2026-08-19 17:16","l":"v7 premium lead2","d":"v7 premium lead2: V5 layers + two-turn premium sell lead (C45-style)","s":1978.9},{"t":"2026-08-20 13:37","l":"v8 kawa lead2 slot","d":"v8 kawa lead2 slot: new-gen 5-route production + two-turn lead + slot sniper","s":2066.1},{"t":"2026-08-20 15:32","l":"v9 anti-mirror","d":"v9 anti-mirror: clone-detect + escalated preempt to break mirror ties","s":2079.3},{"t":"2026-08-22 01:35","l":"v1 adaptive market routes + ","d":"v1 adaptive market routes + KE 1.32.7 hinge pricing (re-submit top-2)","s":1994.9},{"t":"2026-08-22 01:35","l":"v2 survival guard + safe see","d":"v2 survival guard + safe seed pruning (re-submit top-2)","s":1967.1},{"t":"2026-08-23 11:08","l":"v12 A2","d":"v12 A2: r002 plus causal no-shop-gate market guard","s":277.6},{"t":"2026-08-23 11:08","l":"v12 incumbent r002","d":"v12 incumbent r002: formal league winner plus topday throttle","s":null},{"t":"2026-08-23 11:21","l":"v12 A2 fixed","d":"v12 A2 fixed: raw-loader verified causal no-shop-gate guard","s":2429.0},{"t":"2026-08-23 11:21","l":"v12 r002 fixed","d":"v12 r002 fixed: raw-loader verified formal league incumbent","s":2034.4},{"t":"2026-08-23 16:28","l":"v13C","d":"v13C: A2 + V8-only no-WOOL throttle; dual-anchor confirmed","s":2062.9},{"t":"2026-08-23 18:33","l":"v14 Q2b stateful A2 shadow q","d":"v14 Q2b stateful A2 shadow queue best-response; pure-win dual-anchor confirmed","s":1885.2},{"t":"2026-08-24 12:43","l":"v12 A2 fixed","d":"v12 A2 fixed: raw-loader verified causal no-shop-gate guard (repeat 1/3)","s":600.0},{"t":"2026-08-24 12:44","l":"v12 A2 fixed","d":"v12 A2 fixed: raw-loader verified causal no-shop-gate guard (repeat 2/3)","s":1689.2},{"t":"2026-08-24 12:44","l":"v12 A2 fixed","d":"v12 A2 fixed: raw-loader verified causal no-shop-gate guard (repeat 3/3)","s":1835.8},{"t":"2026-08-26 14:26","l":"v16 S2 town-drain WHEAT roun","d":"v16 S2 town-drain WHEAT roundtrip challenger; A2 production anchor","s":1685.9},{"t":"2026-08-26 15:27","l":"v17 RC1 complete-route shop ","d":"v17 RC1 complete-route shop router; YARN->Kronki else tyz; redteam 85.83pct","s":1751.0},{"t":"2026-08-27 00:52","l":"P0-A experimental gated mark","d":"P0-A experimental gated market MPC over V17; local gate failed","s":1623.4},{"t":"2026-08-27 00:53","l":"P0-B experimental task-DAG r","d":"P0-B experimental task-DAG repair over V17; local gate failed","s":1553.0},{"t":"2026-08-27 14:06","l":"v19 RC1 HierMoE step360","d":"v19 RC1 HierMoE step360; frozen +1.79pp CI[+0.61,+3.18], 32/1760/0; QA pass","s":2336.2},{"t":"2026-08-27 15:14","l":"v20 RC1 demand-timing MoE","d":"v20 RC1 demand-timing MoE; 7-model +6.53pp CI[+5.19,+7.92], 220/1556/16; QA pass","s":2520.1},{"t":"2026-08-27 15:38","l":"v21 RC1 top-meta MoE step216","d":"v21 RC1 top-meta MoE step216; 8-model +14.21pp CI[+12.13,+16.33], 293/1755/0; QA pass","s":1728.0},{"t":"2026-08-28 12:43","l":"V19 RC1 HierMoE step360 resu","d":"V19 RC1 HierMoE step360 resubmit 2026-08-28; QA pass; original 55819961","s":1776.1},{"t":"2026-08-28 12:43","l":"V20 RC1 demand-timing MoE re","d":"V20 RC1 demand-timing MoE resubmit 2026-08-28; QA pass; original 55821249","s":2151.6},{"t":"2026-08-28 15:19","l":"V29 selected V21 champion RC","d":"V29 selected V21 champion RC1; 12-model panel; QA pass","s":1960.2},{"t":"2026-08-28 23:41","l":"V32 RC1 clone-horizon premiu","d":"V32 RC1 clone-horizon premium preempt; PROMOTE_LOCAL_GOLD; QA pass","s":1709.8},{"t":"2026-08-29 01:12","l":"V76 RC1 adjacent safe buy le","d":"V76 RC1 adjacent safe buy lead; PROMOTE_LOCAL_GOLD; QA pass","s":2055.6},{"t":"2026-08-29 03:12","l":"V20 RC1 demand-timing MoE re","d":"V20 RC1 demand-timing MoE resubmit 2026-08-29; QA pass; original 55821249","s":1498.1},{"t":"2026-08-29 06:41","l":"V37 RC1 preterminal boundary","d":"V37 RC1 preterminal boundary preempt; PROMOTE_LOCAL_GOLD; QA pass","s":1730.2},{"t":"2026-08-29 06:42","l":"V54 RC1 terminal water bypas","d":"V54 RC1 terminal water bypass; PROMOTE_LOCAL_GOLD; QA pass","s":1498.1},{"t":"2026-08-29 12:13","l":"V37 RC2 preterminal boundary","d":"V37 RC2 preterminal boundary preempt resubmit 2026-08-29; QA pass; original 55861471","s":1930.2},{"t":"2026-08-30 00:45","l":"v_copy1 RC1 public 2900+ str","d":"v_copy1 RC1 public 2900+ strategy; exact public notebook copy; QA pass","s":1397.6},{"t":"2026-08-30 01:39","l":"V29 RC2 selected V21 champio","d":"V29 RC2 selected V21 champion resubmit 2026-08-30; QA pass; original 55847378","s":1740.6},{"t":"2026-08-30 12:46","l":"v19 RC1 HierMoE step360 resu","d":"v19 RC1 HierMoE step360 resubmit 2026-08-30; QA pass; original 55819961","s":1206.6},{"t":"2026-08-30 12:48","l":"v12 A2 fixed resubmit 2026-0","d":"v12 A2 fixed resubmit 2026-08-30; raw-loader verified causal no-shop-gate guard; QA pass; original 55713355","s":1573.4},{"t":"2026-08-30 13:53","l":"V117 R0 independent state-co","d":"V117 R0 independent state-contract daily-option framework; Balanced base; research Replay collection; NOT_GOLD; QA pass","s":136.1},{"t":"2026-08-31 13:10","l":"V76 RC2 adjacent safe buy le","d":"V76 RC2 adjacent safe buy lead resubmit 2026-08-31; QA pass; original 55856751","s":1736.0},{"t":"2026-08-31 13:57","l":"V118 RC2 V76 YARN reveal liq","d":"V118 RC2 V76 YARN reveal liquidity MoE; strict pure gates 91.41/80.47; QA pass","s":1440.8},{"t":"2026-09-01 12:33","l":"V119 center livestock spatia","d":"V119 center livestock spatial MoE; spatial contract PASS; package QA PASS; NOT_LOCAL_GOLD","s":1313.4},{"t":"2026-09-01 16:07","l":"V120 Top5 episode route dist","d":"V120 Top5 episode route distillation; blind V76/V20 89.06%; GOLD_GATE_PASS; QA pass","s":2135.6},{"t":"2026-09-02 11:18","l":"V123 Top20 role-phase HMoE","d":"V123 Top20 role-phase HMoE; frozen vs V120 62/64 (96.88%); tape-free; package parity pass","s":155.5},{"t":"2026-09-02 12:08","l":"V123 entrypoint hotfix","d":"V123 entrypoint hotfix; Kaggle raw-loader selects agent; policy unchanged; 6-game runtime QA GO","s":1256.9},{"t":"2026-09-02 12:23","l":"V123 entrypoint hotfix slot ","d":"V123 entrypoint hotfix slot 2; replace invalid 55960193; raw-loader agent; identical archive 3f5ac6d","s":1238.7},{"t":"2026-09-02 16:57","l":"V10 rule-distill r1d10/r2d9","d":"V10 rule-distill r1d10/r2d9: V120 core + top-team mined conditional rules (skip late sheep w/o yarn, skip late cow w/ dairy<=1); local 100-seed dual-s","s":2061.9},{"t":"2026-09-03 01:11","l":"V120 Top5 episode route dist","d":"V120 Top5 episode route distillation (resubmit 2026-09-02); blind V76/V20 89.06%; GOLD_GATE_PASS; QA pass; original 55943570","s":1914.4},{"t":"2026-09-03 01:13","l":"V10 rule-distill r1d10/r2d9","d":"V10 rule-distill r1d10/r2d9 (resubmit 2026-09-02): V120 core + top-team mined conditional rules; local 100-seed dual-seat vs V120 85.5%, vs V76 87.5%,","s":1910.7},{"t":"2026-09-03 13:03","l":"v17a market guard + opening ","d":"v17a market guard + opening perturbation (attack)","s":2032.7},{"t":"2026-09-03 13:04","l":"v17 market guard","d":"v17 market guard (defense)","s":1721.5},{"t":"2026-09-04 14:50","l":"v19a","d":"v19a: V10 rule-distill base (yarn/dairy rules) + market guard + opening perturbation; M6 vs v17a 78.9%, vs V120 96.9%, vs V76/V20 92.2%","s":1891.7},{"t":"2026-09-05 09:30","l":"v19a resubmit","d":"v19a resubmit (replace defense slot): V10 base + market guard + perturbation; online day1 81.4%/118g","s":1785.9},{"t":"2026-09-05 09:58","l":"v25 market-maker","d":"v25 market-maker: V19a base + in-place fill + duel market-making (buy opponents dumped goods low, sell after town demand recovers); noyarn duel 12/12,","s":1960.2},{"t":"2026-09-05 10:12","l":"v26a30","d":"v26a30: new-gen 198k mother tape (fam_F) on V120 exec core + guard/light-perturb(30)/fill/market-maker; family profile 47/56=84%, G +51k, M6 vs V120 9","s":1941.1},{"t":"2026-09-05 13:41","l":"v26a53","d":"v26a53: 198k mother tape + full perturbation 53 (harvest variant, pairs with a30 as perturbation A/B); crushes non-perturbed pool W +39.5k; M6 97.7/89","s":1839.1},{"t":"2026-09-05 16:01","l":"v32","d":"v32: a30 base + cleaned phantom buy orders (behavior-identical, slot-safe); family profile 84%, M6 vs V120 97.7%","s":1962.6},{"t":"2026-09-06 02:09","l":"v41 famF pure-tape skeleton ","d":"v41 famF pure-tape skeleton + animal guard + LEAD first-seller + fill + MM; gate 82.8% 8seed, keiz 16/16, vs V32 14/16","s":1984.1},{"t":"2026-09-06 02:10","l":"v41-rb7925","d":"v41-rb7925: counter-famF mother tape (Ronnie family, solo 198.5k in-skeleton) + same weapon layers; gate 84.4% 8seed, fixes fam_E/pert_1/Andrey weak r","s":2043.0},{"t":"2026-09-07 11:58","l":"v50 market-fingerprint route","d":"v50 market-fingerprint router: famF prefix + t72 two-level latch (mkt fp: 13/8-clone->F-tail LEAD harvest, big-perturb->rb, OceanMix t28->F; shop tabl","s":1789.9},{"t":"2026-09-07 12:44","l":"v51b five-tail router","d":"v51b five-tail router: v50 rules + fe-tail branch (opp t2 wheat-sell fp -> rb_fed85a15a6 tail, new-family mined from own slots today); holdout 0.847, ","s":1920.5},{"t":"2026-09-07 14:23","l":"v52","d":"v52: v51b five-tail router + V46 strawberry fert-fill (idle worker fertilizes unfertilized strawberry underfoot, day<=27); solo +150g, gates flat 0.84","s":1731.7},{"t":"2026-09-07 16:05","l":"v53e six-tail router","d":"v53e six-tail router: v52 + shop-table fix (SMOOTHIE/FARMERS->cand_0 tail) + 13/8-clone branch -> rb_84a8a63442 tail (beats famF-family mirrors); hold","s":1636.0},{"t":"2026-09-07 16:05","l":"v53d","d":"v53d: v53e + FERTILIZER in LEAD first-seller items (differentiated hedge slot); holdout 0.872 / fresh 0.895 / H2H vs v52 8/8 +1812","s":1929.5},{"t":"2026-09-08 01:34","l":"v54c seven-tail router","d":"v54c seven-tail router: v53e + chocolat-gen tail (86%-compatible new-gen tape mined from today's losses) as 13/8-clone branch + shop-table default; ne","s":1943.0},{"t":"2026-09-08 01:35","l":"v54d","d":"v54d: v54c + FERTILIZER LEAD (newpool 0.763, strongest vs new-gen pool); differentiated hedge","s":1959.8},{"t":"2026-09-08 13:30","l":"Player A independent public-","d":"Player A independent public-source experiment; frozen H3 market controller; main f4e9458eb0dc; single online validation","s":2413.1},{"t":"2026-09-08 13:33","l":"Player B B2","d":"Player B B2: V54d premium SELL priority; frozen main bd83d8ac9cae; 32 fresh seeds x dual seats, parent 62W/2L; exploratory online validation","s":1824.9},{"t":"2026-09-09 00:34","l":"v56","d":"v56: public t955 replay-router base (Apache-2.0, 95.5% published) + our LEAD3 early-sell layer + strawberry fert-fill; local gate vs our last-6 online","s":1738.3},{"t":"2026-09-09 00:49","l":"v57","d":"v57: public yhay81 Shop-Router-0908 base (mosaic-spliced 4-tape router) + our LEAD3 early-sell + strawberry fert-fill; gate vs last-6 online pkgs 24/2","s":2146.8},{"t":"2026-09-09 01:16","l":"v58 mosaic","d":"v58 mosaic: t955 router base with default schedule 53% privatized (16 day-segments swapped in from our private strong-opponent pool, same opening fami","s":2243.0},{"t":"2026-09-09 03:52","l":"Player A H3 unchanged resubm","d":"Player A H3 unchanged resubmission 20260909T115201; original 56099337; main f4e9458eb0dc; archive 6257f8cf38e4; user-authorized single submission","s":1810.1},{"t":"2026-09-09 12:09","l":"v59b","d":"v59b: mosaic t1-t3 + endgame clearance layer + LEAD5","s":2129.0},{"t":"2026-09-10 01:20","l":"y60m","d":"y60m: yhay router base, tape0 replaced with mtmr_s1 family tape + LEAD5; gate 48/48","s":2282.9},{"t":"2026-09-10 01:21","l":"y63","d":"y63: y60m + tape0/2/3 mtmr family + mid/endgame day-segment mosaic + LEAD5; gate 48/48, min margin +424","s":2241.7},{"t":"2026-09-10 13:49","l":"y66","d":"y66: y63 base + tape0 from evolver family normal-form tape (ultimatum_game line); gate 48/48 margin +8.5k~+104.6k, trace diff 32.7% vs y63","s":2268.8},{"t":"2026-09-10 14:13","l":"y67","d":"y67: y66 base + day6-26 mosaic (13 segs: German anti-predator + 4 self-farmed segs); predator panel flipped +910, gate 48/48","s":2256.2},{"t":"2026-09-13 07:53","l":"y68a","d":"y68a: public V38 chassis (13 routes + 15-cell shop router + rule stack) + our mirror front_run activation (opponent_plan = own route tape); mirror pan","s":2546.0},{"t":"2026-09-13 09:14","l":"y68c","d":"y68c: y68a mirror front_run + lead depth-2 + room_guard enabled (tetsutani shed-overflow rescue); mirror panel +293~+2126, all-scenario positive, gate","s":2700.3},{"t":"2026-09-13 12:38","l":"y68f","d":"y68f: V38 + mirror front_run + lead2 + room_guard + fert gate 1.1x (evolver line) + poverty-trap rescue v3 (day-laborer wage guard); gate 48/48 x2, mi","s":2533.3},{"t":"2026-09-13 14:27","l":"y68g","d":"y68g: y68f + opening wheat buy 30->17 (cash-buffer early-hire knife, reverse-engineered from live -34k/-40k fork losses); mirror vs y68f +12.8k~+35.9k","s":2767.6},{"t":"2026-09-14 12:10","l":"y68i","d":"y68i: y68g + day1 hire funding guard (emergency SELL WHEAT 1-2 when cash short at HIRE step) + opening squeeze parity BUY43/SELL20+22 (arms-race follo","s":1149.5},{"t":"2026-09-14 12:10","l":"y68h","d":"y68h: y68g + day1 hire funding guard only (conservative control for y68i); zero-trigger in normal games (mirror +0 x4), squeeze loss cut -25.8k -> -4.","s":2380.4},{"t":"2026-09-14 12:55","l":"y68i resubmit","d":"y68i resubmit (fresh Elo start; prior run 6W3L with early losses capping climb): y68g + day1 hire funding guard + opening squeeze parity BUY43/SELL20+","s":2707.3},{"t":"2026-09-14 15:28","l":"y68j","d":"y68j: y68i + V42 _R108 non-YARN shop-route pack adopted (28 tapes, blacklist BAKERY|FARMERS_MARKET & PIZZA|PIZZA), opening knife kept 43/20+22; 44-com","s":2757.8},{"t":"2026-09-14 20:03","l":"y68r2","d":"y68r2: y68j + late-game shed pressure-relief for adopted V42 routes + entropy-gated premium sell advance (anti-front-run, t0-price-hash entropy, cost ","s":2778.8},{"t":"2026-09-15 07:38","l":"y68s2","d":"y68s2: y68r2 + b13s42 opening (immune to B10 counter-opening) + 9-combo new-tape blacklist (real-combo 49-combo validation, FM|FM fix); live-seed test","s":2268.0},{"t":"2026-09-15 14:17","l":"y68x3","d":"y68x3: y68s2 + V43 layer pack + BUY30 opening + FM opponent-class route table (t1 cash classify, t144 lookup); FM validation 666/675, gate vs y68a/c/f","s":2163.9},{"t":"2026-09-15 14:17","l":"y68s2 resubmit","d":"y68s2 resubmit (live side-by-side with y68x3 to observe the b13s42 vs BUY30 matchup online)","s":2770.7},{"t":"2026-09-15 16:13","l":"y68x3b13","d":"y68x3b13: y68x3 with opening BUY30->BUY13/SELL20+22 (fixes live mirror losses vs light-buy forks); live-tape 23/23, gate9 275/288 (vs y68s2 21/32), FM","s":2657.0},{"t":"2026-09-16 11:10","l":"y68wk","d":"y68wk: y68x3b13 + weak shop-combo route table (BRUNCH|BAKERY->112, FM|BAKERY->103, YARN|PIZZA/YARN|SMOOTHIE/FM|YARN->126); independent-seed 107/110 vs","s":2555.1},{"t":"2026-09-17 11:49","l":"y68wk3","d":"y68wk3: y68wk + BRUNCH|BRUNCH->112 (indep seeds 21/29 flat +14.3k) + PET_CAFE|BAKERY->118 (two indep seed ranges: 52/60 flat +11.3k; 57/67 vs 49/67 +2","s":2105.8},{"t":"2026-09-17 15:52","l":"y68wk2","d":"y68wk2: y68wk + 6 combo routes from style-pool cross-validation (PET|YARN->126 +82k/29g, BAKERY|SMOOTHIE->118, BRUNCH|FM->112, SMOOTHIE|BRUNCH->107, Y","s":2133.7},{"t":"2026-09-20 01:09","l":"y68wk5","d":"y68wk5: y68wk2 (11 combos) + BRUNCH|BRUNCH->112 & PET_CAFE|BAKERY->118 (3-range indep verified) + feed-floor guard vs buy7sell2 delayed-squeeze (keep ","s":1949.3},{"t":"2026-09-20 01:09","l":"y68wk4","d":"y68wk4: y68wk3 + feed-reserve guard (first 50 steps: never sell wheat below live animal count) — fixes the new meta counter-opening BUY7/SELL2 delayed","s":1921.6},{"t":"2026-09-21 08:39","l":"y68op_b7c","d":"y68op_b7c: y68wk4 + adopt new meta counter-opening (t1 BUY7/SELL2, t2 +BUY22, t3 SELL22 squeeze-recycle). On 235 recent live-opponent tapes 112->134 w","s":1852.7},{"t":"2026-09-21 14:16","l":"v54_baseline","d":"v54_baseline: public ahmedberatozer V54 (productive-wheat-and-patient) as new chassis - y68 line is one generation behind (V52/53/54 forks = the buy7s","s":2310.7},{"t":"2026-09-22 00:48","l":"v54r1","d":"v54r1: V54 + style-pool rival-route table (native _V93 mechanism data expansion). t2 rkey {(154,9959) V52/53 family, (1042,9989) V54 mirror} x {BRUNCH","s":2557.2},{"t":"2026-09-22 02:06","l":"v54r2","d":"v54r2: v54r1 + mirror-key (1042,9989) table expansion vs new fork wave (V55/V56/busya/guru/multiroute all share this rkey). +5 combos {YARN|PET->126 8","s":1930.3},{"t":"2026-09-22 04:29","l":"v54r3","d":"v54r3: chassis upgrade V54->V56 (author's official seed-leak fix EXP402 + fertilize-skip EXP410; V56 beats V54 28/32 h2h, paired margin +118~175) + re","s":2621.2},{"t":"2026-09-22 06:10","l":"v54r4","d":"v54r4: v54r3 (V56 chassis + re-verified route tables) + RACE reservation horizon 48/60 (sweet spot between author's 41 and busya's 72; fixes pure-V56 ","s":2303.5},{"t":"2026-09-22 10:12","l":"v54r5","d":"v54r5: chassis upgrade to 7-Turn Rescue v2 (Dmitrii, published today: V56 skeleton + endgame 7-turn simulation + order-book market; beats our w48 17/2","s":1663.0},{"t":"2026-09-23 00:18","l":"v54r11","d":"v54r11: rescue7 chassis + cell-value refinement. Root cause fixed: chassis swaps re-verified cells against baseline but never RE-SELECTED the optimal ","s":2473.3},{"t":"2026-09-23 00:18","l":"v54r5 re-submit for Elo path","d":"v54r5 re-submit for Elo path reset: identical package to 56461411 (rescue7 chassis + migrated tables + RACE 48/60). That instance reached 97.3% win ra","s":2359.0},{"t":"2026-09-23 12:24","l":"codez-v54 v021","d":"codez-v54 v021: V54-derived legacy compatibility + r14 modern expert, public-state opponent shadowing and certified BUY reordering. Frozen official-en","s":2366.9},{"t":"2026-09-23 15:57","l":"v54r14","d":"v54r14: rescue7 chassis + 40-cell route table (mirror row 30 cells, K52 row 10 cells) + t216 conditional re-route layer (4 gated cells incl. live-loss","s":2235.4},{"t":"2026-09-24 01:52","l":"v54r17","d":"v54r17: emergency coverage of the new Herd-Safe family plus per-key row split. Dmitrii's Herd-Safe Sale Window = rescue7 + 21-line opening layer (BUY_","s":2135.1},{"t":"2026-09-24 04:29","l":"v54r20","d":"v54r20: tactical tape optimization on top of r17. (1) Opening segment: table-out cells are exact mirror games decided by a thin cash margin; an openin","s":2054.5},{"t":"2026-09-25 04:59","l":"v54r22","d":"v54r22: r20 + late-cut splice layer extended to 62 cells across 4 rival keys (mirror 1039/1042, K52 151, metav4/V41/V43/qq 1049). Each cell: coarse sc","s":1985.2},{"t":"2026-09-26 03:07","l":"v54r25","d":"v54r25: diagnosis of the ~2200 plateau: the 2100-2200 band is a cloud of forks of the public chassis (56% share our 1039 fingerprint, 96 teams), and o","s":2347.4},{"t":"2026-09-26 06:06","l":"v54r26","d":"v54r26: r25 + execution-layer axis. Every execution component (lead-sell, queue closure, merge, order-book reorder, funding invariant, etc.) is now in","s":2107.6},{"t":"2026-09-26 12:31","l":"v54r28","d":"v54r28: r26 + (1) cha/engine-V3 lineage row re-selected on the r26 chassis (47 cells; fresh-seed holdout 110->125/200, confirmation 74->87/120), (2) o","s":2096.5},{"t":"2026-09-28 01:16","l":"v54r30","d":"v54r30: r28 + (1) late-game sale components from the public Harvest Ledger lineage (FRO final sell-block reorder, ADV ready-stock sale advance, VQ que","s":1485.5},{"t":"2026-09-28 05:35","l":"v54r32","d":"v54r32: r30 + DAWNPX re-enabled + counter-row for the new public population. On 09-27 the main public agents (2965 Master Engine, Guru V4, Harvest Led","s":2230.7},{"t":"2026-09-28 10:16","l":"v54r33","d":"v54r33: r32 + 7 late-cut cells (t288/t432) for the new public population (1042 fingerprint without the t92 lineage signal), selected on half of 163 re","s":1899.9},{"t":"2026-09-28 10:44","l":"v54r34","d":"v54r34: r33 + the tail execution stack of the 09-27 public Master Engine lineage grafted on top of our own opening, fingerprint rows and tape tables (","s":2282.0},{"t":"2026-09-29 02:31","l":"v54r36","d":"v54r36: r34 + 10 milk-world tape cells for the new public population (1042 fingerprint without the t92 lineage signal). Found that local evaluation on","s":1486.2},{"t":"2026-09-29 05:29","l":"v54r38","d":"v54r38: r36 + (1) a row for animal-first adaptive opponents (rival cash at t2 below 900, excluding K52/multi-route keys): force tape 126 from t144; re","s":1251.5},{"t":"2026-09-29 06:18","l":"c1v18","d":"c1v18: C-line closed-loop heuristic agent (no tapes). Daily planner with delay-loss task priority, sticky routes + work stealing, market-aware crop/he","s":680.1},{"t":"2026-09-29 06:26","l":"v54r38","d":"v54r38 (resubmitted: identical package; the first upload 56663930 stayed in PENDING validation for 55 minutes). r36 + (1) a row for animal-first adapt","s":1467.0},{"t":"2026-09-29 09:08","l":"v54r38c","d":"v54r38c: r38 with the animal-first row narrowed to the identified cluster (rival cash at t2 in 460-650). The r38 row fired on any rival with t2 cash b","s":1810.5},{"t":"2026-09-30 00:49","l":"v54r38f","d":"v54r38f: v54r38e plus an outer sell-lead layer: premium goods (all but wheat/fertilizer) that the tape plans to sell within the next 8 steps are sold ","s":1836.7},{"t":"2026-09-30 00:53","l":"v54r38g","d":"v54r38g: v54r38f with fertilizer added to the 8-step sell-lead layer (fertilizer is our highest-volume sale). Paired sequential sign tests vs r38f on ","s":2075.3},{"t":"2026-09-30 08:22","l":"v55b","d":"v55b: animal-first opening route table reconstructed from Arjun Vinod's public ladder replays (fixed opening, branch by first unlocked shop at step 72","s":2248.9},{"t":"2026-09-30 11:38","l":"v55d","d":"v55d: v55b with 15 shop-combo branches replaced by better Arjun-replay branches (selected on held-out large seeds, validated on a disjoint set). Head-","s":2277.4},{"t":"2026-09-30 15:18","l":"v55g","d":"v55g: v55d plus opponent-class branch tables. At step 2 the opponent is classed by its cash (public-chassis / animal-first leaders / low-cash / other)","s":1795.9}],"ver":[["08-17",4],["08-18",3],["08-19",1],["08-20",4],["08-22",2],["08-23",14],["08-24",5],["08-26",2],["08-27",7],["08-28",10],["08-29",78],["08-30",5],["08-31",1],["09-01",2],["09-02",13],["09-03",10],["09-04",1],["09-05",12],["09-06",15],["09-07",2],["09-08",1],["09-09",1],["09-10",1],["09-13",3],["09-15",4],["09-16",1],["09-17",7],["09-19",2],["09-20",1],["09-21",3],["09-22",21],["09-23",4],["09-24",11],["09-25",1],["09-26",12],["09-28",18],["09-29",12],["09-30",22]]};
+const PH = [
+  {id:"p1",name:"起步",from:"08-17",to:"08-22",c:"--p1",title:"规则基线与强化学习试水",
+   what:"第一天做出 v1 自适应市场路线，随后试了行为克隆 + PPO 和几种规则混合。",
+   verdict:"规则版比学习版强；v1 当时的评级到过 2727，是早期天梯水平低时的分数。"},
+  {id:"p2",name:"铺量",from:"08-23",to:"09-02",c:"--p2",title:"搜索、蒸馏与多专家路由",
+   what:"用循环脚本批量生成方案：终局抢卖、需求延迟、各种多专家路由（v77–v127），08-29 一天生成 78 个目录。",
+   verdict:"只有 v20 需求时机路由到过 2520；大多数在 1500–2000。V117、V123 因入口错误只有一百多分。"},
+  {id:"p3",name:"固定带",from:"09-03",to:"09-08",c:"--p3",title:"母带、对攻与尾段路由",
+   what:"从高分录像提取整局动作带（母带），加市场护栏和按市场指纹切换的尾段路由；同时让 Codex 做两条独立参赛线。",
+   verdict:"多数在 1700–2050。基于公开方案的 Player A 到 2413，提示公开底盘比自研带强。"},
+  {id:"p4",name:"嫁接公开底盘",from:"09-09",to:"09-20",c:"--p4",title:"mosaic 与 y68 系列",
+   what:"以公开路由器为底盘，拼接自己的带和执行层。y68 在公开 V38 底盘上加镜像抢卖、提前卖出和开局调整。",
+   verdict:"全程最高点：y68r2 2778.8（09-14）。之后补弱组合的 wk 系列一路掉到 1850。"},
+  {id:"p5",name:"v54 指纹树",from:"09-21",to:"09-29",c:"--p5",title:"对手指纹 + 针对带 + 执行层",
+   what:"换到公开 V54/V56 底盘，建立四轴框架，做对手指纹树和逐组合选带，共 57 个变体。另开 C 线从零写闭环启发式。",
+   verdict:"v54r3 到 2621，随后进入 2100–2300 平台期，r36–r38 因只验补丁掉到 1251。C 线 680 分。"},
+  {id:"p6",name:"v55 换底盘",from:"09-30",to:"09-30",c:"--p6",title:"Arjun 动物流固定带 + 人群分表",
+   what:"最后一天复刻 Arjun 的按商店查表路线，加提前卖出层；再按商店组合重选分支（v55d）、按对手人群分表（v55g）。",
+   verdict:"v55d 2277，线上对公开底盘 89%；v55g 在快照时仍在爬分。最终参评 v55g + v55d。"}
+];
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const md=s=>s.slice(5,10);
+const phaseOf=t=>PH.find(p=>md(t)>=p.from&&md(t)<=p.to)||PH[PH.length-1];
+const T0=Date.UTC(2026,7,16), T1=Date.UTC(2026,9,2);
+const ts=s=>Date.UTC(2026,+s.slice(5,7)-1,+s.slice(8,10),+(s.slice(11,13)||0),+(s.slice(14,16)||0));
+const subs=DATA.subs.map(s=>({...s,x:ts(s.t),p:phaseOf(s.t)}));
+let cumV=0; const ver=DATA.ver.map(([d,n])=>({x:Date.UTC(2026,+d.slice(0,2)-1,+d.slice(3,5),12),y:(cumV+=n),d,n}));
+let active=null; const show={ver:true,sub:false,best:true};
+const W=960,H=400,L=52,R=56,T=34,B=40;
+const X=x=>L+(x-T0)/(T1-T0)*(W-L-R), Y=y=>T+(1-y/3200)*(H-T-B), Y2=(y,m)=>T+(1-y/m)*(H-T-B);
+const E=(n,a,t)=>{const e=document.createElementNS("http://www.w3.org/2000/svg",n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e};
+const tip=document.getElementById("tip");
+function showTip(ev,html){tip.innerHTML=html;tip.hidden=false;const w=tip.offsetWidth,h=tip.offsetHeight;
+  let x=ev.clientX+14,y=ev.clientY+14;if(x+w>innerWidth-8)x=ev.clientX-w-14;if(y+h>innerHeight-8)y=ev.clientY-h-14;
+  tip.style.left=Math.max(8,x)+"px";tip.style.top=Math.max(8,y)+"px"}
+function draw(){
+  const s=document.getElementById("chart"); s.innerHTML="";
+  PH.forEach(p=>{const a=Date.UTC(2026,+p.from.slice(0,2)-1,+p.from.slice(3,5)),b=Date.UTC(2026,+p.to.slice(0,2)-1,+p.to.slice(3,5))+864e5;
+    s.append(E("rect",{x:X(a),y:T,width:X(b)-X(a),height:H-T-B,fill:css(p.c),opacity:active&&active!==p.id?.04:.11}));
+    s.append(E("text",{x:(X(a)+X(b))/2,y:T-8,"text-anchor":"middle",style:`fill:${css(p.c)};font-family:var(--font-body);font-size:11.5px;font-weight:600`},p.name));});
+  for(let y=0;y<=3000;y+=500){s.append(E("line",{x1:L,x2:W-R,y1:Y(y),y2:Y(y),stroke:css("--line"),"stroke-width":1}));
+    s.append(E("text",{x:L-8,y:Y(y)+4,"text-anchor":"end"},y));}
+  s.append(E("text",{x:L-8,y:T-8,"text-anchor":"end"},"分数"));
+  for(let d=Date.UTC(2026,7,17);d<T1;d+=7*864e5){const dt=new Date(d);
+    s.append(E("text",{x:X(d),y:H-B+18,"text-anchor":"middle"},String(dt.getUTCMonth()+1).padStart(2,"0")+"-"+String(dt.getUTCDate()).padStart(2,"0")));
+    s.append(E("line",{x1:X(d),x2:X(d),y1:H-B,y2:H-B+5,stroke:css("--muted")}));}
+  const step=(pts,m,col,label)=>{let d="",py=null;pts.forEach((p,i)=>{d+=(i?` L${X(p.x)} ${Y2(py,m)} L`:"M")+`${X(p.x)} ${Y2(p.y,m)}`;py=p.y});
+    d+=` L${X(T1-864e5)} ${Y2(py,m)}`;
+    s.append(E("path",{d,fill:"none",stroke:col,"stroke-width":2,"stroke-dasharray":"5 4"}));
+    s.append(E("text",{x:W-R+6,y:Y2(py,m)+4,style:`fill:${col}`},py+" "+label));};
+  if(show.ver) step(ver,340,css("--wheat"),"版本");
+  if(show.sub){let c=0;step(subs.map(q=>({x:q.x,y:++c})),340,css("--p1"),"提交");}
+  if(show.best){let b=0,d="";subs.forEach((q,i)=>{if(q.s!=null&&q.s>b){d+=(d?` L${X(q.x)} ${Y(b)} L`:"M")+`${X(q.x)} ${Y(q.s)}`;b=q.s}});
+    d+=` L${X(T1-864e5)} ${Y(b)}`;s.append(E("path",{d,fill:"none",stroke:css("--muted"),"stroke-width":1.2,opacity:.7}));}
+  subs.filter(q=>q.s!=null).forEach(q=>{const on=!active||active===q.p.id;
+    const c=E("circle",{cx:X(q.x),cy:Y(q.s),r:on?4.2:3,fill:css(q.p.c),opacity:on?.92:.15,stroke:css("--panel"),"stroke-width":1,tabindex:on?0:-1});
+    const h=ev=>showTip(ev,`<b>${q.l}</b> · <span class="num">${q.s}</span><br><span class="num">${q.t}</span> UTC<br>${q.d}`);
+    c.addEventListener("mousemove",h);c.addEventListener("mouseleave",()=>tip.hidden=true);
+    c.addEventListener("focus",()=>{const r=c.getBoundingClientRect();h({clientX:r.x,clientY:r.y})});c.addEventListener("blur",()=>tip.hidden=true);
+    s.append(c);});
+  const top=subs.reduce((a,b)=>(b.s||0)>(a.s||0)?b:a);
+  s.append(E("text",{x:X(top.x)+8,y:Y(top.s)-8,style:`fill:${css("--ink")};font-weight:600`},top.l+" "+top.s));
+}
+function phases(){
+  const chips=document.getElementById("chips"),box=document.getElementById("phases");
+  PH.forEach(p=>{const ss=subs.filter(q=>q.p===p&&q.s!=null),vv=ver.filter(v=>v.d>=p.from&&v.d<=p.to).reduce((a,b)=>a+b.n,0);
+    const best=ss.reduce((a,b)=>b.s>(a?a.s:0)?b:a,null),last=ss[ss.length-1];
+    const b=document.createElement("button");b.className="chip";b.setAttribute("aria-pressed","false");b.dataset.p=p.id;
+    b.innerHTML=`<i style="background:var(${p.c})"></i>${p.name}`;chips.append(b);
+    const d=document.createElement("div");d.className="phase";d.id="ph-"+p.id;d.style.setProperty("--c",`var(${p.c})`);
+    d.innerHTML=`<div class="when"><b>${p.name}</b>${p.from}${p.from!==p.to?" → "+p.to:""}</div>
+      <div><h3>${p.title}</h3><p>${p.what}</p><p class="verdict"><b>结论：</b>${p.verdict}</p>
+      <div class="stats"><span>新增版本 <b>${vv}</b></span><span>提交 <b>${ss.length}</b> 次</span><span>阶段最高 <b>${best?best.s:"-"}</b>（${best?best.l:""}）</span><span>阶段末 <b>${last?last.s:"-"}</b></span></div></div>`;
+    box.append(d);});
+  chips.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;active=active===b.dataset.p?null:b.dataset.p;
+    chips.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.p===active));
+    document.querySelectorAll(".phase").forEach(c=>c.classList.toggle("dim",!!active&&c.id!=="ph-"+active));draw();});
+}
+function table(){
+  const tb=document.querySelector("#tbl tbody");
+  const render=q=>{tb.innerHTML="";subs.slice().reverse().filter(s=>!q||(s.l+s.d).toLowerCase().includes(q)).forEach(s=>{
+    const tr=document.createElement("tr");tr.innerHTML=`<td class="num" style="white-space:nowrap">${s.t.slice(5)}</td><td><b style="color:var(${s.p.c})">${s.l}</b></td><td>${s.d}</td><td class="r">${s.s==null?"失败":s.s.toFixed(1)}</td>`;tb.append(tr);});};
+  render("");document.getElementById("q").addEventListener("input",e=>render(e.target.value.trim().toLowerCase()));
+}
+[["t-ver","ver"],["t-sub","sub"],["t-best","best"]].forEach(([id,k])=>document.getElementById(id).addEventListener("click",e=>{show[k]=!show[k];e.currentTarget.setAttribute("aria-pressed",show[k]);draw();}));
+document.getElementById("filter").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  document.querySelectorAll("#filter button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  document.querySelectorAll("#transfer .item").forEach(i=>i.hidden=b.dataset.f!=="all"&&i.dataset.k!==b.dataset.f);});
+const links=[...document.querySelectorAll("#secs a")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-20% 0px -70% 0px"});
+document.querySelectorAll("main section").forEach(s=>io.observe(s));
+document.getElementById("k-sub").textContent=subs.length;
+document.getElementById("k-ver").textContent=cumV;
+phases();table();draw();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",draw);
+</script>
+</body>
+</html>

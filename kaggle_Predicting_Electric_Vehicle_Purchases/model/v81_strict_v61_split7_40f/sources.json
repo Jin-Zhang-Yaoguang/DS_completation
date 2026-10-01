@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "experiment_id": "v81_strict_v61_split7_40f",
+  "created_at_utc": "2026-09-03T17:01:43.690577+00:00",
+  "frozen_config_sha256": "0abe1e88cd915b6aa38ab0c6a26b44e3c111ab756a247cce1306b5f77442b8ee",
+  "run_contract_sha256": "5b650b6faba84b610a2692595b1f0ac641126c13704cf9d49474c6ace5ac06e0",
+  "runtime": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit_learn": "1.7.2",
+    "lightgbm": "4.6.0"
+  },
+  "code_and_inputs": {
+    "candidate_runner": {
+      "path": "model/v81_strict_v61_split7_40f/v81_strict_v61_split7_40f.py",
+      "sha256": "4cde19eb46922cf6547e8e887e13bbe8c543a8eac7e9fb2a54c1c65cffbdff54",
+      "bytes": 85789
+    },
+    "frozen_config": {
+      "path": "model/v81_strict_v61_split7_40f/frozen_config.json",
+      "sha256": "0abe1e88cd915b6aa38ab0c6a26b44e3c111ab756a247cce1306b5f77442b8ee",
+      "bytes": 3857
+    },
+    "base_v80_runner": {
+      "path": "model/v80_strict_v61_outer104395303_40f/v80_strict_v61_outer104395303_40f.py",
+      "sha256": "808e4fe41ef033da6b6df14edcce3e9f67ced418f9958fddbd0788045af8204a",
+      "bytes": 80862
+    },
+    "base_v80_config": {
+      "path": "model/v80_strict_v61_outer104395303_40f/frozen_config.json",
+      "sha256": "79fc1e5451fb823cbde5a59e32b078e8e85cc0ebcef4c500694affab9195e5ab",
+      "bytes": 3650
+    },
+    "v29_recipe": {
+      "path": "model/v29_income_bin10_te_lgbm/v29_income_bin10_te_lgbm.py",
+      "sha256": "3d25e572c807e0218a466feeea931fb02104e30c201c7f6298404d09a57add40",
+      "bytes": 1912
+    },
+    "v6_recipe": {
+      "path": "model/v6_multiscale_te_lgbm/v6_multiscale_te_lgbm.py",
+      "sha256": "655f1950d7069ad93e21e8224a11b09ee6ce754f229c188a17ba38f946e79e26",
+      "bytes": 13596
+    },
+    "train_csv": {
+      "path": "data/train.csv",
+      "sha256": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+      "bytes": 44707646
+    },
+    "test_csv": {
+      "path": "data/test.csv",
+      "sha256": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+      "bytes": 18298347
+    },
+    "sample_submission_csv": {
+      "path": "data/sample_submission.csv",
+      "sha256": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5",
+      "bytes": 7737432
+    },
+    "base_v80_cv_results": {
+      "path": "model/v80_strict_v61_outer104395303_40f/cv_results.json",
+      "sha256": "52bd098b6b765bffac5efd9f3faa18c4f1773229241fc18f7b2ebfafb41a57e2",
+      "bytes": 116748
+    },
+    "base_v80_oof": {
+      "path": "model/v80_strict_v61_outer104395303_40f/oof_proba.npy",
+      "sha256": "403d712897a775fd0869c9b8b89595dd8433ca909202a3313649b6ae77b29ae2",
+      "bytes": 5349448
+    },
+    "base_v80_test": {
+      "path": "model/v80_strict_v61_outer104395303_40f/test_proba.npy",
+      "sha256": "3dfd38c810276920929e2849ceafdf50de7c3f6f0543636e7efcd96a0ef499cb",
+      "bytes": 2292696
+    },
+    "base_v80_sources": {
+      "path": "model/v80_strict_v61_outer104395303_40f/sources.json",
+      "sha256": "d1fa6c3203b3e5bf69c673f89e443ed4b94053dd4143e502662d8fffcc9ae1c3",
+      "bytes": 3949
+    }
+  },
+  "row_identity": {
+    "train_rows": 668665,
+    "test_rows": 286571,
+    "train_id_sha256": "a79741ce666add0e6931e07b0facd43e0ecfe75f2dc0c590101895dd1dac3edf",
+    "test_id_sha256": "c414f5a13bb7853a288e8c7951737caace5abcac135455791d93bb57ed3ef718"
+  },
+  "outputs": {
+    "oof_proba": {
+      "path": "model/v81_strict_v61_split7_40f/oof_proba.npy",
+      "sha256": "7dbe14ae787a99332cd4f91313d2f0347dcaf858c1cdacfce1d207947381ed7b",
+      "bytes": 5349448
+    },
+    "test_proba": {
+      "path": "model/v81_strict_v61_split7_40f/test_proba.npy",
+      "sha256": "5748d0506ff09b0bb2f4dbb219391d4b0e632691404b8496ebc49bcf8efec273",
+      "bytes": 2292696
+    },
+    "submission": {
+      "path": "model/v81_strict_v61_split7_40f/submission.csv",
+      "sha256": "f8907e99603f752420cc8bed8e0ce04815e079d232055d5ff17ed3613d14c82b",
+      "bytes": 7908521
+    },
+    "feature_importance": {
+      "path": "model/v81_strict_v61_split7_40f/feature_importance.csv",
+      "sha256": "0e9524f72c93a8b80b88a0ce4e427962e220ad54b9369a1b0b50a18a0d79babf",
+      "bytes": 9733
+    }
+  }
+}

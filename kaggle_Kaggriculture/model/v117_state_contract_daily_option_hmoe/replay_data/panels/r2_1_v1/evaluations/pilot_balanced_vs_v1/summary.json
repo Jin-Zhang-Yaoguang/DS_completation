@@ -1,0 +1,163 @@
+{
+  "schema": "v117-r2.1-a-replay-development-balanced-v1",
+  "research_version": "V117-R2.1-A",
+  "strength_status": "DEVELOPMENT_DIAGNOSTIC_ONLY",
+  "candidate_mode": "CURRENT_BALANCED_ONLY_FALLBACK",
+  "opponent": "FROZEN_V1_ADAPTIVE_MARKET",
+  "engine": "1.32.7-scenario",
+  "candidate_runtime_sha256": "50d2a5d567d73bfa9a84680f55bfaf3edb4df910a4be4a8d60865f1e5b3ee1ae",
+  "v1_sha256": "8fa3f2184f81a755d6af47e351926bea2a80db545bf2b8ba0df1ad638f8117eb",
+  "evaluator_sha256": "e69ee6c9a88683cab85e25bdc116288d1c7b62166045d73d5a727e63129d92cf",
+  "manifest_sha256": "09cd371d8ef066ee8c84bfce11b0e23688236ee970edb84c989b93bc69b6f32e",
+  "configuration_sha256": null,
+  "split": "development",
+  "source_reporting_order": [
+    "ACCOUNT_ONLINE",
+    "OFFICIAL_DAILY"
+  ],
+  "source_metrics": {
+    "ACCOUNT_ONLINE": {
+      "games": 2,
+      "scenario_blocks": 1,
+      "wins": 0,
+      "ties": 0,
+      "pure_win_rate": 0.0,
+      "seed_block_95ci": [
+        0.0,
+        0.0
+      ],
+      "mean_margin": -117400.0,
+      "median_margin": -117400.0,
+      "catastrophe_rate": 1,
+      "error_count": 0,
+      "action_violations": 0,
+      "trajectory_mismatches": 0,
+      "contract_invariant_events": 0,
+      "mean_loss_proxy_per_game": {
+        "FEED_SHORTAGE": 0.0,
+        "FINANCING_SHORTFALL": 1899.0,
+        "INVENTORY_OVERHANG": 3959.25,
+        "MISSED_HIGH_PRICE_SALE": 1452.0,
+        "OVERDUE_TASK": 2387.5,
+        "TERMINAL_UNREALIZED": 2825.0,
+        "UNPRODUCTIVE_MOVE": 225.0
+      },
+      "top_loss_proxies": [
+        {
+          "category": "INVENTORY_OVERHANG",
+          "mean_proxy_per_game": 3959.25
+        },
+        {
+          "category": "TERMINAL_UNREALIZED",
+          "mean_proxy_per_game": 2825.0
+        },
+        {
+          "category": "OVERDUE_TASK",
+          "mean_proxy_per_game": 2387.5
+        }
+      ]
+    },
+    "OFFICIAL_DAILY": {
+      "games": 2,
+      "scenario_blocks": 1,
+      "wins": 0,
+      "ties": 0,
+      "pure_win_rate": 0.0,
+      "seed_block_95ci": [
+        0.0,
+        0.0
+      ],
+      "mean_margin": -91721.0,
+      "median_margin": -91721.0,
+      "catastrophe_rate": 1,
+      "error_count": 0,
+      "action_violations": 0,
+      "trajectory_mismatches": 0,
+      "contract_invariant_events": 0,
+      "mean_loss_proxy_per_game": {
+        "FEED_SHORTAGE": 0.0,
+        "FINANCING_SHORTFALL": 3123.0,
+        "INVENTORY_OVERHANG": 3399.25,
+        "MISSED_HIGH_PRICE_SALE": 1563.0,
+        "OVERDUE_TASK": 2425.0,
+        "TERMINAL_UNREALIZED": 1217.0,
+        "UNPRODUCTIVE_MOVE": 225.0
+      },
+      "top_loss_proxies": [
+        {
+          "category": "INVENTORY_OVERHANG",
+          "mean_proxy_per_game": 3399.25
+        },
+        {
+          "category": "FINANCING_SHORTFALL",
+          "mean_proxy_per_game": 3123.0
+        },
+        {
+          "category": "OVERDUE_TASK",
+          "mean_proxy_per_game": 2425.0
+        }
+      ]
+    }
+  },
+  "stratified_equal_count_overall": {
+    "games": 4,
+    "scenario_blocks": 2,
+    "wins": 0,
+    "ties": 0,
+    "pure_win_rate": 0.0,
+    "seed_block_95ci": [
+      0.0,
+      0.0
+    ],
+    "mean_margin": -104560.5,
+    "median_margin": -104216.0,
+    "catastrophe_rate": 1,
+    "error_count": 0,
+    "action_violations": 0,
+    "trajectory_mismatches": 0,
+    "contract_invariant_events": 0,
+    "mean_loss_proxy_per_game": {
+      "FEED_SHORTAGE": 0.0,
+      "FINANCING_SHORTFALL": 2511.0,
+      "INVENTORY_OVERHANG": 3679.25,
+      "MISSED_HIGH_PRICE_SALE": 1507.5,
+      "OVERDUE_TASK": 2406.25,
+      "TERMINAL_UNREALIZED": 2021.0,
+      "UNPRODUCTIVE_MOVE": 225.0
+    },
+    "top_loss_proxies": [
+      {
+        "category": "INVENTORY_OVERHANG",
+        "mean_proxy_per_game": 3679.25
+      },
+      {
+        "category": "FINANCING_SHORTFALL",
+        "mean_proxy_per_game": 2511.0
+      },
+      {
+        "category": "OVERDUE_TASK",
+        "mean_proxy_per_game": 2406.25
+      }
+    ]
+  },
+  "checks": {
+    "full_preregistered_panel": false,
+    "two_seats_per_scenario": true,
+    "zero_errors_action_trajectory_contract_violations": true,
+    "historical_actions_market_rewards_not_loaded": true,
+    "blind_content_accessed": false,
+    "account_and_official_reported_separately": true,
+    "current_model_is_balanced_only": true,
+    "hmoe_true_trigger_exit_gate": false,
+    "balanced_point_estimate_at_least_20pct": false,
+    "combined_hmoe_at_least_50pct": false
+  },
+  "decision": "EVALUATION_INCOMPLETE_OR_INVALID",
+  "limitations": [
+    "这是 Development 诊断，不是冻结 Confirmation，也不是金牌证据",
+    "当前默认模型只有 BALANCED_BASE 可路由，不能证明 HMoE 真实触发",
+    "当前不是关闭 Router 的正式 Fixed Expert 模式；仅因 registry 中唯一可路由专家为 Balanced 而行为等价",
+    "两类来源分别报告；来源差异只触发分布归因，不新增金牌 AND 阈值"
+  ],
+  "games_sha256": "a56ed87460c69c9fb875df07e3a40df5938413446633597f952bf63695725240"
+}

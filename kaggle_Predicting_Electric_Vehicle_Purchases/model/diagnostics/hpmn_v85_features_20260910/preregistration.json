@@ -1,0 +1,66 @@
+{
+  "experiment_id": "hpmn_v85_features_20260910",
+  "created_at_utc": "2026-09-10T14:50:43.354608+00:00",
+  "hypothesis": "保持V85的148列严格嵌套特征不变，原型距离、可学习特征掩码和条件路由能产生树模型之外的排序信号。",
+  "unique_variable": "预测器由V85 LightGBM更换为公开HPMN架构；网络数值标准化仅fit外训练，作为固定输入适配。",
+  "not_exact_public_reproduction": "不采用公开204列另一套特征；使用匹配V85 148列，只检验预测器机制。",
+  "baseline": "已保存V85五折seed42、每fold模型seed42+fold；重新编码逐元素校验并回放原booster预测。",
+  "folds": 5,
+  "outer_seed": 42,
+  "model_and_encoder_seed": "42+fold",
+  "architecture_source": "hpmn_source_audit_20260910/public_components.py",
+  "model": {
+    "N_MATCH1": 256,
+    "N_MATCH2": 128,
+    "PATTERN_HIDDEN": 8,
+    "ROUTING_RANK": 12,
+    "N_FIRE_KNOTS": 8,
+    "MAX_EPOCHS": 40,
+    "PATIENCE": 9,
+    "BATCH_SIZE": 2048,
+    "PRED_BATCH_SIZE": 8192,
+    "LR": 0.0015,
+    "WEIGHT_DECAY": 2e-05,
+    "GRAD_CLIP": 5,
+    "all_other_architecture_and_regularization": "冻结抽取source默认值"
+  },
+  "preprocess": "先取V85 float64 148列，再转float32；仅外fit均值/标准差，std<=1e-7改1，clip[-8,8]；保存预处理状态。",
+  "diagnostic_epoch_selection": "与公开配置一致，外validation AUC patience9选epoch；仅开发诊断，正式e2e必须改为fit内部选轮次。",
+  "diversity_screen": {
+    "fixed_candidate_weight": 0.1,
+    "equal_weight_control": 0.5,
+    "transform": "复用V100 fit-only mid-ECDF，5个seed42验证块逐块只用其余OOF拟合分布",
+    "weight_search": false,
+    "baseline": "同样fit-only mid-ECDF的V85",
+    "scope": "开发互补诊断，非整流程无偏，不生成test融合"
+  },
+  "followup_gate": {
+    "candidate_auc_min": 0.9452,
+    "fixed_10pct_blend_delta_gt": 0,
+    "positive_blocks": 5,
+    "meaning": "只允许另立正式40折及当前V100同口径端到端比较；不是提交许可"
+  },
+  "research_promotion_gate": {
+    "delta_min": 0.0001,
+    "positive_blocks": 5,
+    "scope": "相对匹配V85，仅诊断字段，不声称超过V100"
+  },
+  "budget": {
+    "wall_seconds": 5400,
+    "memory_gib": 16,
+    "device": "mps",
+    "cpu_threads": 4,
+    "submission": 0
+  },
+  "precondition": "收入间距实验完成独立验证且未过门槛；若它晋级先跟进它。",
+  "stop": "无效果则保留NO_GO，不扫宽度、种子、epoch或混合权重救结果。超预算保留失败。",
+  "counts_toward_cycle": false,
+  "source_hashes": {
+    "data/train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "model/validation/e2e_v100_20260905/feature_backends.py": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+    "model/diagnostics/income_context_lowrank_20260906_retry1/diagnostic_oof.npz": "66a16a1b7c55354763a5541afa96c43df632a18a75d321600b1ce54a9613ff80",
+    "model/diagnostics/hpmn_source_audit_20260910/public_components.py": "90e2072302182aaca8a834c30af1dff1521e5b8cc34f818efd5c42ff32bb2aaa",
+    "model/diagnostics/hpmn_source_audit_20260910/synthetic_mps.json": "18e649eca7c1c626e5bcb35f0c2d1af008e4db29d9b3152d34b4d712fe9b1c3e",
+    "model/v100_v90_ctboost_nested_cv_blend/v100_v90_ctboost_nested_cv_blend.py": "ad5cd07b64bf69fd08b9636c0a72138463b2506987155d3939395b5ce246a817"
+  }
+}

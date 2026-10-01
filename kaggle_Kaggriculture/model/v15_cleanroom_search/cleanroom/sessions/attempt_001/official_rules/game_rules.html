@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaggriculture 游戏规则速览</title>
+<style>
+  :root {
+    --ink: #1d2b1f;
+    --ink2: #41543f;
+    --muted: #7a8a74;
+    --green: #2e7d44;
+    --green-deep: #1b5e30;
+    --gold: #c99a2e;
+    --red: #c0503a;
+    --paper: #faf7ef;
+    --card: #ffffff;
+    --line: #e4e0d0;
+    --soft: #f0ede0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--paper); color: var(--ink); line-height: 1.7;
+  }
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 247, 239, 0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px;
+    padding: 10px 20px; overflow-x: auto; white-space: nowrap;
+  }
+  nav .brand { font-weight: 700; color: var(--green-deep); margin-right: 12px; }
+  nav a {
+    color: var(--ink2); text-decoration: none; font-size: 13.5px;
+    padding: 5px 11px; border-radius: 999px; transition: all .15s;
+  }
+  nav a:hover { background: var(--soft); color: var(--green-deep); }
+  /* ---------- hero ---------- */
+  header.hero {
+    background: linear-gradient(135deg, #1b5e30 0%, #2e7d44 55%, #4c9a5f 100%);
+    color: #fff; padding: 64px 24px 56px; text-align: center;
+  }
+  header.hero h1 { font-size: 40px; letter-spacing: 1px; }
+  header.hero p.sub { margin-top: 12px; font-size: 17px; opacity: .92; }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 30px;
+  }
+  .hero-stats .chip {
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
+    border-radius: 14px; padding: 12px 20px; min-width: 130px;
+  }
+  .hero-stats .chip b { display: block; font-size: 24px; }
+  .hero-stats .chip span { font-size: 12.5px; opacity: .85; }
+  /* ---------- layout ---------- */
+  main { max-width: 980px; margin: 0 auto; padding: 0 20px 80px; }
+  section { margin-top: 56px; }
+  h2 {
+    font-size: 25px; color: var(--green-deep);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+  }
+  h2 .no {
+    background: var(--green); color: #fff; border-radius: 10px;
+    width: 34px; height: 34px; display: inline-flex; align-items: center;
+    justify-content: center; font-size: 16px; flex: none;
+  }
+  p.lead { color: var(--ink2); margin-bottom: 18px; }
+  .grid { display: grid; gap: 14px; }
+  .grid.cols2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .grid.cols3 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 18px 20px;
+    box-shadow: 0 2px 10px rgba(60, 60, 30, .05);
+  }
+  .card h3 { font-size: 16.5px; margin-bottom: 8px; }
+  .card small { color: var(--muted); }
+  .tag {
+    display: inline-block; font-size: 11.5px; padding: 2px 9px;
+    border-radius: 999px; background: var(--soft); color: var(--ink2);
+    margin-right: 5px;
+  }
+  .tag.warn { background: #fbe9e4; color: var(--red); }
+  .tag.good { background: #e5f2e6; color: var(--green-deep); }
+  .tag.gold { background: #f7efd9; color: #8a6a14; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 12.5px; }
+  /* ---------- timeline ---------- */
+  .timeline { display: flex; align-items: stretch; gap: 0; margin-top: 10px; flex-wrap: wrap; }
+  .timeline .seg {
+    flex: 1; min-width: 150px; background: var(--card); border: 1px solid var(--line);
+    padding: 14px 16px; position: relative;
+  }
+  .timeline .seg:first-child { border-radius: 14px 0 0 14px; }
+  .timeline .seg:last-child { border-radius: 0 14px 14px 0; }
+  .timeline .seg b { color: var(--green-deep); }
+  /* ---------- crop tabs ---------- */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tabs button {
+    border: 1.5px solid var(--line); background: var(--card); color: var(--ink2);
+    padding: 8px 16px; border-radius: 999px; font-size: 14.5px; cursor: pointer;
+    transition: all .15s;
+  }
+  .tabs button:hover { border-color: var(--green); }
+  .tabs button.active { background: var(--green); border-color: var(--green); color: #fff; }
+  .crop-detail { display: none; }
+  .crop-detail.show { display: block; animation: fade .25s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+  .stat-row .stat {
+    background: var(--soft); border-radius: 12px; padding: 10px 16px; min-width: 110px;
+  }
+  .stat-row .stat b { display: block; font-size: 19px; color: var(--green-deep); }
+  .stat-row .stat span { font-size: 12px; color: var(--muted); }
+  /* ---------- market sim ---------- */
+  .sim-panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .sim-controls { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin-bottom: 12px; }
+  .sim-controls label { font-size: 13.5px; color: var(--ink2); }
+  select, input[type=range] { accent-color: var(--green); }
+  select {
+    padding: 7px 12px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: #fff; font-size: 14.5px; color: var(--ink);
+  }
+  .price-readout { display: flex; gap: 26px; flex-wrap: wrap; margin: 8px 0 14px; }
+  .price-readout .pr b { font-size: 26px; color: var(--green-deep); }
+  .price-readout .pr.crash b { color: var(--red); }
+  .price-readout .pr span { font-size: 12.5px; color: var(--muted); display: block; }
+  canvas { width: 100%; height: 250px; display: block; }
+  .compare-box {
+    margin-top: 16px; background: var(--soft); border-radius: 12px; padding: 14px 18px;
+    font-size: 14px;
+  }
+  .compare-box b.up { color: var(--green-deep); }
+  /* ---------- steps ---------- */
+  .steps { counter-reset: step; display: grid; gap: 10px; }
+  .steps .step {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .steps .step::before {
+    counter-increment: step; content: counter(step);
+    background: var(--green); color: #fff; font-weight: 700;
+    width: 28px; height: 28px; border-radius: 50%; flex: none;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+  .danger-list li { margin: 8px 0 8px 18px; }
+  .danger-list b { color: var(--red); }
+  footer {
+    text-align: center; color: var(--muted); font-size: 13px;
+    padding: 30px 20px 46px; border-top: 1px solid var(--line); margin-top: 60px;
+  }
+  @media (max-width: 640px) {
+    header.hero h1 { font-size: 30px; }
+    .timeline .seg { border-radius: 12px !important; margin-bottom: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">🌾 Kaggriculture</span>
+  <a href="#overview">总览</a>
+  <a href="#map">农场与地图</a>
+  <a href="#crops">作物</a>
+  <a href="#animals">畜牧</a>
+  <a href="#market">市场价格</a>
+  <a href="#town">城镇需求</a>
+  <a href="#survival">生死规则</a>
+  <a href="#labor">劳动力</a>
+  <a href="#win">胜负与评级</a>
+</nav>
+
+<header class="hero">
+  <h1>🌾 Kaggriculture 游戏规则速览</h1>
+  <p class="sub">两个 AI 农场主，30 天赛季，谁的银行余额高谁赢</p>
+  <div class="hero-stats">
+    <div class="chip"><b>720</b><span>总回合（30 天 × 24）</span></div>
+    <div class="chip"><b>$3,000</b><span>初始资金</span></div>
+    <div class="chip"><b>10×10</b><span>农场地图（4 个象限）</span></div>
+    <div class="chip"><b>💰 银行余额</b><span>唯一胜负标准</span></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 总览 ============ -->
+<section id="overview">
+  <h2><span class="no">1</span>一局游戏怎么进行</h2>
+  <p class="lead">你写一个 <code>agent(obs)</code>，每回合返回「农民/临时工动作 + 市场订单」。两个 Agent 各经营一座独立农场，<b>共享同一个动态市场</b>。赛季结束（第 720 回合）时银行余额高者获胜。</p>
+  <div class="timeline">
+    <div class="seg">🌅 <b>每天 24 回合</b><br><small>每个工人每回合可做 1 个动作：移动 / 种植 / 浇水 / 收获 / 喂养…</small></div>
+    <div class="seg">🛒 <b>市场订单同步结算</b><br><small>每回合最多 10 笔；双方订单逐单位交替处理，大单会吃到价格变化</small></div>
+    <div class="seg">🏘️ <b>城镇消耗</b><br><small>商店定期免费吃掉市场库存，制造外生需求、托起价格</small></div>
+    <div class="seg">🌙 <b>日终结算</b><br><small>工人把随身物品倒入仓库（超 100 上限即丢失）；缺水缺粮计数 +1</small></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>⚠️ 三个最容易误解的规则</h3>
+    <small>
+      ① <b>未卖出的库存不计入最终成绩</b>——仓库里的货不是钱，终局前必须变现；
+      ② <b>评级只看胜负、不看金币差</b>——稳定小胜比偶尔大胜更有价值；
+      ③ <b>对手能看见你的农场</b>（但看不见你的仓库和现金）——市场是双方共同搅动的。
+    </small>
+  </div>
+</section>
+
+<!-- ============ 地图 ============ -->
+<section id="map">
+  <h2><span class="no">2</span>农场与地图</h2>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>🗺️ 四象限扩张</h3>
+      <small>10×10 地图分为 4 个 5×5 象限，开局只解锁西北角（25 格）。其余象限购买价格递增：</small>
+      <div class="stat-row">
+        <div class="stat"><b>$1,000</b><span>第二块地</span></div>
+        <div class="stat"><b>$2,000</b><span>第三块地</span></div>
+        <div class="stat"><b>$4,000</b><span>第四块地</span></div>
+      </div>
+      <small>💡 榜首队伍普遍只买前两块（$1k + $2k），第四块 $4k 的地在 30 天赛季内往往回不了本。</small>
+    </div>
+    <div class="card">
+      <h3>📦 仓库（Shed）</h3>
+      <small>
+        位于地图正中心，容量 <b>100 件</b>（种子不占容量）。
+        每天开始时所有工人在仓库旁出生；每天结束时随身物品自动倒入仓库，
+        <b>超出容量的部分直接丢失</b>。
+        只有站在中心 4 格之一才能 PICKUP / DROP。
+      </small>
+      <div style="margin-top:10px"><span class="tag warn">溢出即丢失</span><span class="tag">终局清仓是必修课</span></div>
+    </div>
+    <div class="card">
+      <h3>🌱 杂草</h3>
+      <small>每晚每块空闲解锁地有 <b>0.5%</b> 概率长出杂草；杂草必须 DIG 清除后才能利用。作物连续 2 天没浇水也会变成杂草。</small>
+    </div>
+    <div class="card">
+      <h3>👀 信息可见性</h3>
+      <small>对手的<b>农场、金币、市场、城镇</b>完全可见；对手的<b>仓库、种子、随身库存</b>不可见。利用公开农场结构可以推断对手策略。</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 作物 ============ -->
+<section id="crops">
+  <h2><span class="no">3</span>五种作物</h2>
+  <p class="lead">点击切换查看。所有作物<b>每天必须浇水</b>；一次性作物在奖励窗口内浇水可加产量，施肥使加成翻倍。</p>
+  <div class="tabs" id="cropTabs"></div>
+  <div id="cropDetails"></div>
+</section>
+
+<!-- ============ 畜牧 ============ -->
+<section id="animals">
+  <h2><span class="no">4</span>三种动物</h2>
+  <p class="lead">动物是持续产出的「资产」，但每天要喂 1 份小麦，还要照料、收获产品、收肥料。</p>
+  <div class="grid cols3" id="animalCards"></div>
+  <div class="card" style="margin-top:14px">
+    <small>💡 <b>隐藏收入：肥料。</b>每只存活动物每天产 1 份肥料（不收集即消失），肥料市场价 $100、几乎不崩盘。顶级对局里卖肥料可达数千单位。另：<b>CARE</b>（照料）会累积加成，在下次产出时兑现。</small>
+  </div>
+</section>
+
+<!-- ============ 市场 ============ -->
+<section id="market">
+  <h2><span class="no">5</span>动态市场：价格悬崖模拟器</h2>
+  <p class="lead">每种商品初始库存 10,000，价格随库存动态变化：卖出 → 库存增加 → 价格下跌；城镇消耗/买入 → 库存减少 → 价格回升。<b>拖动滑块，亲眼看看「价格悬崖」。</b></p>
+  <div class="sim-panel">
+    <div class="sim-controls">
+      <label>选择商品：<select id="simItem"></select></label>
+      <label style="flex:1;min-width:220px">你和对手累计卖出 <b id="soldLabel">0</b> 单位
+        <input type="range" id="soldSlider" min="0" max="300" value="0" style="width:100%">
+      </label>
+    </div>
+    <div class="price-readout">
+      <div class="pr" id="priceBox"><b id="priceNow">$0</b><span>当前单价</span></div>
+      <div class="pr"><b id="priceBase">$0</b><span>基础价</span></div>
+      <div class="pr"><b id="pricePct">0%</b><span>相对基础价</span></div>
+    </div>
+    <canvas id="priceCanvas"></canvas>
+    <div class="compare-box" id="compareBox"></div>
+  </div>
+</section>
+
+<!-- ============ 城镇 ============ -->
+<section id="town">
+  <h2><span class="no">6</span>城镇需求</h2>
+  <p class="lead">城镇中心每天消耗每种商品各 1 份；每 3 天随机解锁一家新商店（可重复，最多 8 家），每 4 回合消耗一次所需商品。<b>商店是价格回升的引擎，也是选路线的信号。</b></p>
+  <div class="card">
+    <table>
+      <tr><th>商店</th><th>消耗商品</th><th>商店</th><th>消耗商品</th></tr>
+      <tr><td>🥖 Bakery</td><td>鸡蛋、小麦</td><td>🧶 Yarn Store</td><td>羊毛 ×2</td></tr>
+      <tr><td>🍕 Pizza Shop</td><td>牛奶、番茄、小麦</td><td>🍦 Ice Cream Shop</td><td>草莓、牛奶、小麦</td></tr>
+      <tr><td>🍳 Brunch Spot</td><td>鸡蛋、小麦、草莓</td><td>🐰 Pet Cafe</td><td>胡萝卜 ×2</td></tr>
+      <tr><td>🥤 Smoothie Shop</td><td>草莓、牛奶</td><td>🧺 Farmers Market</td><td>小麦、胡萝卜、番茄、草莓</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 生死规则 ============ -->
+<section id="survival">
+  <h2><span class="no">7</span>生死规则（最贵的学费都在这里）</h2>
+  <div class="card">
+    <ul class="danger-list">
+      <li>🌱 <b>新种的作物当天就必须浇水</b>——种植当天就算「缺水 1 天」，放着不管当晚就变杂草。</li>
+      <li>🥀 作物连续 2 天未浇水 → 变成杂草（只能 DIG）。</li>
+      <li>🐄 动物连续 2 天未喂食 → <b>永久逃走</b>（新放置的动物第一天豁免）。饲料是小麦。</li>
+      <li>📦 日终仓库溢出 → 超出部分直接丢失，不存在暂存区。</li>
+      <li>⏱️ <b>第 718 步是最后一个可执行动作</b>（第 719 步的动作不会被执行）——终局清仓要提前规划。</li>
+      <li>💸 卖出报价按「卖出前库存」、买入按「买入后库存」——同一商品立刻买入再卖出净收益为 0，别想套利。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 劳动力 ============ -->
+<section id="labor">
+  <h2><span class="no">8</span>劳动力：动作才是最稀缺的资源</h2>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>👨‍🌾 雇佣临时工（HIRE）</h3>
+      <small>当天有效，次日消失需重雇。同一天内雇佣价格按斐波那契数列上涨，次日重置：</small>
+      <div class="stat-row">
+        <div class="stat"><b>1, 1, 2, 3</b><span>前 4 个的价格</span></div>
+        <div class="stat"><b>5, 8, 13, 21…</b><span>之后越来越贵</span></div>
+      </div>
+      <small>💡 前 ~10 个工人很便宜，第 12 个起迅速变贵。顶级农场通常维持 12 个工人。</small>
+    </div>
+    <div class="card">
+      <h3>🚶 动作经济学</h3>
+      <small>农民 + 每个临时工每回合各做 <b>1 个动作</b>：移动一格、种一株、浇一块、收一次……所有生产收益都要扣除「走路 + 操作」占用的回合。纸面利润再高的作物，如果来回跑 20 回合才能卖一次，实际回报也会大打折扣。</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 胜负 ============ -->
+<section id="win">
+  <h2><span class="no">9</span>胜负与锦标赛评级</h2>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>🏆 单局胜负</h3>
+      <small>第 720 回合结束时<b>银行余额高者赢</b>（可能平局）。未售库存不计分——终局前要把能卖的都卖掉。</small>
+    </div>
+    <div class="card">
+      <h3>📈 排行榜评级</h3>
+      <small>评级只取决于<b>胜 / 负 / 平</b>与双方赛前评级，金币差额完全不影响。击败强敌涨分更多。每天最多提交 5 次，<b>只有最新 2 个提交</b>持续参赛；截止后还会再跑约 2 周，用 Bradley–Terry 锦标赛生成最终榜。</small>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h3>🎯 策略推论</h3>
+    <small>
+      ① 稳定以小优势赢 &gt; 偶尔大比分赢；
+      ② 镜像对局（双方路线相似）里，<b>市场出售时机的一回合先手</b>往往就是胜负手；
+      ③ premium 商品（草莓/牛奶/羊毛/甜瓜）超供 60–150 单位就崩到 $1，必须<b>小批量、分多天</b>出售；
+      ④ 土地、动物等长期投资必须算好「剩余赛季能否回本」。
+    </small>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Kaggriculture · Google LLC 主办 · Kaggle Featured Simulation Competition ·
+  本页依据官方 How to Play（引擎 1.32.x）整理，仅供学习参考
+</footer>
+
+<script>
+/* ================= 数据 ================= */
+const ITEMS = {
+  WHEAT:      {name:'小麦',   emoji:'🌾', base:25,  I0:10000, T:400, bf:'sqrt',   bt:0.80, af:'log',    at:0.20, maxSell:800},
+  CARROT:     {name:'胡萝卜', emoji:'🥕', base:35,  I0:10000, T:450, bf:'hinge',  bt:1.00, af:'sqrt',   at:0.70, maxSell:600},
+  TOMATO:     {name:'番茄',   emoji:'🍅', base:60,  I0:10000, T:200, bf:'hinge',  bt:0.40, af:'sqrt',   at:0.60, maxSell:500},
+  STRAWBERRY: {name:'草莓',   emoji:'🍓', base:120, I0:10000, T:100, bf:'sqrt',   bt:0.70, af:'linear', at:1.60, maxSell:300},
+  MELON:      {name:'甜瓜',   emoji:'🍈', base:250, I0:10000, T:300, bf:'log',    bt:0.20, af:'sq',     at:3.60, maxSell:400},
+  EGG:        {name:'鸡蛋',   emoji:'🥚', base:50,  I0:10000, T:332, bf:'hinge',  bt:0.40, af:'log',    at:0.20, maxSell:500},
+  MILK:       {name:'牛奶',   emoji:'🥛', base:160, I0:10000, T:122, bf:'sqrt',   bt:0.60, af:'linear', at:1.60, maxSell:300},
+  WOOL:       {name:'羊毛',   emoji:'🧶', base:200, I0:10000, T:105, bf:'log',    bt:0.20, af:'sq',     at:3.20, maxSell:300},
+  FERTILIZER: {name:'肥料',   emoji:'💩', base:100, I0:10000, T:200, bf:'linear', bt:0.40, af:'linear', at:0.40, maxSell:400},
+};
+
+const CROPS = [
+  {key:'WHEAT', seed:10, type:'一次性', first:2, span:'第 2–4 天', maxYield:'6（不施肥只有 4）',
+   note:'价格几乎不崩（3000 单位才到底）的压舱物，更是动物的唯一饲料。光浇水到不了产量上限，<b>必须施肥</b>。', tags:['饲料', '压舱物', '必施肥']},
+  {key:'CARROT', seed:20, type:'一次性', first:2, span:'第 2–3 天', maxYield:'4（不施肥 3）',
+   note:'短平快作物，3 天一熟。Pet Cafe 解锁后需求翻倍（hinge 曲线），稀缺时价格能冲到 $70。', tags:['短周期', '宠物咖啡馆']},
+  {key:'TOMATO', seed:50, type:'持续产出', first:8, span:'第 8–11 天每天', maxYield:'每次 1（浇水+施肥当次 2）',
+   note:'低价但稳定的现金流，共 4 次产出后枯萎。Pizza Shop / Farmers Market 的主要需求。', tags:['现金流', '4 次产出']},
+  {key:'STRAWBERRY', seed:100, type:'持续产出', first:10, span:'第 10/12/14/16 天', maxYield:'每次 1（浇水+施肥当次 2）',
+   note:'<b>当前顶级 meta 的主作物</b>：高价持续产出。但价格悬崖极陡（超供 ~60–80 单位崩到 $1），出售必须计量。', tags:['meta 主作物', '价格悬崖陡']},
+  {key:'MELON', seed:80, type:'一次性', first:10, span:'第 10 天', maxYield:'6（浇水即可到顶）',
+   note:'纸面利润之王（$250 基础价），但一次性 + 悬崖陡：双方同时 dump 时第二个卖家直接吃 $1。施肥反而浪费——浇水就能到 6。', tags:['高价值', 'IPO 打法', '勿施肥']},
+];
+
+const ANIMALS = [
+  {name:'鹅', emoji:'🪿', cost:300, product:'鸡蛋', price:50, interval:'每天', held:4, build:'需建鸡舍（BUILD_COOP）', rate:'1.00'},
+  {name:'牛', emoji:'🐄', cost:400, product:'牛奶', price:160, interval:'每 2 天', held:6, build:'需建牧场（BUILD_PASTURE）', rate:'0.50'},
+  {name:'羊', emoji:'🐑', cost:500, product:'羊毛', price:200, interval:'每 3 天', held:6, build:'需建牧场（BUILD_PASTURE）', rate:'0.33'},
+];
+
+/* ================= 价格函数（与引擎 1.32.x 一致） ================= */
+function shape(name, x, T) {
+  switch (name) {
+    case 'linear': return x;
+    case 'sq': return x * x;
+    case 'sqrt': return Math.sqrt(Math.max(0, x));
+    case 'log': return Math.log1p(Math.max(0, x));
+    case 'hinge': { const u = x / T; return u + 8 * Math.max(0, u - 1) ** 2; }
+  }
+}
+function priceAt(key, inv) {
+  const p = ITEMS[key];
+  if (inv < p.I0) {
+    const amp = p.bt * p.base / shape(p.bf, p.T, p.T);
+    return Math.max(1, Math.round(p.base + amp * shape(p.bf, p.I0 - inv, p.T)));
+  }
+  const amp = p.at * p.base / shape(p.af, p.T, p.T);
+  return Math.max(1, Math.round(p.base - amp * shape(p.af, inv - p.I0, p.T)));
+}
+
+/* ================= 市场模拟器 ================= */
+const simItem = document.getElementById('simItem');
+const soldSlider = document.getElementById('soldSlider');
+const canvas = document.getElementById('priceCanvas');
+let currentKey = 'STRAWBERRY';
+
+for (const [key, p] of Object.entries(ITEMS)) {
+  const opt = document.createElement('option');
+  opt.value = key; opt.textContent = `${p.emoji} ${p.name}（$${p.base}）`;
+  simItem.appendChild(opt);
+}
+simItem.value = currentKey;
+
+function sellRevenue(key, units, startInv) {
+  let inv = startInv, rev = 0;
+  for (let i = 0; i < units; i++) {
+    const pr = priceAt(key, inv);
+    rev += pr;
+    if (pr > 1) inv += 1;          // 高于地板价的出售会增加市场库存
+  }
+  return { rev, inv };
+}
+
+function drawSim() {
+  const p = ITEMS[currentKey];
+  const sold = +soldSlider.value;
+  const inv = p.I0 + sold;
+  const price = priceAt(currentKey, inv);
+
+  document.getElementById('soldLabel').textContent = sold;
+  document.getElementById('priceNow').textContent = '$' + price;
+  document.getElementById('priceBase').textContent = '$' + p.base;
+  const pct = Math.round(price / p.base * 100);
+  document.getElementById('pricePct').textContent = pct + '%';
+  document.getElementById('priceBox').classList.toggle('crash', price <= Math.max(1, p.base * 0.05));
+
+  // ---- canvas ----
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.clientWidth, H = 250;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+
+  const padL = 52, padR = 16, padT = 18, padB = 34;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const maxSell = p.maxSell;
+  const scarce = Math.min(150, p.T * 0.4);           // 左侧展示少量买入的涨价区
+  const xOf = s => padL + (s + scarce) / (maxSell + scarce) * plotW;
+  const maxPrice = priceAt(currentKey, p.I0 - scarce) * 1.08;
+  const yOf = pr => padT + (1 - (pr - 0) / maxPrice) * plotH;
+
+  // 网格与坐标
+  ctx.strokeStyle = '#e8e4d4'; ctx.fillStyle = '#98a290';
+  ctx.font = '11px sans-serif'; ctx.lineWidth = 1;
+  for (let g = 0; g <= 4; g++) {
+    const pr = maxPrice * g / 4, y = yOf(pr);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+    ctx.fillText('$' + Math.round(pr), 8, y + 4);
+  }
+  for (let s = 0; s <= maxSell; s += Math.ceil(maxSell / 6 / 50) * 50) {
+    ctx.fillText(s, xOf(s) - 8, H - 12);
+  }
+  ctx.fillText('横轴：累计卖出单位 →', W - padR - 130, padT + 2);
+
+  // 基础价虚线
+  ctx.setLineDash([5, 4]); ctx.strokeStyle = '#b9b39c';
+  ctx.beginPath(); ctx.moveTo(padL, yOf(p.base)); ctx.lineTo(W - padR, yOf(p.base)); ctx.stroke();
+  // $1 地板红线
+  ctx.strokeStyle = '#c0503a';
+  ctx.beginPath(); ctx.moveTo(padL, yOf(1)); ctx.lineTo(W - padR, yOf(1)); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#c0503a'; ctx.fillText('$1 地板', W - padR - 52, yOf(1) - 5);
+
+  // 价格曲线
+  ctx.strokeStyle = '#2e7d44'; ctx.lineWidth = 2.4; ctx.beginPath();
+  for (let s = -scarce; s <= maxSell; s += 2) {
+    const pr = priceAt(currentKey, p.I0 + s);
+    const x = xOf(s), y = yOf(pr);
+    s === -scarce ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // 当前位置标记
+  const mx = xOf(sold), my = yOf(price);
+  ctx.fillStyle = '#c99a2e';
+  ctx.beginPath(); ctx.arc(mx, my, 6.5, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = '#1d2b1f'; ctx.font = 'bold 12px sans-serif';
+  ctx.fillText('当前 $' + price, Math.min(mx + 10, W - 90), Math.max(my - 10, 26));
+
+  // ---- 倾倒 vs 计量 对比（固定卖 100 单位） ----
+  const units = 100, days = 5, demand = 12;
+  const dump = sellRevenue(currentKey, units, p.I0);
+  let invM = p.I0, revM = 0, left = units;
+  const perDay = Math.ceil(units / days);
+  for (let d = 0; d < days && left > 0; d++) {
+    const q = Math.min(perDay, left);
+    const r = sellRevenue(currentKey, q, invM);
+    revM += r.rev; invM = r.inv; left -= q;
+    invM = Math.max(0, invM - demand);   // 城镇每天消耗 12 单位
+  }
+  const diff = revM - dump.rev;
+  document.getElementById('compareBox').innerHTML =
+    `📊 <b>一次倾倒 ${units} 单位</b>：收入 <b>$${dump.rev.toLocaleString()}</b>（末单位单价跌到 $${priceAt(currentKey, dump.inv - 1)}）` +
+    `　|　<b>分 ${days} 天 × ${perDay} 单位出售</b>（假设城镇每天消耗 ${demand} 单位）：收入 <b>$${revM.toLocaleString()}</b>` +
+    `　→　分批${diff >= 0 ? '多赚' : '少赚'} <b class="up">$${Math.abs(diff).toLocaleString()}</b>` +
+    `<br><small style="color:#7a8a74">这就是顶级玩家「每单 4–8 单位、分多天计量出售」的原因；premium 商品（草莓/牛奶/羊毛/甜瓜）尤其敏感。</small>`;
+}
+
+simItem.addEventListener('change', () => {
+  currentKey = simItem.value;
+  soldSlider.max = ITEMS[currentKey].maxSell;
+  soldSlider.value = 0;
+  drawSim();
+});
+soldSlider.addEventListener('input', drawSim);
+window.addEventListener('resize', drawSim);
+drawSim();
+
+/* ================= 作物卡片 ================= */
+const tabsEl = document.getElementById('cropTabs');
+const detailsEl = document.getElementById('cropDetails');
+CROPS.forEach((c, i) => {
+  const p = ITEMS[c.key];
+  const btn = document.createElement('button');
+  btn.textContent = `${p.emoji} ${p.name}`;
+  btn.onclick = () => selectCrop(i);
+  tabsEl.appendChild(btn);
+
+  const div = document.createElement('div');
+  div.className = 'card crop-detail';
+  div.innerHTML = `
+    <h3>${p.emoji} ${p.name}　<small>${c.type}</small></h3>
+    <div class="stat-row">
+      <div class="stat"><b>$${c.seed}</b><span>种子成本</span></div>
+      <div class="stat"><b>$${p.base}</b><span>基础售价</span></div>
+      <div class="stat"><b>第 ${c.first} 天</b><span>首次可收获</span></div>
+      <div class="stat"><b>${c.maxYield}</b><span>最大产量/格</span></div>
+    </div>
+    <p style="font-size:14.5px">${c.note}</p>
+    <div style="margin-top:10px">${c.tags.map(t => `<span class="tag good">${t}</span>`).join('')}</div>
+  `;
+  detailsEl.appendChild(div);
+});
+function selectCrop(i) {
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('active', i === j));
+  [...detailsEl.children].forEach((d, j) => d.classList.toggle('show', i === j));
+}
+selectCrop(3);   // 默认展示草莓（meta 主作物）
+
+/* ================= 动物卡片 ================= */
+const animalEl = document.getElementById('animalCards');
+ANIMALS.forEach(a => {
+  const div = document.createElement('div');
+  div.className = 'card';
+  div.innerHTML = `
+    <h3>${a.emoji} ${a.name} → ${a.product}</h3>
+    <div class="stat-row">
+      <div class="stat"><b>$${a.cost}</b><span>购买价</span></div>
+      <div class="stat"><b>$${a.price}</b><span>产品基础价</span></div>
+      <div class="stat"><b>${a.interval}</b><span>产出频率</span></div>
+    </div>
+    <small>${a.build}；产品最多囤 ${a.held} 份；每格日产出率 ${a.rate}。<br>⚠️ 每天喂 1 份小麦，连续 2 天不喂永久逃走。</small>
+  `;
+  animalEl.appendChild(div);
+});
+</script>
+</body>
+</html>

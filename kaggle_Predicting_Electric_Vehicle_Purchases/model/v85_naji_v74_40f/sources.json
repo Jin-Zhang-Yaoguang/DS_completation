@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "experiment_id": "v85_naji_v74_40f",
+  "created_at_utc": "2026-09-03T18:18:24.180922+00:00",
+  "frozen_config_sha256": "0ed289568d8718b4548442aa843284d31b2282c7ed37a129343cd82a3efcdd8f",
+  "run_contract_sha256": "dcc33fae93f41750bec6bc0786d5d52453baf65b3dc8ece2ebba7cf84265f7eb",
+  "runtime": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit_learn": "1.7.2",
+    "lightgbm": "4.6.0",
+    "target_encoder_fit_transform_sha256": "0c6563ad597ef2d36b5ee4d9378d3c112c598f27aa6314205b18d77accaf36dd"
+  },
+  "code_and_inputs": {
+    "candidate_runner": {
+      "path": "model/v85_naji_v74_40f/v85_naji_v74_40f.py",
+      "sha256": "cadadf826262fbf3f253778bc5764bd48e95b7386f0b92a86eaad02a53f5d30b",
+      "bytes": 99827
+    },
+    "frozen_config": {
+      "path": "model/v85_naji_v74_40f/frozen_config.json",
+      "sha256": "0ed289568d8718b4548442aa843284d31b2282c7ed37a129343cd82a3efcdd8f",
+      "bytes": 4271
+    },
+    "naji_v68_probe": {
+      "path": "model/v68_naji_accelerated_probe/v68_naji_accelerated_probe.py",
+      "sha256": "262e6d9accd438f59af1fc1ff401e3998b9a942a41b6b14efcee2238289a483a",
+      "bytes": 8644
+    },
+    "naji_v69_runner": {
+      "path": "model/v69_naji_lgbm_20f/v69_naji_lgbm_20f.py",
+      "sha256": "e8e9a8b0aa6adb62a30e46b1db66a66b8e547f28db616ff5a81d17b9738a4b26",
+      "bytes": 7780
+    },
+    "naji_v74_runner": {
+      "path": "model/v74_naji_income_bin10_100_lgbm_20f/v74_naji_income_bin10_100_lgbm_20f.py",
+      "sha256": "6ce6a44401ff6dbd0f5d24fb5d353accd6f46ff4ce95e2c5f5ae51efd7f7b2fe",
+      "bytes": 732
+    },
+    "train_csv": {
+      "path": "data/train.csv",
+      "sha256": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+      "bytes": 44707646
+    },
+    "test_csv": {
+      "path": "data/test.csv",
+      "sha256": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+      "bytes": 18298347
+    },
+    "sample_submission_csv": {
+      "path": "data/sample_submission.csv",
+      "sha256": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5",
+      "bytes": 7737432
+    },
+    "original_csv": {
+      "path": "data/original_dataset/EV_Adoption_and_Range_Anxiety_Dataset.csv",
+      "sha256": "c271a380df51b18177d0a039d54525ca7c3d71500701dc7496714a091df16fae",
+      "bytes": 692429
+    },
+    "v74_cv_results": {
+      "path": "model/v74_naji_income_bin10_100_lgbm_20f/cv_results.json",
+      "sha256": "2fb933d16f95319f511d9f742a90effa17a35cf0ade4222002ce9611818384ef",
+      "bytes": 4064
+    },
+    "v74_oof": {
+      "path": "model/v74_naji_income_bin10_100_lgbm_20f/oof_proba.npy",
+      "sha256": "076d45ca820c44d78eb421bce42ae60e673e8d4d3e7766ba0cd4300fde2cfed8",
+      "bytes": 5349448
+    },
+    "v74_test": {
+      "path": "model/v74_naji_income_bin10_100_lgbm_20f/test_proba.npy",
+      "sha256": "1b90f46f3e99de9789375e68e2f3365b4e8394d89181caa5b434fa217c666fe0",
+      "bytes": 2292696
+    },
+    "v80_config": {
+      "path": "model/v80_strict_v61_outer104395303_40f/frozen_config.json",
+      "sha256": "79fc1e5451fb823cbde5a59e32b078e8e85cc0ebcef4c500694affab9195e5ab",
+      "bytes": 3650
+    },
+    "v80_cv_results": {
+      "path": "model/v80_strict_v61_outer104395303_40f/cv_results.json",
+      "sha256": "52bd098b6b765bffac5efd9f3faa18c4f1773229241fc18f7b2ebfafb41a57e2",
+      "bytes": 116748
+    },
+    "v80_oof": {
+      "path": "model/v80_strict_v61_outer104395303_40f/oof_proba.npy",
+      "sha256": "403d712897a775fd0869c9b8b89595dd8433ca909202a3313649b6ae77b29ae2",
+      "bytes": 5349448
+    },
+    "v80_test": {
+      "path": "model/v80_strict_v61_outer104395303_40f/test_proba.npy",
+      "sha256": "3dfd38c810276920929e2849ceafdf50de7c3f6f0543636e7efcd96a0ef499cb",
+      "bytes": 2292696
+    }
+  },
+  "row_identity": {
+    "train_rows": 668665,
+    "test_rows": 286571,
+    "train_id_sha256": "a79741ce666add0e6931e07b0facd43e0ecfe75f2dc0c590101895dd1dac3edf",
+    "test_id_sha256": "c414f5a13bb7853a288e8c7951737caace5abcac135455791d93bb57ed3ef718"
+  },
+  "outputs": {
+    "oof_proba": {
+      "path": "model/v85_naji_v74_40f/oof_proba.npy",
+      "sha256": "fee2a13203fd46480906813085181dc9d76e77d1b3d0757bdc43325185ef07b8",
+      "bytes": 5349448
+    },
+    "test_proba": {
+      "path": "model/v85_naji_v74_40f/test_proba.npy",
+      "sha256": "6d31b464324a2a7a61d95cf244b254ec7b3b8e44d3856281b5b6b04d14777a94",
+      "bytes": 2292696
+    },
+    "submission": {
+      "path": "model/v85_naji_v74_40f/submission.csv",
+      "sha256": "47e97c1d8d71eba94d2bc939ea00190a957a00d98ffac2808ccd50faa53cbf9d",
+      "bytes": 7905443
+    },
+    "feature_importance": {
+      "path": "model/v85_naji_v74_40f/feature_importance.csv",
+      "sha256": "c1697f6b1cb2b563d53b7312530d6ce27d259b5f3cf2078ca06026c1fb63d83a",
+      "bytes": 13941
+    }
+  }
+}

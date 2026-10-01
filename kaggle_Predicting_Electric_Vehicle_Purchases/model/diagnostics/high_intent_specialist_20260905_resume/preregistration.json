@@ -1,0 +1,27 @@
+{
+  "experiment_id": "HIGH_INTENT_SPECIALIST_20260905_RESUME",
+  "created_before_training": true,
+  "evidence_type": "FIVE_FOLD_PAIRED_DIAGNOSTIC_NOT_FORMAL_40F",
+  "hypothesis": "在预先固定的高意向区域集中训练一个相同模型容量的专家，可提供全局模型没有学好的局部排序信号。",
+  "unique_primary_mechanism": "新增专家的训练支持集限定为固定主切片，TE统计仍来自完整outer-fit；不增加特征或调模型参数。",
+  "arm_a": "strict-v96全局LightGBM，62 static + 51 strict nested TE = 113特征",
+  "arm_b": "保留A；专家仅在outer-fit内主切片行拟合。主切片预测固定0.75*A+0.25*expert，切片外与A逐元素完全相同。",
+  "primary_slice": "Environmental_Concern_Level>=4 AND Subsidy_Available=Yes AND Range_Anxiety_Level=Low",
+  "outer_cv": {"folds": 5, "shuffle": true, "seed": 42},
+  "te_contract": "A与专家使用同一113列数组；训练TE采用完整outer-fit内5折严格cross-fitting，inner prior/count/sum仅来自对应inner-train；outer-valid编码仅用完整outer-fit标签。专家使用训练数组的固定切片子集。",
+  "params": "从v96 frozen_config逐字段继承，A和专家完全相同，仅n_jobs共同改为4；inner seed=104395303+fold，全部模型seed=104395303。",
+  "early_stopping": "同为auc、patience500、最大12000轮；A的eval_set是完整outer-valid，专家eval_set仅主切片outer-valid。",
+  "control_limitations_preregistered": [
+    "专家早停评价群体与A不同，是局部支持机制的组成部分；本实验不能进一步区分训练支持缩小和早停目标集中各自的独立贡献。",
+    "专家增加一个模型和额外计算；本实验不证明相对于等计算量全局bagging的优势。",
+    "专家LightGBM histogram bins由较小训练支持集构造，即使113列输入相同其内部bin状态也可能不同；这是局部拟合机制的一部分。",
+    "同一outer-valid标签用于早停和报告是与控制对齐的常规CV口径，不是完全封闭的最终确认集。"
+  ],
+  "primary_gate": {"global_b_minus_a_min": 0.0001, "positive_outer_folds_min": 4, "primary_within_auc_must_improve": true, "cross_group_error_contribution_must_be_reported": true},
+  "v100_comparison": "只按相同行掩码报告开发OOF总体/主切片差；v100成员训练量与该五折模型不同，不用于同训练量的因果结论，也不据此调alpha。",
+  "uncertainty_reporting": "使用根代理已测试的research_runtime/paired_auc.py报告固定预测条件下的SE/95%CI及逐折方向；不包括训练重叠、早停和选择不确定性，不作为独立确认或门槛例外。",
+  "budget": {"wall_seconds_total": 1200, "cpu_threads": 4, "memory_gib": 8, "checkpoint_every_fold": true, "test_predictions": 0, "submissions": 0},
+  "outputs": "逐折checkpoint及完整diagnostic_predictions.npz明确标记诊断，永久不可直接入候选池或提交；完整evidence.json和README。",
+  "stop_policy": "完成五折后按冻结门槛GO_FOR_NEW_PREREGISTRATION_ONLY或NO_GO；预算或异常保留FAILED及checkpoint；不得扫alpha、树参数或事后改切片。",
+  "run_requires": "合成smoke通过，根代理快审完成，再freeze代码/数据/来源合同后运行。"
+}

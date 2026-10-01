@@ -1,0 +1,56 @@
+{
+  "experiment_id": "P1_SOURCE_GROUP_CONSTRAINTS_5F_20260926",
+  "registered_at_utc": "2026-09-26T09:58:49.965305+00:00",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_AND_SCORING",
+  "hypothesis": "V85 feature representations from the same raw field need within-field tree interactions; source-group interaction constraints preserve them while suppressing cross-field overfit.",
+  "unique_primary_variable": "LightGBM interaction_constraints absent (A) versus fixed source-group partition (B).",
+  "baseline": "V85 Naji LightGBM 148 features; 5-fold seed42 matched rerun; V100 ref56023943 Public0.94635 is online target, never replaced by weaker harness baseline.",
+  "feature_contract": {
+    "v85_pre_te_features": 109,
+    "v85_final_features": 148,
+    "source_groups": "12 raw source fields retained by V85; all derived representations assigned to exactly one origin. Explicit is_30k_spike/is_millionaire_cliff/is_dead_zone -> Annual_Income_USD; is_env_hater -> Environmental_Concern_Level. No composite keys in V85. Unknown, missing, overlapping origins fail closed.",
+    "same_for_a_b": true
+  },
+  "outer_cv": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "target_encoding": {
+    "implementation": "reuse v85.encode_naji_fold",
+    "inner_cv": 5,
+    "inner_seed": "42 + one-based outer fold",
+    "donor_only": true
+  },
+  "lightgbm": {
+    "source": "v85 frozen_config.json lightgbm_base_params",
+    "overrides_common_to_both_arms": {
+      "n_jobs": 6
+    },
+    "early_stopping_rounds": 350,
+    "outer_valid_used_for_early_stopping": true,
+    "evidence_level": "development matched diagnostic"
+  },
+  "fixed_blend": {
+    "formula": "0.5 * A outer-valid raw probability + 0.5 * B outer-valid raw probability",
+    "no_weight_search": true
+  },
+  "success_gate": {
+    "pooled_auc_delta_b_or_fixed_blend_vs_a": "strictly_positive",
+    "all_five_folds_positive_for_chosen_fixed_candidate": true,
+    "research_promotion_delta": 0.0001,
+    "diagnostic_never_direct_submission": true
+  },
+  "stop_rule": "If neither B nor fixed 50:50 blend has positive pooled delta and 5/5 positive folds, close this fixed P1 recipe. No bin/group/seed neighborhood rescue.",
+  "budget": {
+    "wall_clock_seconds": 3600,
+    "cpu_threads_max": 6,
+    "peak_rss_gib_max": 16,
+    "single_instance": true,
+    "submission_count": 0
+  },
+  "checkpoint": "One atomic arm checkpoint per fold, source/config hash validated on resume.",
+  "formal_followup": "Passing diagnostic triggers separately frozen 40-fold and end-to-end validation under takeover PLAN; only then conditional CLI submission.",
+  "negative_control": "2026-09-04 singleton probe used V96 113-column features and a 4x n_estimators cap, so it is not a contract-identical third arm and will not be reused as matched A/B result.",
+  "external_source": "canaryigo/kaggle-s6e9-ev-purchase-prediction commit 8b1ceacfc3ebffebfa97d25e158c8c2c08d3b86a"
+}

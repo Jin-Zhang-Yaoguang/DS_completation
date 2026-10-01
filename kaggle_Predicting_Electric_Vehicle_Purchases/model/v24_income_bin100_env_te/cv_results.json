@@ -1,0 +1,120 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "v6 plus multiscale nested income-bin100 x environment target encoding",
+  "seed": 42,
+  "n_folds": 5,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "income_bin100_env": [
+      "_income_bin100",
+      "Environmental_Concern_Level"
+    ]
+  },
+  "static_feature_count": 62,
+  "te_feature_count": 51,
+  "feature_count": 113,
+  "fold_auc": [
+    0.9448852309813753,
+    0.9455007548798529,
+    0.9466457990357084,
+    0.9462098447432427,
+    0.94585568674462
+  ],
+  "fold_auc_mean": 0.9458194632769598,
+  "fold_auc_std": 0.000601814861815937,
+  "best_iterations": [
+    1524,
+    1155,
+    1531,
+    1078,
+    1058
+  ],
+  "oof_auc": 0.9458117696178724,
+  "prediction_min": 1.2271421676470693e-05,
+  "prediction_max": 0.9995265319074056,
+  "prediction_mean": 0.17506004650741736,
+  "elapsed_seconds": 163.19247889518738,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 31,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "smooth the strongest exact income-environment lookup across neighboring income values"
+}

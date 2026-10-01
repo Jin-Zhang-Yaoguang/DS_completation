@@ -1,0 +1,130 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "10-fold income-bin10 multiscale TE LightGBM, model seed 3407",
+  "seed": 42,
+  "n_folds": 10,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "income_bin10": [
+      "_income_bin10"
+    ]
+  },
+  "static_feature_count": 62,
+  "te_feature_count": 51,
+  "feature_count": 113,
+  "fold_auc": [
+    0.9451499553740457,
+    0.9452858318493521,
+    0.9454434880954056,
+    0.9460873823393928,
+    0.9468448162645228,
+    0.9470658794927959,
+    0.9459520471046652,
+    0.9468817918909649,
+    0.9471082221336182,
+    0.9452614620955981
+  ],
+  "fold_auc_mean": 0.9461080876640361,
+  "fold_auc_std": 0.0007639625856235308,
+  "best_iterations": [
+    1387,
+    1570,
+    1331,
+    2204,
+    1819,
+    1258,
+    964,
+    1462,
+    1386,
+    1507
+  ],
+  "oof_auc": 0.9461010023004564,
+  "prediction_min": 6.583385515126186e-06,
+  "prediction_max": 0.99964030866124,
+  "prediction_mean": 0.1747482977161157,
+  "elapsed_seconds": 339.258572101593,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 31,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 3407,
+    "bagging_seed": 3407,
+    "feature_fraction_seed": 3407,
+    "data_random_seed": 3407,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "a third independent feature-subsampling and row-bagging path further reduces the variance of the 10-fold multiresolution-income ensemble",
+  "model_seed": 3407
+}

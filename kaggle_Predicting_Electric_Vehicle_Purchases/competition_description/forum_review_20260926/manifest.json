@@ -1,0 +1,768 @@
+{
+  "as_of_date": "2026-09-26",
+  "created_at_utc": "2026-09-26T03:40:11.574434+00:00",
+  "competition": "playground-series-s6e9",
+  "scope": "research_only_no_training_no_submission",
+  "topics_listed": 52,
+  "topic_bodies_fetched": 39,
+  "comments_and_replies": 119,
+  "missing_topic_ids": [
+    739303,
+    739280,
+    739233,
+    739170,
+    739142,
+    739054,
+    739049,
+    738991,
+    738968,
+    738828,
+    738746,
+    738617,
+    738610
+  ],
+  "notebooks_listed_unique": 184,
+  "github_repositories_unique": 88,
+  "github_commits": {
+    "happyc0der/kaggle-s6e9-ev-purchases": "b7b3c42812418933babe8cbccb588d7f3e47c0b8",
+    "avoid137/kaggle-s6e9-postmortem": "e156407799d789f2bb30a989a5802caec099ce5b",
+    "oivler/kaggle-electric-vehicle-purchases": "32e0abe733d81cd6b547d530fd2a3caf0755277d",
+    "tankajoshi122/Predicting-Electric-Vehicle-Purchases": "35e0c4b55577bf92347669afe813c2c5afde7dba",
+    "mrjohnsonsea/playground-series-s6e9": "935d640bac00ae7d699c61116eb106c5743a88f3",
+    "ferreret/kaggle-playground-s6e9": "eddd6431105e8a5d2b73f950a2deda2836328502",
+    "canaryigo/kaggle-s6e9-ev-purchase-prediction": "8b1ceacfc3ebffebfa97d25e158c8c2c08d3b86a",
+    "Agnuxo1/s6e9-honest-ceiling": "48371899bab048b33c3133c805cd4f455b9a4632"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 13761,
+      "sha256": "f84730a808cf81e0ccac05647681c5493185d47de7ead0acb2b4848a748f9a47"
+    },
+    {
+      "path": "evidence/code/blamerx/s6e9-xgboost-window-encodings-0-946-cv/kernel-metadata.json",
+      "bytes": 833,
+      "sha256": "b1b63ab8a46a8e922a6c9d23e225f8aa526dc86268f5fdf27f3b2310b78fbf0b"
+    },
+    {
+      "path": "evidence/code/blamerx/s6e9-xgboost-window-encodings-0-946-cv/outputs/s6e9-xgboost-window-encodings-0-946-cv.log",
+      "bytes": 19993,
+      "sha256": "ce2371feafd6b06223f6e1cc0491951dab119b2b15c1e7ca76649b5af4ab84d4"
+    },
+    {
+      "path": "evidence/code/blamerx/s6e9-xgboost-window-encodings-0-946-cv/outputs/s6e9-xgboost-window-encodings-0-946-cv.readable.txt",
+      "bytes": 9032,
+      "sha256": "7196e468b45960533307e68f82757879db0068498f3d4cc1dcda2489569ac3b1"
+    },
+    {
+      "path": "evidence/code/blamerx/s6e9-xgboost-window-encodings-0-946-cv/s6e9-xgboost-window-encodings-0-946-cv.ipynb",
+      "bytes": 74782,
+      "sha256": "ca061a0955ed6149c52d00abe83e52fe6bfd730b4b97b8ba3c975629f4d4d72a"
+    },
+    {
+      "path": "evidence/code/blamerx/s6e9-xgboost-window-encodings-0-946-cv/s6e9-xgboost-window-encodings-0-946-cv.txt",
+      "bytes": 60456,
+      "sha256": "f23b6982223382bb78f3aba45a2cde40feb71a339ebc4f8de3a921879ac999bd"
+    },
+    {
+      "path": "evidence/code/dariushafshar/s6e9-income-needs-1782-bins-lightgbm-gives-255/kernel-metadata.json",
+      "bytes": 802,
+      "sha256": "f043d3100fd2b22aba8106d4722ca29c3fcb30f32c2d5ef4730e4227d9e55f39"
+    },
+    {
+      "path": "evidence/code/dariushafshar/s6e9-income-needs-1782-bins-lightgbm-gives-255/s6e9-income-needs-1782-bins-lightgbm-gives-255.ipynb",
+      "bytes": 63757,
+      "sha256": "433a316aed8ee5b53ac4a9083e82419686614f19fe968f65108425c2a1c52502"
+    },
+    {
+      "path": "evidence/code/dariushafshar/s6e9-income-needs-1782-bins-lightgbm-gives-255/s6e9-income-needs-1782-bins-lightgbm-gives-255.txt",
+      "bytes": 59010,
+      "sha256": "b0a6cf86ebdb49c011bbbaab21671d48e8617d36bf9e89efc7029c8dde9b74bb"
+    },
+    {
+      "path": "evidence/code/denpugovkin/fifteen-teachers-fewer-voices-s6e9/fifteen-teachers-fewer-voices-s6e9.ipynb",
+      "bytes": 13734,
+      "sha256": "9032accb471160187b2e98215d28cc55929168a8aac57bce726289af9b99a834"
+    },
+    {
+      "path": "evidence/code/denpugovkin/fifteen-teachers-fewer-voices-s6e9/fifteen-teachers-fewer-voices-s6e9.txt",
+      "bytes": 12171,
+      "sha256": "aa9e74742645361428c590cac26b75d646ac32eeb207b6c34848a687e45a0404"
+    },
+    {
+      "path": "evidence/code/denpugovkin/fifteen-teachers-fewer-voices-s6e9/kernel-metadata.json",
+      "bytes": 757,
+      "sha256": "b4225029165258c94fa1e923c95ea3476bc6e4d628439dba6fb725694c6f478f"
+    },
+    {
+      "path": "evidence/code/heuljax/kps6e09-xgb-sample/kernel-metadata.json",
+      "bytes": 671,
+      "sha256": "3ff7aa324ce18396902c455fcb9d4489b823046a27a3d106fed0780926f33b03"
+    },
+    {
+      "path": "evidence/code/heuljax/kps6e09-xgb-sample/kps6e09-xgb-sample.ipynb",
+      "bytes": 54768,
+      "sha256": "ba2122df2b4a5ea01493b0943f82442d4eb5f4bfdbdbcd9bf267cb6c9a664312"
+    },
+    {
+      "path": "evidence/code/heuljax/kps6e09-xgb-sample/kps6e09-xgb-sample.txt",
+      "bytes": 52679,
+      "sha256": "418f33ecf1cc6c70929629322aafbc65697f9735be6a479f9811d80cf578d107"
+    },
+    {
+      "path": "evidence/code/heuljax/kps6e09-xgb-sample/outputs/kps6e09-xgb-sample.log",
+      "bytes": 21324,
+      "sha256": "ce5f4f89dc7066fc5f7d7fd7e0440bdcc30ee5e39bb0286c8de13823af30e920"
+    },
+    {
+      "path": "evidence/code/heuljax/kps6e09-xgb-sample/outputs/kps6e09-xgb-sample.readable.txt",
+      "bytes": 7319,
+      "sha256": "476834c182a28427d5a085ffbceae21d9651f9d7a3a0e43beec7e208ab50ff43"
+    },
+    {
+      "path": "evidence/code/itzzomkar/the-complete-original-generator-script/kernel-metadata.json",
+      "bytes": 650,
+      "sha256": "437dfb0a67886b94f9fbcfe4162f6bd8bdf8529e178d21b34338ce33baf4756c"
+    },
+    {
+      "path": "evidence/code/itzzomkar/the-complete-original-generator-script/the-complete-original-generator-script.ipynb",
+      "bytes": 5191,
+      "sha256": "0e4d19e2a71aa1a7a9ccd2a3a3ed6a79edbe1684f451884f3b5d810a277828f8"
+    },
+    {
+      "path": "evidence/code/itzzomkar/the-complete-original-generator-script/the-complete-original-generator-script.txt",
+      "bytes": 4024,
+      "sha256": "067373db34dab066977dd74c711147daf1fed638914f4331bff163c7a3ac188f"
+    },
+    {
+      "path": "evidence/code/jazivxt/single-model-zoom-zoom/kernel-metadata.json",
+      "bytes": 655,
+      "sha256": "1ec309a45649b4ab50f7116106d779cac7dbe0ab91ddff28659b5016f2d2e7f0"
+    },
+    {
+      "path": "evidence/code/jazivxt/single-model-zoom-zoom/single-model-zoom-zoom.ipynb",
+      "bytes": 10983,
+      "sha256": "72c9baa0593fce2dcaa821e0954c730eeed5056db71ce7566e8b23c5392901fa"
+    },
+    {
+      "path": "evidence/code/jazivxt/single-model-zoom-zoom/single-model-zoom-zoom.txt",
+      "bytes": 9736,
+      "sha256": "2656aee12d0978d38614ea20573479260a6d8aa15f0cc96035690b369aa37ec1"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-ii-partition-bagged-s6e9/ev-quantum-forge-fusion-ii-partition-bagged-s6e9.ipynb",
+      "bytes": 50548,
+      "sha256": "eebb8e8e4a65bef9d4fa7e31a548d5436a46593e4dd09336e648e98102cbd764"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-ii-partition-bagged-s6e9/ev-quantum-forge-fusion-ii-partition-bagged-s6e9.txt",
+      "bytes": 47391,
+      "sha256": "0c62689f04f7ef3229bf81d4f78fa0d39ac2c01411ada95ec470cc69faa76e80"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-ii-partition-bagged-s6e9/kernel-metadata.json",
+      "bytes": 782,
+      "sha256": "c6673ad5d5769e6402d4c3333cf598d467b720c7dea31cb4556b51b88793e226"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-ii-partition-bagged-s6e9/outputs/ev-quantum-forge-fusion-ii-partition-bagged-s6e9.log",
+      "bytes": 38011,
+      "sha256": "c0d37afbab1b5b80860ce9d388f42f0933a179b693983a7fba8ff8729e773dc7"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-ii-partition-bagged-s6e9/outputs/ev-quantum-forge-fusion-ii-partition-bagged-s6e9.readable.txt",
+      "bytes": 20419,
+      "sha256": "c459ddcf2c6ddd3f491250e24de721e798f47a3b97d19fe9d5c338d83060210d"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-iv-neural-views-s6e9/ev-quantum-forge-fusion-iv-neural-views-s6e9.ipynb",
+      "bytes": 56220,
+      "sha256": "63e317ce5e40810c709155482b06c706068c37f0a38d93b30c1faff526f0c592"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-iv-neural-views-s6e9/ev-quantum-forge-fusion-iv-neural-views-s6e9.txt",
+      "bytes": 52740,
+      "sha256": "24cb45e9e1ab0fb6dfcfbf6c5f635dcded7147719609fa9fadf3666a29174975"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-iv-neural-views-s6e9/kernel-metadata.json",
+      "bytes": 878,
+      "sha256": "80f747312fefb79d0e75a2ee132a183721cc13f95028c53a6d6f77c07da03bf3"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-iv-neural-views-s6e9/outputs/ev-quantum-forge-fusion-iv-neural-views-s6e9.log",
+      "bytes": 26481,
+      "sha256": "c7da306aa456382bcc94470878edf09d94b6f26959a45ee29fa3976c0cdc8ee4"
+    },
+    {
+      "path": "evidence/code/lucifer19/ev-quantum-forge-fusion-iv-neural-views-s6e9/outputs/ev-quantum-forge-fusion-iv-neural-views-s6e9.readable.txt",
+      "bytes": 15306,
+      "sha256": "fb14b15ed1e18ea2d00c2095f1ef554b2e664b7ae378e1d953b554726b91a729"
+    },
+    {
+      "path": "evidence/code/megayak/s6e9-0-94645-from-oof-files-only/kernel-metadata.json",
+      "bytes": 782,
+      "sha256": "5a468968d5e51e490a6e8969278f6ee7167b8d8ac37309b00369cbb17484564f"
+    },
+    {
+      "path": "evidence/code/megayak/s6e9-0-94645-from-oof-files-only/s6e9-0-94645-from-oof-files-only.ipynb",
+      "bytes": 11670,
+      "sha256": "7785df8e83fe749d85d6b3d2e9503d2de4dec194730ad6d6be6089423367bc3b"
+    },
+    {
+      "path": "evidence/code/megayak/s6e9-0-94645-from-oof-files-only/s6e9-0-94645-from-oof-files-only.txt",
+      "bytes": 10572,
+      "sha256": "208fbd212a3e5903769d22ea0b55a421312c54a7f09631e16aa4f8a34558836d"
+    },
+    {
+      "path": "evidence/code/najiama/honest-model-directory-oof-hub/honest-model-directory-oof-hub.ipynb",
+      "bytes": 18449,
+      "sha256": "67f973a464e545a17459ecfbc56da5fe498a7ccedfdf1cd9f90435461b058b85"
+    },
+    {
+      "path": "evidence/code/najiama/honest-model-directory-oof-hub/honest-model-directory-oof-hub.txt",
+      "bytes": 15773,
+      "sha256": "bbadc286d4db4695de3744dfdf07dc9a0f8f37ffd5f1803270cf8fbe8defae92"
+    },
+    {
+      "path": "evidence/code/najiama/honest-model-directory-oof-hub/kernel-metadata.json",
+      "bytes": 638,
+      "sha256": "e91f7f48fe8c2df93d2f293e546d9a637e4d7542a9d485f3a8df7a648a631437"
+    },
+    {
+      "path": "evidence/code/rafanikitas/s6e9-memory-aware-recipe-residual-lgbm/kernel-metadata.json",
+      "bytes": 691,
+      "sha256": "661d2fcbde9ba1b241586fa8c0bdfaed70020c29e69151d6f623b28eb8e9b281"
+    },
+    {
+      "path": "evidence/code/rafanikitas/s6e9-memory-aware-recipe-residual-lgbm/outputs/s6e9-memory-aware-recipe-residual-lgbm.log",
+      "bytes": 13946,
+      "sha256": "0b289f5e30a6a7fc372e1227be12de9dc801865d045f0f342f5443d6b52b0b87"
+    },
+    {
+      "path": "evidence/code/rafanikitas/s6e9-memory-aware-recipe-residual-lgbm/outputs/s6e9-memory-aware-recipe-residual-lgbm.readable.txt",
+      "bytes": 5716,
+      "sha256": "7a132bbe7dd9174301313e429accaab7abcf9847ddab975a3dcf98ad24d1b57b"
+    },
+    {
+      "path": "evidence/code/rafanikitas/s6e9-memory-aware-recipe-residual-lgbm/s6e9-memory-aware-recipe-residual-lgbm.ipynb",
+      "bytes": 26626,
+      "sha256": "fbe3505acc37fb128e9ae5eb1b75c359024594bf7987a716295397c91467c9d1"
+    },
+    {
+      "path": "evidence/code/rafanikitas/s6e9-memory-aware-recipe-residual-lgbm/s6e9-memory-aware-recipe-residual-lgbm.txt",
+      "bytes": 22413,
+      "sha256": "c402447c0ce8d00161d480b2070f407a4344a770bebcd7da35c1e153d380c7ce"
+    },
+    {
+      "path": "evidence/code/sergeyqt2024/lr-squeeze/kernel-metadata.json",
+      "bytes": 626,
+      "sha256": "c797403a481b593ed28c71d530d398b1741d5049fe1fbc9b4f0583678c861365"
+    },
+    {
+      "path": "evidence/code/sergeyqt2024/lr-squeeze/lr-squeeze.ipynb",
+      "bytes": 16854,
+      "sha256": "7280c510f6165c28999125ea2492012a3dd48512ed3bce505239123d6b0b8be8"
+    },
+    {
+      "path": "evidence/code/sergeyqt2024/lr-squeeze/lr-squeeze.txt",
+      "bytes": 13850,
+      "sha256": "c564f9151fd5d096ba4880c33964421b5435f2384daf5989072a03303141da6a"
+    },
+    {
+      "path": "evidence/code/sergeyqt2024/lr-squeeze/outputs/lr-squeeze.log",
+      "bytes": 4461,
+      "sha256": "834a9823c811c0ffa32aac734a7f313e89c70d24d0f6467c2bb79a035236fef0"
+    },
+    {
+      "path": "evidence/code/sergeyqt2024/lr-squeeze/outputs/lr-squeeze.readable.txt",
+      "bytes": 2119,
+      "sha256": "479f2ecb5099566e5c4f70d4fda1463bb9d5cd01fdde8dd2bbe34bdbfba94ff0"
+    },
+    {
+      "path": "evidence/fetch.py",
+      "bytes": 1395,
+      "sha256": "bc3b899dfbb68ab0b258319e9d42f9152bd8956afec8bbb90ce3a3440a894f7b"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/README.md",
+      "bytes": 12517,
+      "sha256": "73df8e63fd278685272d1eb9dd5e06b7e8aef24e57ea3095276a25ea0906bfce"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/ROADMAP.md",
+      "bytes": 5613,
+      "sha256": "489498ff53b74b036b426a068edced99865f195a5189d271ca6ed8bfde6a6e90"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/commit.json",
+      "bytes": 1565,
+      "sha256": "750e9e8d3470fbdc5278f50d551e4e43259363db1269415c35cf6f9e1309b31e"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/readme.json",
+      "bytes": 18082,
+      "sha256": "95b5220dcc6fcfc123532248857f4e05b23e947456e01c26dff9705864de6faa"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/results/ablations.json",
+      "bytes": 2467,
+      "sha256": "bf2de879f567e0bb36a176246b01bd5b35dff9de824415c3e26b9adcc328cdd7"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/results/blend_v4_report.json",
+      "bytes": 1543,
+      "sha256": "c9fa158414e4703d117e641d8a45c2ac187dd22822c330adf38a0799eeca2dae"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/results/legs_summary.json",
+      "bytes": 1085,
+      "sha256": "494459c8eaa7ec40d181f169ceb9e9a8ac591e416b70ce95d956c0e6ce5f4122"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/results/power_summary.json",
+      "bytes": 2742,
+      "sha256": "2f51ba4625ef6da02b04e0eb0ef35c60e930c0f00547b2732073a26b12835242"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/src/honest_ceiling/blend.py",
+      "bytes": 2958,
+      "sha256": "99d9f44214ffe2606734c1f86b8e16fea193a35b29d6471c5c974fd75c5c0b67"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/src/honest_ceiling/train.py",
+      "bytes": 5144,
+      "sha256": "b49536cae0e8de90cc7f16a726e03f524d8803454d88ad44adacd525fec700ed"
+    },
+    {
+      "path": "evidence/github/Agnuxo1/s6e9-honest-ceiling/tree.json",
+      "bytes": 27696,
+      "sha256": "6d3fefd1c3c963f33c5b0088c5e817ccb470623f02aad6394068d066f9cead14"
+    },
+    {
+      "path": "evidence/github/avoid137/kaggle-s6e9-postmortem/README.md",
+      "bytes": 20529,
+      "sha256": "3acf69954a920838ef6fcc7ee8b37691304e70f38559f588da97a7776d6dcb42"
+    },
+    {
+      "path": "evidence/github/avoid137/kaggle-s6e9-postmortem/commit.json",
+      "bytes": 3366,
+      "sha256": "408645b46907088102bd45207cd80b8e57cafe97d9becbaf6f4aec8f2d23af9a"
+    },
+    {
+      "path": "evidence/github/avoid137/kaggle-s6e9-postmortem/readme.json",
+      "bytes": 29146,
+      "sha256": "261123745c67e2a5a3f1cbfa6fef2e92da41455cab541a3fd2b57d1a11f9ba49"
+    },
+    {
+      "path": "evidence/github/avoid137/kaggle-s6e9-postmortem/tree.json",
+      "bytes": 7428,
+      "sha256": "91c01d0f54e430f836dcb557d9dbce84237708f100e5c72ae3c970438ed29bf0"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/README.md",
+      "bytes": 10940,
+      "sha256": "33d48672e5cb29660ec34e7b5e1a7644fa60f8640d8d1b404a9dcf9b74f3222d"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/commit.json",
+      "bytes": 3215,
+      "sha256": "604b8fe0d24b15e410e2bc616cec313d24149883993436726fa84441cdd487c3"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/readme.json",
+      "bytes": 16112,
+      "sha256": "2e3e2392c7b1668f73733e5277974366528952189c314c81685c0bc356436715"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/reports/interaction_constraints.md",
+      "bytes": 1298,
+      "sha256": "3d9c8ae532d3c58b71f88cbc4ed0a82f8c7d58f63cc9723afb882ebc1e961370"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/reports/neural_models.md",
+      "bytes": 1562,
+      "sha256": "4f12f268cd73c457418d3aee0914f086dbe0f6b6e739132f1acfbd0ec5144264"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/src/f_features.py",
+      "bytes": 6899,
+      "sha256": "759d8c92335f4d606b69e504b7c5c2b3c90209c1aac66952aa94b563e4f5a324"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/src/reproduce.py",
+      "bytes": 9766,
+      "sha256": "be71eb2490ea9e3021e80ee619e37c8bb12b9b69547f08701eedc5eff3e33111"
+    },
+    {
+      "path": "evidence/github/canaryigo/kaggle-s6e9-ev-purchase-prediction/tree.json",
+      "bytes": 6763,
+      "sha256": "44763c7fc8654eea06eb315c1cb2b864e3590544b87f0ab43fb43a18d25eaca6"
+    },
+    {
+      "path": "evidence/github/ferreret/kaggle-playground-s6e9/README.md",
+      "bytes": 3427,
+      "sha256": "fe74b4b9b1fb26f6bcd9450c4df5655cb82dce60bc573ea062ab38094c395ddf"
+    },
+    {
+      "path": "evidence/github/ferreret/kaggle-playground-s6e9/commit.json",
+      "bytes": 3443,
+      "sha256": "023f67c124852a62b5b61b453d13da8b433a0fa11d0ca65d71374651f8001d7b"
+    },
+    {
+      "path": "evidence/github/ferreret/kaggle-playground-s6e9/readme.json",
+      "bytes": 5585,
+      "sha256": "5cdb43804a6cbb402ef6ae477e62d587c8711bfd7adf48b8f34fd12420ba4050"
+    },
+    {
+      "path": "evidence/github/ferreret/kaggle-playground-s6e9/tree.json",
+      "bytes": 4264,
+      "sha256": "368c43171a082f65cd99021a7b5cee2d3ace06417b285c12bfda5907eae1b1a8"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/README.md",
+      "bytes": 4706,
+      "sha256": "91a56df50ccb6eeac92f164605fa30d788374d1f829fcd85ec6f1501ef9a2d2c"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/RERUN.md",
+      "bytes": 4738,
+      "sha256": "34a5f285626a9bade21546d4428da97200754a0ef2d1775e50f9e081dcfa2869"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/commit.json",
+      "bytes": 1645,
+      "sha256": "49865de76943851171d4a811e125327e8cfa4f62df72f330a7a67f94e3ad6e57"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/experiments/results.csv",
+      "bytes": 14066,
+      "sha256": "f791842d5e8a719a8fadbd3c26ca435038107530f4543c228d751192c3fa24a9"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/readme.json",
+      "bytes": 7383,
+      "sha256": "d59c0b0b72b6f7a6c82da6e90be164d0f5be746be619deb00e86eabd6ad3eb7d"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/scripts_honest.py",
+      "bytes": 2093,
+      "sha256": "22fbafbb0060be2521f605bd7001bdbf904932923ca43b37c9efa7a5b72f9962"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/scripts_megablend2.py",
+      "bytes": 5493,
+      "sha256": "efde06eebbdfeed3234db0814fb80a4c5d42be4a071e9d689063f64cce5ae1af"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/src/blend.py",
+      "bytes": 2329,
+      "sha256": "18013353cbd412adbacbda4e7d8c502ccd186bcf1933239a32e068c20a702901"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/src/features/target_enc.py",
+      "bytes": 6582,
+      "sha256": "9cb51966861f8189f55e173f1a35215d7e665e9650a283308a4eec834429dfd7"
+    },
+    {
+      "path": "evidence/github/happyc0der/kaggle-s6e9-ev-purchases/tree.json",
+      "bytes": 51390,
+      "sha256": "c7594044b85e788062665ee152e805efa8f4c6e4c3ecc7b24a70acdd3040bbeb"
+    },
+    {
+      "path": "evidence/github/mrjohnsonsea/playground-series-s6e9/README.md",
+      "bytes": 7361,
+      "sha256": "66c3dedad45f833c553e0d80acf3d14e6f4ace89844847d9dfd37f5185f96a68"
+    },
+    {
+      "path": "evidence/github/mrjohnsonsea/playground-series-s6e9/commit.json",
+      "bytes": 3501,
+      "sha256": "4153c5ad80d9d00c78957ad24a878a2806f93c4c4de69e61a029ac0e8214004c"
+    },
+    {
+      "path": "evidence/github/mrjohnsonsea/playground-series-s6e9/readme.json",
+      "bytes": 11041,
+      "sha256": "0764911aff9207b82d2bfba845d78007672a90b023a10d7070c36f7fda7c4d40"
+    },
+    {
+      "path": "evidence/github/mrjohnsonsea/playground-series-s6e9/tree.json",
+      "bytes": 2939,
+      "sha256": "eb25bad7dcd653ac059c48a2745baba5a2df5b25edae9756875b29d992bdde4c"
+    },
+    {
+      "path": "evidence/github/oivler/kaggle-electric-vehicle-purchases/commit.json",
+      "bytes": 3339,
+      "sha256": "ba58082a68373863db0df48d47bd0fe2dba2a8dda1325f6ed861b50426856855"
+    },
+    {
+      "path": "evidence/github/oivler/kaggle-electric-vehicle-purchases/tree.json",
+      "bytes": 451,
+      "sha256": "f17c7a8c393fff16a2ae99e56d23c81e90547813c4b22e25b9a3e21518857aed"
+    },
+    {
+      "path": "evidence/github/tankajoshi122/Predicting-Electric-Vehicle-Purchases/README.md",
+      "bytes": 16300,
+      "sha256": "5487f95d72df1f5a8cfb0c07c1c0f54de72bcc1894a0e16c50cf15e9bd096224"
+    },
+    {
+      "path": "evidence/github/tankajoshi122/Predicting-Electric-Vehicle-Purchases/commit.json",
+      "bytes": 5358,
+      "sha256": "3d6f3b5e04480ccfb801c42185de92a5d118a0414e92bf955cea80873f2ce7fc"
+    },
+    {
+      "path": "evidence/github/tankajoshi122/Predicting-Electric-Vehicle-Purchases/readme.json",
+      "bytes": 23572,
+      "sha256": "974645418c71bcdb912d46002aba9a41ea07448e9156a23d924b5286d722a572"
+    },
+    {
+      "path": "evidence/github/tankajoshi122/Predicting-Electric-Vehicle-Purchases/tree.json",
+      "bytes": 9234,
+      "sha256": "fcb3aabe95927a38bae1004a6bb1c16e2551297ad2f914b10e342bbdeb412a28"
+    },
+    {
+      "path": "evidence/github_name.json",
+      "bytes": 12327,
+      "sha256": "9ad52b6494ae2d64ef250ef64bf5ae06a6ed25c55019650e1d87efef0cf86884"
+    },
+    {
+      "path": "evidence/github_search.json",
+      "bytes": 11920,
+      "sha256": "01ee2df5e1d0ea77b26d5ce30e79d109e0550a0b06ff343eed9a94f945291ac9"
+    },
+    {
+      "path": "evidence/kernels_recent.json",
+      "bytes": 21861,
+      "sha256": "40ac0e0787f2273086509446115e016209c96537db9c0a5deaaad78c2d0e610a"
+    },
+    {
+      "path": "evidence/kernels_score.json",
+      "bytes": 23147,
+      "sha256": "ba2917f747652a43b425e155fa89b481c98be9fd80beecbca3d7b50698e2b342"
+    },
+    {
+      "path": "evidence/leaderboard.txt",
+      "bytes": 1928,
+      "sha256": "8dc06bde537b99d13e76e370d98afd440eba1fc46bc4363d4e840c8289ae0121"
+    },
+    {
+      "path": "evidence/list_1.json",
+      "bytes": 7941,
+      "sha256": "b196bc0c9acaa23c2990f32b0780d2519757945f027a3195a8fd579d39b35675"
+    },
+    {
+      "path": "evidence/list_2.json",
+      "bytes": 7993,
+      "sha256": "bdb2f02e39419dec95036ecf5ec4019990437a8bfbf93501a135740bac03db8d"
+    },
+    {
+      "path": "evidence/list_3.json",
+      "bytes": 4815,
+      "sha256": "78013c9bade98f3b9acf2895b514523b1a4bbb9a1946258a3f4aca20327bacc6"
+    },
+    {
+      "path": "evidence/list_4.json",
+      "bytes": 39,
+      "sha256": "abe9e2e6de9c99495a5c05d4ce64f5048ee1732b0e159c7bd102489d2870f2fd"
+    },
+    {
+      "path": "evidence/topic_739321.json",
+      "bytes": 9331,
+      "sha256": "6f140042fbf76f372b5e3cc1364f30d3b4788b461d79b3fe2e16f89c8f4e49ce"
+    },
+    {
+      "path": "evidence/topic_739354.json",
+      "bytes": 34050,
+      "sha256": "9523f68c60828a79dabd7f85553f6fefc221951083b1ab7bd42cf4ccfa8ff2f4"
+    },
+    {
+      "path": "evidence/topic_739379.json",
+      "bytes": 1651,
+      "sha256": "79f00672cb1e99886e2e096df410f7acc021a86cf1534ec60abda724d9974ec5"
+    },
+    {
+      "path": "evidence/topic_739391.json",
+      "bytes": 2506,
+      "sha256": "50f8a8249d0bb439c54232fedc0deb7dc283ea8d0884d575a884c4538060ad57"
+    },
+    {
+      "path": "evidence/topic_739398.json",
+      "bytes": 5424,
+      "sha256": "ca39d444938e56acab1643219eb4e77004e16ed4a478b379d8810ee5db39d275"
+    },
+    {
+      "path": "evidence/topic_739498.json",
+      "bytes": 2628,
+      "sha256": "3fc983ec8d1d043e1b9a22289775ed93df65e930982275c2bce1e552e3379226"
+    },
+    {
+      "path": "evidence/topic_739531.json",
+      "bytes": 4292,
+      "sha256": "8ba87c0ba11bc3e13c0242dc9fb4d265386856c9f507af8128fcb078f58e528a"
+    },
+    {
+      "path": "evidence/topic_739596.json",
+      "bytes": 2838,
+      "sha256": "d50db1e9e8e338f2320320da39bf6837362503f239aa5ff4bdc2bd57a920fee2"
+    },
+    {
+      "path": "evidence/topic_739910.json",
+      "bytes": 6216,
+      "sha256": "6ea59ad3118cccc8530ded61355c1a4b9518f04ad188b8fa4f54df208aa18e97"
+    },
+    {
+      "path": "evidence/topic_740049.json",
+      "bytes": 10861,
+      "sha256": "d17f0678f1c375085bbf583f621948319937f1128699e0ba9dc5a883f916f121"
+    },
+    {
+      "path": "evidence/topic_740159.json",
+      "bytes": 2535,
+      "sha256": "39ac54864c69a1547d2805805a3c02eb7be9a7477a8e9a92695c2a7e9c39ae5e"
+    },
+    {
+      "path": "evidence/topic_740441.json",
+      "bytes": 3621,
+      "sha256": "1fbf81f3136e6527458f730625a019dc78208c094d73a2c074b262f5b8f2d9e1"
+    },
+    {
+      "path": "evidence/topic_740739.json",
+      "bytes": 2981,
+      "sha256": "6d934bc3eaa7801ae94e458d63607358401201feb2b82082a54c9606ff63da86"
+    },
+    {
+      "path": "evidence/topic_740769.json",
+      "bytes": 43908,
+      "sha256": "aff054b6e9f2c57bbda30c7762e22750b9dc5b71b400b81150f5e05609faeb83"
+    },
+    {
+      "path": "evidence/topic_740775.json",
+      "bytes": 3555,
+      "sha256": "1b3e79c0e4b5710f01b2dee4506d0406590fb53ef87016a6a0287284ac632800"
+    },
+    {
+      "path": "evidence/topic_740824.json",
+      "bytes": 5838,
+      "sha256": "983248f55f0048dfb37e36ffc327d9eddce34307d4d061b3cbac8cf5b33c1bf5"
+    },
+    {
+      "path": "evidence/topic_740928.json",
+      "bytes": 5405,
+      "sha256": "2f42262ca4a8c636428734c67232230d5ccd291fe7cc5dfb8c0d37e088954699"
+    },
+    {
+      "path": "evidence/topic_741117.json",
+      "bytes": 3391,
+      "sha256": "ccfd1b710fbb302d2566bb58faddd1f7348d4ebf220788d3446e471798b1bda5"
+    },
+    {
+      "path": "evidence/topic_741177.json",
+      "bytes": 4454,
+      "sha256": "3e26c9c099cfaab55677b6e27b698643862bc768dc9039e7f6eff6af86f18e34"
+    },
+    {
+      "path": "evidence/topic_741247.json",
+      "bytes": 5852,
+      "sha256": "09241e54882e915b4ac42f501374f6b8a533441b9282f9a6d9d259b998a06c8d"
+    },
+    {
+      "path": "evidence/topic_741447.json",
+      "bytes": 9217,
+      "sha256": "8c5943c32208c2b763c94422aa8da7714992c5c199295af6e8a0087b2b3b4c50"
+    },
+    {
+      "path": "evidence/topic_741456.json",
+      "bytes": 4666,
+      "sha256": "4713bb22be27c6b929f98df83c5e1213fc1460ac2528fe1d567d0457433090fd"
+    },
+    {
+      "path": "evidence/topic_741457.json",
+      "bytes": 5463,
+      "sha256": "a18448eb4a2bc1eb1cada7481b217416fcd056068067b18defac44f01c914106"
+    },
+    {
+      "path": "evidence/topic_741655.json",
+      "bytes": 1130,
+      "sha256": "9e852daf6902b5d09bb6d263a11b337e05dd8c0e3550058e3da5325cbc346ae0"
+    },
+    {
+      "path": "evidence/topic_741746.json",
+      "bytes": 10263,
+      "sha256": "780687a95b70426f5c2aa2ad4aaa2db48d7522595f9c330b3fe2612d6825c8dc"
+    },
+    {
+      "path": "evidence/topic_741752.json",
+      "bytes": 7410,
+      "sha256": "d580ef562e5c2374a0d8644c8b1918c9c65229a608ac986b5072d5f821782e35"
+    },
+    {
+      "path": "evidence/topic_741755.json",
+      "bytes": 8653,
+      "sha256": "5cabc4952bdbff09b16cc5d8be1183684bd7ef0a0dbd2ed3fff6af70f2097349"
+    },
+    {
+      "path": "evidence/topic_742170.json",
+      "bytes": 13325,
+      "sha256": "96c0515438ef2225147800da8af75ed2ace3d9246a18260978e753801b7201ba"
+    },
+    {
+      "path": "evidence/topic_742317.json",
+      "bytes": 7516,
+      "sha256": "4168ab7775b26ace5c5f285a8f2720a16652e10146653eb75be5d303fffebe99"
+    },
+    {
+      "path": "evidence/topic_742324.json",
+      "bytes": 634,
+      "sha256": "06095b301f288a972cac37b0942740f9be11606ce119e8a8711b3af2bb9766a3"
+    },
+    {
+      "path": "evidence/topic_742332.json",
+      "bytes": 8291,
+      "sha256": "59e413c82ee5d034e5c1ff29bf5d1b6764d62d435d91b3cb300cee38ff93e6bd"
+    },
+    {
+      "path": "evidence/topic_742385.json",
+      "bytes": 2479,
+      "sha256": "c60ecaa099b4512885964d90491c0be2a6e76789031cd3b5f67a058607af4e53"
+    },
+    {
+      "path": "evidence/topic_742612.json",
+      "bytes": 1649,
+      "sha256": "1b093a68bf657bf13017af716e44aba1ebcf1deb5c9ed2a1a1001c4b78edbf0e"
+    },
+    {
+      "path": "evidence/topic_742697.json",
+      "bytes": 5777,
+      "sha256": "29229cae91fd6faf27a284fbabb6f1ab4b95fa0eefa189a14a0c62ddf20247ec"
+    },
+    {
+      "path": "evidence/topic_742774.json",
+      "bytes": 8347,
+      "sha256": "b1c07d4a77e6a2de236e7171ef01a4ef79e58c3e0e01800a24af2c1b8e7dbb21"
+    },
+    {
+      "path": "evidence/topic_742904.json",
+      "bytes": 2183,
+      "sha256": "0b06aef3cba24cd4e7be53202f126fc5b12682c546d638ce67f5e5d6d14c0e22"
+    },
+    {
+      "path": "evidence/topic_742927.json",
+      "bytes": 1294,
+      "sha256": "0ec859126ae48e1d88ca86f0cb6cd4db0f7cfcc62e734372862811a357ed34d1"
+    },
+    {
+      "path": "evidence/topic_743298.json",
+      "bytes": 10050,
+      "sha256": "7b0c8f00094212758dc95d22ac89493d31f96d9358e0e8f6af8db960cda08bec"
+    },
+    {
+      "path": "evidence/topic_743313.json",
+      "bytes": 3056,
+      "sha256": "b03f9776f6cd75bc90123b58b885a39042a2e86db435ea425d2eeda707acd0eb"
+    },
+    {
+      "path": "evidence/topics.json",
+      "bytes": 19484,
+      "sha256": "9e6499d29f69b0285d1402290eddf8f69baf365cd0f35c09d4dc7b60efe252fe"
+    }
+  ]
+}

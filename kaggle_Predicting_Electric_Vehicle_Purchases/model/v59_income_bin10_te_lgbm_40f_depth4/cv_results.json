@@ -1,0 +1,190 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "40-fold income-bin10 TE depth-4 LightGBM, 97.5% train coverage",
+  "seed": 49979687,
+  "n_folds": 40,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "income_bin10": [
+      "_income_bin10"
+    ]
+  },
+  "static_feature_count": 62,
+  "te_feature_count": 51,
+  "feature_count": 113,
+  "fold_auc": [
+    0.9475733185633797,
+    0.941844648233125,
+    0.945508708060574,
+    0.9473335004785189,
+    0.9479315187404462,
+    0.9450610757744208,
+    0.9491711023142813,
+    0.945918062393949,
+    0.9431062291683422,
+    0.9462592622378698,
+    0.9460585287053669,
+    0.9461335400489089,
+    0.9474217394887315,
+    0.9442708659118869,
+    0.9453547078429797,
+    0.944538791935114,
+    0.9468040997596262,
+    0.946372796945137,
+    0.9495169934698926,
+    0.9468712426068403,
+    0.9454492539076887,
+    0.9460847156568681,
+    0.9418275861041858,
+    0.9482821856250266,
+    0.9473212362028275,
+    0.9450619853882373,
+    0.949919404705478,
+    0.9443093802533844,
+    0.9454823120039676,
+    0.9469344600112785,
+    0.9459388659668357,
+    0.9469353787308427,
+    0.945460014431843,
+    0.9481195337582634,
+    0.9446252708019028,
+    0.9438301314342556,
+    0.9475291447021303,
+    0.9489149710890126,
+    0.9466010144700069,
+    0.9471630970314606
+  ],
+  "fold_auc_mean": 0.9462210168738722,
+  "fold_auc_std": 0.0018313023642828996,
+  "best_iterations": [
+    1806,
+    1607,
+    1954,
+    1260,
+    1149,
+    2969,
+    2175,
+    1900,
+    2412,
+    2804,
+    2689,
+    3186,
+    3064,
+    1386,
+    3287,
+    2093,
+    2308,
+    2240,
+    2108,
+    1481,
+    1712,
+    2172,
+    1903,
+    1921,
+    1781,
+    1560,
+    2510,
+    1380,
+    1803,
+    1245,
+    3105,
+    1830,
+    3533,
+    2567,
+    1613,
+    2149,
+    2309,
+    2451,
+    2183,
+    2092
+  ],
+  "oof_auc": 0.9462143550685458,
+  "prediction_min": 2.19413030474477e-06,
+  "prediction_max": 0.9997282863830279,
+  "prediction_mean": 0.17488552924048054,
+  "elapsed_seconds": 1419.683923959732,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 4,
+    "num_leaves": 15,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 49979687,
+    "bagging_seed": 49979687,
+    "feature_fraction_seed": 49979687,
+    "data_random_seed": 49979687,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "the observed 5-to-10-to-20-fold learning curve shows that larger outer-fold training coverage lowers bias; 40 folds raises coverage from 95 to 97.5 percent",
+  "full_seed": 49979687
+}

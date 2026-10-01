@@ -1,0 +1,1862 @@
+{
+  "goal": "3 stable winners against all frozen y68 models",
+  "qualified": [],
+  "next_version": "ddca",
+  "versions": [
+    {
+      "version": "dda",
+      "index": 0,
+      "status": "DEVELOPMENT_FAILED",
+      "method": "state-conditioned joint-action prototype behavior cloning",
+      "hypothesis": "joint action support preserves coordination better than independent heads",
+      "teacher": "Majkel1337 submission 56156662, train split only",
+      "results": {
+        "run": "dev02",
+        "wins": 8,
+        "games": 32,
+        "mean_margin": -10533.15625,
+        "failure": "Physical nearest-neighbor locks into low-return teacher routes; state support has no outcome preference"
+      }
+    },
+    {
+      "version": "ddb",
+      "index": 1,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Outcome-weighted prototype behavior cloning",
+      "hypothesis": "Prefer high-return demonstrations among physically compatible states to avoid locking into weak production routes",
+      "results": {
+        "run": "dev01",
+        "wins": 0,
+        "games": 32,
+        "mean_margin": -34651.15625,
+        "failure": "Additive outcome bonus selects physically incompatible continuations; invalid unit requests increase"
+      }
+    },
+    {
+      "version": "ddc",
+      "index": 2,
+      "parent": "ddb",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Compatibility-constrained outcome distillation",
+      "hypothesis": "Use teacher return only within a narrow physical-state compatibility set, preserving task continuity",
+      "results": {
+        "run": "dev01",
+        "wins": 0,
+        "games": 32,
+        "mean_margin": -20525.9375,
+        "failure": "Restricting switches does not repair mismatched production economics"
+      }
+    },
+    {
+      "version": "ddd",
+      "index": 3,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Actual-inventory liquidation ablation",
+      "hypothesis": "Track teacher resource targets and liquidate actual production instead of replaying teacher transaction quantities",
+      "results": {
+        "run": "dev01",
+        "wins": 4,
+        "games": 32,
+        "mean_margin": -7075.1875,
+        "failure": "Quantity feedback reduces mean loss but does not improve route selection or achieve stable wins"
+      }
+    },
+    {
+      "version": "dde",
+      "index": 4,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "New-teacher-only joint-action behavioral cloning",
+      "hypothesis": "Separate teacher version effect before further controller changes",
+      "teacher": "56216119",
+      "results": {
+        "wins": 0,
+        "completed": 32,
+        "mean_margin": -56108.25
+      }
+    },
+    {
+      "version": "ddf",
+      "index": 5,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Hierarchical local-action distillation",
+      "hypothesis": "Keep a joint production reference but recover each unit from actual local state with short temporal tolerance",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -118108.625
+      }
+    },
+    {
+      "version": "ddg",
+      "index": 6,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Daily ordered-task distillation with resource feedback",
+      "hypothesis": "Compile teacher non-movement events into persistent task queues; execute from actual positions and repair missing resources",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -92828.0
+      }
+    },
+    {
+      "version": "ddh",
+      "index": 7,
+      "parent": "ddg",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Release-time constrained task distillation",
+      "hypothesis": "Preserve teacher task release times to prevent premature harvest cancellation while correcting paths and resources",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -124335.0
+      }
+    },
+    {
+      "version": "ddi",
+      "index": 8,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Whole-trajectory distillation control",
+      "hypothesis": "Measure the best coherent demonstration plan before adding state-conditioned branching; research control not a qualifying independent model",
+      "results": {
+        "wins": 0,
+        "completed": 32,
+        "mean_margin": -61836.875
+      },
+      "qualifying_eligible": false
+    },
+    {
+      "version": "ddj",
+      "index": 9,
+      "parent": "ddf",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Autoregressive decision-tree policy distillation",
+      "hypothesis": "Learn reusable conditional rules from demonstration states instead of nearest trajectory or fixed task sequences",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -136862.25
+      },
+      "failure": "Closed-loop execution failure despite exact model export parity; active market order free-prefix accuracy much lower than STOP-dominated head accuracy"
+    },
+    {
+      "version": "ddk",
+      "index": 10,
+      "parent": "dda",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Daily plan distillation with spatial task bundles",
+      "hypothesis": "Distill end-of-day production goals but execute complete local tile bundles, using automatic daily inventory return to reduce wasted walking",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -96252.0
+      }
+    },
+    {
+      "version": "ddl",
+      "index": 11,
+      "parent": "ddk",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Task-bundle distillation with committed-animal feed",
+      "hypothesis": "Account for unplaced animal feed commitments to remove the pickup-place-feed startup deadlock",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -71610.25
+      }
+    },
+    {
+      "version": "ddm",
+      "index": 12,
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Single-team joint-action distillation: M & M & P & Q",
+      "hypothesis": "Test whether a different strong teacher is easier to distill than Majkel",
+      "teacher": "M & M & P & Q",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -17758.625
+      },
+      "failure": "Nearest-state start chooses an arbitrary teacher path; simulator search now evaluates all coherent training plans"
+    },
+    {
+      "version": "ddn",
+      "index": 13,
+      "parent": "ddm",
+      "status": "DEVELOPMENT_BASELINE",
+      "method": "Simulator-ranked trajectory distillation",
+      "hypothesis": "Select coherent teacher plans by actual adversarial returns on development seeds instead of source-game cash or nearest-state tie order",
+      "search_matches": 868,
+      "selected": {
+        "k": 35,
+        "mode": "teacher",
+        "games": 24,
+        "wins": 16,
+        "mean_margin": 5729.416666666667,
+        "worst_margin": -2136.0
+      },
+      "results": {
+        "wins": 24,
+        "completed": 32,
+        "mean_margin": 5306.375
+      }
+    },
+    {
+      "version": "ddo",
+      "index": 14,
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Single-team joint-action distillation: Artem The Farmer \ud83c\udf45",
+      "hypothesis": "Test whether a different strong teacher is easier to distill than Majkel",
+      "teacher": "Artem The Farmer \ud83c\udf45",
+      "results": {
+        "wins": 0,
+        "completed": 8,
+        "mean_margin": -4217.625
+      }
+    },
+    {
+      "version": "ddp",
+      "index": 15,
+      "parent": "ddn",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Inventory-transition distillation",
+      "hypothesis": "Track learned post-action inventory and workforce targets from actual state instead of reproducing teacher transaction quantities",
+      "results": {
+        "wins": 18,
+        "completed": 32,
+        "mean_margin": -1198.28125
+      }
+    },
+    {
+      "version": "ddq",
+      "index": 16,
+      "parent": "ddn",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Distilled plan with demand-safe sale preemption",
+      "hypothesis": "Advance available non-food sales one step only when no town consumption can raise the next quote, preserving original cumulative sale quantities",
+      "results": {
+        "wins": 24,
+        "completed": 32,
+        "mean_margin": 5416.625
+      },
+      "broad_results": {
+        "run": "broad01",
+        "wins": 40,
+        "games": 64,
+        "mean_margin": -2700.65625
+      }
+    },
+    {
+      "version": "ddr",
+      "index": 17,
+      "parent": "ddq",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Distilled plan with maintenance-safe fertilizer conversion",
+      "hypothesis": "Use otherwise carried fertilizer on productive perennial crops without adding travel or breaking next-day watering obligations",
+      "results": {
+        "wins": 24,
+        "completed": 32,
+        "mean_margin": 5044.46875
+      },
+      "failure": "Fertilizer conversion worsened mean margin and did not repair losing seed"
+    },
+    {
+      "version": "dds",
+      "index": 18,
+      "parent": "ddq",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Production-substitution trajectory distillation",
+      "hypothesis": "Reuse learned spatial maintenance tasks but replace cow production with goose production to reduce feed costs and milk saturation",
+      "results": {
+        "wins": 0,
+        "completed": 32,
+        "mean_margin": -34605.46875
+      },
+      "failure": "Cow-to-goose conversion lost all 32 games. Both animals consume one WHEAT per feed, so the feed-unit-cost premise was wrong; terminal milk price alone did not establish whole-game dairy underperformance."
+    },
+    {
+      "version": "ddt",
+      "index": 19,
+      "parent": "ddq",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Task-preserving local residual distillation",
+      "hypothesis": "Fill idle or infeasible teacher actions with zero-travel maintenance while preserving all learned movement and task order",
+      "results": {
+        "wins": 18,
+        "completed": 32,
+        "mean_margin": 1682.0625
+      }
+    },
+    {
+      "version": "ddu",
+      "index": 20,
+      "parent": "ddq",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Counterexample-selected trajectory distillation",
+      "hypothesis": "Select coherent training plan 124 after evaluating 28 candidates against four observed failure environments",
+      "results": {
+        "wins": 56,
+        "completed": 96,
+        "mean_margin": 1355.0
+      }
+    },
+    {
+      "version": "ddv",
+      "index": 21,
+      "parent": "dde",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "New-teacher simulator-guided trajectory distillation",
+      "hypothesis": "Test all 121 coherent plans from Majkel submission 56216119 before rejecting the teacher based on nearest-state selection",
+      "screen_results": {
+        "games": 242,
+        "selected_for_refine": 12,
+        "leading_prototype": 83,
+        "leader_screen_wins": 2,
+        "leader_screen_games": 2
+      },
+      "search_matches": 362,
+      "refine_results": [
+        {
+          "k": 25,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 3,
+          "mean_margin": -4889.7,
+          "worst_margin": -21562.0
+        },
+        {
+          "k": 14,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 2,
+          "mean_margin": -8774.0,
+          "worst_margin": -29474.0
+        },
+        {
+          "k": 35,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 1,
+          "mean_margin": -9763.9,
+          "worst_margin": -32882.0
+        },
+        {
+          "k": 17,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 1,
+          "mean_margin": -8739.5,
+          "worst_margin": -33315.0
+        },
+        {
+          "k": 120,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 1,
+          "mean_margin": -28660.2,
+          "worst_margin": -56854.0
+        },
+        {
+          "k": 48,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 1,
+          "mean_margin": -30303.4,
+          "worst_margin": -57571.0
+        },
+        {
+          "k": 34,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 0,
+          "mean_margin": -9177.4,
+          "worst_margin": -22296.0
+        },
+        {
+          "k": 83,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 0,
+          "mean_margin": -17950.8,
+          "worst_margin": -33042.0
+        },
+        {
+          "k": 20,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 0,
+          "mean_margin": -21281.8,
+          "worst_margin": -33573.0
+        },
+        {
+          "k": 92,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 0,
+          "mean_margin": -20720.7,
+          "worst_margin": -39713.0
+        },
+        {
+          "k": 74,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 0,
+          "mean_margin": -22307.3,
+          "worst_margin": -46027.0
+        },
+        {
+          "k": 116,
+          "mode": "teacher",
+          "games": 10,
+          "wins": 0,
+          "mean_margin": -49009.6,
+          "worst_margin": -73985.0
+        }
+      ],
+      "failure": "Screen winner 83 won 2/2 but lost 0/10 on expanded seeds; none of 12 shortlisted coherent trajectories was robust."
+    },
+    {
+      "version": "ddw",
+      "index": 22,
+      "parent": "ddq",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Hierarchical animal-allocation distillation",
+      "hypothesis": "Learn sheep allocation from multiple teachers while preserving coherent construction, pickup, placement and maintenance task dependencies",
+      "validation_caveat": "Initial teacher-local split had three shared seeds crossing training/validation across sources. Offline metrics are not a clean seed-held-out estimate; fixed in ddy. Dynamic match results remain valid.",
+      "runs": {
+        "broad01": {
+          "completed": 64,
+          "wins": 48,
+          "mean_margin": 1754.40625
+        },
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 5051.03125
+        }
+      }
+    },
+    {
+      "version": "ddx",
+      "index": 23,
+      "parent": "ddw",
+      "status": "ABLATION_COMPLETE",
+      "method": "Animal-inventory liquidation ablation",
+      "hypothesis": "Separate changed animal sales timing from the learned animal allocation effect",
+      "qualifying_eligible": false,
+      "runs": {
+        "broad01": {
+          "completed": 64,
+          "wins": 40,
+          "mean_margin": -2581.53125
+        },
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 5051.03125
+        }
+      }
+    },
+    {
+      "version": "ddy",
+      "index": 24,
+      "parent": "ddw",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Seed-separated hierarchical animal allocation",
+      "hypothesis": "Eliminate shared-seed contamination across teacher validation splits before assessing demand-sensitive animal allocation",
+      "runs": {
+        "combined01": {
+          "completed": 96,
+          "wins": 72,
+          "mean_margin": 2853.28125
+        },
+        "fresh01": {
+          "completed": 64,
+          "wins": 29,
+          "mean_margin": -1919.515625
+        }
+      }
+    },
+    {
+      "version": "ddz",
+      "index": 25,
+      "parent": "ddy",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Batch-resolved portfolio animal distillation",
+      "hypothesis": "Resolve individual pickup cohorts so a small early sheep allocation can hedge demand before later learned allocation decisions",
+      "runs": {
+        "dev01": {
+          "completed": 32,
+          "wins": 0,
+          "mean_margin": -42126.8125
+        }
+      },
+      "failure": "Initial portfolio shifts day-8 income and breaks subsequent expansion funding; crop and animal plan no longer executes reliably."
+    },
+    {
+      "version": "ddaa",
+      "index": 26,
+      "parent": "ddy",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Counterfactual advantage distillation for animal allocation",
+      "hypothesis": "Learn the realized marginal value of a single animal-group substitution in complete simulator rollouts, rather than only imitating purchase labels",
+      "runs": {},
+      "results": {
+        "completed": 40,
+        "wins": 25,
+        "mean_margin": -169.375
+      },
+      "failure": "Single-intervention value model did not improve composed policy; matched 40-game mean margin worse than ddy by 886.95",
+      "counterfactual_matches": 220
+    },
+    {
+      "version": "ddab",
+      "index": 27,
+      "parent": "ddy",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Harvest-compatible crop substitution in distilled tasks",
+      "hypothesis": "Replace selected carrot cycles with wheat only when the learned task timing supports higher visible-price net yield, preserving capital and maintenance routes",
+      "runs": {
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 4991.78125
+        }
+      }
+    },
+    {
+      "version": "ddac",
+      "index": 28,
+      "parent": "ddy",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Slack-bounded recovery of distilled planting tasks",
+      "hypothesis": "Repair weed-blocked planting by inserting one DIG action only when a later same-day PASS can absorb the delay and consecutive watering remains feasible",
+      "runs": {
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 5075.15625
+        }
+      }
+    },
+    {
+      "version": "ddad",
+      "index": 29,
+      "parent": "ddy",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Committed-seed deficit recovery after settlement",
+      "hypothesis": "Retry teacher-committed seed purchases after same-turn sales restore cash, before planned planting deadlines, without adding new production commitments",
+      "runs": {
+        "broad01": {
+          "completed": 128,
+          "wins": 70,
+          "mean_margin": -381.9921875
+        },
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 10395.96875
+        }
+      }
+    },
+    {
+      "version": "ddae",
+      "index": 30,
+      "parent": "ddad",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Cash-causal market ordering for distilled commitments",
+      "hypothesis": "Place immediately available animal sales before teacher purchases when market-slot capacity permits, funding commitments without new leverage or extra production",
+      "runs": {
+        "broad01": {
+          "completed": 32,
+          "wins": 18,
+          "mean_margin": -201.15625
+        },
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 10613.28125
+        }
+      }
+    },
+    {
+      "version": "ddaf",
+      "index": 31,
+      "parent": "ddae",
+      "status": "SEARCH_COMPLETE_NO_PROMOTION",
+      "method": "Re-ranked hierarchical trajectory distillation",
+      "hypothesis": "Re-evaluate all teacher plans under learned animal allocation and cash-causal execution rather than inheriting rankings obtained with the defective executor",
+      "runs": {},
+      "compiled_plans": 108,
+      "unsupported_plans": 38,
+      "search_matches": 432,
+      "selected": {
+        "k": 35,
+        "mode": "teacher",
+        "games": 18,
+        "wins": 10,
+        "mean_margin": 611.0,
+        "worst_margin": -19478.0
+      },
+      "failure": "Re-ranking under the repaired executor still selects original prototype 35; no robust replacement found."
+    },
+    {
+      "version": "ddag",
+      "index": 32,
+      "parent": "ddae",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Demand-window market planning over a distilled production policy",
+      "hypothesis": "Use known town consumption windows for bounded wheat inventory trades while preserving teacher seed, cash and warehouse commitments",
+      "runs": {
+        "broad01": {
+          "completed": 32,
+          "wins": 18,
+          "mean_margin": 306.375
+        },
+        "dev01": {
+          "completed": 32,
+          "wins": 24,
+          "mean_margin": 11785.90625
+        }
+      }
+    },
+    {
+      "version": "ddah",
+      "index": 33,
+      "parent": "dde",
+      "status": "SEARCH_COMPLETE_NO_PROMOTION",
+      "method": "New-teacher distillation with cash and seed recovery",
+      "hypothesis": "Isolate corrected funding with teacher animal choices preserved; defer unsupported animal dependency remapping",
+      "compiler_caveat": "All 121 plans contain duplicate acquisition attempts unsupported by the current identity compiler; evaluate raw teacher actions with legality projection instead.",
+      "search_matches": 458,
+      "selected": {
+        "k": 35,
+        "mode": "teacher",
+        "games": 18,
+        "wins": 7,
+        "mean_margin": -10046.333333333334,
+        "worst_margin": -32968.0
+      },
+      "failure": "No two-win opening plan among 121; best refinement only 7/18 wins."
+    },
+    {
+      "version": "ddai",
+      "index": 34,
+      "parent": "ddae",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Replay-schedule animal value planning",
+      "hypothesis": "Compare species on distilled feed care and harvest schedules under visible inventory demand and competing herd supply; preserve initial investment and executable dependencies",
+      "runs": {
+        "broad01": {
+          "completed": 32,
+          "wins": 14,
+          "mean_margin": 447.59375
+        },
+        "dev01": {
+          "completed": 32,
+          "wins": 26,
+          "mean_margin": 10019.15625
+        }
+      },
+      "failure": "Only 14/32 wins on the broader 16-seed panel; positive mean margin is not stable superiority."
+    },
+    {
+      "version": "ddaj",
+      "index": 35,
+      "parent": "ddae",
+      "status": "ABLATION_INACTIVE",
+      "method": "Distilled labor-window crop rescheduling",
+      "hypothesis": "Compile alternative short-cycle crop programs inside teacher melon labor windows; select by visible crop economics while preserving route and final empty-tile contract",
+      "runs": {
+        "broad01": {
+          "completed": 40,
+          "wins": 24,
+          "mean_margin": 1897.65
+        }
+      },
+      "failure": "No crop replacements in 40 games; exact parent-result parity, so no distinct competitive model.",
+      "post_run_fix": "Prefix animal-sale slots now reserve expanded crop orders. Completed run used archived diagnostics/ddaj_broad01_main.py; branch was inactive in all 40 games."
+    },
+    {
+      "version": "ddak",
+      "index": 36,
+      "parent": "ddae",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Replay-completion residual labor dispatch",
+      "hypothesis": "After each worker completes its entire daily teacher plan and hiring is finished, route spare actions to unclaimed animal harvest and care while preserving next-day reset and final-day deposit constraints",
+      "runs": {
+        "broad01": {
+          "completed": 40,
+          "wins": 24,
+          "mean_margin": 2034.8
+        }
+      }
+    },
+    {
+      "version": "ddal",
+      "index": 37,
+      "parent": "ddak",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Mature-farm daily task distillation with reactive dispatch",
+      "hypothesis": "Preserve the demonstrated opening then reassign day-16-onward distilled cell tasks using current positions and inventory instead of fixed worker routes",
+      "runs": {
+        "dev02": {
+          "completed": 8,
+          "wins": 0,
+          "mean_margin": -56534.5
+        },
+        "dev01": {
+          "completed": 0,
+          "wins": 0,
+          "mean_margin": null
+        }
+      },
+      "failure": "First run stopped on a missing helper, repaired with preserved source. Completed dev02: 0/8, -56534.5; greedy routes leave hundreds of daily tasks unfinished or obsolete."
+    },
+    {
+      "version": "ddam",
+      "index": 38,
+      "parent": "ddak",
+      "status": "DEVELOPMENT_BASELINE_NOT_ROBUST",
+      "method": "Cash-feasible joint animal distillation",
+      "hypothesis": "Keep learned sheep preferences but admit upgrades only after preserving same-turn teacher procurement and already-promised seed recovery under a simulated live cash budget",
+      "runs": {
+        "broad01": {
+          "completed": 40,
+          "wins": 24,
+          "mean_margin": 2104.5
+        }
+      }
+    },
+    {
+      "version": "ddan",
+      "index": 39,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Day-horizon procurement reserve for distilled upgrades",
+      "hypothesis": "Reserve later same-day teacher orders before spending on animal upgrades, addressing split procurement where the current turn appears liquid but the next turn cannot fund its seeds and animal commitments",
+      "runs": {
+        "broad01": {
+          "completed": 40,
+          "wins": 24,
+          "mean_margin": 1371.375
+        }
+      }
+    },
+    {
+      "version": "ddao",
+      "index": 40,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Budgeted partial-opening portfolio distillation",
+      "hypothesis": "Split only the original initial cow transport cohorts, preserving all later learned allocation groups, and compare partial cow-goose-sheep openings under joint procurement budgets",
+      "search": {
+        "screen": 24,
+        "refine": 32,
+        "best_noncontrol_refine_wins": 6,
+        "best_noncontrol_refine_games": 16,
+        "best_noncontrol_refine_mean_margin": -6508.4375
+      },
+      "failure": "Partial cow/goose openings lose early production and fail expanded development. Original cow/cow control exactly matches ddam."
+    },
+    {
+      "version": "ddap",
+      "index": 41,
+      "parent": "ddn",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Joint-intent faithful trajectory distillation",
+      "hypothesis": "Preserve replay requests and defer atomic validation and simultaneous market settlement to the official environment, avoiding state changes introduced by sequential legality projection",
+      "search": {
+        "screen": 292,
+        "refine": 216,
+        "best_refine_prototype": 35,
+        "best_refine_wins": 8,
+        "best_refine_games": 18,
+        "best_refine_mean_margin": -4719.111111111111
+      },
+      "failure": "Faithful atomic joint-intent replay fixes reproduction, but no plan passes expanded dynamic competition."
+    },
+    {
+      "version": "ddaq",
+      "index": 42,
+      "parent": "ddah",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Executed-event hierarchical new-teacher distillation",
+      "hypothesis": "Compile only actual successful transfers and orders from the official simulator, then learn species allocation on coherent new-teacher purchase pickup build and place groups",
+      "search": {
+        "pilot": 32,
+        "teacher_wins": 3,
+        "teacher_games": 16,
+        "learned_wins": 0,
+        "learned_games": 16
+      },
+      "failure": "All 121 executed-event plans compile and independently reproduce exactly; pilot does not convert fidelity into competitive strength."
+    },
+    {
+      "version": "ddar",
+      "index": 43,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Joint procurement composition regression distillation",
+      "hypothesis": "Learn one sheep share for each complete teacher purchase turn, include live placed and unplaced livestock, then project the joint target onto cash-feasible replay dependency groups instead of assigning conflicting independent binary labels",
+      "runs": {
+        "dev01": {
+          "completed": 8,
+          "wins": 6,
+          "mean_margin": 10315.25
+        },
+        "expand01": {
+          "completed": 32,
+          "wins": 18,
+          "mean_margin": 51.09375
+        }
+      },
+      "combined_development": {
+        "games": 40,
+        "wins": 24,
+        "mean_margin": 2103.925
+      }
+    },
+    {
+      "version": "ddas",
+      "index": 44,
+      "parent": "ddar",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Executed joint procurement composition distillation",
+      "hypothesis": "Replace oversized and zero-fill request labels with actual official animal purchases while holding the joint model, visible features, executor and cash-feasible projection fixed",
+      "runs": {
+        "broad01": {
+          "completed": 40,
+          "wins": 24,
+          "mean_margin": 1991.15
+        }
+      },
+      "failure": "415-episode exact replay fill labels and a joint regression tree do not improve matched competitive win rate; 24/40 against y68v only."
+    },
+    {
+      "version": "ddat",
+      "index": 45,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Executed inventory-sale policy distillation",
+      "hypothesis": "Learn animal-product sale timing and size from actual teacher fills and live stock, prices, demand, liquidity and capacity, preserving replay production routes and forcing funding, final liquidation and deposit-space guards",
+      "training": {
+        "teacher_episodes": 415,
+        "samples": 201554,
+        "sale_samples": 30507,
+        "partial_sale_samples": 15919,
+        "model": "Per-product sale classifier and positive fraction regressor",
+        "export_parity": true
+      },
+      "combined_development": {
+        "games": 40,
+        "wins": 20,
+        "mean_margin": 767.7,
+        "own_cash_delta": -551.625,
+        "opponent_cash_delta": 785.175
+      },
+      "failure": "Exact sale label extraction and export parity pass, but sale imitation loses four previously winning seat-games on the same 40-game y68v development panel.",
+      "runs": {
+        "expand01": {
+          "completed": 32,
+          "wins": 14,
+          "mean_margin": -1402.96875
+        },
+        "dev01": {
+          "completed": 8,
+          "wins": 6,
+          "mean_margin": 9450.375
+        }
+      }
+    },
+    {
+      "version": "ddau",
+      "index": 46,
+      "parent": "ddat",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Replay-distilled market-flow value control",
+      "hypothesis": "Predict market inventory drift excluding teacher self-sales over 1, 4 and 24 turns, then use official nonlinear price curves and conditional flow uncertainty to choose sale or hold under the same production, funding and capacity guards",
+      "combined_development": {
+        "games": 40,
+        "wins": 21,
+        "mean_margin": 1700.575,
+        "own_cash_delta": 230.4,
+        "opponent_cash_delta": 634.325
+      },
+      "failure": "Inventory flow forecasts pass source checks and export parity, but own-cash control gives 21/40 against y68v, below the matched baseline 24/40.",
+      "runs": {
+        "expand01": {
+          "completed": 32,
+          "wins": 15,
+          "mean_margin": -415.4375
+        },
+        "dev01": {
+          "completed": 8,
+          "wins": 6,
+          "mean_margin": 10164.625
+        }
+      }
+    },
+    {
+      "version": "ddav",
+      "index": 47,
+      "parent": "ddau",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Distilled opponent-flow competitive sale control",
+      "hypothesis": "Use the learned one-turn external flow distribution to forecast opposing sales, compare immediate simultaneous sales against one-turn holding by own-minus-opponent proceeds, and penalize uncertainty across order alignments",
+      "combined_development": {
+        "games": 40,
+        "wins": 20,
+        "mean_margin": 1323.5,
+        "own_cash_delta": -413.275,
+        "opponent_cash_delta": 367.725
+      },
+      "runs": {
+        "broad01": {
+          "completed": 40,
+          "wins": 20,
+          "mean_margin": 1323.5
+        }
+      },
+      "failure": "20/40 on the matched panel; three product median flow forecasts have worse on-policy MAE than zero next-turn opposing supply. Exact market settlement mechanics do not establish forecast transfer or competitive value."
+    },
+    {
+      "version": "ddaw",
+      "index": 48,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_SEARCH_FAILED",
+      "method": "Joint replay-production genome search",
+      "hypothesis": "Preserve the replay opening and exact transport dependencies, jointly vary all later livestock groups among goose cow and sheep, and select complete programs by full-game competitive outcomes rather than summed single-group advantages",
+      "search": {
+        "round_games": [
+          160,
+          160,
+          160
+        ],
+        "refine_games": 112,
+        "total_games": 592,
+        "programs_including_control": 60,
+        "best": {
+          "id": "d0ef4600e608",
+          "genome": [
+            "COW",
+            "SHEEP",
+            "GOOSE",
+            "SHEEP",
+            "SHEEP",
+            "COW",
+            "GOOSE",
+            "COW",
+            "SHEEP",
+            "COW",
+            "SHEEP",
+            "COW",
+            "GOOSE",
+            "COW"
+          ],
+          "games": 24,
+          "wins": 13,
+          "mean_margin": -4421.125,
+          "min_margin": -43814.0,
+          "risk_score": -12519.317013129254
+        },
+        "baseline": {
+          "id": "baseline",
+          "genome": null,
+          "games": 24,
+          "wins": 11,
+          "mean_margin": -1997.5416666666667,
+          "min_margin": -33804.0,
+          "risk_score": -8213.169727214206
+        }
+      },
+      "failure": "Best fixed full production program wins 13/24 balanced development seeds but mean margin -4421.125 and worst -43814; baseline 11/24 with mean -1997.54. No production program promoted; default configuration remains baseline control for reproducible search."
+    },
+    {
+      "version": "ddax",
+      "index": 49,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Route-preserving early crop module distillation",
+      "hypothesis": "Substitute profitable late wheat cycles with physically verified carrot modules, using existing visits for early harvest and cleanup while restoring seed commitments and warehouse feed supply under order and cash limits",
+      "development": {
+        "games": 40,
+        "wins": 24,
+        "mean_margin": 2402.95,
+        "baseline_mean_margin": 2104.5,
+        "crop_totals": {
+          "chosen": 134,
+          "planted": 134,
+          "harvested": 134,
+          "carrot_produced": 494,
+          "extra_carrot_sold": 494,
+          "wheat_bought": 18,
+          "wheat_cost": 384,
+          "cleanup_digs": 0,
+          "feed_shortfall_unit_turns": 12
+        },
+        "all_selected_yields_match_forecast": true,
+        "hashes_match": true,
+        "status": "DEVELOPMENT_FAILED",
+        "boundary": "20 reused development seeds; not frozen gates. Feed shortfall is deviation from reference shed target, not proof of an unfed animal. Cleanup DIG not exercised."
+      },
+      "failure": "Full crop closure is active and improves matched mean margin by 298.45, but 24/40 wins unchanged. No stable superiority."
+    },
+    {
+      "version": "dday",
+      "index": 50,
+      "parent": "ddam",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Perennial crop program distillation with official lifecycle search",
+      "hypothesis": "Use original replay service visits to optimize tomato and strawberry harvest timing and species against visible demand while preserving movement and seed/resource contracts",
+      "development": {
+        "games": 8,
+        "wins": 4,
+        "mean_margin": -1977.25,
+        "audit_seat0_jobs": 69,
+        "all_planted": true,
+        "all_expected_yields": false,
+        "position_mismatches": 0,
+        "total_expected": 341,
+        "total_actual": 339,
+        "hashes_match": true
+      },
+      "failure": "4/8 pilot wins, mean -1977.25. All 69 seat-0 selected programs planted with no position mismatch; 67 exact yields, two 1-unit shortfalls (341 expected,339 actual). Current-shop-only future valuation selects many lower-yield substitutes; loss attribution also includes changed shop RNG. No expansion."
+    },
+    {
+      "version": "ddaz",
+      "index": 51,
+      "parent": "dday",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Stochastic market rollout improvement of distilled perennial programs",
+      "hypothesis": "Value full crop portfolios over unseen-shop scenarios with the official floor-price supply rule, rather than treat current shops as a permanent demand forecast",
+      "development": {
+        "games": 40,
+        "wins": 24,
+        "mean_margin": 583.3,
+        "max_seconds": 0.1768669580342248,
+        "selected_programs": 298,
+        "hashes_match": true
+      },
+      "failure": "32 unseen-shop scenarios and portfolio price-floor modeling improve dday pilot but matched 40-game margin +583.30 remains below ddam +2104.50; 24 wins unchanged."
+    },
+    {
+      "version": "ddba",
+      "index": 52,
+      "parent": "ddaz",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Crop-program execution with source cleanup and bounded incremental sales",
+      "hypothesis": "Remove unnecessary early DIG and avoid selling every original perennial stock when only a few replay crop programs change",
+      "development": {
+        "games": 40,
+        "wins": 24,
+        "mean_margin": 534.825,
+        "max_seconds": 0.19765370798995718,
+        "selected_programs": 298,
+        "hashes_match": true,
+        "control_parity": [
+          {
+            "seed": 919260010,
+            "steps": 719,
+            "exact_actions_and_cash": true,
+            "rewards": [
+              112274.0,
+              102242.0
+            ]
+          },
+          {
+            "seed": 919262004,
+            "steps": 719,
+            "exact_actions_and_cash": true,
+            "rewards": [
+              70949.0,
+              81652.0
+            ]
+          }
+        ]
+      },
+      "failure": "Cleanup and bounded-sale corrections pass disabled-control parity but matched 40-game result is 24 wins, mean +534.825; below ddam and ddax. Stop long-horizon handcrafted crop-price scoring."
+    },
+    {
+      "version": "ddbb",
+      "index": 53,
+      "parent": "ddba",
+      "status": "DEVELOPMENT_SEARCH_FAILED",
+      "method": "Counterfactual outcome distillation of replay crop programs",
+      "hypothesis": "Measure actual full-game single-program interventions before fitting a state-conditioned crop selector; require observed action-set upside and then test interactions",
+      "search": {
+        "single_games": 204,
+        "combination_games": 60,
+        "single_panels": [
+          {
+            "seed": 919260011,
+            "games": 51,
+            "baseline_margin": -1493.0,
+            "oracle_margin": -1319.0,
+            "oracle_job": 42,
+            "oracle_uplift": 174.0,
+            "positive_interventions": 5,
+            "winning_interventions": 0
+          },
+          {
+            "seed": 919261006,
+            "games": 51,
+            "baseline_margin": -13655.0,
+            "oracle_margin": -7942.0,
+            "oracle_job": 19,
+            "oracle_uplift": 5713.0,
+            "positive_interventions": 29,
+            "winning_interventions": 0
+          },
+          {
+            "seed": 919262004,
+            "games": 51,
+            "baseline_margin": -10703.0,
+            "oracle_margin": -10498.0,
+            "oracle_job": 38,
+            "oracle_uplift": 205.0,
+            "positive_interventions": 4,
+            "winning_interventions": 0
+          },
+          {
+            "seed": 919262007,
+            "games": 51,
+            "baseline_margin": -556.0,
+            "oracle_margin": -556.0,
+            "oracle_job": -1,
+            "oracle_uplift": 0.0,
+            "positive_interventions": 0,
+            "winning_interventions": 0
+          }
+        ],
+        "combination_panels": [
+          {
+            "seed": 919260011,
+            "baseline_margin": -1493.0,
+            "best_margin": -1277.0,
+            "best_jobs": [
+              39,
+              41,
+              42
+            ],
+            "uplift": 216.0,
+            "winning_combinations": 0
+          },
+          {
+            "seed": 919261006,
+            "baseline_margin": -13655.0,
+            "best_margin": -7836.0,
+            "best_jobs": [
+              8,
+              9,
+              38,
+              39,
+              41,
+              42
+            ],
+            "uplift": 5819.0,
+            "winning_combinations": 0
+          },
+          {
+            "seed": 919262004,
+            "baseline_margin": -10703.0,
+            "best_margin": -10310.0,
+            "best_jobs": [
+              38,
+              39,
+              42
+            ],
+            "uplift": 393.0,
+            "winning_combinations": 0
+          },
+          {
+            "seed": 919262007,
+            "baseline_margin": -556.0,
+            "best_margin": -556.0,
+            "best_jobs": [],
+            "uplift": 0.0,
+            "winning_combinations": 0
+          }
+        ]
+      },
+      "failure": "All four diagnostic losing openings stay losing even under hindsight selection among 50 feasible single substitutions and 15 tested combinations. No selector trained; default candidate remains disabled baseline control."
+    },
+    {
+      "version": "ddbc",
+      "index": 54,
+      "status": "DEVELOPMENT_SEARCH_FAILED",
+      "method": "DSM coherent replay distillation with resource-causal execution",
+      "hypothesis": "Expand beyond M&M k35 to 247 independent DSM training trajectories; keep original species and repair only execution commitments",
+      "teacher": "DSM",
+      "source_episodes": 349,
+      "train_episodes": 247,
+      "screen": {
+        "games": 494,
+        "two_win_plans": [
+          244,
+          233
+        ],
+        "top": [
+          {
+            "k": 244,
+            "games": 2,
+            "wins": 2,
+            "mean_margin": 6875.5,
+            "worst_margin": 6401.0
+          },
+          {
+            "k": 233,
+            "games": 2,
+            "wins": 2,
+            "mean_margin": 3705.5,
+            "worst_margin": 3235.0
+          },
+          {
+            "k": 66,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 4738.5,
+            "worst_margin": -410.0
+          },
+          {
+            "k": 37,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 11408.5,
+            "worst_margin": -1398.0
+          },
+          {
+            "k": 155,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 250.5,
+            "worst_margin": -1457.0
+          },
+          {
+            "k": 214,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 3611.5,
+            "worst_margin": -1482.0
+          },
+          {
+            "k": 160,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": -1038.5,
+            "worst_margin": -4917.0
+          },
+          {
+            "k": 122,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 2278.0,
+            "worst_margin": -6436.0
+          }
+        ]
+      },
+      "search": {
+        "screen_games": 494,
+        "refine_games": 144,
+        "screen_top": [
+          {
+            "k": 244,
+            "games": 2,
+            "wins": 2,
+            "mean_margin": 6875.5,
+            "worst_margin": 6401.0
+          },
+          {
+            "k": 233,
+            "games": 2,
+            "wins": 2,
+            "mean_margin": 3705.5,
+            "worst_margin": 3235.0
+          },
+          {
+            "k": 66,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 4738.5,
+            "worst_margin": -410.0
+          },
+          {
+            "k": 37,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 11408.5,
+            "worst_margin": -1398.0
+          },
+          {
+            "k": 155,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 250.5,
+            "worst_margin": -1457.0
+          },
+          {
+            "k": 214,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 3611.5,
+            "worst_margin": -1482.0
+          },
+          {
+            "k": 160,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": -1038.5,
+            "worst_margin": -4917.0
+          },
+          {
+            "k": 122,
+            "games": 2,
+            "wins": 1,
+            "mean_margin": 2278.0,
+            "worst_margin": -6436.0
+          }
+        ],
+        "refine_top": [
+          {
+            "k": 122,
+            "games": 18,
+            "wins": 8,
+            "mean_margin": -6367.0,
+            "worst_margin": -27567.0
+          },
+          {
+            "k": 155,
+            "games": 18,
+            "wins": 3,
+            "mean_margin": -15632.666666666666,
+            "worst_margin": -39095.0
+          },
+          {
+            "k": 214,
+            "games": 18,
+            "wins": 2,
+            "mean_margin": -14190.388888888889,
+            "worst_margin": -37759.0
+          },
+          {
+            "k": 244,
+            "games": 18,
+            "wins": 1,
+            "mean_margin": -11471.166666666666,
+            "worst_margin": -28337.0
+          },
+          {
+            "k": 160,
+            "games": 18,
+            "wins": 1,
+            "mean_margin": -13354.222222222223,
+            "worst_margin": -39443.0
+          },
+          {
+            "k": 37,
+            "games": 18,
+            "wins": 1,
+            "mean_margin": -18697.833333333332,
+            "worst_margin": -39999.0
+          },
+          {
+            "k": 233,
+            "games": 18,
+            "wins": 0,
+            "mean_margin": -12937.166666666666,
+            "worst_margin": -30591.0
+          },
+          {
+            "k": 66,
+            "games": 18,
+            "wins": 0,
+            "mean_margin": -19470.777777777777,
+            "worst_margin": -73221.0
+          }
+        ]
+      },
+      "failure": "Two apparent 2/2 screen winners generalize to 1/18 and 0/18. Best expanded DSM plan has 8/18 wins and mean -6367. Original-species repaired executor yields no robust candidate."
+    },
+    {
+      "version": "ddbd",
+      "index": 55,
+      "status": "DEVELOPMENT_SEARCH_FAILED",
+      "method": "Recent Boey replay-plan distillation with resource-causal execution",
+      "hypothesis": "Test a newly observed strong teacher cohort from 2026-09-17/18; source 33/34 wins are not student performance",
+      "teacher": "Boey",
+      "source_episodes": 34,
+      "train_episodes": 21,
+      "search": {
+        "screen_games": 84,
+        "screen_top": [
+          {
+            "k": 0,
+            "games": 4,
+            "wins": 2,
+            "mean_margin": -11211.25,
+            "worst_margin": -31492.0
+          },
+          {
+            "k": 10,
+            "games": 4,
+            "wins": 2,
+            "mean_margin": -7404.5,
+            "worst_margin": -46792.0
+          },
+          {
+            "k": 4,
+            "games": 4,
+            "wins": 1,
+            "mean_margin": -2530.25,
+            "worst_margin": -10112.0
+          },
+          {
+            "k": 5,
+            "games": 4,
+            "wins": 1,
+            "mean_margin": -7410.0,
+            "worst_margin": -31313.0
+          },
+          {
+            "k": 2,
+            "games": 4,
+            "wins": 1,
+            "mean_margin": -24713.0,
+            "worst_margin": -40226.0
+          },
+          {
+            "k": 16,
+            "games": 4,
+            "wins": 1,
+            "mean_margin": -21277.75,
+            "worst_margin": -43568.0
+          },
+          {
+            "k": 1,
+            "games": 4,
+            "wins": 1,
+            "mean_margin": -13965.0,
+            "worst_margin": -49306.0
+          },
+          {
+            "k": 15,
+            "games": 4,
+            "wins": 1,
+            "mean_margin": -23110.5,
+            "worst_margin": -51166.0
+          }
+        ],
+        "refine_run": false
+      },
+      "failure": "Teacher cohort has 33/34 source wins, but all 21 static repaired replay plans fail the four-opening diagnostic; best has 2/4 and large negative mean. Stop fixed-trajectory search; source success is not student generalization."
+    },
+    {
+      "version": "ddbe",
+      "index": 56,
+      "parent": "ddbd",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "supervised candidate task ranking with persistent goals and autoregressive market cloning",
+      "hypothesis": "Learn next successful task from current observations and independently learn quantities and market decisions; no fixed replay trajectory at inference.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -183287.125
+      },
+      "failure": "First-day pickup suppressed in favor of WAIT; almost no production, continuing speculative procurement consumes cash. Source full-candidate top1 61.6% does not transfer."
+    },
+    {
+      "version": "ddbf",
+      "index": 57,
+      "parent": "ddbe",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "supervised candidate task ranking with persistent goals and autoregressive market cloning",
+      "hypothesis": "Repair rare critical service underfitting with mandatory WAIT negatives, action/early-stage weights, greater tree capacity and balanced market classes.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -88594.875
+      },
+      "failure": "Production restored but pickup/putback loops displace useful service and expansions. Offline top1 68.9% is insufficient."
+    },
+    {
+      "version": "ddbg",
+      "index": 58,
+      "parent": "ddbf",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "ddbf learned policy with observable resource-transfer loop constraints",
+      "hypothesis": "Retain four learned models, isolate execution loops; not an independent-model success by itself.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -52478.5
+      },
+      "failure": "Transfers reduced but all eight games lost; mean own cash falls despite improved margin. Seed overstock and maintenance gaps remain."
+    },
+    {
+      "version": "ddbh",
+      "index": 59,
+      "parent": "ddbg",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Same learned goal/market policy with bounded seed working inventory",
+      "hypothesis": "At fixed seed prices, carrying more than one full worker round per crop has no immediate execution benefit; cap oversupply observed in dynamic games.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -61198.75,
+        "mean_cash": 65952.125
+      },
+      "failure": "Seed cap increases own cash but worsens mean competitive margin vs ddbg; no promotion. Separate learned procurement remains poorly coupled to production choices."
+    },
+    {
+      "version": "ddbi",
+      "index": 60,
+      "parent": "ddbh",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "supervised task ranking and market policy conditioned on maintenance state and existing task commitments",
+      "hypothesis": "Missing maintenance urgency, production cycles and prior task commitments weaken coordination; expose these observable fields to both learned policies.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -58785.5,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Maintenance/calendar/commitment features improve held-out goal top1 modestly to 70.65%, but dynamic 8-game panel still all losses."
+    },
+    {
+      "version": "ddbj",
+      "index": 61,
+      "parent": "ddbi",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "same learned service policy; distill requested market orders and quantities instead of realized fills",
+      "hypothesis": "43.2% of Boey market requests have zero fills; replacing their intent with WAIT may inject outcome noise and lose contingent order structure.",
+      "development": {
+        "version": "ddbj",
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -45424.375,
+        "mean_cash": 68613.25,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Requested-order labels reduce panel deficit vs realized-fill labels but all eight dynamic games lost; no promotion."
+    },
+    {
+      "version": "ddbk",
+      "index": 62,
+      "parent": "ddbj",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "distilled production options with explicit material and construction prerequisites",
+      "hypothesis": "Learn a positioned production goal before its resource or structure exists, allowing procurement and other workers to see a common executable intent.",
+      "development": {
+        "version": "ddbk",
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -124936.375,
+        "mean_cash": 24796.75,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "All eight dynamic games lost severely despite near-complete source option coverage; repeated animal loss/reinstallation. No gate promotion."
+    },
+    {
+      "version": "ddbl",
+      "index": 63,
+      "parent": "ddbk",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Same four weights and unit task execution; release task-only buying while retaining pledged-stock sales reserve and shortage repairs. Seed stock capped at worker count.",
+      "hypothesis": "Teacher requested purchases can encode useful inventory timing beyond immediate committed tasks; strict deficit-only procurement may remove it.",
+      "development": {
+        "version": "ddbl",
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -87916.75,
+        "mean_cash": 36427.125,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Inventory purchase freedom improves over strict current-task procurement, but all eight dynamic games still lost and below ddbj control."
+    },
+    {
+      "version": "ddbm",
+      "index": 64,
+      "parent": "ddbk",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Same four weights and deficit-only procurement. Rule-derived travel-aware worker assignment protects assets at risk of loss this day; no opponent action/source labels.",
+      "hypothesis": "State drift from missed maintenance causes replacement losses; protecting imminent-loss obligations can make learned production choices usable.",
+      "development": {
+        "version": "ddbm",
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -96747.375,
+        "mean_cash": 44646.125,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Imminent-loss maintenance eliminates animal escapes in all four audited seat-0 games, but eight dynamic games still lose. Survival does not establish competitiveness."
+    },
+    {
+      "version": "ddbn",
+      "index": 65,
+      "parent": "ddbm",
+      "status": "DIAGNOSTIC_FAILED",
+      "method": "same maintenance execution with terminal-day obligations disabled",
+      "hypothesis": "There is no day-29 end-of-day loss refresh; mandatory terminal maintenance consumes labor without preventing that loss.",
+      "diagnostic": {
+        "kind": "terminal_day_diagnostic_not_full_candidate_evaluation",
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 38935.875,
+        "mean_margin": -102540.875,
+        "mean_cash_change": -5710.25
+      },
+      "failure": "Only terminal-day branch evaluated, not a full candidate run. Disabling obligations also releases growth filtering; across eight branches, late land purchases cost 42000, animal purchases 4200, seeds 780. No promotion."
+    },
+    {
+      "version": "ddbo",
+      "index": 66,
+      "parent": "ddbn",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "M&M replay production-option distillation with imminent-loss maintenance and separate terminal feasibility",
+      "hypothesis": "A broader M&M source distribution can improve parameterized option selection; terminal investment feasibility is kept separate from imminent-loss maintenance.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -104381.25,
+        "mean_cash": 33993.25,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "All eight fixed-panel dynamic games lost. Daily crew requests can disappear despite affordable wages and active production assets."
+    },
+    {
+      "version": "ddbp",
+      "index": 67,
+      "parent": "ddbo",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "M&M majority-opening-conditioned production-option distillation",
+      "hypothesis": "Reduce conflicting teacher choices by fixing the most frequent source-training opening; do not infer common executable from the opening alone.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -112900.875,
+        "mean_cash": 6759.25,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "All eight fixed-panel dynamic games lost. Majority-opening subset does not transfer; lower farm cash and persistent maintenance gaps."
+    },
+    {
+      "version": "ddbq",
+      "index": 68,
+      "parent": "ddbo",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "M&M production-option distillation plus day-start crew-size supervision",
+      "hypothesis": "A separate replay-supervised daily crew target can reduce labor starvation when the residual market policy stops without hiring.",
+      "offline_crew": {
+        "features": 143,
+        "validation_mae": 0.741038724036037,
+        "validation_median_baseline_mae": 2.433333333333333,
+        "validation_r2": 0.8902651178551566,
+        "export_max_abs_error": 3.552713678800501e-15
+      },
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -123733.0,
+        "mean_cash": 34312.25,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Zero-hire asset-days eliminated on all four audited seat-0 games, but dynamic eight-game panel remains all losses; mean own cash rises only 319 vs ddbo, competitive margin worsens. Staffing alone does not repair task allocation."
+    },
+    {
+      "version": "ddbr",
+      "index": 69,
+      "parent": "ddbq",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Replay-distilled option ranking with idle-worker productive-service fallback",
+      "hypothesis": "Most PASS actions have no active commitment despite reachable existing-asset services; retaining distilled relative ranking within feasible services may convert idle labor into production.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -84007.0,
+        "mean_cash": 45746.0,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Idle fallback improves own mean cash by 11433.75 and reduces waiting, but all eight games lose and remain below ddbj historical service-policy control."
+    },
+    {
+      "version": "ddbs",
+      "index": 70,
+      "parent": "ddbj",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Boey replay service ranking with residual idle-service selection",
+      "hypothesis": "The stronger Boey service policy has 3285 idle worker-turns with reachable service in four audited games; test the same residual labor use without the weaker production-option branch.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_margin": -42847.25,
+        "mean_cash": 79233.125,
+        "hashes_unchanged": true,
+        "all_budget_nonnegative": true
+      },
+      "failure": "Idle opportunities shrink from 3285 to 544 across four seat-0 games; own mean cash improves 10619.875 but all eight games still lose and mean margin improves only 2577.125. No gate promotion."
+    },
+    {
+      "version": "ddbt",
+      "index": 71,
+      "parent": "ddbs",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Replay-distilled service ranking with simulator-calibrated daily routing table",
+      "hypothesis": "A small value-calibrated daily priority schedule can improve terminal competitive outcomes beyond replay imitation and idle-work corrections.",
+      "selection": {
+        "3": 3,
+        "10": 1,
+        "20": 0
+      },
+      "branch_loso_mean_margin_delta": -2272.5833333333335,
+      "caveat": "Weak four-seed value table; full runs explicitly test composition and transfer, not evidence of qualification.",
+      "development": {
+        "panel": "development_fit",
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 71267.125,
+        "mean_margin": -41478.5,
+        "mean_cash_change": -7966.0,
+        "mean_margin_change": 1368.75,
+        "cash_improved_games": 2,
+        "margin_improved_games": 5,
+        "all_hashes_complete_budget_passed": true
+      },
+      "transfer_development": {
+        "panel": "transfer_development",
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 101135.625,
+        "mean_margin": -31859.5,
+        "mean_cash_change": 9574.625,
+        "mean_margin_change": -1617.125,
+        "cash_improved_games": 6,
+        "margin_improved_games": 4,
+        "all_hashes_complete_budget_passed": true
+      },
+      "failure": "Calendar-only empirical routing values from four seeds do not generalize: 0/8 on fit panel and 0/8 on predeclared transfer panel; transfer mean margin falls by 1617.125 despite higher own cash. One-day gains cannot be summed into a combined policy."
+    },
+    {
+      "version": "ddbu",
+      "index": 72,
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Neural autoregressive joint behavior cloning",
+      "hypothesis": "A shared neural encoder and within-turn autoregressive decoder may retain joint coordination better than separate trees or nearest replay selection.",
+      "independence": "New learned weights and full policy architecture; qualification still requires formal gates.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 4.5,
+        "mean_margin": -182369.125,
+        "hashes_unchanged": true,
+        "all_719_steps_and_budget_passed": true
+      },
+      "failure": "Shared dense-state encoder and within-turn GRU imitate only about 39.5% of known validation requests; autonomous rollouts collapse after opening purchases, repeatedly requesting ineffective operations without productive maintenance. Export parity passes; no competitive gate promotion."
+    },
+    {
+      "version": "ddbv",
+      "index": 73,
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Neural autoregressive joint behavior cloning",
+      "hypothesis": "Direct local tile features may resolve ineffective repeated requests caused by difficult coordinate-to-global-board association; a matched architecture test against ddbu.",
+      "independence": "Same neural policy research line as ddbu; the local-feature ablation and decoder repairs are not automatically separate independent qualified models.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 605.125,
+        "mean_margin": -159972.875,
+        "hashes_unchanged": true,
+        "all_719_steps_and_budget_passed": true
+      },
+      "failure": "Local tiles improve held-out imitation to 67.8% and reduce redundant actions, but closed-loop economy still collapses: 0/8. Spatial locality alone does not supply persistent navigation and production commitments."
+    },
+    {
+      "version": "ddbw",
+      "index": 74,
+      "parent": "ddbv",
+      "status": "DEVELOPMENT_ERROR",
+      "method": "Frozen neural joint policy with resource-constrained unit decoding",
+      "hypothesis": "Sequential resource-feasible decoding avoids teacher-distribution drift causing mass atomic planting cancellations.",
+      "independence": "Same ddbv weights. This ablation is not a separate independently qualified model.",
+      "development": {
+        "expected": 8,
+        "completed": 7,
+        "wins": 0,
+        "mean_margin_completed_only": -149321.85714285713,
+        "error": "919260013 seat1 exceeded 16 unit decoder slots after excessive hiring; missing game is not a loss or completed outcome."
+      }
+    },
+    {
+      "version": "ddbx",
+      "index": 75,
+      "parent": "ddbw",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Resource-feasible neural unit decoding with model-capacity hire bound",
+      "hypothesis": "Complete the unit-feasibility ablation without exceeding the architecture unit capacity.",
+      "independence": "Identical ddbv neural weights; decoder repairs do not count as multiple independently qualified models.",
+      "development": {
+        "version": "ddbx",
+        "expected": 8,
+        "completed": 8,
+        "wins": 0,
+        "mean_cash_completed": 1358.875,
+        "mean_margin_completed": -150245.125,
+        "complete": true,
+        "hashes_unchanged": true,
+        "max_seconds": 0.017286041984334588
+      },
+      "failure": "Capacity-safe resource decoding completes all eight games and removes atomic planting oversubscription, but 0/8 wins and mean cash1358.875 remain noncompetitive. Legal actions do not ensure coherent maintenance/navigation or profitable production."
+    },
+    {
+      "version": "ddby",
+      "index": 76,
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Neural autoregressive joint behavior cloning",
+      "hypothesis": "Four prior requests may preserve movement and task intent across turns. Same data, training budget and resource/capacity decoder as neural controls.",
+      "independence": "New weights in the same neural research line; not automatically an independent qualified model.",
+      "development": {
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 673.75,
+        "mean_margin": -160671.125,
+        "hashes_unchanged": true,
+        "all_719_steps_and_budget_passed": true
+      },
+      "failure": "Four-turn request histories improve teacher-conditioned imitation modestly, but own-history autonomous matches remain 0/8 and perform worse than capacity/resource-controlled ddbx."
+    },
+    {
+      "version": "ddbz",
+      "index": 77,
+      "parent": "ddbo",
+      "status": "DEVELOPMENT_FAILED",
+      "method": "Listwise neural production-option ranking over verified teacher task labels",
+      "hypothesis": "Listwise neural ranking of persistent task options may improve coherent behavior beyond low-level autoregressive cloning and pointwise boosted task ranking.",
+      "development": {
+        "version": "ddbz",
+        "games": 8,
+        "wins": 0,
+        "mean_cash": 19602.25,
+        "mean_margin": -90472.25,
+        "mean_opponent_cash": 110074.5,
+        "max_seconds": 0.35788162401877344,
+        "mean_game_seconds": 14.205332359364547,
+        "hashes_unchanged": true,
+        "all_complete_budget_passed": true
+      },
+      "failure": "Full-candidate teacher task top1 improves from62.79% to65.05%, but all8 dynamic games lose. Own mean cash falls14391 relative to unchanged-executor ddbo; margin improves13909 only alongside opponent mean cash falling28300. No gate promotion."
+    }
+  ]
+}

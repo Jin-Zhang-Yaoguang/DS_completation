@@ -1,0 +1,87 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "cross-fitted percentile-rank blend of local v6 and two public OOF models",
+  "members": [
+    "v6_multiscale_te_lgbm",
+    "public_unified_v3",
+    "public_kirill_v4"
+  ],
+  "member_oof_auc": {
+    "v6_multiscale_te_lgbm": 0.945926937302457,
+    "public_unified_v3": 0.9453995891552571,
+    "public_kirill_v4": 0.9458316459783811
+  },
+  "fold_results": [
+    {
+      "fold": 1,
+      "fit_auc": 0.9463917507326316,
+      "valid_auc": 0.945157754719202,
+      "v6_auc": 0.9449808666095275,
+      "delta_vs_v6": 0.0001768881096745334,
+      "weights": {
+        "v6_multiscale_te_lgbm": 0.4184007385601295,
+        "public_unified_v3": 0.25168409029112737,
+        "public_kirill_v4": 0.32991517114874325
+      }
+    },
+    {
+      "fold": 2,
+      "fit_auc": 0.9462245826162801,
+      "valid_auc": 0.9458313807533258,
+      "v6_auc": 0.945584379359732,
+      "delta_vs_v6": 0.00024700139359379314,
+      "weights": {
+        "v6_multiscale_te_lgbm": 0.4267687533313321,
+        "public_unified_v3": 0.22176223380613105,
+        "public_kirill_v4": 0.3514690128625368
+      }
+    },
+    {
+      "fold": 3,
+      "fit_auc": 0.9459133577190005,
+      "valid_auc": 0.947071435112911,
+      "v6_auc": 0.9468023058024104,
+      "delta_vs_v6": 0.0002691293105006043,
+      "weights": {
+        "v6_multiscale_te_lgbm": 0.43530412839795873,
+        "public_unified_v3": 0.24365747166840068,
+        "public_kirill_v4": 0.3210383999336406
+      }
+    },
+    {
+      "fold": 4,
+      "fit_auc": 0.9460697611445503,
+      "valid_auc": 0.946444349071379,
+      "v6_auc": 0.9462717947646222,
+      "delta_vs_v6": 0.00017255430675677808,
+      "weights": {
+        "v6_multiscale_te_lgbm": 0.386537608564891,
+        "public_unified_v3": 0.25273286228260633,
+        "public_kirill_v4": 0.3607295291525028
+      }
+    },
+    {
+      "fold": 5,
+      "fit_auc": 0.9461250790034935,
+      "valid_auc": 0.9462263767739316,
+      "v6_auc": 0.946029671249109,
+      "delta_vs_v6": 0.00019670552482264902,
+      "weights": {
+        "v6_multiscale_te_lgbm": 0.41019680250993085,
+        "public_unified_v3": 0.2478021353172001,
+        "public_kirill_v4": 0.34200106217286913
+      }
+    }
+  ],
+  "final_weights": {
+    "v6_multiscale_te_lgbm": 0.4154416062728485,
+    "public_unified_v3": 0.24352775867309312,
+    "public_kirill_v4": 0.3410306350540585
+  },
+  "crossfit_oof_auc": 0.9461424555058618,
+  "fixed_weight_oof_auc": 0.9461445548966967,
+  "v6_oof_auc": 0.945926937302457,
+  "oof_delta_vs_v6": 0.00021551820340481864,
+  "folds_won_vs_v6": 5,
+  "grid_step": 0.02
+}

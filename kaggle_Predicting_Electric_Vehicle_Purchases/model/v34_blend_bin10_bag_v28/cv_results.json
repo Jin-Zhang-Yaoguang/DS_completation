@@ -1,0 +1,61 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "v16 public/MLP weights with two-seed bin10 bag, then v28 blend",
+  "bin10_members": [
+    "v31_income_bin10_te_lgbm_10f_seed2026",
+    "v32_income_bin10_te_lgbm_10f_seed3407"
+  ],
+  "fold_results": [
+    {
+      "fold": 1,
+      "weight_v28": 0.3,
+      "valid_auc": 0.945337563447868,
+      "base_auc": 0.9453099112491424,
+      "delta_vs_base": 2.7652198725580668e-05
+    },
+    {
+      "fold": 2,
+      "weight_v28": 0.3,
+      "valid_auc": 0.9459801554529278,
+      "base_auc": 0.9459419916330508,
+      "delta_vs_base": 3.816381987697959e-05
+    },
+    {
+      "fold": 3,
+      "weight_v28": 0.32,
+      "valid_auc": 0.9471734896320239,
+      "base_auc": 0.9471534889742337,
+      "delta_vs_base": 2.000065779017568e-05
+    },
+    {
+      "fold": 4,
+      "weight_v28": 0.28,
+      "valid_auc": 0.9466004085861186,
+      "base_auc": 0.9465627180076934,
+      "delta_vs_base": 3.769057842517576e-05
+    },
+    {
+      "fold": 5,
+      "weight_v28": 0.32,
+      "valid_auc": 0.9463455540997423,
+      "base_auc": 0.9463323332076058,
+      "delta_vs_base": 1.3220892136511786e-05
+    }
+  ],
+  "learned_weights_v28": [
+    0.3,
+    0.3,
+    0.32,
+    0.28,
+    0.32
+  ],
+  "final_weight_v28": 0.304,
+  "bin10_bag_oof_auc": 0.9461278747219194,
+  "base_oof_auc": 0.9462570984785048,
+  "v28_oof_auc": 0.9461333163138547,
+  "crossfit_oof_auc": 0.9462851604430574,
+  "fixed_weight_oof_auc": 0.9462856756435578,
+  "folds_won_vs_base": 5,
+  "base_v28_test_spearman": 0.998916592065804,
+  "grid_step": 0.02
+}

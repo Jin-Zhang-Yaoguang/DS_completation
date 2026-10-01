@@ -1,0 +1,150 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "20-fold income-bin10 TE depth-4 LightGBM, full seed 32452843",
+  "seed": 32452843,
+  "n_folds": 20,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "income_bin10": [
+      "_income_bin10"
+    ]
+  },
+  "static_feature_count": 62,
+  "te_feature_count": 51,
+  "feature_count": 113,
+  "fold_auc": [
+    0.9459614222191717,
+    0.946800690795822,
+    0.9466823743389579,
+    0.9447906515848766,
+    0.9459163150009335,
+    0.9457444558680186,
+    0.9476944417166868,
+    0.9465660438852039,
+    0.9445391432443541,
+    0.9474652852682492,
+    0.9459378404227283,
+    0.9474838551207417,
+    0.9439378822048965,
+    0.9456943469558221,
+    0.9463305195662257,
+    0.9486688810719245,
+    0.9454198147749069,
+    0.9468030081125306,
+    0.9435122341254233,
+    0.9477938388382334
+  ],
+  "fold_auc_mean": 0.9461871522557855,
+  "fold_auc_std": 0.0012958998279738888,
+  "best_iterations": [
+    1786,
+    1492,
+    2186,
+    1877,
+    1708,
+    2232,
+    2771,
+    2255,
+    2191,
+    1734,
+    2019,
+    2472,
+    1893,
+    2736,
+    2630,
+    1818,
+    1528,
+    1551,
+    2238,
+    2086
+  ],
+  "oof_auc": 0.9461832854713419,
+  "prediction_min": 2.522436510788009e-06,
+  "prediction_max": 0.9997483344396392,
+  "prediction_mean": 0.17489710672843792,
+  "elapsed_seconds": 748.2254009246826,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 4,
+    "num_leaves": 15,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 32452843,
+    "bagging_seed": 32452843,
+    "feature_fraction_seed": 32452843,
+    "data_random_seed": 32452843,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "a second independent depth-4 path should reduce the variance of v51's validated structural diversity before it enters the final ensemble",
+  "full_seed": 32452843
+}

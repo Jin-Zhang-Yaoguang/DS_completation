@@ -1,0 +1,63 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "v16 public/MLP weights with three-member cross-fold bin10 bag, then v28 blend",
+  "bin10_members": [
+    "v31_income_bin10_te_lgbm_10f_seed2026",
+    "v32_income_bin10_te_lgbm_10f_seed3407",
+    "v36_income_bin10_te_lgbm_10f_fullseed2718"
+  ],
+  "fold_results": [
+    {
+      "fold": 1,
+      "weight_v28": 0.26,
+      "valid_auc": 0.9453423798119801,
+      "base_auc": 0.9453209171997378,
+      "delta_vs_base": 2.146261224234003e-05
+    },
+    {
+      "fold": 2,
+      "weight_v28": 0.24,
+      "valid_auc": 0.945991780512824,
+      "base_auc": 0.9459621396939161,
+      "delta_vs_base": 2.9640818907883393e-05
+    },
+    {
+      "fold": 3,
+      "weight_v28": 0.26,
+      "valid_auc": 0.9471892702949323,
+      "base_auc": 0.9471763857145484,
+      "delta_vs_base": 1.288458038384288e-05
+    },
+    {
+      "fold": 4,
+      "weight_v28": 0.24,
+      "valid_auc": 0.9466286436451726,
+      "base_auc": 0.9466036502900645,
+      "delta_vs_base": 2.499335510808276e-05
+    },
+    {
+      "fold": 5,
+      "weight_v28": 0.28,
+      "valid_auc": 0.9463579293637108,
+      "base_auc": 0.9463520185003953,
+      "delta_vs_base": 5.910863315472525e-06
+    }
+  ],
+  "learned_weights_v28": [
+    0.26,
+    0.24,
+    0.26,
+    0.24,
+    0.28
+  ],
+  "final_weight_v28": 0.256,
+  "bin10_bag_oof_auc": 0.9462018302377859,
+  "base_oof_auc": 0.9462806810661029,
+  "v28_oof_auc": 0.9461333163138547,
+  "crossfit_oof_auc": 0.9462998382421525,
+  "fixed_weight_oof_auc": 0.9463003667245353,
+  "folds_won_vs_base": 5,
+  "base_v28_test_spearman": 0.9989179686227666,
+  "grid_step": 0.02,
+  "hypothesis": "average model-seed and outer-fold-seed variance before adding the complementary 20-fold prediction path"
+}

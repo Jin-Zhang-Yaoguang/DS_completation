@@ -1,0 +1,31 @@
+{
+  "experiment_id": "income_support_geometry_20260910",
+  "created_at_utc": "2026-09-10T14:35:43.088428+00:00",
+  "hypothesis": "收入离散支持集的左右间距，提供精确值TE和频次之外的生成器几何信息。",
+  "evidence": "14667个收入值有1797种左右间距组合；局部间距与频次Spearman=-0.00747，非同一表示；这不是标签信号证明。",
+  "unique_variable": "在匹配V85上追加固定4列：log1p左间距、log1p右间距、log1p总间距、左右log间距差",
+  "closed_branch_distinction": "不使用原始频次比/novelty、不做标签邻域平滑、不调整分箱/TE平滑；全训练+test的无标签取值集合固定，仅描述支持集几何。",
+  "baseline": "已保存并校验的V85 seed42五折同配方；首折原模型全部验证预测回放确认",
+  "folds": 5,
+  "outer_seed": 42,
+  "inner_and_model_seed": "42+fold",
+  "early_stopping": 350,
+  "threads": 8,
+  "wall_seconds": 1200,
+  "memory_gib": 16,
+  "gate": {
+    "pooled_delta_min": 0.0001,
+    "positive_folds": 5
+  },
+  "source_hashes": {
+    "data/train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "data/test.csv": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+    "model/validation/e2e_v100_20260905/feature_backends.py": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+    "model/v85_naji_v74_40f/frozen_config.json": "0ed289568d8718b4548442aa843284d31b2282c7ed37a129343cd82a3efcdd8f",
+    "model/diagnostics/income_context_lowrank_20260906_retry1/diagnostic_oof.npz": "66a16a1b7c55354763a5541afa96c43df632a18a75d321600b1ce54a9613ff80",
+    "model/diagnostics/income_geometry_audit_20260910/result.json": "bb7d25e867063b7aa34cc7e7ff3356e385938f0ac9940352cfd7af7db8e7cac5"
+  },
+  "precondition": "RealMLP五折关闭并独立复算后再启动；若RealMLP晋级则优先其正式验证。",
+  "scope": "五折诊断，外验证早停；不是端到端无偏证据；不生成test预测、不提交、不计C01",
+  "stop": "失败不改变间距公式、参数或种子重跑；预算到即停并保留失败"
+}

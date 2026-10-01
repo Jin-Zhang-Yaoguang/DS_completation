@@ -1,0 +1,98 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "focused multiscale nested TE + high-signal static fingerprints + shallow LightGBM",
+  "seed": 42,
+  "n_folds": 5,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ]
+  },
+  "static_feature_count": 40,
+  "te_feature_count": 30,
+  "feature_count": 70,
+  "fold_auc": [
+    0.9449443068913974,
+    0.945572389671176,
+    0.9467674707706646,
+    0.9462450977402871,
+    0.9460058353960442
+  ],
+  "fold_auc_mean": 0.9459070200939138,
+  "fold_auc_std": 0.0006169652431303372,
+  "best_iterations": [
+    1306,
+    1430,
+    1541,
+    1041,
+    1421
+  ],
+  "oof_auc": 0.9459004246477809,
+  "prediction_min": 7.375088197856338e-06,
+  "prediction_max": 0.9995050131908934,
+  "prediction_mean": 0.17499695756596495,
+  "elapsed_seconds": 148.92015290260315,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 31,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 42,
+    "bagging_seed": 42,
+    "feature_fraction_seed": 42,
+    "data_random_seed": 42,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "remove weak fingerprints and TE keys that dilute 30 percent column sampling"
+}

@@ -1,0 +1,509 @@
+{
+  "schema": "v117-r2.1-b110-yield-cycle-audit-v1",
+  "strength_status": "DEVELOPMENT_DIAGNOSTIC_ONLY_NO_STRATEGY_CHANGE",
+  "candidate": "B86_CURRENT_DEFAULT_BALANCED_ONLY",
+  "opponent": "FROZEN_V1_ADAPTIVE_MARKET",
+  "data_contract": {
+    "minimum_observed_date": "2026-08-20",
+    "split": "development",
+    "sources_reported_separately": [
+      "ACCOUNT_ONLINE",
+      "OFFICIAL_DAILY"
+    ],
+    "module_version": "1.32.7",
+    "configuration_sha256": "1a9006518ccbe403a70e107bb041cc2489e38da637ae0e3872500010963c46f3",
+    "historical_actions_results_market_path_loaded": false,
+    "agents_restart_from_step_zero": true,
+    "two_seats_per_scenario": true,
+    "blind_content_accessed": false
+  },
+  "semantics": {
+    "asset_day": "同一地块、资产类型和种植或放置批次在某日出现一次",
+    "completion": "相邻 observation 已出现完成状态，或动作后由状态变化确认",
+    "peak_ready_yield": "每个资产日观察到的最大 yield_units 之和，不是现金价值",
+    "confirmed_harvest_units": "HARVEST 后同一资产 yield_units 下降时，按动作前 ready units 计",
+    "day_close_unharvested": "hour 23 最后动作前仍 ready 且未被该动作确认收获的单位"
+  },
+  "integrity_pass": true,
+  "games": 32,
+  "scenario_blocks": 16,
+  "summary_by_source": {
+    "ACCOUNT_ONLINE": {
+      "games": 16,
+      "scenario_blocks": 8,
+      "candidate": {
+        "WHEAT": {
+          "mean_asset_days": 490.25,
+          "mean_watered_asset_days": 389.25,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 1061.6875,
+          "mean_harvest_attempts": 97.125,
+          "mean_harvest_attempted_ready_units": 371.8125,
+          "mean_harvest_confirmed_units": 371.8125,
+          "mean_unharvested_ready_units_at_day_close": 687.5,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 395.9375
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 389.25
+          },
+          "watered_completion_rate": 0.7939826619071902,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 2.1656042835288116,
+          "harvest_capture_rate": 0.35020898334020134,
+          "day_close_unharvested_share": 0.6475540118914463
+        },
+        "MILK": {
+          "mean_asset_days": 152.5,
+          "mean_watered_asset_days": 0.0,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 136.8125,
+          "mean_cared_asset_days": 98.5625,
+          "mean_peak_ready_yield_units": 156.5,
+          "mean_harvest_attempts": 53.25,
+          "mean_harvest_attempted_ready_units": 155.6875,
+          "mean_harvest_confirmed_units": 155.6875,
+          "mean_unharvested_ready_units_at_day_close": 0.8125,
+          "mean_maintenance_attempts": {
+            "CARE": 127.8125,
+            "FEED": 137.625,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 98.5625,
+            "FEED": 136.8125,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "watered_completion_rate": 0.0,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.8971311475409836,
+          "cared_completion_rate": 0.646311475409836,
+          "peak_ready_yield_per_asset_day": 1.0262295081967212,
+          "harvest_capture_rate": 0.9948083067092651,
+          "day_close_unharvested_share": 0.005191693290734824
+        },
+        "STRAWBERRY": {
+          "mean_asset_days": 611.125,
+          "mean_watered_asset_days": 308.8125,
+          "mean_fertilized_asset_days": 155.0625,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 172.1875,
+          "mean_harvest_attempts": 135.4375,
+          "mean_harvest_attempted_ready_units": 167.5,
+          "mean_harvest_confirmed_units": 167.5,
+          "mean_unharvested_ready_units_at_day_close": 4.125,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 53.9375,
+            "WATER": 310.875
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 53.5625,
+            "WATER": 308.8125
+          },
+          "watered_completion_rate": 0.5053180609531601,
+          "fertilized_completion_rate": 0.25373286970750664,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 0.2817549601145429,
+          "harvest_capture_rate": 0.9727767695099818,
+          "day_close_unharvested_share": 0.023956442831215972
+        }
+      },
+      "v1": {
+        "WHEAT": {
+          "mean_asset_days": 587.125,
+          "mean_watered_asset_days": 407.3125,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 1153.0,
+          "mean_harvest_attempts": 124.8125,
+          "mean_harvest_attempted_ready_units": 397.3125,
+          "mean_harvest_confirmed_units": 397.3125,
+          "mean_unharvested_ready_units_at_day_close": 750.6875,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 442.1875
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 407.3125
+          },
+          "watered_completion_rate": 0.6937406855439643,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 1.9638066851181606,
+          "harvest_capture_rate": 0.3445901994796184,
+          "day_close_unharvested_share": 0.6510732870771899
+        },
+        "MILK": {
+          "mean_asset_days": 238.0,
+          "mean_watered_asset_days": 0.0,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 222.5,
+          "mean_cared_asset_days": 221.0,
+          "mean_peak_ready_yield_units": 278.125,
+          "mean_harvest_attempts": 83.0,
+          "mean_harvest_attempted_ready_units": 278.125,
+          "mean_harvest_confirmed_units": 278.125,
+          "mean_unharvested_ready_units_at_day_close": 0.0,
+          "mean_maintenance_attempts": {
+            "CARE": 222.0,
+            "FEED": 223.0,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 221.0,
+            "FEED": 222.5,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "watered_completion_rate": 0.0,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.9348739495798319,
+          "cared_completion_rate": 0.9285714285714286,
+          "peak_ready_yield_per_asset_day": 1.16859243697479,
+          "harvest_capture_rate": 1.0,
+          "day_close_unharvested_share": 0.0
+        },
+        "STRAWBERRY": {
+          "mean_asset_days": 586.0,
+          "mean_watered_asset_days": 308.0,
+          "mean_fertilized_asset_days": 191.0,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 257.0,
+          "mean_harvest_attempts": 132.0,
+          "mean_harvest_attempted_ready_units": 254.0,
+          "mean_harvest_confirmed_units": 254.0,
+          "mean_unharvested_ready_units_at_day_close": 3.0,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 64.0,
+            "WATER": 318.0
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 64.0,
+            "WATER": 308.0
+          },
+          "watered_completion_rate": 0.5255972696245734,
+          "fertilized_completion_rate": 0.32593856655290104,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 0.43856655290102387,
+          "harvest_capture_rate": 0.9883268482490273,
+          "day_close_unharvested_share": 0.011673151750972763
+        }
+      },
+      "candidate_minus_v1": {
+        "WHEAT": {
+          "mean_asset_days": -96.875,
+          "mean_peak_ready_yield_units": -91.3125,
+          "mean_harvest_attempts": -27.6875,
+          "mean_harvest_confirmed_units": -25.5,
+          "mean_unharvested_ready_units_at_day_close": -63.1875,
+          "watered_completion_rate": 0.10024197636322596,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 0.20179759841065104,
+          "harvest_capture_rate": 0.005618783860582954,
+          "day_close_unharvested_share": -0.0035192751857435756
+        },
+        "MILK": {
+          "mean_asset_days": -85.5,
+          "mean_peak_ready_yield_units": -121.625,
+          "mean_harvest_attempts": -29.75,
+          "mean_harvest_confirmed_units": -122.4375,
+          "mean_unharvested_ready_units_at_day_close": 0.8125,
+          "watered_completion_rate": 0.0,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": -0.03774280203884839,
+          "cared_completion_rate": -0.2822599531615926,
+          "peak_ready_yield_per_asset_day": -0.14236292877806878,
+          "harvest_capture_rate": -0.005191693290734878,
+          "day_close_unharvested_share": 0.005191693290734824
+        },
+        "STRAWBERRY": {
+          "mean_asset_days": 25.125,
+          "mean_peak_ready_yield_units": -84.8125,
+          "mean_harvest_attempts": 3.4375,
+          "mean_harvest_confirmed_units": -86.5,
+          "mean_unharvested_ready_units_at_day_close": 1.125,
+          "watered_completion_rate": -0.020279208671413307,
+          "fertilized_completion_rate": -0.07220569684539441,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": -0.156811592786481,
+          "harvest_capture_rate": -0.015550078739045459,
+          "day_close_unharvested_share": 0.01228329108024321
+        }
+      }
+    },
+    "OFFICIAL_DAILY": {
+      "games": 16,
+      "scenario_blocks": 8,
+      "candidate": {
+        "WHEAT": {
+          "mean_asset_days": 541.875,
+          "mean_watered_asset_days": 432.4375,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 1174.625,
+          "mean_harvest_attempts": 107.9375,
+          "mean_harvest_attempted_ready_units": 414.75,
+          "mean_harvest_confirmed_units": 414.75,
+          "mean_unharvested_ready_units_at_day_close": 758.875,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 437.5625
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 432.4375
+          },
+          "watered_completion_rate": 0.7980392156862746,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 2.1677047289504037,
+          "harvest_capture_rate": 0.35309141215281475,
+          "day_close_unharvested_share": 0.6460572523145685
+        },
+        "MILK": {
+          "mean_asset_days": 151.0,
+          "mean_watered_asset_days": 0.0,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 135.125,
+          "mean_cared_asset_days": 99.1875,
+          "mean_peak_ready_yield_units": 155.6875,
+          "mean_harvest_attempts": 52.625,
+          "mean_harvest_attempted_ready_units": 152.875,
+          "mean_harvest_confirmed_units": 152.875,
+          "mean_unharvested_ready_units_at_day_close": 2.8125,
+          "mean_maintenance_attempts": {
+            "CARE": 125.75,
+            "FEED": 135.875,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 99.1875,
+            "FEED": 135.125,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "watered_completion_rate": 0.0,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.8948675496688742,
+          "cared_completion_rate": 0.6568708609271523,
+          "peak_ready_yield_per_asset_day": 1.031043046357616,
+          "harvest_capture_rate": 0.9819349658771578,
+          "day_close_unharvested_share": 0.018065034122842234
+        },
+        "STRAWBERRY": {
+          "mean_asset_days": 557.125,
+          "mean_watered_asset_days": 282.75,
+          "mean_fertilized_asset_days": 142.6875,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 155.0,
+          "mean_harvest_attempts": 123.6875,
+          "mean_harvest_attempted_ready_units": 152.3125,
+          "mean_harvest_confirmed_units": 152.3125,
+          "mean_unharvested_ready_units_at_day_close": 2.375,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 49.625,
+            "WATER": 285.0625
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 49.5,
+            "WATER": 282.75
+          },
+          "watered_completion_rate": 0.5075162665470047,
+          "fertilized_completion_rate": 0.2561139780121158,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 0.2782140453219655,
+          "harvest_capture_rate": 0.9826612903225806,
+          "day_close_unharvested_share": 0.01532258064516129
+        }
+      },
+      "v1": {
+        "WHEAT": {
+          "mean_asset_days": 594.9375,
+          "mean_watered_asset_days": 408.0625,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 1162.625,
+          "mean_harvest_attempts": 124.9375,
+          "mean_harvest_attempted_ready_units": 396.5625,
+          "mean_harvest_confirmed_units": 396.4375,
+          "mean_unharvested_ready_units_at_day_close": 759.9375,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 442.375
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 0,
+            "WATER": 408.0625
+          },
+          "watered_completion_rate": 0.685891375144448,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 1.9541968694190566,
+          "harvest_capture_rate": 0.3409848403397484,
+          "day_close_unharvested_share": 0.6536393936135899
+        },
+        "MILK": {
+          "mean_asset_days": 218.0,
+          "mean_watered_asset_days": 0.0,
+          "mean_fertilized_asset_days": 0.0,
+          "mean_fed_asset_days": 203.875,
+          "mean_cared_asset_days": 202.25,
+          "mean_peak_ready_yield_units": 257.375,
+          "mean_harvest_attempts": 76.375,
+          "mean_harvest_attempted_ready_units": 256.25,
+          "mean_harvest_confirmed_units": 256.25,
+          "mean_unharvested_ready_units_at_day_close": 1.125,
+          "mean_maintenance_attempts": {
+            "CARE": 203.0,
+            "FEED": 204.25,
+            "FERTILIZE": 0,
+            "WATER": 0.0625
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 202.25,
+            "FEED": 203.875,
+            "FERTILIZE": 0,
+            "WATER": 0
+          },
+          "watered_completion_rate": 0.0,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.9352064220183486,
+          "cared_completion_rate": 0.9277522935779816,
+          "peak_ready_yield_per_asset_day": 1.1806192660550459,
+          "harvest_capture_rate": 0.9956289460903351,
+          "day_close_unharvested_share": 0.004371053909664886
+        },
+        "STRAWBERRY": {
+          "mean_asset_days": 584.75,
+          "mean_watered_asset_days": 304.4375,
+          "mean_fertilized_asset_days": 182.125,
+          "mean_fed_asset_days": 0.0,
+          "mean_cared_asset_days": 0.0,
+          "mean_peak_ready_yield_units": 256.5625,
+          "mean_harvest_attempts": 129.0625,
+          "mean_harvest_attempted_ready_units": 244.1875,
+          "mean_harvest_confirmed_units": 244.1875,
+          "mean_unharvested_ready_units_at_day_close": 11.625,
+          "mean_maintenance_attempts": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 61.25,
+            "WATER": 313.5
+          },
+          "mean_maintenance_confirmed": {
+            "CARE": 0,
+            "FEED": 0,
+            "FERTILIZE": 61.0,
+            "WATER": 304.5
+          },
+          "watered_completion_rate": 0.5206284737067123,
+          "fertilized_completion_rate": 0.31145788798631896,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 0.43875587858059,
+          "harvest_capture_rate": 0.9517661388550548,
+          "day_close_unharvested_share": 0.04531059683313033
+        }
+      },
+      "candidate_minus_v1": {
+        "WHEAT": {
+          "mean_asset_days": -53.0625,
+          "mean_peak_ready_yield_units": 12.0,
+          "mean_harvest_attempts": -17.0,
+          "mean_harvest_confirmed_units": 18.3125,
+          "mean_unharvested_ready_units_at_day_close": -1.0625,
+          "watered_completion_rate": 0.11214784054182658,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": 0.2135078595313471,
+          "harvest_capture_rate": 0.012106571813066347,
+          "day_close_unharvested_share": -0.007582141299021461
+        },
+        "MILK": {
+          "mean_asset_days": -67.0,
+          "mean_peak_ready_yield_units": -101.6875,
+          "mean_harvest_attempts": -23.75,
+          "mean_harvest_confirmed_units": -103.375,
+          "mean_unharvested_ready_units_at_day_close": 1.6875,
+          "watered_completion_rate": 0.0,
+          "fertilized_completion_rate": 0.0,
+          "fed_completion_rate": -0.04033887234947442,
+          "cared_completion_rate": -0.2708814326508293,
+          "peak_ready_yield_per_asset_day": -0.14957621969742996,
+          "harvest_capture_rate": -0.01369398021317736,
+          "day_close_unharvested_share": 0.013693980213177349
+        },
+        "STRAWBERRY": {
+          "mean_asset_days": -27.625,
+          "mean_peak_ready_yield_units": -101.5625,
+          "mean_harvest_attempts": -5.375,
+          "mean_harvest_confirmed_units": -91.875,
+          "mean_unharvested_ready_units_at_day_close": -9.25,
+          "watered_completion_rate": -0.013112207159707623,
+          "fertilized_completion_rate": -0.05534390997420319,
+          "fed_completion_rate": 0.0,
+          "cared_completion_rate": 0.0,
+          "peak_ready_yield_per_asset_day": -0.16054183325862453,
+          "harvest_capture_rate": 0.03089515146752586,
+          "day_close_unharvested_share": -0.029988016187969042
+        }
+      }
+    }
+  },
+  "games_sha256": "7b1a458bfc5ea97a81ad64a5bc2306366578477115dec3ca400582deeb348c69"
+}

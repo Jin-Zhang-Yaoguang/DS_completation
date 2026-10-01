@@ -1,0 +1,194 @@
+<title>进化监控台</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #f4f6f4; --panel: #ffffff; --panel2: #eaeeea; --line: #d4dad4;
+  --ink: #1c2420; --ink2: #5a675e; --best: #15803d; --mean: #64748b;
+  --zero: #b45309; --neg: #b91c1c; --chip: #e5ebe5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1412; --panel: #171d1a; --panel2: #1f2622; --line: #2c352f;
+    --ink: #e6ede8; --ink2: #8fa096; --best: #4ade80; --mean: #7d94ad;
+    --zero: #e8b94a; --neg: #f87171; --chip: #232b26;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1412; --panel: #171d1a; --panel2: #1f2622; --line: #2c352f;
+  --ink: #e6ede8; --ink2: #8fa096; --best: #4ade80; --mean: #7d94ad;
+  --zero: #e8b94a; --neg: #f87171; --chip: #232b26;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); margin: 0;
+  font-family: "IBM Plex Sans", -apple-system, "PingFang SC", sans-serif; font-size: 14px; line-height: 1.55; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
+header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+h1 { font-size: 20px; font-weight: 600; margin: 0; letter-spacing: .01em; }
+.sub { color: var(--ink2); font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; }
+.stat .k { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink2); }
+.stat .v { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.stat .v.neg { color: var(--neg); } .stat .v.pos { color: var(--best); }
+.stat .d { font-size: 12px; color: var(--ink2); margin-top: 2px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; margin-bottom: 18px; }
+.panel h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ink2); margin: 0 0 10px; }
+.legend { display: flex; gap: 18px; font-size: 12px; color: var(--ink2); margin-bottom: 6px; flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.chartbox { overflow-x: auto; }
+#chart { display: block; width: 100%; min-width: 560px; height: auto; }
+.sum { border-left: 3px solid var(--best); background: var(--panel2); border-radius: 4px; padding: 10px 14px; margin-bottom: 10px; }
+.sum .g { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink2); margin-bottom: 3px; }
+.sum p { margin: 0; font-size: 13.5px; }
+.empty { color: var(--ink2); text-align: center; padding: 30px 0; font-size: 13px; }
+.foot { color: var(--ink2); font-size: 12px; }
+.tooltip { position: absolute; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px;
+  font-family: "IBM Plex Mono", monospace; font-size: 12px; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: none; z-index: 10; }
+.tooltip.show { display: block; }
+.tooltip .gen { color: var(--ink2); margin-bottom: 6px; }
+.tooltip .row { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 3px; }
+.tooltip .label { color: var(--ink2); min-width: 60px; }
+.tooltip .val { font-weight: 600; text-align: right; min-width: 80px; }
+.chip { display: inline-block; background: var(--chip); border-radius: 4px; padding: 1px 8px; font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+</style>
+<div class="wrap">
+  <header>
+    <h1>进化监控台</h1>
+    <span class="sub">Kaggriculture 调度器参数进化 · 纵轴 = 对陪练池的平均净胜金额(0 = 追平最强对手)</span>
+  </header>
+  <div class="stats">
+    <div class="stat"><div class="k">最新代</div><div class="v" id="s-gen">–</div><div class="d" id="s-run"></div></div>
+    <div class="stat"><div class="k">历史最强</div><div class="v" id="s-best">–</div><div class="d">best_avg 峰值</div></div>
+    <div class="stat"><div class="k">离追平还差</div><div class="v" id="s-gap">–</div><div class="d">到 0 线的距离</div></div>
+    <div class="stat"><div class="k">近 10 代改善</div><div class="v" id="s-slope">–</div><div class="d" id="s-upd">等待数据</div></div>
+  </div>
+  <div class="panel">
+    <h2>成绩曲线</h2>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--best)"></i>最强个体 best_avg</span>
+      <span><i class="sw" style="background:var(--mean)"></i>种群均值 pop_mean</span>
+      <span><i class="sw" style="background:var(--zero);height:1px"></i>0 = 追平陪练池</span>
+      <span>竖虚线 = 结构版本切换(run 变更)</span>
+    </div>
+    <div class="chartbox" style="position:relative;">
+      <svg id="chart" viewBox="0 0 920 380" style="display:block;cursor:crosshair;"></svg>
+      <div id="tooltip" class="tooltip">
+        <div class="gen" id="tooltip-gen"></div>
+        <div class="row"><span class="label">最强:</span><span class="val" id="tooltip-best"></span></div>
+        <div class="row"><span class="label">均值:</span><span class="val" id="tooltip-mean"></span></div>
+      </div>
+    </div>
+    <div class="empty" id="empty">尚无数据 —— 进化循环启动后自动出现</div>
+  </div>
+  <div class="panel">
+    <h2>每 10 代小结</h2>
+    <div id="sums"><div class="empty">暂无小结</div></div>
+  </div>
+  <p class="foot">数据由训练会话逐代写入;页面实时刷新,无需手动更新。</p>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const fmt = v => (v > 0 ? "+" : "") + Math.round(v).toLocaleString("en-US");
+let currentRows = [];
+function draw(rows) {
+  rows.sort((a, b) => (a.seq ?? 0) - (b.seq ?? 0));
+  currentRows = rows;
+  const svg = $("chart");
+  if (!rows.length) { svg.innerHTML = ""; $("empty").hidden = false; return; }
+  $("empty").hidden = true;
+  const W = 920, H = 380, L = 78, R = 16, T = 16, B = 40;
+  const xs = i => L + (W - L - R) * (rows.length === 1 ? 0.5 : i / (rows.length - 1));
+  let lo = Math.min(0, ...rows.map(r => Math.min(r.best_avg, r.pop_mean)));
+  let hi = Math.max(0, ...rows.map(r => Math.max(r.best_avg, r.pop_mean)));
+  const pad = (hi - lo) * 0.07 || 1000; lo -= pad; hi += pad;
+  const ys = v => T + (H - T - B) * (1 - (v - lo) / (hi - lo));
+  let g = "";
+  const step = Math.max(1, Math.ceil((hi - lo) / 6 / 10000)) * 10000;
+  for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) {
+    const y = ys(v);
+    g += `<line x1="${L}" y1="${y}" x2="${W - R}" y2="${y}" stroke="var(--line)" stroke-width="1"/>`;
+    g += `<text x="${L - 8}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(--ink2)" font-family="IBM Plex Mono,monospace">${(v / 1000).toFixed(0)}k</text>`;
+  }
+  const y0 = ys(0);
+  g += `<line x1="${L}" y1="${y0}" x2="${W - R}" y2="${y0}" stroke="var(--zero)" stroke-width="1.2" stroke-dasharray="5 4"/>`;
+  g += `<text x="${W - R}" y="${y0 - 6}" text-anchor="end" font-size="11" fill="var(--zero)" font-family="IBM Plex Mono,monospace">追平线</text>`;
+  let prevRun = rows[0].run;
+  rows.forEach((r, i) => {
+    if (r.run !== prevRun) {
+      const x = xs(i) - (xs(1) - xs(0)) / 2 || xs(i);
+      g += `<line x1="${x}" y1="${T}" x2="${x}" y2="${H - B}" stroke="var(--ink2)" stroke-width="1" stroke-dasharray="2 4"/>`;
+      g += `<text x="${x + 4}" y="${T + 12}" font-size="10.5" fill="var(--ink2)" font-family="IBM Plex Mono,monospace">${r.run}</text>`;
+      prevRun = r.run;
+    }
+  });
+  const xtick = Math.max(1, Math.ceil(rows.length / 12));
+  rows.forEach((r, i) => {
+    if (i % xtick === 0 || i === rows.length - 1)
+      g += `<text x="${xs(i)}" y="${H - B + 18}" text-anchor="middle" font-size="11" fill="var(--ink2)" font-family="IBM Plex Mono,monospace">${r.gen}</text>`;
+  });
+  g += `<text x="${(L + W - R) / 2}" y="${H - 6}" text-anchor="middle" font-size="11" fill="var(--ink2)">代 (generation)</text>`;
+  const path = (key, color, wd) => {
+    const pts = rows.map((r, i) => `${xs(i).toFixed(1)},${ys(r[key]).toFixed(1)}`).join(" ");
+    let s = `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="${wd}" stroke-linejoin="round"/>`;
+    const last = rows[rows.length - 1];
+    s += `<circle cx="${xs(rows.length - 1)}" cy="${ys(last[key])}" r="4" fill="${color}"/>`;
+    return s;
+  };
+  g += path("pop_mean", "var(--mean)", 1.6);
+  g += path("best_avg", "var(--best)", 2.4);
+  const last = rows[rows.length - 1];
+  g += `<text x="${Math.min(xs(rows.length - 1) + 8, W - 70)}" y="${ys(last.best_avg) - 8}" font-size="12" font-weight="600" fill="var(--best)" font-family="IBM Plex Mono,monospace">${fmt(last.best_avg)}</text>`;
+  svg.innerHTML = g;
+  $("s-gen").textContent = last.gen;
+  $("s-run").textContent = "run: " + last.run;
+  const bestEver = Math.max(...rows.map(r => r.best_avg));
+  const be = $("s-best"); be.textContent = fmt(bestEver); be.className = "v " + (bestEver >= 0 ? "pos" : "neg");
+  const gp = $("s-gap"); gp.textContent = fmt(Math.min(0, bestEver)).replace("+0", "0"); gp.className = "v " + (bestEver >= 0 ? "pos" : "neg");
+  const back = rows.length > 10 ? rows[rows.length - 11] : rows[0];
+  const slope = last.best_avg - back.best_avg;
+  const sl = $("s-slope"); sl.textContent = fmt(slope); sl.className = "v " + (slope >= 0 ? "pos" : "neg");
+  $("s-upd").textContent = "对比 " + back.gen + " 代前";
+}
+function drawSums(rows) {
+  rows.sort((a, b) => (b.seq ?? 0) - (a.seq ?? 0));
+  const el = $("sums");
+  if (!rows.length) { el.innerHTML = '<div class="empty">暂无小结</div>'; return; }
+  el.innerHTML = rows.map(r =>
+    `<div class="sum"><div class="g"><span class="chip">${r.label || ("至第 " + r.upto_gen + " 代")}</span></div><p>${r.text}</p></div>`
+  ).join("");
+}
+(() => {
+  const svg = $("chart"), tip = $("tooltip");
+  const W = 920, L = 78, R = 16;
+  svg.addEventListener("mousemove", e => {
+    const rows = currentRows;
+    if (!rows.length) return;
+    const rect = svg.getBoundingClientRect();
+    const x = (e.clientX - rect.left) * (W / rect.width);
+    if (x < L || x > W - R) { tip.classList.remove("show"); return; }
+    const i = rows.length === 1 ? 0 : Math.round((x - L) / (W - L - R) * (rows.length - 1));
+    const r = rows[Math.max(0, Math.min(i, rows.length - 1))];
+    $("tooltip-gen").textContent = `第 ${r.gen} 代 · ${r.run}`;
+    $("tooltip-best").textContent = fmt(r.best_avg);
+    $("tooltip-mean").textContent = fmt(r.pop_mean);
+    tip.classList.add("show");
+    const box = svg.parentElement.getBoundingClientRect();
+    let left = e.clientX - box.left + 14;
+    if (left + 200 > box.width) left = e.clientX - box.left - 214;
+    tip.style.left = left + "px";
+    tip.style.top = Math.max(0, e.clientY - box.top - 70) + "px";
+  });
+  svg.addEventListener("mouseleave", () => tip.classList.remove("show"));
+})();
+(async () => {
+  const db = await claude.use("db");
+  if (!db) { $("empty").textContent = "无法连接数据源(此环境未授予 db 能力)"; return; }
+  db.collection("history").onSnapshot(
+    snap => draw(snap.docs.filter(d => d.exists).map(d => d.data())),
+    e => { $("empty").hidden = false; $("empty").textContent = "数据订阅中断: " + e.code; });
+  db.collection("summaries").onSnapshot(
+    snap => drawSums(snap.docs.filter(d => d.exists).map(d => d.data())),
+    () => {});
+})();
+</script>

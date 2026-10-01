@@ -1,0 +1,81 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "strongly regularized depth-3 prediction stack",
+  "seed": 917,
+  "features": [
+    "v31_income_bin10_te_lgbm_10f_seed2026",
+    "v32_income_bin10_te_lgbm_10f_seed3407",
+    "v36_income_bin10_te_lgbm_10f_fullseed2718",
+    "v28_multiscale_te_lgbm_20f",
+    "v11_mlp_te_10f",
+    "v10_catboost_bag_10f",
+    "public_V1",
+    "public_V2",
+    "public_V3",
+    "public_V4",
+    "public_V5"
+  ],
+  "fold_results": [
+    {
+      "fold": 1,
+      "auc": 0.948144765521291,
+      "best_iteration": 880
+    },
+    {
+      "fold": 2,
+      "auc": 0.9457894895751602,
+      "best_iteration": 724
+    },
+    {
+      "fold": 3,
+      "auc": 0.9460071620237208,
+      "best_iteration": 493
+    },
+    {
+      "fold": 4,
+      "auc": 0.9456398993098594,
+      "best_iteration": 387
+    },
+    {
+      "fold": 5,
+      "auc": 0.9457615801605315,
+      "best_iteration": 673
+    }
+  ],
+  "oof_auc": 0.9461313106409761,
+  "importance_gain_mean": {
+    "v28_multiscale_te_lgbm_20f": 3264795.7242254587,
+    "v31_income_bin10_te_lgbm_10f_seed2026": 2202370.2099359753,
+    "v36_income_bin10_te_lgbm_10f_fullseed2718": 2069166.9008980915,
+    "public_V4": 1338345.8450704224,
+    "v32_income_bin10_te_lgbm_10f_seed3407": 884071.9589321881,
+    "public_V2": 221043.6342437461,
+    "public_V3": 219077.75789994857,
+    "v10_catboost_bag_10f": 137519.84812337236,
+    "v11_mlp_te_10f": 111593.11942875813,
+    "public_V5": 50847.09715786986,
+    "public_V1": 43753.41517021488
+  },
+  "elapsed_seconds": 29.40976572036743,
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 4000,
+    "learning_rate": 0.01,
+    "max_depth": 3,
+    "num_leaves": 7,
+    "min_child_samples": 5000,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_alpha": 2.0,
+    "reg_lambda": 10.0,
+    "max_bin": 127,
+    "random_state": 917,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "validation_warning": "base OOF vectors are row-wise leak-free, but meta-CV is not a fully nested regeneration of every base learner; require stable fold gains"
+}

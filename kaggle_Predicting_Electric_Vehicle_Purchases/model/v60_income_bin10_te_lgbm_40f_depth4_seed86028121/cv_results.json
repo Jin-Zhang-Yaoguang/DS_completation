@@ -1,0 +1,190 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "second 40-fold income-bin10 TE depth-4 LightGBM",
+  "seed": 86028121,
+  "n_folds": 40,
+  "n_inner_folds": 5,
+  "smooths": [
+    5.0,
+    15.0,
+    80.0
+  ],
+  "te_keys": {
+    "Age": [
+      "Age"
+    ],
+    "Annual_Income_USD": [
+      "Annual_Income_USD"
+    ],
+    "Daily_Commute_km": [
+      "Daily_Commute_km"
+    ],
+    "Number_of_Cars_Owned": [
+      "Number_of_Cars_Owned"
+    ],
+    "Charging_Stations_Near_Home": [
+      "Charging_Stations_Near_Home"
+    ],
+    "Charging_Stations_Near_Work": [
+      "Charging_Stations_Near_Work"
+    ],
+    "Environmental_Concern_Level": [
+      "Environmental_Concern_Level"
+    ],
+    "Gender": [
+      "Gender"
+    ],
+    "City_Type": [
+      "City_Type"
+    ],
+    "Current_Car_Type": [
+      "Current_Car_Type"
+    ],
+    "Home_Charging_Possible": [
+      "Home_Charging_Possible"
+    ],
+    "Subsidy_Available": [
+      "Subsidy_Available"
+    ],
+    "Range_Anxiety_Level": [
+      "Range_Anxiety_Level"
+    ],
+    "income_bin100": [
+      "_income_bin100"
+    ],
+    "income_subsidy": [
+      "Annual_Income_USD",
+      "Subsidy_Available"
+    ],
+    "income_env": [
+      "Annual_Income_USD",
+      "Environmental_Concern_Level"
+    ],
+    "income_bin10": [
+      "_income_bin10"
+    ]
+  },
+  "static_feature_count": 62,
+  "te_feature_count": 51,
+  "feature_count": 113,
+  "fold_auc": [
+    0.9474720681078395,
+    0.9474202014571226,
+    0.9463217656053444,
+    0.9450115678273028,
+    0.9524277540260463,
+    0.9423040988657317,
+    0.9443598767252361,
+    0.9437279644870187,
+    0.9435583574352575,
+    0.9456025034229201,
+    0.9443007513048797,
+    0.9462608011866784,
+    0.9428027832137422,
+    0.948798354019784,
+    0.9460049881798804,
+    0.9441862733709233,
+    0.9480226989984917,
+    0.9478727259549178,
+    0.9449557974187359,
+    0.9452073162619231,
+    0.9483841533944742,
+    0.9467091565468373,
+    0.9448370501429236,
+    0.9488309698058244,
+    0.9447436955224532,
+    0.9455671073367132,
+    0.9478835469815681,
+    0.9426035663253326,
+    0.9436090924731714,
+    0.949550004949912,
+    0.9433571398402665,
+    0.9490171724329605,
+    0.9499561286577856,
+    0.9473677976824578,
+    0.948493005676222,
+    0.9446727710863957,
+    0.9466184949719842,
+    0.946331804807451,
+    0.9451027566726787,
+    0.9494561465728171
+  ],
+  "fold_auc_mean": 0.94624275524375,
+  "fold_auc_std": 0.0022968520473392474,
+  "best_iterations": [
+    1193,
+    3229,
+    2788,
+    2579,
+    2017,
+    1746,
+    3087,
+    4353,
+    2148,
+    1203,
+    2052,
+    2571,
+    829,
+    1975,
+    2652,
+    1946,
+    1190,
+    2113,
+    1003,
+    1859,
+    1701,
+    2191,
+    2608,
+    921,
+    2530,
+    1790,
+    1563,
+    1491,
+    1526,
+    2497,
+    2416,
+    1064,
+    2575,
+    1512,
+    2487,
+    1464,
+    1649,
+    1526,
+    2286,
+    3104
+  ],
+  "oof_auc": 0.9462415109945849,
+  "prediction_min": 3.2366342363513427e-06,
+  "prediction_max": 0.9997001595609228,
+  "prediction_mean": 0.17502375870465237,
+  "elapsed_seconds": 1360.5542960166931,
+  "lightgbm_version": "4.6.0",
+  "params": {
+    "objective": "binary",
+    "metric": "auc",
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 4,
+    "num_leaves": 15,
+    "min_child_samples": 10,
+    "subsample": 0.812763123433567,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.3029300829885024,
+    "reg_alpha": 0.07094285437903122,
+    "reg_lambda": 2.0330390977032424,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "random_state": 86028121,
+    "bagging_seed": 86028121,
+    "feature_fraction_seed": 86028121,
+    "data_random_seed": 86028121,
+    "deterministic": true,
+    "force_col_wise": true,
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "early_stopping_rounds": 500,
+  "public_recipe_note": "digit/frequency and multi-smoothing TE ideas cross-checked against public Kaggle kernels",
+  "hypothesis": "averaging two independently folded 40-fold models should reduce split, target-encoding, and LightGBM seed variance while retaining 97.5% coverage",
+  "full_seed": 86028121
+}

@@ -1,0 +1,80 @@
+{
+  "experiment_id": "TABM_NUM_EMBEDDINGS_20260906",
+  "timestamp": "2026-09-05T16:28:31.399884+00:00",
+  "hypothesis": "在相同严格148维V85特征、TabM骨干和优化设置下，逐数值LinearReLU嵌入改善条件非线性表达，产生可复现新增排序信号。",
+  "previous_limit": "V39仅单折、无数值嵌入且沿用v6非严格编码。新两臂统一严格V85特征，非重跑旧配置；不声称隔离旧编码修复收益。",
+  "arms": [
+    "TabM-mini standardized numeric",
+    "TabM-mini LinearReLUEmbeddings d=8"
+  ],
+  "folds": 5,
+  "split_seed": 42,
+  "model_seed_base": 516,
+  "arch_type": "tabm-mini",
+  "k": 16,
+  "n_blocks": 3,
+  "d_block": 256,
+  "dropout": 0.15,
+  "embedding_dim": 8,
+  "epochs": 24,
+  "patience": 4,
+  "min_delta": 1e-07,
+  "batch_size": 2048,
+  "eval_batch_size": 4096,
+  "learning_rate": 0.002,
+  "weight_decay": 0.0003,
+  "adam_betas": [
+    0.9,
+    0.999
+  ],
+  "adam_eps": 1e-08,
+  "grad_clip_norm": 1.0,
+  "scale": "训练折均值标准差、clip[-12,12]；内层5折TE来自冻结Backend.encode",
+  "loss": "每个ensemble head分别BCE，均值反传；推理对sigmoid概率平均",
+  "device": "mps",
+  "threads": 4,
+  "wall_seconds": 1800,
+  "memory_gib": 16,
+  "early_stop_boundary": "外层验证选择最佳epoch，仅开发诊断；最终端到端确认必须改用训练内早停。",
+  "primary_gate": {
+    "delta_embedding_vs_plain": 0.0001,
+    "positive_folds": 5,
+    "candidate_min_auc": 0.9452
+  },
+  "strong_reference": "已复算V85的同一seed42五折OOF，仅比较，不拟合权重或生成融合",
+  "resume": "每臂检查点、代码配置来源哈希核验；预算从首次启动累计，不重置；完整两臂都结束才计该折。",
+  "stopping": "资源超限或异常停止并保留已完成结果；不改宽度、embedding_dim、种子、学习率；五折结果不得用于本轮调参",
+  "test_predictions": false,
+  "submission_allowed": false,
+  "counts_toward_cycle": false,
+  "source_hashes": {
+    "data/train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "data/test.csv": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+    "data/original_dataset/EV_Adoption_and_Range_Anxiety_Dataset.csv": "c271a380df51b18177d0a039d54525ca7c3d71500701dc7496714a091df16fae",
+    "model/validation/e2e_v100_20260905/feature_backends.py": "37188b822f1a4f89d6887b1c9cfd74427915bc3f59b389843fd780d977d30240",
+    "model/diagnostics/income_context_lowrank_20260906_retry1/diagnostic_oof.npz": "66a16a1b7c55354763a5541afa96c43df632a18a75d321600b1ce54a9613ff80",
+    "model/diagnostics/income_context_lowrank_20260906_retry1/verification.json": "800b2b17069ac49d33002de653a7552786104c10377f9faaa048d8b2fb40c824"
+  },
+  "dependencies": [
+    {
+      "name": "tabm",
+      "version": "0.0.3",
+      "wheel_url": "https://files.pythonhosted.org/packages/6c/4f/cce9db4b2505c1d5664f7131ea6c115446fe8425c61d7c75b12162a4f25d/tabm-0.0.3-py3-none-any.whl",
+      "wheel_sha256": "6cabed3cb436fef5e8a45f46097fd745f51b3e16be16d555b9af16cffda7f944",
+      "requires_dist": [
+        "torch<3,>=1.12",
+        "rtdl_num_embeddings<0.1,>=0.0.12",
+        "typing_extensions<5,>=4.6.0"
+      ]
+    },
+    {
+      "name": "rtdl-num-embeddings",
+      "version": "0.0.12",
+      "wheel_url": "https://files.pythonhosted.org/packages/18/b9/cef7a26a7999740d5067406b6e856fe0f18f1dd8bd2052e05f4bf4846c5e/rtdl_num_embeddings-0.0.12-py3-none-any.whl",
+      "wheel_sha256": "87fd61270118915cf40888f2164f3a1f0353edf702f15fd91e71a147d23c930d",
+      "requires_dist": [
+        "torch<3,>=1.12"
+      ]
+    }
+  ]
+}

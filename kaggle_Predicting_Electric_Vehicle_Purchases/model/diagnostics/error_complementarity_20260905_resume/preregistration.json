@@ -1,0 +1,28 @@
+{
+  "experiment_id": "ERROR_COMPLEMENTARITY_20260905_RESUME",
+  "created_before_prediction_analysis": true,
+  "evidence_type": "READ_ONLY_EXISTING_OOF_DIAGNOSTIC_NOT_NEW_CV",
+  "hypothesis": "全局集成后剩余错序可能集中在高环保、有补贴、低焦虑区域，并保留原子模型间的局部互补性。",
+  "models": ["v80", "v85", "ctboost", "v90", "v100"],
+  "primary_slice": "Environmental_Concern_Level in {4,5} AND Subsidy_Available=Yes AND Range_Anxiety_Level=Low",
+  "secondary_partitions": ["income_equals_30000", "income_train_frequency_1_9_10_99_100_499_500plus", "environment_by_subsidy", "anxiety_by_home_charging"],
+  "protocol": {
+    "row_order": "train.csv canonical order; source SHA256 plus CTBoost IDs/targets/folds checked",
+    "consistency": "five StratifiedKFold seed42 buckets; existing OOF only, different model training folds remain different",
+    "exact_metric": "AUC pair error mass, ties half; decompose within group, positive-inside-negative-outside, positive-outside-negative-inside",
+    "complementarity": "deterministic sampled positive-negative pairs quantify v100 errors repaired and v100 correct pairs broken by each existing model",
+    "pair_sample_seed": 424242,
+    "pairs_per_scope": 250000,
+    "sample_scopes": ["whole", "primary_slice"],
+    "selected_new_weights": false,
+    "save_new_prediction_arrays": false,
+    "train_or_submit": false
+  },
+  "decision_rule": {
+    "local_expert_signal": "An atomic model beats v100 within the preregistered primary slice by AUC>=0.0001 overall and in at least 4 of 5 seed42 buckets.",
+    "representation_priority": "If the primary within-slice pairs explain >=25% of v100 global pair errors, prioritize a new representation hypothesis; this does not authorize promotion and must be freshly nested validated.",
+    "otherwise": "NO_GO for a local expert based on existing predictions; report any sampled complementarity as diagnostic only."
+  },
+  "budget": {"wall_seconds": 120, "threads": 2, "memory_gib": 4, "training": 0, "submissions": 0},
+  "forbidden": ["full-OOF weight optimization", "post-hoc slice search", "new pseudo-unbiased predictions", "registry modification", "historical artifact modification"]
+}

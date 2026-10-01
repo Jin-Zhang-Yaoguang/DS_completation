@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "status": "FAILED_EXCEPTION",
+  "experiment_id": "v88_strict_v80_v85_cv_blend",
+  "research_cycle": "C01",
+  "cycle_position": 9,
+  "experiment_type": "SMALL_BLEND",
+  "counts_toward_cycle": true,
+  "model": "five-fold cross-fitted mid-ECDF nonnegative grid blend of atomic v80 and v85",
+  "hypothesis": "v85 Naji prediction diversity adds at least 0.0001 reproducible OOF AUC beyond best input v85 when combined with strict v80 under leakage-safe meta cross-fitting",
+  "n_folds": 5,
+  "fold_auc": null,
+  "params": {
+    "meta_cv": {
+      "n_splits": 5,
+      "shuffle": true,
+      "random_state": 42,
+      "selection_scope": "each meta-train only",
+      "holdout_role": "evaluation only"
+    },
+    "transform": {
+      "name": "FIT_ONLY_MID_ECDF",
+      "fit_scope": "separately per member inside each meta-train",
+      "apply_to": [
+        "meta_train",
+        "meta_holdout",
+        "test"
+      ],
+      "tie_value": "(count_less + count_less_or_equal) / (2 * n_fit)",
+      "full_oof_fit_forbidden": true
+    },
+    "weight_search": {
+      "v85_weight_grid": [
+        0.0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6,
+        0.65,
+        0.7,
+        0.75,
+        0.8,
+        0.85,
+        0.9,
+        0.95,
+        1.0
+      ],
+      "v80_weight_formula": "1 - v85_weight",
+      "objective": "meta_train_roc_auc",
+      "nonnegative_normalized": true,
+      "tie_tolerance": 1e-15,
+      "tie_break_1": "minimum absolute distance to v85_weight 0.5",
+      "tie_break_2": "lower v85_weight",
+      "member_selection": "NONE"
+    }
+  },
+  "elapsed_seconds": 3.1137363750021905,
+  "oof_auc": null,
+  "base": "v85_naji_v74_40f",
+  "base_oof_auc": null,
+  "oof_delta_vs_base": null,
+  "decision": "FAILED_EXCEPTION",
+  "failure_attribution": "IMPLEMENTATION_OR_RUNTIME_EXCEPTION",
+  "error_type": "ValueError",
+  "error": "成员行身份不一致：v80_strict_v61_outer104395303_40f",
+  "resource_check": {
+    "timestamp_utc": "2026-09-03T18:37:36.954138+00:00",
+    "phase": "FAILED_EXCEPTION",
+    "fold": null,
+    "status": "OK",
+    "breaches": [],
+    "wall_elapsed_seconds": 3.1137363750021905,
+    "wall_clock_budget_seconds": 900,
+    "peak_rss_bytes": 993542144,
+    "peak_rss_gib": 0.9253082275390625,
+    "peak_rss_budget_bytes": 4294967296,
+    "peak_rss_budget_gib": 4
+  },
+  "code_and_input_hashes": {
+    "runner": {
+      "path": "model/v88_strict_v80_v85_cv_blend/v88_strict_v80_v85_cv_blend.py",
+      "sha256": "2ac29faf8637c87d3bab6a0cc9617069c1ee12e1fb9ca12b5fcf08e3097f077b",
+      "size_bytes": 58313
+    },
+    "frozen_config": {
+      "path": "model/v88_strict_v80_v85_cv_blend/frozen_config.json",
+      "sha256": "2787bf3f69ab105e75745f00d609f5d247a9c69c416945a388eb7abddcc08908",
+      "size_bytes": 6291
+    },
+    "data": {
+      "data/train.csv": {
+        "path": "data/train.csv",
+        "sha256": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+        "size_bytes": 44707646
+      },
+      "data/test.csv": {
+        "path": "data/test.csv",
+        "sha256": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+        "size_bytes": 18298347
+      },
+      "data/sample_submission.csv": {
+        "path": "data/sample_submission.csv",
+        "sha256": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5",
+        "size_bytes": 7737432
+      }
+    },
+    "members": {
+      "v80_strict_v61_outer104395303_40f:v80_strict_v61_outer104395303_40f.py": {
+        "path": "model/v80_strict_v61_outer104395303_40f/v80_strict_v61_outer104395303_40f.py",
+        "sha256": "808e4fe41ef033da6b6df14edcce3e9f67ced418f9958fddbd0788045af8204a",
+        "size_bytes": 80862
+      },
+      "v80_strict_v61_outer104395303_40f:frozen_config.json": {
+        "path": "model/v80_strict_v61_outer104395303_40f/frozen_config.json",
+        "sha256": "79fc1e5451fb823cbde5a59e32b078e8e85cc0ebcef4c500694affab9195e5ab",
+        "size_bytes": 3650
+      },
+      "v80_strict_v61_outer104395303_40f:cv_results.json": {
+        "path": "model/v80_strict_v61_outer104395303_40f/cv_results.json",
+        "sha256": "52bd098b6b765bffac5efd9f3faa18c4f1773229241fc18f7b2ebfafb41a57e2",
+        "size_bytes": 116748
+      },
+      "v80_strict_v61_outer104395303_40f:sources.json": {
+        "path": "model/v80_strict_v61_outer104395303_40f/sources.json",
+        "sha256": "d1fa6c3203b3e5bf69c673f89e443ed4b94053dd4143e502662d8fffcc9ae1c3",
+        "size_bytes": 3949
+      },
+      "v80_strict_v61_outer104395303_40f:oof_proba.npy": {
+        "path": "model/v80_strict_v61_outer104395303_40f/oof_proba.npy",
+        "sha256": "403d712897a775fd0869c9b8b89595dd8433ca909202a3313649b6ae77b29ae2",
+        "size_bytes": 5349448
+      },
+      "v80_strict_v61_outer104395303_40f:test_proba.npy": {
+        "path": "model/v80_strict_v61_outer104395303_40f/test_proba.npy",
+        "sha256": "3dfd38c810276920929e2849ceafdf50de7c3f6f0543636e7efcd96a0ef499cb",
+        "size_bytes": 2292696
+      },
+      "v85_naji_v74_40f:v85_naji_v74_40f.py": {
+        "path": "model/v85_naji_v74_40f/v85_naji_v74_40f.py",
+        "sha256": "cadadf826262fbf3f253778bc5764bd48e95b7386f0b92a86eaad02a53f5d30b",
+        "size_bytes": 99827
+      },
+      "v85_naji_v74_40f:frozen_config.json": {
+        "path": "model/v85_naji_v74_40f/frozen_config.json",
+        "sha256": "0ed289568d8718b4548442aa843284d31b2282c7ed37a129343cd82a3efcdd8f",
+        "size_bytes": 4271
+      },
+      "v85_naji_v74_40f:cv_results.json": {
+        "path": "model/v85_naji_v74_40f/cv_results.json",
+        "sha256": "91c22eee2c6d78433f9bf075a6674d0f29e1ce53ea86486b32a32576f9bf8b0b",
+        "size_bytes": 122696
+      },
+      "v85_naji_v74_40f:sources.json": {
+        "path": "model/v85_naji_v74_40f/sources.json",
+        "sha256": "f1d6da96a18382fb89e46aab140099817a50f3742eb52226ebd4183e4e726f1c",
+        "size_bytes": 4864
+      },
+      "v85_naji_v74_40f:oof_proba.npy": {
+        "path": "model/v85_naji_v74_40f/oof_proba.npy",
+        "sha256": "fee2a13203fd46480906813085181dc9d76e77d1b3d0757bdc43325185ef07b8",
+        "size_bytes": 5349448
+      },
+      "v85_naji_v74_40f:test_proba.npy": {
+        "path": "model/v85_naji_v74_40f/test_proba.npy",
+        "sha256": "6d31b464324a2a7a61d95cf244b254ec7b3b8e44d3856281b5b6b04d14777a94",
+        "size_bytes": 2292696
+      }
+    }
+  },
+  "allowed_for_fusion": false,
+  "eligible_for_separate_preregistration": false,
+  "allowed_for_submission": false,
+  "submission_budget": 0,
+  "expected_artifacts": [
+    "candidate_snapshot.json",
+    "lineage.json",
+    "meta_folds.json",
+    "sources.json",
+    "train_log.txt",
+    "oof_proba.npy",
+    "test_proba.npy",
+    "submission.csv"
+  ],
+  "present_artifacts": [
+    "train_log.txt"
+  ],
+  "missing_artifacts": [
+    "candidate_snapshot.json",
+    "lineage.json",
+    "meta_folds.json",
+    "sources.json",
+    "oof_proba.npy",
+    "test_proba.npy",
+    "submission.csv"
+  ],
+  "present_artifacts_are_invalid_for_use": true
+}

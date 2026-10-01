@@ -1,0 +1,178 @@
+{
+  "competition": "playground-series-s6e9",
+  "model": "20-fold accelerated Naji independent-feature LightGBM plus income bins (10, 100)",
+  "seed": 42,
+  "n_folds": 20,
+  "oof_auc": 0.9462245318765949,
+  "fold_auc_mean": 0.9462361606979364,
+  "fold_auc_std": 0.0012225029158305471,
+  "fold_rows": [
+    {
+      "fold": 1,
+      "auc": 0.945757024706039,
+      "best_iteration": 1313,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 2,
+      "auc": 0.9445659347221966,
+      "best_iteration": 1075,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 3,
+      "auc": 0.9441942532299248,
+      "best_iteration": 1812,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 4,
+      "auc": 0.9469617436732674,
+      "best_iteration": 1354,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 5,
+      "auc": 0.944252294328571,
+      "best_iteration": 1351,
+      "fit_rows": 635231,
+      "valid_rows": 33434
+    },
+    {
+      "fold": 6,
+      "auc": 0.9469548498596614,
+      "best_iteration": 1512,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 7,
+      "auc": 0.9459968766650104,
+      "best_iteration": 1671,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 8,
+      "auc": 0.9464445764443186,
+      "best_iteration": 1633,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 9,
+      "auc": 0.9473977957709222,
+      "best_iteration": 1078,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 10,
+      "auc": 0.946403334241841,
+      "best_iteration": 2154,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 11,
+      "auc": 0.9467005201532366,
+      "best_iteration": 1442,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 12,
+      "auc": 0.9477672688053054,
+      "best_iteration": 1630,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 13,
+      "auc": 0.9460797582860612,
+      "best_iteration": 588,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 14,
+      "auc": 0.946091587877923,
+      "best_iteration": 939,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 15,
+      "auc": 0.9482874853481567,
+      "best_iteration": 1617,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 16,
+      "auc": 0.9458583972035093,
+      "best_iteration": 2613,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 17,
+      "auc": 0.945792403473044,
+      "best_iteration": 1138,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 18,
+      "auc": 0.9486516021717445,
+      "best_iteration": 1863,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 19,
+      "auc": 0.946131203977007,
+      "best_iteration": 1824,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    },
+    {
+      "fold": 20,
+      "auc": 0.9444343030209911,
+      "best_iteration": 1449,
+      "fit_rows": 635232,
+      "valid_rows": 33433
+    }
+  ],
+  "feature_count": 148,
+  "target_encode_column_count": 39,
+  "extra_income_bins": [
+    10,
+    100
+  ],
+  "params": {
+    "n_estimators": 12000,
+    "learning_rate": 0.02,
+    "max_depth": 5,
+    "num_leaves": 32,
+    "min_child_samples": 10,
+    "subsample": 0.8,
+    "colsample_bytree": 0.3,
+    "reg_alpha": 0.071,
+    "reg_lambda": 2.0,
+    "max_bin": 1024,
+    "feature_pre_filter": false,
+    "metric": "auc",
+    "n_jobs": 8,
+    "verbosity": -1
+  },
+  "hypothesis": "raising outer-fold training coverage from 80% to 95% should improve the lower-correlation Naji member while 4x learning rate preserves its ranking; optional income bins test validated local generator neighborhoods",
+  "prediction_min": 6.029095580491855e-06,
+  "prediction_max": 0.999791105184218,
+  "prediction_mean": 0.17475309004424672,
+  "elapsed_seconds": 772.402400970459
+}

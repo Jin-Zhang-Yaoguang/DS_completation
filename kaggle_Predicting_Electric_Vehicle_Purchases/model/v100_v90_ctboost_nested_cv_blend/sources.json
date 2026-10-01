@@ -1,0 +1,38 @@
+{
+  "experiment_id": "v100_v90_ctboost_nested_cv_blend",
+  "leaderboard_used_for_weight_selection": false,
+  "lineage_policy": "v90 is an ensemble parent and CTBoost is a distinct atomic family; no v90 child is also loaded",
+  "members": {
+    "ctboost": {
+      "oof": "model/diagnostics/ctboost_remote_probe_20260905/remote_output/oof.npz",
+      "role": "private_gpu_seed42_fivefold_atomic_model",
+      "test": "model/diagnostics/ctboost_remote_probe_20260905/remote_output/submission.csv::Will_Buy_EV"
+    },
+    "v90": {
+      "oof": "model/v90_v89_member_verify_budget_retry/oof_proba.npy",
+      "role": "strict_promoted_core_ensemble",
+      "test": "model/v90_v89_member_verify_budget_retry/test_proba.npy"
+    }
+  },
+  "public_predictions_used": false,
+  "schema_version": 1,
+  "source_sha256": {
+    "ct_evidence": "045025074dd0ec8cde6bdf5dfcb527c11e23b5299893e2f8ecda278a5133b366",
+    "ct_kernel_metadata": "877433d11c8186a6299eacf262a093baefa449a0234258af0e8d464586267c7e",
+    "ct_log": "d3a3e5310f818970f19c652d50905edc5933411da9f93cbf39d43f6138709948",
+    "ct_notebook": "a78ce26d2f8f6c23bf15edb317f457d3e568823a7a92769f397b270bfb608209",
+    "ct_oof": "01f46f9868a22fe5563cdc71aada5c91105bc8b9f4d56e96c29475228610f4a3",
+    "ct_run_summary": "4e824e0ceec4e57925c58b78097e61db0acac0f052a9cb5ee6df2fa0f769d741",
+    "ct_submission": "f8997e33d70a909504a384ffe0c85b9d9cd43dae97ab3c1d86de8734cee84972",
+    "sample_submission.csv": "a9747a8b947e4e35505e3da4535a5a494978b012a7adb50973f13e598849dda5",
+    "test.csv": "539263f6caabc40afd5e2f0bc0ab16b10a2d1177c565fc71b866f0181d836b34",
+    "train.csv": "eae9eaa4e6378df405e755f853771d7e26d212bd93258349fc797b771021946a",
+    "v90_config": "ec255f79707963c37909618fdfb20e2bdedcd9599b7fdd13ac03e34503b0536e",
+    "v90_cv": "50c22769b7e9d3327ab5af98c571bbf961e7f8705e1e6837d9378cd01004bb02",
+    "v90_oof": "c0057fc23fb130cd0bbbc05c6849893d5b79ff3a7ad786715d68fc1a6de4628f",
+    "v90_runner": "71618b688ba314510c55efee08d8f848d1658e67e195908792e35c0f8328a013",
+    "v90_sources": "57e7a7713386b1a1e8f6429f54ed88fcddba1c802811d72f628fdb8c7a775b70",
+    "v90_test": "6fa740955ac5997455e8e4b18aa181adbd9dd6da719e0cc80d858963e002f363",
+    "v95_oof": "2abad8382d1585e1e1956bf0b190f4f78d670f380fa1e528257dd8132914f47f"
+  }
+}

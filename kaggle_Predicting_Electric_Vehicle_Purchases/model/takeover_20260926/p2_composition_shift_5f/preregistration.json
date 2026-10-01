@@ -1,0 +1,63 @@
+{
+  "experiment_id": "P2_INCOME_COMPOSITION_INVERSION_5F_20260926",
+  "registered_at_utc": "2026-09-26T10:44:43.199516+00:00",
+  "activation": "After P1 formal/E2E is closed or fails to produce qualifying online improvement; no concurrent long-running S6E9 training.",
+  "unique_hypothesis": "Exact-income target rate mixes income identity and group-specific context composition. Invert the donor group sigmoid response curve to recover a composition-adjusted income logit shift.",
+  "distinctness": "Not E13 group mean of prediction residuals; not v97 fixed generator margin; not v98 GAM init_score; not rank4 income-context interaction. Group-specific nonlinear inverse E_g[sigmoid(nuisance+s)] is the differentiating operation.",
+  "baseline": "P1 verified 5fold A = unchanged V85 148-column LightGBM, seed42, same LightGBM 6 threads. Reuse exact saved P1 A OOF and fold models only if source/fold/seed hashes match; otherwise rerun A.",
+  "main_variable": "Add exactly two composition features to V85: shift_g and shift_g - (logit(smoothed_purchase_rate_g)-logit(global_prior)). No other features or model parameters change.",
+  "context_nuisance": {
+    "excluded": [
+      "Annual_Income_USD",
+      "Number_of_Cars_Owned",
+      "id",
+      "Will_Buy_EV"
+    ],
+    "numeric": [
+      "Age",
+      "Daily_Commute_km",
+      "Charging_Stations_Near_Home",
+      "Charging_Stations_Near_Work",
+      "Environmental_Concern_Level"
+    ],
+    "categorical": [
+      "Gender",
+      "City_Type",
+      "Current_Car_Type",
+      "Home_Charging_Possible",
+      "Subsidy_Available",
+      "Range_Anxiety_Level"
+    ],
+    "preprocessing": "donor-only StandardScaler numeric and OneHotEncoder(handle_unknown=ignore) categorical",
+    "model": "LogisticRegression(C=1.0,solver=lbfgs,max_iter=200,class_weight=None)",
+    "donor_prediction": "Fit nuisance on donor labels, evaluate nuisance on donor rows to build group composition; no query label or test pseudo-label."
+  },
+  "composition_formula": {
+    "income_key": "exact Annual_Income_USD",
+    "alpha": 20.0,
+    "prior": "mean donor target",
+    "p_g": "(sum_y_g + 20*prior)/(n_g+20)",
+    "eta_i": "logit(nuisance_probability_i), clipped to [1e-6,1-1e-6]",
+    "curve_g(s)": "(sum_{i:income_i=g} sigmoid(eta_i+s) + 20*sigmoid(logit(prior)+s))/(n_g+20)",
+    "shift_g": "unique monotone solution curve_g(s)=p_g, Newton 12 steps, bounded [-6,6]",
+    "unseen_income_fallback": "shift=0 and offset=0",
+    "second_feature": "shift_g - (logit(p_g)-logit(prior))"
+  },
+  "leakage_boundary": {
+    "outer_cv": "StratifiedKFold(5,shuffle=True,random_state=42)",
+    "inner_cv": "For each outer fit, five stratified folds seed 42+outer index; fit nuisance and group curve on inner donor, transform inner hold only. Full outer donor state transforms outer valid.",
+    "early_stopping": "same V85 outer-valid 350-round early stopping; results labeled development"
+  },
+  "fixed_blend": "0.5*A+0.5*B raw probabilities; no weight search",
+  "diagnostic_gate": "B or fixed blend pooled AUC strictly greater than matched A, with 5/5 outer folds positive. +0.0001 research promotion separate.",
+  "budget": {
+    "wall_seconds": 7200,
+    "cpu_threads_max": 6,
+    "peak_rss_gib_max": 16,
+    "single_instance": true,
+    "submission_budget": 0,
+    "checkpoint_every_fold": true
+  },
+  "stop_rule": "If gate fails, close this fixed formula; no alpha, nuisance, encoding, seed or bin neighborhood search.",
+  "external_implementation_reference": "heuljax/kps6e09-xgb-sample; public code uses GAM + composition curve inversion, not this simplified fixed additive nuisance implementation."
+}
