@@ -1,0 +1,94 @@
+{
+  "records": [
+    {
+      "command": [
+        "/Users/a1-6/.local/bin/kaggle",
+        "competitions",
+        "list",
+        "--help"
+      ],
+      "exit_code": 0,
+      "time_utc": "2026-09-26T09:41:28.242893+00:00",
+      "result_summary": {
+        "stdout_chars": 1566,
+        "stderr_tail": "",
+        "parameter_lines": [
+          "[-v | --format OUTPUT_FORMAT]",
+          "-s, --search SEARCH   Term(s) to search for",
+          "--format OUTPUT_FORMAT"
+        ]
+      },
+      "approval_occurred": false
+    },
+    {
+      "command": [
+        "/Users/a1-6/.local/bin/kaggle",
+        "competitions",
+        "submissions",
+        "--help"
+      ],
+      "exit_code": 0,
+      "time_utc": "2026-09-26T09:41:29.244264+00:00",
+      "result_summary": {
+        "stdout_chars": 1135,
+        "stderr_tail": "",
+        "parameter_lines": [
+          "usage: kaggle competitions submissions [-h] [-v | --format OUTPUT_FORMAT] [-q]",
+          "--format OUTPUT_FORMAT"
+        ]
+      },
+      "approval_occurred": false
+    },
+    {
+      "command": [
+        "/Users/a1-6/.local/bin/kaggle",
+        "competitions",
+        "list",
+        "--search",
+        "arc-prize-2026-arc-agi-2",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "time_utc": "2026-09-26T09:41:31.420634+00:00",
+      "result_summary": {
+        "stdout_chars": 233,
+        "stderr_tail": "",
+        "json_type": "list",
+        "count": 1,
+        "sample": [
+          {
+            "ref": "https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-2",
+            "deadline": "2026-11-02T23:59:00",
+            "category": "Featured",
+            "reward": "700,000 Usd",
+            "teamCount": 2201,
+            "userHasEntered": true
+          }
+        ]
+      },
+      "approval_occurred": false
+    },
+    {
+      "command": [
+        "/Users/a1-6/.local/bin/kaggle",
+        "competitions",
+        "submissions",
+        "-c",
+        "arc-prize-2026-arc-agi-2",
+        "--format",
+        "json"
+      ],
+      "exit_code": 0,
+      "time_utc": "2026-09-26T09:41:34.006715+00:00",
+      "result_summary": {
+        "stdout_chars": 21,
+        "stderr_tail": "",
+        "parse_error": "Expecting value: line 1 column 1 (char 0)",
+        "stdout_tail": "No submissions found\n"
+      },
+      "approval_occurred": false
+    }
+  ],
+  "approval_occurred": false
+}

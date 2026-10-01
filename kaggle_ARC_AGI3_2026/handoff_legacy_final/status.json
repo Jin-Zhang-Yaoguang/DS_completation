@@ -1,0 +1,30 @@
+{
+  "competition": "arc-prize-2026-arc-agi-3",
+  "phase": "handoff_kernel_v3_complete_submission_pending",
+  "entry_confirmed": true,
+  "entry_evidence": "2026-09-26 协调线程 Kaggle CLI competitions list 精确 slug 返回 userHasEntered=true",
+  "baseline_path": "model/v1_exploration/adaptive_agent.py",
+  "validation": {
+    "public_games": 25,
+    "levels_completed": 1,
+    "scorecard_score": 0.04750164365548981,
+    "max_actions_per_game": 240,
+    "result_path": "experiments/public25_v1.json"
+  },
+  "kernel": "yaoguang516/arc-agi-3-adaptive-explorer-v1",
+  "kernel_version": 3,
+  "kernel_status": "KernelWorkerStatus.COMPLETE",
+  "source_sha256": "86902e6c2fb9fdb1a7d78439df8d1f6dc54bebdbddd6cd9c8e96fb245be70f95",
+  "notebook_sha256": "63c1fda9723ca5483962f35b661b2f071f6fad6b9af35a219b38d0131308cffb",
+  "submission_id": null,
+  "submission_status": null,
+  "public_score": null,
+  "blockers": ["协调线程已要求交接给新会话；本任务停止正式提交。下一会话需先核对 v3 日志与输出，再按版本 3 正式提交并等待评分。"],
+  "history": [
+    "2026-09-26 早先未报名时 competitions download 返回 403；之后用户在网页完成报名。",
+    "2026-09-26 Notebook v1 安装 SDK 失败：假定的 /kaggle/input/arc-prize-2026-arc-agi-3/arc_agi_3_wheels 不存在；未正式提交。",
+    "2026-09-26 Notebook v2 改为扫描实际挂载路径中的官方 wheel；SDK 安装成功，但默认 Arcade() 在无网络 Notebook commit 中连接 three.arcprize.org 失败。",
+    "2026-09-26 Notebook v3 使用公开游戏离线模式；SDK 的 competition 环境变量仍可覆盖本地模式。Kaggle CLI kernels status 显示 KernelWorkerStatus.COMPLETE。正式比赛提交尚未执行。"
+  ],
+  "updated_at": "2026-09-26"
+}

@@ -1,0 +1,348 @@
+{
+  "topic": {
+    "id": 732854,
+    "title": "What are your agents scoring on the 25 public games?",
+    "authorName": "Reki",
+    "commentCount": 48,
+    "votes": 14,
+    "postDate": "2026-08-04T19:51:47.319000"
+  },
+  "comments": [
+    {
+      "id": 3525909,
+      "authorName": "Giang Rita",
+      "votes": 3,
+      "postDate": "2026-09-19T13:27:51.337000",
+      "content": "<p>15.7 local and 7.37 LB, up until now I do not believe in scores anymore :))</p>"
+    },
+    {
+      "id": 3525544,
+      "authorName": "Nick Pellegrin",
+      "votes": 2,
+      "postDate": "2026-09-18T04:45:33.767000",
+      "content": "<p>Recently:\nPublic 7.6%   (solving 35 levels total) -&gt; 3.35% Private LB,\nPublic 10.2% (solving 44 levels total) -&gt; 3.05% Private LB,\nPublic 7.7%   (solving 37 levels total) -&gt; 4.42% Private LB</p>\n<p>It almost feels like doing better on the public set (even without any game-specific stuff) correlates to weaker private scores.</p>\n<p>Also all those above scores were different harness variations. It feels almost impossible to experiment because you need to submit at least like 5 times to get a good feel for how a notebook version scores (to account for the variation), but with only 1 submission a day the progress is so slow.</p>"
+    },
+    {
+      "id": 3525952,
+      "authorName": "Fususu",
+      "votes": 0,
+      "postDate": "2026-09-19T17:09:37.603000",
+      "content": "<p>I agree. The host should consider allow 5 submissions per day like before there was a time I saw 5 slot, then the host changed it to 1. </p>"
+    },
+    {
+      "id": 3525983,
+      "authorName": "ktyser",
+      "votes": 0,
+      "postDate": "2026-09-19T20:08:39.613000",
+      "content": "<p>I think the reason it is 1 per day is because of the compute limitations but don't know for sure. I remember when the competition first opened they offered H100's but that didn't last long. </p>"
+    },
+    {
+      "id": 3526429,
+      "authorName": "Yassine Alouini",
+      "votes": 0,
+      "postDate": "2026-09-21T10:53:44.700000",
+      "content": "<p>Yes most likely to avoid the excessive costs. I also agree that having one submission makes progress feel slow. For most people, being clever and finding a good local proxy are the ways to make some progress. </p>"
+    },
+    {
+      "id": 3524945,
+      "authorName": "Fususu",
+      "votes": 1,
+      "postDate": "2026-09-16T10:05:58.650000",
+      "content": "<p>Anyone can explain?\nToday public I got 22.26, submit -&gt; LB got 5.37 :(\nAnother day I got 17.34, submit -&gt; LB got 6.91 :)))</p>"
+    },
+    {
+      "id": 3526121,
+      "authorName": "Ritwika Kancharla",
+      "votes": 0,
+      "postDate": "2026-09-20T11:25:30.903000",
+      "content": "<p>the leaderboard problems are completely unseen so doing well on the public problems does not guarantee a high score on the hidden games.</p>"
+    },
+    {
+      "id": 3526185,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-09-20T15:56:44.357000",
+      "content": "<p>It's worse than that. They are both unseen and you have to choose two of your seen hidden scores to guess which ones scored the best on the unseen hidden scores that determine the winner. How is that a good idea?</p>"
+    },
+    {
+      "id": 3526208,
+      "authorName": "CPMP",
+      "votes": 3,
+      "postDate": "2026-09-20T17:32:41.957000",
+      "content": "<blockquote>\n  <p>you have to choose two of your seen hidden scores to guess which ones scored the best on the unseen hidden scores that determine the winner. How is that a good idea?</p>\n</blockquote>\n<p>It is THE GOOD IDEA of Kaggle. </p>\n<p>It is set this way to test how well your pipeline generalizes to new, unseen data. </p>\n<p>The purpose of machine learning is to build models that perform well on new data.</p>\n<p>If you don't have a hidden test set, then you might build a model or pipeline that works great on the public test data but that would perform badly on new data. Your model would look good when it is useless. This bad outcome is called overfitting in ML. The hidden test set purpose is to check for overfitting.</p>\n<p>The real issue is that most benchmark out there have only public test data. People report awesome numbers on these for their LLMs, only for people to be disappointed when they apply these LLMs to new data.</p>\n<p>In LLM folklore this is known as benchmaxing, but it is the same as overfitting.</p>"
+    },
+    {
+      "id": 3526244,
+      "authorName": "rellik13",
+      "votes": 0,
+      "postDate": "2026-09-20T19:14:39.963000",
+      "content": "<p>It is a good idea tho, isnt it basically the core of this competition? To see how well we can make a model can generalize on unseen tasks, given limited resources? And anyways, competitions like these are how we can actually evaluate how good a model does, ppl have been benchmaxxing a lot. </p>"
+    },
+    {
+      "id": 3524930,
+      "authorName": "Ya Xu",
+      "votes": 1,
+      "postDate": "2026-09-16T09:22:17.863000",
+      "content": "<p>started:   2026-09-14 23:08:10\nended:     2026-09-15 01:21:58\nduration:  2h 13m 48s\nmean score:    9.91\nmedian score:  4.76</p>\n<p>then LB 6.23, I don't know if it's sheer luck.</p>\n<p>The notebook is based on the public flash-next one, but I did make significant changes to the harness structure. The original runs from 6 to 12 on the local 25 set, while my modified version runs from around from 9 to 14 (can't afford too many seeds). I've also noticed that the original runs from 1.96 to 4.33 on the public LB (see <a href=\"https://www.kaggle.com/code/wuliao0/duck-qwen3-8-anim-base)\" target=\"_blank\">https://www.kaggle.com/code/wuliao0/duck-qwen3-8-anim-base)</a>, but my version has been running  a stable 4.0+ for a while.</p>\n<p>Hope this helps everyone understand the variance better, or worse, I have no idea. I don't think this aligns well with the local-lb consistency pattern of the others.</p>\n<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F3101419%2F1fb09988790efaeaad4a4696a63fac61%2F2026-09-16%20-%2017_11_17%20-%20ARC%20Prize%202026%20-%20ARC-AGI-3%20_%20Kaggle.png?generation=1789550533364902&amp;alt=media\" alt=\"\"></p>"
+    },
+    {
+      "id": 3524946,
+      "authorName": "Fususu",
+      "votes": 0,
+      "postDate": "2026-09-16T10:07:16.477000",
+      "content": "<p>It's mere luck. Today public I got 22.26, submit -&gt; LB got 5.37 :( Another day I got 17.34, submit -&gt; LB got 6.91 :)))</p>"
+    },
+    {
+      "id": 3524952,
+      "authorName": "Ya Xu",
+      "votes": 0,
+      "postDate": "2026-09-16T10:26:07.713000",
+      "content": "<blockquote>\n  <p>It's mere luck. Today public I got 22.26, submit -&gt; LB got 5.37 :( Another day I got 17.34, submit -&gt; LB got 6.91 :)))</p>\n</blockquote>\n<p>I've noticed that my local-lb alignment is significantly different from others'. Like you guys can easily get a 20.0+ locally but I almost never get 14.0+. I'm wondering if it's because of the difference in harness strategy, like game-specific rules against more general rules.</p>"
+    },
+    {
+      "id": 3524959,
+      "authorName": "Fususu",
+      "votes": 0,
+      "postDate": "2026-09-16T10:54:22.103000",
+      "content": "<p>I don't know, but I feel the more I mess with the harness, the messy it becomes :))</p>"
+    },
+    {
+      "id": 3525901,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-09-19T12:44:22.647000",
+      "content": "<p>As of today, the highest I've hit locally without fine tuning the model is 11.04, 12.97 with (behavioral cloning not spoonfed solutions and you have to use reasoning traces from the same model or it's a regression in my experience so it's in line with what others have said).</p>\n<p>While I finally made some headway this week, I was scoring 2.2ish on the LB for quite a while. I'll probably get to 5 or so if the trend continues by the 30th, but I'm hoping to up my fine-tuning game in the homestretch now that I have a ton of runs.</p>"
+    },
+    {
+      "id": 3525908,
+      "authorName": "Giang Rita",
+      "votes": 0,
+      "postDate": "2026-09-19T13:26:23.503000",
+      "content": "<p>How do you fine-tune? Qwen 3.8 is so big.</p>"
+    },
+    {
+      "id": 3522919,
+      "authorName": "Fususu",
+      "votes": 4,
+      "postDate": "2026-09-10T00:43:52.510000",
+      "content": "<p>runs:      25 (won: 2)\nstarted:   2026-09-08 20:49:42\nended:     2026-09-08 23:07:44\nduration:  2h 18m 2s\nmean score:    17.34\nmedian score:  8.33\nThen 5.19 on LB ^^</p>"
+    },
+    {
+      "id": 3522036,
+      "authorName": "CreateAMind",
+      "votes": 2,
+      "postDate": "2026-09-08T00:54:14.127000",
+      "content": "<p>score  12.4    <img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F383865%2F5f0d12d4cc09683cf60e1db8efb11cb3%2F_20260908085305_215_300.png?generation=1788828845195458&amp;alt=media\" alt=\"12.40\"></p>"
+    },
+    {
+      "id": 3520588,
+      "authorName": "Penguin",
+      "votes": 1,
+      "postDate": "2026-09-03T17:47:24.793000",
+      "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F33714352%2Fc7ee817746bfc6a9a11e7e3d1adf5d5b%2FScreenshot%202026-09-03%20230943.png?generation=1788457623324306&amp;alt=media\" alt=\"\">\n<br>\nHavent been able to make any progress on bp35, would love some suggestions</p>"
+    },
+    {
+      "id": 3520605,
+      "authorName": "Van-Phuc Huynh",
+      "votes": 2,
+      "postDate": "2026-09-03T18:17:01.347000",
+      "content": "<p>I can got Mean 16.x</p>"
+    },
+    {
+      "id": 3520671,
+      "authorName": "Penguin",
+      "votes": 0,
+      "postDate": "2026-09-03T21:22:51.130000",
+      "content": "<p>can u share ur offline play score that shows per game score, like the one above?</p>"
+    },
+    {
+      "id": 3522822,
+      "authorName": "Van-Phuc Huynh",
+      "votes": 1,
+      "postDate": "2026-09-09T20:06:07.487000",
+      "content": "<p>My agent can actually reach 24.x, with a median score around 16.x. However, there are still a few things I need to improve before I can properly showcase it on the leaderboard, so I can\u2019t share too many details at this point.</p>"
+    },
+    {
+      "id": 3524947,
+      "authorName": "Fususu",
+      "votes": 0,
+      "postDate": "2026-09-16T10:09:05.707000",
+      "content": "<p>Did you try submit that 24.x??? Me 22.x, got 5.37 on LB while 17.x got 6.91 :))</p>"
+    },
+    {
+      "id": 3524971,
+      "authorName": "Van-Phuc Huynh",
+      "votes": 0,
+      "postDate": "2026-09-16T11:35:43.657000",
+      "content": "<p>No, I haven\u2019t submitted my best notebook yet. I think there are still a few issues that need to be fixed. I\u2019ll submit it in the final days if the other options don\u2019t turn out to be viable.</p>"
+    },
+    {
+      "id": 3525274,
+      "authorName": "Giang Rita",
+      "votes": 0,
+      "postDate": "2026-09-17T10:39:20.620000",
+      "content": "<p>I'm very curious about 24.x, and wonder how much point it will convert to LB.</p>"
+    },
+    {
+      "id": 3517663,
+      "authorName": "Nick Pellegrin",
+      "votes": 1,
+      "postDate": "2026-08-27T19:52:31.327000",
+      "content": "<p>I'm getting around 5.0-5.4 on public and 1.4-1.8 on LB.</p>"
+    },
+    {
+      "id": 3517176,
+      "authorName": "mikelou1",
+      "votes": 1,
+      "postDate": "2026-08-26T11:03:10.900000",
+      "content": "<p>Got 2.8 on 25 games and 2.4 on lb</p>"
+    },
+    {
+      "id": 3526435,
+      "authorName": "Yassine Alouini",
+      "votes": 0,
+      "postDate": "2026-09-21T11:33:25.440000",
+      "content": "<p>that's a good validation/LB gap, good for you!</p>"
+    },
+    {
+      "id": 3517048,
+      "authorName": "daoviet",
+      "votes": 1,
+      "postDate": "2026-08-26T01:40:10.080000",
+      "content": "<p>I got 6.8 locally, then 1.19 public \ud83e\udd72</p>"
+    },
+    {
+      "id": 3517662,
+      "authorName": "Seth Moudry",
+      "votes": 0,
+      "postDate": "2026-08-27T19:43:15.510000",
+      "content": "<p>might be noise</p>"
+    },
+    {
+      "id": 3516455,
+      "authorName": "Fususu",
+      "votes": 1,
+      "postDate": "2026-08-24T12:12:14.673000",
+      "content": "<p>3.8 local, then 0.9-1.8 LB ^^!</p>"
+    },
+    {
+      "id": 3511388,
+      "authorName": "Son Pham",
+      "votes": 1,
+      "postDate": "2026-08-11T03:31:13.133000",
+      "content": "<p>Got 2.8 locally so far</p>"
+    },
+    {
+      "id": 3525275,
+      "authorName": "Giang Rita",
+      "votes": 0,
+      "postDate": "2026-09-17T10:44:19.793000",
+      "content": "<p>how about now?</p>"
+    },
+    {
+      "id": 3522817,
+      "authorName": "@s3werst",
+      "votes": 0,
+      "postDate": "2026-09-09T19:58:50.247000",
+      "content": "<p>11.95 locally, 3.99 public \ud83d\ude2d, but for only 3 days of work this is p good tho, since i just leave fable doing whatever it wants and me only checking up on it every hour or so</p>"
+    },
+    {
+      "id": 3517379,
+      "authorName": "donk666",
+      "votes": 0,
+      "postDate": "2026-08-27T01:43:47.030000",
+      "content": "<p>between 3.5-7.5</p>"
+    },
+    {
+      "id": 3514406,
+      "authorName": "PRASHANT SHUKLA91",
+      "votes": 0,
+      "postDate": "2026-08-19T08:38:43.753000",
+      "content": "<p>Anyone who broke the bottlenecks of won games: 0/25 so far.</p>"
+    },
+    {
+      "id": 3514473,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-08-19T13:23:22.243000",
+      "content": "<p>I had an alternative approach based on using Claude Fable to build game-specific solvers that solved 7 of the 25 public games and hit ~38% RHAE overall at 116/183 levels. That really worked, but it's utterly impractical here because it needed Claude access and it took 5 days to slog through the 25 games, not two hours and an RTX Pro 6000.</p>\n<p>The second approach was to build a general solver using what it learned from the previous effort. That got to 8 levels out of 183 but it kept overfitting so it has been discarded as well.</p>"
+    },
+    {
+      "id": 3522667,
+      "authorName": "Scott Le Grand",
+      "votes": 1,
+      "postDate": "2026-09-09T14:00:09.540000",
+      "content": "<p>So yesterday I hit 11.04 on the public games with a win of ft09. Yay me I guess. So I submitted it last night with great hope\u2026</p>\n<p>Sadly, 2.71. WTFF? This was based entirely on game-independent harness changes and Qwen 3.8 flash next nvfp4.</p>\n<p>The variance on submissions is insane. I can't even at this point. The final test on the final data is likely anything goes for anyone in the top 50 or so IMO. Getting close to having better things to do with my GPU.</p>"
+    },
+    {
+      "id": 3508571,
+      "authorName": "Reki",
+      "votes": 0,
+      "postDate": "2026-08-04T19:53:10.640000",
+      "content": "<p><img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F13918144%2F2f22af2f60cbd1d1020c5020833a08c2%2F40a4e1e6c79648c35e8ec53b4301772b.png?generation=1785873187250718&amp;alt=media\" alt=\"\"></p>"
+    },
+    {
+      "id": 3514283,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-08-18T22:05:29.303000",
+      "content": "<p>My highest is 3.8, but the same agent submitted gets 0.9 or so. It's a general LLM agent descended from duck.</p>"
+    },
+    {
+      "id": 3515022,
+      "authorName": "",
+      "votes": 1,
+      "postDate": "2026-08-20T15:49:19.210000",
+      "content": ""
+    },
+    {
+      "id": 3515051,
+      "authorName": "OverfitOracle",
+      "votes": 1,
+      "postDate": "2026-08-20T16:51:43.520000",
+      "content": "<p>Our harness looks stable at 5.0+ on 25 games and 1.6 on the 110 games after submission</p>"
+    },
+    {
+      "id": 3517629,
+      "authorName": "Spen",
+      "votes": 0,
+      "postDate": "2026-08-27T18:15:24.257000",
+      "content": "<p>Did you make any fundamental changes to your harness to jump to your current score, or just tweaks and a good scoring run?</p>"
+    },
+    {
+      "id": 3517631,
+      "authorName": "",
+      "votes": 0,
+      "postDate": "2026-08-27T18:19:08.727000",
+      "content": ""
+    },
+    {
+      "id": 3517632,
+      "authorName": "OverfitOracle",
+      "votes": 0,
+      "postDate": "2026-08-27T18:20:21.437000",
+      "content": "<p>I am not gonna share something very important but was a very different  approach in the harness + model achieving 5.0+ stable on public 25 games. We completely redesigned it leading to a good stable increase.</p>"
+    },
+    {
+      "id": 3525432,
+      "authorName": "Scott Le Grand",
+      "votes": 0,
+      "postDate": "2026-09-17T18:33:15.440000",
+      "content": "<p>I've scored as high as 12 on the public games. The best I have seen is 3.2 on the hidden. I am beginning to think the only path forward is a winning recipe for SFT/RL on an existing model. And because I am out of you know whats, most of what I have done is just take the stock duck client for nvp4 and increase the sequence concurrency to 16. Anything else I have done, and it's a lot, amounted to jack</p>\n<p>That will get you to the brink of the top 10%, but all of my harness engineering beyond that has been utterly useless. And now I learned that the winner isn't going to be who scored highest on the 55 truly hidden games, but your best lottery ticket based on how it did on the other 55.</p>\n<p>To that end, I tasked Astra, the supposed AGI according who absolutely know better, to build a new harness. After 2 days, it scores about as well as duck. And that is where I am starting to conclude that any further progress requires SFT/RL on an existing model or maybe training a jev-like alternative. Starting to not care honestly. The score here is more resource constrained than anything else and that's really not that much fun.</p>"
+    },
+    {
+      "id": 3525541,
+      "authorName": "Ya Xu",
+      "votes": 0,
+      "postDate": "2026-09-18T04:31:50.540000",
+      "content": "<blockquote>\n  <p>I've scored as high as 12 on the public games. The best I have seen is 3.2 on the hidden. I am beginning to think the only path forward is a winning recipe for SFT/RL on an existing model. And because I am out of you know whats, most of what I have done is just take the stock duck client for nvp4 and increase the sequence concurrency to 16. Anything else I have done, and it's a lot, amounted to jack</p>\n  <p>That will get you to the brink of the top 10%, but all of my harness engineering beyond that has been utterly useless. And now I learned that the winner isn't going to be who scored highest on the 55 truly hidden games, but your best lottery ticket based on how it did on the other 55.</p>\n  <p>To that end, I tasked Astra, the supposed AGI according who absolutely know better, to build a new harness. After 2 days, it scores about as well as duck. And that is where I am starting to conclude that any further progress requires SFT/RL on an existing model or maybe training a jev-like alternative. Starting to not care honestly. The score here is more resource constrained than anything else and that's really not that much fun.</p>\n</blockquote>\n<p>yeah but SFT on flash-next nvfp4 is nearly impossible with 96g RTX PRO 6000, at least for most of us</p>"
+    },
+    {
+      "id": 3526058,
+      "authorName": "OverfitOracle",
+      "votes": 1,
+      "postDate": "2026-09-20T06:01:57.023000",
+      "content": "<p>RL is possible for the qwen 3.8 27b after high quantization (still need good compute) but on the flash next model its impossible unless you are an nvidia guy\ud83d\ude02</p>"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 3519979,
+    "authorName": "",
+    "postDate": "2026-09-02T16:06:27.907000",
+    "votes": 8,
+    "content": "<p>Hey all \u2014 sharing some artifacts that might help others fine-tune agents on ARC-AGI-3.</p>\n<p>We ran the open duck harness (TAAF, MIT) with Qwen3.6-27B, kept only the games the agent won (reached a level), and LoRA-SFT'd on those winning trajectories (STaR / reject-sampling). Behavior-cloning the agent's own successes gave us a real, measurable lift on the leaderboard.</p>\n<p>Three CC0 datasets:</p>\n<ul>\n<li><a href=\"https://www.kaggle.com/datasets/justforgags/arc3-sft-trajectories\" target=\"_blank\">arc3-sft-trajectories</a> \u2014 full level-completing trajectories in chat-JSONL (system \u2192 reasoning \u2192 Python tool-calls \u2192 results). Drop-in SFT data.</li>\n<li><a href=\"https://www.kaggle.com/datasets/justforgags/arc3-duck-lora-sft\" target=\"_blank\">arc3-duck-lora-sft</a> \u2014 the pilot LoRA adapter (Qwen3.6, qwen3_5).</li>\n<li><a href=\"https://www.kaggle.com/datasets/justforgags/duck-eval-results\" target=\"_blank\">duck-eval-results</a> \u2014 per-game offline benchmark logs.</li>\n</ul>\n<p>A few gotchas that might save you time:</p>\n<ul>\n<li>Train assistant-tokens-only; the tool-calls are OpenAI-format, flatten before templating.</li>\n<li>It's a multimodal arch \u2014 merge/serve as Qwen3_5ForConditionalGeneration (a text-only save gets rejected by vLLM), and copy the processor configs into the merged checkpoint.</li>\n<li>Offline levels don't predict the leaderboard \u2014 only submit to measure.</li>\n</ul>\n<p>Hope it helps someone climb. Happy to answer questions. \ud83e\udd86</p>"
+  },
+  {
+    "id": 3520000,
+    "authorName": "",
+    "postDate": "2026-09-02T16:59:12.717000",
+    "votes": 0,
+    "content": "<p>This is really cool! Do you have number for how much your performance jumped after running sft? (I'm imagining the public games got much better since you trained on winning traces for those games, but how big of a jump did you see on the private LB?)</p>"
+  },
+  {
+    "id": 3520335,
+    "authorName": "",
+    "postDate": "2026-09-03T06:44:21.977000",
+    "votes": 0,
+    "content": "<p>Hi Nick, yes it was a big jump went from 1.25 to 1.94 fine tuning on qwen. At that time it took me from 300~ rank to 133~ . Now the leaderboard is already 7~ lol.</p>"
+  },
+  {
+    "id": 3520388,
+    "authorName": "",
+    "postDate": "2026-09-03T09:19:43.953000",
+    "votes": 0,
+    "content": "<p>I used to believe that LORA was the trick and spent a lot of time on it, but the result only backfired on me. It could be a skill issue but I also read later that Chollet said something about 'the local 25 game is not meant to be used as training data because the 110 game set is unique and much harder'.<img src=\"https://www.googleapis.com/download/storage/v1/b/kaggle-forum-message-attachments/o/inbox%2F3101419%2Ffc43aed9ff1d372092f5601818096fc1%2F2026-09-03%20-%2017_09_38%20-%20Francois%20Chollet%20on%20X_%20_Regular%20reminder%20--%20the%20set%20of%20public%20ARC%203%20games%20is%20called%20_demonstration%20set_%20not%20_eval%20set_%20nor%20_training%20set_.%20It%20is%20not%20meant%20to%20be%20used%20as%20training%20data%20and%20it%20is%20not%20meant%20to%20be%20used.png?generation=1788427178228225&amp;alt=media\" alt=\"\"></p>"
+  },
+  {
+    "id": 3520441,
+    "authorName": "",
+    "postDate": "2026-09-03T12:05:24.283000",
+    "votes": 0,
+    "content": "<p>A useful distinction here is what you fine-tune on.</p>\n<p>Chollet's caution is about the demonstration set as data \u2014 training a model to solve those 25 specific games. That absolutely overfits: the private eval is different and harder, so memorizing the demo games buys you nothing there.</p>\n<p>But \"LoRA\" isn't one thing. What gave us a modest lift wasn't training on game solutions \u2014 it was behavior-cloning the harness's own winning trajectories (STaR / rejection sampling): keep only the runs where the agent actually cleared levels, and SFT on the process \u2014 how it wrote probes, used the segmentation, structured its reasoning and tool calls. You're teaching agentic skill, not the answer key.</p>\n<p>Why we half-trust it: the gain showed up on the leaderboard (semi-private) score, not on the local demo games \u2014 base model vs. the same model with a trajectory-LoRA, same harness. So at least in our case it wasn't demo-set overfitting.</p>\n<p>Big caveats, and they line up with your experience:</p>\n<ol>\n<li>High variance \u2014 same recipe, different runs, scores swung a lot. Very easy to read noise as signal.</li>\n<li>Naively scaling the data hurt \u2014 more trajectories at the same recipe made it worse. Curation &gt; quantity.</li>\n<li>Base-model-specific \u2014 an adapter that helps one model won't necessarily help a different/stronger one, so as the meta shifts to new bases, old adapters can stop paying off entirely.</li>\n</ol>\n<p>So: training on demo solutions \u2192 yes, backfires. Behavior-cloning winning process \u2192 can help, but it's finicky, model-specific, and only the private/semi-private score can confirm it's real.</p>"
+  }
+]

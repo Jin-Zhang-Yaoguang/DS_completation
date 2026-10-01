@@ -1,0 +1,26 @@
+{
+  "topic": {
+    "id": 734369,
+    "title": "Write Up: Taaf Anim Agent",
+    "authorName": "Jakob Br\u00fcggen",
+    "commentCount": 2,
+    "votes": 9,
+    "postDate": "2026-08-11T07:55:33.324000"
+  },
+  "comments": [
+    {
+      "id": 3511707,
+      "authorName": "Xuan",
+      "votes": 1,
+      "postDate": "2026-08-11T20:18:13.110000",
+      "content": "<p>Great write up! I observed something similar and the frames are important for Sol but seems to blow up the context window for Qwen.</p>\n<p>To give some background, I saw this article <a href=\"https://vista-research.github.io/\" target=\"_blank\">https://vista-research.github.io/</a> which has a very simple prompt about vision-only approach but achieved 100% for claude/Sol. The main idea is to actually enlarge the 64x64 grid to 512x 512 and utilize the model's vision capability. (because the model is trained more with online images that are like 512x512, using a 64 x 64 usually results in model not able to get the details of the image) </p>\n<p>Overall it seems like the vision information help Qwen get to the intuition about the problem faster, for example, for ft09 it is able to reason that the bottom right is the target area immediately after seeing the image. However, compared to sol, qwen cannot accurately infer coordinates based on image and is also worse in reasoning. Likewise, for the animation toolkit, it is vital for sol for problem like tn36 (I run A/B test for sol with duck/vista as well) but for qwen the vista approach just does not work as well.</p>\n<p>Looking at the traces of qwen in VISTA setup compared to sol, it feels to me qwen could just need some fine tuning to just be more accurate and reason a bit more, the initial intuition is there. Wondering what's your thoughts on doing SFT/GRPO on qwen? </p>"
+    },
+    {
+      "id": 3511797,
+      "authorName": "Greg Kamradt",
+      "votes": 0,
+      "postDate": "2026-08-12T03:45:22.623000",
+      "content": "<p>Thank you for sharing</p>"
+    }
+  ]
+}
