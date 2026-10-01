@@ -1,6 +1,6 @@
 # 已完结比赛归档治理（2026-10-01）
 
-用户已批准 A、B、C；本轮将执行缓存、归档 worktree 与剩余大回放清理。实际执行和空间变化以 cleanup_result.json 为准。
+用户已批准 A、B、C；本轮已执行缓存、八个归档 worktree 与剩余大回放清理。实际执行和空间变化以 cleanup_result.json 为准。
 
 ## 已完成的整合
 
@@ -22,7 +22,7 @@
 | [kaggriculture_final_packages.json](kaggriculture_final_packages.json) | 最终参评包与备选包哈希 |
 | [deletion_proposal.json](deletion_proposal.json) | 删除候选的精确文件路径、大小、mtime 和审批状态 |
 
-## A 批：建议先审批，32.73 GiB
+## A 批：已批准并清理
 
 | 对象 | 文件数 | 占用 | 删除后的影响 |
 |---|---:|---:|---|
@@ -33,7 +33,7 @@
 
 只有明确批准后才执行。执行时重新核对清单路径、大小与 mtime，并检查没有训练或 Git 进程使用这些文件；任何变化使对应条目暂停。审批时不扩展到同后缀文件或其他目录。
 
-## B 批：worktree 移除建议，尚不执行
+## B 批：八个相关 worktree 已移除
 
 已结束赛题内容已汇总的候选包括 cargo-culture、community-research、kaggriculture-evaluation、kaggriculture-setup、strange-gates、trusting-carson、vibrant-montalcini 和 Player B。
 
@@ -41,7 +41,7 @@
 
 ARC-AGI-2、ARC-AGI-3、Gemma 及其工作区保留。用途不明确的工作区暂不列入删除。
 
-## C 批：Kaggriculture 回放治理建议，尚不执行
+## C 批：大批剩余回放已清理
 
 官方索引约 1,251.8 GiB，其他 model_data 约 188 GiB。保留最终参评版本的自身对局、复盘引用案例、关键门控面板与代表样本；先生成 episode ID、来源、规则版本、SHA256 的精选清单，再判断剩余数据冷存储或删除。
 
@@ -49,9 +49,16 @@ ARC-AGI-2、ARC-AGI-3、Gemma 及其工作区保留。用途不明确的工作�
 
 ## 后续合入主目录
 
-主目录仍有原先未提交的研究修改。本次将可合并内容收拢到归档分支，并提供当前主目录中的 README 和复盘预览，不强制切换主目录，不覆盖原研究文件。归档分支未推送；后续在保护主目录差异后再完成 main 的统一。
+主目录已统一到精简发布版。原先未提交的研究修改保留在本地保护快照和差异归档中，进行中的比赛保留。最终清理记录见 [清理报告](CLEANUP_REPORT.md)。
 
 
 ## 本地与发布版
 
 本地完整材料保留在 Git 标签 `archive/full-local-before-cleanup-20261001` 和本地对象库。发布版排除大模型文本、中间矩阵和原始回放；源文件 SHA 清单指向本地完整归档，不能理解为所有列举产物都上传了 GitHub。最终预测已恢复到主目录的独立路径，S6E9 data 不再依赖旧 worktree 的符号链接。
+
+
+## 执行结果
+
+`cleanup_execution.json` 记录实际执行。三个 donor 缓存目录和原清单 Git 临时对象已清退；部分 Git 临时对象在脚本执行时已不存在。已移除八个工作区，删除旧 model_data 与 1,222 份未跟踪 Replay JSON。保留的 73 份最终自身回放及代表评测面板在主目录 `.archive_artifacts/kaggriculture_evidence/`；元数据和程序另有本地副本。原有未提交修改保存在本地保护快照及 source_variants，主目录已统一到精简发布版。
+
+清理后再次从归档最终预测恢复提交，CSV SHA256 一致。空间结果以 `cleanup_result.json` 为准。

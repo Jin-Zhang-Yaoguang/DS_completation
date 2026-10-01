@@ -98,3 +98,7 @@ python v6_te_hgbc.py
 ## License
 
 仅供个人学习与比赛研究使用。赛题数据版权归 Kaggle 及数据提供方所有。
+
+## 存储治理
+
+2026-10-01 已完成获批归档清理：项目及工作区总占用从 **1,635.88 GiB** 降至 **32.20 GiB**。具体范围、保留材料及实测口径见 [清理报告](archive/governance_20261001/CLEANUP_REPORT.md)。
