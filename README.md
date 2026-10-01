@@ -101,4 +101,4 @@ python v6_te_hgbc.py
 
 ## 存储治理
 
-2026-10-01 已完成获批归档清理：项目及工作区总占用从 **1,635.88 GiB** 降至 **32.20 GiB**。具体范围、保留材料及实测口径见 [清理报告](archive/governance_20261001/CLEANUP_REPORT.md)。
+2026-10-01 已完成获批归档清理：项目及工作区总占用从 **1,635.88 GiB** 降至 **32.21 GiB**。具体范围、保留材料及实测口径见 [清理报告](archive/governance_20261001/CLEANUP_REPORT.md)。
