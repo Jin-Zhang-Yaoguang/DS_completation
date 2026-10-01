@@ -1,0 +1,52 @@
+name: Secret checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+      - name: Install checksum-verified Gitleaks
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=8.30.1
+          asset="gitleaks_${version}_linux_x64.tar.gz"
+          base="https://github.com/gitleaks/gitleaks/releases/download/v${version}"
+          work="$(mktemp -d)"
+          cd "$work"
+          curl --fail --silent --show-error --location "$base/$asset" --output "$asset"
+          curl --fail --silent --show-error --location "$base/gitleaks_${version}_checksums.txt" --output checksums.txt
+          awk -v asset="$asset" '$2 == asset { print }' checksums.txt > selected-checksum.txt
+          test -s selected-checksum.txt
+          sha256sum --check selected-checksum.txt
+          tar -xzf "$asset" gitleaks
+          mkdir -p "$HOME/.local/bin"
+          install -m 755 gitleaks "$HOME/.local/bin/gitleaks"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Test the publication gate
+        run: python3 scripts/test_secret_scan.py
+      - name: Check current tree and introduced commits
+        shell: bash
+        run: |
+          set -euo pipefail
+          range="$(python3 - <<'PY'
+          import json, os, re
+          with open(os.environ['GITHUB_EVENT_PATH']) as handle:
+              event = json.load(handle)
+          base = event.get('pull_request', {}).get('base', {}).get('sha') or event.get('before', '')
+          if re.fullmatch(r'[0-9a-f]{40}', base) and base != '0' * 40:
+              print(base + '..HEAD')
+          else:
+              print('origin/main..HEAD')
+          PY
+          )"
+          python3 scripts/check_publication.py --ref HEAD --history-range "$range"

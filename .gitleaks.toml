@@ -1,0 +1,44 @@
+title = "DS_completation secret checks"
+
+[extend]
+useDefault = true
+
+# 网页归档中的 Google Key 也必须脱敏，不沿用默认规则的公开 Key 豁免。
+[[rules]]
+id = "ds-google-api-key"
+description = "Google API key in source or archived pages"
+regex = '''AIza[0-9A-Za-z_-]{35}'''
+keywords = ["AIza"]
+
+[[rules]]
+id = "ds-kaggle-api-token"
+description = "Kaggle API access or refresh token"
+regex = '''KG(?:AT|RT)_[0-9A-Za-z_-]{20,}'''
+keywords = ["KGAT_", "KGRT_"]
+
+[[rules]]
+id = "ds-kaggle-legacy-credentials"
+description = "Legacy Kaggle username/key JSON credentials"
+regex = '''(?i)["']username["']\s*:\s*["'][^"'\r\n]{1,128}["'][\s,]{1,32}["']key["']\s*:\s*["'][a-f0-9]{32}["']'''
+keywords = ["username"]
+
+# 只豁免已核实的 SHA256 元数据字段；不豁免任何目录或整个文件。
+[[rules]]
+id = "generic-api-key"
+[[rules.allowlists]]
+description = "Reviewed SHA256 metadata for model arrays, cache identities and source files"
+regexTarget = "match"
+regexes = ['''(?:cache_key|api_sha256|physical_keys\.npy|action_keys\.npy|unit_tokens\.npy|market_tokens\.npy|unit_tokens|market_tokens|API\.md|SankeyRenderer\.jsx)["']\s*:\s*["'][a-f0-9]{64}["']''']
+
+[[rules.allowlists]]
+description = "Reviewed simulation job identity SHA256 in codez-v54 preflight records"
+condition = "AND"
+regexTarget = "match"
+paths = ['''(?:^|/)kaggle_Kaggriculture/model/codez-v54/iteration02/(?:shadow_preflight|donor_v012_preflight|exact_buy_v020_preflight|donor_v013_preflight|idle_v014_preflight|legacy_cliff_attribution|idle_v015_preflight|hybrid_v019_preflight|shadow_v005_build_error|shadow_v005_preflight)\.json$''']
+regexes = ['''^key["']\s*:\s*["'][a-f0-9]{64}["']''']
+
+[[rules]]
+id = "ds-kaggle-legacy-credentials-reversed"
+description = "Legacy Kaggle key/username JSON credentials"
+regex = '''(?i)["']key["']\s*:\s*["'][a-f0-9]{32}["'][\s,]{1,32}["']username["']\s*:\s*["'][^"'\r\n]{1,128}["']'''
+keywords = ["username"]
