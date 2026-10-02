@@ -26,3 +26,15 @@
 GitHub 的旧 SHA 缓存和他人的旧克隆不由普通 Git 强推保证清除。如需要永久清除服务端旧对象和缓存，需由 GitHub Support 判断并处理，参见 [GitHub 官方说明](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)。本次不代表完成提供方 Key 撤销或其他人的克隆清理。
 
 其他旧克隆需要重新克隆，或按映射重放未发布的变更；不要把旧分支合并回清理后的历史。本机仓库会同步受影响的引用，保留现有实验文件。
+
+## 发布后读回
+
+3 个公开分支已按租约强制更新，远端读回一致；本机 22 个受影响引用已同步，4 个 Codex 快照已脱敏，17 个 reflog 文件中的 64 条恢复指针映射到等价的干净对象，没有删除恢复记录。其他活动工作树及未跟踪实验文件保持原状。
+
+GitHub 告警 #1 已读回 `resolved`，原因 `wont_fix`，有效性仍为 `unknown`；未解决告警为 0。强推后的 CI（run `36951428151`）已通过，包含完整当前历史扫描。
+
+实测 GitHub 旧 blob 的 API 仍可读取原网页内容中的 Key，不能把强推描述为服务端缓存已彻底清除。这部分需要 GitHub Support 判断和处理。本次完成的是分支／本地引用历史清理与活动告警关闭。
+
+详细回执见 [HISTORY_REWRITE_RESULT.json](HISTORY_REWRITE_RESULT.json)。
+
+本地对象清理已完成：旧 Key 所在 blob 不再能通过本机 Git 对象库读取；保留的恢复指针均指向等价的脱敏对象。
